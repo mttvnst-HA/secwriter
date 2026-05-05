@@ -8,8 +8,8 @@
 // useSyncExternalStore against subscribeBlock+getBlockHtml and exposes a
 // write() that delegates to setBlockHtml.
 
-import { describe, it, expect, vi } from 'vitest';
-import { render, act, renderHook } from '@testing-library/react';
+import { describe, it, expect, vi, afterEach } from 'vitest';
+import { render, act, renderHook, cleanup } from '@testing-library/react';
 import * as Y from 'yjs';
 
 import { seedBlockArray, getBlockHtml, setBlockHtml } from '../../lib/block-html-store.js';
@@ -24,6 +24,8 @@ function makeDoc(blocks = [{ id: 'n1', type: 'txt', html: 'hello' }]) {
 }
 
 describe('useBlockBinder — Y.Doc-backed block html (#22)', () => {
+  afterEach(() => { cleanup(); });
+
   it('initial html reflects the seeded Y.Text', () => {
     const { yStore } = makeDoc();
     const { result } = renderHook(() => useBlockBinder({ yStore, blockId: 'n1' }));
@@ -123,6 +125,51 @@ describe('useBlockBinder — Y.Doc-backed block html (#22)', () => {
     // Slot identity preserved (substrate is Y.XmlFragment post-1d).
     expect(yStore.get('n1').get('html')).toBe(slotBefore);
     expect(getBlockHtml(yStore, 'n1')).toBe('hello');
+  });
+
+  it('rerenders when yMap.html slot is REPLACED mid-session (broker migration regression)', () => {
+    // PR #51 review (CI E2E flake) — regression. The 1d server-side broker
+    // swaps yMap.html from Y.Text to Y.XmlFragment for any client connected
+    // when a peer's WS upgrade triggers migration. The previous binder
+    // subscribed to yStore (key add/remove) and the slot itself — neither
+    // fires for `yMap.set('html', newSlot)`, so the binder kept a dangling
+    // observeDeep on the orphaned Y.Text and stopped seeing remote ops on
+    // the new Y.XmlFragment. The fix observes yMap directly.
+    const { yStore } = makeDoc();
+    let renders = 0;
+    function Probe() {
+      const { html } = useBlockBinder({ yStore, blockId: 'n1' });
+      renders++;
+      return <div data-testid="probe">{html}</div>;
+    }
+    const { getByTestId } = render(<Probe />);
+    expect(getByTestId('probe').textContent).toBe('hello');
+    const baseRenders = renders;
+
+    // Simulate the broker's mid-session slot swap: replace yMap.html
+    // entirely (not just mutate its contents). Use a fresh Y.XmlFragment
+    // populated with new content so the binder's derived html visibly
+    // changes if the subscription re-attaches correctly.
+    const yMap = yStore.get('n1');
+    act(() => {
+      const ydoc = yStore.doc;
+      ydoc.transact(() => {
+        const newXml = new Y.XmlFragment();
+        yMap.set('html', newXml);
+        const para = new Y.XmlElement('paragraph');
+        newXml.push([para]);
+        const yt = new Y.XmlText();
+        para.push([yt]);
+        yt.insert(0, 'after-swap');
+      }, 'migrate-v2');
+    });
+
+    expect(getByTestId('probe').textContent).toBe('after-swap');
+    expect(renders).toBeGreaterThan(baseRenders);
+
+    // Subsequent ops on the NEW slot must also propagate.
+    act(() => { setBlockHtml(yStore, 'n1', 'after-edit'); });
+    expect(getByTestId('probe').textContent).toBe('after-edit');
   });
 
   it('write() with the same html as current is a no-op CRDT-wise', () => {

@@ -178,15 +178,29 @@ export function setBlockHtml(yStore, blockId, html) {
 
 export function subscribeBlock(yStore, blockId, listener) {
   let yHtml = null;
-  const onHtml = () => listener();
+  let yMapObserved = null;
+  // Invalidate the per-yHtml cache BEFORE notifying React. Yjs fires
+  // observeDeep callbacks in registration order: this listener runs
+  // before the cache-dirty observer registered lazily inside
+  // `getCached`, so without manual invalidation React would re-render
+  // and read a stale cached html. Calling listener after marking dirty
+  // ensures useSyncExternalStore's getSnapshot returns the new value.
+  const onHtml = () => {
+    if (yHtml) {
+      const entry = cache.get(yHtml);
+      if (entry) entry.dirty = true;
+    }
+    listener();
+  };
 
-  const detach = () => {
+  const detachHtml = () => {
     if (!yHtml) return;
     if (typeof yHtml.unobserveDeep === 'function') {
       yHtml.unobserveDeep(onHtml);
     } else if (typeof yHtml.unobserve === 'function') {
       yHtml.unobserve(onHtml);
     }
+    yHtml = null;
   };
   const attachInner = (next) => {
     if (typeof next?.observeDeep === 'function') {
@@ -196,16 +210,44 @@ export function subscribeBlock(yStore, blockId, listener) {
     }
   };
 
+  // The 1d server-side broker swaps yMap.html from Y.Text to Y.XmlFragment
+  // mid-session for any client connected when a peer's WS upgrade triggers
+  // migration. The pre-fix subscription model only observed yStore for
+  // blockId add/remove — a yMap.set('html', ...) op fires NEITHER the
+  // yStore observer (yStore's keys don't change) NOR the old slot's
+  // observers (the orphaned slot loses its parent and gets no further
+  // events). The binder kept a permanent dangling reference to the
+  // orphaned Y.Text and stopped seeing remote ops on the new
+  // Y.XmlFragment.
+  //
+  // Fix: observe the per-block yMap directly. Any yMap.set('html', ...)
+  // fires onMap, and we re-attach to whatever slot the yMap now exposes.
+  // We additionally observe yStore for the blockId being added/removed.
+  const onMap = (event) => {
+    if (!event?.changes?.keys?.has?.('html')) return;
+    attachHtml();
+    listener();
+  };
+  const attachMap = (yMap) => {
+    if (yMap === yMapObserved) return;
+    if (yMapObserved && typeof yMapObserved.unobserve === 'function') {
+      yMapObserved.unobserve(onMap);
+    }
+    yMapObserved = yMap;
+    if (yMap && typeof yMap.observe === 'function') {
+      yMap.observe(onMap);
+    }
+  };
+
   const attachHtml = () => {
     const yMap = yStore.get(blockId);
+    attachMap(yMap || null);
     const next = yMap && typeof yMap.get === 'function' ? yMap.get('html') : null;
     if (next === yHtml) return;
-    detach();
+    detachHtml();
     if (next && (typeof next.toArray === 'function' || typeof next.toDelta === 'function')) {
       yHtml = next;
       attachInner(yHtml);
-    } else {
-      yHtml = null;
     }
   };
 
@@ -219,8 +261,11 @@ export function subscribeBlock(yStore, blockId, listener) {
   yStore.observe(onStore);
 
   return () => {
-    detach();
-    yHtml = null;
+    detachHtml();
+    if (yMapObserved && typeof yMapObserved.unobserve === 'function') {
+      yMapObserved.unobserve(onMap);
+    }
+    yMapObserved = null;
     yStore.unobserve(onStore);
   };
 }
