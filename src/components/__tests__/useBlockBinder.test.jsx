@@ -8,11 +8,11 @@
 // useSyncExternalStore against subscribeBlock+getBlockHtml and exposes a
 // write() that delegates to setBlockHtml.
 
-import { describe, it, expect, vi } from 'vitest';
-import { render, act, renderHook } from '@testing-library/react';
+import { describe, it, expect, vi, afterEach } from 'vitest';
+import { render, act, renderHook, cleanup } from '@testing-library/react';
 import * as Y from 'yjs';
 
-import { seedBlockArray, getBlockHtml } from '../../lib/block-html-store.js';
+import { seedBlockArray, getBlockHtml, setBlockHtml } from '../../lib/block-html-store.js';
 import { useBlockBinder } from '../useBlockBinder.js';
 
 function makeDoc(blocks = [{ id: 'n1', type: 'txt', html: 'hello' }]) {
@@ -24,6 +24,8 @@ function makeDoc(blocks = [{ id: 'n1', type: 'txt', html: 'hello' }]) {
 }
 
 describe('useBlockBinder — Y.Doc-backed block html (#22)', () => {
+  afterEach(() => { cleanup(); });
+
   it('initial html reflects the seeded Y.Text', () => {
     const { yStore } = makeDoc();
     const { result } = renderHook(() => useBlockBinder({ yStore, blockId: 'n1' }));
@@ -47,8 +49,13 @@ describe('useBlockBinder — Y.Doc-backed block html (#22)', () => {
     expect(origins).toContain('local-publish');
   });
 
-  it('rerenders when the underlying Y.Text mutates (subscription pathway)', () => {
-    const { ydoc, yStore } = makeDoc();
+  it('rerenders when the underlying html slot mutates (subscription pathway)', () => {
+    // Sub-PR 1d (#47, ADR-0006): the substrate is now Y.XmlFragment, but
+    // the binder's contract is shape-agnostic — observeDeep on the slot
+    // is what fires the rerender. Mutate via setBlockHtml so we go through
+    // the same write path the binder would use; the assertion is on the
+    // rendered html, not the slot's internal type.
+    const { yStore } = makeDoc();
     let renders = 0;
     function Probe() {
       const { html } = useBlockBinder({ yStore, blockId: 'n1' });
@@ -60,10 +67,11 @@ describe('useBlockBinder — Y.Doc-backed block html (#22)', () => {
     const baseRenders = renders;
 
     act(() => {
-      ydoc.transact(() => {
-        const yText = yStore.get('n1').get('html');
-        yText.insert(yText.length, '!');
-      }, 'local-publish');
+      // Direct setBlockHtml mutation — the same code path EditableBlock
+      // uses for keystroke writes. Going through here proves observeDeep
+      // on Y.XmlFragment fires the listener exactly like observe() on
+      // Y.Text did pre-1d.
+      setBlockHtml(yStore, 'n1', 'hello!');
     });
 
     expect(getByTestId('probe').textContent).toBe('hello!');
@@ -85,10 +93,7 @@ describe('useBlockBinder — Y.Doc-backed block html (#22)', () => {
 
     // Mutating docA after the swap must NOT cause the binder to re-render.
     act(() => {
-      docA.ydoc.transact(() => {
-        const yText = docA.yStore.get('n1').get('html');
-        yText.insert(yText.length, '!');
-      }, 'local-publish');
+      setBlockHtml(docA.yStore, 'n1', 'A!');
     });
     expect(result.current.html).toBe('B');
   });
@@ -106,7 +111,7 @@ describe('useBlockBinder — Y.Doc-backed block html (#22)', () => {
     // App passes yStore=null to EditableBlock. The binder must NOT touch
     // any Y.Doc — even if the caller has another path to the doc.
     const { ydoc, yStore } = makeDoc();
-    const yTextBefore = yStore.get('n1').get('html');
+    const slotBefore = yStore.get('n1').get('html');
     const stateBefore = Y.encodeStateAsUpdate(ydoc);
 
     // Render the binder with yStore=null (simulates pre-sync state).
@@ -117,8 +122,54 @@ describe('useBlockBinder — Y.Doc-backed block html (#22)', () => {
     // The doc's state is byte-for-byte identical — no transaction emitted.
     const stateAfter = Y.encodeStateAsUpdate(ydoc);
     expect(stateAfter).toEqual(stateBefore);
-    expect(yStore.get('n1').get('html')).toBe(yTextBefore);
-    expect(yTextBefore.toString()).toBe('hello');
+    // Slot identity preserved (substrate is Y.XmlFragment post-1d).
+    expect(yStore.get('n1').get('html')).toBe(slotBefore);
+    expect(getBlockHtml(yStore, 'n1')).toBe('hello');
+  });
+
+  it('rerenders when yMap.html slot is REPLACED mid-session (broker migration regression)', () => {
+    // PR #51 review (CI E2E flake) — regression. The 1d server-side broker
+    // swaps yMap.html from Y.Text to Y.XmlFragment for any client connected
+    // when a peer's WS upgrade triggers migration. The previous binder
+    // subscribed to yStore (key add/remove) and the slot itself — neither
+    // fires for `yMap.set('html', newSlot)`, so the binder kept a dangling
+    // observeDeep on the orphaned Y.Text and stopped seeing remote ops on
+    // the new Y.XmlFragment. The fix observes yMap directly.
+    const { yStore } = makeDoc();
+    let renders = 0;
+    function Probe() {
+      const { html } = useBlockBinder({ yStore, blockId: 'n1' });
+      renders++;
+      return <div data-testid="probe">{html}</div>;
+    }
+    const { getByTestId } = render(<Probe />);
+    expect(getByTestId('probe').textContent).toBe('hello');
+    const baseRenders = renders;
+
+    // Simulate the broker's mid-session slot swap: replace yMap.html
+    // entirely (not just mutate its contents). Use a fresh Y.XmlFragment
+    // populated with new content so the binder's derived html visibly
+    // changes if the subscription re-attaches correctly.
+    const yMap = yStore.get('n1');
+    act(() => {
+      const ydoc = yStore.doc;
+      ydoc.transact(() => {
+        const newXml = new Y.XmlFragment();
+        yMap.set('html', newXml);
+        const para = new Y.XmlElement('paragraph');
+        newXml.push([para]);
+        const yt = new Y.XmlText();
+        para.push([yt]);
+        yt.insert(0, 'after-swap');
+      }, 'migrate-v2');
+    });
+
+    expect(getByTestId('probe').textContent).toBe('after-swap');
+    expect(renders).toBeGreaterThan(baseRenders);
+
+    // Subsequent ops on the NEW slot must also propagate.
+    act(() => { setBlockHtml(yStore, 'n1', 'after-edit'); });
+    expect(getByTestId('probe').textContent).toBe('after-edit');
   });
 
   it('write() with the same html as current is a no-op CRDT-wise', () => {

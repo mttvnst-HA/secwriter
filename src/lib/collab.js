@@ -60,7 +60,9 @@
 
 import * as Y from 'yjs';
 import { WebsocketProvider } from 'y-websocket';
+import { prosemirrorToYXmlFragment } from 'y-prosemirror';
 import { applyHtmlToYText, yTextToHtml, htmlToAttrList, seedYTextFromHtml } from './ytext-html.js';
+import { htmlToPmFragment, pmFragmentToHtml } from './pmdoc-html.js';
 import { tableToYStructure, yStructureToTable, diffTableForPublish, applyTableCellEdits } from './ytable-crdt.js';
 import { refToYStructure, yStructureToRef, applyRefEdits } from './yref-crdt.js';
 
@@ -170,15 +172,25 @@ export function estimatePublishBytes(blocks) {
 }
 
 
-/** Build a Y.Map from a plain block object. */
-function blockToYMap(block) {
+/**
+ * Build a Y.Map skeleton (scalars + empty Y.XmlFragment + JSON keys).
+ * The `html` Y.XmlFragment is intentionally LEFT EMPTY — the caller must
+ * attach the yMap to its parent (yStore) and then call `populateBlockHtml`
+ * on the slot. Doing the populate before attachment works functionally
+ * (y-prosemirror has a fake-transact path for detached fragments) but
+ * triggers a flood of "Invalid access: Add Yjs type to a document before
+ * reading data." warnings every time `updateYFragment` calls `toArray`
+ * on the detached fragment. Under CI's slower runners that flood
+ * overwhelms the Chromium → Playwright IPC channel and the test page
+ * stops responding to keyboard input — the symptom that took down
+ * `collab.spec.js:169 two-tab text sync` on PR #51.
+ */
+function blockToYMapSkeleton(block) {
   const yMap = new Y.Map();
   for (const k of SCALAR_KEYS) {
     if (block[k] !== undefined) yMap.set(k, block[k]);
   }
-  const yText = new Y.Text();
-  seedYTextFromHtml(yText, block.html || '');
-  yMap.set('html', yText);
+  yMap.set('html', new Y.XmlFragment());
   // Table/REF: nested CRDT structures
   if (block.table) {
     const yTable = new Y.Map();
@@ -193,6 +205,17 @@ function blockToYMap(block) {
   return yMap;
 }
 
+/**
+ * Populate an attached Y.XmlFragment from a block.html string. Caller
+ * MUST have already attached the parent yMap to yStore (so the fragment
+ * is reachable from the doc). Calling on a detached fragment is the
+ * warning-flood path documented above.
+ */
+function populateBlockHtml(yXml, html) {
+  const pmNode = htmlToPmFragment(typeof html === 'string' ? html : '');
+  prosemirrorToYXmlFragment(pmNode, yXml);
+}
+
 /** Build a plain block object from a Y.Map. */
 function yMapToBlock(yMap) {
   const block = {};
@@ -200,10 +223,24 @@ function yMapToBlock(yMap) {
     const v = yMap.get(k);
     if (v !== undefined) block[k] = v;
   }
-  const yText = yMap.get('html');
-  // Duck-type check instead of instanceof to handle CJS/ESM dual-package hazard.
-  // Y.Text has toDelta(), plain strings don't.
-  block.html = (yText && typeof yText.toDelta === 'function') ? yTextToHtml(yText) : (yText || '');
+  const yHtml = yMap.get('html');
+  // Sub-PR 1d (#47, ADR-0006): the html slot can be either Y.XmlFragment
+  // (post-broker-migration, post-1d) or Y.Text (legacy v1, or migrationPartial
+  // leftover when per-block conversion threw during the broker run). Branch
+  // on duck-type so .SEC flush handles both shapes — without this, the
+  // serializer would coerce String(yXmlFragment) into the export and produce
+  // the literal "[object Object]" string in every migrated block (Q24/B3).
+  if (yHtml && typeof yHtml.toArray === 'function' && typeof yHtml.nodeName !== 'string') {
+    // Y.XmlFragment — fragment has toArray + lacks nodeName. (YXmlElement
+    // has both, so the negative on nodeName disambiguates.)
+    block.html = pmFragmentToHtml(yHtml);
+  } else if (yHtml && typeof yHtml.toDelta === 'function') {
+    // Y.Text — duck-type check instead of instanceof handles CJS/ESM
+    // dual-package hazard.
+    block.html = yTextToHtml(yHtml);
+  } else {
+    block.html = (typeof yHtml === 'string') ? yHtml : '';
+  }
   // Table: nested CRDT or legacy JSON string
   const rawTable = yMap.get('table');
   if (rawTable) {
@@ -443,8 +480,12 @@ export function seedYBlocks(ydoc, yOrder, yStore, blocks) {
     yOrder.delete(0, yOrder.length);
     for (const id of Array.from(yStore.keys())) yStore.delete(id);
     for (const b of blocks) {
-      yStore.set(b.id, blockToYMap(b));
+      const yMap = blockToYMapSkeleton(b);
+      yStore.set(b.id, yMap);
       yOrder.push([b.id]);
+      // Populate AFTER attachment so prosemirrorToYXmlFragment runs on a
+      // fragment with a live `.doc` and doesn't fire the warning flood.
+      populateBlockHtml(yMap.get('html'), b.html);
     }
   }, 'seed');
 }
@@ -499,23 +540,31 @@ function updateYMapFromBlock(ymap, block) {
     ymap.delete('ref');
   }
 
-  // HTML lives in Y.Text and is owned by the binder (useBlockBinder) for
-  // existing blocks (#22 sub-PR 1b). Per-keystroke writes flow through
-  // setBlockHtml directly; React-state-driven publishes (handleRevisionAction,
-  // search/replace, MarkSuggestions, etc.) call setBlockHtml in addition to
-  // setBlocks. So this path skips html for existing yText — re-applying a
-  // stale React block.html would clobber typing in flight.
+  // HTML lives in the per-block CRDT slot and is owned by the binder
+  // (useBlockBinder) for existing blocks (#22 sub-PR 1b). Per-keystroke
+  // writes flow through setBlockHtml directly; React-state-driven publishes
+  // (handleRevisionAction, search/replace, MarkSuggestions, etc.) call
+  // setBlockHtml in addition to setBlocks. This path skips html for any
+  // existing slot — re-applying a stale React block.html would clobber
+  // typing in flight.
   //
-  // For brand-new blocks (block.id absent from yStore at the call site that
-  // routed us here), the wrapping `applyBlocksToYDoc` path used `blockToYMap`
-  // which seeds the yText directly. The else-branch below is a defensive
-  // fallback for the legacy case of a Y.Map with no html slot at all
-  // (shouldn't happen post-1a, but kept so a bad room state is recoverable).
-  const yText = ymap.get('html');
-  if (!yText || typeof yText.toDelta !== 'function') {
-    const t = new Y.Text();
-    seedYTextFromHtml(t, typeof block.html === 'string' ? block.html : '');
-    ymap.set('html', t);
+  // Sub-PR 1d (#47, ADR-0006): the slot can be Y.XmlFragment (post-broker)
+  // OR Y.Text (legacy / migrationPartial). Both shapes are valid; the
+  // defensive fallback below ONLY fires when the slot is missing or an
+  // unrecognized shape. Without the dual-shape detection, the fallback
+  // would re-seed Y.XmlFragment slots as fresh Y.Text on every scalar/
+  // structural publish, destroying the migrated substrate for every block
+  // (the issue flagged in the PR #51 review, comment 4380149320).
+  const yHtml = ymap.get('html');
+  const isYXmlFragment = yHtml && typeof yHtml.toArray === 'function' && typeof yHtml.nodeName !== 'string';
+  const isYText = yHtml && typeof yHtml.toDelta === 'function';
+  if (!isYXmlFragment && !isYText) {
+    // Truly missing or malformed slot — defensive recovery. Use the v2
+    // shape (Y.XmlFragment) so we don't drop the doc back to v1.
+    const yXml = new Y.XmlFragment();
+    const pmNode = htmlToPmFragment(typeof block.html === 'string' ? block.html : '');
+    prosemirrorToYXmlFragment(pmNode, yXml);
+    ymap.set('html', yXml);
   }
 }
 
@@ -560,7 +609,10 @@ export function applyBlocksToYDoc(ydoc, yOrder, yStore, blocks) {
       if (existing) {
         updateYMapFromBlock(existing, block);
       } else {
-        yStore.set(block.id, blockToYMap(block));
+        const yMap = blockToYMapSkeleton(block);
+        yStore.set(block.id, yMap);
+        // Populate AFTER attachment — see blockToYMapSkeleton for why.
+        populateBlockHtml(yMap.get('html'), block.html);
       }
     }
 

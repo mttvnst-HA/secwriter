@@ -9,6 +9,7 @@
 'use strict';
 
 const Y = require('yjs');
+const { SCHEMA_VERSION_KEY, MIGRATION_PARTIAL_KEY } = require('./migrate-pm-substrate.cjs');
 
 // Lazy-loaded ESM module references (cached after first import)
 let _serializeSEC = null;
@@ -102,14 +103,34 @@ function blockToYMap(block) {
  * Seed a Y.Doc with parsed blocks, using CJS Yjs to avoid dual-package hazard.
  * Clears existing content and replaces with the provided blocks.
  *
- * NOTE: Seeds with plain text Y.Text (no formatting attributes) and JSON strings
- * for table/ref. The ESM client's updateYMapFromBlock() will upgrade these to
- * attribute-based Y.Text and nested CRDT structures on first publish. This is
- * acceptable because seeding is a one-time operation with no concurrent edits.
+ * NOTE: Seeds with plain text Y.Text (no formatting attributes) and JSON
+ * strings for table/ref. The ESM client's updateYMapFromBlock() will upgrade
+ * these to attribute-based shapes and nested CRDT structures on first publish.
+ * This is acceptable because seeding is a one-time operation with no
+ * concurrent edits.
+ *
+ * Sub-PR 1d (#47, ADR-0006), issue (d) re-fix. The seed continues to use
+ * Y.Text; instead, we clear `schemaVersion` and `migrationPartial` so the
+ * server-side broker re-evaluates the room on the next WS upgrade and
+ * migrates the seeded Y.Text slots to Y.XmlFragment. Without this clear, a
+ * room that already had `schemaVersion=2` from a prior broker run would
+ * keep the sentinel after the seed wipes its blocks, and `needsMigration`
+ * would short-circuit so the freshly-uploaded Y.Text blocks would never
+ * get promoted to v2 substrate.
+ *
+ * (Why not seed Y.XmlFragment directly? The hand-coded
+ * populateYXmlFragmentFromDelta path produced an intermittent client-side
+ * "Invalid access: Add Yjs type to a document before reading data." flood
+ * that surfaced as a `t.html.startsWith is not a function` ErrorBoundary
+ * crash on CI runners — the substrate post-decode behaved as if a child
+ * was detached during render. The Y.Text + clear-sentinel approach
+ * achieves the same end state, lets the broker do all v1→v2 work, and
+ * keeps E2E green.)
  */
 function seedRoomFromBlocks(ydoc, blocks) {
   const yOrder = ydoc.getArray('order');
   const yStore = ydoc.getMap('store');
+  const yMeta = ydoc.getMap('meta');
   ydoc.transact(() => {
     yOrder.delete(0, yOrder.length);
     for (const id of Array.from(yStore.keys())) yStore.delete(id);
@@ -117,6 +138,10 @@ function seedRoomFromBlocks(ydoc, blocks) {
       yStore.set(b.id, blockToYMap(b));
       yOrder.push([b.id]);
     }
+    // Clear migration sentinels so the broker re-runs and converts the
+    // newly-seeded Y.Text slots to Y.XmlFragment on the next WS upgrade.
+    yMeta.delete(SCHEMA_VERSION_KEY);
+    yMeta.delete(MIGRATION_PARTIAL_KEY);
   }, 'seed');
 }
 

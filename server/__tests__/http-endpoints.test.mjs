@@ -393,9 +393,84 @@ describe('HTTP endpoints', () => {
       // Verify Y.Doc was actually seeded
       const yOrder = ydoc.getArray('order');
       assert.ok(yOrder.length >= 2, `yOrder should have ≥2 entries, got ${yOrder.length}`);
+
+      // PR #51 review (issue d). Seed clears the migration sentinels so
+      // the broker re-runs on the next WS upgrade and promotes the
+      // seeded Y.Text slots to Y.XmlFragment. The HTTP path itself is
+      // CJS-only (the broker runs in the WS upgrade handler, which is
+      // exercised by collab-server tests).
+      const yMeta = ydoc.getMap('meta');
+      assert.strictEqual(yMeta.get('schemaVersion'), undefined,
+        'seed must clear schemaVersion so the broker re-runs on upgrade');
+      assert.strictEqual(yMeta.get('migrationPartial'), undefined,
+        'seed must clear migrationPartial too');
     } finally {
       ydoc.destroy();
       boundDocs.delete('upload-room');
+    }
+  });
+});
+
+// PR #51 review (issue e) — regression. The migration coordinator caches
+// `{ alreadyV2: true }` per docName. After DELETE /rooms/:id, a fresh
+// room created with the same id (or a v1 SEC re-uploaded under it) would
+// see the cached short-circuit and skip both archive + migration. The
+// DELETE handler must call `migrationCoordinator.forget(roomId)` to drop
+// the stale cache entry.
+describe('HTTP endpoints — DELETE clears migration cache (issue e)', () => {
+  let tmpDir, server, baseUrl, storage, coordCalls;
+  before(async () => {
+    tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sim-http-cache-'));
+    const { LocalStorageBackend } = require('../storage-local.cjs');
+    storage = new LocalStorageBackend(tmpDir);
+    await storage.writeRoom('to-delete', {
+      ydocBytes: Buffer.from([1, 2, 3]), secBytes: null, commentsJson: null,
+    });
+    coordCalls = [];
+    const fakeCoordinator = {
+      forget(docName) { coordCalls.push(['forget', docName]); },
+    };
+    const { createHttpHandler } = require('../http-handler.cjs');
+    const handler = createHttpHandler({
+      storage, boundDocs: new Map(),
+      flushRoom: async () => {}, maxDocBytes: 8 * 1024 * 1024,
+      migrationCoordinator: fakeCoordinator,
+    });
+    server = http.createServer(handler);
+    await new Promise(r => server.listen(0, '127.0.0.1', r));
+    baseUrl = `http://127.0.0.1:${server.address().port}`;
+  });
+  after(async () => {
+    await new Promise(r => server.close(r));
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  });
+
+  it('DELETE /rooms/:id forwards forget(roomId) to the migration coordinator', async () => {
+    const resp = await httpDelete(`${baseUrl}/rooms/to-delete`);
+    assert.strictEqual(resp.status, 200);
+    assert.deepStrictEqual(coordCalls, [['forget', 'to-delete']]);
+  });
+
+  it('omitted migrationCoordinator does not crash the DELETE path', async () => {
+    // Fresh handler without the coordinator dep — the guard in the handler
+    // (`typeof forget === 'function'`) must keep it from throwing.
+    await storage.writeRoom('to-delete-2', {
+      ydocBytes: Buffer.from([7, 8]), secBytes: null, commentsJson: null,
+    });
+    const { createHttpHandler } = require('../http-handler.cjs');
+    const handler2 = createHttpHandler({
+      storage, boundDocs: new Map(),
+      flushRoom: async () => {}, maxDocBytes: 8 * 1024 * 1024,
+      // migrationCoordinator omitted on purpose
+    });
+    const srv2 = http.createServer(handler2);
+    await new Promise(r => srv2.listen(0, '127.0.0.1', r));
+    const url = `http://127.0.0.1:${srv2.address().port}`;
+    try {
+      const resp = await httpDelete(`${url}/rooms/to-delete-2`);
+      assert.strictEqual(resp.status, 200);
+    } finally {
+      await new Promise(r => srv2.close(r));
     }
   });
 });

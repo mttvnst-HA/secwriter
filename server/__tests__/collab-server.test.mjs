@@ -337,4 +337,69 @@ describe('collab-server: bindState race (issue #17)', () => {
     ydoc.destroy();
     await server.flushAllRooms();
   });
+
+  // Sub-PR 1d (#47, ADR-0006): the migration broker introduces a SECOND
+  // await between accepting the upgrade and setupWSConnection (preload +
+  // migration). The eviction guard must hold across both awaits — without
+  // the post-migration re-install, a stale closeConn evicting our doc
+  // during the migration window would let setupWSConnection create a
+  // fresh empty doc that bypasses both preload AND migration.
+  //
+  // We force the race by deleting the docs entry mid-migration. The
+  // assertion is the same as the preload-window test: yOrder stays at
+  // BLOCK_COUNT.
+  it('eviction-guard holds across the broker-await window (1d regression)', async () => {
+    ywsDocs.clear();
+
+    const ydoc = new Y.Doc();
+    const yOrder = ydoc.getArray('order');
+    const yStore = ydoc.getMap('store');
+
+    const provider = new WebsocketProvider(`${baseUrl}/ws`, ROOM_NAME, ydoc, {
+      WebSocketPolyfill: NodeWebSocket,
+      connect: true,
+    });
+
+    // The persisted state is v1 (Y.Text slots from the test fixture). The
+    // server-side broker will run on this connect; the migration await is
+    // a fresh window for stale-close eviction. Schedule the eviction at
+    // 250 ms — well past the 200 ms preload await but still inside the
+    // migration window.
+    setTimeout(() => { ywsDocs.delete(ROOM_NAME); }, 250);
+
+    await new Promise((resolve, reject) => {
+      const timer = setTimeout(() => reject(new Error('sync timeout')), 5000);
+      provider.once('sync', () => { clearTimeout(timer); resolve(); });
+    });
+
+    const empty = yOrder.length === 0 && yStore.size === 0;
+    if (empty) {
+      ydoc.transact(() => {
+        for (let i = 1; i <= BLOCK_COUNT; i++) {
+          const id = `n${i}`;
+          const ymap = new Y.Map();
+          ymap.set('id', id);
+          ymap.set('type', 'txt');
+          const yText = new Y.Text();
+          yText.insert(0, `Block ${i} body text`);
+          ymap.set('html', yText);
+          yStore.set(id, ymap);
+          yOrder.push([id]);
+        }
+      }, 'seed');
+    }
+
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    assert.strictEqual(
+      yOrder.length, BLOCK_COUNT,
+      `Broker-window eviction race: yOrder grew to ${yOrder.length}; expected ${BLOCK_COUNT}. ` +
+      `Post-migration re-install of ywsDocs[ROOM_NAME] is missing or ineffective.`,
+    );
+
+    provider.disconnect();
+    provider.destroy();
+    ydoc.destroy();
+    await server.flushAllRooms();
+  });
 });

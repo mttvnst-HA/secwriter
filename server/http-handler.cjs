@@ -22,7 +22,7 @@ const { log } = require('./logger.cjs');
  * @param {(roomId: string) => Promise<void>} deps.flushRoom
  * @param {number} deps.maxDocBytes
  */
-function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authProvider, allowedOrigin = '*', getActiveUsers, rateLimiter, roomHealth }) {
+function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authProvider, allowedOrigin = '*', getActiveUsers, rateLimiter, roomHealth, migrationCoordinator }) {
   // Parse rate limit config once at handler creation, not per-request
   const HTTP_READ_RATE = Number(process.env.SIM_RATE_LIMIT_HTTP_READ_PER_MIN || 60);
   const HTTP_WRITE_RATE = Number(process.env.SIM_RATE_LIMIT_HTTP_WRITE_PER_MIN || 20);
@@ -279,6 +279,17 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           return;
         }
         await storage.deleteRoom(roomId);
+        // Sub-PR 1d (#47, ADR-0006). The migration coordinator caches one
+        // promise per docName; a successful migration leaves
+        // `{ alreadyV2: true }` in the cache so concurrent broker calls
+        // collapse. After a DELETE, that cache entry is stale — if an
+        // operator re-creates a room with the same id (or uploads a fresh
+        // v1 SEC), the next WS upgrade would short-circuit on the cached
+        // result and skip both archive + migration. Drop the entry here
+        // so the broker re-evaluates the new doc.
+        if (migrationCoordinator && typeof migrationCoordinator.forget === 'function') {
+          migrationCoordinator.forget(roomId);
+        }
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ ok: true }));
       } catch (err) {
