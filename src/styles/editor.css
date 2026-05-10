@@ -410,25 +410,19 @@ del.mark-del[data-author-color] {
   text-decoration-skip-ink: none;
 }
 
-/* ─── Compliance checker highlights ─── */
-.compliance-highlight {
-  background: #fbbf24;
+/* ─── Compliance checker active-group highlight (CSS Custom Highlight API) ─── */
+/* Sub-PR 1f (#47): replaced .compliance-highlight span injection with the
+   same CSS.highlights primitive linting uses. ::highlight() supports only
+   a narrow CSS property set (background-color, color, text-decoration) —
+   no box-shadow, padding, or animation. */
+::highlight(compliance-active) {
+  background-color: #fbbf24;
   color: #1e293b;
-  border-radius: 2px;
-  padding: 0 1px;
-  box-shadow: 0 0 0 2px #fbbf2466;
-  animation: compliance-pulse 1.5s ease-in-out 2;
 }
 
-@keyframes compliance-pulse {
-  0%, 100% { box-shadow: 0 0 0 2px #fbbf2466; }
-  50% { box-shadow: 0 0 0 4px #fbbf2488; }
-}
-
-.dark-mode .compliance-highlight {
-  background: #854d0e;
+.dark-mode ::highlight(compliance-active) {
+  background-color: #854d0e;
   color: #fef3c7;
-  box-shadow: 0 0 0 2px #854d0e66;
 }
 
 .dark-mode {

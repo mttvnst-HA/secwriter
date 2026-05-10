@@ -1,6 +1,5 @@
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { checkCompliance } from "../lib/compliance-checker.js";
-import { findFirstHighlightInBlock } from "../lib/compliance-highlight.js";
 import { getApiKey, requestAIRewrite, estimateTokens, estimateCost } from "../lib/compliance-ai.js";
 import * as comp from "../lib/compliance.js";
 import { getBlockDom } from "../lib/block-registry.js";
@@ -22,9 +21,9 @@ const SEVERITY_COLORS = {
  * domain. The AbortController for AI runs is also panel-local because it's
  * a side-effect handle, not state.
  *
- * The .compliance-highlight DOM mutation is owned by App (single seam,
- * matches linting's CSS.highlights pattern). The panel only triggers
- * scroll-to-existing-highlight via findFirstHighlightInBlock.
+ * The compliance active-group highlight is owned by App via
+ * CSS.highlights ('compliance-active'); the panel only requests
+ * block-level scrolls via getBlockDom.
  */
 export default function CompliancePanel({
   blocks,
@@ -123,12 +122,11 @@ export default function CompliancePanel({
     dispatchCompliance((state) => comp.rejectItem(state, violation.blockId, violation.index));
   }, [dispatchCompliance]);
 
-  // Click on a representative sentence or instance — scroll to its highlight
-  // (which has already been injected by App's effect when the group activated).
+  // Click on a representative sentence or instance — scroll the block into
+  // view. App's CSS.highlights effect renders the active-group highlight
+  // separately, so there's no DOM node to anchor pixel-precise scroll to.
   const scrollToBlockHighlight = useCallback((blockId) => {
-    const target =
-      findFirstHighlightInBlock(document, blockId) ||
-      getBlockDom(blockId);
+    const target = getBlockDom(blockId);
     if (target) target.scrollIntoView({ behavior: "smooth", block: "center" });
   }, []);
 

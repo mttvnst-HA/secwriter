@@ -15,9 +15,18 @@ const MAX_HISTORY = 100;
  * the track-changes module hands it and restores it on undo/redo.
  *
  * @param {Array} initialBlocks
+ * @param {Object} [options]
+ * @param {(blockId: string) => string|null} [options.getPmDirtyHtml]
+ *   PM-mode dirty-html resolver. PM EditorViews carry `data-pm-editor="true"`
+ *   on the contentEditable element; for those, `activeEl.innerHTML` includes
+ *   widget decorations (tag-labels, etc.) that must NOT enter the redo
+ *   frame. The caller supplies a substrate-aware reader (typically
+ *   `getBlockHtml(activeYStoreRef.current, id)`); the hook calls it lazily
+ *   so it can capture the latest substrate state at undo-time even though
+ *   the substrate ref is declared after this hook runs.
  * @returns {Object}
  */
-export function useUndoableBlocks(initialBlocks) {
+export function useUndoableBlocks(initialBlocks, options) {
   const [blocks, _setBlocks] = useState(initialBlocks);
   const [tcState, _setTcState] = useState(() => tc.createInitial());
 
@@ -25,6 +34,10 @@ export function useUndoableBlocks(initialBlocks) {
   const pausedRef = useRef(false);
   const undoingRef = useRef(false); // true during undo/redo to suppress blur-triggered setBlocks
   const currentRef = useRef({ blocks: initialBlocks, tcState: tc.createInitial() });
+  // Mirror options into a ref so the latest closure (which may reference
+  // refs declared after the hook call) is read at undo-time.
+  const optionsRef = useRef(options || null);
+  optionsRef.current = options || null;
 
   // Keep currentRef in sync
   currentRef.current.blocks = blocks;
@@ -88,12 +101,35 @@ export function useUndoableBlocks(initialBlocks) {
     // Capture the active block's current DOM content before blurring.
     // Typing that hasn't been synced to React state must be captured here
     // so redo can restore it accurately.
+    //
+    // Legacy contentEditable: read activeEl.innerHTML — captures the last
+    // 0-400ms of typed chars that the binder debounce hasn't flushed yet.
+    //
+    // PM EditorView (data-pm-editor="true"): activeEl.innerHTML contains
+    // widget decorations (tag-labels) and PM-internal markup that must NOT
+    // enter the redo frame. ySyncPlugin writes to the substrate
+    // synchronously per keystroke, so reading from the substrate captures
+    // the same in-flight chars without the widget contamination. The
+    // optional `getPmDirtyHtml` resolver supplied by the caller (App)
+    // bridges this hook to the Y.Doc substrate without coupling here.
     const activeEl = document.activeElement;
     let dirtyBlockId = null;
     let dirtyHtml = null;
     if (activeEl?.dataset?.blockId && activeEl.contentEditable === 'true') {
       dirtyBlockId = activeEl.dataset.blockId;
-      dirtyHtml = activeEl.innerHTML;
+      const isPm = typeof activeEl.closest === 'function'
+        && activeEl.closest('[data-pm-editor="true"]') !== null;
+      if (isPm) {
+        const getPmDirtyHtml = optionsRef.current?.getPmDirtyHtml;
+        if (typeof getPmDirtyHtml === 'function') {
+          try {
+            const fromSubstrate = getPmDirtyHtml(dirtyBlockId);
+            dirtyHtml = typeof fromSubstrate === 'string' ? fromSubstrate : null;
+          } catch { dirtyHtml = null; }
+        }
+      } else {
+        dirtyHtml = activeEl.innerHTML;
+      }
     }
 
     // Blur to dismiss focus-dependent UI (floating toolbar, etc.)

@@ -33,12 +33,12 @@ import { serializeSEC } from "./lib/sec-serializer.js";
 import { encodeWindows1252 } from "./lib/encoding.js";
 import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
 import * as Y from "yjs";
-import { seedBlockArray, resetBlockArray, setBlockHtml } from "./lib/block-html-store.js";
+import { seedBlockArray, resetBlockArray, setBlockHtml, getBlockHtml } from "./lib/block-html-store.js";
 import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, listBlocksInDocumentOrder } from "./lib/block-registry.js";
 import * as tc from "./lib/track-changes.js";
 import * as linting from "./lib/linting.js";
 import * as comp from "./lib/compliance.js";
-import { applyGroupHighlights, clearHighlightSpans } from "./lib/compliance-highlight.js";
+import { findHighlightTargetsInBlock } from "./lib/compliance-ranges.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
 import { getRoomFromUrl, buildRoomUrl, generateRoomId, DEFAULT_HTTP_URL, applyBlocksToYDoc } from "./lib/collab.js";
 import { useCollabSession } from "./hooks/useCollabSession.js";
@@ -120,7 +120,23 @@ export default function SpecEditor() {
   const {
     blocks, tcState, setBlocks, setBlocksDirect, setTcState,
     undo, redo, canUndo, canRedo, clearHistory, resumeHistory,
-  } = useUndoableBlocks(INITIAL_BLOCKS);
+  } = useUndoableBlocks(INITIAL_BLOCKS, {
+    // Sub-PR 1f: PM-mode dirty-html resolver. For PM EditorView blocks the
+    // hook reads the substrate (synchronous per-keystroke writes via
+    // ySyncPlugin) instead of `activeEl.innerHTML` (which contains widget
+    // decorations from tag-labels). Legacy blocks fall through to the
+    // hook's default innerHTML capture. The closure over `activeYStoreRef`
+    // is safe even though the ref is declared below — the function is only
+    // invoked at undo-time, well after all consts in this render initialize.
+    getPmDirtyHtml: (id) => {
+      try {
+        const yStore = activeYStoreRef.current;
+        return yStore ? getBlockHtml(yStore, id) : null;
+      } catch {
+        return null;
+      }
+    },
+  });
   // Local Y.Doc — the no-room substrate for block html. EditableBlock's
   // useBlockBinder reads/writes this when !inRoom. In-room mode, the
   // session's Y.Doc takes over; the local substrate stays allocated but
@@ -1143,7 +1159,7 @@ export default function SpecEditor() {
   }, [inlineLintingEnabled]);
 
   // Suspend inline linting while the compliance panel is open
-  // (panel injects its own .compliance-highlight spans).
+  // (panel renders its own CSS.highlights('compliance-active') ranges).
   useEffect(() => {
     setLintingState(s => linting.setSuspended(s, complianceOpen));
   }, [complianceOpen]);
@@ -1162,22 +1178,71 @@ export default function SpecEditor() {
     sync('passive-voice', groups.nlp);
   }, [lintingState]);
 
-  // Compliance highlight DOM mutation. App-level effect keeps the editor's
-  // .compliance-highlight spans in sync with the active group. Cleanup
-  // unwraps spans on activeGroup change, panel close, or unmount. Computing
-  // the targets is pure (compliance-highlight.js); the side effect lives here.
+  // Compliance highlight via CSS Custom Highlight API. Mirrors the linting
+  // tier-effect pattern above. Building Range objects (instead of injecting
+  // spans) keeps the highlights stable across PM EditorView re-renders —
+  // PM's view tear-down would have clobbered injected DOM. Computing the
+  // targets is pure (compliance-ranges.js); the side effect lives here.
+  //
+  // `blocks` is in the dep array so PM-driven DOM rewrites (which detach the
+  // text nodes our Range objects anchor to) trigger a fresh range build. But
+  // scroll must NOT re-fire on every typing pause — only on panel open,
+  // active group change, or fresh scan. The ref below gates the scroll
+  // against (open, group, result) so block-only re-runs skip the scrollTo.
+  const lastComplianceScrollRef = useRef({ open: false, group: null, result: null });
   useEffect(() => {
     if (typeof document === 'undefined') return;
-    if (!complianceOpen) return;
+    if (typeof CSS === 'undefined' || !CSS.highlights) return;
+    const clear = () => CSS.highlights.delete('compliance-active');
+
+    const prev = lastComplianceScrollRef.current;
+    const triggerScroll = complianceOpen && (
+      prev.open !== complianceOpen
+      || prev.group !== complianceState.activeGroup
+      || prev.result !== complianceState.result
+    );
+    lastComplianceScrollRef.current = {
+      open: complianceOpen,
+      group: complianceState.activeGroup,
+      result: complianceState.result,
+    };
+
+    if (!complianceOpen) { clear(); return; }
     const group = comp.getActiveGroupObject(complianceState);
-    if (!group) return;
-    const blocks = applyGroupHighlights(document, group);
-    if (blocks.length > 0) {
-      const first = document.querySelector('.compliance-highlight');
-      if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (!group || !Array.isArray(group.instances)) { clear(); return; }
+    const ranges = [];
+    let firstRange = null;
+    for (const v of group.instances) {
+      const blockEl = getBlockDom(v.blockId)
+        || document.querySelector(`[data-block-id="${v.blockId}"]`);
+      if (!blockEl) continue;
+      const targets = findHighlightTargetsInBlock(blockEl, v.match);
+      for (const t of targets) {
+        try {
+          const range = document.createRange();
+          range.setStart(t.textNode, t.startOffset);
+          range.setEnd(t.textNode, t.startOffset + t.length);
+          ranges.push(range);
+          if (!firstRange) firstRange = range;
+        } catch { /* invalid range — skip */ }
+      }
     }
-    return () => clearHighlightSpans(document);
-  }, [complianceOpen, complianceState.activeGroup, complianceState.result]);
+    if (ranges.length > 0) {
+      CSS.highlights.set('compliance-active', new Highlight(...ranges));
+      if (triggerScroll && firstRange && typeof firstRange.getBoundingClientRect === 'function') {
+        const rect = firstRange.getBoundingClientRect();
+        if (rect && (rect.top || rect.bottom)) {
+          window.scrollTo({
+            top: window.scrollY + rect.top - window.innerHeight / 2,
+            behavior: 'smooth',
+          });
+        }
+      }
+    } else {
+      clear();
+    }
+    return clear;
+  }, [complianceOpen, complianceState.activeGroup, complianceState.result, blocks]);
 
   // Collab server reachability detection — ping GET /rooms on mount and tab focus (30s cooldown)
   useEffect(() => {
