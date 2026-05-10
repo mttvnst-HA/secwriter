@@ -34,6 +34,7 @@ import { encodeWindows1252 } from "./lib/encoding.js";
 import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
 import * as Y from "yjs";
 import { seedBlockArray, resetBlockArray, setBlockHtml } from "./lib/block-html-store.js";
+import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, listBlocksInDocumentOrder } from "./lib/block-registry.js";
 import * as tc from "./lib/track-changes.js";
 import * as linting from "./lib/linting.js";
 import * as comp from "./lib/compliance.js";
@@ -569,23 +570,53 @@ export default function SpecEditor() {
   }, [roomId, sectionMeta.sectionNumber, authHeaders]);
 
   // Programmatic focus for EXISTING elements (arrow nav, tree select, delete-focus-prev)
-  // New blocks focus themselves via the ref callback in EditableBlock
+  // New blocks focus themselves via the ref callback in EditableBlock.
+  //
+  // Sub-PR 1e (#47, v2 plan Q17/E4). Was: querySelector('[data-block-id=…]')
+  // + manual Range placement. Now goes through block-registry's imperative
+  // handle so PM-mounted blocks (which own their internal DOM and don't
+  // surface a single contentEditable) can route the focus to PM's
+  // EditorView.dispatch + Selection.atEnd. The 1i sub-PR will lint-fail any
+  // re-introduction of the querySelector pattern.
+  //
+  // Race safety (QC major-5): the legacy fallback's manual Range placement
+  // fights PM's own selection management. We give the registry two chances
+  // (microtask + animation frame) before falling back to a DOM-level lookup.
+  // If the resolved element is PM-owned (data-pm-editor="true"), we only
+  // call .focus() — PM resolves the cursor on the next dispatch — rather
+  // than imperatively placing a Range PM will immediately overwrite.
   const focusBlock = useCallback((id, atEnd = true) => {
     setFocusedBlockId(id);
-    // setTimeout(0) lets React finish any pending state updates first
-    setTimeout(() => {
+    const tryFocus = () => focusBlockById(id, { atEnd });
+    const fallbackToDom = () => {
       const el = document.querySelector(`[data-block-id="${id}"]`);
-      if (el) {
-        el.focus();
-        const range = document.createRange();
-        const sel = window.getSelection();
-        if (el.childNodes.length > 0) {
-          range.selectNodeContents(el);
-          range.collapse(atEnd);
-        }
-        sel.removeAllRanges();
-        sel.addRange(range);
+      if (!el) return;
+      el.focus();
+      // PM owns the cursor for its own DOM — don't fight it with a manual
+      // Range placement (PM would overwrite on the next dispatch and our
+      // caret would jump). PM's view.focus() above is enough; if the caller
+      // needs end-of-doc placement, the registry path (which dispatches
+      // Selection.atEnd) will take over once the mount effect fires.
+      const isPm = el.getAttribute && el.getAttribute('data-pm-editor') === 'true';
+      if (isPm) return;
+      const range = document.createRange();
+      const sel = window.getSelection();
+      if (el.childNodes.length > 0) {
+        range.selectNodeContents(el);
+        range.collapse(atEnd);
       }
+      sel?.removeAllRanges();
+      sel?.addRange(range);
+    };
+    // setTimeout(0) lets React finish any pending state updates first.
+    setTimeout(() => {
+      if (tryFocus()) return;
+      // Registry not populated yet — give it one animation frame for the
+      // mount effect to fire, then try once more before the legacy fallback.
+      requestAnimationFrame(() => {
+        if (tryFocus()) return;
+        fallbackToDom();
+      });
     }, 0);
   }, []);
 
@@ -737,30 +768,33 @@ export default function SpecEditor() {
     setTcState(prev => tc.applyResolveAtBlock(prev, id, html));
   }, []);
 
-  // Update block HTML and sync the contentEditable DOM (used by MarkSuggestions)
+  // Update block HTML and sync the contentEditable DOM (used by MarkSuggestions).
+  // For PM-mounted blocks the substrate write is the source of truth — the
+  // EditorView re-renders via ySyncPlugin's observe — and the registry's
+  // setHtml is a no-op. For legacy blocks, registry.setHtml replaces the
+  // contentEditable's innerHTML and clears dataset.init so React's setRef
+  // doesn't overwrite on remount.
   const handleBlockUpdateWithSync = useCallback((id, html) => {
-    // Immediately update the DOM so contentEditable reflects the new marks
-    const el = document.querySelector(`[data-block-id="${id}"]`);
-    if (el) {
-      el.innerHTML = html;
-      // Clear init flag so setRef won't overwrite on React remount
-      delete el.dataset.init;
-    }
+    const handle = getBlockHandle(id);
+    if (handle) handle.setHtml(html);
     const yStore = activeYStoreRef.current;
     if (yStore) setBlockHtml(yStore, id, html);
     // Then update React state to match
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
   }, []);
 
-  // Replace a match in a block's HTML at a given visible-text offset
+  // Replace a match in a block's HTML at a given visible-text offset.
+  // Sub-PR 1e (#47, v2 plan Q17/E4): the contentEditable DOM sync routes
+  // through block-registry's setHtml — which is a no-op for PM-mounted
+  // blocks (they re-render via ySyncPlugin's observe of the substrate
+  // write below).
   const handleSearchReplace = useCallback((blockId, offset, length, replacement) => {
     resumeHistory();
     setBlocks(prev => prev.map(b => {
       if (b.id !== blockId || !b.html) return b;
       const newHtml = replaceMatchInHtml(b.html, offset, length, replacement);
-      // Sync DOM
-      const el = document.querySelector(`[data-block-id="${blockId}"]`);
-      if (el) el.innerHTML = newHtml;
+      const handle = getBlockHandle(blockId);
+      if (handle) handle.setHtml(newHtml);
       const yStore = activeYStoreRef.current;
       if (yStore) setBlockHtml(yStore, blockId, newHtml);
       return { ...b, html: newHtml };
@@ -1282,7 +1316,13 @@ export default function SpecEditor() {
       // selection restore is out of scope for the prototype.
       const activeEl = document.activeElement;
       let caret = null;
-      if (activeEl?.dataset?.blockId && activeEl.contentEditable === 'true') {
+      // Sub-PR 1e (#47): PM-owned blocks manage their own selection via
+      // y-prosemirror's RelPos plugin. Manual Range placement on PM's DOM
+      // fights its cursor model and gets clobbered on the next dispatch.
+      // Skip the legacy stash/restore for PM blocks (the binding's relpos
+      // mapping survives Y.XmlFragment updates without our help).
+      const isPmEl = activeEl?.getAttribute?.('data-pm-editor') === 'true';
+      if (!isPmEl && activeEl?.dataset?.blockId && activeEl.contentEditable === 'true') {
         const sel = window.getSelection();
         if (sel && sel.rangeCount > 0) {
           const range = sel.getRangeAt(0);
@@ -1302,8 +1342,14 @@ export default function SpecEditor() {
       setBlocks(nextBlocks);
       if (caret) {
         requestAnimationFrame(() => {
-          const el = document.querySelector(`[data-block-id="${caret.blockId}"]`);
-          if (el) restorePlainTextOffset(el, caret.startOffset, caret.endOffset);
+          // Sub-PR 1e (#47, v2 plan Q17/E4). Was a direct querySelector;
+          // now goes through the registry. Re-check the resolved element
+          // for `data-pm-editor` — if the block re-mounted as a PM block
+          // between stash and restore, leave its selection alone.
+          const el = getBlockEditable(caret.blockId);
+          if (!el) return;
+          if (el.getAttribute?.('data-pm-editor') === 'true') return;
+          restorePlainTextOffset(el, caret.startOffset, caret.endOffset);
         });
       }
     }, [setBlocks]),
@@ -1972,13 +2018,21 @@ export default function SpecEditor() {
             {/* Tags visibility toggle */}
             <button
               onClick={() => {
-                // Preserve scroll position across layout shift caused by tag labels
+                // Preserve scroll position across the layout shift caused by
+                // tag labels appearing / disappearing. Sub-PR 1e (#47, v2
+                // plan Q17/E4): block lookups go through block-registry
+                // instead of querySelector. PmEditableBlock's outer wrapper
+                // is what the registry hands back via getDom — it includes
+                // the gutter buttons and matches the legacy <div> wrapper
+                // shape, so the bounding-rect anchor logic is unchanged.
                 const scroller = document.querySelector('.editor-scroll') || document.scrollingElement;
-                const focused = focusedBlockId ? document.querySelector(`[data-block-id="${focusedBlockId}"]`) : null;
+                const focused = focusedBlockId ? getBlockDom(focusedBlockId) : null;
                 let anchor = focused;
                 if (!anchor || anchor.getBoundingClientRect().top < 0 || anchor.getBoundingClientRect().top > window.innerHeight) {
-                  const blocks = document.querySelectorAll('[data-block-id]');
-                  for (const b of blocks) {
+                  // Walk in document order (not registry insertion order)
+                  // so blocks inserted mid-document are visited at the
+                  // right index. Insertion order would put them last.
+                  for (const { dom: b } of listBlocksInDocumentOrder()) {
                     const r = b.getBoundingClientRect();
                     if (r.bottom > 0) { anchor = b; break; }
                   }

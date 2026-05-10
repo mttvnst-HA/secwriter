@@ -50,6 +50,56 @@ describe('NO_EXFIL_PROPS is spread on every typing surface', () => {
   });
 });
 
+// Sub-PR 1e (#47, v2 plan Q12/Q31/E2). PM EditorView renders its own DOM
+// root; React props on a wrapper don't propagate. We translate camelCase
+// React names into lowercase HTML attribute names and pass them via
+// EditorProps.attributes. This block locks that translation in place.
+describe('NO_EXFIL_PM_ATTRS (PM EditorProps) — lowercase HTML names', () => {
+  it('PmEditableBlock exports NO_EXFIL_PM_ATTRS with every lowercase attribute', async () => {
+    const mod = await import('../../components/PmEditableBlock.jsx');
+    expect(mod.NO_EXFIL_PM_ATTRS).toEqual({
+      spellcheck: 'false',
+      autocorrect: 'off',
+      autocapitalize: 'off',
+      autocomplete: 'off',
+      'data-gramm': 'false',
+      'data-gramm_editor': 'false',
+      'data-enable-grammarly': 'false',
+      writingsuggestions: 'false',
+    });
+  });
+
+  it('NO_EXFIL_PM_ATTRS is frozen', async () => {
+    const mod = await import('../../components/PmEditableBlock.jsx');
+    expect(Object.isFrozen(mod.NO_EXFIL_PM_ATTRS)).toBe(true);
+  });
+
+  it('PmEditableBlock wires NO_EXFIL_PM_ATTRS into EditorProps.attributes', () => {
+    const src = read('src/components/PmEditableBlock.jsx');
+    // Confirm the attributes object includes the spread of the lowercase set.
+    expect(src).toMatch(/attributes:\s*\{\s*\.\.\.NO_EXFIL_PM_ATTRS/);
+  });
+
+  it('every NO_EXFIL_PROPS camelCase key has a matching NO_EXFIL_PM_ATTRS lowercase key', async () => {
+    const mod = await import('../../components/PmEditableBlock.jsx');
+    const camelToLower = {
+      spellCheck: 'spellcheck',
+      autoCorrect: 'autocorrect',
+      autoCapitalize: 'autocapitalize',
+      autoComplete: 'autocomplete',
+      'data-gramm': 'data-gramm',
+      'data-gramm_editor': 'data-gramm_editor',
+      'data-enable-grammarly': 'data-enable-grammarly',
+      writingsuggestions: 'writingsuggestions',
+    };
+    for (const camel of Object.keys(NO_EXFIL_PROPS)) {
+      const lower = camelToLower[camel];
+      expect(lower, `${camel} has a lowercase equivalent`).toBeDefined();
+      expect(mod.NO_EXFIL_PM_ATTRS).toHaveProperty(lower);
+    }
+  });
+});
+
 describe('index.html security meta tags', () => {
   const html = read('index.html');
 

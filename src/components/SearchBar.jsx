@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { getVisibleTextFromHtml } from "../lib/text-diff.js";
 import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
+import { getBlockEditable } from "../lib/block-registry.js";
 
 /**
  * Search all blocks for a text query. Returns array of { blockId, offset }
@@ -201,8 +202,12 @@ export default function SearchBar({ blocks, editorRef, onClose, onReplace, initi
     const el = document.getElementById(`block-${match.blockId}`);
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "center" });
-      // Find the contentEditable or text container within
-      const contentEl = el.querySelector('[data-block-id]') || el;
+      // Resolve the editable element via block-registry — works for both the
+      // legacy contentEditable (returns the same div) and the PM EditorView
+      // (returns view.dom). The old `el.querySelector('[data-block-id]')`
+      // path picked PM's view root only by coincidence and would break under
+      // any future wrapper restructuring.
+      const contentEl = getBlockEditable(match.blockId) || el;
       setTimeout(() => highlightMatchInDOM(contentEl, match.offset, match.length), 100);
     }
   }, [currentIdx, results]);

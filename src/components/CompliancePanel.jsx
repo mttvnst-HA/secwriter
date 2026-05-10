@@ -3,6 +3,7 @@ import { checkCompliance } from "../lib/compliance-checker.js";
 import { findFirstHighlightInBlock } from "../lib/compliance-highlight.js";
 import { getApiKey, requestAIRewrite, estimateTokens, estimateCost } from "../lib/compliance-ai.js";
 import * as comp from "../lib/compliance.js";
+import { getBlockDom } from "../lib/block-registry.js";
 import ComplianceSettings from "./ComplianceSettings.jsx";
 
 const SEVERITY_COLORS = {
@@ -127,7 +128,7 @@ export default function CompliancePanel({
   const scrollToBlockHighlight = useCallback((blockId) => {
     const target =
       findFirstHighlightInBlock(document, blockId) ||
-      document.querySelector(`[data-block-id="${blockId}"]`);
+      getBlockDom(blockId);
     if (target) target.scrollIntoView({ behavior: "smooth", block: "center" });
   }, []);
 

@@ -15,9 +15,9 @@ A modern web-based editor for UFGS (Unified Facilities Guide Specifications) .SE
 ## Orientation
 
 - `src/App.jsx` — main editor layout, state, toolbar, sidebar
-- `src/components/` — block components (EditableBlock, TitleBlock, TableBlock, RefBlock), panels (CompliancePanel, CrossRefPanel, CommentPopup), tooltips, wizards, plus `useBlockLinting.js` (per-block lint lifecycle hook) and `useBlockBinder.js` (per-block Y.Doc ↔ React binder via `useSyncExternalStore`; substrate is Y.XmlFragment post-1d, with Y.Text legacy fallback for migrationPartial slots)
+- `src/components/` — block components (EditableBlock, **PmEditableBlock** (1e), TitleBlock, TableBlock, RefBlock), panels (CompliancePanel, CrossRefPanel, CommentPopup), tooltips, wizards, plus `useBlockLinting.js` (per-block lint lifecycle hook) and `useBlockBinder.js` (per-block Y.Doc ↔ React binder via `useSyncExternalStore`; substrate is Y.XmlFragment post-1d, with Y.Text legacy fallback for migrationPartial slots). `EditableBlock.jsx` is the legacy contentEditable path; when `VITE_PM_EDITOR=true` (or `?pm=1`) it delegates to `PmEditableBlock.jsx` which mounts a y-prosemirror EditorView per block.
 - `src/hooks/` — `useCollabSession.js` (Yjs session lifecycle + the four publish effects + coordination refs)
-- `src/lib/` — parsers/serializers (sec-parser, sec-serializer, encoding), pure-reducer modules (`track-changes.js`, `comments.js`, `linting.js`, `compliance.js`), domain-side-effect modules (`compliance-highlight.js`), compliance engines (compliance-rules, compliance-checker, compliance-ai, inline-linter, grammar-checker, nlp-rules), revisions, table-ops, numbering, plus `block-html-store.js` (Y.Doc-as-substrate adapter for block html — Y.XmlFragment as of 1d, with Y.Text legacy fallback for migrationPartial rooms), `pm-schema.js` + `pmdoc-html.js` (PM schema + serializer, 1c — used by the binder write path and by `yMapToBlock`'s Y.XmlFragment branch in collab.js), and `ytext-html.js` (legacy Y.Text ↔ HTML conversion, retained for the migration partial path and load-boundary defenses)
+- `src/lib/` — parsers/serializers (sec-parser, sec-serializer, encoding), pure-reducer modules (`track-changes.js`, `comments.js`, `linting.js`, `compliance.js`), domain-side-effect modules (`compliance-highlight.js`), compliance engines (compliance-rules, compliance-checker, compliance-ai, inline-linter, grammar-checker, nlp-rules), revisions, table-ops, numbering, plus `block-html-store.js` (Y.Doc-as-substrate adapter for block html — Y.XmlFragment as of 1d, with Y.Text legacy fallback for migrationPartial rooms), `pm-schema.js` + `pmdoc-html.js` (PM schema + serializer, 1c — used by the binder write path and by `yMapToBlock`'s Y.XmlFragment branch in collab.js), `ytext-html.js` (legacy Y.Text ↔ HTML conversion, retained for the migration partial path and load-boundary defenses), `feature-flags.js` (1e VITE_PM_EDITOR flag with URL `?pm=` and `window.__SIM_FORCE_PM_EDITOR` overrides), `block-registry.js` (1e App-scoped imperative-handle registry replacing `querySelector('[data-block-id="…"]')` in App), and `pm-plugins/` (slash-menu, tag-labels, keymap, relpos-selection — PM plugin set used by `PmEditableBlock`)
 - `src/data/` — `ufs-1-300-02-rules.json` (compliance rules), `umrl.json` (reference DB), `umsl.json` (submittal DB), sample spec
 - `reference/section.ini` — **authoritative** formatting rules (MARGINS, COLORS, RULES, CODES, FONTS)
 - `reference/ufs_1_300_02.pdf` — authoritative source for compliance rules
@@ -105,7 +105,9 @@ Test DOM-dependent code in both browser and Node/linkedom environments. linkedom
 
 ## contentEditable Focus Management
 
-This was the hardest part of the prototype. The pattern that works:
+This is the LEGACY contentEditable path (pre-1e). PM-mounted blocks (`PmEditableBlock` under `VITE_PM_EDITOR=true`) take over focus via `block-registry` \u2014 see the "Six non-obvious invariants" section for the post-1e pattern. The legacy notes below still apply when the flag is off.
+
+The pattern that works for the legacy path:
 
 1. **New blocks** use a ref callback (`setRef`). When React attaches the DOM node, the callback inserts a zero-width space (`\u200B`) for caret anchoring and calls `node.focus()`.
 2. **Existing blocks** (arrow key nav, tree select, delete-focus-prev) use `focusBlock()` in App: `document.querySelector('[data-block-id="..."]').focus()` via `setTimeout(0)`.
@@ -156,6 +158,7 @@ The `</>` button toggles `tags-hidden` (default) vs. `tags-visible` on the edito
 1. **Inline marks:** real `<span contentEditable="false" class="tag-label">` DOM nodes injected by `syncTagLabels()` in EditableBlock. `MARK_TAG_MAP` maps mark classes to SGML names (`mark-rid`→`RID`). TAI marks include `data-opt`. Tag labels stripped from innerHTML via `stripTagLabels()` before saving to state.
 2. **Block-level tags:** CSS `::before`/`::after` with `data-tag` attributes on block wrapper `<div>`s (outside contentEditable, no caret issues).
 3. **Why real DOM nodes for inline marks:** CSS pseudo-elements don't create caret positions in contentEditable — the browser can't place the cursor between `::before` and the first text character. `contentEditable="false"` spans provide proper DOM boundaries.
+4. **PM path (1e, `VITE_PM_EDITOR=true`):** inline marks come from `src/lib/pm-plugins/tag-labels.js` — a widget `DecorationSet` instead of injected DOM nodes. Same caret-boundary reasoning as item 3, but PM widgets are the equivalent primitive. Block-level pseudo-elements are unchanged.
 
 ## Compliance Checker Architecture
 
@@ -262,13 +265,19 @@ Post-#46 (sub-PR 1b), block **html** and block **scalars** travel separate paths
 
 **Implication:** post-1d, the substrate is Y.XmlFragment, but writes still go through a snapshot-shaped seam (`prosemirrorToYXmlFragment` does diff-and-merge against the existing fragment, but each binder write replaces the doc-level snapshot in a single transaction rather than producing one CRDT op per keystroke). Sub-PR 1e (EditorView mount + `ySyncPlugin`) is what flips the keystroke→op-stream relationship. The debounced-input symptom fix landed via #21 / PR #23.
 
-**Four non-obvious invariants (load-bearing, easy to break):**
+**Six non-obvious invariants (load-bearing, easy to break):**
 - **`yStore` is null until first sync.** `useCollabSession` only calls `setYStoreState(session.yStore)` from inside `if (meta?.initial)` (`fbc0d0f`). Until then `useBlockBinder.write` no-ops, and every direct `setBlockHtml(activeYStoreRef.current, ...)` caller in App must null-guard. Without this gate, a keystroke landing in the sync window CRDT-merges on top of the server's persisted state — the eee8977 corruption pattern via the new direct-substrate path.
-- **`'local-publish'` is the UndoManager-tracked origin.** `setBlockHtml` writes use it. New code that mutates html outside the binder must go through `setBlockHtml` (not `applyHtmlToYText` or `prosemirrorToYXmlFragment` directly) or undo coverage is silently lost. There are 11 direct call sites in `App.jsx` already (revisions, compliance fixes, search/replace, accept-all, comments-reconcile, etc.); follow that pattern.
+- **`'local-publish'` is the UndoManager-tracked origin.** `setBlockHtml` writes use it. New code that mutates html outside the binder must go through `setBlockHtml` (not `applyHtmlToYText` or `prosemirrorToYXmlFragment` directly) or undo coverage is silently lost. App.jsx already has many direct call sites (revisions, compliance fixes, search/replace, accept-all, comments-reconcile, etc.); follow that pattern.
 - **`'migrate-v2'` is the broker-only origin.** Server-side migration writes (1d) use it. It is deliberately NOT `'local-*'` (so `handleAfterTx` in `collab.js` does NOT filter it — the first v2 client to join sees the migrated state via the normal sync path) and NOT `'local-publish'` (so the client-side UndoManager cannot Ctrl+Z a peer's pre-migration content). Don't reuse this origin for any write that originates on a client.
+- **`ySyncPluginKey` is the PM-driven origin (1e).** y-prosemirror's `ySyncPlugin` writes Yjs ops with origin `ySyncPluginKey`. It is distinct from `'local-publish'`: phase 1 keeps the Yjs UndoManager tracking only `'local-publish'`, so a PM-driven keystroke does NOT enter the UndoManager. App-level undo continues to flow through `useUndoableBlocks` snapshots. The 1h sub-PR may rewire UndoManager to track `ySyncPluginKey` once per-keystroke TC marks land; until then, do not add `ySyncPluginKey` to the tracked-origin set.
 - **Y.XmlFragment construction must be skeleton-then-populate.** A new `Y.XmlFragment` MUST be attached to its parent (`yMap.set('html', yXml)` or `yStore.set(id, yMap)`) BEFORE `prosemirrorToYXmlFragment(pmNode, yXml)` runs against it. y-prosemirror's diff-and-merge calls `toArray()` internally, which on a detached fragment fires the Yjs `"Invalid access: Add Yjs type to a document before reading data"` warning per call. Default sample blocks × multiple `toArray` calls = hundreds of warnings flooding Chromium → Playwright IPC, browserContext timeouts on CI's slower hardware. `src/lib/collab.js` enforces this via `blockToYMapSkeleton` (creates empty fragment) + `populateBlockHtml` (called after `yStore.set`); `src/lib/block-html-store.js`'s `seedHtmlSlot` does `yMap.set('html', yXml)` before populating. Source of CI flake fixed in `f74cbb8`.
+- **Block focus goes through `block-registry`, not `querySelector` (1e).** App's `focusBlock(id, atEnd)` calls `focusBlockById(id, { atEnd })` from `src/lib/block-registry.js`; legacy and PM EditableBlock both register an imperative handle on mount. The legacy path's handle still places a DOM `Range`; the PM path dispatches a PM `Selection.atEnd` / `atStart`. App falls back to `document.querySelector('[data-block-id="…"]')` only when registration hasn't fired yet (e.g. brand-new `block.isNew=true` before its mount effect runs). The 1i sub-PR adds a lint rule failing CI on any new `querySelector('[data-block-id=…]')` outside that single seam.
 
 **`'migration-partial'` connection state is editable + sticky.** App's `collabReadOnly` formula explicitly excludes `'migration-partial'` (room stays editable per ADR-0006), and `useCollabSession.migrationPartialRef` re-pins the status on every subsequent `'connected'` transition so a trailing handleSync doesn't clobber the banner. Don't add the state to the read-only set; don't drop the sticky pin.
+
+**`VITE_PM_EDITOR` flag (1e).** Default-off through 1e/1f/1g/1h; the 1i sub-PR removes the flag and the legacy code path. Override precedence: `window.__SIM_FORCE_PM_EDITOR` > URL `?pm=1|true|on` > `import.meta.env.VITE_PM_EDITOR`. The Playwright config has a `chromium-pm` project (`baseURL: '…/?pm=1'`) so the editor + collab E2E suites run under both flag values; the 1e merge gate is "both projects green." When the flag is on, every editable block (`txt`, `note`, `oli`, `item`, `lst`) renders via `PmEditableBlock` instead of the legacy contentEditable component. Non-editable blocks (Title, Ref, Table, pagebreak) and the structural state (block.type/part/depth/section/level) are unchanged.
+
+**PM plugin module set (1e).** `src/lib/pm-plugins/` contains: `slash-menu.js` (PM `Plugin` with `{open, filter}` state, popup stays the React `SlashMenu.jsx`); `tag-labels.js` (widget `DecorationSet` replacing `syncTagLabels` DOM injection — pseudo-elements don't create caret positions inside contentEditable, but widget decorations do); `keymap.js` (Enter / Shift+Enter / Tab / Shift+Tab / Backspace-on-empty / ArrowUp-at-start / ArrowDown-at-end → callbacks supplied by `PmEditableBlock`); `relpos-selection.js` (Y.RelativePosition save/restore; uses y-prosemirror's binding-aware `getRelativeSelection` (save) and `relativePositionToAbsolutePosition` (restore). A binding is required — without one, `saveSelection` returns `null` and `restoreSelection` returns `false`. The previous `Y.createRelativePositionFromTypeIndex` fallback was removed because it anchored against the fragment's child slots while the restore path read `absPos.index` as if it were a PM offset, producing silent off-by-one selections). The `NO_EXFIL_PM_ATTRS` constant in `PmEditableBlock.jsx` is the lowercase-HTML translation of `NO_EXFIL_PROPS` (`spellCheck` → `spellcheck`, etc.) wired into PM's `EditorProps.attributes`; both sets are pinned by `src/lib/__tests__/no-exfil.test.js`.
 
 `window.__collab` is exposed in DEV (`import.meta.env.DEV`) for browser-side debugging — gives you `{ ydoc, yOrder, yStore, yMeta, yTc, yComments, awareness, provider, undoManager, publishBlocks, publishMeta, publishTc, dispatchComment, setCursor, undo, redo, canUndo, canRedo, destroy }`.
 
@@ -328,3 +337,17 @@ USACE updates these regularly. To refresh, re-run the parser scripts that genera
 ## Known Parser Edge Cases
 
 Parser validated against all 690 UFGS files (60 tags). Two known roundtrip edge cases: `32 12 36.26.SEC` and `32 13 13.43.SEC` have `<THD><HL3>text</HL3></THD>` where nested bold boundaries shift (content preserved).
+
+## Agent skills
+
+### Issue tracker
+
+GitHub issues in `mttvnst-HA/secwriter` via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default vocabulary — `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context — `CONTEXT.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.

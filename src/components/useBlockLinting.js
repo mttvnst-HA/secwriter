@@ -65,6 +65,12 @@ const TOOLTIP_DEBOUNCE_MS = 100;
  * @param {(node: Element|null, html: string) => void} [args.applyTagLabels]
  *   Called after an inline fix replaces innerHTML, so the block's mark spans
  *   get their `<TAG>` labels re-injected if tag visibility is on.
+ * @param {number} [args.elVersion=0]
+ *   Monotonically increasing tick the caller bumps whenever `getEl()` would
+ *   start returning a different DOM node (e.g. PM EditorView mounted late
+ *   after the initial render because yStore was null). When omitted (legacy
+ *   contentEditable path) the value stays 0 and the input-listener effect
+ *   binds once on mount as before.
  * @returns {{
  *   severity: 'high'|'medium'|'low'|null,
  *   tooltipFinding: {range: Range, violation: object} | null,
@@ -83,6 +89,7 @@ export function useBlockLinting({
   dispatch,
   onFix,
   applyTagLabels,
+  elVersion = 0,
 }) {
   const [tooltipFinding, setTooltipFinding] = useState(null);
   const debounceRef = useRef(null);
@@ -191,9 +198,11 @@ export function useBlockLinting({
       if (debounceRef.current) clearTimeout(debounceRef.current);
       dispatch(s => clearBlock(s, blockId));
     };
-    // intentionally omits getEl/dispatch — those are stable refs from caller scope
+    // intentionally omits getEl/dispatch — those are stable refs from caller scope.
+    // elVersion forces re-bind when the caller signals getEl() now returns a
+    // different node (PM EditorView mounted post-yStore-sync — QC critical-2).
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blockId, editable, lint, active]);
+  }, [blockId, editable, lint, active, elVersion]);
 
   // ── Tooltip cursor tracking ───────────────────────────────────────────────
 
@@ -239,8 +248,9 @@ export function useBlockLinting({
       if (selTimerRef.current) clearTimeout(selTimerRef.current);
     };
     // lintingState is read inside the listener — re-binding only when editable flips
+    // (or elVersion bumps for late PM mount).
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [editable, blockId]);
+  }, [editable, blockId, elVersion]);
 
   const dismissTooltip = useCallback(() => setTooltipFinding(null), []);
 
@@ -251,8 +261,16 @@ export function useBlockLinting({
     dispatch(s => clearBlock(s, id));
     const el = getEl();
     if (el) {
-      el.innerHTML = fixedHtml;
-      if (applyTagLabels) applyTagLabels(el, fixedHtml);
+      // Sub-PR 1e (#47): PM-owned DOM is re-rendered from state.doc on
+      // every dispatch, so innerHTML writes here are clobbered. The PM
+      // path persists the fix exclusively through onFix → setBlockHtml,
+      // which lands on the substrate and replays back through the
+      // ySyncPlugin.
+      const isPm = el.getAttribute?.('data-pm-editor') === 'true';
+      if (!isPm) {
+        el.innerHTML = fixedHtml;
+        if (applyTagLabels) applyTagLabels(el, fixedHtml);
+      }
     }
     if (onFix) onFix(id, fixedHtml);
     setTimeout(lint, POST_MUTATION_RELINT_MS);
