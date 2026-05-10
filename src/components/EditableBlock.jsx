@@ -7,6 +7,9 @@ import { useBlockLinting } from "./useBlockLinting.js";
 import { useBlockBinder } from "./useBlockBinder.js";
 import InlineTooltip from "./InlineTooltip.jsx";
 import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
+import { registerBlock, unregisterBlock } from "../lib/block-registry.js";
+import { isPmEditorEnabled } from "../lib/feature-flags.js";
+import PmEditableBlock from "./PmEditableBlock.jsx";
 
 // Idle window after the last keystroke before we fire onUpdate (and therefore
 // publishBlocks → Y.Doc → R2). Short enough that a hard reload loses at most
@@ -58,7 +61,19 @@ function stripTagLabels(html) {
   return html.replace(/<span[^>]*class="tag-label"[^>]*>[^<]*<\/span>/g, '');
 }
 
-function EditableBlock({ block, yStore, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, onChangeOliLevel, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, snapshotText, identity, comments, onCommentClick, onInlineFix, lintingState, lintingDispatch, showTags = false, readOnly = false }) {
+function EditableBlock(props) {
+  // Sub-PR 1e (#47, ADR-0006). When VITE_PM_EDITOR is on, delegate to the
+  // PM-backed sibling. Decision is per-render so the legacy and PM paths
+  // can co-exist behind the flag without mounting both per block. The
+  // legacy path remains the default through 1e/1f/1g/1h; the 1i sub-PR
+  // removes both this branch and the legacy implementation.
+  if (isPmEditorEnabled()) {
+    return <PmEditableBlock {...props} />;
+  }
+  return <LegacyEditableBlock {...props} />;
+}
+
+function LegacyEditableBlock({ block, yStore, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, onChangeOliLevel, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, snapshotText, identity, comments, onCommentClick, onInlineFix, lintingState, lintingDispatch, showTags = false, readOnly = false }) {
   const ref = useRef(null);
   const [slashOpen, setSlashOpen] = useState(false);
   const [slashFilter, setSlashFilter] = useState("");
@@ -391,6 +406,39 @@ function EditableBlock({ block, yStore, onUpdate, onEnterKey, isFocused, onFocus
       }
     };
   }, []);
+
+  // Imperative handle in the App-scoped block-registry. Sub-PR 1e (#47,
+  // v2 plan Q17/E4). Legacy path keeps its contentEditable semantics; the
+  // handle wraps querySelector so App callers can stop reaching into the
+  // DOM via querySelector('[data-block-id="…"]').
+  useEffect(() => {
+    const handle = {
+      focus: ({ atEnd = true } = {}) => {
+        const node = ref.current;
+        if (!node) return;
+        node.focus();
+        const range = document.createRange();
+        const sel = window.getSelection();
+        if (node.childNodes.length > 0) {
+          range.selectNodeContents(node);
+          range.collapse(atEnd);
+        }
+        sel?.removeAllRanges();
+        sel?.addRange(range);
+      },
+      getDom: () => ref.current,
+      getEditable: () => ref.current,
+      getPlainText: () => (ref.current?.textContent || '').replace(/\u200B/g, ''),
+      setHtml: (html) => {
+        const node = ref.current;
+        if (!node) return;
+        node.innerHTML = html;
+        if (node.dataset) delete node.dataset.init;
+      },
+    };
+    registerBlock(block.id, handle);
+    return () => unregisterBlock(block.id);
+  }, [block.id]);
 
   // Strip formatting from pasted content — insert plain text only.
   // execCommand('insertText') is deprecated but remains the only reliable way to

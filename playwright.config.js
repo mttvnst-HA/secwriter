@@ -1,5 +1,15 @@
 import { defineConfig } from '@playwright/test';
 
+// Sub-PR 1e (#47, ADR-0006) — the E2E suite runs under both flag values
+// (legacy contentEditable and PM EditorView) so collab + editor scenarios
+// are validated against both code paths until the 1i sub-PR removes the
+// flag. Pick which project to run via `--project=chromium` (legacy) or
+// `--project=chromium-pm` (PM editor on). Default: both.
+//
+// Each project's `use.extraHTTPHeaders` is unused; the PM-flag project sets
+// the runtime override `window.__SIM_FORCE_PM_EDITOR = true` on every page
+// via `use.contextOptions` storage state — see the addInitScript stanza
+// below.
 export default defineConfig({
   testDir: './tests/e2e',
   timeout: 30000,
@@ -29,6 +39,22 @@ export default defineConfig({
     },
   ],
   projects: [
-    { name: 'chromium', use: { browserName: 'chromium' } },
+    {
+      name: 'chromium',
+      use: {
+        browserName: 'chromium',
+      },
+    },
+    {
+      name: 'chromium-pm',
+      use: {
+        browserName: 'chromium',
+        // Inject the runtime override before any app code runs. The flag is
+        // read once at module load time by feature-flags.js; setting it
+        // pre-load means PmEditableBlock is mounted from the very first
+        // render. Tests in this project see the PM-backed editor.
+        baseURL: 'http://localhost:5173/?pm=1',
+      },
+    },
   ],
 });

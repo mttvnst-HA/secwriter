@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { getBlockEditable } from '../lib/block-registry.js';
 
 /**
  * Absolute-positioned overlay rendering a thin colored caret + name label
@@ -64,12 +65,13 @@ export default function RemoteCursors({ peers, selfId, editorRef }) {
       for (const p of remotePeers) {
         const cursor = p.cursor;
         if (!cursor || !cursor.blockId) continue;
-        // Scope the query to the editor container when we have one, so
-        // multiple editor instances (e.g. test harnesses) don't cross-
-        // contaminate and so stray elements outside the editor can't
-        // shadow a real block id.
+        // Prefer the App-scoped registry — for PM-mounted blocks this
+        // returns the EditorView's DOM root (where text actually lives)
+        // rather than the surrounding container div. Falls back to a
+        // scoped querySelector for blocks not yet registered.
         const root = container || document;
-        const blockEl = root.querySelector(`[data-block-id="${cursor.blockId}"]`);
+        const blockEl = getBlockEditable(cursor.blockId)
+          || root.querySelector(`[data-block-id="${cursor.blockId}"]`);
         if (!blockEl) continue;
         const rect = caretRectAt(blockEl, cursor.index || 0);
         if (!rect) continue;
