@@ -1183,10 +1183,30 @@ export default function SpecEditor() {
   // spans) keeps the highlights stable across PM EditorView re-renders —
   // PM's view tear-down would have clobbered injected DOM. Computing the
   // targets is pure (compliance-ranges.js); the side effect lives here.
+  //
+  // `blocks` is in the dep array so PM-driven DOM rewrites (which detach the
+  // text nodes our Range objects anchor to) trigger a fresh range build. But
+  // scroll must NOT re-fire on every typing pause — only on panel open,
+  // active group change, or fresh scan. The ref below gates the scroll
+  // against (open, group, result) so block-only re-runs skip the scrollTo.
+  const lastComplianceScrollRef = useRef({ open: false, group: null, result: null });
   useEffect(() => {
     if (typeof document === 'undefined') return;
     if (typeof CSS === 'undefined' || !CSS.highlights) return;
     const clear = () => CSS.highlights.delete('compliance-active');
+
+    const prev = lastComplianceScrollRef.current;
+    const triggerScroll = complianceOpen && (
+      prev.open !== complianceOpen
+      || prev.group !== complianceState.activeGroup
+      || prev.result !== complianceState.result
+    );
+    lastComplianceScrollRef.current = {
+      open: complianceOpen,
+      group: complianceState.activeGroup,
+      result: complianceState.result,
+    };
+
     if (!complianceOpen) { clear(); return; }
     const group = comp.getActiveGroupObject(complianceState);
     if (!group || !Array.isArray(group.instances)) { clear(); return; }
@@ -1209,7 +1229,7 @@ export default function SpecEditor() {
     }
     if (ranges.length > 0) {
       CSS.highlights.set('compliance-active', new Highlight(...ranges));
-      if (firstRange && typeof firstRange.getBoundingClientRect === 'function') {
+      if (triggerScroll && firstRange && typeof firstRange.getBoundingClientRect === 'function') {
         const rect = firstRange.getBoundingClientRect();
         if (rect && (rect.top || rect.bottom)) {
           window.scrollTo({
