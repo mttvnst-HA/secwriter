@@ -105,7 +105,9 @@ Test DOM-dependent code in both browser and Node/linkedom environments. linkedom
 
 ## contentEditable Focus Management
 
-This was the hardest part of the prototype. The pattern that works:
+This is the LEGACY contentEditable path (pre-1e). PM-mounted blocks (`PmEditableBlock` under `VITE_PM_EDITOR=true`) take over focus via `block-registry` \u2014 see the "Six non-obvious invariants" section for the post-1e pattern. The legacy notes below still apply when the flag is off.
+
+The pattern that works for the legacy path:
 
 1. **New blocks** use a ref callback (`setRef`). When React attaches the DOM node, the callback inserts a zero-width space (`\u200B`) for caret anchoring and calls `node.focus()`.
 2. **Existing blocks** (arrow key nav, tree select, delete-focus-prev) use `focusBlock()` in App: `document.querySelector('[data-block-id="..."]').focus()` via `setTimeout(0)`.
@@ -156,6 +158,7 @@ The `</>` button toggles `tags-hidden` (default) vs. `tags-visible` on the edito
 1. **Inline marks:** real `<span contentEditable="false" class="tag-label">` DOM nodes injected by `syncTagLabels()` in EditableBlock. `MARK_TAG_MAP` maps mark classes to SGML names (`mark-rid`→`RID`). TAI marks include `data-opt`. Tag labels stripped from innerHTML via `stripTagLabels()` before saving to state.
 2. **Block-level tags:** CSS `::before`/`::after` with `data-tag` attributes on block wrapper `<div>`s (outside contentEditable, no caret issues).
 3. **Why real DOM nodes for inline marks:** CSS pseudo-elements don't create caret positions in contentEditable — the browser can't place the cursor between `::before` and the first text character. `contentEditable="false"` spans provide proper DOM boundaries.
+4. **PM path (1e, `VITE_PM_EDITOR=true`):** inline marks come from `src/lib/pm-plugins/tag-labels.js` — a widget `DecorationSet` instead of injected DOM nodes. Same caret-boundary reasoning as item 3, but PM widgets are the equivalent primitive. Block-level pseudo-elements are unchanged.
 
 ## Compliance Checker Architecture
 
@@ -262,9 +265,9 @@ Post-#46 (sub-PR 1b), block **html** and block **scalars** travel separate paths
 
 **Implication:** post-1d, the substrate is Y.XmlFragment, but writes still go through a snapshot-shaped seam (`prosemirrorToYXmlFragment` does diff-and-merge against the existing fragment, but each binder write replaces the doc-level snapshot in a single transaction rather than producing one CRDT op per keystroke). Sub-PR 1e (EditorView mount + `ySyncPlugin`) is what flips the keystroke→op-stream relationship. The debounced-input symptom fix landed via #21 / PR #23.
 
-**Five non-obvious invariants (load-bearing, easy to break):**
+**Six non-obvious invariants (load-bearing, easy to break):**
 - **`yStore` is null until first sync.** `useCollabSession` only calls `setYStoreState(session.yStore)` from inside `if (meta?.initial)` (`fbc0d0f`). Until then `useBlockBinder.write` no-ops, and every direct `setBlockHtml(activeYStoreRef.current, ...)` caller in App must null-guard. Without this gate, a keystroke landing in the sync window CRDT-merges on top of the server's persisted state — the eee8977 corruption pattern via the new direct-substrate path.
-- **`'local-publish'` is the UndoManager-tracked origin.** `setBlockHtml` writes use it. New code that mutates html outside the binder must go through `setBlockHtml` (not `applyHtmlToYText` or `prosemirrorToYXmlFragment` directly) or undo coverage is silently lost. There are 11 direct call sites in `App.jsx` already (revisions, compliance fixes, search/replace, accept-all, comments-reconcile, etc.); follow that pattern.
+- **`'local-publish'` is the UndoManager-tracked origin.** `setBlockHtml` writes use it. New code that mutates html outside the binder must go through `setBlockHtml` (not `applyHtmlToYText` or `prosemirrorToYXmlFragment` directly) or undo coverage is silently lost. App.jsx already has many direct call sites (revisions, compliance fixes, search/replace, accept-all, comments-reconcile, etc.); follow that pattern.
 - **`'migrate-v2'` is the broker-only origin.** Server-side migration writes (1d) use it. It is deliberately NOT `'local-*'` (so `handleAfterTx` in `collab.js` does NOT filter it — the first v2 client to join sees the migrated state via the normal sync path) and NOT `'local-publish'` (so the client-side UndoManager cannot Ctrl+Z a peer's pre-migration content). Don't reuse this origin for any write that originates on a client.
 - **`ySyncPluginKey` is the PM-driven origin (1e).** y-prosemirror's `ySyncPlugin` writes Yjs ops with origin `ySyncPluginKey`. It is distinct from `'local-publish'`: phase 1 keeps the Yjs UndoManager tracking only `'local-publish'`, so a PM-driven keystroke does NOT enter the UndoManager. App-level undo continues to flow through `useUndoableBlocks` snapshots. The 1h sub-PR may rewire UndoManager to track `ySyncPluginKey` once per-keystroke TC marks land; until then, do not add `ySyncPluginKey` to the tracked-origin set.
 - **Y.XmlFragment construction must be skeleton-then-populate.** A new `Y.XmlFragment` MUST be attached to its parent (`yMap.set('html', yXml)` or `yStore.set(id, yMap)`) BEFORE `prosemirrorToYXmlFragment(pmNode, yXml)` runs against it. y-prosemirror's diff-and-merge calls `toArray()` internally, which on a detached fragment fires the Yjs `"Invalid access: Add Yjs type to a document before reading data"` warning per call. Default sample blocks × multiple `toArray` calls = hundreds of warnings flooding Chromium → Playwright IPC, browserContext timeouts on CI's slower hardware. `src/lib/collab.js` enforces this via `blockToYMapSkeleton` (creates empty fragment) + `populateBlockHtml` (called after `yStore.set`); `src/lib/block-html-store.js`'s `seedHtmlSlot` does `yMap.set('html', yXml)` before populating. Source of CI flake fixed in `f74cbb8`.
