@@ -40,11 +40,14 @@ vi.mock('harper.js', () => {
 
   return {
     WorkerLinter,
-    binary: {},
     Dialect: { American: 0 },
     __mockLinter: mockLinter,
   };
 });
+
+// harper.js 2.0 moved the binary out of the main module into a subpath
+// export — the production code now does `await import('harper.js/binary')`.
+vi.mock('harper.js/binary', () => ({ binary: {} }));
 
 // Helper: create a mock Harper Lint result
 function createMockLint({ start, end, message, kind, problemText, suggestions = [] }) {

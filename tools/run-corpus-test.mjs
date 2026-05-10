@@ -55,7 +55,11 @@ const EMPTY_USER_DICT = new Set();
 let harperLinter = null;
 if (!skipGrammar) {
   try {
-    const { LocalLinter, binaryInlined } = await import('harper.js');
+    // harper.js 2.0 moved binary variants to separate subpath exports.
+    const [{ LocalLinter }, { binaryInlined }] = await Promise.all([
+      import('harper.js'),
+      import('harper.js/binaryInlined'),
+    ]);
     harperLinter = new LocalLinter({ binary: binaryInlined });
     // Warm up WASM
     const warmup = await harperLinter.lint('Test sentence.');

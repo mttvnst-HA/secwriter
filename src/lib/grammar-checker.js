@@ -261,7 +261,13 @@ export async function initGrammarChecker() {
 
   initPromise = (async () => {
     try {
-      const { WorkerLinter, binary, Dialect } = await import('harper.js');
+      // harper.js 2.0 split the binary into a separate subpath export so apps
+      // can tree-shake unused binary variants (slim/inlined). The two imports
+      // are independent — load them in parallel.
+      const [{ WorkerLinter, Dialect }, { binary }] = await Promise.all([
+        import('harper.js'),
+        import('harper.js/binary'),
+      ]);
       linter = new WorkerLinter({ binary, dialect: Dialect.American });
       await linter.setup();
       await linter.importWords(ENGINEERING_TERMS);
