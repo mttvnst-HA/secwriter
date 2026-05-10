@@ -308,8 +308,16 @@ function PmEditableBlock({
         },
       },
       dispatchTransaction(tr) {
-        const newState = view.state.apply(tr);
-        view.updateState(newState);
+        // PM calls this as a method of the EditorView (`prop.call(this, tr)`
+        // in EditorView.prototype.dispatch), so `this` is the view —
+        // available even during construction when `ySyncPlugin` fires its
+        // initial-sync transaction from the plugin's `view()` hook. Using
+        // the outer `const view` here would TDZ: that binding isn't
+        // assigned until `new EditorView(...)` returns, but PM's plugin
+        // activation runs *inside* the constructor and can dispatch
+        // before that assignment completes.
+        const newState = this.state.apply(tr);
+        this.updateState(newState);
 
         // Slash state mirroring: pull from the plugin and project to React.
         const slash = slashMenuPluginKey.getState(newState);
@@ -326,9 +334,9 @@ function PmEditableBlock({
           // useBlockLinting's debounce fires. PM doesn't dispatch input
           // events natively on transactions. Fire on every doc change
           // (local + remote) so a peer's edit triggers a re-lint pass.
-          if (view.dom) {
+          if (this.dom) {
             try {
-              view.dom.dispatchEvent(new Event('input', { bubbles: true }));
+              this.dom.dispatchEvent(new Event('input', { bubbles: true }));
             } catch { /* SSR / jsdom safety */ }
           }
           // hasInlineRevisions recompute (gutter buttons).
