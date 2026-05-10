@@ -67,10 +67,15 @@ export default function RemoteCursors({ peers, selfId, editorRef }) {
         if (!cursor || !cursor.blockId) continue;
         // Prefer the App-scoped registry — for PM-mounted blocks this
         // returns the EditorView's DOM root (where text actually lives)
-        // rather than the surrounding container div. Falls back to a
+        // rather than the surrounding container div. The registry is
+        // module-global, so verify the returned element lives inside
+        // this editor's container before trusting it (preserves the
+        // editor-scoped containment from da41ff1). Falls back to a
         // scoped querySelector for blocks not yet registered.
         const root = container || document;
-        const blockEl = getBlockEditable(cursor.blockId)
+        const registered = getBlockEditable(cursor.blockId);
+        const inScope = registered && (!container || container.contains(registered));
+        const blockEl = (inScope ? registered : null)
           || root.querySelector(`[data-block-id="${cursor.blockId}"]`);
         if (!blockEl) continue;
         const rect = caretRectAt(blockEl, cursor.index || 0);

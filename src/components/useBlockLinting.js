@@ -261,8 +261,16 @@ export function useBlockLinting({
     dispatch(s => clearBlock(s, id));
     const el = getEl();
     if (el) {
-      el.innerHTML = fixedHtml;
-      if (applyTagLabels) applyTagLabels(el, fixedHtml);
+      // Sub-PR 1e (#47): PM-owned DOM is re-rendered from state.doc on
+      // every dispatch, so innerHTML writes here are clobbered. The PM
+      // path persists the fix exclusively through onFix → setBlockHtml,
+      // which lands on the substrate and replays back through the
+      // ySyncPlugin.
+      const isPm = el.getAttribute?.('data-pm-editor') === 'true';
+      if (!isPm) {
+        el.innerHTML = fixedHtml;
+        if (applyTagLabels) applyTagLabels(el, fixedHtml);
+      }
     }
     if (onFix) onFix(id, fixedHtml);
     setTimeout(lint, POST_MUTATION_RELINT_MS);

@@ -26,8 +26,13 @@
  *   getEditable() → Element | null — the contentEditable (legacy) or PM
  *     EditorView's DOM root (1e)
  *   getPlainText() → string — current text content (DOM-safe)
- *   setHtml(html) — replace innerHTML (used by MarkSuggestions). For the
- *     PM path this triggers a substrate write through the binder.
+ *   setHtml(html) — legacy contentEditable path: replace innerHTML
+ *     (used by MarkSuggestions). PM path: NO-OP. PM owns its DOM and
+ *     re-renders from state.doc on every dispatch, so innerHTML writes
+ *     are clobbered. App-level callsites that need the change to reach
+ *     the substrate must call `setBlockHtml(yStore, id, html)` from
+ *     `block-html-store.js` directly — `handle.setHtml` is retained on
+ *     the PM handle only so the legacy callsite signature compiles.
  */
 
 const handles = new Map();
@@ -85,9 +90,41 @@ export function getBlockEditable(blockId) {
   return h ? h.getEditable() : null;
 }
 
-/** Bulk-iterate registered blocks (used by tag-toggle viewport-anchor logic). */
+/** Bulk-iterate registered blocks. Insertion order — see
+ *  listBlocksInDocumentOrder for callers that need DOM order (e.g. anchor
+ *  selection across the editor's viewport). */
 export function listRegisteredBlockIds() {
   return Array.from(handles.keys());
+}
+
+/**
+ * Return registered blocks in document (DOM) order as `[{id, dom}, ...]`.
+ * Insertion order diverges from document order whenever a block is created
+ * mid-document (slash menu split, paste, undo/redo) — the new component
+ * mounts AFTER its neighbours, so its handle is registered last even though
+ * the element sits in the middle of the editor. Anchor-finding logic that
+ * walks "first visible block from the top" must traverse DOM order.
+ *
+ * Entries whose `getDom()` returns null (mid-teardown, stale handle) are
+ * excluded. Sort uses `compareDocumentPosition`; elements not connected to
+ * the document compare equal and end up adjacent — they are excluded too
+ * (caller treats null/disconnected as "no block here").
+ */
+export function listBlocksInDocumentOrder() {
+  const out = [];
+  for (const [id, h] of handles) {
+    const dom = h.getDom?.();
+    if (!dom || typeof dom.compareDocumentPosition !== 'function') continue;
+    if (!dom.isConnected) continue;
+    out.push({ id, dom });
+  }
+  out.sort((a, b) => {
+    const rel = a.dom.compareDocumentPosition(b.dom);
+    if (rel & Node.DOCUMENT_POSITION_FOLLOWING) return -1;
+    if (rel & Node.DOCUMENT_POSITION_PRECEDING) return 1;
+    return 0;
+  });
+  return out;
 }
 
 /** Test-only — full reset between Vitest cases. */

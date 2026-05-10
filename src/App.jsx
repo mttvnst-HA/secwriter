@@ -34,7 +34,7 @@ import { encodeWindows1252 } from "./lib/encoding.js";
 import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
 import * as Y from "yjs";
 import { seedBlockArray, resetBlockArray, setBlockHtml } from "./lib/block-html-store.js";
-import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, listRegisteredBlockIds } from "./lib/block-registry.js";
+import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, listBlocksInDocumentOrder } from "./lib/block-registry.js";
 import * as tc from "./lib/track-changes.js";
 import * as linting from "./lib/linting.js";
 import * as comp from "./lib/compliance.js";
@@ -1316,7 +1316,13 @@ export default function SpecEditor() {
       // selection restore is out of scope for the prototype.
       const activeEl = document.activeElement;
       let caret = null;
-      if (activeEl?.dataset?.blockId && activeEl.contentEditable === 'true') {
+      // Sub-PR 1e (#47): PM-owned blocks manage their own selection via
+      // y-prosemirror's RelPos plugin. Manual Range placement on PM's DOM
+      // fights its cursor model and gets clobbered on the next dispatch.
+      // Skip the legacy stash/restore for PM blocks (the binding's relpos
+      // mapping survives Y.XmlFragment updates without our help).
+      const isPmEl = activeEl?.getAttribute?.('data-pm-editor') === 'true';
+      if (!isPmEl && activeEl?.dataset?.blockId && activeEl.contentEditable === 'true') {
         const sel = window.getSelection();
         if (sel && sel.rangeCount > 0) {
           const range = sel.getRangeAt(0);
@@ -1337,14 +1343,13 @@ export default function SpecEditor() {
       if (caret) {
         requestAnimationFrame(() => {
           // Sub-PR 1e (#47, v2 plan Q17/E4). Was a direct querySelector;
-          // now goes through the registry. For PM-mounted blocks the
-          // editable element is PM's EditorView root, where the legacy
-          // text-walker still works because PM renders text nodes
-          // identically to contentEditable (Q28 covers the higher-fidelity
-          // RelPos restoration path; this DOM-walk path remains the
-          // fallback for the App-level cross-render caret stash).
+          // now goes through the registry. Re-check the resolved element
+          // for `data-pm-editor` — if the block re-mounted as a PM block
+          // between stash and restore, leave its selection alone.
           const el = getBlockEditable(caret.blockId);
-          if (el) restorePlainTextOffset(el, caret.startOffset, caret.endOffset);
+          if (!el) return;
+          if (el.getAttribute?.('data-pm-editor') === 'true') return;
+          restorePlainTextOffset(el, caret.startOffset, caret.endOffset);
         });
       }
     }, [setBlocks]),
@@ -2024,9 +2029,10 @@ export default function SpecEditor() {
                 const focused = focusedBlockId ? getBlockDom(focusedBlockId) : null;
                 let anchor = focused;
                 if (!anchor || anchor.getBoundingClientRect().top < 0 || anchor.getBoundingClientRect().top > window.innerHeight) {
-                  for (const id of listRegisteredBlockIds()) {
-                    const b = getBlockDom(id);
-                    if (!b) continue;
+                  // Walk in document order (not registry insertion order)
+                  // so blocks inserted mid-document are visited at the
+                  // right index. Insertion order would put them last.
+                  for (const { dom: b } of listBlocksInDocumentOrder()) {
                     const r = b.getBoundingClientRect();
                     if (r.bottom > 0) { anchor = b; break; }
                   }

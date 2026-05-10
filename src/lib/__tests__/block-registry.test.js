@@ -1,3 +1,4 @@
+// @vitest-environment jsdom
 import { describe, it, expect, beforeEach } from 'vitest';
 import {
   registerBlock,
@@ -7,6 +8,7 @@ import {
   getBlockDom,
   getBlockEditable,
   listRegisteredBlockIds,
+  listBlocksInDocumentOrder,
   __resetBlockRegistry,
 } from '../block-registry.js';
 
@@ -67,6 +69,33 @@ describe('block-registry', () => {
     registerBlock('a', { focus: () => { focused = 2; }, getDom: () => null, getEditable: () => null, getPlainText: () => '', setHtml: () => {} });
     focusBlockById('a');
     expect(focused).toBe(2);
+  });
+
+  it('listBlocksInDocumentOrder sorts by DOM order, not insertion order', () => {
+    const root = document.createElement('div');
+    document.body.appendChild(root);
+    const domA = document.createElement('div');
+    const domB = document.createElement('div');
+    const domC = document.createElement('div');
+    root.appendChild(domA);
+    root.appendChild(domB);
+    root.appendChild(domC);
+    // Register out of document order: c, a, b. Insertion-order would be c,a,b.
+    registerBlock('c', { focus: () => {}, getDom: () => domC, getEditable: () => null, getPlainText: () => '', setHtml: () => {} });
+    registerBlock('a', { focus: () => {}, getDom: () => domA, getEditable: () => null, getPlainText: () => '', setHtml: () => {} });
+    registerBlock('b', { focus: () => {}, getDom: () => domB, getEditable: () => null, getPlainText: () => '', setHtml: () => {} });
+    expect(listBlocksInDocumentOrder().map(e => e.id)).toEqual(['a', 'b', 'c']);
+    document.body.removeChild(root);
+  });
+
+  it('listBlocksInDocumentOrder skips handles whose DOM is null or disconnected', () => {
+    const dom = document.createElement('div');
+    document.body.appendChild(dom);
+    registerBlock('attached', { focus: () => {}, getDom: () => dom, getEditable: () => null, getPlainText: () => '', setHtml: () => {} });
+    registerBlock('null-dom', { focus: () => {}, getDom: () => null, getEditable: () => null, getPlainText: () => '', setHtml: () => {} });
+    registerBlock('detached', { focus: () => {}, getDom: () => document.createElement('div'), getEditable: () => null, getPlainText: () => '', setHtml: () => {} });
+    expect(listBlocksInDocumentOrder().map(e => e.id)).toEqual(['attached']);
+    document.body.removeChild(dom);
   });
 
   it('safe with falsy inputs', () => {
