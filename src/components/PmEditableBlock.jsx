@@ -47,7 +47,7 @@
  */
 
 import {
-  useCallback, useEffect, useMemo, useRef, useState,
+  useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore,
 } from 'react';
 import { EditorState, Selection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
@@ -62,7 +62,7 @@ import { slashMenuPlugin, slashMenuPluginKey } from '../lib/pm-plugins/slash-men
 import { tagLabelsPlugin, setTagsVisible } from '../lib/pm-plugins/tag-labels.js';
 import { blockKeymap } from '../lib/pm-plugins/keymap.js';
 import { registerBlock, unregisterBlock } from '../lib/block-registry.js';
-import { setBlockHtml } from '../lib/block-html-store.js';
+import { setBlockHtml, subscribeBlock } from '../lib/block-html-store.js';
 import { annotateDomWithDiff } from '../lib/text-diff.js';
 import { useBlockLinting } from './useBlockLinting.js';
 
@@ -167,14 +167,40 @@ function PmEditableBlock({
     return typeEditable && !readOnly;
   }, [block.type, block.isNew, readOnly]);
 
+  // Subscribe to yStore for THIS block's slot existence + identity. The
+  // mount effect below depends on `yStore.get(block.id)` being present, but
+  // React fires child effects before parent effects in the commit phase —
+  // so a freshly-created block (Enter / slash-convert) reaches PmEditableBlock's
+  // mount BEFORE App's seeding effect (`applyBlocksToYDoc` in App.jsx ~line 287
+  // for out-of-room, or useCollabSession's publish effect for in-room) has run.
+  // Without this subscription the mount effect bails on missing yMap and never
+  // re-fires, leaving the new block with no EditorView. subscribeBlock from
+  // block-html-store.js fires when (a) the slot first appears, (b) the slot's
+  // html shape changes (1d migration broker swap), or (c) the slot is removed —
+  // exactly the events that gate the EditorView lifecycle. The snapshot is the
+  // yMap reference itself (or null) so React re-renders when it flips, and the
+  // mount effect's dep list catches both "slot appeared" and "slot identity
+  // changed" with no extra wiring.
+  const yMapBound = useSyncExternalStore(
+    useCallback(
+      (notify) => (yStore ? subscribeBlock(yStore, block.id, notify) : () => {}),
+      [yStore, block.id],
+    ),
+    useCallback(
+      () => (yStore ? (yStore.get(block.id) || null) : null),
+      [yStore, block.id],
+    ),
+    () => null, // SSR — no Y substrate
+  );
+
   // ── Mount: create EditorView wired to the block's Y.XmlFragment ─────────
   useEffect(() => {
     if (!containerRef.current) return;
     if (!editable) return;
     if (!yStore) return;
+    if (!yMapBound) return;
 
-    const yMap = yStore.get(block.id);
-    if (!yMap) return;
+    const yMap = yMapBound;
     const yXml = yMap.get('html');
     // Only the PM-substrate path mounts EditorView. Legacy Y.Text slots
     // (migrationPartial leftover) fall through to the legacy editor; this
@@ -388,10 +414,13 @@ function PmEditableBlock({
       yXmlFragmentRef.current = null;
     };
     // We deliberately rebuild the EditorView only when the binding identity
-    // changes (block.id, yStore reference, or editable flips). showTags /
-    // tailorKey / etc. are pushed in via dispatched metas below.
+    // changes (block.id, yStore reference, yMap identity from subscribeBlock,
+    // or editable flips). showTags / tailorKey / etc. are pushed in via
+    // dispatched metas below. yMapBound is the load-bearing dep for the new-
+    // block mount race — when the slot first appears or its identity flips
+    // (1d migration broker), we re-mount the EditorView against the new shape.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [block.id, yStore, editable]);
+  }, [block.id, yStore, editable, yMapBound]);
 
   // ── Tag visibility flip ──────────────────────────────────────────────────
   useEffect(() => {
