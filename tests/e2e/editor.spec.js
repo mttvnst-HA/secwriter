@@ -15,6 +15,17 @@ function blockSel(id) {
 }
 
 /**
+ * Return a CSS selector for a block's OUTER WRAPPER (the div carrying
+ * block-revision-* and data-tag classes). Works in both legacy and PM
+ * modes — both `EditableBlock` and `PmEditableBlock` set id="block-{id}"
+ * on the outer wrapper. Use this instead of `locator('..')` when asserting
+ * on revision styling or gutter buttons.
+ */
+function blockWrapperSel(id) {
+  return `#block-${id}`;
+}
+
+/**
  * Create a fresh empty block after n24 and return its locator.
  * This is the most reliable way to get a clean block for testing.
  */
@@ -1090,9 +1101,9 @@ test.describe('Track changes: new block creation', () => {
 
     const focused = page.locator('[data-block-id]:focus');
     await expect(focused).toBeVisible({ timeout: 3000 });
+    const blockId = await focused.getAttribute('data-block-id');
 
-    // The wrapper div should have the block-revision-add class
-    const wrapper = focused.locator('..');
+    const wrapper = page.locator(blockWrapperSel(blockId));
     await expect(wrapper).toHaveClass(/block-revision-add/);
   });
 
@@ -1143,8 +1154,9 @@ test.describe('Track changes: new block creation', () => {
 
     const focused = page.locator('[data-block-id]:focus');
     await expect(focused).toBeVisible({ timeout: 3000 });
+    const blockId = await focused.getAttribute('data-block-id');
 
-    const wrapper = focused.locator('..');
+    const wrapper = page.locator(blockWrapperSel(blockId));
     const borderLeft = await wrapper.evaluate(el => getComputedStyle(el).borderLeftColor);
     // #008000 = rgb(0, 128, 0) — green (matches section.ini ADD=GREEN)
     expect(borderLeft).toBe('rgb(0, 128, 0)');
@@ -1193,7 +1205,7 @@ test.describe('Track changes: block deletion', () => {
     expect(countAfter).toBe(countBefore);
 
     // The block should now have revision-del styling
-    const wrapper = page.locator(blockSel(newBlockId)).locator('..');
+    const wrapper = page.locator(blockWrapperSel(newBlockId));
     await expect(wrapper).toHaveClass(/block-revision-del/);
   });
 
@@ -1244,8 +1256,9 @@ test.describe('Track changes: accept/reject gutter buttons', () => {
     await expect(focused).toBeVisible({ timeout: 3000 });
     await page.keyboard.type('Added content');
 
+    const blockId = await focused.getAttribute('data-block-id');
     // ✓ and ✗ buttons should appear
-    const wrapper = focused.locator('..');
+    const wrapper = page.locator(blockWrapperSel(blockId));
     await expect(wrapper.locator('button[title="Accept add"]')).toBeVisible();
     await expect(wrapper.locator('button[title="Reject add"]')).toBeVisible();
   });
@@ -1263,13 +1276,13 @@ test.describe('Track changes: accept/reject gutter buttons', () => {
     const blockId = await focused.getAttribute('data-block-id');
 
     // Click accept
-    const wrapper = focused.locator('..');
+    const wrapper = page.locator(blockWrapperSel(blockId));
     await wrapper.locator('button[title="Accept add"]').click();
 
     // Block should still exist but no longer have revision class
     const blockEl = page.locator(blockSel(blockId));
     await expect(blockEl).toBeVisible();
-    const wrapperClass = await blockEl.locator('..').getAttribute('class') || '';
+    const wrapperClass = await page.locator(blockWrapperSel(blockId)).getAttribute('class') || '';
     expect(wrapperClass).not.toContain('block-revision-');
   });
 
@@ -1285,8 +1298,9 @@ test.describe('Track changes: accept/reject gutter buttons', () => {
     await expect(focused).toBeVisible({ timeout: 3000 });
     await page.keyboard.type('Rejected content');
 
+    const blockId = await focused.getAttribute('data-block-id');
     // Click reject
-    const wrapper = focused.locator('..');
+    const wrapper = page.locator(blockWrapperSel(blockId));
     await wrapper.locator('button[title="Reject add"]').click();
 
     // Block should be removed — count back to before
@@ -1917,7 +1931,7 @@ test.describe('Track changes: inline-only gutter buttons', () => {
     expect(insCount).toBeGreaterThan(0);
 
     // Gutter buttons should appear (title says "Accept inline changes")
-    const wrapper = page.locator(blockSel('n24')).locator('..');
+    const wrapper = page.locator(blockWrapperSel('n24'));
     await expect(wrapper.locator('button[title="Accept inline changes"]')).toBeVisible({ timeout: 3000 });
     await expect(wrapper.locator('button[title="Reject inline changes"]')).toBeVisible();
   });
@@ -1941,7 +1955,7 @@ test.describe('Track changes: inline-only gutter buttons', () => {
     expect(insBefore).toBeGreaterThan(0);
 
     // Click gutter accept button
-    const wrapper = page.locator(blockSel('n24')).locator('..');
+    const wrapper = page.locator(blockWrapperSel('n24'));
     const acceptBtn = wrapper.locator('button[title="Accept inline changes"]');
     await expect(acceptBtn).toBeVisible({ timeout: 3000 });
     await acceptBtn.click();
