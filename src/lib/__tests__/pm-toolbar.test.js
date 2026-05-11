@@ -427,23 +427,32 @@ describe('applyChangeCaseTr', () => {
 });
 
 describe('Multi-paragraph round-trip', () => {
-  it('applyInlineMarkTr across paragraph boundary preserves both paragraphs (U8)', () => {
+  it('applyInlineMarkTr across paragraph boundary applies mark to text in both paragraphs (U8)', () => {
+    // PmEditableBlock currently hosts a single top-level paragraph (per
+    // CLAUDE.md "Out of scope"). This test verifies that the verb function
+    // ITSELF correctly applies the mark across a multi-paragraph doc at the
+    // PM-doc level — useful as forward-compat coverage if paste/list
+    // conversion ever introduces multi-paragraph blocks. We don't assert
+    // HTML round-trip because pmFragmentToHtml is designed for the
+    // single-paragraph contract and collapses paragraph boundaries.
     const p1 = schema.node('paragraph', null, [txt('foo')]);
     const p2 = schema.node('paragraph', null, [txt('bar')]);
     const doc = schema.node('doc', null, [p1, p2]);
-    // p1 'foo'=1..4, end of p1 = 5, p2 'bar'=6..9, end of doc = 10.
+    // p1 'foo'=1..4, end of p1 = 5, p2 'bar'=6..9.
     const state = stateOf(doc, 1, 9);
     const tr = applyInlineMarkTr(state, 'rid');
+    expect(tr).not.toBeNull();
     const newState = state.apply(tr);
-    const html = pmFragmentToHtml(newState.doc);
-    // Both paragraphs should have a mark-rid span. We don't depend on the
-    // exact paragraph-wrapper shape — pmFragmentToHtml may emit no <p>
-    // wrappers (single-paragraph contract) but the rid spans must be there
-    // for both 'foo' and 'bar'.
-    const ridSpans = (html.match(/<span class="mark-rid">/g) || []).length;
-    expect(ridSpans).toBeGreaterThanOrEqual(2);
-    expect(html).toContain('foo');
-    expect(html).toContain('bar');
+
+    // Both paragraphs' text nodes should carry the rid mark.
+    expect(newState.doc.childCount).toBe(2);
+    const p1Text = newState.doc.child(0).firstChild;
+    const p2Text = newState.doc.child(1).firstChild;
+    expect(p1Text.marks.some((m) => m.type === schema.marks.inlineMark && m.attrs.kind === 'rid')).toBe(true);
+    expect(p2Text.marks.some((m) => m.type === schema.marks.inlineMark && m.attrs.kind === 'rid')).toBe(true);
+    // And the paragraph boundary is preserved (no flattening into one).
+    expect(p1Text.text).toBe('foo');
+    expect(p2Text.text).toBe('bar');
   });
 });
 
