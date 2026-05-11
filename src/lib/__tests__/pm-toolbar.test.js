@@ -380,3 +380,87 @@ describe('applyInlineRevisionResolveTr', () => {
     expect(applyInlineRevisionResolveTr(state, 'accept')).toBeNull();
   });
 });
+
+import { applyChangeCaseTr } from '../pm-toolbar.js';
+import * as pmToolbar from '../pm-toolbar.js';
+import { pmFragmentToHtml } from '../pmdoc-html.js';
+
+describe('applyChangeCaseTr', () => {
+  it('UPPER → lower', () => {
+    const doc = docOf(txt('HELLO'));
+    const state = stateOf(doc, 1, 6);
+    const tr = applyChangeCaseTr(state);
+    expect(state.apply(tr).doc.textContent).toBe('hello');
+  });
+
+  it('lower → Title (first letter of each word)', () => {
+    const doc = docOf(txt('hello world'));
+    const state = stateOf(doc, 1, 12);
+    const tr = applyChangeCaseTr(state);
+    expect(state.apply(tr).doc.textContent).toBe('Hello World');
+  });
+
+  it('mixed → UPPER', () => {
+    const doc = docOf(txt('Hello World'));
+    const state = stateOf(doc, 1, 12);
+    const tr = applyChangeCaseTr(state);
+    expect(state.apply(tr).doc.textContent).toBe('HELLO WORLD');
+  });
+
+  it('drops marks on the replaced range (legacy parity)', () => {
+    const bold = schema.marks.bold.create();
+    const doc = docOf(txt('hello', bold));
+    const state = stateOf(doc, 1, 6);
+    const tr = applyChangeCaseTr(state);
+    const newState = state.apply(tr);
+    const mark = findFirstMatchingMark(
+      newState.doc, 1, 6, schema.marks.bold, () => true,
+    );
+    expect(mark).toBeNull();
+  });
+
+  it('returns null on empty selection', () => {
+    const doc = docOf(txt('hello'));
+    const state = stateOf(doc, 3, 3);
+    expect(applyChangeCaseTr(state)).toBeNull();
+  });
+});
+
+describe('Multi-paragraph round-trip', () => {
+  it('applyInlineMarkTr across paragraph boundary preserves both paragraphs (U8)', () => {
+    const p1 = schema.node('paragraph', null, [txt('foo')]);
+    const p2 = schema.node('paragraph', null, [txt('bar')]);
+    const doc = schema.node('doc', null, [p1, p2]);
+    // p1 'foo'=1..4, end of p1 = 5, p2 'bar'=6..9, end of doc = 10.
+    const state = stateOf(doc, 1, 9);
+    const tr = applyInlineMarkTr(state, 'rid');
+    const newState = state.apply(tr);
+    const html = pmFragmentToHtml(newState.doc);
+    // Both paragraphs should have a mark-rid span. We don't depend on the
+    // exact paragraph-wrapper shape — pmFragmentToHtml may emit no <p>
+    // wrappers (single-paragraph contract) but the rid spans must be there
+    // for both 'foo' and 'bar'.
+    const ridSpans = (html.match(/<span class="mark-rid">/g) || []).length;
+    expect(ridSpans).toBeGreaterThanOrEqual(2);
+    expect(html).toContain('foo');
+    expect(html).toContain('bar');
+  });
+});
+
+describe('pm-toolbar API surface', () => {
+  it('exports the eight expected functions (U16)', () => {
+    const names = [
+      'applyFormatTr',
+      'applyInlineMarkTr',
+      'applyRevisionTr',
+      'applyInlineRevisionResolveTr',
+      'applyChangeCaseTr',
+      'findFirstMatchingMark',
+      'rangeAllHaveMarkWithAttrs',
+      'findMarkRangeAt',
+    ];
+    for (const n of names) {
+      expect(typeof pmToolbar[n]).toBe('function');
+    }
+  });
+});

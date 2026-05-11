@@ -270,3 +270,28 @@ export function applyInlineRevisionResolveTr(state, action) {
   }
   return tr.setStoredMarks([]);
 }
+
+/**
+ * Change-case cycle on the selected text: UPPER → lower → Title → UPPER.
+ * Mirrors the legacy FloatingToolbar.changeCase logic. Marks on the
+ * replaced range are dropped (the inserted text node carries no marks) —
+ * matches legacy `range.deleteContents()` behavior. Pinned by the
+ * marks-dropped test in pm-toolbar.test.js.
+ *
+ * Returns null on collapsed or empty-text selection.
+ */
+export function applyChangeCaseTr(state) {
+  const { from, to, empty } = state.selection;
+  if (empty) return null;
+  const text = state.doc.textBetween(from, to, '\n', '');
+  if (!text) return null;
+  let newText;
+  if (text === text.toUpperCase()) {
+    newText = text.toLowerCase();
+  } else if (text === text.toLowerCase()) {
+    newText = text.replace(/\b\w/g, (c) => c.toUpperCase());
+  } else {
+    newText = text.toUpperCase();
+  }
+  return state.tr.replaceWith(from, to, state.schema.text(newText));
+}
