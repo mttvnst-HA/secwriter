@@ -117,6 +117,7 @@ function PmEditableBlock({
   const onUpdateDebounceRef = useRef(null);
   const [slashState, setSlashState] = useState({ open: false, filter: '', selectedIdx: 0 });
   const [hasInlineRevisions, setHasInlineRevisions] = useState(false);
+  const [delPopup, setDelPopup] = useState(null); // { el, rect, delIndex } | null
   // QC critical-2: tick incremented every time the EditorView mounts so
   // useBlockLinting's input-listener effect re-evaluates and binds against
   // the now-existing DOM. yStore is null until first sync in collab rooms,
@@ -143,6 +144,8 @@ function PmEditableBlock({
   onConvertBlockRef.current = onConvertBlock;
   const onCommentClickRef = useRef(onCommentClick);
   onCommentClickRef.current = onCommentClick;
+  const onRevisionActionRef = useRef(onRevisionAction);
+  onRevisionActionRef.current = onRevisionAction;
   const blockTypeRef = useRef(block.type);
   blockTypeRef.current = block.type;
   // QC major-6: Track Changes inputs mirrored into refs so the blur handler
@@ -270,7 +273,7 @@ function PmEditableBlock({
         'data-pm-editor': 'true',
         contenteditable: editable ? 'true' : 'false',
       },
-      handleClick(_view, _pos, e) {
+      handleClick(view, _pos, e) {
         // Comment-span click → React popup
         const commentEl = e.target?.closest?.('.mark-comment, .mark-comment-resolved');
         if (commentEl && onCommentClickRef.current) {
@@ -280,6 +283,22 @@ function PmEditableBlock({
             return true;
           }
         }
+        // Del-span click → local popup (TC accept/reject for inline deletions)
+        const delEl = e.target?.closest?.('del.mark-del');
+        if (delEl && view.dom.contains(delEl)) {
+          const allDels = Array.from(view.dom.querySelectorAll('del.mark-del'));
+          const delIndex = allDels.indexOf(delEl);
+          if (delIndex >= 0) {
+            setDelPopup({
+              el: delEl,
+              rect: delEl.getBoundingClientRect(),
+              delIndex,
+            });
+            return true; // Suppress PM's default caret placement
+          }
+        }
+        // Click elsewhere → dismiss any open popup
+        setDelPopup(null);
         return false;
       },
       handleDOMEvents: {
