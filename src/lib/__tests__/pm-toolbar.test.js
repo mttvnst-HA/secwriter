@@ -201,16 +201,20 @@ describe('applyInlineMarkTr', () => {
     )).toBeNull();
   });
 
-  it('RID does NOT toggle off an overlapping SRF mark (attr-discrimination)', () => {
+  it('RID over SRF-marked text — attr-discrimination prevents spurious toggle-off', () => {
+    // Attr-discrimination property: when SRF is present and the user clicks RID,
+    // the detector queries (kind === 'rid') — which returns null. The fall-through
+    // path is addMark(RID). Under PM's default excludes: '_' (one inlineMark per
+    // text run), RID replaces SRF. The KEY invariant being tested is that the
+    // operation does not silently no-op (which would happen if stock rangeHasMark
+    // were used: it returns true on SRF, the toggle calls removeMark, SRF is
+    // stripped, no RID is added — user gets neither mark).
     const srf = schema.marks.inlineMark.create({ kind: 'srf', option: null });
     const doc = docOf(txt('hello', srf));
     const state = stateOf(doc, 1, 6);
-    // No RID in range → applyInlineMarkTr should ADD a RID, leaving SRF intact.
     const tr = applyInlineMarkTr(state, 'rid');
+    expect(tr).not.toBeNull();
     const newState = state.apply(tr);
-    expect(findFirstMatchingMark(
-      newState.doc, 1, 6, schema.marks.inlineMark, (a) => a.kind === 'srf',
-    )).not.toBeNull();
     expect(findFirstMatchingMark(
       newState.doc, 1, 6, schema.marks.inlineMark, (a) => a.kind === 'rid',
     )).not.toBeNull();
