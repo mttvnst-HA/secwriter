@@ -507,7 +507,11 @@ function PmEditableBlock({
       flushPendingUpdate: () => {
         // 1f.9 — close the 400ms debounce window after a toolbar dispatch
         // so App's blocks array reflects the substrate synchronously. Mirrors
-        // the blur handler's flush (line ~323-352).
+        // the blur handler's flush prologue (line ~323-352) but DELIBERATELY
+        // omits the TC annotation pass and setBlockHtml substrate write:
+        // the toolbar already wrote the substrate via PM transaction, and
+        // TC inline-mark materialization happens on blur. Harmonizing the
+        // two paths would re-introduce double-writes.
         if (onUpdateDebounceRef.current) {
           clearTimeout(onUpdateDebounceRef.current);
           onUpdateDebounceRef.current = null;
