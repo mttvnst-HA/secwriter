@@ -64,6 +64,7 @@ import { blockKeymap } from '../lib/pm-plugins/keymap.js';
 import { registerBlock, unregisterBlock } from '../lib/block-registry.js';
 import { setBlockHtml, subscribeBlock } from '../lib/block-html-store.js';
 import { annotateDomWithDiff } from '../lib/text-diff.js';
+import { applyDelAction } from '../lib/pm-del-popup.js';
 import { useBlockLinting } from './useBlockLinting.js';
 
 /**
@@ -460,6 +461,14 @@ function PmEditableBlock({
     if (sel) view.dispatch(view.state.tr.setSelection(sel));
   }, [block.id, block.isNew, viewMountTick]);
 
+  // ── Dismiss del popup on scroll ──────────────────────────────────────────
+  useEffect(() => {
+    if (!delPopup) return;
+    const dismiss = () => setDelPopup(null);
+    window.addEventListener('scroll', dismiss, true);
+    return () => window.removeEventListener('scroll', dismiss, true);
+  }, [delPopup]);
+
   // ── Tag visibility flip ──────────────────────────────────────────────────
   useEffect(() => {
     if (viewRef.current) setTagsVisible(viewRef.current, showTags);
@@ -536,6 +545,39 @@ function PmEditableBlock({
     });
   }, [slashState.open, slashState.filter]);
   filteredSlashRef.current = slashFiltered;
+
+  const handleDelAction = useCallback((action) => {
+    if (!delPopup) return;
+    const view = viewRef.current;
+    if (!view) return;
+    // Defensive: if the del was removed by a peer edit between click and
+    // button press, the el reference is detached. Close popup, no-op.
+    if (!delPopup.el.isConnected) {
+      setDelPopup(null);
+      return;
+    }
+    // Cancel any pending debounced onUpdate so it can't fire later with
+    // pre-action html and clobber the post-action React state.
+    if (onUpdateDebounceRef.current) {
+      clearTimeout(onUpdateDebounceRef.current);
+      onUpdateDebounceRef.current = null;
+    }
+    let html;
+    try { html = pmFragmentToHtml(view.state.doc); }
+    catch { setDelPopup(null); return; }
+    const newHtml = applyDelAction(html, delPopup.delIndex, action);
+    // Route through onRevisionAction — App.handleRevisionAction calls
+    // setBlockHtml with origin 'local-publish' (Yjs UndoManager covered),
+    // updates React state (App-level useUndoableBlocks frames a snapshot),
+    // and runs tc.applyResolveAtBlock(blockId, newHtml) to refresh the TC
+    // snapshot so the next blur diff doesn't re-create the del.
+    if (onRevisionActionRef.current) {
+      onRevisionActionRef.current(block.id, newHtml);
+    } else {
+      onUpdateRef.current?.(block.id, newHtml);
+    }
+    setDelPopup(null);
+  }, [delPopup, block.id]);
 
   const handleSlashSelectClick = useCallback((type) => {
     setSlashState({ open: false, filter: '', selectedIdx: 0 });
@@ -643,6 +685,44 @@ function PmEditableBlock({
           boxShadow: isFocused && editable ? '0 0 0 2px rgba(99,132,168,0.15)' : 'none',
         }}
       />
+      {delPopup && (
+        <div style={{
+          position: 'fixed',
+          top: delPopup.rect.top - 34,
+          left: delPopup.rect.left + delPopup.rect.width / 2,
+          transform: 'translateX(-50%)',
+          display: 'flex',
+          gap: 2,
+          padding: '3px 6px',
+          backgroundColor: '#1e293b',
+          borderRadius: 6,
+          boxShadow: '0 4px 12px rgba(0,0,0,0.25)',
+          zIndex: 100,
+        }}>
+          <button
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => handleDelAction('accept')}
+            title="Accept deletion (remove text)"
+            style={{
+              width: 22, height: 22, border: 'none', borderRadius: 3,
+              backgroundColor: 'transparent', color: '#4ade80',
+              fontSize: 13, cursor: 'pointer', display: 'flex',
+              alignItems: 'center', justifyContent: 'center', padding: 0,
+            }}
+          >✓</button>
+          <button
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => handleDelAction('reject')}
+            title="Reject deletion (restore text)"
+            style={{
+              width: 22, height: 22, border: 'none', borderRadius: 3,
+              backgroundColor: 'transparent', color: '#f87171',
+              fontSize: 13, cursor: 'pointer', display: 'flex',
+              alignItems: 'center', justifyContent: 'center', padding: 0,
+            }}
+          >✗</button>
+        </div>
+      )}
       {tooltipFinding && editable && (
         <InlineTooltip
           finding={tooltipFinding}
