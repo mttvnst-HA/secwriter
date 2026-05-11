@@ -422,6 +422,25 @@ function PmEditableBlock({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [block.id, yStore, editable, yMapBound]);
 
+  // ── Auto-focus on first mount when block.isNew ───────────────────────────
+  // 1f.7 (#47) — mirrors EditableBlock.jsx:172-210 (`needsFocus` path). Block
+  // creation flows (handleEnterKey, slash-convert, paragraph-from-list-exit)
+  // set `isNew: true` on the new block and rely on the editor mount placing
+  // the caret. Legacy did this via the ref callback + Range API; PM owns its
+  // own selection, so we view.focus() and dispatch Selection.atEnd. Gated by
+  // a ref so a later yMapBound flip (1d migration broker) doesn't re-steal
+  // focus on a non-new block whose `isNew` was never explicitly cleared.
+  const hasAutoFocusedRef = useRef(false);
+  useEffect(() => {
+    if (!block.isNew || hasAutoFocusedRef.current) return;
+    const view = viewRef.current;
+    if (!view) return;
+    hasAutoFocusedRef.current = true;
+    view.focus();
+    const sel = selectionAtEnd(view.state);
+    if (sel) view.dispatch(view.state.tr.setSelection(sel));
+  }, [block.id, block.isNew, viewMountTick]);
+
   // ── Tag visibility flip ──────────────────────────────────────────────────
   useEffect(() => {
     if (viewRef.current) setTagsVisible(viewRef.current, showTags);

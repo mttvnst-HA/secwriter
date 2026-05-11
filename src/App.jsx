@@ -35,6 +35,7 @@ import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
 import * as Y from "yjs";
 import { seedBlockArray, resetBlockArray, setBlockHtml, getBlockHtml } from "./lib/block-html-store.js";
 import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, listBlocksInDocumentOrder } from "./lib/block-registry.js";
+import { isPmEditorEnabled } from "./lib/feature-flags.js";
 import * as tc from "./lib/track-changes.js";
 import * as linting from "./lib/linting.js";
 import * as comp from "./lib/compliance.js";
@@ -798,6 +799,35 @@ export default function SpecEditor() {
     // Then update React state to match
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
   }, []);
+
+  // 1f.7 (#47) — DEV-only Playwright test utilities. The legacy contentEditable
+  // path let tests do `el.innerHTML = '...'; el.dispatchEvent('input')` because
+  // the DOM was the source of truth. The PM path's source of truth is the Y
+  // substrate / PM doc — a direct DOM write is overwritten by the next render
+  // cycle, and reading `el.innerHTML` produces PM-wrapped shape (e.g.
+  // `<p>text</p>` instead of `text`). These helpers route through App's normal
+  // block update path so E2E tests work identically in both modes. Tests use
+  // them via `tests/e2e/pm-helpers.js`. Never exposed in production builds.
+  // Must come AFTER handleBlockUpdateWithSync so the dep array doesn't TDZ.
+  useEffect(() => {
+    if (!import.meta.env.DEV) return;
+    if (typeof window === 'undefined') return;
+    window.__simEditorTestUtils = {
+      getBlockHtml: (id) => {
+        const b = blocksRef.current.find((x) => x.id === id);
+        return b ? b.html : null;
+      },
+      // handleBlockUpdateWithSync (not plain handleBlockUpdate) so the legacy
+      // EditableBlock's contentEditable DOM stays in sync — the legacy DOM
+      // sync effect skips writes while the block is focused (avoids fighting
+      // active typing), so a focused-block injection via plain
+      // handleBlockUpdate would update React state + substrate but leave the
+      // stale DOM, and the next blur would read the stale DOM and clobber.
+      setBlockHtml: (id, html) => { handleBlockUpdateWithSync(id, html); },
+      getEditorMode: () => (isPmEditorEnabled() ? 'pm' : 'legacy'),
+    };
+    return () => { delete window.__simEditorTestUtils; };
+  }, [handleBlockUpdateWithSync]);
 
   // Replace a match in a block's HTML at a given visible-text offset.
   // Sub-PR 1e (#47, v2 plan Q17/E4): the contentEditable DOM sync routes
