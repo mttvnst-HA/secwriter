@@ -786,6 +786,18 @@ export default function SpecEditor() {
     setTcState(prev => tc.applyResolveAtBlock(prev, id, html));
   }, []);
 
+  // 1f.9 (#47) — TC-only seam for FloatingToolbar in PM mode. PM dispatch
+  // already wrote the substrate via ySyncPlugin; this handler ONLY updates
+  // React state and the TC snapshot. Skipping setBlockHtml avoids a redundant
+  // 'local-publish' op + Yjs UndoManager phantom frame + duplicate broadcast.
+  // Distinct from handleRevisionAction (above), which is used by the
+  // 1f.8 del-popup whose mutator works on serialized HTML and DOES need
+  // setBlockHtml.
+  const handleRefreshTcSnapshot = useCallback((id, html) => {
+    setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
+    setTcState(prev => tc.applyResolveAtBlock(prev, id, html));
+  }, []);
+
   // Update block HTML and sync the contentEditable DOM (used by MarkSuggestions).
   // For PM-mounted blocks the substrate write is the source of truth — the
   // EditorView re-renders via ySyncPlugin's observe — and the registry's
@@ -2341,7 +2353,16 @@ export default function SpecEditor() {
             zoom: editorZoom,
           }}
         >
-          <FloatingToolbar editorRef={editorRef} onBlockUpdate={handleBlockUpdate} onRevisionAction={handleRevisionAction} trackChanges={trackChanges} onCommentCreate={handleCommentCreate} readOnly={collabReadOnly} />
+          <FloatingToolbar
+            editorRef={editorRef}
+            onBlockUpdate={handleBlockUpdate}
+            onRevisionAction={handleRevisionAction}
+            onRefreshTcSnapshot={handleRefreshTcSnapshot}
+            trackChanges={trackChanges}
+            onCommentCreate={handleCommentCreate}
+            identity={identity}
+            readOnly={collabReadOnly}
+          />
 
           {inRoom && identity && (
             <RemoteCursors peers={peers} selfId={identity.id} editorRef={editorRef} />
