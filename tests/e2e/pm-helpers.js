@@ -74,3 +74,44 @@ export async function getEditorMode(page) {
     return utils.getEditorMode();
   });
 }
+
+/**
+ * Programmatically set PM selection on a block. Required for some
+ * Playwright tests where keyboard-driven Shift+End / Shift+Arrow flows
+ * have been flaky on this repo's history because PM's domObserver
+ * doesn't always pick up synthesized selectionchange under dispatchEvent.
+ *
+ * `from` and `to` are PM document positions. For a single-paragraph block
+ * with N characters, the first text position is 1 and the last is N+1.
+ *
+ * @param {import('@playwright/test').Page} page
+ * @param {string} blockId
+ * @param {number} from
+ * @param {number} to
+ */
+export async function pmSetSelection(page, blockId, from, to) {
+  const ok = await page.evaluate(
+    ({ id, from, to }) => {
+      const utils = window.__simEditorTestUtils;
+      if (!utils?.setPmSelection) return false;
+      return utils.setPmSelection(id, from, to);
+    },
+    { id: blockId, from, to },
+  );
+  if (!ok) throw new Error(`pmSetSelection: setPmSelection failed for block ${blockId}`);
+}
+
+/**
+ * Read PM selection range for assertions. Returns { from, to } or null
+ * if the block has no mounted PM view.
+ *
+ * @param {import('@playwright/test').Page} page
+ * @param {string} blockId
+ * @returns {Promise<{from: number, to: number} | null>}
+ */
+export async function pmGetSelection(page, blockId) {
+  return page.evaluate((id) => {
+    const utils = window.__simEditorTestUtils;
+    return utils?.getPmSelection ? utils.getPmSelection(id) : null;
+  }, blockId);
+}

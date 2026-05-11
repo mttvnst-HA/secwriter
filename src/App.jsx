@@ -34,7 +34,8 @@ import { encodeWindows1252 } from "./lib/encoding.js";
 import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
 import * as Y from "yjs";
 import { seedBlockArray, resetBlockArray, setBlockHtml, getBlockHtml } from "./lib/block-html-store.js";
-import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, listBlocksInDocumentOrder } from "./lib/block-registry.js";
+import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, getBlockView, listBlocksInDocumentOrder } from "./lib/block-registry.js";
+import { TextSelection } from "prosemirror-state";
 import { isPmEditorEnabled } from "./lib/feature-flags.js";
 import * as tc from "./lib/track-changes.js";
 import * as linting from "./lib/linting.js";
@@ -812,6 +813,7 @@ export default function SpecEditor() {
   useEffect(() => {
     if (!import.meta.env.DEV) return;
     if (typeof window === 'undefined') return;
+    let flushOverridden = false;
     window.__simEditorTestUtils = {
       getBlockHtml: (id) => {
         const b = blocksRef.current.find((x) => x.id === id);
@@ -825,6 +827,32 @@ export default function SpecEditor() {
       // stale DOM, and the next blur would read the stale DOM and clobber.
       setBlockHtml: (id, html) => { handleBlockUpdateWithSync(id, html); },
       getEditorMode: () => (isPmEditorEnabled() ? 'pm' : 'legacy'),
+      // 1f.9 — read PM selection range for E3 (selection-persistence test).
+      getPmSelection: (id) => {
+        const view = getBlockView(id);
+        if (!view) return null;
+        const { from, to } = view.state.selection;
+        return { from, to };
+      },
+      // 1f.9 — programmatically set PM selection for tests that need to
+      // place the caret/range before clicking a toolbar button. Playwright's
+      // dispatchEvent('mousedown')/click does not always route selection
+      // through PM's domObserver.
+      setPmSelection: (id, from, to) => {
+        const view = getBlockView(id);
+        if (!view) return false;
+        try {
+          const sel = TextSelection.create(view.state.doc, from, to);
+          view.dispatch(view.state.tr.setSelection(sel));
+          view.focus();
+          return true;
+        } catch { return false; }
+      },
+      // 1f.9 — negative control for E1 (flushPendingUpdate test). When
+      // called with false, FloatingToolbar's PM branch will skip the flush
+      // and React state will lag by the 400ms debounce.
+      __overrideFlush: (enabled) => { flushOverridden = !enabled; },
+      __isFlushOverridden: () => flushOverridden,
     };
     return () => { delete window.__simEditorTestUtils; };
   }, [handleBlockUpdateWithSync]);
