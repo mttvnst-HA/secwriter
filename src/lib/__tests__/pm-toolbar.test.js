@@ -112,4 +112,25 @@ describe('findMarkRangeAt', () => {
     expect(r.to).toBe(5);
     expect(r.mark.attrs.authorId).toBe('B');
   });
+
+  it('cursor at parentOffset 0 inside unmarked first child returns null (no-throw)', () => {
+    // Defensive pin: cursor at the very start of an unmarked first child
+    // hits the re-anchor branch with cursorChildIdx === 0 → no prior child
+    // to look back at → must return null without throwing.
+    const add = schema.marks.revision.create({ kind: 'add', authorId: 'A' });
+    const doc = docOf(txt('unmarked'), txt('marked', add));
+    // 'unmarked' = 1..9 (no mark); cursor at position 1 = parentOffset 0.
+    const r = findMarkRangeAt(doc, 1, schema.marks.revision, () => true);
+    expect(r).toBeNull();
+  });
+
+  it('also works for inlineMark (RID) — not just revision marks', () => {
+    const rid = schema.marks.inlineMark.create({ kind: 'rid', option: null });
+    const doc = docOf(txt('xx'), txt('rid-marked', rid), txt('yy'));
+    // 'xx'=1..3, 'rid-marked'=3..13, 'yy'=13..15. Cursor at 8 = inside rid.
+    const r = findMarkRangeAt(doc, 8, schema.marks.inlineMark, (a) => a.kind === 'rid');
+    expect(r).not.toBeNull();
+    expect(r.from).toBe(3);
+    expect(r.to).toBe(13);
+  });
 });

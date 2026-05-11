@@ -46,8 +46,11 @@ export function findFirstMatchingMark(doc, from, to, markType, attrPredicate) {
 /**
  * Returns true iff EVERY text node in [from, to] carries at least one mark
  * matching (markType, attrPredicate). An empty range or a range that
- * contains no text nodes returns false. Used for the revision multi-author
- * safety check: "toggle off only if all revisions in range are mine".
+ * contains no text nodes returns false (NOT vacuously true — this is the
+ * safer semantic at the revision toggle-off call site: "don't remove
+ * anything if there's nothing to act on"). Used for the revision
+ * multi-author safety check: "toggle off only if all revisions in range
+ * are mine".
  */
 export function rangeAllHaveMarkWithAttrs(doc, from, to, markType, attrPredicate) {
   if (from >= to) return false;
