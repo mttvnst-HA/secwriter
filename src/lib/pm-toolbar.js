@@ -203,3 +203,40 @@ export function applyInlineMarkTr(state, kind, optionAttr) {
   };
   return state.tr.addMark(from, to, markType.create(attrs));
 }
+
+/**
+ * Apply or toggle a revision mark (ADD/DEL) over the selection.
+ *
+ * Multi-author safety: toggle off only if EVERY text node in the range
+ * carries a revision with the requested kind AND the current user's
+ * authorId. Otherwise apply a fresh revision mark with the current author.
+ * Under the schema's default excludes: '_', a fresh mark replaces any
+ * existing revision in the range — the safety check prevents the
+ * stripping-without-replacement bug that stock rangeHasMark would cause
+ * across multi-author content.
+ *
+ * Legacy applyRevision (FloatingToolbar.jsx) uses closest('ins.mark-add')
+ * without an author check, which can strip another user's mark. The PM
+ * path declines to reproduce that latent bug.
+ *
+ * Returns null on collapsed selection.
+ */
+export function applyRevisionTr(state, kind, authorAttrs) {
+  const { from, to, empty } = state.selection;
+  if (empty) return null;
+  const markType = state.schema.marks.revision;
+  if (!markType) return null;
+  const currentAuthorId = authorAttrs?.authorId ?? null;
+  const matchesMine = (a) => a.kind === kind && a.authorId === currentAuthorId;
+
+  const allMine = rangeAllHaveMarkWithAttrs(state.doc, from, to, markType, matchesMine);
+  if (allMine) {
+    const sample = findFirstMatchingMark(state.doc, from, to, markType, matchesMine);
+    if (sample) return state.tr.removeMark(from, to, sample);
+  }
+  return state.tr.addMark(from, to, markType.create({
+    kind,
+    authorId: currentAuthorId,
+    authorColor: authorAttrs?.authorColor ?? null,
+  }));
+}

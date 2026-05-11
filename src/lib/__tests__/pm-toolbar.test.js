@@ -238,3 +238,81 @@ describe('applyInlineMarkTr', () => {
     expect(applyInlineMarkTr(state, 'rid')).toBeNull();
   });
 });
+
+import { applyRevisionTr } from '../pm-toolbar.js';
+
+describe('applyRevisionTr', () => {
+  it('applies ADD with current authorId', () => {
+    const doc = docOf(txt('hello'));
+    const state = stateOf(doc, 1, 6);
+    const tr = applyRevisionTr(state, 'add', { authorId: 'A', authorColor: '#f00' });
+    const newState = state.apply(tr);
+    const mark = findFirstMatchingMark(
+      newState.doc, 1, 6, schema.marks.revision, () => true,
+    );
+    expect(mark).not.toBeNull();
+    expect(mark.attrs.kind).toBe('add');
+    expect(mark.attrs.authorId).toBe('A');
+    expect(mark.attrs.authorColor).toBe('#f00');
+  });
+
+  it('toggles off when ALL revisions in range match current (kind, authorId)', () => {
+    const add = schema.marks.revision.create({ kind: 'add', authorId: 'A' });
+    const doc = docOf(txt('hello', add));
+    const state = stateOf(doc, 1, 6);
+    const tr = applyRevisionTr(state, 'add', { authorId: 'A' });
+    const newState = state.apply(tr);
+    expect(findFirstMatchingMark(
+      newState.doc, 1, 6, schema.marks.revision, () => true,
+    )).toBeNull();
+  });
+
+  it('cross-author: B applies ADD over A\'s ADD — current author\'s mark wins', () => {
+    // Under default excludes: '_', two revision marks cannot coexist on a
+    // text node. The multi-author safety property is: B's apply does NOT
+    // silently remove A's mark via toggle-off detection (which would happen
+    // if stock rangeHasMark were used — it returns true on A's mark, the
+    // toggle calls removeMark, A's mark is stripped, no new mark applied).
+    // Correct behavior: detection queries (kind === 'add' && authorId === 'B')
+    // and returns null → fall through to addMark with B's identity → B's
+    // mark replaces A's. The user-visible result is "B's mark is now on
+    // the text" — not "A's mark survived".
+    const addA = schema.marks.revision.create({ kind: 'add', authorId: 'A' });
+    const doc = docOf(txt('hello', addA));
+    const state = stateOf(doc, 1, 6);
+    const tr = applyRevisionTr(state, 'add', { authorId: 'B' });
+    expect(tr).not.toBeNull();
+    const newState = state.apply(tr);
+    const markB = findFirstMatchingMark(
+      newState.doc, 1, 6, schema.marks.revision, (a) => a.authorId === 'B',
+    );
+    expect(markB).not.toBeNull();
+  });
+
+  it('mixed-author range: A clicks ADD across [A-add][B-add] — toggle-off does NOT fire', () => {
+    // The rangeAllHaveMarkWithAttrs check returns false (not all positions
+    // are A's), so the toggle-off branch is skipped. Fall through to
+    // addMark applies A's mark across the full range, replacing B's.
+    // Important: we are testing the SAFETY CHECK ("don't toggle off"),
+    // not that B's mark survives — under default excludes it cannot.
+    const addA = schema.marks.revision.create({ kind: 'add', authorId: 'A' });
+    const addB = schema.marks.revision.create({ kind: 'add', authorId: 'B' });
+    const doc = docOf(txt('aa', addA), txt('bb', addB));
+    const state = stateOf(doc, 1, 5);
+    const tr = applyRevisionTr(state, 'add', { authorId: 'A' });
+    expect(tr).not.toBeNull();
+    const newState = state.apply(tr);
+    // After the apply, A's mark should be present somewhere in the range.
+    // (Toggle-off would have left the range with NO revision marks.)
+    const stillSomeRevision = findFirstMatchingMark(
+      newState.doc, 1, 5, schema.marks.revision, () => true,
+    );
+    expect(stillSomeRevision).not.toBeNull();
+  });
+
+  it('returns null on empty selection', () => {
+    const doc = docOf(txt('hello'));
+    const state = stateOf(doc, 3, 3);
+    expect(applyRevisionTr(state, 'add', { authorId: 'A' })).toBeNull();
+  });
+});
