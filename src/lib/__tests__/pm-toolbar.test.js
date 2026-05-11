@@ -7,6 +7,7 @@ import {
   rangeAllHaveMarkWithAttrs,
   findMarkRangeAt,
   applyFormatTr,
+  applyInlineMarkTr,
 } from '../pm-toolbar.js';
 
 // Test fixture: build a tiny single-paragraph doc.
@@ -173,5 +174,63 @@ describe('applyFormatTr', () => {
     const doc = docOf(txt('hello'));
     const state = stateOf(doc, 3, 3);
     expect(applyFormatTr(state, 'bold')).toBeNull();
+  });
+});
+
+describe('applyInlineMarkTr', () => {
+  it('RID toggles ON over plain selection', () => {
+    const doc = docOf(txt('hello'));
+    const state = stateOf(doc, 1, 6);
+    const tr = applyInlineMarkTr(state, 'rid');
+    expect(tr).not.toBeNull();
+    const newState = state.apply(tr);
+    const mark = findFirstMatchingMark(
+      newState.doc, 1, 6, schema.marks.inlineMark, (a) => a.kind === 'rid',
+    );
+    expect(mark).not.toBeNull();
+  });
+
+  it('RID toggles OFF over RID-marked selection', () => {
+    const rid = schema.marks.inlineMark.create({ kind: 'rid', option: null });
+    const doc = docOf(txt('hello', rid));
+    const state = stateOf(doc, 1, 6);
+    const tr = applyInlineMarkTr(state, 'rid');
+    const newState = state.apply(tr);
+    expect(findFirstMatchingMark(
+      newState.doc, 1, 6, schema.marks.inlineMark, (a) => a.kind === 'rid',
+    )).toBeNull();
+  });
+
+  it('RID does NOT toggle off an overlapping SRF mark (attr-discrimination)', () => {
+    const srf = schema.marks.inlineMark.create({ kind: 'srf', option: null });
+    const doc = docOf(txt('hello', srf));
+    const state = stateOf(doc, 1, 6);
+    // No RID in range → applyInlineMarkTr should ADD a RID, leaving SRF intact.
+    const tr = applyInlineMarkTr(state, 'rid');
+    const newState = state.apply(tr);
+    expect(findFirstMatchingMark(
+      newState.doc, 1, 6, schema.marks.inlineMark, (a) => a.kind === 'srf',
+    )).not.toBeNull();
+    expect(findFirstMatchingMark(
+      newState.doc, 1, 6, schema.marks.inlineMark, (a) => a.kind === 'rid',
+    )).not.toBeNull();
+  });
+
+  it('TAI carries the option attr', () => {
+    const doc = docOf(txt('hello'));
+    const state = stateOf(doc, 1, 6);
+    const tr = applyInlineMarkTr(state, 'tai', 'GULF');
+    const newState = state.apply(tr);
+    const mark = findFirstMatchingMark(
+      newState.doc, 1, 6, schema.marks.inlineMark, (a) => a.kind === 'tai',
+    );
+    expect(mark).not.toBeNull();
+    expect(mark.attrs.option).toBe('GULF');
+  });
+
+  it('returns null on empty selection', () => {
+    const doc = docOf(txt('hello'));
+    const state = stateOf(doc, 2, 2);
+    expect(applyInlineMarkTr(state, 'rid')).toBeNull();
   });
 });

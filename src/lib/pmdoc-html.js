@@ -230,11 +230,25 @@ function isYXmlElement(child) {
     && typeof child.toArray === 'function';
 }
 
+// y-prosemirror appends a `--<8-char-hash>` suffix to attr keys for mark types
+// declared with `excludes: ''` (overlap-capable). See
+// node_modules/y-prosemirror/dist/y-prosemirror.cjs:1167 (`hashedMarkNameRegex`)
+// and the `isOverlapping` branch at marksToAttributes (line ~1199). The
+// SecWriter schema declares `inlineMark` with `excludes: ''` so that RID/SRF/etc.
+// can stack at the PM-doc layer (sub-PR 1f.9). Strip the suffix when reading
+// back so our switch can dispatch on the canonical mark name.
+const HASHED_ATTR_KEY_RE = /^(.*)--[a-zA-Z0-9+/=]{8}$/;
+function stripHashSuffix(key) {
+  const m = HASHED_ATTR_KEY_RE.exec(key);
+  return m ? m[1] : key;
+}
+
 function yDeltaAttrsToAttrs(rawAttrs) {
   if (!rawAttrs || typeof rawAttrs !== 'object') return {};
   const attrs = {};
-  for (const key of Object.keys(rawAttrs)) {
-    const v = rawAttrs[key];
+  for (const rawKey of Object.keys(rawAttrs)) {
+    const key = stripHashSuffix(rawKey);
+    const v = rawAttrs[rawKey];
     switch (key) {
       // y-prosemirror stores marks-without-attrs as `{}` (or sometimes null
       // after Yjs format ops). Both treated as set.

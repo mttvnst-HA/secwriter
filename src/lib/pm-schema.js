@@ -158,6 +158,13 @@ export const schema = new Schema({
       },
     },
     inlineMark: {
+      // excludes: '' allows multiple inlineMark instances with different
+      // `kind` attrs (e.g. RID + SRF) to coexist on the same text node.
+      // Default PM behavior excludes by type, which would strip a SRF when
+      // adding RID — incompatible with the attr-discriminated semantics that
+      // pm-toolbar.applyInlineMarkTr relies on (sub-PR 1f.9, design spec
+      // line 124).
+      excludes: '',
       attrs: {
         kind: { default: 'rid' },
         option: { default: null },

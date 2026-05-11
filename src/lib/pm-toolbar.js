@@ -176,3 +176,30 @@ export function applyFormatTr(state, kind) {
   }
   return state.tr.addMark(from, to, markType.create());
 }
+
+/**
+ * Toggle an inlineMark (rid/srf/sub/tai/...) over the selection. Attr-
+ * discriminated: a RID toggle examines only RID-kind marks in the range,
+ * leaving overlapping SRF/SUB marks intact. When toggling off, passes the
+ * specific Mark instance to tr.removeMark so attrs match.
+ *
+ * The optional 3rd arg `optionAttr` is the data-opt value for `tai` marks
+ * (legacy: data-opt="<region>" tailoring). Ignored for other kinds.
+ */
+export function applyInlineMarkTr(state, kind, optionAttr) {
+  const { from, to, empty } = state.selection;
+  if (empty) return null;
+  const markType = state.schema.marks.inlineMark;
+  if (!markType) return null;
+  const existing = findFirstMatchingMark(
+    state.doc, from, to, markType, (a) => a.kind === kind,
+  );
+  if (existing) {
+    return state.tr.removeMark(from, to, existing);
+  }
+  const attrs = {
+    kind,
+    option: kind === 'tai' ? (optionAttr ?? null) : null,
+  };
+  return state.tr.addMark(from, to, markType.create(attrs));
+}
