@@ -1,4 +1,13 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import {
+  applyFormatTr,
+  applyInlineMarkTr,
+  applyRevisionTr,
+  applyInlineRevisionResolveTr,
+  applyChangeCaseTr,
+} from '../lib/pm-toolbar.js';
+import { getBlockView, flushPendingUpdateById } from '../lib/block-registry.js';
+import { pmFragmentToHtml } from '../lib/pmdoc-html.js';
 
 /**
  * Inline mark types available in the floating toolbar.
@@ -30,7 +39,16 @@ const REVISION_TYPES = [
   { tag: "DEL", cls: "mark-del", label: "DEL", title: "Mark as Deletion", color: "#ff4444", bg: "#fef2f2", htmlTag: "del" },
 ];
 
-export default function FloatingToolbar({ editorRef, onBlockUpdate, onRevisionAction, trackChanges, onCommentCreate, readOnly = false }) {
+export default function FloatingToolbar({
+  editorRef,
+  onBlockUpdate,
+  onRevisionAction,
+  onRefreshTcSnapshot,
+  trackChanges,
+  onCommentCreate,
+  identity,
+  readOnly = false,
+}) {
   const [visible, setVisible] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const [insideRevision, setInsideRevision] = useState(null); // "add" | "del" | null
@@ -174,70 +192,92 @@ export default function FloatingToolbar({ editorRef, onBlockUpdate, onRevisionAc
   const applyMark = useCallback((markType) => {
     const saved = selectionRef.current;
     if (!saved) return;
+    const { blockId } = saved;
+    const view = blockId ? getBlockView(blockId) : null;
 
-    const { range, blockId, blockEl } = saved;
+    if (view) {
+      // PM path — read selection from PM state.
+      const kindMap = { 'mark-rid': 'rid', 'mark-srf': 'srf', 'mark-sub': 'sub' };
+      const kind = kindMap[markType.cls];
+      if (!kind) return;
+      const tr = applyInlineMarkTr(view.state, kind);
+      if (tr) {
+        view.dispatch(tr);
+        if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
+          flushPendingUpdateById(blockId);
+        }
+      }
+      setVisible(false);
+      return;
+    }
 
-    // Restore the selection (toolbar mousedown prevented it from collapsing)
+    // Legacy path — DOM mutation (unchanged from pre-1f.9).
+    const { range, blockEl } = saved;
     const sel = window.getSelection();
     sel.removeAllRanges();
     sel.addRange(range);
 
-    // Check if the selection is already inside this mark type
     let parentMark = range.commonAncestorContainer;
     if (parentMark.nodeType === 3) parentMark = parentMark.parentElement;
     const existingMark = parentMark.closest?.(`.${markType.cls}`);
 
     if (existingMark) {
-      // Unwrap: replace the span with its text content
       const text = document.createTextNode(existingMark.textContent);
       existingMark.parentNode.replaceChild(text, existingMark);
     } else {
-      // Wrap selection in a span with the mark class
       const span = document.createElement("span");
       span.className = markType.cls;
       try {
         range.surroundContents(span);
       } catch {
-        // surroundContents fails if selection crosses element boundaries
-        // Fall back to extracting and wrapping
         const fragment = range.extractContents();
         span.appendChild(fragment);
         range.insertNode(span);
       }
     }
 
-    // Collapse selection after the new span
     sel.removeAllRanges();
-
-    // Notify parent of the updated HTML
-    if (onBlockUpdate && blockEl) {
-      onBlockUpdate(blockId, blockEl.innerHTML);
-    }
-
+    if (onBlockUpdate && blockEl) onBlockUpdate(blockId, blockEl.innerHTML);
     setVisible(false);
   }, [onBlockUpdate]);
 
   const applyRevision = useCallback((revType) => {
     const saved = selectionRef.current;
     if (!saved) return;
+    const { blockId } = saved;
+    const view = blockId ? getBlockView(blockId) : null;
 
-    const { range, blockId, blockEl } = saved;
+    if (view) {
+      // PM path
+      const kind = revType.tag === 'ADD' ? 'add' : 'del';
+      const tr = applyRevisionTr(view.state, kind, {
+        authorId: identity?.id ?? null,
+        authorColor: identity?.color ?? null,
+      });
+      if (tr) {
+        view.dispatch(tr);
+        if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
+          flushPendingUpdateById(blockId);
+        }
+      }
+      setVisible(false);
+      return;
+    }
 
+    // Legacy path
+    const { range, blockEl } = saved;
     const sel = window.getSelection();
     sel.removeAllRanges();
     sel.addRange(range);
 
-    // Check if already wrapped in this revision type
     let parentNode = range.commonAncestorContainer;
     if (parentNode.nodeType === 3) parentNode = parentNode.parentElement;
     const existingEl = parentNode.closest?.(revType.htmlTag + "." + revType.cls);
 
     if (existingEl && blockEl.contains(existingEl)) {
-      // Unwrap
       const text = document.createTextNode(existingEl.textContent);
       existingEl.parentNode.replaceChild(text, existingEl);
     } else {
-      // Wrap
       const el = document.createElement(revType.htmlTag);
       el.className = revType.cls;
       try {
@@ -250,39 +290,45 @@ export default function FloatingToolbar({ editorRef, onBlockUpdate, onRevisionAc
     }
 
     sel.removeAllRanges();
-
-    if (onBlockUpdate && blockEl) {
-      onBlockUpdate(blockId, blockEl.innerHTML);
-    }
-
+    if (onBlockUpdate && blockEl) onBlockUpdate(blockId, blockEl.innerHTML);
     setVisible(false);
-  }, [onBlockUpdate]);
+  }, [onBlockUpdate, identity]);
 
   // Change case: cycles UPPER → lower → Title
   const changeCase = useCallback(() => {
     const saved = selectionRef.current;
     if (!saved || saved.isRefBlock) return;
-    const { range, blockId, blockEl } = saved;
+    const { blockId } = saved;
+    const view = blockId ? getBlockView(blockId) : null;
+
+    if (view) {
+      // PM path
+      const tr = applyChangeCaseTr(view.state);
+      if (tr) {
+        view.dispatch(tr);
+        if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
+          flushPendingUpdateById(blockId);
+        }
+      }
+      setVisible(false);
+      return;
+    }
+
+    // Legacy path
+    const { range, blockEl } = saved;
     const sel = window.getSelection();
     sel.removeAllRanges();
     sel.addRange(range);
     const text = range.toString();
     if (!text) return;
     let newText;
-    if (text === text.toUpperCase()) {
-      newText = text.toLowerCase();
-    } else if (text === text.toLowerCase()) {
-      newText = text.replace(/\b\w/g, c => c.toUpperCase());
-    } else {
-      newText = text.toUpperCase();
-    }
-    // Replace selected text
+    if (text === text.toUpperCase()) newText = text.toLowerCase();
+    else if (text === text.toLowerCase()) newText = text.replace(/\b\w/g, c => c.toUpperCase());
+    else newText = text.toUpperCase();
     range.deleteContents();
     range.insertNode(document.createTextNode(newText));
     sel.removeAllRanges();
-    if (onBlockUpdate && blockEl) {
-      onBlockUpdate(blockId, blockEl.innerHTML);
-    }
+    if (onBlockUpdate && blockEl) onBlockUpdate(blockId, blockEl.innerHTML);
     setVisible(false);
   }, [onBlockUpdate]);
 
@@ -293,12 +339,35 @@ export default function FloatingToolbar({ editorRef, onBlockUpdate, onRevisionAc
   const handleInlineRevisionAction = useCallback((action) => {
     const saved = selectionRef.current;
     if (!saved) return;
-
     const { blockId, blockEl } = saved;
+    const view = blockId ? getBlockView(blockId) : null;
+
+    if (view) {
+      // PM path
+      const tr = applyInlineRevisionResolveTr(view.state, action);
+      if (tr) {
+        view.dispatch(tr);
+        if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
+          flushPendingUpdateById(blockId);
+        }
+        // TC snapshot refresh — separate from substrate write (PM dispatch
+        // already wrote). onRefreshTcSnapshot updates React blocks +
+        // tc.applyResolveAtBlock and DOES NOT call setBlockHtml.
+        if (onRefreshTcSnapshot) {
+          try {
+            const html = pmFragmentToHtml(view.state.doc);
+            onRefreshTcSnapshot(blockId, html);
+          } catch { /* defensive */ }
+        }
+      }
+      window.getSelection()?.removeAllRanges();
+      setVisible(false);
+      return;
+    }
+
+    // Legacy path
     const sel = window.getSelection();
     const range = saved.range;
-
-    // Find the revision mark element containing the cursor/selection
     let node = range.commonAncestorContainer;
     if (node.nodeType === 3) node = node.parentElement;
 
@@ -307,56 +376,62 @@ export default function FloatingToolbar({ editorRef, onBlockUpdate, onRevisionAc
 
     if (insEl && blockEl.contains(insEl)) {
       if (action === "accept") {
-        // Accept ADD: strip ins tags, keep content
         const text = document.createTextNode(insEl.textContent);
         insEl.parentNode.replaceChild(text, insEl);
       } else {
-        // Reject ADD: remove ins and content
         insEl.parentNode.removeChild(insEl);
       }
     } else if (delEl && blockEl.contains(delEl)) {
       if (action === "accept") {
-        // Accept DEL: remove del and content
         delEl.parentNode.removeChild(delEl);
       } else {
-        // Reject DEL: strip del tags, keep content (restore)
         const text = document.createTextNode(delEl.textContent);
         delEl.parentNode.replaceChild(text, delEl);
       }
     }
 
     sel.removeAllRanges();
-
-    // Use onRevisionAction (snapshot-synced) for inline accept/reject, fall back to onBlockUpdate
     const updateFn = onRevisionAction || onBlockUpdate;
-    if (updateFn && blockEl) {
-      updateFn(blockId, blockEl.innerHTML);
-    }
-
+    if (updateFn && blockEl) updateFn(blockId, blockEl.innerHTML);
     setVisible(false);
-  }, [onBlockUpdate, onRevisionAction]);
+  }, [onBlockUpdate, onRevisionAction, onRefreshTcSnapshot]);
 
   const applyFormat = useCallback((formatType) => {
     const saved = selectionRef.current;
     if (!saved) return;
+    const { blockId } = saved;
+    const view = blockId ? getBlockView(blockId) : null;
 
-    const { range, blockId, blockEl } = saved;
+    if (view) {
+      // PM path
+      const kindMap = { 'BLD': 'bold', 'ITA': 'italic', 'UND': 'underline' };
+      const kind = kindMap[formatType.tag];
+      if (!kind) return;
+      const tr = applyFormatTr(view.state, kind);
+      if (tr) {
+        view.dispatch(tr);
+        if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
+          flushPendingUpdateById(blockId);
+        }
+      }
+      setVisible(false);
+      return;
+    }
 
+    // Legacy path
+    const { range, blockEl } = saved;
     const sel = window.getSelection();
     sel.removeAllRanges();
     sel.addRange(range);
 
-    // Check if already wrapped in this format
     let parentNode = range.commonAncestorContainer;
     if (parentNode.nodeType === 3) parentNode = parentNode.parentElement;
     const existingTag = parentNode.closest?.(formatType.htmlTag);
 
     if (existingTag && blockEl.contains(existingTag)) {
-      // Unwrap
       const text = document.createTextNode(existingTag.textContent);
       existingTag.parentNode.replaceChild(text, existingTag);
     } else {
-      // Wrap
       const el = document.createElement(formatType.htmlTag);
       try {
         range.surroundContents(el);
@@ -368,11 +443,7 @@ export default function FloatingToolbar({ editorRef, onBlockUpdate, onRevisionAc
     }
 
     sel.removeAllRanges();
-
-    if (onBlockUpdate && blockEl) {
-      onBlockUpdate(blockId, blockEl.innerHTML);
-    }
-
+    if (onBlockUpdate && blockEl) onBlockUpdate(blockId, blockEl.innerHTML);
     setVisible(false);
   }, [onBlockUpdate]);
 
@@ -549,6 +620,16 @@ export default function FloatingToolbar({ editorRef, onBlockUpdate, onRevisionAc
         </>
       )}
 
+      {/* XXX(#64): Comment-create stays on the DOM-mutation path in
+          both legacy and PM modes. y-prosemirror's
+          prosemirrorToYXmlFragment drops the `comment` mark, so we
+          cannot dispatch a PM transaction here without losing the
+          mark on the next ySync round-trip. In PM mode the visible
+          <span class="mark-comment"> is reverted by PM's DOMObserver
+          on the next render, but the metadata still reaches
+          commentsState via onCommentCreate. The disagreement is
+          accepted per CLAUDE.md Comments-Architecture note 10 until
+          issue #64 is resolved. */}
       {/* Comment button */}
       {onCommentCreate && selectionRef.current?.blockId && (
         <>
