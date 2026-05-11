@@ -240,3 +240,33 @@ export function applyRevisionTr(state, kind, authorAttrs) {
     authorColor: authorAttrs?.authorColor ?? null,
   }));
 }
+
+/**
+ * Resolve the revision mark at the cursor: accept ADD (strip mark, keep
+ * content), reject ADD (delete range), accept DEL (delete range), reject
+ * DEL (strip mark, keep content). After the resolution, clears stored
+ * marks so the next keystroke doesn't inherit the (now-removed) revision.
+ *
+ * Returns null when no revision mark is at the cursor position.
+ */
+export function applyInlineRevisionResolveTr(state, action) {
+  const { from } = state.selection;
+  const markType = state.schema.marks.revision;
+  const range = findMarkRangeAt(state.doc, from, markType, () => true);
+  if (!range) return null;
+  const kind = range.mark.attrs.kind;
+
+  let tr;
+  if ((action === 'accept' && kind === 'add')
+      || (action === 'reject' && kind === 'del')) {
+    // Strip mark, keep content.
+    tr = state.tr.removeMark(range.from, range.to, range.mark);
+  } else if ((action === 'reject' && kind === 'add')
+      || (action === 'accept' && kind === 'del')) {
+    // Delete range.
+    tr = state.tr.delete(range.from, range.to);
+  } else {
+    return null;
+  }
+  return tr.setStoredMarks([]);
+}

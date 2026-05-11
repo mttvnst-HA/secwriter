@@ -316,3 +316,67 @@ describe('applyRevisionTr', () => {
     expect(applyRevisionTr(state, 'add', { authorId: 'A' })).toBeNull();
   });
 });
+
+import { applyInlineRevisionResolveTr } from '../pm-toolbar.js';
+
+describe('applyInlineRevisionResolveTr', () => {
+  function docWithMark(kind, text = 'word') {
+    const m = schema.marks.revision.create({ kind, authorId: 'A' });
+    return docOf(txt('xx'), txt(text, m), txt('yy'));
+  }
+
+  it('accept ADD strips the mark and clears storedMarks', () => {
+    const doc = docWithMark('add');
+    // Cursor inside the marked range. 'xx'=1..3, 'word'=3..7, 'yy'=7..9.
+    const state = stateOf(doc, 5);
+    const tr = applyInlineRevisionResolveTr(state, 'accept');
+    expect(tr).not.toBeNull();
+    const newState = state.apply(tr);
+    expect(findFirstMatchingMark(
+      newState.doc, 3, 7, schema.marks.revision, () => true,
+    )).toBeNull();
+    expect(tr.storedMarks).toEqual([]);
+  });
+
+  it('reject ADD deletes the marked range', () => {
+    const doc = docWithMark('add', 'word');
+    const state = stateOf(doc, 5);
+    const tr = applyInlineRevisionResolveTr(state, 'reject');
+    const newState = state.apply(tr);
+    const text = newState.doc.textContent;
+    expect(text).toBe('xxyy');
+  });
+
+  it('accept DEL deletes the marked range', () => {
+    const doc = docWithMark('del');
+    const state = stateOf(doc, 5);
+    const tr = applyInlineRevisionResolveTr(state, 'accept');
+    const newState = state.apply(tr);
+    expect(newState.doc.textContent).toBe('xxyy');
+  });
+
+  it('reject DEL strips the mark and clears storedMarks', () => {
+    const doc = docWithMark('del');
+    const state = stateOf(doc, 5);
+    const tr = applyInlineRevisionResolveTr(state, 'reject');
+    const newState = state.apply(tr);
+    expect(findFirstMatchingMark(
+      newState.doc, 3, 7, schema.marks.revision, () => true,
+    )).toBeNull();
+    expect(tr.storedMarks).toEqual([]);
+  });
+
+  it('cursor at immediate right boundary of mark resolves the mark', () => {
+    // 'word' = 3..7. Cursor at 7 = immediate right boundary (inclusive: true).
+    const doc = docWithMark('add');
+    const state = stateOf(doc, 7);
+    const tr = applyInlineRevisionResolveTr(state, 'accept');
+    expect(tr).not.toBeNull();
+  });
+
+  it('cursor with no revision mark at $pos returns null', () => {
+    const doc = docOf(txt('plain text'));
+    const state = stateOf(doc, 5);
+    expect(applyInlineRevisionResolveTr(state, 'accept')).toBeNull();
+  });
+});
