@@ -1,4 +1,5 @@
 import { test, expect } from './fixtures.js';
+import { injectBlockHtml } from './pm-helpers.js';
 import fs from 'fs';
 
 // ─── Helpers ───────────────────────────────────────────────────────────────────
@@ -719,7 +720,14 @@ test.describe('Inline comments', () => {
   });
 
   test('clicking comment-highlighted text shows popup', async ({ page }) => {
-    // Create a block and inject a comment span
+    // Create a block and inject a comment span. 1f.7 note: this test does
+    // direct DOM injection via el.innerHTML — works in legacy contentEditable
+    // because the DOM IS the source of truth there. In PM mode the substrate
+    // owns the DOM and the comment mark does NOT survive
+    // prosemirrorToYXmlFragment (the comment mark with attrs `{id,resolved}`
+    // is silently dropped by y-prosemirror's diff-and-merge — separate from
+    // DOM-depth scope and tracked as a follow-on). Until that ships, this
+    // test will only pass under chromium-legacy.
     const focused = await createFreshBlock(page);
     const blockId = await focused.getAttribute('data-block-id');
     await page.locator(blockSel(blockId)).evaluate(el => {
@@ -2442,15 +2450,17 @@ test.describe('Cross-reference validation panel', () => {
   });
 
   test('SRF self-reference is flagged in cross-ref panel', async ({ page }) => {
-    // Create a block and inject a mark-srf with the document's own section number (31 00 00)
+    // Create a block and inject a mark-srf with the document's own section number (31 00 00).
+    // Routed through injectBlockHtml (App's normal update path) so PM mode
+    // doesn't drop the write on the next render — see 1f.7 (#47).
     const focused = await createFreshBlock(page);
     const blockId = await focused.getAttribute('data-block-id');
 
-    // Set innerHTML directly to include a self-referencing SRF mark
-    await page.locator(blockSel(blockId)).evaluate(el => {
-      el.innerHTML = 'See Section <span class="mark-srf">31 00 00</span> for details';
-      el.dispatchEvent(new Event('input', { bubbles: true }));
-    });
+    await injectBlockHtml(
+      page,
+      blockId,
+      'See Section <span class="mark-srf">31 00 00</span> for details',
+    );
     await page.waitForTimeout(500);
 
     // Blur to trigger state sync
