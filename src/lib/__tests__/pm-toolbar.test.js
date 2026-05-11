@@ -6,6 +6,7 @@ import {
   findFirstMatchingMark,
   rangeAllHaveMarkWithAttrs,
   findMarkRangeAt,
+  applyFormatTr,
 } from '../pm-toolbar.js';
 
 // Test fixture: build a tiny single-paragraph doc.
@@ -132,5 +133,45 @@ describe('findMarkRangeAt', () => {
     expect(r).not.toBeNull();
     expect(r.from).toBe(3);
     expect(r.to).toBe(13);
+  });
+});
+
+describe('applyFormatTr', () => {
+  it.each(['bold', 'italic', 'underline'])(
+    '%s — toggles ON over plain selection',
+    (kind) => {
+      const doc = docOf(txt('hello'));
+      const state = stateOf(doc, 1, 6);
+      const tr = applyFormatTr(state, kind);
+      expect(tr).not.toBeNull();
+      expect(tr.docChanged).toBe(true);
+      const newState = state.apply(tr);
+      const mark = findFirstMatchingMark(
+        newState.doc, 1, 6, schema.marks[kind], () => true,
+      );
+      expect(mark).not.toBeNull();
+    },
+  );
+
+  it.each(['bold', 'italic', 'underline'])(
+    '%s — toggles OFF over already-marked selection',
+    (kind) => {
+      const markInstance = schema.marks[kind].create();
+      const doc = docOf(txt('hello', markInstance));
+      const state = stateOf(doc, 1, 6);
+      const tr = applyFormatTr(state, kind);
+      expect(tr).not.toBeNull();
+      const newState = state.apply(tr);
+      const mark = findFirstMatchingMark(
+        newState.doc, 1, 6, schema.marks[kind], () => true,
+      );
+      expect(mark).toBeNull();
+    },
+  );
+
+  it('returns null on empty selection', () => {
+    const doc = docOf(txt('hello'));
+    const state = stateOf(doc, 3, 3);
+    expect(applyFormatTr(state, 'bold')).toBeNull();
   });
 });

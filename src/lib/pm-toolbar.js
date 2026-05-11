@@ -157,3 +157,22 @@ export function findMarkRangeAt(doc, pos, markType, attrPredicate) {
 
   return { from, to, mark: targetMark };
 }
+
+/**
+ * Toggle a format mark (bold/italic/underline) over the selection.
+ * Format marks have no attrs; toggle decision uses "any text in range has
+ * the mark" semantics (matches prosemirror-commands.toggleMark).
+ *
+ * Returns null when the selection is collapsed or the kind is unknown.
+ */
+export function applyFormatTr(state, kind) {
+  const { from, to, empty } = state.selection;
+  if (empty) return null;
+  const markType = state.schema.marks[kind];
+  if (!markType) return null;
+  const existing = findFirstMatchingMark(state.doc, from, to, markType, () => true);
+  if (existing) {
+    return state.tr.removeMark(from, to, markType);
+  }
+  return state.tr.addMark(from, to, markType.create());
+}
