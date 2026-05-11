@@ -3,13 +3,23 @@ import { defineConfig } from '@playwright/test';
 // Sub-PR 1e (#47, ADR-0006) — the E2E suite runs under both flag values
 // (legacy contentEditable and PM EditorView) so collab + editor scenarios
 // are validated against both code paths until the 1i sub-PR removes the
-// flag. Pick which project to run via `--project=chromium` (legacy) or
-// `--project=chromium-pm` (PM editor on). Default: both.
+// flag. Pick which project to run via `--project=chromium-legacy` (legacy
+// contentEditable) or `--project=chromium` (PM editor on). Default: both.
 //
-// Each project's `use.extraHTTPHeaders` is unused; the PM-flag project sets
-// the runtime override `window.__SIM_FORCE_PM_EDITOR = true` on every page
-// via `use.contextOptions` storage state — see the addInitScript stanza
-// below.
+// Sub-PR 1f.5 (#47) — the previous `?pm=1` baseURL pattern was a no-op
+// because Playwright resolves `page.goto('/')` against `baseURL` via
+// `new URL('/', baseURL)`, which drops the search component (per WHATWG
+// URL). The PM project ran legacy in both projects until this was caught.
+//
+// Fix: project-level `forcePmEditor` option consumed by the custom test
+// fixture in `tests/e2e/fixtures.js`. The fixture overrides the browser
+// context to call `context.addInitScript(() => window.__SIM_FORCE_PM_EDITOR = true)`
+// before any app code runs. Test files import test/expect from the fixture
+// instead of @playwright/test so the option is honored.
+//
+// 1f.5 keeps both projects passing under the still-default-false flag. The
+// flag flip itself ships in a follow-on PR once all PM-mode regressions
+// are addressed (the legacy project disappears in 1i).
 export default defineConfig({
   testDir: './tests/e2e',
   timeout: 30000,
@@ -40,20 +50,19 @@ export default defineConfig({
   ],
   projects: [
     {
-      name: 'chromium',
+      name: 'chromium-legacy',
       use: {
         browserName: 'chromium',
+        // forcePmEditor omitted → default false → fixture skips addInitScript
+        // → app reads VITE_PM_EDITOR env (defaults false on `main`) → legacy
+        // contentEditable path.
       },
     },
     {
-      name: 'chromium-pm',
+      name: 'chromium',
       use: {
         browserName: 'chromium',
-        // Inject the runtime override before any app code runs. The flag is
-        // read once at module load time by feature-flags.js; setting it
-        // pre-load means PmEditableBlock is mounted from the very first
-        // render. Tests in this project see the PM-backed editor.
-        baseURL: 'http://localhost:5173/?pm=1',
+        forcePmEditor: true,
       },
     },
   ],
