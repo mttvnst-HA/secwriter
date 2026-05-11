@@ -7,6 +7,8 @@ import {
   getBlockHandle,
   getBlockDom,
   getBlockEditable,
+  getBlockView,
+  flushPendingUpdateById,
   listRegisteredBlockIds,
   listBlocksInDocumentOrder,
   __resetBlockRegistry,
@@ -107,5 +109,67 @@ describe('block-registry', () => {
     registerBlock('a', null);
     unregisterBlock(null);
     unregisterBlock('nonexistent');
+  });
+});
+
+describe('block-registry getView / flushPendingUpdate', () => {
+  beforeEach(() => __resetBlockRegistry());
+
+  it('getBlockView returns the registered view, null after unregister', () => {
+    const fakeView = { state: { dummy: true } };
+    registerBlock('b1', {
+      focus: () => {},
+      getDom: () => null,
+      getEditable: () => null,
+      getPlainText: () => '',
+      setHtml: () => {},
+      getView: () => fakeView,
+      flushPendingUpdate: () => {},
+    });
+    expect(getBlockView('b1')).toBe(fakeView);
+    unregisterBlock('b1');
+    expect(getBlockView('b1')).toBe(null);
+  });
+
+  it('getBlockView returns null for legacy handles (getView returns null)', () => {
+    registerBlock('b2', {
+      focus: () => {},
+      getDom: () => null,
+      getEditable: () => null,
+      getPlainText: () => '',
+      setHtml: () => {},
+      getView: () => null,
+      flushPendingUpdate: () => {},
+    });
+    expect(getBlockView('b2')).toBe(null);
+  });
+
+  it('flushPendingUpdateById invokes the handle, no-throw on unregistered id', () => {
+    let calls = 0;
+    registerBlock('b3', {
+      focus: () => {},
+      getDom: () => null,
+      getEditable: () => null,
+      getPlainText: () => '',
+      setHtml: () => {},
+      getView: () => null,
+      flushPendingUpdate: () => { calls += 1; },
+    });
+    flushPendingUpdateById('b3');
+    expect(calls).toBe(1);
+    flushPendingUpdateById('missing-id'); // no throw
+  });
+
+  it('getBlockView / flushPendingUpdateById no-throw when handle omits the methods (legacy code path)', () => {
+    registerBlock('b4', {
+      focus: () => {},
+      getDom: () => null,
+      getEditable: () => null,
+      getPlainText: () => '',
+      setHtml: () => {},
+      // intentionally omit getView and flushPendingUpdate
+    });
+    expect(getBlockView('b4')).toBe(null);
+    flushPendingUpdateById('b4'); // no throw
   });
 });

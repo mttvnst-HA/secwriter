@@ -503,6 +503,22 @@ function PmEditableBlock({
         // post-1d; this stub is a no-op so the legacy querySelector path's
         // dataset.init removal is benign.
       },
+      getView: () => viewRef.current,
+      flushPendingUpdate: () => {
+        // 1f.9 — close the 400ms debounce window after a toolbar dispatch
+        // so App's blocks array reflects the substrate synchronously. Mirrors
+        // the blur handler's flush (line ~323-352).
+        if (onUpdateDebounceRef.current) {
+          clearTimeout(onUpdateDebounceRef.current);
+          onUpdateDebounceRef.current = null;
+        }
+        const view = viewRef.current;
+        if (!view) return;
+        try {
+          const html = pmFragmentToHtml(view.state.doc);
+          onUpdateRef.current?.(block.id, html);
+        } catch { /* substrate unavailable mid-tear-down */ }
+      },
     };
     registerBlock(block.id, handle);
     return () => unregisterBlock(block.id);
