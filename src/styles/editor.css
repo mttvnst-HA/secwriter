@@ -309,7 +309,8 @@ del.mark-del[data-author-color] {
   cursor: pointer;
 }
 
-.mark-comment[data-active="true"] {
+.mark-comment[data-active="true"],
+.mark-comment.mark-comment-active {
   background: #f6c744;
 }
 
@@ -318,7 +319,8 @@ del.mark-del[data-author-color] {
   cursor: pointer;
 }
 
-.mark-comment-resolved[data-active="true"] {
+.mark-comment-resolved[data-active="true"],
+.mark-comment-resolved.mark-comment-active {
   background: #d2d4d8;
 }
 
@@ -461,9 +463,11 @@ del.mark-del[data-author-color] {
 
 /* Comment highlights in dark mode */
 .dark-mode .mark-comment { background: #854d0e; }
-.dark-mode .mark-comment[data-active="true"] { background: #a16207; }
+.dark-mode .mark-comment[data-active="true"],
+.dark-mode .mark-comment.mark-comment-active { background: #a16207; }
 .dark-mode .mark-comment-resolved { background: #374151; }
-.dark-mode .mark-comment-resolved[data-active="true"] { background: #4b5563; }
+.dark-mode .mark-comment-resolved[data-active="true"],
+.dark-mode .mark-comment-resolved.mark-comment-active { background: #4b5563; }
 
 /* Search highlight in dark mode */
 .dark-mode mark.search-highlight { background: #a16207; color: #fef3c7; }
