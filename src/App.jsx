@@ -753,7 +753,17 @@ export default function SpecEditor() {
   // no longer touches html for existing yText.
   useEffect(() => {
     setBlocksDirect(prev => {
-      const next = cm.reconcileBlocks(prev, commentsState);
+      // 1g: PM-mounted blocks own their comment reconcile via the per-block
+      // PM effect in PmEditableBlock.jsx (reconcileCommentMarks dispatch).
+      // Skip them here so the html walk doesn't redundantly rewrite their
+      // mark spans (which would then be clobbered by the PM dispatch anyway).
+      const pmMountedIds = new Set();
+      for (const b of prev) {
+        if (getBlockView(b.id) != null) pmMountedIds.add(b.id);
+      }
+      const next = cm.reconcileBlocks(prev, commentsState, {
+        shouldSkip: (id) => pmMountedIds.has(id),
+      });
       const yStore = activeYStoreRef.current;
       if (next !== prev && yStore) {
         for (const b of next) {
