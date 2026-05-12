@@ -9,6 +9,7 @@ import {
   applyRevisionTr,
   applyInlineRevisionResolveTr,
   applyChangeCaseTr,
+  applyCommentMarkTr,
 } from '../pm-toolbar.js';
 
 function docOf(...children) {
@@ -285,6 +286,29 @@ describe('applyChangeCaseTr', () => {
 
     const emptyState = stateOf(docOf(txt('hello')), 3, 3);
     expect(applyChangeCaseTr(emptyState)).toBeNull();
+  });
+});
+
+describe('applyCommentMarkTr (issue #64)', () => {
+  it('adds comment mark with id+resolved attrs over selection', () => {
+    const doc = docOf(txt('hello world'));
+    const state = stateOf(doc, 1, 6);
+    const tr = applyCommentMarkTr(state, 'c-abc');
+    expect(tr).not.toBeNull();
+    const newState = state.apply(tr);
+    const mark = findFirstMatchingMark(
+      newState.doc, 1, 6, schema.marks.comment, (a) => a.id === 'c-abc',
+    );
+    expect(mark).not.toBeNull();
+    expect(mark.attrs).toEqual({ id: 'c-abc', resolved: false });
+  });
+
+  it('returns null on collapsed selection, missing commentId, and non-string commentId', () => {
+    const doc = docOf(txt('hello'));
+    expect(applyCommentMarkTr(stateOf(doc, 3, 3), 'c1')).toBeNull();
+    expect(applyCommentMarkTr(stateOf(doc, 1, 6), '')).toBeNull();
+    expect(applyCommentMarkTr(stateOf(doc, 1, 6), null)).toBeNull();
+    expect(applyCommentMarkTr(stateOf(doc, 1, 6), 123)).toBeNull();
   });
 });
 

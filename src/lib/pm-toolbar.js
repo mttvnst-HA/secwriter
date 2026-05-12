@@ -272,6 +272,39 @@ export function applyInlineRevisionResolveTr(state, action) {
 }
 
 /**
+ * Add a `comment` mark over the selection (issue #64 resolution).
+ *
+ * Unlike inlineMark / revision, comment is purely additive at the toolbar:
+ * the user clicks the comment span to open a popup for resolve/delete (no
+ * toggle-off via the toolbar). Each invocation creates a new comment with
+ * a unique id supplied by the caller.
+ *
+ * Under the schema's default `excludes: '_'`, applying a comment over a
+ * range that already has a different comment will replace it. That edge
+ * case is rare in practice (the user clicks the existing comment span to
+ * manage it). Cleaner than the legacy `range.surroundContents` path which
+ * either throws or produces nested mark-comment spans on overlap.
+ *
+ * Issue #64 history: the carve-out for this verb was based on a
+ * misdiagnosis that y-prosemirror's prosemirrorToYXmlFragment dropped the
+ * `comment` mark. Verified empirically: the mark survives the diff-and-
+ * merge round-trip. The actual failure that triggered the issue was a
+ * Playwright test using legacy `el.innerHTML` injection in PM mode (PM's
+ * domObserver doesn't reliably handle wholesale innerHTML replacement);
+ * unrelated to mark-attribute serialization. Pinned by pmdoc-html.test.js.
+ *
+ * Returns null on collapsed selection.
+ */
+export function applyCommentMarkTr(state, commentId) {
+  const { from, to, empty } = state.selection;
+  if (empty) return null;
+  if (typeof commentId !== 'string' || !commentId) return null;
+  const markType = state.schema.marks.comment;
+  if (!markType) return null;
+  return state.tr.addMark(from, to, markType.create({ id: commentId, resolved: false }));
+}
+
+/**
  * Change-case cycle on the selected text: UPPER → lower → Title → UPPER.
  * Mirrors the legacy FloatingToolbar.changeCase logic. Marks on the
  * replaced range are dropped (the inserted text node carries no marks) —
