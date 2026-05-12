@@ -479,3 +479,41 @@ describe('adversarial input / Q31/E6 fallback', () => {
     expect(pmFragmentToHtml(broken)).toBe('');
   });
 });
+
+describe('prosemirrorToYXmlFragment integration (issue #64 regression)', () => {
+  // Issue #64 alleged that y-prosemirror's prosemirrorToYXmlFragment drops
+  // the `comment` mark during serialization. Empirically false against
+  // y-prosemirror 1.3.7: the mark survives the diff-and-merge round-trip
+  // in both create and update paths. The actual failure that triggered the
+  // issue was a Playwright test using legacy `el.innerHTML` injection in
+  // PM mode (PM's domObserver doesn't reliably handle wholesale innerHTML
+  // replacement); unrelated to mark-attribute serialization. This test
+  // pins the contract so any future regression on y-prosemirror's part is
+  // caught at unit-test time.
+  it('prosemirrorToYXmlFragment preserves comment mark on update (diff-and-merge)', async () => {
+    const { prosemirrorToYXmlFragment } = await import('y-prosemirror');
+    const ydoc = new Y.Doc();
+    const yXml = ydoc.get('block', Y.XmlFragment);
+    // Seed with plain text.
+    prosemirrorToYXmlFragment(htmlToPmFragment('the selected text here'), yXml);
+    // Add a comment via diff-and-merge (the production setBlockHtml path).
+    prosemirrorToYXmlFragment(
+      htmlToPmFragment(
+        'the <span class="mark-comment" data-comment-id="c-1">selected text</span> here',
+      ),
+      yXml,
+    );
+    expect(pmFragmentToHtml(yXml)).toBe(
+      'the <span class="mark-comment" data-comment-id="c-1">selected text</span> here',
+    );
+    // The YXmlText delta should carry the comment as an attribute on the
+    // commented run — the substrate-level evidence the issue claimed was missing.
+    const para = yXml.toArray()[0];
+    const ytext = para.toArray()[0];
+    const delta = ytext.toDelta();
+    const commented = delta.find((d) => d.attributes?.comment);
+    expect(commented).toBeDefined();
+    expect(commented.insert).toBe('selected text');
+    expect(commented.attributes.comment).toEqual({ id: 'c-1', resolved: false });
+  });
+});

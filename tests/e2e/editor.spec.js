@@ -731,23 +731,20 @@ test.describe('Inline comments', () => {
   });
 
   test('clicking comment-highlighted text shows popup', async ({ page }) => {
-    // Create a block and inject a comment span. 1f.7 note: this test does
-    // direct DOM injection via el.innerHTML — works in legacy contentEditable
-    // because the DOM IS the source of truth there. In PM mode the substrate
-    // owns the DOM and the comment mark does NOT survive
-    // prosemirrorToYXmlFragment (the comment mark with attrs `{id,resolved}`
-    // is silently dropped by y-prosemirror's diff-and-merge — separate from
-    // DOM-depth scope and tracked as a follow-on). Until that ships, this
-    // test will only pass under chromium-legacy.
+    // Routed through injectBlockHtml (App's normal update path) so PM mode
+    // sees the span via the substrate write rather than a wholesale
+    // innerHTML mutation PM's domObserver wouldn't handle. Issue #64 was
+    // initially attributed to y-prosemirror dropping the comment mark, but
+    // the actual failure was the prior legacy `el.innerHTML = ...` test
+    // setup — the mark itself survives prosemirrorToYXmlFragment fine.
     const focused = await createFreshBlock(page);
     const blockId = await focused.getAttribute('data-block-id');
-    await page.locator(blockSel(blockId)).evaluate(el => {
-      el.innerHTML = 'Normal <span class="mark-comment" data-comment-id="test-c1">commented</span> text';
-      el.dispatchEvent(new Event('input', { bubbles: true }));
-    });
-    await page.waitForTimeout(300);
+    await injectBlockHtml(
+      page,
+      blockId,
+      'Normal <span class="mark-comment" data-comment-id="test-c1">commented</span> text',
+    );
 
-    // Click on the comment span
     const commentSpan = page.locator(blockSel(blockId)).locator('.mark-comment');
     await expect(commentSpan).toBeVisible();
     await commentSpan.click();

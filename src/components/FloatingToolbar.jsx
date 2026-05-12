@@ -5,6 +5,7 @@ import {
   applyRevisionTr,
   applyInlineRevisionResolveTr,
   applyChangeCaseTr,
+  applyCommentMarkTr,
 } from '../lib/pm-toolbar.js';
 import {
   getBlockView,
@@ -638,17 +639,11 @@ export default function FloatingToolbar({
         </>
       )}
 
-      {/* XXX(#64): Comment-create stays on the DOM-mutation path in
-          both legacy and PM modes. y-prosemirror's
-          prosemirrorToYXmlFragment drops the `comment` mark, so we
-          cannot dispatch a PM transaction here without losing the
-          mark on the next ySync round-trip. In PM mode the visible
-          <span class="mark-comment"> is reverted by PM's DOMObserver
-          on the next render, but the metadata still reaches
-          commentsState via onCommentCreate. The disagreement is
-          accepted per CLAUDE.md Comments-Architecture note 10 until
-          issue #64 is resolved. */}
-      {/* Comment button */}
+      {/* Comment button. PM path dispatches addMark via applyCommentMarkTr
+          (issue #64 resolution — the prior carve-out was based on a
+          misdiagnosis; the `comment` mark survives prosemirrorToYXmlFragment
+          fine). Legacy / ref / table blocks still use the DOM-mutation
+          path (no PM EditorView registered for those). */}
       {onCommentCreate && selectionRef.current?.blockId && (
         <>
           {!isRefBlock && <div style={{ width: 1, height: 24, backgroundColor: "#475569", margin: "0 5px" }} />}
@@ -658,6 +653,27 @@ export default function FloatingToolbar({
             onClick={() => {
               const { range, blockId, blockEl, isRefBlock: refBlock } = selectionRef.current || {};
               if (!range || !blockEl) return;
+              const view = blockId ? getBlockView(blockId) : null;
+
+              if (view && !refBlock) {
+                // PM path — dispatch addMark, then sync App state via flush.
+                const { from, to } = view.state.selection;
+                if (from === to) { setVisible(false); return; }
+                const commentId = `comment-${Date.now()}`;
+                const tr = applyCommentMarkTr(view.state, commentId);
+                if (!tr) { setVisible(false); return; }
+                view.dispatch(tr);
+                if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
+                  flushPendingUpdateById(blockId);
+                }
+                const html = pmFragmentToHtml(view.state.doc);
+                const highlightText = view.state.doc.textBetween(from, to, '\n', '');
+                onCommentCreate(blockId, html, commentId, highlightText);
+                setVisible(false);
+                return;
+              }
+
+              // Legacy / ref-block DOM path (unchanged).
               const sel = window.getSelection();
               sel.removeAllRanges();
               sel.addRange(range);
