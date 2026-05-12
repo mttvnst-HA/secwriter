@@ -208,11 +208,12 @@ export function getCreateEntry(comment) {
 //       open     → 'mark-comment'
 //       resolved → 'mark-comment-resolved'
 // Idempotent: returns the original `blocks` reference when nothing changed.
-export function reconcileBlocks(blocks, state) {
+export function reconcileBlocks(blocks, state, { shouldSkip = () => false } = {}) {
   if (typeof document === 'undefined') return blocks;
   if (!Array.isArray(blocks) || blocks.length === 0) return blocks;
   let anyChanged = false;
   const next = blocks.map((b) => {
+    if (shouldSkip(b.id)) return b;
     if (!b || typeof b.html !== 'string' || !b.html.includes('mark-comment')) return b;
     const div = document.createElement('div');
     div.innerHTML = b.html;

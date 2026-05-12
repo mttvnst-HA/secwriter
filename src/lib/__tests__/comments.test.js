@@ -1,3 +1,4 @@
+// @vitest-environment jsdom
 import { describe, it, expect } from 'vitest';
 import * as comments from '../comments.js';
 
@@ -332,5 +333,48 @@ describe('normalizeForLoad', () => {
     const out = comments.normalizeForLoad(raw);
     expect(out.c1.entries[0].authorName).toBe('CanonicalAlice');
     expect(out.c1.entries[0].ts).toBe(9999);
+  });
+});
+
+describe('reconcileBlocks shouldSkip predicate', () => {
+  it('skips blocks for which shouldSkip returns true (leaves their html untouched)', () => {
+    // Block b1 has an orphan mark-comment span; with default shouldSkip the
+    // span would be unwrapped. With shouldSkip returning true for b1, the
+    // verb must return the same `blocks` reference (no work done).
+    const blocks = [
+      { id: 'b1', type: 'txt', html: '<p>before <span class="mark-comment" data-comment-id="dead">orphan</span> after</p>' },
+      { id: 'b2', type: 'txt', html: '<p>plain text</p>' },
+    ];
+    const state = comments.createInitial(); // empty byId — everything is orphaned
+    const result = comments.reconcileBlocks(blocks, state, {
+      shouldSkip: (id) => id === 'b1',
+    });
+    // b1 untouched
+    expect(result).toBe(blocks); // identity preserved when no real changes
+  });
+
+  it('respects shouldSkip on a per-block basis (b2 reconciled, b1 skipped)', () => {
+    const blocks = [
+      { id: 'b1', type: 'txt', html: '<p><span class="mark-comment" data-comment-id="dead">x</span></p>' },
+      { id: 'b2', type: 'txt', html: '<p><span class="mark-comment" data-comment-id="dead">y</span></p>' },
+    ];
+    const state = comments.createInitial();
+    const result = comments.reconcileBlocks(blocks, state, {
+      shouldSkip: (id) => id === 'b1',
+    });
+    expect(result).not.toBe(blocks); // b2 changed; new array returned
+    const b1 = result.find((b) => b.id === 'b1');
+    const b2 = result.find((b) => b.id === 'b2');
+    expect(b1.html).toBe(blocks[0].html); // b1 untouched
+    expect(b2.html).not.toContain('mark-comment'); // b2 orphan unwrapped
+  });
+
+  it('omitting shouldSkip preserves backward-compat (all blocks reconciled)', () => {
+    const blocks = [
+      { id: 'b1', type: 'txt', html: '<p><span class="mark-comment" data-comment-id="dead">x</span></p>' },
+    ];
+    const state = comments.createInitial();
+    const result = comments.reconcileBlocks(blocks, state); // no opts arg
+    expect(result[0].html).not.toContain('mark-comment');
   });
 });
