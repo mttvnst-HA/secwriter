@@ -44,6 +44,19 @@ const handles = new Map();
  * @property {() => Element | null} getEditable
  * @property {() => string} getPlainText
  * @property {(html: string) => void} setHtml
+ * @property {(() => import('prosemirror-view').EditorView | null)=} getView
+ *   PM handle returns the EditorView; legacy returns null. Used by
+ *   FloatingToolbar (1f.9) to choose the PM-transaction branch.
+ * @property {(() => void)=} flushPendingUpdate
+ *   PM handle: cancels onUpdate debounce timer and synchronously fires
+ *   onUpdate(blockId, pmFragmentToHtml(view.state.doc)). Legacy: no-op.
+ *   Required after a toolbar dispatch to close the 400ms window where
+ *   App's blocks ref carries pre-toolbar html.
+ * @property {(() => void)=} cancelPendingUpdate
+ *   PM handle: clears the onUpdate debounce timer WITHOUT firing onUpdate.
+ *   Legacy: no-op. Used by callers that will push their own setBlocks
+ *   downstream (e.g. inline TC accept/reject's onRefreshTcSnapshot) and
+ *   must not have a late debounce flush re-issue setBlocks with stale html.
  */
 
 /** Register a block's imperative handle. Idempotent: re-registering replaces. */
@@ -125,6 +138,43 @@ export function listBlocksInDocumentOrder() {
     return 0;
   });
   return out;
+}
+
+/**
+ * Return the EditorView for a PM-mounted block, or null. For legacy blocks
+ * (EditableBlock's contentEditable path) and brand-new PM blocks not yet
+ * mounted, returns null. Use the null result to fork between the PM
+ * transaction path and the legacy DOM-mutation path in FloatingToolbar.
+ */
+export function getBlockView(blockId) {
+  const h = handles.get(blockId);
+  return h && typeof h.getView === 'function' ? h.getView() : null;
+}
+
+/**
+ * Synchronously flush a PM handle's pending debounced onUpdate so App's
+ * React blocks array reflects the substrate immediately. No-op for legacy
+ * handles or unknown ids. Safe to call multiple times.
+ */
+export function flushPendingUpdateById(blockId) {
+  const h = handles.get(blockId);
+  if (h && typeof h.flushPendingUpdate === 'function') {
+    try { h.flushPendingUpdate(); } catch { /* defensive */ }
+  }
+}
+
+/**
+ * Cancel a PM handle's pending debounced onUpdate WITHOUT firing it. Used
+ * by callers (1f.9 inline TC accept/reject) that own their own downstream
+ * setBlocks and must prevent a late-firing debounce from re-issuing
+ * setBlocks with pre-toolbar html, which would clobber the just-applied TC
+ * snapshot. No-op for legacy handles or unknown ids.
+ */
+export function cancelPendingUpdateById(blockId) {
+  const h = handles.get(blockId);
+  if (h && typeof h.cancelPendingUpdate === 'function') {
+    try { h.cancelPendingUpdate(); } catch { /* defensive */ }
+  }
 }
 
 /** Test-only — full reset between Vitest cases. */

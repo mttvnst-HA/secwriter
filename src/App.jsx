@@ -34,7 +34,8 @@ import { encodeWindows1252 } from "./lib/encoding.js";
 import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
 import * as Y from "yjs";
 import { seedBlockArray, resetBlockArray, setBlockHtml, getBlockHtml } from "./lib/block-html-store.js";
-import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, listBlocksInDocumentOrder } from "./lib/block-registry.js";
+import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, getBlockView, listBlocksInDocumentOrder } from "./lib/block-registry.js";
+import { TextSelection } from "prosemirror-state";
 import { isPmEditorEnabled } from "./lib/feature-flags.js";
 import * as tc from "./lib/track-changes.js";
 import * as linting from "./lib/linting.js";
@@ -785,6 +786,36 @@ export default function SpecEditor() {
     setTcState(prev => tc.applyResolveAtBlock(prev, id, html));
   }, []);
 
+  // 1f.9 (#47) — TC-only seam for FloatingToolbar in PM mode. PM dispatch
+  // already wrote the substrate via ySyncPlugin; this handler ONLY updates
+  // React state and the TC snapshot. Skipping setBlockHtml avoids a redundant
+  // 'local-publish' op + duplicate broadcast.
+  //
+  // resumeHistory() matches handleRevisionAction's sibling pattern — without
+  // it, useUndoableBlocks stays paused (auto-paused after every keystroke
+  // flush) and this setBlocks captures NO snapshot, making inline TC accept/
+  // reject silently non-undoable. The FloatingToolbar PM caller skips its
+  // usual flushPendingUpdateById and calls cancelPendingUpdateById instead,
+  // so this handler's setBlocks is the FIRST setBlocks in the toolbar
+  // action's lifecycle and the captured snapshot's `prev` is the true
+  // pre-action state.
+  //
+  // In-room mode does not benefit (App's Ctrl+Z prefers collab.tryUndo →
+  // Yjs UndoManager, which only tracks 'local-publish' origin ops — and
+  // setBlockHtml after ySyncPlugin's write is a no-op delta that produces
+  // no Yjs ops). That gap is part of the broader PM-mode undo limitation
+  // tracked alongside the existing Ctrl+Y redo off-by-one and is out of
+  // scope for 1f.9.
+  //
+  // Distinct from handleRevisionAction (above), which is used by the
+  // 1f.8 del-popup whose mutator works on serialized HTML and DOES need
+  // setBlockHtml.
+  const handleRefreshTcSnapshot = useCallback((id, html) => {
+    resumeHistory();
+    setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
+    setTcState(prev => tc.applyResolveAtBlock(prev, id, html));
+  }, [resumeHistory]);
+
   // Update block HTML and sync the contentEditable DOM (used by MarkSuggestions).
   // For PM-mounted blocks the substrate write is the source of truth — the
   // EditorView re-renders via ySyncPlugin's observe — and the registry's
@@ -812,6 +843,7 @@ export default function SpecEditor() {
   useEffect(() => {
     if (!import.meta.env.DEV) return;
     if (typeof window === 'undefined') return;
+    let flushOverridden = false;
     window.__simEditorTestUtils = {
       getBlockHtml: (id) => {
         const b = blocksRef.current.find((x) => x.id === id);
@@ -825,6 +857,32 @@ export default function SpecEditor() {
       // stale DOM, and the next blur would read the stale DOM and clobber.
       setBlockHtml: (id, html) => { handleBlockUpdateWithSync(id, html); },
       getEditorMode: () => (isPmEditorEnabled() ? 'pm' : 'legacy'),
+      // 1f.9 — read PM selection range for E3 (selection-persistence test).
+      getPmSelection: (id) => {
+        const view = getBlockView(id);
+        if (!view) return null;
+        const { from, to } = view.state.selection;
+        return { from, to };
+      },
+      // 1f.9 — programmatically set PM selection for tests that need to
+      // place the caret/range before clicking a toolbar button. Playwright's
+      // dispatchEvent('mousedown')/click does not always route selection
+      // through PM's domObserver.
+      setPmSelection: (id, from, to) => {
+        const view = getBlockView(id);
+        if (!view) return false;
+        try {
+          const sel = TextSelection.create(view.state.doc, from, to);
+          view.dispatch(view.state.tr.setSelection(sel));
+          view.focus();
+          return true;
+        } catch { return false; }
+      },
+      // 1f.9 — negative control for E1 (flushPendingUpdate test). When
+      // called with false, FloatingToolbar's PM branch will skip the flush
+      // and React state will lag by the 400ms debounce.
+      __overrideFlush: (enabled) => { flushOverridden = !enabled; },
+      __isFlushOverridden: () => flushOverridden,
     };
     return () => { delete window.__simEditorTestUtils; };
   }, [handleBlockUpdateWithSync]);
@@ -2313,7 +2371,16 @@ export default function SpecEditor() {
             zoom: editorZoom,
           }}
         >
-          <FloatingToolbar editorRef={editorRef} onBlockUpdate={handleBlockUpdate} onRevisionAction={handleRevisionAction} trackChanges={trackChanges} onCommentCreate={handleCommentCreate} readOnly={collabReadOnly} />
+          <FloatingToolbar
+            editorRef={editorRef}
+            onBlockUpdate={handleBlockUpdate}
+            onRevisionAction={handleRevisionAction}
+            onRefreshTcSnapshot={handleRefreshTcSnapshot}
+            trackChanges={trackChanges}
+            onCommentCreate={handleCommentCreate}
+            identity={identity}
+            readOnly={collabReadOnly}
+          />
 
           {inRoom && identity && (
             <RemoteCursors peers={peers} selfId={identity.id} editorRef={editorRef} />

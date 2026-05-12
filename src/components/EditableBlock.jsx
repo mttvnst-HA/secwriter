@@ -435,6 +435,9 @@ function LegacyEditableBlock({ block, yStore, onUpdate, onEnterKey, isFocused, o
         node.innerHTML = html;
         if (node.dataset) delete node.dataset.init;
       },
+      getView: () => null,
+      flushPendingUpdate: () => {},
+      cancelPendingUpdate: () => {},
     };
     registerBlock(block.id, handle);
     return () => unregisterBlock(block.id);

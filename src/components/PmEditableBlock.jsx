@@ -503,6 +503,48 @@ function PmEditableBlock({
         // post-1d; this stub is a no-op so the legacy querySelector path's
         // dataset.init removal is benign.
       },
+      getView: () => viewRef.current,
+      flushPendingUpdate: () => {
+        // 1f.9 — close the 400ms debounce window after a toolbar dispatch
+        // so App's blocks array reflects the substrate synchronously.
+        //
+        // Cancels the pending debounce, then calls onUpdate with the current
+        // doc html. `onUpdate` is App's handleBlockUpdate which writes both
+        // setBlocks AND setBlockHtml('local-publish'); the latter is a no-op
+        // delta because ySyncPlugin already wrote the substrate during the
+        // toolbar's view.dispatch — so no extra Yjs UndoManager frame is
+        // produced and no double-write reaches peers.
+        //
+        // What this DOES omit (vs. the blur handler at line ~323-352): the
+        // TC annotation pass (`annotateDomWithDiff` over a detached div) and
+        // the blur handler's separate direct setBlockHtml(finalHtml) call
+        // that writes the *annotated* html into the substrate. TC inline-
+        // mark materialization happens on blur, not after every toolbar verb.
+        if (onUpdateDebounceRef.current) {
+          clearTimeout(onUpdateDebounceRef.current);
+          onUpdateDebounceRef.current = null;
+        }
+        const view = viewRef.current;
+        if (!view) return;
+        try {
+          const html = pmFragmentToHtml(view.state.doc);
+          onUpdateRef.current?.(block.id, html);
+        } catch { /* substrate unavailable mid-tear-down */ }
+      },
+      cancelPendingUpdate: () => {
+        // 1f.9 — clear the onUpdate debounce WITHOUT firing it. Used by
+        // the inline TC accept/reject path which owns its own setBlocks
+        // via onRefreshTcSnapshot; without this, a debounce scheduled by
+        // the toolbar's view.dispatch would fire 400ms later and re-issue
+        // setBlocks via handleBlockUpdate. Because handleBlockUpdate runs
+        // outside the resumeHistory() window, that late setBlocks would
+        // capture a snapshot of the post-action state, shadowing the
+        // intended undoable frame from handleRefreshTcSnapshot.
+        if (onUpdateDebounceRef.current) {
+          clearTimeout(onUpdateDebounceRef.current);
+          onUpdateDebounceRef.current = null;
+        }
+      },
     };
     registerBlock(block.id, handle);
     return () => unregisterBlock(block.id);
