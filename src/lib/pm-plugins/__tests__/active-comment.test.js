@@ -68,3 +68,45 @@ describe('activeCommentPlugin — setActiveComment', () => {
     view.destroy();
   });
 });
+
+describe('activeCommentPlugin — decoration emission', () => {
+  it('emits no decorations when activeCommentId is null', () => {
+    const view = mountWithDoc('<p><span class="mark-comment" data-comment-id="c1">x</span></p>');
+    const pluginState = activeCommentPluginKey.getState(view.state);
+    expect(pluginState.decorations.find()).toHaveLength(0);
+    view.destroy();
+  });
+
+  it('emits an inline decoration over the matching comment range', () => {
+    const view = mountWithDoc('<p>before <span class="mark-comment" data-comment-id="c1">x</span> after</p>');
+    setActiveComment(view, 'c1');
+    const pluginState = activeCommentPluginKey.getState(view.state);
+    const decos = pluginState.decorations.find();
+    expect(decos.length).toBe(1);
+    expect(decos[0].spec.class || decos[0].type?.attrs?.class).toBeDefined();
+    view.destroy();
+  });
+
+  it('emits no decoration when activeCommentId does not match any mark', () => {
+    const view = mountWithDoc('<p><span class="mark-comment" data-comment-id="c1">x</span></p>');
+    setActiveComment(view, 'no-such-id');
+    const pluginState = activeCommentPluginKey.getState(view.state);
+    expect(pluginState.decorations.find()).toHaveLength(0);
+    view.destroy();
+  });
+});
+
+describe('activeCommentPlugin — cache invalidation', () => {
+  it('rebuilds the DecorationSet on docChanged', () => {
+    const view = mountWithDoc('<p><span class="mark-comment" data-comment-id="c1">x</span></p>');
+    setActiveComment(view, 'c1');
+    const stateBefore = activeCommentPluginKey.getState(view.state);
+    // Force a doc-changing transaction.
+    view.dispatch(view.state.tr.insertText(' more', view.state.doc.content.size - 1));
+    const stateAfter = activeCommentPluginKey.getState(view.state);
+    // New plugin-state object means the reducer ran with needsRebuild=true.
+    expect(stateAfter).not.toBe(stateBefore);
+    expect(stateAfter.activeCommentId).toBe('c1');
+    view.destroy();
+  });
+});
