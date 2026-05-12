@@ -414,12 +414,16 @@ test.describe('Collab', () => {
   // ── 11. Peer-delete comment collab scenario ───────────────────────────────────
   // Verifies the end-to-end reconcile flow across two peers:
   //   1. Peer A publishes a comment to yComments via window.__collab.dispatchComment
-  //      and injects a mark-comment span into block.html via setBlockHtml.
-  //      Using the JS API avoids the #64 limitation (y-prosemirror drops
-  //      the `comment` mark in prosemirrorToYXmlFragment), which would cause
-  //      the block blur → substrate write to strip the span before it can be
-  //      tested. The afterTransaction handler fires for local dispatches too,
-  //      so peer A's own commentsState.byId is updated by the create.
+  //      and injects a mark-comment span via __simEditorTestUtils.setBlockHtml.
+  //      Direct seeding sidesteps a toolbar → blur → substrate timing race:
+  //      driving the toolbar comment button via UI gestures leaves a window
+  //      where the next setBlockHtml debounce can land before the test asserts.
+  //      Note: an earlier draft of this comment cited #64 as a y-prosemirror
+  //      limitation (mark stripped by prosemirrorToYXmlFragment); that was a
+  //      misdiagnosis — empirically the mark survives. See CLAUDE.md "Comments
+  //      Architecture" item 10. The afterTransaction handler fires for local
+  //      dispatches too, so peer A's own commentsState.byId is updated by the
+  //      create.
   //   2. Peer B receives the comment metadata via yComments Yjs channel
   //      (onCommentsReceived → mergeRemote) — polled via window.__collab.yComments.
   //   3. Peer B calls window.__collab.dispatchComment({kind:'delete',...}).
@@ -494,11 +498,12 @@ test.describe('Collab', () => {
         { timeout: 5000, intervals: [100, 200] },
       ).toBe(true);
 
-      // Step 1b: inject the comment span into Peer A's block.html (React state).
+      // Step 1b: inject the comment span into Peer A's block.html and substrate.
       // setBlockHtml routes through handleBlockUpdateWithSync which calls
-      // setBlocks — this puts the span in block.html so the reconcile effect
-      // can find it as an orphan after the delete. The substrate write drops
-      // the mark via #64, but block.html (React state) retains it.
+      // setBlocks AND writes the substrate — so the mark lands in both React
+      // state and the Y.XmlFragment. The peer-delete reconcile (step 5) walks
+      // the substrate via reconcileCommentMarks and finds the span as an orphan
+      // once commentsState.byId loses the id.
       await pageA.evaluate(({ blockId, html }) => {
         window.__simEditorTestUtils?.setBlockHtml(blockId, html);
       }, { blockId: firstBlockId, html: commentHtml });
