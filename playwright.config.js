@@ -46,6 +46,16 @@ export default defineConfig({
       port: 1234,
       reuseExistingServer: true,
       timeout: 10000,
+      // Raise rate limits for E2E. Defaults (20 write/min, 60 read/min,
+      // 10 ws/min) are exhausted quickly when both chromium-legacy and
+      // chromium projects run against the same reused server — all traffic
+      // comes from one IP and the in-memory window persists across the
+      // whole run. Matches the overrides in .github/workflows/ci.yml.
+      env: {
+        SIM_RATE_LIMIT_HTTP_WRITE_PER_MIN: '10000',
+        SIM_RATE_LIMIT_HTTP_READ_PER_MIN: '10000',
+        SIM_RATE_LIMIT_WS_PER_MIN: '10000',
+      },
     },
   ],
   projects: [

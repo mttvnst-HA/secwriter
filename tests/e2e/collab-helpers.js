@@ -25,14 +25,25 @@ export async function createRoom(name) {
   });
 }
 
-/** DELETE /rooms/:id to clean up. */
+/** DELETE /rooms/:id to clean up. Non-fatal: cleanup failures must not
+ *  fail the test, but they should be visible so issues like rate-limit
+ *  429s on the cleanup path don't silently leak room files into
+ *  server/collab-db/. */
 export async function deleteRoom(name) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const req = http.request(`${COLLAB_HTTP}/rooms/${name}`, { method: 'DELETE' }, (res) => {
       res.resume();
-      res.on('end', () => resolve());
+      res.on('end', () => {
+        if (res.statusCode && res.statusCode >= 400) {
+          console.warn(`[collab-helpers] deleteRoom(${name}) returned ${res.statusCode} — room may be orphaned in collab-db/`);
+        }
+        resolve();
+      });
     });
-    req.on('error', () => resolve()); // ignore errors on cleanup
+    req.on('error', (e) => {
+      console.warn(`[collab-helpers] deleteRoom(${name}) network error: ${e.code || e.message}`);
+      resolve();
+    });
     req.end();
   });
 }
