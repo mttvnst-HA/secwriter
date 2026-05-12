@@ -79,3 +79,42 @@ describe('reconcileCommentMarks — orphan removal', () => {
     expect(tr.getMeta(COMMENT_RECONCILE_META)).toBe(true);
   });
 });
+
+describe('reconcileCommentMarks — status flip', () => {
+  it('flips resolved attr to match commentsState.status (open → resolved)', () => {
+    const state = stateFromHtml('<p><span class="mark-comment" data-comment-id="c1">x</span></p>');
+    const tr = reconcileCommentMarks(state, commentsState([
+      { id: 'c1', blockId: 'b1', status: 'resolved' },
+    ]));
+    expect(tr).not.toBeNull();
+    const newDoc = state.apply(tr).doc;
+    const commentMarkType = schema.marks.comment;
+    let resolvedAttr = null;
+    newDoc.descendants((node) => {
+      if (!node.isText) return true;
+      for (const m of node.marks) {
+        if (m.type === commentMarkType) resolvedAttr = m.attrs.resolved;
+      }
+      return true;
+    });
+    expect(resolvedAttr).toBe(true);
+  });
+
+  it('idempotency: running again on the reconciled doc returns null', () => {
+    const state = stateFromHtml('<p><span class="mark-comment" data-comment-id="c1">x</span></p>');
+    const cs = commentsState([{ id: 'c1', blockId: 'b1', status: 'resolved' }]);
+    const tr1 = reconcileCommentMarks(state, cs);
+    expect(tr1).not.toBeNull();
+    const state2 = state.apply(tr1);
+    const tr2 = reconcileCommentMarks(state2, cs);
+    expect(tr2).toBeNull();
+  });
+
+  it('preserves a same-id mark when its resolved attr already matches', () => {
+    const state = stateFromHtml('<p><span class="mark-comment-resolved" data-comment-id="c1">x</span></p>');
+    const tr = reconcileCommentMarks(state, commentsState([
+      { id: 'c1', blockId: 'b1', status: 'resolved' },
+    ]));
+    expect(tr).toBeNull();
+  });
+});
