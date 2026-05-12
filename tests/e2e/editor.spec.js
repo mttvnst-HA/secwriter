@@ -2857,3 +2857,122 @@ test.describe('Paste formatting', () => {
     expect(innerHTML).not.toContain('Comic Sans');
   });
 });
+
+// ─── Comment active highlight (1g) ────────────────────────────────────────────
+//
+// Seeding pattern: type text in a fresh block, select it via Shift+Home, click
+// the floating toolbar's "Add Comment" button (title="Add Comment"). This
+// seeds both the block html (mark-comment span) and commentsState.byId, which
+// is required for setActiveComment to fire (activeBlockId lookup).
+//
+// PM mode: activeCommentPlugin's inline decoration adds class
+// 'mark-comment-active' alongside the existing 'mark-comment' class.
+// Legacy mode: CommentPopup mount effect sets data-active="true" imperatively.
+
+test.describe('Comment active highlight (1g)', () => {
+  /**
+   * Shared seeding helper — creates a block with "highlight text", selects it,
+   * clicks "Add Comment" in the floating toolbar, types comment text, submits
+   * the comment, then closes the popup by clicking outside. Returns the
+   * .mark-comment span locator with the comment already submitted (so
+   * isNewComment === false on re-open). Assumes page.goto('/') + waitForApp
+   * have already been called.
+   *
+   * Why submit before returning?
+   * When isNewComment === true, CommentPopup's textarea-focus effect fires
+   * before the data-active effect (React runs effects top-to-bottom). The
+   * textarea focus triggers handleBlur on the legacy contentEditable block,
+   * which re-renders the block DOM — destroying the span element that
+   * data-active was set on. By submitting the comment first, the second open
+   * has isNewComment === false, so the reply input does not auto-focus and
+   * no handleBlur interference occurs.
+   */
+  async function seedComment(page) {
+    // Seed the author name so the CommentPopup skips the "Enter your name"
+    // prompt. Without this, the popup's autoFocus input steals focus from
+    // the block, causing [data-block-id]:focus locators to time out.
+    await page.evaluate(() => {
+      localStorage.setItem('sim-comment-author', 'Test User');
+    });
+
+    const focused = await createFreshBlock(page);
+    const blockId = await focused.getAttribute('data-block-id');
+
+    await page.keyboard.type('highlight text');
+
+    // Select the typed text via Shift+Home so the floating toolbar appears.
+    await page.keyboard.down('Shift');
+    await page.keyboard.press('Home');
+    await page.keyboard.up('Shift');
+    await page.waitForTimeout(200);
+
+    await expect(page.locator('button[title="Add Comment"]')).toBeVisible({ timeout: 3000 });
+    await page.locator('button[title="Add Comment"]').click();
+
+    // Wait for the mark-comment span and the new-comment textarea.
+    const span = page.locator(`[data-block-id="${blockId}"] .mark-comment`).first();
+    await expect(span).toBeVisible({ timeout: 3000 });
+    await expect(page.locator('textarea[placeholder="Add a comment..."]')).toBeVisible({ timeout: 3000 });
+
+    // Submit the comment so isNewComment becomes false on the next open.
+    // Clicking outside without text would delete the draft (onDelete).
+    await page.locator('textarea[placeholder="Add a comment..."]').fill('test comment');
+    // The popup card is fixed-positioned with z-index 200; its submit button is
+    // the only <button> with text "Comment" inside the card. Scope to the card
+    // (identified by the presence of the textarea) to avoid matching toolbar
+    // buttons ("Comments" panel, "Comment Report").
+    await page.locator('textarea[placeholder="Add a comment..."]').press('Enter');
+
+    // Close the popup by clicking outside (top-left corner, always outside).
+    await page.mouse.click(10, 10);
+    await page.waitForTimeout(200);
+
+    return { span, blockId };
+  }
+
+  test('clicking a comment span applies the active-highlight class (PM mode)', async ({ page, forcePmEditor }) => {
+    test.skip(!forcePmEditor, 'PM-only test');
+    await page.goto('/');
+    await waitForApp(page);
+
+    const { span, blockId } = await seedComment(page);
+
+    // Click the span to open the popup. In PM mode, App's useEffect fires
+    // setActiveComment(view, commentId) which dispatches a PM transaction
+    // adding the 'mark-comment-active' decoration.
+    await span.click();
+
+    // PM's Decoration.inline creates a child wrapper span with class
+    // 'mark-comment-active' INSIDE the outer <span class="mark-comment">
+    // mark element (the decoration adds a nested span, not a second class on
+    // the outer span). Assert on the inner decoration span.
+    const activeDecoLocator = page.locator(`[data-block-id="${blockId}"] .mark-comment-active`).first();
+    await expect(activeDecoLocator).toBeVisible({ timeout: 5000 });
+
+    // Close the popup by clicking outside; setActiveComment(view, null)
+    // fires and the decoration is removed.
+    await page.mouse.click(10, 10);
+    await page.waitForTimeout(200);
+    await expect(activeDecoLocator).not.toBeVisible();
+  });
+
+  test('clicking a comment span sets data-active attribute (legacy mode)', async ({ page, forcePmEditor }) => {
+    test.skip(forcePmEditor, 'Legacy-only test');
+    await page.goto('/');
+    await waitForApp(page);
+
+    const { span } = await seedComment(page);
+
+    // Click the span to open the popup. In legacy mode, CommentPopup's mount
+    // effect calls el.setAttribute('data-active', 'true') on the span.
+    // isNewComment is false (comment already submitted) so the reply input
+    // does not auto-focus — no handleBlur interference with the DOM.
+    await span.click();
+    await expect(span).toHaveAttribute('data-active', 'true', { timeout: 5000 });
+
+    // Close the popup by clicking outside; the cleanup effect removes the attr.
+    await page.mouse.click(10, 10);
+    await page.waitForTimeout(200);
+    await expect(span).not.toHaveAttribute('data-active', 'true');
+  });
+});
