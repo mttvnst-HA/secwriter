@@ -6,7 +6,11 @@ import {
   applyInlineRevisionResolveTr,
   applyChangeCaseTr,
 } from '../lib/pm-toolbar.js';
-import { getBlockView, flushPendingUpdateById } from '../lib/block-registry.js';
+import {
+  getBlockView,
+  flushPendingUpdateById,
+  cancelPendingUpdateById,
+} from '../lib/block-registry.js';
 import { pmFragmentToHtml } from '../lib/pmdoc-html.js';
 
 /**
@@ -347,12 +351,26 @@ export default function FloatingToolbar({
       const tr = applyInlineRevisionResolveTr(view.state, action);
       if (tr) {
         view.dispatch(tr);
+        // CANCEL — not flush. Distinct from the other PM toolbar verbs
+        // (format / inline-mark / revision-apply / change-case) which call
+        // flushPendingUpdateById to push the new html through
+        // handleBlockUpdate → setBlocks. Here we DON'T want that path —
+        // handleBlockUpdate runs outside any resumeHistory() window, so
+        // its setBlocks lands inside useUndoableBlocks's paused state and
+        // does NOT capture a snapshot. If we then call onRefreshTcSnapshot
+        // (which DOES resumeHistory), its setBlocks would capture a
+        // snapshot of the post-handleBlockUpdate state — the wrong "prev".
+        // Skipping the flush and letting onRefreshTcSnapshot own the
+        // single setBlocks call makes the captured snapshot the true
+        // pre-action state. Cancel the pending debounce so a late timer
+        // doesn't re-issue setBlocks 400ms later with the same html.
         if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
-          flushPendingUpdateById(blockId);
+          cancelPendingUpdateById(blockId);
         }
-        // TC snapshot refresh — separate from substrate write (PM dispatch
-        // already wrote). onRefreshTcSnapshot updates React blocks +
-        // tc.applyResolveAtBlock and DOES NOT call setBlockHtml.
+        // TC snapshot refresh — DOES NOT call setBlockHtml (PM dispatch
+        // already wrote the substrate via ySyncPlugin) but DOES call
+        // resumeHistory + setBlocks + setTcState, so the action enters
+        // the App-level useUndoableBlocks stack as one frame.
         if (onRefreshTcSnapshot) {
           try {
             const html = pmFragmentToHtml(view.state.doc);

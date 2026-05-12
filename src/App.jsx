@@ -789,14 +789,32 @@ export default function SpecEditor() {
   // 1f.9 (#47) — TC-only seam for FloatingToolbar in PM mode. PM dispatch
   // already wrote the substrate via ySyncPlugin; this handler ONLY updates
   // React state and the TC snapshot. Skipping setBlockHtml avoids a redundant
-  // 'local-publish' op + Yjs UndoManager phantom frame + duplicate broadcast.
+  // 'local-publish' op + duplicate broadcast.
+  //
+  // resumeHistory() matches handleRevisionAction's sibling pattern — without
+  // it, useUndoableBlocks stays paused (auto-paused after every keystroke
+  // flush) and this setBlocks captures NO snapshot, making inline TC accept/
+  // reject silently non-undoable. The FloatingToolbar PM caller skips its
+  // usual flushPendingUpdateById and calls cancelPendingUpdateById instead,
+  // so this handler's setBlocks is the FIRST setBlocks in the toolbar
+  // action's lifecycle and the captured snapshot's `prev` is the true
+  // pre-action state.
+  //
+  // In-room mode does not benefit (App's Ctrl+Z prefers collab.tryUndo →
+  // Yjs UndoManager, which only tracks 'local-publish' origin ops — and
+  // setBlockHtml after ySyncPlugin's write is a no-op delta that produces
+  // no Yjs ops). That gap is part of the broader PM-mode undo limitation
+  // tracked alongside the existing Ctrl+Y redo off-by-one and is out of
+  // scope for 1f.9.
+  //
   // Distinct from handleRevisionAction (above), which is used by the
   // 1f.8 del-popup whose mutator works on serialized HTML and DOES need
   // setBlockHtml.
   const handleRefreshTcSnapshot = useCallback((id, html) => {
+    resumeHistory();
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
     setTcState(prev => tc.applyResolveAtBlock(prev, id, html));
-  }, []);
+  }, [resumeHistory]);
 
   // Update block HTML and sync the contentEditable DOM (used by MarkSuggestions).
   // For PM-mounted blocks the substrate write is the source of truth — the

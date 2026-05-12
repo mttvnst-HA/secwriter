@@ -9,6 +9,7 @@ import {
   getBlockEditable,
   getBlockView,
   flushPendingUpdateById,
+  cancelPendingUpdateById,
   listRegisteredBlockIds,
   listBlocksInDocumentOrder,
   __resetBlockRegistry,
@@ -160,16 +161,39 @@ describe('block-registry getView / flushPendingUpdate', () => {
     flushPendingUpdateById('missing-id'); // no throw
   });
 
-  it('getBlockView / flushPendingUpdateById no-throw when handle omits the methods (legacy code path)', () => {
+  it('getBlockView / flushPendingUpdateById / cancelPendingUpdateById no-throw when handle omits the methods (legacy code path)', () => {
     registerBlock('b4', {
       focus: () => {},
       getDom: () => null,
       getEditable: () => null,
       getPlainText: () => '',
       setHtml: () => {},
-      // intentionally omit getView and flushPendingUpdate
+      // intentionally omit getView, flushPendingUpdate, cancelPendingUpdate
     });
     expect(getBlockView('b4')).toBe(null);
     flushPendingUpdateById('b4'); // no throw
+    cancelPendingUpdateById('b4'); // no throw
+  });
+
+  it('cancelPendingUpdateById invokes the handle without firing flushPendingUpdate, no-throw on unregistered id', () => {
+    // Distinct seam from flushPendingUpdate — must not cause the onUpdate
+    // callback to fire (the caller owns its own downstream setBlocks via
+    // onRefreshTcSnapshot). Asserts both methods are independent handles.
+    let cancels = 0;
+    let flushes = 0;
+    registerBlock('b5', {
+      focus: () => {},
+      getDom: () => null,
+      getEditable: () => null,
+      getPlainText: () => '',
+      setHtml: () => {},
+      getView: () => null,
+      flushPendingUpdate: () => { flushes += 1; },
+      cancelPendingUpdate: () => { cancels += 1; },
+    });
+    cancelPendingUpdateById('b5');
+    expect(cancels).toBe(1);
+    expect(flushes).toBe(0);
+    cancelPendingUpdateById('missing-id'); // no throw
   });
 });

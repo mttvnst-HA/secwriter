@@ -52,6 +52,11 @@ const handles = new Map();
  *   onUpdate(blockId, pmFragmentToHtml(view.state.doc)). Legacy: no-op.
  *   Required after a toolbar dispatch to close the 400ms window where
  *   App's blocks ref carries pre-toolbar html.
+ * @property {(() => void)=} cancelPendingUpdate
+ *   PM handle: clears the onUpdate debounce timer WITHOUT firing onUpdate.
+ *   Legacy: no-op. Used by callers that will push their own setBlocks
+ *   downstream (e.g. inline TC accept/reject's onRefreshTcSnapshot) and
+ *   must not have a late debounce flush re-issue setBlocks with stale html.
  */
 
 /** Register a block's imperative handle. Idempotent: re-registering replaces. */
@@ -155,6 +160,20 @@ export function flushPendingUpdateById(blockId) {
   const h = handles.get(blockId);
   if (h && typeof h.flushPendingUpdate === 'function') {
     try { h.flushPendingUpdate(); } catch { /* defensive */ }
+  }
+}
+
+/**
+ * Cancel a PM handle's pending debounced onUpdate WITHOUT firing it. Used
+ * by callers (1f.9 inline TC accept/reject) that own their own downstream
+ * setBlocks and must prevent a late-firing debounce from re-issuing
+ * setBlocks with pre-toolbar html, which would clobber the just-applied TC
+ * snapshot. No-op for legacy handles or unknown ids.
+ */
+export function cancelPendingUpdateById(blockId) {
+  const h = handles.get(blockId);
+  if (h && typeof h.cancelPendingUpdate === 'function') {
+    try { h.cancelPendingUpdate(); } catch { /* defensive */ }
   }
 }
 

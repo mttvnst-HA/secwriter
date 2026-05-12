@@ -437,6 +437,7 @@ function LegacyEditableBlock({ block, yStore, onUpdate, onEnterKey, isFocused, o
       },
       getView: () => null,
       flushPendingUpdate: () => {},
+      cancelPendingUpdate: () => {},
     };
     registerBlock(block.id, handle);
     return () => unregisterBlock(block.id);
