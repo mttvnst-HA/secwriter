@@ -66,7 +66,7 @@ import { setBlockHtml, subscribeBlock } from '../lib/block-html-store.js';
 import { annotateDomWithDiff } from '../lib/text-diff.js';
 import { applyDelAction } from '../lib/pm-del-popup.js';
 import { activeCommentPlugin } from '../lib/pm-plugins/active-comment.js';
-import { COMMENT_RECONCILE_META } from '../lib/pm-comments.js';
+import { COMMENT_RECONCILE_META, reconcileCommentMarks } from '../lib/pm-comments.js';
 import { useBlockLinting } from './useBlockLinting.js';
 
 /**
@@ -106,7 +106,7 @@ function PmEditableBlock({
   onAcceptRevision,
   onRejectRevision,
   onRevisionAction,
-  comments,     // eslint-disable-line no-unused-vars  -- comments rendered via marks (1g)
+  commentsState,    // 1g: drives per-block reconcile effect via reconcileCommentMarks
   onCommentClick,
   onInlineFix,
   lintingState,
@@ -161,6 +161,8 @@ function PmEditableBlock({
   snapshotTextRef.current = snapshotText;
   const identityRef = useRef(identity);
   identityRef.current = identity;
+  const commentsStateRef = useRef(commentsState);
+  commentsStateRef.current = commentsState;
   const yStoreRef = useRef(yStore);
   yStoreRef.current = yStore;
   const slashStateRef = useRef(slashState);
@@ -559,6 +561,22 @@ function PmEditableBlock({
     registerBlock(block.id, handle);
     return () => unregisterBlock(block.id);
   }, [block.id]);
+
+  // ── Per-block comment reconcile (1g) ────────────────────────────────────
+  // Dispatches a PM tr that synchronizes the block's `comment` marks with the
+  // canonical commentsState. Verb returns null when no work is needed, so the
+  // effect is cheap for blocks without comments and idempotent for blocks
+  // where the substrate already agrees with state.
+  //
+  // The dispatched tr is tagged with COMMENT_RECONCILE_META; dispatchTransaction
+  // skips both the synthesized 'input' event (no linter re-run) and the onUpdate
+  // debounce (no setBlockHtml echo via 'local-publish').
+  useEffect(() => {
+    const view = viewRef.current;
+    if (!view) return;
+    const tr = reconcileCommentMarks(view.state, commentsStateRef.current);
+    if (tr) view.dispatch(tr);
+  }, [commentsState]);
 
   // ── Inline linting (delegated to useBlockLinting hook) ───────────────────
   const getEl = useCallback(() => viewRef.current?.dom || null, []);

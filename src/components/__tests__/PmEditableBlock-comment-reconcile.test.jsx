@@ -65,7 +65,7 @@ describe('PmEditableBlock — comment reconcile dispatchTransaction gate', () =>
           onAcceptRevision={vi.fn()}
           onRejectRevision={vi.fn()}
           onRevisionAction={vi.fn()}
-          comments={null}
+          commentsState={null}
           onCommentClick={vi.fn()}
           onInlineFix={vi.fn()}
           readOnly={false}
@@ -131,7 +131,7 @@ describe('PmEditableBlock — comment reconcile dispatchTransaction gate', () =>
           onAcceptRevision={vi.fn()}
           onRejectRevision={vi.fn()}
           onRevisionAction={vi.fn()}
-          comments={null}
+          commentsState={null}
           onCommentClick={vi.fn()}
           onInlineFix={vi.fn()}
           readOnly={false}
@@ -156,6 +156,65 @@ describe('PmEditableBlock — comment reconcile dispatchTransaction gate', () =>
     // Wait past the 400ms onUpdate debounce.
     await new Promise((r) => setTimeout(r, 500));
     expect(onUpdate).toHaveBeenCalled();
+    root.unmount();
+  });
+});
+
+describe('PmEditableBlock — per-block reconcile effect', () => {
+  it('removes orphan comment mark from substrate when commentsState lacks the id', async () => {
+    const { yStore } = setupYStore('b3', '<p><span class="mark-comment" data-comment-id="dead">x</span></p>');
+    const block = { id: 'b3', type: 'txt', html: '<p><span class="mark-comment" data-comment-id="dead">x</span></p>', isNew: false };
+    const commentsState = { byId: new Map(), seenRemoteIds: new Set() };
+
+    const root = createRoot(container);
+    await act(async () => {
+      root.render(
+        <PmEditableBlock
+          block={block}
+          yStore={yStore}
+          commentsState={commentsState}
+          onUpdate={() => {}}
+          identity={{ id: 'u', name: 'U', color: '#000' }}
+          showTags={false}
+          lintingState={linting.createInitial({ enabled: false })}
+          lintingDispatch={vi.fn()}
+          onEnterKey={vi.fn()}
+          isFocused={false}
+          onFocus={vi.fn()}
+          oliLabel={null}
+          onDelete={vi.fn()}
+          onFocusPrev={vi.fn()}
+          onFocusNext={vi.fn()}
+          onConvertBlock={vi.fn()}
+          onChangeOliLevel={vi.fn()}
+          resolveHtml={(h) => h}
+          tailorKey={null}
+          trackChanges={false}
+          snapshotText={vi.fn(() => '')}
+          onAcceptRevision={vi.fn()}
+          onRejectRevision={vi.fn()}
+          onRevisionAction={vi.fn()}
+          onCommentClick={vi.fn()}
+          onInlineFix={vi.fn()}
+          readOnly={false}
+        />,
+      );
+    });
+    await new Promise((r) => setTimeout(r, 100));
+    // After the per-block reconcile effect fires, the PM view's doc should
+    // contain no `comment` marks — the orphan span (id "dead" not in
+    // commentsState.byId) was removed by reconcileCommentMarks.
+    const view = getBlockView('b3');
+    expect(view).toBeTruthy();
+    const commentMarkType = view.state.schema.marks.comment;
+    let hasComment = false;
+    view.state.doc.descendants((node) => {
+      if (node.isText && commentMarkType.isInSet(node.marks)) {
+        hasComment = true;
+      }
+      return true;
+    });
+    expect(hasComment).toBe(false);
     root.unmount();
   });
 });
