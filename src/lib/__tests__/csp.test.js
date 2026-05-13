@@ -117,4 +117,29 @@ describe('CSP guardrail', () => {
     });
     expect(badHttp).toEqual([]);
   });
+
+  it('CSP connect-src loopback origins use port 1234 (matching server/collab-server.cjs)', () => {
+    const match = csp.match(/connect-src\s+([^;]+)/i);
+    expect(match, 'CSP must have an explicit connect-src directive').toBeTruthy();
+    const sources = match[1].trim().split(/\s+/);
+    const loopback = sources.filter((s) => {
+      const host = hostOf(s);
+      return host && LOOPBACK_HOSTS.has(host);
+    });
+    const wrongPort = loopback.filter((s) => {
+      try {
+        const u = new URL(s);
+        return u.port && u.port !== '1234';
+      } catch {
+        return false;
+      }
+    });
+    if (wrongPort.length > 0) {
+      throw new Error(
+        'CSP loopback origin on wrong port (server listens on 1234):\n  ' +
+        wrongPort.join('\n  '),
+      );
+    }
+    expect(wrongPort).toEqual([]);
+  });
 });

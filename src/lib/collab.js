@@ -71,7 +71,7 @@ import { refToYStructure, yStructureToRef, applyRefEdits } from './yref-crdt.js'
 // For production behind a reverse proxy, set VITE_COLLAB_WS_URL and
 // VITE_COLLAB_HTTP_URL at build time (e.g. wss://collab.example.com/ws).
 const DEFAULT_WS_URL = import.meta.env?.VITE_COLLAB_WS_URL || 'ws://127.0.0.1:1234';
-export const DEFAULT_HTTP_URL = import.meta.env?.VITE_COLLAB_HTTP_URL || 'http://127.0.0.1:1235';
+export const DEFAULT_HTTP_URL = import.meta.env?.VITE_COLLAB_HTTP_URL || 'http://127.0.0.1:1234';
 
 /**
  * Read `?room=...` from the current URL. Returns null if not in a room.
