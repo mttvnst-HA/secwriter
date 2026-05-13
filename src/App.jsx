@@ -148,9 +148,21 @@ export default function SpecEditor() {
     const ydoc = new Y.Doc();
     const yOrder = ydoc.getArray('order');
     const yStore = ydoc.getMap('store');
-    seedBlockArray(ydoc, yOrder, yStore, INITIAL_BLOCKS);
     return { ydoc, yOrder, yStore };
   });
+  const seededRef = useRef(false);
+  useEffect(() => {
+    if (seededRef.current) return;
+    seededRef.current = true;
+    if (localSubstrate.yOrder.length === 0 && localSubstrate.yStore.size === 0) {
+      seedBlockArray(
+        localSubstrate.ydoc,
+        localSubstrate.yOrder,
+        localSubstrate.yStore,
+        INITIAL_BLOCKS,
+      );
+    }
+  }, [localSubstrate]);
   // Ref to the active substrate's yStore so callbacks declared before the
   // useCollabSession call (which is where the session yStore comes from)
   // can still reach it without a temporal-dead-zone reference. Updated
