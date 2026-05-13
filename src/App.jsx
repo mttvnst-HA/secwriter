@@ -35,6 +35,7 @@ import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
 import * as Y from "yjs";
 import { seedBlockArray, resetBlockArray, setBlockHtml, getBlockHtml } from "./lib/block-html-store.js";
 import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, getBlockView, listBlocksInDocumentOrder } from "./lib/block-registry.js";
+import { setActiveComment } from "./lib/pm-plugins/active-comment.js";
 import { TextSelection } from "prosemirror-state";
 import { isPmEditorEnabled } from "./lib/feature-flags.js";
 import * as tc from "./lib/track-changes.js";
@@ -737,6 +738,29 @@ export default function SpecEditor() {
     setCommentRect(rect);
   }, []);
 
+  // 1g — wire setActiveComment against the right PM view via block-registry.
+  // Tracks the previously-highlighted view in `prevActiveViewRef` so a comment
+  // that moves between blocks (or simply closes) cleanly clears the old
+  // highlight. Plugin reducer detects same-id no-op meta dispatches.
+  //
+  // Deps are narrow: openCommentId AND the resolved activeBlockId. Peer
+  // replies to OTHER comments don't refire the effect because they don't
+  // change either dep value.
+  const prevActiveViewRef = useRef(null);
+  const activeBlockId = openCommentId
+    ? commentsState.byId.get(openCommentId)?.blockId ?? null
+    : null;
+  useEffect(() => {
+    const nextView = activeBlockId ? getBlockView(activeBlockId) : null;
+    if (prevActiveViewRef.current && prevActiveViewRef.current !== nextView) {
+      try { setActiveComment(prevActiveViewRef.current, null); } catch { /* view may be destroyed */ }
+    }
+    if (nextView) {
+      try { setActiveComment(nextView, openCommentId); } catch { /* view may be destroyed */ }
+    }
+    prevActiveViewRef.current = nextView;
+  }, [openCommentId, activeBlockId]);
+
   // Reconcile mark-comment spans against commentsState whenever either side
   // changes. cm.reconcileBlocks unwraps spans for missing ids and reclasses
   // open↔resolved when the cached className disagrees with state. The verb
@@ -753,7 +777,17 @@ export default function SpecEditor() {
   // no longer touches html for existing yText.
   useEffect(() => {
     setBlocksDirect(prev => {
-      const next = cm.reconcileBlocks(prev, commentsState);
+      // 1g: PM-mounted blocks own their comment reconcile via the per-block
+      // PM effect in PmEditableBlock.jsx (reconcileCommentMarks dispatch).
+      // Skip them here so the html walk doesn't redundantly rewrite their
+      // mark spans (which would then be clobbered by the PM dispatch anyway).
+      const pmMountedIds = new Set();
+      for (const b of prev) {
+        if (getBlockView(b.id) != null) pmMountedIds.add(b.id);
+      }
+      const next = cm.reconcileBlocks(prev, commentsState, {
+        shouldSkip: (id) => pmMountedIds.has(id),
+      });
       const yStore = activeYStoreRef.current;
       if (next !== prev && yStore) {
         for (const b of next) {
@@ -2612,7 +2646,7 @@ export default function SpecEditor() {
                     setTcState(prev => tc.rejectInline(prev, id, resolvedHtml));
                   }}
                   onRevisionAction={handleRevisionAction}
-                  comments={comments}
+                  commentsState={commentsState}
                   onCommentClick={handleCommentClick}
                   onInlineFix={handleComplianceAcceptFix}
                   lintingState={lintingState}

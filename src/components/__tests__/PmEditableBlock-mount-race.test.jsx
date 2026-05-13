@@ -87,7 +87,7 @@ function defaultProps(overrides = {}) {
     onAcceptRevision: vi.fn(),
     onRejectRevision: vi.fn(),
     onRevisionAction: vi.fn(),
-    comments: null,
+    commentsState: null,
     onCommentClick: vi.fn(),
     onInlineFix: vi.fn(),
     lintingState: linting.createInitial({ enabled: false }),

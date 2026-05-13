@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
+import { getBlockView } from "../lib/block-registry.js";
 
 /**
  * Get the current author name from localStorage, or null if not set.
@@ -75,12 +76,20 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
   // not write it, otherwise the next reconcile would clobber the active
   // styling and an in-flight popup-close could leave a stale className
   // out of sync with `comment.status`.
+  // 1g: PM-mounted blocks have a registered EditorView and own the active
+  // highlight via activeCommentPlugin's inline decoration (class
+  // 'mark-comment-active'). Legacy editable blocks have no PM view registered
+  // — their comment spans are html-injected and we still need to set
+  // `data-active` imperatively. Ref/table blocks also have no PM view; the
+  // imperative setAttribute is a harmless duplicate of the React-rendered
+  // `data-active` prop those components emit.
   useEffect(() => {
+    if (getBlockView(comment.blockId) != null) return undefined;
     const el = document.querySelector(`[data-comment-id="${comment.id}"]`);
     if (!el) return undefined;
     el.setAttribute('data-active', 'true');
     return () => { el.removeAttribute('data-active'); };
-  }, [comment.id]);
+  }, [comment.id, comment.blockId]);
 
   const handleSaveAuthor = () => {
     if (!authorName.trim()) return;

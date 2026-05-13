@@ -115,3 +115,24 @@ export async function pmGetSelection(page, blockId) {
     return utils?.getPmSelection ? utils.getPmSelection(id) : null;
   }, blockId);
 }
+
+/**
+ * Returns the data-comment-id of the currently-active comment span (the one
+ * with class 'mark-comment-active', applied by activeCommentPlugin's inline
+ * decoration). Returns null when no comment is active. 1g — DOM-based so no
+ * test-utils plugin-state exposure is needed.
+ *
+ * PM's Decoration.inline creates a nested wrapper span with the added class
+ * INSIDE the comment mark's <span class="mark-comment" data-comment-id="...">
+ * element. The data-comment-id lives on the outer mark span, not the inner
+ * decoration span. We traverse to the closest ancestor with that attribute.
+ */
+export async function pmGetActiveCommentId(page) {
+  return await page.evaluate(() => {
+    const el = document.querySelector('.mark-comment-active');
+    if (!el) return null;
+    // The decoration span is inside the mark span that carries data-comment-id.
+    const markEl = el.closest('[data-comment-id]');
+    return markEl?.getAttribute('data-comment-id') ?? null;
+  });
+}

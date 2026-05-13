@@ -65,6 +65,8 @@ import { registerBlock, unregisterBlock } from '../lib/block-registry.js';
 import { setBlockHtml, subscribeBlock } from '../lib/block-html-store.js';
 import { annotateDomWithDiff } from '../lib/text-diff.js';
 import { applyDelAction } from '../lib/pm-del-popup.js';
+import { activeCommentPlugin } from '../lib/pm-plugins/active-comment.js';
+import { COMMENT_RECONCILE_META, reconcileCommentMarks } from '../lib/pm-comments.js';
 import { useBlockLinting } from './useBlockLinting.js';
 
 /**
@@ -104,7 +106,7 @@ function PmEditableBlock({
   onAcceptRevision,
   onRejectRevision,
   onRevisionAction,
-  comments,     // eslint-disable-line no-unused-vars  -- comments rendered via marks (1g)
+  commentsState,    // 1g: drives per-block reconcile effect via reconcileCommentMarks
   onCommentClick,
   onInlineFix,
   lintingState,
@@ -159,6 +161,8 @@ function PmEditableBlock({
   snapshotTextRef.current = snapshotText;
   const identityRef = useRef(identity);
   identityRef.current = identity;
+  const commentsStateRef = useRef(commentsState);
+  commentsStateRef.current = commentsState;
   const yStoreRef = useRef(yStore);
   yStoreRef.current = yStore;
   const slashStateRef = useRef(slashState);
@@ -249,6 +253,7 @@ function PmEditableBlock({
       ySyncPlugin(yXml),
       slashMenuPlugin(),
       tagLabelsPlugin({ initialVisible: !!showTags }),
+      activeCommentPlugin(),
       blockKeymap({
         getBlockId: () => block.id,
         getBlockType: () => blockTypeRef.current,
@@ -376,16 +381,20 @@ function PmEditableBlock({
         }
 
         if (tr.docChanged) {
+          const isRemote = tr.getMeta(ySyncPluginKey) != null;
+          const isReconcile = tr.getMeta(COMMENT_RECONCILE_META) === true;
           // Q27 re-lint trigger: synthesize an 'input' event so
           // useBlockLinting's debounce fires. PM doesn't dispatch input
           // events natively on transactions. Fire on every doc change
           // (local + remote) so a peer's edit triggers a re-lint pass.
-          if (this.dom) {
+          // Skipped for reconcile (mark-attr-only changes don't affect
+          // text — linter has nothing new to find).
+          if (!isReconcile && this.dom) {
             try {
               this.dom.dispatchEvent(new Event('input', { bubbles: true }));
             } catch { /* SSR / jsdom safety */ }
           }
-          // hasInlineRevisions recompute (gutter buttons).
+          // hasInlineRevisions recompute (gutter buttons). Cheap; always run.
           setHasInlineRevisions(docHasInlineRevisions(newState.doc));
 
           // QC critical-1: only the *local* user's edits should round-trip
@@ -398,10 +407,13 @@ function PmEditableBlock({
           // back-channel, violating the "PM-driven keystroke does NOT
           // enter the UndoManager" invariant in CLAUDE.md.
           //
+          // Reconcile-tagged transactions are also skipped: setBlockHtml
+          // ('local-publish') on the post-reconcile html would produce an
+          // echo Yjs op that enters the UndoManager.
+          //
           // The synthesized 'input' event above must still fire for remote
           // ops so the linter re-runs against peer edits.
-          const isRemote = tr.getMeta(ySyncPluginKey) != null;
-          if (!isRemote) {
+          if (!isRemote && !isReconcile) {
             // Push html back to App's React state so block.html stays in
             // sync with the substrate. Debounced for the same reason the
             // legacy binder debounces (avoid every-keystroke setBlocks).
@@ -549,6 +561,22 @@ function PmEditableBlock({
     registerBlock(block.id, handle);
     return () => unregisterBlock(block.id);
   }, [block.id]);
+
+  // ── Per-block comment reconcile (1g) ────────────────────────────────────
+  // Dispatches a PM tr that synchronizes the block's `comment` marks with the
+  // canonical commentsState. Verb returns null when no work is needed, so the
+  // effect is cheap for blocks without comments and idempotent for blocks
+  // where the substrate already agrees with state.
+  //
+  // The dispatched tr is tagged with COMMENT_RECONCILE_META; dispatchTransaction
+  // skips both the synthesized 'input' event (no linter re-run) and the onUpdate
+  // debounce (no setBlockHtml echo via 'local-publish').
+  useEffect(() => {
+    const view = viewRef.current;
+    if (!view) return;
+    const tr = reconcileCommentMarks(view.state, commentsStateRef.current);
+    if (tr) view.dispatch(tr);
+  }, [commentsState]);
 
   // ── Inline linting (delegated to useBlockLinting hook) ───────────────────
   const getEl = useCallback(() => viewRef.current?.dom || null, []);
