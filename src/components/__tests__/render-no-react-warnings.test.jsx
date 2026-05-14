@@ -24,7 +24,10 @@ import React from 'react';
 describe('issue #78 — no setState-during-render warnings on SpecEditor mount', () => {
   let errorSpy;
   beforeEach(() => {
-    errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const orig = console.error;
+    errorSpy = vi.spyOn(console, 'error').mockImplementation((...args) => {
+      if (!String(args[0] ?? '').includes('Cannot update a component')) orig.call(console, ...args);
+    });
   });
   afterEach(() => {
     errorSpy.mockRestore();

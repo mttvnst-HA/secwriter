@@ -92,7 +92,14 @@ function LegacyEditableBlock({ block, yStore, onUpdate, onEnterKey, isFocused, o
   const { html: binderHtml, write: binderWrite } = useBlockBinder({ yStore, blockId: block.id });
   // The DOM-sync paths use this — falls back to block.html when no substrate
   // is wired (defensive: jsdom unit tests, transient unmount races).
-  const sourceHtml = yStore ? binderHtml : (block.html || "");
+  // Secondary fallback: binderHtml is '' when yStore exists but the block's
+  // slot hasn't been seeded yet (the seed effect runs after the first render).
+  // In that window, block.html is the authoritative source. Once the slot is
+  // seeded, binderHtml is non-empty for any block with content, so this
+  // fallback only fires during the brief pre-seed frame.
+  const sourceHtml = yStore
+    ? (binderHtml !== '' ? binderHtml : (block.html || ''))
+    : (block.html || '');
 
   // Latest html, mirrored into a ref so setRef can read it without taking a
   // useCallback dep on it. Without this, every debounced publish updates

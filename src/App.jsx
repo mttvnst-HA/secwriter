@@ -151,6 +151,9 @@ export default function SpecEditor() {
     return { ydoc, yOrder, yStore };
   });
   const seededRef = useRef(false);
+  // [localSubstrate] is a stable dep: it is produced by a useState initializer
+  // (no setter), so its reference never changes across renders. The dep exists
+  // only to satisfy the exhaustive-deps lint rule; the effect runs exactly once.
   useEffect(() => {
     if (seededRef.current) return;
     seededRef.current = true;
