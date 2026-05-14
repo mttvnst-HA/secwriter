@@ -71,7 +71,7 @@ import { refToYStructure, yStructureToRef, applyRefEdits } from './yref-crdt.js'
 // For production behind a reverse proxy, set VITE_COLLAB_WS_URL and
 // VITE_COLLAB_HTTP_URL at build time (e.g. wss://collab.example.com/ws).
 const DEFAULT_WS_URL = import.meta.env?.VITE_COLLAB_WS_URL || 'ws://127.0.0.1:1234';
-export const DEFAULT_HTTP_URL = import.meta.env?.VITE_COLLAB_HTTP_URL || 'http://127.0.0.1:1235';
+export const DEFAULT_HTTP_URL = import.meta.env?.VITE_COLLAB_HTTP_URL || 'http://127.0.0.1:1234';
 
 /**
  * Read `?room=...` from the current URL. Returns null if not in a room.
@@ -561,10 +561,19 @@ function updateYMapFromBlock(ymap, block) {
   if (!isYXmlFragment && !isYText) {
     // Truly missing or malformed slot — defensive recovery. Use the v2
     // shape (Y.XmlFragment) so we don't drop the doc back to v1.
+    //
+    // ATTACH the fragment to the parent yMap BEFORE prosemirrorToYXmlFragment
+    // populates it. y-prosemirror's diff-and-merge calls toArray() during
+    // populate; on a detached fragment that fires the "Invalid access: Add
+    // Yjs type to a document before reading data" warning (issue #77,
+    // CLAUDE.md "Nine non-obvious invariants"). The other Y.XmlFragment
+    // construction sites in this file (blockToYMapSkeleton + populateBlockHtml
+    // in seedYBlocks/applyBlocksToYDoc) already enforce this order; this
+    // defensive branch was missed when the original fix landed.
     const yXml = new Y.XmlFragment();
+    ymap.set('html', yXml);
     const pmNode = htmlToPmFragment(typeof block.html === 'string' ? block.html : '');
     prosemirrorToYXmlFragment(pmNode, yXml);
-    ymap.set('html', yXml);
   }
 }
 
