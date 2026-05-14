@@ -173,17 +173,21 @@ export function estimatePublishBytes(blocks) {
 
 
 /**
- * Build a Y.Map skeleton (scalars + empty Y.XmlFragment + JSON keys).
- * The `html` Y.XmlFragment is intentionally LEFT EMPTY — the caller must
- * attach the yMap to its parent (yStore) and then call `populateBlockHtml`
- * on the slot. Doing the populate before attachment works functionally
- * (y-prosemirror has a fake-transact path for detached fragments) but
- * triggers a flood of "Invalid access: Add Yjs type to a document before
- * reading data." warnings every time `updateYFragment` calls `toArray`
- * on the detached fragment. Under CI's slower runners that flood
- * overwhelms the Chromium → Playwright IPC channel and the test page
- * stops responding to keyboard input — the symptom that took down
- * `collab.spec.js:169 two-tab text sync` on PR #51.
+ * Build a Y.Map skeleton with scalars + empty html/table/ref slots. All
+ * nested CRDT slots (Y.XmlFragment for html, Y.Map for table/ref) are
+ * intentionally LEFT EMPTY — the caller must attach the yMap to its
+ * parent (yStore) and then call `populateBlockHtml` for html and
+ * `populateBlockTableRef` for table/ref. Doing the populate before
+ * attachment works functionally but triggers a flood of "Invalid access:
+ * Add Yjs type to a document before reading data." warnings whenever the
+ * populate path needs to read the parent type's children (e.g.
+ * y-prosemirror's `updateYFragment` calls `toArray` on the fragment;
+ * `tableToYStructure` calls `[...yMap.keys()]` to clear existing keys).
+ * Under CI's slower runners that flood overwhelms the Chromium →
+ * Playwright IPC channel and the test page stops responding to keyboard
+ * input — the symptom that took down `collab.spec.js:169 two-tab text
+ * sync` on PR #51 (issue #77, fixed by PR #81 for html only; the table/
+ * ref slots were missed and fixed for #83).
  */
 function blockToYMapSkeleton(block) {
   const yMap = new Y.Map();
@@ -191,17 +195,11 @@ function blockToYMapSkeleton(block) {
     if (block[k] !== undefined) yMap.set(k, block[k]);
   }
   yMap.set('html', new Y.XmlFragment());
-  // Table/REF: nested CRDT structures
-  if (block.table) {
-    const yTable = new Y.Map();
-    tableToYStructure(yTable, block.table);
-    yMap.set('table', yTable);
-  }
-  if (block.ref) {
-    const yRef = new Y.Map();
-    refToYStructure(yRef, block.ref);
-    yMap.set('ref', yRef);
-  }
+  // Table/REF: empty nested CRDT slots. Populated AFTER yMap is attached
+  // (see populateBlockTableRef + the CLAUDE.md "Nine non-obvious
+  // invariants" sixth bullet for why the order is load-bearing).
+  if (block.table) yMap.set('table', new Y.Map());
+  if (block.ref) yMap.set('ref', new Y.Map());
   return yMap;
 }
 
@@ -214,6 +212,28 @@ function blockToYMapSkeleton(block) {
 function populateBlockHtml(yXml, html) {
   const pmNode = htmlToPmFragment(typeof html === 'string' ? html : '');
   prosemirrorToYXmlFragment(pmNode, yXml);
+}
+
+/**
+ * Populate the empty `table` / `ref` Y.Map slots created by
+ * `blockToYMapSkeleton`. Caller MUST have already attached the parent
+ * yMap to yStore — the inner `tableToYStructure` / `refToYStructure`
+ * calls iterate the slot's keys, which fires the "Invalid access"
+ * warning when the slot is detached (#83).
+ */
+function populateBlockTableRef(yMap, block) {
+  if (block.table) {
+    const yTable = yMap.get('table');
+    if (yTable && typeof yTable.get === 'function') {
+      tableToYStructure(yTable, block.table);
+    }
+  }
+  if (block.ref) {
+    const yRef = yMap.get('ref');
+    if (yRef && typeof yRef.get === 'function') {
+      refToYStructure(yRef, block.ref);
+    }
+  }
 }
 
 /** Build a plain block object from a Y.Map. */
@@ -483,9 +503,11 @@ export function seedYBlocks(ydoc, yOrder, yStore, blocks) {
       const yMap = blockToYMapSkeleton(b);
       yStore.set(b.id, yMap);
       yOrder.push([b.id]);
-      // Populate AFTER attachment so prosemirrorToYXmlFragment runs on a
-      // fragment with a live `.doc` and doesn't fire the warning flood.
+      // Populate AFTER attachment so prosemirrorToYXmlFragment + the
+      // table/ref CRDT builders run on slots with a live `.doc` and don't
+      // fire the "Invalid access" warning flood (#77, #83).
       populateBlockHtml(yMap.get('html'), b.html);
+      populateBlockTableRef(yMap, b);
     }
   }, 'seed');
 }
@@ -507,10 +529,14 @@ function updateYMapFromBlock(ymap, block) {
   const curTableYMap = ymap.get('table');
   if (block.table) {
     if (!curTableYMap || typeof curTableYMap === 'string') {
-      // Legacy or new: create fresh CRDT structure
+      // Legacy or new: create fresh CRDT structure.
+      // ATTACH yTable to ymap BEFORE populating — tableToYStructure calls
+      // `[...yMap.keys()]` to clear existing keys, and Yjs's createMapIterator
+      // gates on `parent.doc` (warns when detached). Same skeleton-then-
+      // populate invariant as the html slot. (#83, CLAUDE.md sixth bullet.)
       const yTable = new Y.Map();
-      tableToYStructure(yTable, block.table);
       ymap.set('table', yTable);
+      tableToYStructure(yTable, block.table);
     } else {
       // Existing CRDT structure: diff for cell-only vs structural
       const prevTable = yStructureToTable(curTableYMap);
@@ -529,9 +555,10 @@ function updateYMapFromBlock(ymap, block) {
   const curRefYMap = ymap.get('ref');
   if (block.ref) {
     if (!curRefYMap || typeof curRefYMap === 'string') {
+      // ATTACH yRef BEFORE populating, mirroring the table branch above.
       const yRef = new Y.Map();
-      refToYStructure(yRef, block.ref);
       ymap.set('ref', yRef);
+      refToYStructure(yRef, block.ref);
     } else {
       const prevRef = yStructureToRef(curRefYMap);
       applyRefEdits(curRefYMap, prevRef, block.ref);
@@ -622,6 +649,7 @@ export function applyBlocksToYDoc(ydoc, yOrder, yStore, blocks) {
         yStore.set(block.id, yMap);
         // Populate AFTER attachment — see blockToYMapSkeleton for why.
         populateBlockHtml(yMap.get('html'), block.html);
+        populateBlockTableRef(yMap, block);
       }
     }
 

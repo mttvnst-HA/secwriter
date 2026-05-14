@@ -18,34 +18,46 @@ import * as Y from 'yjs';
 import { applyHtmlToYText, yTextToHtml, seedYTextFromHtml } from './ytext-html.js';
 
 /**
- * Build a cell Y.Map from a plain cell object.
- * The Y.Text is seeded inline (still detached at this point).
+ * Populate an attached Y.Map row with cells. yRow MUST already be attached
+ * to its parent Y.Array (otherwise the inner Y.Map/Y.Text operations may
+ * fire "Invalid access" warnings — issue #83, CLAUDE.md "Nine non-obvious
+ * invariants" sixth bullet). Each yCell is pushed (attached) BEFORE its
+ * fields are populated, and the cell's Y.Text is `set` (attached) BEFORE
+ * `seedYTextFromHtml` inserts content.
  *
- * @param {{ text: string, colspan: number, styleId?: string }} cell
- * @returns {import('yjs').Map}
+ * @param {import('yjs').Array} yRow — attached row Y.Array
+ * @param {Array<{ text: string, colspan: number, styleId?: string }>} cells
  */
-function cellToYMap(cell) {
-  const yCell = new Y.Map();
-  const yText = new Y.Text();
-  seedYTextFromHtml(yText, cell.text || '');
-  yCell.set('text', yText);
-  yCell.set('colspan', typeof cell.colspan === 'number' ? cell.colspan : 1);
-  if (cell.styleId !== undefined) yCell.set('styleId', cell.styleId);
-  return yCell;
+function populateRow(yRow, cells) {
+  for (const cell of cells) {
+    const yCell = new Y.Map();
+    yRow.push([yCell]); // attach yCell BEFORE populating its fields
+    yCell.set('colspan', typeof cell.colspan === 'number' ? cell.colspan : 1);
+    if (cell.styleId !== undefined) yCell.set('styleId', cell.styleId);
+    const yText = new Y.Text();
+    yCell.set('text', yText); // attach yText BEFORE seeding content
+    seedYTextFromHtml(yText, cell.text || '');
+  }
 }
 
 /**
  * Populate a Y.Map with nested Yjs types from a plain TableData object.
  *
- * Must be called inside a Y.Doc transaction. Clears any existing content
+ * Must be called inside a Y.Doc transaction, with yMap ALREADY attached to
+ * its parent (yStore entry or block Y.Map). Clears any existing content
  * in yMap first (full replacement — caller decides when structural changes
  * warrant a full re-seed vs cell-only updates via applyTableCellEdits).
  *
- * @param {import('yjs').Map} yMap   — the table's root Y.Map
+ * Attach-before-populate is enforced at every nested level (yRows, each
+ * yRow, each yCell, each cell-text Y.Text) so the Yjs "Invalid access"
+ * warning does not fire on a fresh-from-sample doc (#83).
+ *
+ * @param {import('yjs').Map} yMap   — attached table root Y.Map
  * @param {object} tableData         — plain TableData { columns, rows, colWidths?, rowHeights?, styles? }
  */
 export function tableToYStructure(yMap, tableData) {
-  // Clear existing keys
+  // Clear existing keys. `[...yMap.keys()]` requires yMap to be attached
+  // (createMapIterator in Yjs warns when `parent.doc` is null).
   for (const key of [...yMap.keys()]) {
     yMap.delete(key);
   }
@@ -63,16 +75,18 @@ export function tableToYStructure(yMap, tableData) {
     yMap.set('styles', JSON.stringify(tableData.styles));
   }
 
-  // Build rows: Y.Array<Y.Array<Y.Map>>
+  // Build rows: Y.Array<Y.Array<Y.Map>>. Attach yRows to yMap BEFORE
+  // pushing rows; attach each yRow to yRows BEFORE pushing cells. Each
+  // cell's Y.Text is attached to the cell BEFORE seedYTextFromHtml inserts
+  // content. The whole chain is rooted at the doc the moment any read
+  // happens, so no detached-type warnings fire.
   const yRows = new Y.Array();
+  yMap.set('rows', yRows);
   for (const row of tableData.rows) {
     const yRow = new Y.Array();
-    for (const cell of row) {
-      yRow.push([cellToYMap(cell)]);
-    }
-    yRows.push([yRow]);
+    yRows.push([yRow]); // attach yRow BEFORE populating it
+    populateRow(yRow, row);
   }
-  yMap.set('rows', yRows);
 }
 
 /**
