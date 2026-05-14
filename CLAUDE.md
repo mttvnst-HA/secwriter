@@ -311,6 +311,8 @@ Post-#46 (sub-PR 1b), block **html** and block **scalars** travel separate paths
 
 **"Connecting to room…" forever?** `useCollabSession`'s lifecycle effect is gated on `inRoom && identity`. If `localStorage` has no saved identity, the app shows a name prompt and the WebSocketProvider is never instantiated. Banner persists indefinitely; `/health` shows 0 connections. Fill the name prompt to unblock.
 
+**"WebSocket is closed before the connection is established" warning in dev?** Benign React.StrictMode artifact, NOT a bug. `main.jsx` wraps the app in `<React.StrictMode>`, which intentionally double-mounts every effect (mount → cleanup → mount) in development to surface effect bugs. The first `useCollabSession` mount opens a `WebsocketProvider`, the cleanup destroys it (closing the WS before its `open` event fires), and the second mount opens a fresh one that stays open. Chromium's native WebSocket implementation logs the warning for the aborted first attempt. Verify the actual state via `window.__collab.provider.wsconnected` (should be `true`) and `window.__collab.yOrder.length` (should match the persisted room). Does not occur in production builds. Do not "fix" by removing StrictMode.
+
 ## Storage Backends
 
 Three storage backends are wired: `local` (default, disk under `server/collab-db/`),

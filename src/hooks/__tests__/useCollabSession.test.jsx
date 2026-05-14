@@ -266,19 +266,29 @@ describe('useCollabSession — imperative API', () => {
     expect(lastSession().dispatchComment).toHaveBeenCalledWith(env);
   });
 
-  it('tryUndo / tryRedo return false when no session, true (and call session) when present', () => {
+  it('tryUndo / tryRedo gate on canUndo/canRedo: false with no session, false when stack empty, true (and call session) when stack non-empty', () => {
     // No session.
     const noRoom = renderHook((p) => useCollabSession(p), { initialProps: defaultParams({ inRoom: false }) });
     expect(noRoom.result.current.tryUndo()).toBe(false);
     expect(noRoom.result.current.tryRedo()).toBe(false);
     noRoom.unmount();
 
-    // Session exists.
+    // Session exists, stack non-empty (canUndo/canRedo default true).
     const inRoom = renderHook((p) => useCollabSession(p), { initialProps: defaultParams() });
     expect(inRoom.result.current.tryUndo()).toBe(true);
     expect(lastSession().undo).toHaveBeenCalledTimes(1);
     expect(inRoom.result.current.tryRedo()).toBe(true);
     expect(lastSession().redo).toHaveBeenCalledTimes(1);
+
+    // Stack empty — tryUndo/tryRedo MUST return false AND MUST NOT call session.undo/redo.
+    // Without this gate, App.jsx's Ctrl+Z/Ctrl+Y fall-through to useUndoableBlocks never fires.
+    const session = lastSession();
+    session.canUndo = vi.fn(() => false);
+    session.canRedo = vi.fn(() => false);
+    expect(inRoom.result.current.tryUndo()).toBe(false);
+    expect(session.undo).toHaveBeenCalledTimes(1); // unchanged
+    expect(inRoom.result.current.tryRedo()).toBe(false);
+    expect(session.redo).toHaveBeenCalledTimes(1); // unchanged
   });
 });
 
