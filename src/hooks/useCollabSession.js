@@ -494,15 +494,13 @@ export function useCollabSession({
   const tryUndo = useCallback(() => {
     const session = sessionRef.current;
     if (!session) return false;
-    session.undo();
-    return true;
+    return session.canUndo() && (session.undo(), true);
   }, []);
 
   const tryRedo = useCallback(() => {
     const session = sessionRef.current;
     if (!session) return false;
-    session.redo();
-    return true;
+    return session.canRedo() && (session.redo(), true);
   }, []);
 
   const canUndo = useCallback(() => {
