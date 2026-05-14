@@ -262,10 +262,18 @@ export function applyRevisionTr(state, kind, authorAttrs) {
 }
 
 /**
- * Resolve the revision mark at the cursor: accept ADD (strip mark, keep
- * content), reject ADD (delete range), accept DEL (delete range), reject
- * DEL (strip mark, keep content). After the resolution, clears stored
- * marks so the next keystroke doesn't inherit the (now-removed) revision.
+ * Resolve the revision mark at the cursor (or at the optional `pos`
+ * override): accept ADD (strip mark, keep content), reject ADD (delete
+ * range), accept DEL (delete range), reject DEL (strip mark, keep
+ * content). After the resolution, clears stored marks so the next
+ * keystroke doesn't inherit the (now-removed) revision.
+ *
+ * 1g.5 (#86) introduced the optional `pos` argument for the PM del-popup
+ * path. The popup's click handler suppresses caret placement (returns
+ * true from handleClick), so state.selection isn't on the del when
+ * accept/reject fires. The caller resolves a DOM-relative position via
+ * view.posAtDOM and passes it here. The FloatingToolbar caller omits
+ * `pos` and the function falls back to state.selection.from.
  *
  * 1g.6 (#87) — tries each of revisionAdd / revisionDel / revisionChg in
  * declared rank order at the resolved position. The first MarkType with a

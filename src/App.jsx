@@ -2646,6 +2646,7 @@ export default function SpecEditor() {
                     setTcState(prev => tc.rejectInline(prev, id, resolvedHtml));
                   }}
                   onRevisionAction={handleRevisionAction}
+                  onRefreshTcSnapshot={handleRefreshTcSnapshot}
                   commentsState={commentsState}
                   onCommentClick={handleCommentClick}
                   onInlineFix={handleComplianceAcceptFix}
