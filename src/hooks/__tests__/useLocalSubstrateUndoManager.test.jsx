@@ -15,6 +15,7 @@
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { renderHook, cleanup } from '@testing-library/react';
+import { StrictMode } from 'react';
 import * as Y from 'yjs';
 import { ySyncPluginKey } from 'y-prosemirror';
 
@@ -72,6 +73,36 @@ describe('useLocalSubstrateUndoManager', () => {
       }, ySyncPluginKey);
 
       expect(result.current.canUndo()).toBe(true);
+    });
+
+    it('coalesces adjacent local-publish + ySyncPluginKey writes into ONE frame', () => {
+      // Pins the documented dual-stack-no-coalescing wart claim (collab.js
+      // + CLAUDE.md): a PM keystroke produces a `ySyncPluginKey` Yjs op,
+      // and the debounced setBlockHtml echo produces a follow-up
+      // `'local-publish'` op ~400ms later. Both origins are tracked, but
+      // the 500ms captureTimeout window merges adjacent ops regardless of
+      // origin, so one Ctrl+Z reverts both. If this empirical Yjs behavior
+      // ever drifts (or someone shortens captureTimeout below the echo
+      // delay), production typing would gain a confusing "Ctrl+Z reverts
+      // half a keystroke" symptom and this test fails first.
+      const { result } = renderHook(() => useLocalSubstrateUndoManager(substrate));
+
+      // PM keystroke op.
+      substrate.ydoc.transact(() => {
+        substrate.yStore.set('pm-op', new Y.Map());
+      }, ySyncPluginKey);
+
+      // setBlockHtml echo op, same capture window.
+      substrate.ydoc.transact(() => {
+        substrate.yStore.set('echo-op', new Y.Map());
+      }, 'local-publish');
+
+      expect(result.current.canUndo()).toBe(true);
+      // One frame, not two: tryUndo reverts BOTH ops.
+      expect(result.current.tryUndo()).toBe(true);
+      expect(substrate.yStore.has('pm-op')).toBe(false);
+      expect(substrate.yStore.has('echo-op')).toBe(false);
+      expect(result.current.canUndo()).toBe(false);
     });
 
     it("does NOT capture writes from foreign origins (e.g. 'remote' simulation)", () => {
@@ -163,6 +194,29 @@ describe('useLocalSubstrateUndoManager', () => {
   });
 
   describe('lifecycle', () => {
+    it('survives React StrictMode double-mount (dev sanity)', () => {
+      // main.jsx wraps the app in <React.StrictMode>, which in dev forces
+      // every effect to run setup → cleanup → setup. A naïve implementation
+      // that creates the UndoManager via useMemo (persists across the
+      // cleanup) and destroys it in the effect's cleanup would leave the
+      // hook holding a destroyed manager after the StrictMode dance —
+      // writes would not enter the stack, and Ctrl+Z would silently break
+      // in dev. This test pins the post-StrictMode contract.
+      const { result } = renderHook(() => useLocalSubstrateUndoManager(substrate), {
+        wrapper: ({ children }) => <StrictMode>{children}</StrictMode>,
+      });
+
+      // After the StrictMode setup→cleanup→setup dance, a tracked write
+      // MUST land in the stack.
+      substrate.ydoc.transact(() => {
+        substrate.yStore.set('b1', new Y.Map());
+      }, 'local-publish');
+
+      expect(result.current.canUndo()).toBe(true);
+      expect(result.current.tryUndo()).toBe(true);
+      expect(substrate.yStore.has('b1')).toBe(false);
+    });
+
     it('post-unmount writes do NOT enter the destroyed manager (observer detached)', () => {
       // Y.UndoManager.destroy() removes its afterTransaction observer
       // (per yjs source) but keeps the in-memory stacks intact. The

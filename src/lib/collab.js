@@ -906,12 +906,15 @@ export function createCollabSession({
   //                       Ctrl+Z work at character granularity, gated
   //                       by the word-boundary-undo plugin's forceFrame
   //                       call (split frames at space/punctuation/Enter).
-  //                       Remote-applied transactions also flow through
-  //                       ySyncPluginKey, but they originate on a peer
-  //                       client — y-prosemirror tags them with that
-  //                       client's clientID rather than the local doc's,
-  //                       so Y.UndoManager's clientID gate filters them
-  //                       out and Ctrl+Z stays scoped to local edits.
+  //                       Remote ops do NOT enter this stack because the
+  //                       WebsocketProvider applies remote updates with
+  //                       the provider INSTANCE as the Yjs origin (not
+  //                       ySyncPluginKey); the trackedOrigins filter
+  //                       rejects them. y-prosemirror's sync plugin also
+  //                       guards its remote→PM update path against
+  //                       re-emitting a ySyncPluginKey-tagged write,
+  //                       so a remote keystroke never round-trips into
+  //                       the local undo stack.
   //
   // captureTimeout is the Yjs default (500ms): adjacent same-origin ops
   // within 500ms coalesce into one undo frame. The word-boundary plugin

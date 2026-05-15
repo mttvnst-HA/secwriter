@@ -32,7 +32,7 @@
  * users hit different Ctrl+Z semantics — track them together.
  */
 
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import * as Y from 'yjs';
 import { ySyncPluginKey } from 'y-prosemirror';
 
@@ -63,21 +63,31 @@ import { makeUndoHelpers } from '../lib/undo-helpers.js';
  * @param {{ ydoc: Y.Doc, yOrder: Y.Array<string>, yStore: Y.Map<string, Y.Map> }} substrate
  * @returns {LocalSubstrateUndoApi}
  */
+function makeUndoManager(yOrder, yStore) {
+  return new Y.UndoManager([yOrder, yStore], {
+    trackedOrigins: new Set(['local-publish', ySyncPluginKey]),
+    captureTimeout: 500,
+  });
+}
+
 export function useLocalSubstrateUndoManager(substrate) {
   const { ydoc, yOrder, yStore } = substrate;
 
-  const undoManager = useMemo(() => {
-    return new Y.UndoManager([yOrder, yStore], {
-      trackedOrigins: new Set(['local-publish', ySyncPluginKey]),
-      captureTimeout: 500,
-    });
-  }, [yOrder, yStore]);
+  // StrictMode-safe lifecycle: a naïve `useMemo` cache persists across the
+  // dev double-mount, so the first cleanup destroys the manager and the
+  // second setup re-registers cleanup against the now-dead instance —
+  // Ctrl+Z silently breaks in dev. Creating the manager INSIDE the effect
+  // means each setup phase produces a fresh, live manager and each
+  // cleanup destroys exactly that manager. The initial state seed makes
+  // the API live before the effect commits (synchronous reads work).
+  // Pinned by the StrictMode test in useLocalSubstrateUndoManager.test.jsx.
+  const [undoManager, setUndoManager] = useState(() => makeUndoManager(yOrder, yStore));
 
   useEffect(() => {
-    return () => {
-      undoManager.destroy();
-    };
-  }, [undoManager]);
+    const mgr = makeUndoManager(yOrder, yStore);
+    setUndoManager(mgr);
+    return () => { mgr.destroy(); };
+  }, [yOrder, yStore]);
 
   const helpersRef = useRef(null);
   if (!helpersRef.current || helpersRef.current.undoManager !== undoManager) {
