@@ -217,3 +217,66 @@ describe('S4: accept/reject one author\'s mark leaves the other intact', () => {
     expect(after).toContain('data-author-id="alice"');
   });
 });
+
+// ── S5: Same-kind two-author concurrent format — HTML layer collapse ─────────
+//
+// The audit-trail-degradation case. When two authors both apply the SAME
+// MarkType (e.g. both flag the same word for deletion) on overlapping ranges
+// with distinct y-prosemirror suffixes, two load-bearing properties hold at
+// different layers:
+//
+//   1. Yjs CRDT layer — both suffixed keys live in the format dictionary
+//      after sync; both peers converge to the same Y delta. The audit trail
+//      is fully preserved at this layer. A future regression that merges
+//      same-base-key entries at the Yjs layer would break independent author
+//      state and is the change this test will catch.
+//
+//   2. HTML emission layer — `pmdoc-html.js`'s `yDeltaAttrsToAttrs` strips
+//      the `--<suffix>` and writes to a single `attrs.revisionDel` slot, so
+//      the loop's later iteration overwrites the earlier one. Net effect:
+//      one <del> wrapper around the range, one deterministic winning author
+//      across peers. The behavior is documented in pmdoc-html.js (~L272-281,
+//      "last-write-wins, acceptably loses the duplicate author info"). 1h's
+//      per-keystroke TC pipeline may want a richer attrs shape that holds
+//      multiple authors per kind; until then this test pins the current
+//      lossy rendering so it isn't silently regressed further (e.g. no
+//      wrapper at all, or non-deterministic winner across peers).
+describe('S5: same-kind two-author concurrent format collapses in HTML', () => {
+  it('Yjs preserves both keys; pmFragmentToHtml emits one deterministic wrapper', () => {
+    const { alice, bob } = makePair('foo');
+    const aliceYt = getInnerYText(alice.yXml);
+    const bobYt = getInnerYText(bob.yXml);
+
+    // Concurrent same-kind format ops. In a real ySyncPlugin round-trip,
+    // each PM mark instance picks its own suffix; here we synthesize
+    // distinct ones to mirror what y-prosemirror would have emitted.
+    applyRevisionMark(aliceYt, 0, 3, 'del', 'alice', 'AAAAA');
+    applyRevisionMark(bobYt, 0, 3, 'del', 'bob', 'BBBBB');
+
+    sync(alice.ydoc, bob.ydoc);
+
+    // 1. Both peers converge at the Yjs layer AND both suffixed keys
+    //    survive in the delta — full audit trail at the CRDT layer.
+    const aliceDelta = aliceYt.toDelta();
+    const bobDelta = bobYt.toDelta();
+    expect(aliceDelta).toEqual(bobDelta);
+
+    const segAttrs = aliceDelta[0].attributes || {};
+    const revKeys = Object.keys(segAttrs).filter((k) => k.startsWith('revisionDel--'));
+    expect(revKeys.length).toBe(2);
+    const authors = new Set(revKeys.map((k) => segAttrs[k].authorId));
+    expect(authors).toEqual(new Set(['alice', 'bob']));
+
+    // 2. HTML emission collapses to ONE wrapper with ONE deterministic
+    //    winning author. Both peers see the same winner (deterministic
+    //    across the sync).
+    const aliceHtml = pmFragmentToHtml(alice.yXml);
+    const bobHtml = pmFragmentToHtml(bob.yXml);
+    expect(aliceHtml).toBe(bobHtml);
+    const delMatches = aliceHtml.match(/<del[^>]*>/g) || [];
+    expect(delMatches.length).toBe(1);
+    const authorMatch = aliceHtml.match(/data-author-id="([^"]+)"/);
+    expect(authorMatch).not.toBeNull();
+    expect(['alice', 'bob']).toContain(authorMatch[1]);
+  });
+});
