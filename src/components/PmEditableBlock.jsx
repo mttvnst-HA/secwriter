@@ -64,7 +64,7 @@ import { blockKeymap } from '../lib/pm-plugins/keymap.js';
 import { registerBlock, unregisterBlock } from '../lib/block-registry.js';
 import { setBlockHtml, subscribeBlock } from '../lib/block-html-store.js';
 import { annotateDomWithDiff } from '../lib/text-diff.js';
-import { applyDelAction } from '../lib/pm-del-popup.js';
+import { dispatchDelAction } from '../lib/pm-del-popup.js';
 import { activeCommentPlugin } from '../lib/pm-plugins/active-comment.js';
 import { COMMENT_RECONCILE_META, reconcileCommentMarks } from '../lib/pm-comments.js';
 import { useBlockLinting } from './useBlockLinting.js';
@@ -106,6 +106,7 @@ function PmEditableBlock({
   onAcceptRevision,
   onRejectRevision,
   onRevisionAction,
+  onRefreshTcSnapshot,  // 1g.5 (#86): PM-tr del-popup path — substrate-only refresh
   commentsState,    // 1g: drives per-block reconcile effect via reconcileCommentMarks
   onCommentClick,
   onInlineFix,
@@ -120,7 +121,9 @@ function PmEditableBlock({
   const onUpdateDebounceRef = useRef(null);
   const [slashState, setSlashState] = useState({ open: false, filter: '', selectedIdx: 0 });
   const [hasInlineRevisions, setHasInlineRevisions] = useState(false);
-  const [delPopup, setDelPopup] = useState(null); // { el, rect, delIndex } | null
+  // 1g.5 (#86): el + rect only — position resolution happens at action time
+  // via view.posAtDOM(el, 0); no DOM-index against a serialized HTML string.
+  const [delPopup, setDelPopup] = useState(null); // { el, rect } | null
   // QC critical-2: tick incremented every time the EditorView mounts so
   // useBlockLinting's input-listener effect re-evaluates and binds against
   // the now-existing DOM. yStore is null until first sync in collab rooms,
@@ -149,6 +152,8 @@ function PmEditableBlock({
   onCommentClickRef.current = onCommentClick;
   const onRevisionActionRef = useRef(onRevisionAction);
   onRevisionActionRef.current = onRevisionAction;
+  const onRefreshTcSnapshotRef = useRef(onRefreshTcSnapshot);
+  onRefreshTcSnapshotRef.current = onRefreshTcSnapshot;
   const blockTypeRef = useRef(block.type);
   blockTypeRef.current = block.type;
   // QC major-6: Track Changes inputs mirrored into refs so the blur handler
@@ -292,16 +297,11 @@ function PmEditableBlock({
         // Del-span click → local popup (TC accept/reject for inline deletions)
         const delEl = e.target?.closest?.('del.mark-del');
         if (delEl && view.dom.contains(delEl)) {
-          const allDels = Array.from(view.dom.querySelectorAll('del.mark-del'));
-          const delIndex = allDels.indexOf(delEl);
-          if (delIndex >= 0) {
-            setDelPopup({
-              el: delEl,
-              rect: delEl.getBoundingClientRect(),
-              delIndex,
-            });
-            return true; // Suppress PM's default caret placement
-          }
+          setDelPopup({
+            el: delEl,
+            rect: delEl.getBoundingClientRect(),
+          });
+          return true; // Suppress PM's default caret placement
         }
         // Click elsewhere → dismiss any open popup
         setDelPopup(null);
@@ -627,26 +627,48 @@ function PmEditableBlock({
       return;
     }
     // Cancel any pending debounced onUpdate so it can't fire later with
-    // pre-action html and clobber the post-action React state.
+    // pre-action html and clobber the post-action React state. This
+    // mirrors FloatingToolbar's PM-mode inline TC accept/reject path
+    // (cancelPendingUpdateById, 1f.9): a debounce firing AFTER
+    // onRefreshTcSnapshot's setBlocks would land outside the
+    // resumeHistory() window and shadow the intended undoable frame.
     if (onUpdateDebounceRef.current) {
       clearTimeout(onUpdateDebounceRef.current);
       onUpdateDebounceRef.current = null;
     }
-    let html;
-    try { html = pmFragmentToHtml(view.state.doc); }
-    catch { setDelPopup(null); return; }
-    const newHtml = applyDelAction(html, delPopup.delIndex, action);
-    // Route through onRevisionAction — App.handleRevisionAction calls
-    // setBlockHtml with origin 'local-publish' (Yjs UndoManager covered),
-    // updates React state (App-level useUndoableBlocks frames a snapshot),
-    // and runs tc.applyResolveAtBlock(blockId, newHtml) to refresh the TC
-    // snapshot so the next blur diff doesn't re-create the del.
-    if (onRevisionActionRef.current) {
-      onRevisionActionRef.current(block.id, newHtml);
-    } else {
-      onUpdateRef.current?.(block.id, newHtml);
-    }
+    // 1g.5 (#86) — dispatch a PM transaction instead of mutating
+    // serialized HTML. The substrate write rides ySyncPlugin; no
+    // setBlockHtml round-trip. dispatchDelAction returns null on
+    // idempotent re-accept (the mark is already gone) — in that case
+    // we still close the popup but don't fire onRefreshTcSnapshot.
+    const tr = dispatchDelAction(view, delPopup.el, action);
     setDelPopup(null);
+    if (!tr) return;
+    // PM dispatch already wrote the substrate via ySyncPlugin. App owns
+    // the React state + TC snapshot refresh via onRefreshTcSnapshot,
+    // same path FloatingToolbar uses for its PM-mode inline TC actions
+    // (1f.9). The handler does NOT call setBlockHtml — it only runs
+    // resumeHistory + setBlocks + setTcState so App-level
+    // useUndoableBlocks captures a snapshot of the post-action state.
+    //
+    // Legacy fallback (onRevisionAction → App.handleRevisionAction) is
+    // intentionally not invoked here: that path writes setBlockHtml
+    // ('local-publish'), producing a redundant Yjs op on top of the
+    // substrate write we just made via ySyncPlugin.
+    if (onRefreshTcSnapshotRef.current) {
+      try {
+        const html = pmFragmentToHtml(view.state.doc);
+        onRefreshTcSnapshotRef.current(block.id, html);
+      } catch { /* defensive — view tear-down race */ }
+    } else if (onRevisionActionRef.current) {
+      // Defensive fallback if App fails to pass onRefreshTcSnapshot
+      // (e.g. older render path). Stays correct, just produces the
+      // redundant substrate op.
+      try {
+        const html = pmFragmentToHtml(view.state.doc);
+        onRevisionActionRef.current(block.id, html);
+      } catch { /* defensive */ }
+    }
   }, [delPopup, block.id]);
 
   const handleSlashSelectClick = useCallback((type) => {

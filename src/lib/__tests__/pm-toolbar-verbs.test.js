@@ -329,6 +329,49 @@ describe('applyInlineRevisionResolveTr (1g.6 — tries Add/Del/Chg in order)', (
     // DEL accept = delete range; "overlap" is removed
     expect(newState.doc.textContent).toBe('xxyy');
   });
+
+  it('explicit pos override (1g.5/#86) resolves at the supplied position, ignoring state.selection', () => {
+    // The del-popup uses pos to disambiguate when state.selection isn't on
+    // the click target (handleClick returns true to suppress caret placement).
+    // Build a doc with TWO marked ranges; place the selection on the first
+    // and pass pos pointing into the second. Without the override, the
+    // selection-driven resolution would target range #1; with it, range #2
+    // is targeted.
+    const add = schema.marks.revisionAdd.create({ authorId: 'A' });
+    const del = schema.marks.revisionDel.create({ authorId: 'A' });
+    const doc = docOf(
+      txt('xx'),
+      txt('aaa', add),  // positions 3..6
+      txt('mid'),       // positions 6..9
+      txt('bbb', del),  // positions 9..12
+      txt('yy'),        // positions 12..14
+    );
+    // Selection on the ADD range (positions 3..6)
+    const state = stateOf(doc, 4);
+    // pos override pointing into the DEL range
+    const tr = applyInlineRevisionResolveTr(state, 'accept', 10);
+    expect(tr).not.toBeNull();
+    const newState = state.apply(tr);
+    // DEL accept deletes the range — text becomes 'xxaaamidyy'
+    expect(newState.doc.textContent).toBe('xxaaamidyy');
+    // ADD mark survives — it was untargeted
+    expect(findFirstMatchingMark(
+      newState.doc, 3, 6, schema.marks.revisionAdd, () => true,
+    )).not.toBeNull();
+  });
+
+  it('explicit pos override falls back to state.selection when pos is undefined', () => {
+    // Backward compatibility — FloatingToolbar still calls with 2 args.
+    const add = schema.marks.revisionAdd.create({ authorId: 'A' });
+    const doc = docOf(txt('xx'), txt('word', add), txt('yy'));
+    const state = stateOf(doc, 5);
+    const tr = applyInlineRevisionResolveTr(state, 'accept');
+    expect(tr).not.toBeNull();
+    const newState = state.apply(tr);
+    expect(findFirstMatchingMark(
+      newState.doc, 3, 7, schema.marks.revisionAdd, () => true,
+    )).toBeNull();
+  });
 });
 
 describe('applyChangeCaseTr', () => {

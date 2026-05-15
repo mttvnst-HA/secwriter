@@ -1,44 +1,68 @@
 /**
- * pm-del-popup.js — Pure HTML mutator for the Track Changes del-popup
- * accept/reject actions in PM mode (sub-PR 1f.8, issue #47).
+ * pm-del-popup.js — PM-transaction dispatcher for the Track Changes
+ * del-popup accept/reject actions in PM mode (sub-PR 1g.5, issue #86).
  *
- * The PM blur handler already uses an HTML round-trip seam to materialize
- * inline revision marks (`PmEditableBlock.jsx:303-334`). This mutator runs
- * on the same seam: the caller serializes the live PM doc via
- * `pmFragmentToHtml`, identifies which del element the user clicked by
- * its index among `view.dom.querySelectorAll('del.mark-del')`, runs this
- * function, then routes the result through `onRevisionAction` so App's
- * `setBlockHtml` writes the substrate with origin 'local-publish'
- * (UndoManager coverage) and `tc.applyResolveAtBlock` refreshes the TC
- * snapshot.
+ * Replaces the 1f.8 HTML-string mutator. The earlier path serialized the
+ * PM doc to HTML, mutated the string by DOM-index, then wrote back via
+ * setBlockHtml('local-publish') — a snapshot-shaped write that fights
+ * 1h's per-keystroke marking pipeline. The new path dispatches a PM
+ * transaction directly: the substrate write rides ySyncPlugin, no
+ * setBlockHtml round-trip.
  *
- * Identifying the del by index — not by mark equality — is intentional:
- * adjacent del marks with different authorIds render as separate
- * <del class="mark-del"> elements (PM compares marks by type+attrs),
- * and the DOM boundaries are explicit. Mark-equality walks would conflate
- * them; index-by-DOM-order doesn't.
+ * Position resolution: the click event identifies a <del class="mark-del">
+ * DOM node. view.posAtDOM(el, 0) yields the PM position at the start of
+ * that element. The popup is opened exclusively from a click on a <del>
+ * (revisionDel), so we pass kindHint: 'del' to applyInlineRevisionResolveTr
+ * (1g.6/#87) — without it, the resolver tries revisionAdd → revisionDel →
+ * revisionChg in declared rank order, and a peer's revisionAdd mark
+ * overlapping the same character (S3 of pm-tc-merge-semantics) would be
+ * resolved instead of the del the user actually clicked.
+ *
+ * findMarkRangeAt (in pm-toolbar.js) expands outward by mark equality
+ * (authorId + authorColor on revisionDel), so two adjacent <del> elements
+ * with different authorIds are correctly distinguished even though both
+ * bear the same .mark-del class — PM treats them as separate Mark
+ * instances.
+ *
+ * Why "position, not mark equality" as the identifier: the click already
+ * disambiguated by DOM element. If we walked PM marks and stopped at the
+ * first matching one, we'd conflate adjacent same-attrs marks (rare in
+ * practice but possible after merges). Using the click position keeps
+ * the user-visible target stable.
  */
 
-export function applyDelAction(html, delIndex, action) {
-  if (!html) return html;
-  if (action !== 'accept' && action !== 'reject') return html;
+import { applyInlineRevisionResolveTr } from './pm-toolbar.js';
 
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(
-    `<div id="pm-del-popup-root">${html}</div>`,
-    'text/html',
-  );
-  const root = doc.getElementById('pm-del-popup-root');
-  if (!root) return html;
-
-  const dels = root.querySelectorAll('del.mark-del');
-  if (delIndex < 0 || delIndex >= dels.length) return html;
-
-  const del = dels[delIndex];
-  if (action === 'accept') {
-    del.remove();
-  } else {
-    del.replaceWith(doc.createTextNode(del.textContent));
+/**
+ * Dispatch a PM transaction resolving the revisionDel mark at `delEl`.
+ *
+ * Returns the dispatched Transaction on success, or null if:
+ *   - view/delEl missing or detached
+ *   - action is not 'accept' or 'reject'
+ *   - posAtDOM throws (mid-tear-down)
+ *   - no revisionDel mark is found at the resolved position (idempotent
+ *     re-accept on an already-resolved element)
+ *
+ * The caller (PmEditableBlock.handleDelAction) reads the return value
+ * to decide whether to fire onRefreshTcSnapshot — a null return means
+ * the transaction was a no-op and no React-state refresh is needed.
+ */
+export function dispatchDelAction(view, delEl, action) {
+  if (!view || !delEl) return null;
+  if (action !== 'accept' && action !== 'reject') return null;
+  if (!view.dom.contains(delEl)) return null;
+  let pos;
+  try {
+    pos = view.posAtDOM(delEl, 0);
+  } catch {
+    return null;
   }
-  return root.innerHTML;
+  if (typeof pos !== 'number' || pos < 0) return null;
+  // kindHint: 'del' — the popup is del-specific. Without it, a peer's
+  // overlapping revisionAdd would resolve instead (Add precedes Del in
+  // declared rank order).
+  const tr = applyInlineRevisionResolveTr(view.state, action, pos, 'del');
+  if (!tr) return null;
+  view.dispatch(tr);
+  return tr;
 }
