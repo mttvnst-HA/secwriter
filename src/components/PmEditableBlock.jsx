@@ -114,13 +114,14 @@ function PmEditableBlock({
   lintingDispatch,
   showTags = false,
   readOnly = false,
-  // 1h Q36 Commit A — wired to App's `collab.forceFrame`. The word-
-  // boundary plugin reads this through a ref on every keydown so a
-  // session create/destroy cycle picks up the latest reference without
-  // rebuilding the EditorView. Until Commit B adds `ySyncPluginKey` to
-  // the Yjs UndoManager's trackedOrigins, calling this is functionally a
-  // no-op — but the plumbing in place lets Commit B land atomically.
-  stopCapturing,
+  // 1h Q36 Commit A — `collab.forceFrame` (or App's local-substrate
+  // equivalent once Commit B lands). The word-boundary plugin reads
+  // this through a ref on every keydown so a session create/destroy
+  // cycle picks up the latest reference without rebuilding the
+  // EditorView. Until Commit B adds `ySyncPluginKey` to the Yjs
+  // UndoManager's trackedOrigins, calling this has no production
+  // effect — but the plumbing lets Commit B land atomically.
+  forceFrame,
 }) {
   const containerRef = useRef(null);
   const viewRef = useRef(null);
@@ -178,8 +179,8 @@ function PmEditableBlock({
   const slashStateRef = useRef(slashState);
   slashStateRef.current = slashState;
   const filteredSlashRef = useRef([]);
-  const stopCapturingRef = useRef(stopCapturing);
-  stopCapturingRef.current = stopCapturing;
+  const forceFrameRef = useRef(forceFrame);
+  forceFrameRef.current = forceFrame;
 
   const editable = useMemo(() => {
     const t = block.type;
@@ -272,8 +273,8 @@ function PmEditableBlock({
       // iterates plugins in order and stops at the first handler that
       // returns true; this plugin always returns false (observational).
       wordBoundaryUndoPlugin({
-        getStopCapturing: () => {
-          const fn = stopCapturingRef.current;
+        getForceFrame: () => {
+          const fn = forceFrameRef.current;
           return typeof fn === 'function' ? fn : null;
         },
       }),

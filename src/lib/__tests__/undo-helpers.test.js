@@ -77,7 +77,14 @@ describe('makeUndoHelpers', () => {
       expect(undoManager.undoStack.length).toBe(1);
     });
 
-    it('an exception inside fn does not corrupt the UndoManager', () => {
+    it('exception inside fn leaves partial writes committed and undoable', () => {
+      // Contract for Commit C migration sites: if a multi-write gesture
+      // (paste, accept-all, drag-drop) throws partway through, the
+      // writes that landed BEFORE the throw stay applied AND remain
+      // undoable as one frame. The user can still Ctrl+Z to back out
+      // of the partial state. This matches Yjs's Y.transact semantics
+      // (no automatic rollback on throw) — the test pins the user-
+      // facing contract that depends on it.
       const { ydoc, yMap, undoManager } = ctx;
       const { withUndoFrame } = makeUndoHelpers(ydoc, undoManager);
 
@@ -86,17 +93,15 @@ describe('makeUndoHelpers', () => {
         throw new Error('boom');
       })).toThrow('boom');
 
-      // Y.transact commits whatever was written before the throw — the
-      // map entry is present and one frame is on the stack. This pins the
-      // observed behavior so Commit C migration sites know what to expect
-      // when wrapping fallible work.
+      // Partial write survives the throw.
       expect(yMap.get('a')).toBe('1');
       expect(undoManager.undoStack.length).toBe(1);
 
-      // A follow-up write coalesces into the same frame (captureTimeout
-      // window). forceFrame is the explicit "end the burst" knob.
-      ydoc.transact(() => { yMap.set('b', '2'); }, 'local-publish');
-      expect(undoManager.undoStack.length).toBe(1);
+      // The contract that matters: user can undo the partial state.
+      undoManager.undo();
+      expect(yMap.get('a')).toBe(undefined);
+      expect(undoManager.undoStack.length).toBe(0);
+      expect(undoManager.redoStack.length).toBe(1);
     });
   });
 

@@ -2636,7 +2636,7 @@ export default function SpecEditor() {
                   lintingState={lintingState}
                   lintingDispatch={setLintingState}
                   showTags={showTags}
-                  stopCapturing={collab.forceFrame}
+                  forceFrame={collab.forceFrame}
                 />
                 {focusedBlockId === block.id && (
                   <MarkSuggestions

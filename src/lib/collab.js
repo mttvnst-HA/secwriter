@@ -980,9 +980,17 @@ export function createCollabSession({
     redo() { undoManager.redo(); },
     canUndo() { return undoManager.undoStack.length > 0; },
     canRedo() { return undoManager.redoStack.length > 0; },
-    // 1h Q36 Commit A — undo helpers exposed on the session API. Dead
-    // code until Commit C migrates the 23 App.jsx `resumeHistory` sites.
-    // See src/lib/undo-helpers.js for semantics.
+    // 1h Q36 Commit A — undo helpers exposed on the session API.
+    // `forceFrame` is wired through useCollabSession + PmEditableBlock
+    // into the word-boundary-undo plugin, which calls it on every
+    // word-boundary keydown. The call is `undoManager.stopCapturing()`
+    // against the 'local-publish' capture window — has no user-visible
+    // typing effect until Commit B adds `ySyncPluginKey` to
+    // trackedOrigins (today, PM-driven ops are not tracked, so there
+    // is no capture window to end during typing). `withUndoFrame` is
+    // unused in production until Commit C migrates the 23 App.jsx
+    // `resumeHistory` sites. See src/lib/undo-helpers.js for full
+    // semantics (including the partial-write-on-exception contract).
     withUndoFrame,
     forceFrame,
     destroy() {

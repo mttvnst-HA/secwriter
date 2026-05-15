@@ -33,7 +33,19 @@
 /**
  * @param {Y.Doc} ydoc
  * @param {Y.UndoManager} undoManager
- * @returns {{ withUndoFrame: (fn: () => void) => void, forceFrame: () => void }}
+ * @returns {{
+ *   withUndoFrame: (fn: () => void) => void,
+ *   forceFrame: () => void,
+ * }}
+ *
+ * Partial-write semantic (pinned by undo-helpers.test.js):
+ *   If `fn` throws partway through, the writes that landed BEFORE the
+ *   throw stay applied AND remain undoable as a single frame — Yjs's
+ *   `Y.transact` does not auto-rollback on exception. Commit C
+ *   migration sites that wrap fallible work do NOT need a surrounding
+ *   try/catch to "undo on failure"; a single Ctrl+Z reverts the partial
+ *   state. The throw still propagates to the caller, so caller-level
+ *   error handling (toast, log, etc.) remains the caller's job.
  */
 export function makeUndoHelpers(ydoc, undoManager) {
   return {
