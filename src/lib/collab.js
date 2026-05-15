@@ -69,6 +69,7 @@ import { applyHtmlToYText, yTextToHtml, htmlToAttrList, seedYTextFromHtml } from
 import { htmlToPmFragment, pmFragmentToHtml } from './pmdoc-html.js';
 import { tableToYStructure, yStructureToTable, diffTableForPublish, applyTableCellEdits } from './ytable-crdt.js';
 import { refToYStructure, yStructureToRef, applyRefEdits } from './yref-crdt.js';
+import { makeUndoHelpers } from './undo-helpers.js';
 
 // Collab server URLs — App.jsx imports DEFAULT_HTTP_URL from here.
 // Port defaults must match server/collab-server.cjs (PORT / HTTP_PORT).
@@ -891,9 +892,19 @@ export function createCollabSession({
   // structural changes (insert/delete/reorder) and field changes are both
   // undoable, and both are scoped to the local-publish origin so Ctrl+Z
   // never reverts a remote user's edits.
+  //
+  // captureTimeout is pinned to the Yjs default (500ms) so the value is
+  // discoverable here when Commit B's `ySyncPluginKey` addition lands and
+  // the word-boundary-undo plugin starts producing word-sized frames.
+  // The trackedOrigins set is intentionally NOT expanded in Commit A —
+  // adding `ySyncPluginKey` here without the App-side Ctrl+Z routing
+  // change would silently break in-room PM undo (see Q36 adversarial
+  // review, finding #1). Commit B lands both changes atomically.
   const undoManager = new Y.UndoManager([yOrder, yStore], {
     trackedOrigins: new Set(['local-publish']),
+    captureTimeout: 500,
   });
+  const { withUndoFrame, forceFrame } = makeUndoHelpers(ydoc, undoManager);
 
   return {
     ydoc,
@@ -969,6 +980,11 @@ export function createCollabSession({
     redo() { undoManager.redo(); },
     canUndo() { return undoManager.undoStack.length > 0; },
     canRedo() { return undoManager.redoStack.length > 0; },
+    // 1h Q36 Commit A — undo helpers exposed on the session API. Dead
+    // code until Commit C migrates the 23 App.jsx `resumeHistory` sites.
+    // See src/lib/undo-helpers.js for semantics.
+    withUndoFrame,
+    forceFrame,
     destroy() {
       ydoc.off('afterTransaction', handleAfterTx);
       awareness.off('change', handleAwareness);

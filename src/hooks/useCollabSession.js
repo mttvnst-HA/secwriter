@@ -100,6 +100,14 @@ import {
  * @property {() => boolean} tryRedo
  * @property {() => boolean} canUndo  False when no session.
  * @property {() => boolean} canRedo
+ * @property {(fn: () => void) => void} withUndoFrame
+ *   1h Q36 Commit A — wraps `fn` in ydoc.transact(fn, 'local-publish').
+ *   No-op when no session. Used by Commit C migration sites that need
+ *   multi-write user gestures to collapse to one undo frame.
+ * @property {() => void} forceFrame
+ *   1h Q36 Commit A — ends the current UndoManager capture window so
+ *   the next 'local-publish' write starts a fresh frame. No-op when no
+ *   session.
  * @property {Y.Map|null} yStore
  *   The session's per-block Y.Map<string, Y.Map> — exposed so App can
  *   compute `activeYStore = inRoom ? collab.yStore : localYStore` and
@@ -513,6 +521,32 @@ export function useCollabSession({
     return session ? session.canRedo() : false;
   }, []);
 
+  // 1h Q36 Commit A — undo helpers. Stable function identities returned
+  // from useCallback so App-level memos that depend on them don't re-run
+  // unnecessarily. Each call reads sessionRef.current so a session
+  // create/destroy cycle picks up the latest helpers without a
+  // re-render. No-op when no session is live.
+  const withUndoFrame = useCallback((fn) => {
+    const session = sessionRef.current;
+    if (session && typeof session.withUndoFrame === 'function') {
+      session.withUndoFrame(fn);
+      return;
+    }
+    // No session — just run fn so callers that don't care about Yjs
+    // framing (e.g. setBlocks-only sites) still execute. The Commit B
+    // out-of-room hook will route through its own local-substrate
+    // helpers; until then the bare invocation matches today's behavior.
+    fn();
+  }, []);
+
+  const forceFrame = useCallback(() => {
+    const session = sessionRef.current;
+    if (session && typeof session.forceFrame === 'function') {
+      session.forceFrame();
+    }
+    // No session — no UndoManager to end a capture on. No-op.
+  }, []);
+
   return {
     dispatchComment,
     markTcSeqApplied,
@@ -520,6 +554,8 @@ export function useCollabSession({
     tryRedo,
     canUndo,
     canRedo,
+    withUndoFrame,
+    forceFrame,
     yStore,
   };
 }

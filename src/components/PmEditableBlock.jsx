@@ -61,6 +61,7 @@ import { BLOCK_MARGINS } from '../lib/ini-config.js';
 import { slashMenuPlugin, slashMenuPluginKey } from '../lib/pm-plugins/slash-menu.js';
 import { tagLabelsPlugin, setTagsVisible } from '../lib/pm-plugins/tag-labels.js';
 import { blockKeymap } from '../lib/pm-plugins/keymap.js';
+import { wordBoundaryUndoPlugin } from '../lib/pm-plugins/word-boundary-undo.js';
 import { registerBlock, unregisterBlock } from '../lib/block-registry.js';
 import { subscribeBlock } from '../lib/block-html-store.js';
 import { dispatchDelAction } from '../lib/pm-del-popup.js';
@@ -113,6 +114,13 @@ function PmEditableBlock({
   lintingDispatch,
   showTags = false,
   readOnly = false,
+  // 1h Q36 Commit A — wired to App's `collab.forceFrame`. The word-
+  // boundary plugin reads this through a ref on every keydown so a
+  // session create/destroy cycle picks up the latest reference without
+  // rebuilding the EditorView. Until Commit B adds `ySyncPluginKey` to
+  // the Yjs UndoManager's trackedOrigins, calling this is functionally a
+  // no-op — but the plumbing in place lets Commit B land atomically.
+  stopCapturing,
 }) {
   const containerRef = useRef(null);
   const viewRef = useRef(null);
@@ -170,6 +178,8 @@ function PmEditableBlock({
   const slashStateRef = useRef(slashState);
   slashStateRef.current = slashState;
   const filteredSlashRef = useRef([]);
+  const stopCapturingRef = useRef(stopCapturing);
+  stopCapturingRef.current = stopCapturing;
 
   const editable = useMemo(() => {
     const t = block.type;
@@ -256,6 +266,17 @@ function PmEditableBlock({
       slashMenuPlugin(),
       tagLabelsPlugin({ initialVisible: !!showTags }),
       activeCommentPlugin(),
+      // 1h Q36 Commit A — must precede blockKeymap so its handleKeyDown
+      // observes word-boundary keys BEFORE blockKeymap might consume
+      // Enter (slash-menu selection) or Tab (OLI level change). PM
+      // iterates plugins in order and stops at the first handler that
+      // returns true; this plugin always returns false (observational).
+      wordBoundaryUndoPlugin({
+        getStopCapturing: () => {
+          const fn = stopCapturingRef.current;
+          return typeof fn === 'function' ? fn : null;
+        },
+      }),
       blockKeymap({
         getBlockId: () => block.id,
         getBlockType: () => blockTypeRef.current,
