@@ -13,6 +13,7 @@ import {
   cancelPendingUpdateById,
 } from '../lib/block-registry.js';
 import { pmFragmentToHtml } from '../lib/pmdoc-html.js';
+import { saveSelection as savePmRelpos, restoreSelection as restorePmRelpos } from '../lib/pm-relpos.js';
 
 /**
  * Inline mark types available in the floating toolbar.
@@ -43,6 +44,21 @@ const REVISION_TYPES = [
   { tag: "ADD", cls: "mark-add", label: "ADD", title: "Mark as Addition", color: "#008000", bg: "#f0fdf4", htmlTag: "ins" },
   { tag: "DEL", cls: "mark-del", label: "DEL", title: "Mark as Deletion", color: "#ff4444", bg: "#fef2f2", htmlTag: "del" },
 ];
+
+/**
+ * 1g.7 (#88) — restore the saved Y.RelativePosition onto the view's
+ * current state before dispatching a PM tr. If the saved relpos is null
+ * (legacy/ref/table block) or restore fails (no binding, cross-fragment),
+ * this is a no-op and the caller proceeds with whatever the view's
+ * current selection is — same as pre-1g.7 behavior. The benefit only
+ * accrues to PM-mounted blocks when a peer's edit lands between toolbar
+ * open and action click.
+ */
+function restoreSavedRelpos(view, saved) {
+  if (!view || !saved || !saved.savedRelpos) return;
+  try { restorePmRelpos(view, saved.savedRelpos); }
+  catch { /* defensive — fall back to view.state.selection unchanged */ }
+}
 
 export default function FloatingToolbar({
   editorRef,
@@ -117,11 +133,27 @@ export default function FloatingToolbar({
     // Extract blockId: from data-block-id attribute or from id="block-xxx"
     const blockId = blockEl.dataset.blockId || blockEl.id?.replace(/^block-/, '') || null;
 
+    // 1g.7 (#88) — save a Y.RelativePosition tuple for PM-mounted blocks.
+    // Used by PM-path action handlers to restore the view's selection
+    // right before dispatching a tr, so a peer's edit between toolbar
+    // open and click doesn't shift the action off the user's intended
+    // target. Falls back to the DOM Range for legacy / ref / table blocks
+    // (no PM view registered → savedRelpos === null).
+    let savedRelpos = null;
+    if (blockId) {
+      const view = getBlockView(blockId);
+      if (view) {
+        try { savedRelpos = savePmRelpos(view); }
+        catch { savedRelpos = null; }
+      }
+    }
+
     selectionRef.current = {
       range: range.cloneRange(),
       blockId,
       blockEl,
       isRefBlock: refBlock,
+      savedRelpos,
     };
 
     // Position above the selection
@@ -202,6 +234,10 @@ export default function FloatingToolbar({
 
     if (view) {
       // PM path — read selection from PM state.
+      // 1g.7 (#88): restore the Y.RelativePosition-anchored selection so a
+      // peer's edit between toolbar open and click doesn't shift the action
+      // off the user's intended target.
+      restoreSavedRelpos(view, saved);
       const kindMap = { 'mark-rid': 'rid', 'mark-srf': 'srf', 'mark-sub': 'sub' };
       const kind = kindMap[markType.cls];
       if (!kind) return;
@@ -253,7 +289,8 @@ export default function FloatingToolbar({
     const view = blockId ? getBlockView(blockId) : null;
 
     if (view) {
-      // PM path
+      // PM path — 1g.7 (#88): restore relpos before dispatch.
+      restoreSavedRelpos(view, saved);
       const kind = revType.tag === 'ADD' ? 'add' : 'del';
       const tr = applyRevisionTr(view.state, kind, {
         authorId: identity?.id ?? null,
@@ -307,7 +344,8 @@ export default function FloatingToolbar({
     const view = blockId ? getBlockView(blockId) : null;
 
     if (view) {
-      // PM path
+      // PM path — 1g.7 (#88): restore relpos before dispatch.
+      restoreSavedRelpos(view, saved);
       const tr = applyChangeCaseTr(view.state);
       if (tr) {
         view.dispatch(tr);
@@ -348,7 +386,12 @@ export default function FloatingToolbar({
     const view = blockId ? getBlockView(blockId) : null;
 
     if (view) {
-      // PM path
+      // PM path — 1g.7 (#88): restore relpos before dispatch. For the
+      // inline TC resolve case the resolved position is what governs
+      // which mark gets accepted/rejected — the relpos restore is
+      // particularly valuable here, since a peer's edit can shift the
+      // mark's text away from where the user clicked the popup.
+      restoreSavedRelpos(view, saved);
       const tr = applyInlineRevisionResolveTr(view.state, action);
       if (tr) {
         view.dispatch(tr);
@@ -422,7 +465,8 @@ export default function FloatingToolbar({
     const view = blockId ? getBlockView(blockId) : null;
 
     if (view) {
-      // PM path
+      // PM path — 1g.7 (#88): restore relpos before dispatch.
+      restoreSavedRelpos(view, saved);
       const kindMap = { 'BLD': 'bold', 'ITA': 'italic', 'UND': 'underline' };
       const kind = kindMap[formatType.tag];
       if (!kind) return;
@@ -656,7 +700,8 @@ export default function FloatingToolbar({
               const view = blockId ? getBlockView(blockId) : null;
 
               if (view && !refBlock) {
-                // PM path — dispatch addMark, then sync App state via flush.
+                // PM path — 1g.7 (#88): restore relpos before dispatch.
+                restoreSavedRelpos(view, selectionRef.current);
                 const { from, to } = view.state.selection;
                 if (from === to) { setVisible(false); return; }
                 const commentId = `comment-${Date.now()}`;
