@@ -80,12 +80,23 @@ export function useLocalSubstrateUndoManager(substrate) {
   // means each setup phase produces a fresh, live manager and each
   // cleanup destroys exactly that manager. The initial state seed makes
   // the API live before the effect commits (synchronous reads work).
+  //
+  // Replacement pattern: when the effect runs, it creates a fresh manager
+  // and uses a `setUndoManager(prev => …)` updater to destroy the prior
+  // manager (the useState seed on first mount, the StrictMode cleanup's
+  // already-destroyed instance on the second setup) before returning the
+  // new one. This avoids the M1-leaks-an-observer wart where the useState
+  // seed's afterTransaction handler stayed attached for the App's lifetime
+  // and silently captured duplicate StackItems alongside the live manager.
   // Pinned by the StrictMode test in useLocalSubstrateUndoManager.test.jsx.
   const [undoManager, setUndoManager] = useState(() => makeUndoManager(yOrder, yStore));
 
   useEffect(() => {
     const mgr = makeUndoManager(yOrder, yStore);
-    setUndoManager(mgr);
+    setUndoManager(prev => {
+      if (prev && prev !== mgr) prev.destroy();
+      return mgr;
+    });
     return () => { mgr.destroy(); };
   }, [yOrder, yStore]);
 

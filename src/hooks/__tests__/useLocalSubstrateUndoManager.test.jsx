@@ -217,6 +217,29 @@ describe('useLocalSubstrateUndoManager', () => {
       expect(substrate.yStore.has('b1')).toBe(false);
     });
 
+    it('leaves no afterTransaction observer attached after unmount', () => {
+      // Regression: the original Commit B implementation used a `useState`
+      // seed that created an UndoManager immediately on first render, then
+      // the effect created a second manager and called setUndoManager —
+      // but the seed manager was never destroyed. Its afterTransaction
+      // observer stayed attached to the ydoc for the App's lifetime,
+      // silently capturing duplicate StackItems alongside the live
+      // manager. Symptom-wise this was invisible (canUndo reads the live
+      // manager's stack, not the leak's), so a behavioral test couldn't
+      // catch it. This test reaches into the ydoc's internal observer
+      // map to verify zero net handlers remain after the hook unmounts.
+      // Pins the leak fix landed alongside this test.
+      function afterTxObservers() {
+        return substrate.ydoc._observers?.get('afterTransaction')?.size || 0;
+      }
+      const baseline = afterTxObservers();
+
+      const { unmount } = renderHook(() => useLocalSubstrateUndoManager(substrate));
+      unmount();
+
+      expect(afterTxObservers()).toBe(baseline);
+    });
+
     it('post-unmount writes do NOT enter the destroyed manager (observer detached)', () => {
       // Y.UndoManager.destroy() removes its afterTransaction observer
       // (per yjs source) but keeps the in-memory stacks intact. The
