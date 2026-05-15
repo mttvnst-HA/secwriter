@@ -125,71 +125,95 @@ describe('applyInlineMarkTr', () => {
   });
 });
 
-describe('applyRevisionTr', () => {
-  it('applies ADD with current authorId', () => {
+describe('applyRevisionTr (1g.6 #87 — dispatches by MarkType)', () => {
+  it('applies ADD with current authorId via revisionAdd MarkType', () => {
     const doc = docOf(txt('hello'));
     const state = stateOf(doc, 1, 6);
     const tr = applyRevisionTr(state, 'add', { authorId: 'A', authorColor: '#f00' });
     const newState = state.apply(tr);
     const mark = findFirstMatchingMark(
-      newState.doc, 1, 6, schema.marks.revision, () => true,
+      newState.doc, 1, 6, schema.marks.revisionAdd, () => true,
     );
     expect(mark).not.toBeNull();
-    expect(mark.attrs.kind).toBe('add');
+    expect(mark.type.name).toBe('revisionAdd');
     expect(mark.attrs.authorId).toBe('A');
     expect(mark.attrs.authorColor).toBe('#f00');
   });
 
-  it('toggles off when ALL revisions in range match current (kind, authorId)', () => {
-    const add = schema.marks.revision.create({ kind: 'add', authorId: 'A' });
+  it('applies DEL via revisionDel MarkType (not revisionAdd)', () => {
+    const doc = docOf(txt('hello'));
+    const state = stateOf(doc, 1, 6);
+    const tr = applyRevisionTr(state, 'del', { authorId: 'A' });
+    const newState = state.apply(tr);
+    expect(findFirstMatchingMark(newState.doc, 1, 6, schema.marks.revisionDel, () => true)).not.toBeNull();
+    expect(findFirstMatchingMark(newState.doc, 1, 6, schema.marks.revisionAdd, () => true)).toBeNull();
+  });
+
+  it('returns null for unknown kind', () => {
+    const doc = docOf(txt('hello'));
+    const state = stateOf(doc, 1, 6);
+    expect(applyRevisionTr(state, 'bogus', { authorId: 'A' })).toBeNull();
+  });
+
+  it('toggles off when ALL same-MarkType marks in range match current authorId', () => {
+    const add = schema.marks.revisionAdd.create({ authorId: 'A' });
     const doc = docOf(txt('hello', add));
     const state = stateOf(doc, 1, 6);
     const tr = applyRevisionTr(state, 'add', { authorId: 'A' });
     const newState = state.apply(tr);
     expect(findFirstMatchingMark(
-      newState.doc, 1, 6, schema.marks.revision, () => true,
+      newState.doc, 1, 6, schema.marks.revisionAdd, () => true,
     )).toBeNull();
   });
 
-  it('cross-author: B applies ADD over A\'s ADD — current author\'s mark wins', () => {
-    // Under default excludes: '_', two revision marks cannot coexist on a
-    // text node. The multi-author safety property is: B's apply does NOT
-    // silently remove A's mark via toggle-off detection (which would happen
-    // if stock rangeHasMark were used — it returns true on A's mark, the
-    // toggle calls removeMark, A's mark is stripped, no new mark applied).
-    // Correct behavior: detection queries (kind === 'add' && authorId === 'B')
-    // and returns null → fall through to addMark with B's identity → B's
-    // mark replaces A's. The user-visible result is "B's mark is now on
-    // the text" — not "A's mark survived".
-    const addA = schema.marks.revision.create({ kind: 'add', authorId: 'A' });
+  it('cross-author: B applies ADD over A\'s ADD — both marks coexist under excludes: ""', () => {
+    // 1g.6 change: schema now uses `excludes: ''`, so adding B's revisionAdd
+    // does NOT remove A's revisionAdd. Both authors' marks coexist on the
+    // same character — multi-author audit trail preserved.
+    const addA = schema.marks.revisionAdd.create({ authorId: 'A' });
     const doc = docOf(txt('hello', addA));
     const state = stateOf(doc, 1, 6);
     const tr = applyRevisionTr(state, 'add', { authorId: 'B' });
     expect(tr).not.toBeNull();
     const newState = state.apply(tr);
-    const markB = findFirstMatchingMark(
-      newState.doc, 1, 6, schema.marks.revision, (a) => a.authorId === 'B',
+    const markA = findFirstMatchingMark(
+      newState.doc, 1, 6, schema.marks.revisionAdd, (a) => a.authorId === 'A',
     );
+    const markB = findFirstMatchingMark(
+      newState.doc, 1, 6, schema.marks.revisionAdd, (a) => a.authorId === 'B',
+    );
+    expect(markA).not.toBeNull();
     expect(markB).not.toBeNull();
   });
 
-  it('mixed-author range: A clicks ADD across [A-add][B-add] — toggle-off does NOT fire', () => {
+  it('cross-kind: ADD by A + DEL by A — both MarkTypes coexist on the same character', () => {
+    // PM's default cross-MarkType behavior already allows coexistence; the
+    // schema split makes ADD and DEL distinct MarkTypes, so applying DEL
+    // over an existing ADD layers the marks instead of replacing.
+    const addA = schema.marks.revisionAdd.create({ authorId: 'A' });
+    const doc = docOf(txt('hello', addA));
+    const state = stateOf(doc, 1, 6);
+    const tr = applyRevisionTr(state, 'del', { authorId: 'A' });
+    const newState = state.apply(tr);
+    expect(findFirstMatchingMark(newState.doc, 1, 6, schema.marks.revisionAdd, () => true)).not.toBeNull();
+    expect(findFirstMatchingMark(newState.doc, 1, 6, schema.marks.revisionDel, () => true)).not.toBeNull();
+  });
+
+  it('mixed-author range: A clicks ADD across [A-add][B-add] — toggle-off does NOT fire (safety check)', () => {
     // The rangeAllHaveMarkWithAttrs check returns false (not all positions
-    // are A's), so the toggle-off branch is skipped. Fall through to
-    // addMark applies A's mark across the full range, replacing B's.
-    // Important: we are testing the SAFETY CHECK ("don't toggle off"),
-    // not that B's mark survives — under default excludes it cannot.
-    const addA = schema.marks.revision.create({ kind: 'add', authorId: 'A' });
-    const addB = schema.marks.revision.create({ kind: 'add', authorId: 'B' });
+    // are A's), so the toggle-off branch is skipped. Fall through applies
+    // A's revisionAdd across the full range. Under excludes: '', B's mark
+    // survives too — both coexist on the [B-add] segment.
+    const addA = schema.marks.revisionAdd.create({ authorId: 'A' });
+    const addB = schema.marks.revisionAdd.create({ authorId: 'B' });
     const doc = docOf(txt('aa', addA), txt('bb', addB));
     const state = stateOf(doc, 1, 5);
     const tr = applyRevisionTr(state, 'add', { authorId: 'A' });
     expect(tr).not.toBeNull();
     const newState = state.apply(tr);
-    const stillSomeRevision = findFirstMatchingMark(
-      newState.doc, 1, 5, schema.marks.revision, () => true,
-    );
-    expect(stillSomeRevision).not.toBeNull();
+    expect(findFirstMatchingMark(
+      newState.doc, 1, 5, schema.marks.revisionAdd, () => true,
+    )).not.toBeNull();
   });
 
   it('returns null on empty selection', () => {
@@ -199,9 +223,10 @@ describe('applyRevisionTr', () => {
   });
 });
 
-describe('applyInlineRevisionResolveTr', () => {
+describe('applyInlineRevisionResolveTr (1g.6 — tries Add/Del/Chg in order)', () => {
   function docWithMark(kind, text = 'word') {
-    const m = schema.marks.revision.create({ kind, authorId: 'A' });
+    const markTypeName = kind === 'add' ? 'revisionAdd' : kind === 'del' ? 'revisionDel' : 'revisionChg';
+    const m = schema.marks[markTypeName].create({ authorId: 'A' });
     return docOf(txt('xx'), txt(text, m), txt('yy'));
   }
 
@@ -212,7 +237,7 @@ describe('applyInlineRevisionResolveTr', () => {
     expect(tr).not.toBeNull();
     const newState = state.apply(tr);
     expect(findFirstMatchingMark(
-      newState.doc, 3, 7, schema.marks.revision, () => true,
+      newState.doc, 3, 7, schema.marks.revisionAdd, () => true,
     )).toBeNull();
     expect(tr.storedMarks).toEqual([]);
   });
@@ -239,9 +264,21 @@ describe('applyInlineRevisionResolveTr', () => {
     const tr = applyInlineRevisionResolveTr(state, 'reject');
     const newState = state.apply(tr);
     expect(findFirstMatchingMark(
-      newState.doc, 3, 7, schema.marks.revision, () => true,
+      newState.doc, 3, 7, schema.marks.revisionDel, () => true,
     )).toBeNull();
     expect(tr.storedMarks).toEqual([]);
+  });
+
+  it('accept CHG strips the mark (content stays — CHG is a record, not a pending edit)', () => {
+    const doc = docWithMark('chg');
+    const state = stateOf(doc, 5);
+    const tr = applyInlineRevisionResolveTr(state, 'accept');
+    expect(tr).not.toBeNull();
+    const newState = state.apply(tr);
+    expect(newState.doc.textContent).toBe('xxwordyy');
+    expect(findFirstMatchingMark(
+      newState.doc, 3, 7, schema.marks.revisionChg, () => true,
+    )).toBeNull();
   });
 
   it('cursor at immediate right boundary of mark resolves the mark', () => {
@@ -255,6 +292,42 @@ describe('applyInlineRevisionResolveTr', () => {
     const doc = docOf(txt('plain text'));
     const state = stateOf(doc, 5);
     expect(applyInlineRevisionResolveTr(state, 'accept')).toBeNull();
+  });
+
+  it('1g.6: tries Add → Del → Chg in declared order; first hit wins', () => {
+    // Position has both revisionAdd and revisionDel — resolver tries Add
+    // first (declared first in schema), so accept ADD strips the mark
+    // (keeps content), leaving the DEL mark intact.
+    const add = schema.marks.revisionAdd.create({ authorId: 'A' });
+    const del = schema.marks.revisionDel.create({ authorId: 'B' });
+    const doc = docOf(txt('xx'), txt('overlap', add, del), txt('yy'));
+    const state = stateOf(doc, 5);
+    const tr = applyInlineRevisionResolveTr(state, 'accept');
+    const newState = state.apply(tr);
+    // ADD stripped (accept-ADD = strip), text preserved
+    expect(newState.doc.textContent).toBe('xxoverlapyy');
+    // ADD is gone
+    expect(findFirstMatchingMark(
+      newState.doc, 3, 10, schema.marks.revisionAdd, () => true,
+    )).toBeNull();
+    // DEL survives
+    expect(findFirstMatchingMark(
+      newState.doc, 3, 10, schema.marks.revisionDel, () => true,
+    )).not.toBeNull();
+  });
+
+  it('1g.6: kindHint constrains resolution to a specific MarkType (del-popup use case)', () => {
+    // The del-popup knows the user clicked a <del> element. Pass kindHint
+    // 'del' to resolve only the DEL, even when both ADD and DEL exist at
+    // the position.
+    const add = schema.marks.revisionAdd.create({ authorId: 'A' });
+    const del = schema.marks.revisionDel.create({ authorId: 'B' });
+    const doc = docOf(txt('xx'), txt('overlap', add, del), txt('yy'));
+    const state = stateOf(doc, 5);
+    const tr = applyInlineRevisionResolveTr(state, 'accept', undefined, 'del');
+    const newState = state.apply(tr);
+    // DEL accept = delete range; "overlap" is removed
+    expect(newState.doc.textContent).toBe('xxyy');
   });
 });
 

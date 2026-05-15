@@ -5,6 +5,22 @@
  * into an HTML string that EditableBlock can render.
  *
  * Nesting order (outermost → innermost): comment → revision → mark → format
+ *
+ * Sub-PR 1g.6 (#87) note: pm-schema.js split the single `revision` PM
+ * MarkType into `revisionAdd / revisionDel / revisionChg`. This module
+ * still uses the LEGACY single `revision` attr key on Y.Text deltas. The
+ * two formats coexist because they live on different substrates:
+ *   - PM-substrate blocks (post-1d Y.XmlFragment) — pmdoc-html.js handles
+ *     emission with per-kind keys. Cross-author cross-kind marks render
+ *     as nested wrappers.
+ *   - Legacy migrationPartial blocks (Y.Text holdouts that failed 1d
+ *     migration) — this module handles emission with the legacy single
+ *     `revision` key. Multi-kind content is not representable in Y.Text
+ *     format, so the layered shape never arises here.
+ * Byte-stability for single-author single-kind content is preserved
+ * across both paths: both emit the identical HTML for the common case.
+ * Mirror change in the file is intentionally minimal — there's nothing
+ * in the legacy substrate that the schema split affects.
  */
 
 /**
