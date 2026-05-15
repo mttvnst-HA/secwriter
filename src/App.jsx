@@ -45,6 +45,7 @@ import { findHighlightTargetsInBlock } from "./lib/compliance-ranges.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
 import { getRoomFromUrl, buildRoomUrl, generateRoomId, DEFAULT_HTTP_URL, applyBlocksToYDoc } from "./lib/collab.js";
 import { useCollabSession } from "./hooks/useCollabSession.js";
+import { useLocalSubstrateUndoManager } from "./hooks/useLocalSubstrateUndoManager.js";
 import * as cm from "./lib/comments.js";
 import { loadIdentity } from "./lib/identity.js";
 import { getToken, onTokenRefresh, getAuthMode, signOut as authSignOut, getIdentity } from './lib/auth-client.js';
@@ -151,6 +152,12 @@ export default function SpecEditor() {
     seedBlockArray(ydoc, yOrder, yStore, INITIAL_BLOCKS);
     return { ydoc, yOrder, yStore };
   });
+  // Sub-PR 1h Q36 Commit B — out-of-room Yjs UndoManager. Mirrors the
+  // in-room collab session's UndoManager config (`'local-publish'` +
+  // `ySyncPluginKey`, captureTimeout 500ms). App's Ctrl+Z handler routes
+  // to this when there's no collab session, so PM-mode typing-grain undo
+  // works identically in and out of rooms.
+  const localUndo = useLocalSubstrateUndoManager(localSubstrate);
   // Ref to the active substrate's yStore so callbacks declared before the
   // useCollabSession call (which is where the session yStore comes from)
   // can still reach it without a temporal-dead-zone reference. Updated
@@ -1581,15 +1588,31 @@ export default function SpecEditor() {
   // current substrate at call time, not the initial one.
   activeYStoreRef.current = activeYStore;
 
-  // Keyboard listener for undo/redo and search
+  // Keyboard listener for undo/redo and search.
+  //
+  // 1h Q36 Commit B — undo routing. Three sources, preferred in order:
+  //   1. collab.tryUndo()        — in-room Yjs UndoManager (no-op if no session)
+  //   2. localUndo.tryUndo()     — out-of-room Yjs UndoManager (always alive;
+  //                                empty when in-room because all writes route
+  //                                to collab.yStore, leaving localSubstrate
+  //                                dormant per `activeYStore` selection)
+  //   3. undo()                  — useUndoableBlocks snapshot stack (legacy
+  //                                fallback; 1i retires it with the legacy
+  //                                contentEditable path)
+  //
+  // tryUndo returns true iff it popped a frame; falling through to the next
+  // source lets a Ctrl+Z on a structural change (publishBlocks → Yjs op)
+  // beat the legacy snapshot stack, while structural-only sites (ref/table
+  // blocks that don't go through any Yjs origin we track) still get undone
+  // via the snapshot stack. Same pattern for redo.
   useEffect(() => {
     const handler = (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
         e.preventDefault();
-        if (!collab.tryUndo()) undo();
+        if (!collab.tryUndo() && !localUndo.tryUndo()) undo();
       } else if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
         e.preventDefault();
-        if (!collab.tryRedo()) redo();
+        if (!collab.tryRedo() && !localUndo.tryRedo()) redo();
       } else if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
         e.preventDefault();
         setSearchOpen(true);
@@ -1612,9 +1635,12 @@ export default function SpecEditor() {
     };
     document.addEventListener('keydown', handler);
     return () => document.removeEventListener('keydown', handler);
-    // collab.tryUndo / tryRedo are stable (useCallback with empty deps in
-    // the hook), so omitting `collab` from deps is safe — including it
-    // would cause the listener to re-bind every render.
+    // collab.tryUndo/tryRedo and localUndo.tryUndo/tryRedo are stable —
+    // both hooks memoize them on the underlying UndoManager identity,
+    // which is itself memoized on substrate identity (App's
+    // `useState(() => …)` for localSubstrate, session ref for collab).
+    // Omitting them from deps prevents the listener re-binding every
+    // render; closure reads `.current`-style each invocation regardless.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [undo, redo, handleSave, zoomIn, zoomOut, zoomReset]);
 
@@ -2636,7 +2662,7 @@ export default function SpecEditor() {
                   lintingState={lintingState}
                   lintingDispatch={setLintingState}
                   showTags={showTags}
-                  forceFrame={collab.forceFrame}
+                  forceFrame={inRoom ? collab.forceFrame : localUndo.forceFrame}
                 />
                 {focusedBlockId === block.id && (
                   <MarkSuggestions

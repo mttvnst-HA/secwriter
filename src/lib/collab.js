@@ -64,7 +64,7 @@
 
 import * as Y from 'yjs';
 import { WebsocketProvider } from 'y-websocket';
-import { prosemirrorToYXmlFragment } from 'y-prosemirror';
+import { prosemirrorToYXmlFragment, ySyncPluginKey } from 'y-prosemirror';
 import { applyHtmlToYText, yTextToHtml, htmlToAttrList, seedYTextFromHtml } from './ytext-html.js';
 import { htmlToPmFragment, pmFragmentToHtml } from './pmdoc-html.js';
 import { tableToYStructure, yStructureToTable, diffTableForPublish, applyTableCellEdits } from './ytable-crdt.js';
@@ -890,18 +890,44 @@ export function createCollabSession({
 
   // Undo manager scoped to our own edits. Track both yOrder and yStore so
   // structural changes (insert/delete/reorder) and field changes are both
-  // undoable, and both are scoped to the local-publish origin so Ctrl+Z
-  // never reverts a remote user's edits.
+  // undoable. Two origins are captured:
   //
-  // captureTimeout is pinned to the Yjs default (500ms) so the value is
-  // discoverable here when Commit B's `ySyncPluginKey` addition lands and
-  // the word-boundary-undo plugin starts producing word-sized frames.
-  // The trackedOrigins set is intentionally NOT expanded in Commit A —
-  // adding `ySyncPluginKey` here without the App-side Ctrl+Z routing
-  // change would silently break in-room PM undo (see Q36 adversarial
-  // review, finding #1). Commit B lands both changes atomically.
+  //   'local-publish'   — `setBlockHtml` (binder writes from legacy
+  //                       contentEditable + PmEditableBlock's debounced
+  //                       onUpdate echo), `publishBlocks` (structural
+  //                       changes via App), and click-driven Yjs writes
+  //                       in `*ToDoc` helpers below. Scoped to local user
+  //                       so Ctrl+Z never reverts a remote peer's edit.
+  //
+  //   ySyncPluginKey    — y-prosemirror's `ySyncPlugin` writes Yjs ops
+  //                       with this Y origin for every PM-driven
+  //                       transaction (per-keystroke substrate updates
+  //                       on local typing). Tracking it makes PM mode's
+  //                       Ctrl+Z work at character granularity, gated
+  //                       by the word-boundary-undo plugin's forceFrame
+  //                       call (split frames at space/punctuation/Enter).
+  //                       Remote-applied transactions also flow through
+  //                       ySyncPluginKey, but they originate on a peer
+  //                       client — y-prosemirror tags them with that
+  //                       client's clientID rather than the local doc's,
+  //                       so Y.UndoManager's clientID gate filters them
+  //                       out and Ctrl+Z stays scoped to local edits.
+  //
+  // captureTimeout is the Yjs default (500ms): adjacent same-origin ops
+  // within 500ms coalesce into one undo frame. The word-boundary plugin
+  // calls `forceFrame` (→ `undoManager.stopCapturing()`) on space /
+  // punctuation / Enter keydowns to split typing bursts into per-word
+  // frames, matching Word/Notion convention.
+  //
+  // Known limitation (dual-stack-no-coalescing wart — documented in
+  // CLAUDE.md): App-level `useUndoableBlocks` snapshots also capture
+  // every setBlocks call. After a PM keystroke or structural change,
+  // both stacks contain a corresponding frame; Ctrl+Z routes to this
+  // Yjs UndoManager first via App's keyboard handler, leaving the
+  // snapshot stack stale. The 1i sub-PR retires `useUndoableBlocks` and
+  // the wart goes away.
   const undoManager = new Y.UndoManager([yOrder, yStore], {
-    trackedOrigins: new Set(['local-publish']),
+    trackedOrigins: new Set(['local-publish', ySyncPluginKey]),
     captureTimeout: 500,
   });
   const { withUndoFrame, forceFrame } = makeUndoHelpers(ydoc, undoManager);
@@ -980,15 +1006,13 @@ export function createCollabSession({
     redo() { undoManager.redo(); },
     canUndo() { return undoManager.undoStack.length > 0; },
     canRedo() { return undoManager.redoStack.length > 0; },
-    // 1h Q36 Commit A — undo helpers exposed on the session API.
-    // `forceFrame` is wired through useCollabSession + PmEditableBlock
-    // into the word-boundary-undo plugin, which calls it on every
-    // word-boundary keydown. The call is `undoManager.stopCapturing()`
-    // against the 'local-publish' capture window — has no user-visible
-    // typing effect until Commit B adds `ySyncPluginKey` to
-    // trackedOrigins (today, PM-driven ops are not tracked, so there
-    // is no capture window to end during typing). `withUndoFrame` is
-    // unused in production until Commit C migrates the 23 App.jsx
+    // 1h Q36 — undo helpers exposed on the session API. `forceFrame` is
+    // wired through useCollabSession + PmEditableBlock into the
+    // word-boundary-undo plugin, which calls it on every word-boundary
+    // keydown. Commit B adds `ySyncPluginKey` to trackedOrigins, so
+    // forceFrame now splits typing bursts into per-word undo frames in
+    // production (matching Word/Notion convention). `withUndoFrame` is
+    // unused in production until Commit C migrates the App.jsx
     // `resumeHistory` sites. See src/lib/undo-helpers.js for full
     // semantics (including the partial-write-on-exception contract).
     withUndoFrame,
