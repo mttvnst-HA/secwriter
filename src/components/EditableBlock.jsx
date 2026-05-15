@@ -2,7 +2,7 @@ import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import SlashMenu, { SLASH_ITEMS } from "./SlashMenu.jsx";
 import { BLOCK_MARGINS } from "../lib/ini-config.js";
 import { cleanTaiClasses } from "../lib/tailor-profile.js";
-import { annotateDomWithDiff } from "../lib/text-diff.js";
+import { annotateDomWithDiff, getVisibleTextFromHtml } from "../lib/text-diff.js";
 import { useBlockLinting } from "./useBlockLinting.js";
 import { useBlockBinder } from "./useBlockBinder.js";
 import InlineTooltip from "./InlineTooltip.jsx";
@@ -73,7 +73,7 @@ function EditableBlock(props) {
   return <LegacyEditableBlock {...props} />;
 }
 
-function LegacyEditableBlock({ block, yStore, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, onChangeOliLevel, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, snapshotText, identity, comments, onCommentClick, onInlineFix, lintingState, lintingDispatch, showTags = false, readOnly = false }) {
+function LegacyEditableBlock({ block, yStore, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, onChangeOliLevel, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, identity, comments, onCommentClick, onInlineFix, lintingState, lintingDispatch, showTags = false, readOnly = false }) {
   const ref = useRef(null);
   const [slashOpen, setSlashOpen] = useState(false);
   const [slashFilter, setSlashFilter] = useState("");
@@ -83,6 +83,17 @@ function LegacyEditableBlock({ block, yStore, onUpdate, onEnterKey, isFocused, o
   // Track Changes annotation still runs only on blur via handleBlur — debounced fires
   // carry pre-annotation HTML; the blur publish remains source of truth for revision marks.
   const inputDebounceRef = useRef(null);
+
+  // 1h Q35 — TC baseline for blur-time diff annotation, self-contained inside
+  // the legacy path. The pre-Q35 reducer kept this in App-level
+  // `tcState.snapshots`; retiring that Map in favor of per-keystroke PM
+  // marking left this contentEditable path with no baseline. PM mode (Q33)
+  // doesn't need a snapshot at all because dispatchTransaction marks
+  // insertions at the moment they happen. Legacy retires in 1i, after which
+  // this whole branch (and `snapshotRef`) goes away. Captured at focus from
+  // `block.html` so the baseline reflects last-saved state without coupling
+  // to the App reducer.
+  const snapshotRef = useRef(null);
 
   // Y.Doc-as-source-of-truth substrate (#22 sub-PR 1b). The binder gives us
   // the live html (re-rendered on yText mutation) and a write() that pushes
@@ -269,8 +280,8 @@ function LegacyEditableBlock({ block, yStore, onUpdate, onEnterKey, isFocused, o
     }
     if (ref.current) {
       // Track Changes: annotate diff before saving
-      if (trackChanges && snapshotText != null) {
-        annotateDomWithDiff(ref.current, snapshotText, identity || null);
+      if (trackChanges && snapshotRef.current != null) {
+        annotateDomWithDiff(ref.current, snapshotRef.current, identity || null);
       }
       // Strip tag labels and TAI resolution classes before saving to state
       const html = stripTagLabels(cleanTaiClasses(ref.current.innerHTML));
@@ -278,12 +289,23 @@ function LegacyEditableBlock({ block, yStore, onUpdate, onEnterKey, isFocused, o
       // revision marks materialize on blur (matching pre-1b semantics).
       binderWrite(html);
       onUpdate(block.id, html);
+      // Clear baseline so the next focus picks up the latest saved state.
+      snapshotRef.current = null;
     }
     setTimeout(() => {
       setSlashOpen(false);
       setSlashFilter("");
     }, 150);
-  }, [block.id, onUpdate, trackChanges, snapshotText, binderWrite]);
+  }, [block.id, onUpdate, trackChanges, binderWrite]);
+
+  // 1h Q35 — capture the TC baseline at focus. Runs unconditionally (cheap)
+  // so a TC toggle mid-edit still has a baseline; handleBlur consumes only
+  // when trackChanges is true. Reads block.html (the last saved html) rather
+  // than ref.current.innerHTML so a focus event firing pre-render lands on
+  // the same baseline as a focus firing post-render.
+  const handleFocusCapture = useCallback(() => {
+    snapshotRef.current = getVisibleTextFromHtml(block.html || '');
+  }, [block.html]);
 
   const handleKeyDown = useCallback((e) => {
     // Slash menu navigation
@@ -711,6 +733,7 @@ function LegacyEditableBlock({ block, yStore, onUpdate, onEnterKey, isFocused, o
           onInput={editable ? handleInput : undefined}
           onPaste={editable ? handlePaste : undefined}
           onBlur={editable ? handleBlurWithLinting : undefined}
+          onFocus={editable ? handleFocusCapture : undefined}
           onClick={(e) => { handleDelClick(e); onFocus(block.id); }}
           style={{
             ...baseStyle,
