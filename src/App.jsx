@@ -833,6 +833,23 @@ export default function SpecEditor() {
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
   }, [resumeHistory]);
 
+  // 1h Q35 — legacy del-popup sibling of handleBlockUpdate. Wired into
+  // LegacyEditableBlock's onRevisionAction so the user gesture of clicking
+  // "Accept" / "Reject" on a del popup enters useUndoableBlocks as one
+  // undoable frame. Without resumeHistory(), a popup click landing inside
+  // the post-keystroke pause window (useUndoableBlocks auto-pauses for
+  // ~400ms after each input flush) lands a setBlocks while paused — no
+  // snapshot captured, undo silently broken. Same setBlockHtml + setBlocks
+  // body as handleBlockUpdate because the legacy popup mutates serialized
+  // HTML directly and the substrate must catch up. Goes away in 1i with
+  // the rest of the legacy contentEditable path.
+  const handleLegacyRevisionAction = useCallback((id, html) => {
+    resumeHistory();
+    const yStore = activeYStoreRef.current;
+    if (yStore) setBlockHtml(yStore, id, html);
+    setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
+  }, [resumeHistory]);
+
   // Update block HTML and sync the contentEditable DOM (used by MarkSuggestions).
   // For PM-mounted blocks the substrate write is the source of truth — the
   // EditorView re-renders via ySyncPlugin's observe — and the registry's
@@ -2381,7 +2398,7 @@ export default function SpecEditor() {
           <FloatingToolbar
             editorRef={editorRef}
             onBlockUpdate={handleBlockUpdate}
-            onRevisionAction={handleBlockUpdate}
+            onRevisionAction={handleLegacyRevisionAction}
             onRefreshTcSnapshot={handleBlockUpdatePmSync}
             trackChanges={trackChanges}
             onCommentCreate={handleCommentCreate}
@@ -2611,7 +2628,7 @@ export default function SpecEditor() {
                       return next;
                     });
                   }}
-                  onRevisionAction={handleBlockUpdate}
+                  onRevisionAction={handleLegacyRevisionAction}
                   onRefreshTcSnapshot={handleBlockUpdatePmSync}
                   commentsState={commentsState}
                   onCommentClick={handleCommentClick}

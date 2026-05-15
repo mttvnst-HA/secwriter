@@ -616,105 +616,81 @@ describe('shared Track Changes (M-shared-tc)', () => {
   // No schemaVersion bump in 1h — pre-1h clients can join post-1h rooms
   // in degraded edit-fidelity mode. 1i bumps schemaVersion to 3.
 
-  it('publishTc writes ONLY the enabled flag and ignores a snapshots arg', () => {
+  // Helper: seed a pre-1h-shaped yTc (snapshots Y.Map present) directly,
+  // bypassing publishTcToDoc — used to assert that 1h clients don't touch
+  // legacy snapshots data they encounter in mixed-version rooms.
+  function seedPre1hSnapshots(ydoc, yTc, snaps) {
+    ydoc.transact(() => {
+      const m = new Y.Map();
+      for (const [k, v] of Object.entries(snaps)) m.set(k, v);
+      yTc.set('snapshots', m);
+      yTc.set('enabled', true);
+    }, 'pre-1h-write');
+  }
+
+  it('publishTc writes ONLY the enabled flag — under local-tc origin, ignores snapshots arg, leaves pre-existing snapshots Y.Map untouched', () => {
+    // Single-doc behavior bundle: origin, enabled-only write, payload tolerance, pre-1h survival.
     const { ydoc, yTc } = makeDocWithTc();
     const origins = [];
     ydoc.on('afterTransaction', (tx) => { origins.push(tx.origin); });
 
+    // (1) Fresh doc — publishTc writes enabled and nothing else.
     publishTcToDoc(ydoc, yTc, { enabled: true });
     expect(yTc.get('enabled')).toBe(true);
     expect(origins).toContain('local-tc');
-    // No snapshots Y.Map written by the 1h client.
     expect(yTc.get('snapshots')).toBeUndefined();
-  });
 
-  it('publishTc leaves pre-existing snapshots Y.Map UNTOUCHED (pre-1h peer compat)', () => {
-    const { ydoc, yTc } = makeDocWithTc();
-    // Simulate a pre-1h client having populated snapshots earlier.
-    ydoc.transact(() => {
-      const snaps = new Y.Map();
-      snaps.set('n1', 'pre-1h text');
-      snaps.set('n2', 'more pre-1h text');
-      yTc.set('snapshots', snaps);
-      yTc.set('enabled', true);
-    }, 'pre-1h-write');
+    // (2) Tolerates a stray snapshots field in the payload (defensive: a
+    // wrongly-wired getPublishableState must not corrupt the wire).
+    publishTcToDoc(ydoc, yTc, { enabled: true, snapshots: { n1: 'should-not-write' } });
+    expect(yTc.get('snapshots')).toBeUndefined();
 
-    // 1h client publishes disabled — must NOT mutate snapshots.
-    publishTcToDoc(ydoc, yTc, { enabled: false });
-    expect(yTc.get('enabled')).toBe(false);
-    const snaps = yTc.get('snapshots');
-    expect(snaps).toBeDefined();
+    // (3) Pre-1h-populated snapshots survive a 1h client's disable.
+    const { ydoc: ydoc2, yTc: yTc2 } = makeDocWithTc();
+    seedPre1hSnapshots(ydoc2, yTc2, { n1: 'pre-1h text', n2: 'more pre-1h text' });
+    publishTcToDoc(ydoc2, yTc2, { enabled: false });
+    expect(yTc2.get('enabled')).toBe(false);
+    const snaps = yTc2.get('snapshots');
     expect(snaps.size).toBe(2);
     expect(snaps.get('n1')).toBe('pre-1h text');
     expect(snaps.get('n2')).toBe('more pre-1h text');
   });
 
-  it('publishTc tolerates and ignores a snapshots field in the payload', () => {
-    // Defensive: even if a caller wires `getPublishableState` wrong and
-    // passes through snapshots, 1h must not write them.
+  it('readTc emits { enabled, snapshots } for pre-1h backward compat — surfaces pre-1h snapshots, returns empty {} when absent', () => {
+    // Pre-1h-shaped state — readTc surfaces the snapshots map.
     const { ydoc, yTc } = makeDocWithTc();
-    publishTcToDoc(ydoc, yTc, { enabled: true, snapshots: { n1: 'should-not-write' } });
-    expect(yTc.get('enabled')).toBe(true);
-    expect(yTc.get('snapshots')).toBeUndefined();
+    seedPre1hSnapshots(ydoc, yTc, { n1: 'Hello', n2: 'World' });
+    expect(readTc(yTc)).toEqual({ enabled: true, snapshots: { n1: 'Hello', n2: 'World' } });
+
+    // Post-1h-only room — readTc emits the same shape with empty snapshots.
+    const { ydoc: ydoc2, yTc: yTc2 } = makeDocWithTc();
+    publishTcToDoc(ydoc2, yTc2, { enabled: true });
+    expect(readTc(yTc2)).toEqual({ enabled: true, snapshots: {} });
   });
 
-  it('readTc returns { enabled, snapshots } for backward compat with pre-1h schema', () => {
-    const { ydoc, yTc } = makeDocWithTc();
-    // Pre-1h-shaped state inserted directly.
-    ydoc.transact(() => {
-      const snaps = new Y.Map();
-      snaps.set('n1', 'Hello');
-      snaps.set('n2', 'World');
-      yTc.set('snapshots', snaps);
-      yTc.set('enabled', true);
-    }, 'pre-1h-write');
-
-    const out = readTc(yTc);
-    expect(out).toEqual({ enabled: true, snapshots: { n1: 'Hello', n2: 'World' } });
-  });
-
-  it('readTc handles absent snapshots Y.Map (post-1h-only rooms)', () => {
-    const { ydoc, yTc } = makeDocWithTc();
-    publishTcToDoc(ydoc, yTc, { enabled: true });
-    const out = readTc(yTc);
-    expect(out).toEqual({ enabled: true, snapshots: {} });
-  });
-
-  it('two-doc merge: enabled flag propagates correctly between 1h peers', () => {
+  it('two-doc merge: enabled flag propagates between 1h peers AND a 1h-side disable does not delete a pre-1h peer\'s snapshots', () => {
+    // (1) Plain enabled propagation between two 1h peers.
     const { ydoc: docA, yTc: tcA } = makeDocWithTc();
     const { ydoc: docB, yTc: tcB } = makeDocWithTc();
     publishTcToDoc(docA, tcA, { enabled: true });
     Y.applyUpdate(docB, Y.encodeStateAsUpdate(docA));
     expect(readTc(tcB).enabled).toBe(true);
-
-    // Disable on B; converge.
     publishTcToDoc(docB, tcB, { enabled: false });
     Y.applyUpdate(docA, Y.encodeStateAsUpdate(docB));
     expect(readTc(tcA).enabled).toBe(false);
-  });
 
-  it('two-doc merge: 1h peer disable does NOT delete a pre-1h peer\'s snapshots', () => {
-    // Simulate: docA is pre-1h (has snapshots), docB is 1h (no snapshots write).
-    const { ydoc: docA, yTc: tcA } = makeDocWithTc();
-    const { ydoc: docB, yTc: tcB } = makeDocWithTc();
-    docA.transact(() => {
-      const snaps = new Y.Map();
-      snaps.set('n1', 'pre-1h');
-      tcA.set('snapshots', snaps);
-      tcA.set('enabled', true);
-    }, 'pre-1h-write');
-
-    Y.applyUpdate(docB, Y.encodeStateAsUpdate(docA));
-    expect(readTc(tcB).snapshots).toEqual({ n1: 'pre-1h' });
-
-    // 1h client (docB) toggles TC off. Pre-1h's snapshots must survive.
-    publishTcToDoc(docB, tcB, { enabled: false });
-    Y.applyUpdate(docA, Y.encodeStateAsUpdate(docB));
-    Y.applyUpdate(docB, Y.encodeStateAsUpdate(docA));
-    expect(readTc(tcA).snapshots).toEqual({ n1: 'pre-1h' });
-    expect(readTc(tcB).snapshots).toEqual({ n1: 'pre-1h' });
-    expect(readTc(tcA).enabled).toBe(false);
-    expect(readTc(tcB).enabled).toBe(false);
+    // (2) Mixed-version: pre-1h peer has snapshots; 1h peer disables.
+    // Snapshots must survive on both sides post-merge.
+    const { ydoc: docC, yTc: tcC } = makeDocWithTc();
+    const { ydoc: docD, yTc: tcD } = makeDocWithTc();
+    seedPre1hSnapshots(docC, tcC, { n1: 'pre-1h' });
+    Y.applyUpdate(docD, Y.encodeStateAsUpdate(docC));
+    expect(readTc(tcD).snapshots).toEqual({ n1: 'pre-1h' });
+    publishTcToDoc(docD, tcD, { enabled: false });
+    Y.applyUpdate(docC, Y.encodeStateAsUpdate(docD));
+    Y.applyUpdate(docD, Y.encodeStateAsUpdate(docC));
+    expect(readTc(tcC)).toEqual({ enabled: false, snapshots: { n1: 'pre-1h' } });
+    expect(readTc(tcD)).toEqual({ enabled: false, snapshots: { n1: 'pre-1h' } });
   });
 
   it('handleAfterTx routes pure-TC transactions through onRemoteTc (not onRemoteBlocks)', async () => {
