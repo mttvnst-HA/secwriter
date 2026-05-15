@@ -30,8 +30,21 @@ const m = {
   hls: () => schema.marks.inlineMark.create({ kind: 'hls' }),
   hl1: () => schema.marks.inlineMark.create({ kind: 'hl1' }),
   comment: (id, resolved = false) => schema.marks.comment.create({ id, resolved }),
-  revision: (kind, authorId = null, authorColor = null) =>
-    schema.marks.revision.create({ kind, authorId, authorColor }),
+  // 1g.6 (#87) — revision is three MarkTypes now. The legacy `kind` arg
+  // routes to the right MarkType.
+  revision: (kind, authorId = null, authorColor = null) => {
+    const typeName = kind === 'add' ? 'revisionAdd' : kind === 'del' ? 'revisionDel' : kind === 'chg' ? 'revisionChg' : null;
+    if (!typeName) throw new Error(`unknown revision kind: ${kind}`);
+    return schema.marks[typeName].create({ authorId, authorColor });
+  },
+  // 1g.6 — direct MarkType accessors for tests that need to layer marks
+  // (multi-kind cross-author scenarios introduced by the schema split).
+  revisionAdd: (authorId = null, authorColor = null) =>
+    schema.marks.revisionAdd.create({ authorId, authorColor }),
+  revisionDel: (authorId = null, authorColor = null) =>
+    schema.marks.revisionDel.create({ authorId, authorColor }),
+  revisionChg: (authorId = null, authorColor = null) =>
+    schema.marks.revisionChg.create({ authorId, authorColor }),
 };
 
 describe('pmFragmentToHtml — PM Node input', () => {
@@ -367,13 +380,53 @@ describe('Y.XmlFragment input — pmFragmentToHtml duck-types', () => {
     expect(pmFragmentToHtml(yXml)).toBe('See <span class="mark-rid">ASTM</span>');
   });
 
-  it('revision with author/color', () => {
+  it('revisionAdd with author/color (1g.6 per-MarkType key shape)', () => {
+    // 1g.6 (#87): y-prosemirror writes Y delta attributes keyed by
+    // MarkType name (revisionAdd / revisionDel / revisionChg), not by the
+    // legacy `revision` key. The duck-type reader matches the new shape.
     const yXml = makeYXml([[
       { type: 'text', text: 'added',
-        attrs: { revision: { kind: 'add', authorId: 'bob', authorColor: '#aabbcc' } } },
+        attrs: { revisionAdd: { authorId: 'bob', authorColor: '#aabbcc' } } },
     ]]);
     expect(pmFragmentToHtml(yXml))
       .toBe('<ins class="mark-add" data-author-id="bob" style="--author-color:#aabbcc">added</ins>');
+  });
+
+  it('revisionDel emits <del class="mark-del">', () => {
+    const yXml = makeYXml([[
+      { type: 'text', text: 'gone', attrs: { revisionDel: { authorId: 'A' } } },
+    ]]);
+    expect(pmFragmentToHtml(yXml)).toBe('<del class="mark-del" data-author-id="A">gone</del>');
+  });
+
+  it('multi-kind cross-author (1g.6): revisionAdd + revisionDel layer into nested wrappers', () => {
+    // The audit-trail correctness case from Q34 — Bob's insert (revisionAdd:B)
+    // inside Alice's deletion (revisionDel:A) renders nested. Declared rank
+    // is Add < Del, so <ins> wraps <del>.
+    const yXml = makeYXml([[
+      { type: 'text', text: 'x', attrs: {
+        revisionAdd: { authorId: 'B' },
+        revisionDel: { authorId: 'A' },
+      } },
+    ]]);
+    expect(pmFragmentToHtml(yXml)).toBe(
+      '<ins class="mark-add" data-author-id="B">'
+      + '<del class="mark-del" data-author-id="A">x</del>'
+      + '</ins>',
+    );
+  });
+
+  it('legacy `revision` key is silently dropped (post-1g.6 backward-incompat)', () => {
+    // Pre-1g.6 rooms stored deltas with the legacy `revision` key. After
+    // the schema split, the reader matches only revisionAdd/Del/Chg keys.
+    // Unknown keys drop silently (Q31/E6 forward-compat), preserving text.
+    // The schemaVersion bump in a future sub-PR (1i) cuts over pre-1g.6
+    // rooms; for now the dropout is documented behavior.
+    const yXml = makeYXml([[
+      { type: 'text', text: 'added',
+        attrs: { revision: { kind: 'add', authorId: 'bob' } } },
+    ]]);
+    expect(pmFragmentToHtml(yXml)).toBe('added');
   });
 
   it('comment with resolved flag', () => {
@@ -427,11 +480,14 @@ describe('adversarial input / Q31/E6 fallback', () => {
     expect(pmFragmentToHtml(node)).toBe('text');
   });
 
-  it('unknown revision kind is dropped (text preserved)', () => {
-    // revision marks with unknown kind aren't in REVISION_KINDS — drop, keep text.
-    const badMark = schema.marks.revision.create({ kind: 'reverted' });
-    const node = pmDoc(t('text', badMark));
-    expect(pmFragmentToHtml(node)).toBe('text');
+  it('1g.6: revisionAdd with null attrs renders plain wrapper (defaults preserved)', () => {
+    // After the schema split, "unknown kind" can't occur at the MarkType
+    // level — there are only three known MarkTypes. The closest equivalent
+    // is a revisionAdd with no authorId/authorColor; it should still emit
+    // the canonical wrapper with no extra attrs.
+    const m = schema.marks.revisionAdd.create();
+    const node = pmDoc(t('text', m));
+    expect(pmFragmentToHtml(node)).toBe('<ins class="mark-add">text</ins>');
   });
 
   it('Y.XmlFragment with unknown inlineMark.kind drops the mark, keeps text', () => {

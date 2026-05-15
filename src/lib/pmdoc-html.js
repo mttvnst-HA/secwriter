@@ -34,9 +34,17 @@
 import { DOMParser as PMDOMParser } from 'prosemirror-model';
 import { schema, INLINE_MARK_KINDS, VALID_MARKS } from './pm-schema.js';
 
-const REVISION_KINDS = new Set(['add', 'del', 'chg']);
-
-// ── HTML emission helpers (byte-identical to ytext-html.js) ──────────────────
+// ── HTML emission helpers (byte-identical to ytext-html.js for single-kind) ──
+//
+// Sub-PR 1g.6 (#87): the legacy single `revision` attr key is replaced by
+// three per-kind keys (revisionAdd, revisionDel, revisionChg). Each holds
+// `{ authorId, authorColor }` or is absent. For single-kind input — the
+// vast majority of UFGS content — exactly one of the three is set per run
+// and the emitted HTML is byte-identical to the pre-1g.6 output (preserves
+// the byte-stability invariant pinned by pmdoc-html-byte-stability.node-test.mjs).
+// Multi-kind cross-author runs (Bob's revisionAdd inside Alice's
+// revisionDel) emit nested wrappers in declared rank order: revisionAdd
+// outer, revisionDel middle, revisionChg inner.
 
 function escapeHtml(str) {
   return str
@@ -53,17 +61,30 @@ function escapeAttr(str) {
     .replace(/>/g, '&gt;');
 }
 
-const NESTING_KEYS = ['comment', 'revision', 'mark', 'bold', 'italic', 'underline'];
-const AUX_KEYS = ['markOption', 'revisionAuthor', 'revisionAuthorColor', 'commentResolved'];
+// Primitive layer keys — compared by `(a[k] || null) === (b[k] || null)`.
+const PRIMITIVE_NESTING_KEYS = ['comment', 'mark', 'bold', 'italic', 'underline'];
+// Per-kind revision keys — compared by deep-equal on `{authorId, authorColor}`.
+const REVISION_NESTING_KEYS = ['revisionAdd', 'revisionDel', 'revisionChg'];
+const AUX_KEYS = ['markOption', 'commentResolved'];
+
+function revisionAttrsEq(a, b) {
+  if (a === b) return true;
+  if (!a || !b) return !a && !b;
+  return (a.authorId || null) === (b.authorId || null)
+    && (a.authorColor || null) === (b.authorColor || null);
+}
 
 function attrsEqual(a, b) {
   if (a === b) return true;
   if (!a || !b) return (!a || Object.keys(a).length === 0) && (!b || Object.keys(b).length === 0);
-  for (const key of NESTING_KEYS) {
+  for (const key of PRIMITIVE_NESTING_KEYS) {
     if ((a[key] || null) !== (b[key] || null)) return false;
   }
   for (const key of AUX_KEYS) {
     if ((a[key] || null) !== (b[key] || null)) return false;
+  }
+  for (const key of REVISION_NESTING_KEYS) {
+    if (!revisionAttrsEq(a[key], b[key])) return false;
   }
   return true;
 }
@@ -82,26 +103,25 @@ function buildTags(attrs) {
     closeParts.unshift('</span>');
   }
 
-  // Layer 2: revision.
-  if (attrs.revision) {
-    const rev = attrs.revision;
-    const styleAttr = attrs.revisionAuthorColor
-      ? ` style="--author-color:${escapeAttr(attrs.revisionAuthorColor)}"`
+  // Layer 2: revision — emit per-kind wrappers in declared rank order
+  // (Add → Del → Chg). Each layer is independent — single-kind input sets
+  // exactly one and the byte-stability invariant holds.
+  const REV_WRAPPERS = [
+    ['revisionAdd', 'ins', 'mark-add'],
+    ['revisionDel', 'del', 'mark-del'],
+    ['revisionChg', 'span', 'mark-chg'],
+  ];
+  for (const [key, tag, cls] of REV_WRAPPERS) {
+    const rev = attrs[key];
+    if (!rev) continue;
+    const styleAttr = rev.authorColor
+      ? ` style="--author-color:${escapeAttr(rev.authorColor)}"`
       : '';
-    const authorIdAttr = attrs.revisionAuthor
-      ? ` data-author-id="${escapeAttr(attrs.revisionAuthor)}"`
+    const authorIdAttr = rev.authorId
+      ? ` data-author-id="${escapeAttr(rev.authorId)}"`
       : '';
-
-    if (rev === 'add') {
-      openParts.push(`<ins class="mark-add"${authorIdAttr}${styleAttr}>`);
-      closeParts.unshift('</ins>');
-    } else if (rev === 'del') {
-      openParts.push(`<del class="mark-del"${authorIdAttr}${styleAttr}>`);
-      closeParts.unshift('</del>');
-    } else if (rev === 'chg') {
-      openParts.push(`<span class="mark-chg"${authorIdAttr}${styleAttr}>`);
-      closeParts.unshift('</span>');
-    }
+    openParts.push(`<${tag} class="${cls}"${authorIdAttr}${styleAttr}>`);
+    closeParts.unshift(`</${tag}>`);
   }
 
   // Layer 3: inlineMark (allowlist via VALID_MARKS — defends against
@@ -174,12 +194,26 @@ function pmMarksToAttrs(marks) {
           if (a.resolved) attrs.commentResolved = true;
         }
         break;
-      case 'revision':
-        if (REVISION_KINDS.has(a.kind)) {
-          attrs.revision = a.kind;
-          if (a.authorId) attrs.revisionAuthor = a.authorId;
-          if (a.authorColor) attrs.revisionAuthorColor = a.authorColor;
-        }
+      // 1g.6 (#87) — separate MarkTypes per revision kind. Each text node
+      // can carry up to three revision marks (one per MarkType), which
+      // produce nested wrappers in buildTags layer 2.
+      case 'revisionAdd':
+        attrs.revisionAdd = {
+          authorId: a.authorId || null,
+          authorColor: a.authorColor || null,
+        };
+        break;
+      case 'revisionDel':
+        attrs.revisionDel = {
+          authorId: a.authorId || null,
+          authorColor: a.authorColor || null,
+        };
+        break;
+      case 'revisionChg':
+        attrs.revisionChg = {
+          authorId: a.authorId || null,
+          authorColor: a.authorColor || null,
+        };
         break;
       case 'inlineMark':
         // Adversarial fallback (Q31/E6): unknown kind is silently dropped at
@@ -235,7 +269,19 @@ function yDeltaAttrsToAttrs(rawAttrs) {
   const attrs = {};
   for (const key of Object.keys(rawAttrs)) {
     const v = rawAttrs[key];
-    switch (key) {
+    // y-prosemirror suffixes mark-type keys with `--<random>` when the
+    // MarkType declares `excludes: ''` (e.g. revisionAdd/Del/Chg post-1g.6),
+    // so two instances of the same MarkType on one character can both
+    // appear in the format dictionary without overwriting. We strip the
+    // suffix to recover the base MarkType name. The current attrs shape
+    // allows only ONE wrapper per kind per run; multiple same-kind marks
+    // (rare — concurrent same-author + same-kind format ops) degrade to
+    // last-write-wins, which acceptably loses the duplicate author info
+    // but keeps the wrapper. Cross-kind multi-author audit (revisionAdd
+    // + revisionDel) is unaffected because they use distinct base keys.
+    const dashIdx = key.indexOf('--');
+    const baseKey = dashIdx > 0 ? key.slice(0, dashIdx) : key;
+    switch (baseKey) {
       // y-prosemirror stores marks-without-attrs as `{}` (or sometimes null
       // after Yjs format ops). Both treated as set.
       case 'bold': if (v != null) attrs.bold = true; break;
@@ -247,11 +293,32 @@ function yDeltaAttrsToAttrs(rawAttrs) {
           if (v.resolved) attrs.commentResolved = true;
         }
         break;
-      case 'revision':
-        if (v && typeof v === 'object' && REVISION_KINDS.has(v.kind)) {
-          attrs.revision = v.kind;
-          if (v.authorId) attrs.revisionAuthor = v.authorId;
-          if (v.authorColor) attrs.revisionAuthorColor = v.authorColor;
+      // 1g.6 (#87) — y-prosemirror serializes PM marks into Y delta
+      // attributes keyed by mark.type.name. The three new MarkType names
+      // ride that mapping directly; each is independent and can coexist
+      // (cross-kind multi-author audit).
+      case 'revisionAdd':
+        if (v && typeof v === 'object') {
+          attrs.revisionAdd = {
+            authorId: v.authorId || null,
+            authorColor: v.authorColor || null,
+          };
+        }
+        break;
+      case 'revisionDel':
+        if (v && typeof v === 'object') {
+          attrs.revisionDel = {
+            authorId: v.authorId || null,
+            authorColor: v.authorColor || null,
+          };
+        }
+        break;
+      case 'revisionChg':
+        if (v && typeof v === 'object') {
+          attrs.revisionChg = {
+            authorId: v.authorId || null,
+            authorColor: v.authorColor || null,
+          };
         }
         break;
       case 'inlineMark':

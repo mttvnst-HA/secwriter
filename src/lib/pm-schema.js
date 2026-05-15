@@ -2,16 +2,29 @@
  * pm-schema.js — ProseMirror schema for SecWriter blocks.
  *
  * Layering (outermost → innermost):
- *   comment > revision > inlineMark > format(bold/italic/underline)
+ *   comment > revisionAdd > revisionDel > revisionChg > inlineMark > format
  *
  * In ProseMirror, a mark's render position is determined by its `rank`, which
  * comes from the order in `marks` below. Earlier = outer. The order here mirrors
  * `buildTags` in ytext-html.js so PM-rendered HTML is byte-identical to the
  * Y.Text-rendered HTML produced by `yTextToHtml`.
  *
- * Each mark uses the default `excludes: '_'` (excludes itself), so a single
- * range cannot carry two `revision` marks. Layering is by rank order, not by
- * `excludes`.
+ * Sub-PR 1g.6 (#87): the legacy single `revision` mark is split into three
+ * separate MarkTypes — `revisionAdd`, `revisionDel`, `revisionChg`. Each
+ * declares `excludes: ''` (empty string) which lets multiple marks of the
+ * SAME MarkType with different attrs coexist on one character. The split
+ * itself (separate MarkTypes) is what lets ADD and DEL coexist; the empty-
+ * `excludes` is what lets Alice's and Bob's revisionAdd marks coexist when
+ * Yjs format-op merge inherits a mark across concurrent inserts (Q8 / Q34
+ * in #47's 1h plan). This preserves the multi-author audit trail.
+ *
+ * Declaration order (Add → Del → Chg) is pinned. Render nesting for cross-
+ * kind overlap (Bob's revisionAdd inside Alice's revisionDel) emits
+ * `<del>...<ins>...</ins>...</del>` — `<ins>` nested inside `<del>` per
+ * declared rank. The byte-stability invariant: for single-author single-kind
+ * input (the vast majority of existing UFGS content), the new schema
+ * produces byte-identical HTML output. Multi-author cross-kind documents
+ * gain the nested wrapper shape — a new shape, not a regression.
  *
  * VALID_MARKS / MARK_CLASSES asymmetry (Q31/E3 in issue #47 v2 plan):
  *   - VALID_MARKS gates the RECEIVE direction (allowlist for class-name
@@ -52,7 +65,17 @@ export const VALID_MARKS = new Set([...INLINE_MARK_KINDS, 'comment']);
 // call site (and so a reader can grep for the two names independently).
 export const MARK_CLASSES = new Set([...INLINE_MARK_KINDS]);
 
-const REVISION_KINDS = new Set(['add', 'del', 'chg']);
+export const REVISION_KINDS = new Set(['add', 'del', 'chg']);
+
+// Map a kind string to its MarkType name. Used by pm-toolbar verbs and
+// pmdoc-html to dispatch by MarkType without a switch ladder at each call
+// site. The mapping is intentionally exhaustive — unknown kinds return
+// undefined, which callers treat as "no-op".
+export const REVISION_MARK_TYPE_NAMES = Object.freeze({
+  add: 'revisionAdd',
+  del: 'revisionDel',
+  chg: 'revisionChg',
+});
 
 function getCommentAttrs(el) {
   const cls = el.getAttribute('class') || '';
@@ -72,15 +95,35 @@ function extractAuthorColor(style) {
   return m ? m[1].trim() : null;
 }
 
-function getRevisionAttrs(kind) {
-  return (el) => {
-    const authorId = el.getAttribute('data-author-id');
-    const authorColor = extractAuthorColor(el.getAttribute('style') || '');
-    return {
-      kind,
-      authorId: authorId || null,
-      authorColor: authorColor || null,
-    };
+function getRevisionAttrs(el) {
+  const authorId = el.getAttribute('data-author-id');
+  const authorColor = extractAuthorColor(el.getAttribute('style') || '');
+  return {
+    authorId: authorId || null,
+    authorColor: authorColor || null,
+  };
+}
+
+function makeRevisionMarkSpec(kindTag, kindClass) {
+  return {
+    attrs: {
+      authorId: { default: null },
+      authorColor: { default: null },
+    },
+    // excludes: '' — empty string allows multiple instances of the SAME
+    // MarkType with different attrs to coexist on one character. PM's
+    // default (unset) is "exclude marks of the same MarkType", which would
+    // mean Alice's revisionAdd silently replaces Bob's when Yjs's bracket-
+    // based format op spans concurrent inserts. The split-and-coexist
+    // policy is the audit-trail correctness fix from Q34 (#47 1h plan).
+    excludes: '',
+    parseDOM: [{ tag: `${kindTag}.${kindClass}`, getAttrs: getRevisionAttrs }],
+    toDOM: (m) => {
+      const attrs = { class: kindClass };
+      if (m.attrs.authorId) attrs['data-author-id'] = m.attrs.authorId;
+      if (m.attrs.authorColor) attrs.style = `--author-color:${m.attrs.authorColor}`;
+      return [kindTag, attrs, 0];
+    },
   };
 }
 
@@ -121,8 +164,10 @@ export const schema = new Schema({
     },
   },
   // Mark declaration order = rank order = render nesting order (earlier = outer).
-  // Mirrors the comment > revision > mark > format layering documented in the
-  // file header and in `buildTags` of ytext-html.js.
+  // The three revision MarkTypes (Add → Del → Chg) follow the comment layer
+  // and precede inlineMark / format. Pinned by pm-schema.test.js's rank order
+  // regression so a future refactor can't reorder without surfacing the
+  // semantic change. See file header for the multi-author rationale.
   marks: {
     comment: {
       attrs: {
@@ -137,26 +182,9 @@ export const schema = new Schema({
         return ['span', { class: cls, 'data-comment-id': m.attrs.id }, 0];
       },
     },
-    revision: {
-      attrs: {
-        kind: { default: 'add' },
-        authorId: { default: null },
-        authorColor: { default: null },
-      },
-      parseDOM: [
-        { tag: 'ins.mark-add', getAttrs: getRevisionAttrs('add') },
-        { tag: 'del.mark-del', getAttrs: getRevisionAttrs('del') },
-        { tag: 'span.mark-chg', getAttrs: getRevisionAttrs('chg') },
-      ],
-      toDOM: (m) => {
-        const kind = REVISION_KINDS.has(m.attrs.kind) ? m.attrs.kind : 'add';
-        const tag = kind === 'add' ? 'ins' : (kind === 'del' ? 'del' : 'span');
-        const attrs = { class: `mark-${kind}` };
-        if (m.attrs.authorId) attrs['data-author-id'] = m.attrs.authorId;
-        if (m.attrs.authorColor) attrs.style = `--author-color:${m.attrs.authorColor}`;
-        return [tag, attrs, 0];
-      },
-    },
+    revisionAdd: makeRevisionMarkSpec('ins', 'mark-add'),
+    revisionDel: makeRevisionMarkSpec('del', 'mark-del'),
+    revisionChg: makeRevisionMarkSpec('span', 'mark-chg'),
     inlineMark: {
       attrs: {
         kind: { default: 'rid' },

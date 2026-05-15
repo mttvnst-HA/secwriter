@@ -34,66 +34,67 @@ describe('findFirstMatchingMark', () => {
 
 describe('rangeAllHaveMarkWithAttrs', () => {
   it('returns true when every text node in range has matching mark', () => {
-    const add = schema.marks.revision.create({ kind: 'add', authorId: 'A' });
+    const add = schema.marks.revisionAdd.create({ authorId: 'A' });
     const doc = docOf(txt('hello', add));
     const all = rangeAllHaveMarkWithAttrs(
-      doc, 1, 6, schema.marks.revision,
-      (a) => a.kind === 'add' && a.authorId === 'A',
+      doc, 1, 6, schema.marks.revisionAdd,
+      (a) => a.authorId === 'A',
     );
     expect(all).toBe(true);
   });
 
   it('returns false when a portion of range has a different author', () => {
-    const addA = schema.marks.revision.create({ kind: 'add', authorId: 'A' });
-    const addB = schema.marks.revision.create({ kind: 'add', authorId: 'B' });
+    const addA = schema.marks.revisionAdd.create({ authorId: 'A' });
+    const addB = schema.marks.revisionAdd.create({ authorId: 'B' });
     const doc = docOf(txt('hi', addA), txt('there', addB));
     const all = rangeAllHaveMarkWithAttrs(
-      doc, 1, 8, schema.marks.revision,
-      (a) => a.kind === 'add' && a.authorId === 'A',
+      doc, 1, 8, schema.marks.revisionAdd,
+      (a) => a.authorId === 'A',
     );
     expect(all).toBe(false);
   });
 
   it('returns false for empty range (no text traversed)', () => {
     const doc = docOf(txt('hello'));
-    expect(rangeAllHaveMarkWithAttrs(doc, 3, 3, schema.marks.revision, () => true)).toBe(false);
+    expect(rangeAllHaveMarkWithAttrs(doc, 3, 3, schema.marks.revisionAdd, () => true)).toBe(false);
   });
 });
 
 describe('findMarkRangeAt', () => {
   it('returns the contiguous range over which the mark extends', () => {
-    const add = schema.marks.revision.create({ kind: 'add', authorId: 'A' });
+    const add = schema.marks.revisionAdd.create({ authorId: 'A' });
     const doc = docOf(txt('xx'), txt('marked', add), txt('yy'));
-    const r = findMarkRangeAt(doc, 5, schema.marks.revision, () => true);
+    const r = findMarkRangeAt(doc, 5, schema.marks.revisionAdd, () => true);
     expect(r).not.toBeNull();
     expect(r.from).toBe(3);
     expect(r.to).toBe(9);
-    expect(r.mark.attrs.kind).toBe('add');
+    expect(r.mark.type.name).toBe('revisionAdd');
   });
 
   it('finds the mark at the immediate right boundary (inclusive: true default)', () => {
-    // pm-schema does NOT set inclusive: false on revision, so a cursor exactly
-    // at the end of the marked text still sees the mark via the prior child.
-    const add = schema.marks.revision.create({ kind: 'add', authorId: 'A' });
+    // pm-schema does NOT set inclusive: false on revisionAdd, so a cursor
+    // exactly at the end of the marked text still sees the mark via the
+    // prior child.
+    const add = schema.marks.revisionAdd.create({ authorId: 'A' });
     const doc = docOf(txt('marked', add), txt('after'));
-    const r = findMarkRangeAt(doc, 7, schema.marks.revision, () => true);
+    const r = findMarkRangeAt(doc, 7, schema.marks.revisionAdd, () => true);
     expect(r).not.toBeNull();
     expect(r.from).toBe(1);
     expect(r.to).toBe(7);
   });
 
   it('returns null when cursor is one position past the mark', () => {
-    const add = schema.marks.revision.create({ kind: 'add', authorId: 'A' });
+    const add = schema.marks.revisionAdd.create({ authorId: 'A' });
     const doc = docOf(txt('marked', add), txt('after'));
-    const r = findMarkRangeAt(doc, 8, schema.marks.revision, () => true);
+    const r = findMarkRangeAt(doc, 8, schema.marks.revisionAdd, () => true);
     expect(r).toBeNull();
   });
 
   it('does not span adjacent marks with different attrs', () => {
-    const addA = schema.marks.revision.create({ kind: 'add', authorId: 'A' });
-    const addB = schema.marks.revision.create({ kind: 'add', authorId: 'B' });
+    const addA = schema.marks.revisionAdd.create({ authorId: 'A' });
+    const addB = schema.marks.revisionAdd.create({ authorId: 'B' });
     const doc = docOf(txt('aa', addA), txt('bb', addB));
-    const r = findMarkRangeAt(doc, 4, schema.marks.revision, () => true);
+    const r = findMarkRangeAt(doc, 4, schema.marks.revisionAdd, () => true);
     expect(r).not.toBeNull();
     expect(r.from).toBe(3);
     expect(r.to).toBe(5);
@@ -101,12 +102,9 @@ describe('findMarkRangeAt', () => {
   });
 
   it('cursor at parentOffset 0 inside unmarked first child returns null (no-throw)', () => {
-    // Defensive pin: cursor at the very start of an unmarked first child
-    // hits the re-anchor branch with cursorChildIdx === 0 → no prior child
-    // to look back at → must return null without throwing.
-    const add = schema.marks.revision.create({ kind: 'add', authorId: 'A' });
+    const add = schema.marks.revisionAdd.create({ authorId: 'A' });
     const doc = docOf(txt('unmarked'), txt('marked', add));
-    const r = findMarkRangeAt(doc, 1, schema.marks.revision, () => true);
+    const r = findMarkRangeAt(doc, 1, schema.marks.revisionAdd, () => true);
     expect(r).toBeNull();
   });
 
@@ -117,6 +115,27 @@ describe('findMarkRangeAt', () => {
     expect(r).not.toBeNull();
     expect(r.from).toBe(3);
     expect(r.to).toBe(13);
+  });
+
+  it('1g.6: distinguishes revisionAdd from revisionDel at the same position', () => {
+    // With the schema split, both marks can coexist on one character. The
+    // resolver must lookup by specific MarkType to get the right range.
+    const add = schema.marks.revisionAdd.create({ authorId: 'A' });
+    const del = schema.marks.revisionDel.create({ authorId: 'B' });
+    const doc = docOf(txt('xx'), txt('overlap', add, del), txt('yy'));
+    // Find revisionAdd at position 5 (inside 'overlap')
+    const rAdd = findMarkRangeAt(doc, 5, schema.marks.revisionAdd, () => true);
+    expect(rAdd).not.toBeNull();
+    expect(rAdd.mark.type.name).toBe('revisionAdd');
+    expect(rAdd.mark.attrs.authorId).toBe('A');
+    // Find revisionDel at the same position
+    const rDel = findMarkRangeAt(doc, 5, schema.marks.revisionDel, () => true);
+    expect(rDel).not.toBeNull();
+    expect(rDel.mark.type.name).toBe('revisionDel');
+    expect(rDel.mark.attrs.authorId).toBe('B');
+    // Both range over the same span
+    expect(rAdd.from).toBe(rDel.from);
+    expect(rAdd.to).toBe(rDel.to);
   });
 });
 

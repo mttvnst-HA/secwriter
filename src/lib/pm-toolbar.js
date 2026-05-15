@@ -8,13 +8,28 @@
  *
  * Two helpers replace PM's built-in rangeHasMark / toggleMark because those
  * compare by MarkType only, ignoring attrs. The schema's inlineMark (kind
- * attr) and revision (kind + authorId attrs) require attr-discrimination:
- * a "RID" toggle must not strip an overlapping "SRF" mark, and a user-A
- * "Mark as Addition" must not strip user-B's existing ADD mark in the same
- * range. See the design spec at
+ * attr) and revision* (authorId + authorColor attrs) require attr-
+ * discrimination: a "RID" toggle must not strip an overlapping "SRF" mark,
+ * and a user-A "Mark as Addition" must not strip user-B's existing ADD
+ * mark in the same range. See the design spec at
  * docs/superpowers/specs/2026-05-11-pm-editor-1f.9-floating-toolbar-design.md
  * for the full multi-author safety rationale.
+ *
+ * Sub-PR 1g.6 (#87): the single `revision` MarkType is split into
+ * revisionAdd / revisionDel / revisionChg. Verbs dispatch by MarkType
+ * derived from the `kind` argument; the resolve verb tries all three
+ * MarkTypes in declared order at the cursor and operates on the first
+ * one with a range. Toggle-off semantics shift slightly — under
+ * `excludes: ''` (1g.6 schema) two same-MarkType marks with different
+ * attrs coexist instead of replacing each other, so the safety check
+ * `rangeAllHaveMarkWithAttrs(...)` is what gates removal.
  */
+
+import { REVISION_MARK_TYPE_NAMES } from './pm-schema.js';
+
+// Order matters — applyInlineRevisionResolveTr tries these in declared
+// rank order. The first MarkType with a range at the cursor wins.
+const REVISION_KINDS_IN_ORDER = Object.freeze(['add', 'del', 'chg']);
 
 /**
  * Walk text nodes in [from, to] and return the first Mark instance whose
@@ -205,29 +220,35 @@ export function applyInlineMarkTr(state, kind, optionAttr) {
 }
 
 /**
- * Apply or toggle a revision mark (ADD/DEL) over the selection.
+ * Apply or toggle a revision mark (ADD/DEL/CHG) over the selection.
+ *
+ * 1g.6 (#87) — dispatches to the specific MarkType (revisionAdd /
+ * revisionDel / revisionChg) derived from `kind`. The MarkType is the
+ * audit-trail distinction: applying an ADD does NOT remove a coexisting
+ * DEL on the same range; the schema's `excludes: ''` lets them coexist.
  *
  * Multi-author safety: toggle off only if EVERY text node in the range
- * carries a revision with the requested kind AND the current user's
+ * carries a revision of the requested MarkType AND the current user's
  * authorId. Otherwise apply a fresh revision mark with the current author.
- * Under the schema's default excludes: '_', a fresh mark replaces any
- * existing revision in the range — the safety check prevents the
- * stripping-without-replacement bug that stock rangeHasMark would cause
- * across multi-author content.
+ * Under `excludes: ''`, two same-MarkType marks with different attrs
+ * coexist — the toggle-off check is what prevents Alice's mark from
+ * surviving when Bob tries to remove HIS mark in the same range.
  *
  * Legacy applyRevision (FloatingToolbar.jsx) uses closest('ins.mark-add')
  * without an author check, which can strip another user's mark. The PM
  * path declines to reproduce that latent bug.
  *
- * Returns null on collapsed selection.
+ * Returns null on collapsed selection or unknown kind.
  */
 export function applyRevisionTr(state, kind, authorAttrs) {
   const { from, to, empty } = state.selection;
   if (empty) return null;
-  const markType = state.schema.marks.revision;
+  const markTypeName = REVISION_MARK_TYPE_NAMES[kind];
+  if (!markTypeName) return null;
+  const markType = state.schema.marks[markTypeName];
   if (!markType) return null;
   const currentAuthorId = authorAttrs?.authorId ?? null;
-  const matchesMine = (a) => a.kind === kind && a.authorId === currentAuthorId;
+  const matchesMine = (a) => a.authorId === currentAuthorId;
 
   const allMine = rangeAllHaveMarkWithAttrs(state.doc, from, to, markType, matchesMine);
   if (allMine) {
@@ -235,7 +256,6 @@ export function applyRevisionTr(state, kind, authorAttrs) {
     if (sample) return state.tr.removeMark(from, to, sample);
   }
   return state.tr.addMark(from, to, markType.create({
-    kind,
     authorId: currentAuthorId,
     authorColor: authorAttrs?.authorColor ?? null,
   }));
@@ -247,14 +267,43 @@ export function applyRevisionTr(state, kind, authorAttrs) {
  * DEL (strip mark, keep content). After the resolution, clears stored
  * marks so the next keystroke doesn't inherit the (now-removed) revision.
  *
- * Returns null when no revision mark is at the cursor position.
+ * 1g.6 (#87) — tries each of revisionAdd / revisionDel / revisionChg in
+ * declared rank order at the resolved position. The first MarkType with a
+ * range at the position wins. This matches the implicit pre-split
+ * behavior: with a single `revision` MarkType, findMarkRangeAt returned
+ * the one mark at the cursor. With three MarkTypes that can coexist, the
+ * caller hasn't told us which to resolve — we default to outermost-first
+ * (Add → Del → Chg). When the user clicks specifically on an <ins> or
+ * <del> popup, the caller can constrain via the `kindHint` parameter.
+ *
+ * @param state EditorState
+ * @param action 'accept' | 'reject'
+ * @param pos? Number — overrides state.selection.from
+ * @param kindHint? 'add' | 'del' | 'chg' — constrain the resolution to a
+ *   specific kind. Omitted for cursor-based toolbar resolution; supplied
+ *   for the del-popup path where the click target identifies the kind.
+ *
+ * Returns null when no revision mark is at the resolved position.
  */
-export function applyInlineRevisionResolveTr(state, action) {
-  const { from } = state.selection;
-  const markType = state.schema.marks.revision;
-  const range = findMarkRangeAt(state.doc, from, markType, () => true);
+export function applyInlineRevisionResolveTr(state, action, pos, kindHint) {
+  const cursor = pos != null ? pos : state.selection.from;
+  const kindsToTry = kindHint != null ? [kindHint] : REVISION_KINDS_IN_ORDER;
+
+  let kind = null;
+  let range = null;
+  for (const k of kindsToTry) {
+    const markTypeName = REVISION_MARK_TYPE_NAMES[k];
+    if (!markTypeName) continue;
+    const markType = state.schema.marks[markTypeName];
+    if (!markType) continue;
+    const r = findMarkRangeAt(state.doc, cursor, markType, () => true);
+    if (r) {
+      kind = k;
+      range = r;
+      break;
+    }
+  }
   if (!range) return null;
-  const kind = range.mark.attrs.kind;
 
   let tr;
   if ((action === 'accept' && kind === 'add')
@@ -265,6 +314,14 @@ export function applyInlineRevisionResolveTr(state, action) {
       || (action === 'accept' && kind === 'del')) {
     // Delete range.
     tr = state.tr.delete(range.from, range.to);
+  } else if (kind === 'chg') {
+    // CHG: accept strips the mark (treats the changed text as final);
+    // reject strips the mark (treats the change as withdrawn). Either way
+    // the content stays — CHG is a record of "this was changed", not a
+    // pending replacement. Matches the legacy 1f.9 behavior, which simply
+    // returned null for chg (chg wasn't supported); the new path is more
+    // permissive but stays content-preserving.
+    tr = state.tr.removeMark(range.from, range.to, range.mark);
   } else {
     return null;
   }
