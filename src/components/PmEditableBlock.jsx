@@ -11,7 +11,7 @@
  *   - oliLabel, onDelete, onFocusPrev, onFocusNext
  *   - onConvertBlock, onChangeOliLevel
  *   - resolveHtml, tailorKey
- *   - trackChanges, snapshotText, identity
+ *   - trackChanges, identity
  *   - onAcceptRevision, onRejectRevision, onRevisionAction
  *   - comments, onCommentClick, onInlineFix
  *   - lintingState, lintingDispatch, showTags, readOnly
@@ -62,11 +62,11 @@ import { slashMenuPlugin, slashMenuPluginKey } from '../lib/pm-plugins/slash-men
 import { tagLabelsPlugin, setTagsVisible } from '../lib/pm-plugins/tag-labels.js';
 import { blockKeymap } from '../lib/pm-plugins/keymap.js';
 import { registerBlock, unregisterBlock } from '../lib/block-registry.js';
-import { setBlockHtml, subscribeBlock } from '../lib/block-html-store.js';
-import { annotateDomWithDiff } from '../lib/text-diff.js';
+import { subscribeBlock } from '../lib/block-html-store.js';
 import { dispatchDelAction } from '../lib/pm-del-popup.js';
 import { activeCommentPlugin } from '../lib/pm-plugins/active-comment.js';
 import { COMMENT_RECONCILE_META, reconcileCommentMarks } from '../lib/pm-comments.js';
+import { rewriteForTrackChanges, docHasInlineRevisions } from '../lib/pm-tc-mark.js';
 import { useBlockLinting } from './useBlockLinting.js';
 
 /**
@@ -101,7 +101,6 @@ function PmEditableBlock({
   resolveHtml,
   tailorKey,
   trackChanges,
-  snapshotText,
   identity,
   onAcceptRevision,
   onRejectRevision,
@@ -156,14 +155,12 @@ function PmEditableBlock({
   onRefreshTcSnapshotRef.current = onRefreshTcSnapshot;
   const blockTypeRef = useRef(block.type);
   blockTypeRef.current = block.type;
-  // QC major-6: Track Changes inputs mirrored into refs so the blur handler
-  // (registered on the EditorView at mount time) reads the latest values
-  // without rebuilding the view. snapshotText changes on every TC enable /
-  // accept-all and identity may change on auth refresh.
+  // QC major-6: Track Changes inputs mirrored into refs so the
+  // dispatchTransaction marking pipeline reads the latest values without
+  // rebuilding the view. trackChanges flips on the TC toggle; identity
+  // may change on auth refresh.
   const trackChangesRef = useRef(trackChanges);
   trackChangesRef.current = trackChanges;
-  const snapshotTextRef = useRef(snapshotText);
-  snapshotTextRef.current = snapshotText;
   const identityRef = useRef(identity);
   identityRef.current = identity;
   const commentsStateRef = useRef(commentsState);
@@ -312,19 +309,15 @@ function PmEditableBlock({
           onFocus?.(block.id);
           return false;
         },
-        // QC major-6: TC inline-mark materialization on blur. The legacy
-        // EditableBlock ran annotateDomWithDiff on the contentEditable in
-        // place, then pushed the annotated html through the binder. PM
-        // owns its inner DOM, so we annotate a detached div with the
-        // serialized PM html instead, then route the annotated html
-        // through setBlockHtml — y-prosemirror's diff-and-merge re-renders
-        // the view with the schema's `revision` mark intact (parseDOM
-        // rules at pm-schema.js:147-148 turn `<ins class="mark-add">` /
-        // `<del class="mark-del">` back into PM marks).
-        //
-        // We also flush any pending debounced onUpdate so the post-blur
-        // annotated html (not a stale pre-blur snapshot) is what reaches
-        // App's React state.
+        // Blur flush. 1h Q33 (#47): per-keystroke marking in
+        // dispatchTransaction is now the source of truth for inline TC
+        // marks, so the legacy snapshot-diff annotation that used to run
+        // here (annotateDomWithDiff) is removed — it would strip the
+        // edit-time marks and re-derive them from a coarse visible-text
+        // diff, losing per-author attribution and overwriting marks from
+        // peers concurrent with the blur. The blur handler now only
+        // flushes the debounced onUpdate so React state catches up
+        // synchronously when the user leaves the block.
         blur: () => {
           const view = viewRef.current;
           if (!view) return false;
@@ -335,26 +328,7 @@ function PmEditableBlock({
           let html;
           try { html = pmFragmentToHtml(view.state.doc); }
           catch { return false; }
-          let finalHtml = html;
-          if (trackChangesRef.current && snapshotTextRef.current != null) {
-            try {
-              const div = document.createElement('div');
-              div.innerHTML = html;
-              const annotated = annotateDomWithDiff(div, snapshotTextRef.current, identityRef.current || null);
-              if (annotated) finalHtml = div.innerHTML;
-            } catch {
-              // Annotation throws → keep the un-annotated html. Better to
-              // lose revision marks than corrupt the block.
-            }
-          }
-          // Substrate write — ySyncPlugin re-renders the view with the
-          // (possibly annotated) html. Skipped if yStore unset (no collab,
-          // or pre-sync) — onUpdate below still pushes to React state.
-          if (yStoreRef.current) {
-            try { setBlockHtml(yStoreRef.current, block.id, finalHtml); }
-            catch { /* substrate unavailable mid-tear-down */ }
-          }
-          onUpdateRef.current?.(block.id, finalHtml);
+          onUpdateRef.current?.(block.id, html);
           return false;
         },
       },
@@ -367,7 +341,35 @@ function PmEditableBlock({
         // assigned until `new EditorView(...)` returns, but PM's plugin
         // activation runs *inside* the constructor and can dispatch
         // before that assignment completes.
-        const newState = this.state.apply(tr);
+        //
+        // 1h Q33 (#47) marking pipeline: when Track Changes is on AND the
+        // transaction is a local user op (not remote ySyncPlugin op, not
+        // a UndoManager inverse, not a comment-reconcile, not the linter's
+        // input-event synth), rewrite the user's literal edits into TC-
+        // marked operations. The rewrite is pure — see pm-tc-mark.js —
+        // and returns null when no rewrite is needed (selection-only,
+        // attr-only). Self-cancel: deleting one's OWN un-accepted
+        // revisionAdd actually removes the text (no <ins><del> wrapper).
+        const ySyncMeta = tr.getMeta(ySyncPluginKey);
+        const isRemote = ySyncMeta != null;
+        const isUndoRedo = ySyncMeta && ySyncMeta.isUndoRedoOperation === true;
+        const isReconcile = tr.getMeta(COMMENT_RECONCILE_META) === true;
+        let appliedTr = tr;
+        if (
+          trackChangesRef.current
+          && !isRemote
+          && !isUndoRedo
+          && !isReconcile
+          && tr.docChanged
+        ) {
+          const rewritten = rewriteForTrackChanges(
+            this.state,
+            tr,
+            identityRef.current || { id: null, color: null },
+          );
+          if (rewritten) appliedTr = rewritten;
+        }
+        const newState = this.state.apply(appliedTr);
         this.updateState(newState);
 
         // Slash state mirroring: pull from the plugin and project to React.
@@ -381,8 +383,6 @@ function PmEditableBlock({
         }
 
         if (tr.docChanged) {
-          const isRemote = tr.getMeta(ySyncPluginKey) != null;
-          const isReconcile = tr.getMeta(COMMENT_RECONCILE_META) === true;
           // Q27 re-lint trigger: synthesize an 'input' event so
           // useBlockLinting's debounce fires. PM doesn't dispatch input
           // events natively on transactions. Fire on every doc change
@@ -850,22 +850,6 @@ function isViewEmpty(view) {
   if (!view) return true;
   const text = view.state.doc.textBetween(0, view.state.doc.content.size, '\n', '');
   return text.trim().length === 0;
-}
-
-function docHasInlineRevisions(doc) {
-  let found = false;
-  doc.descendants((node) => {
-    if (found) return false;
-    if (!node.isText) return true;
-    for (const m of node.marks) {
-      if (m.type.name === 'revision' && (m.attrs.kind === 'add' || m.attrs.kind === 'del')) {
-        found = true;
-        return false;
-      }
-    }
-    return true;
-  });
-  return found;
 }
 
 function selectionAtEnd(state) {
