@@ -527,11 +527,10 @@ function PmEditableBlock({
         // toolbar's view.dispatch — so no extra Yjs UndoManager frame is
         // produced and no double-write reaches peers.
         //
-        // What this DOES omit (vs. the blur handler at line ~323-352): the
-        // TC annotation pass (`annotateDomWithDiff` over a detached div) and
-        // the blur handler's separate direct setBlockHtml(finalHtml) call
-        // that writes the *annotated* html into the substrate. TC inline-
-        // mark materialization happens on blur, not after every toolbar verb.
+        // Same shape as the blur handler post-1h: both call onUpdate with the
+        // current pmFragmentToHtml output. TC inline-mark materialization
+        // happens at edit time in dispatchTransaction (1h Q33), so neither
+        // seam needs a separate annotation pass anymore.
         if (onUpdateDebounceRef.current) {
           clearTimeout(onUpdateDebounceRef.current);
           onUpdateDebounceRef.current = null;

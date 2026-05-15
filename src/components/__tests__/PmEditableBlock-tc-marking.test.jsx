@@ -58,7 +58,6 @@ async function renderBlock(container, { trackChanges, identity, yStore, html }) 
         resolveHtml={(h) => h}
         tailorKey={null}
         trackChanges={trackChanges}
-        snapshotText={null}
         onAcceptRevision={vi.fn()}
         onRejectRevision={vi.fn()}
         onRevisionAction={vi.fn()}
