@@ -811,43 +811,26 @@ export default function SpecEditor() {
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
   }, []);
 
-  // Update block HTML AND refresh its TC snapshot (used by FloatingToolbar inline accept/reject)
-  const handleRevisionAction = useCallback((id, html) => {
-    resumeHistory();
-    const yStore = activeYStoreRef.current;
-    if (yStore) setBlockHtml(yStore, id, html);
-    setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
-    setTcState(prev => tc.applyResolveAtBlock(prev, id, html));
-  }, []);
-
-  // 1f.9 (#47) — TC-only seam for FloatingToolbar in PM mode. PM dispatch
-  // already wrote the substrate via ySyncPlugin; this handler ONLY updates
-  // React state and the TC snapshot. Skipping setBlockHtml avoids a redundant
-  // 'local-publish' op + duplicate broadcast.
+  // 1h Q35 — PM-only sibling of handleBlockUpdate. Used by FloatingToolbar
+  // inline-revision-resolve and PmEditableBlock's del-popup; both code paths
+  // dispatch a PM transaction whose ySyncPlugin write has already updated
+  // the substrate, so this handler ONLY updates React state. Skipping
+  // setBlockHtml avoids a redundant 'local-publish' op + duplicate broadcast.
   //
-  // resumeHistory() matches handleRevisionAction's sibling pattern — without
-  // it, useUndoableBlocks stays paused (auto-paused after every keystroke
-  // flush) and this setBlocks captures NO snapshot, making inline TC accept/
-  // reject silently non-undoable. The FloatingToolbar PM caller skips its
-  // usual flushPendingUpdateById and calls cancelPendingUpdateById instead,
-  // so this handler's setBlocks is the FIRST setBlocks in the toolbar
-  // action's lifecycle and the captured snapshot's `prev` is the true
-  // pre-action state.
+  // resumeHistory() is retained because legacy useUndoableBlocks auto-pauses
+  // after every keystroke flush; without it, this setBlocks captures NO
+  // snapshot, leaving out-of-room inline TC accept/reject non-undoable.
+  // FloatingToolbar's PM caller skips flushPendingUpdateById and calls
+  // cancelPendingUpdateById instead, so this setBlocks is the first frame in
+  // the action's lifecycle and `prev` is the true pre-action state.
   //
-  // In-room mode does not benefit (App's Ctrl+Z prefers collab.tryUndo →
-  // Yjs UndoManager, which only tracks 'local-publish' origin ops — and
-  // setBlockHtml after ySyncPlugin's write is a no-op delta that produces
-  // no Yjs ops). That gap is part of the broader PM-mode undo limitation
-  // tracked alongside the existing Ctrl+Y redo off-by-one and is out of
-  // scope for 1f.9.
-  //
-  // Distinct from handleRevisionAction (above), which is used by the
-  // 1f.8 del-popup whose mutator works on serialized HTML and DOES need
-  // setBlockHtml.
-  const handleRefreshTcSnapshot = useCallback((id, html) => {
+  // In-room undo prefers collab.tryUndo (Yjs UndoManager) which tracks
+  // 'local-publish' ops; setBlockHtml after ySyncPlugin's write is a no-op
+  // delta, so in-room out-of-PM-mode users hit the broader PM-mode undo
+  // limitation tracked alongside the existing Ctrl+Y redo off-by-one.
+  const handleBlockUpdatePmSync = useCallback((id, html) => {
     resumeHistory();
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
-    setTcState(prev => tc.applyResolveAtBlock(prev, id, html));
   }, [resumeHistory]);
 
   // Update block HTML and sync the contentEditable DOM (used by MarkSuggestions).
@@ -1041,8 +1024,6 @@ export default function SpecEditor() {
       next.splice(idx + 1, 0, newBlock);
       return next;
     });
-    // Track Changes: add empty snapshot so all typed text is marked as additions on blur
-    setTcState(prev => tc.markBlockCreated(prev, newId));
     setFocusedBlockId(newId);
   }, [tcState]);
 
@@ -1195,8 +1176,6 @@ export default function SpecEditor() {
       next[idx] = newBlock;
       return next;
     });
-    // Track Changes: add empty snapshot so all typed text is marked as additions on blur
-    setTcState(prev => tc.markBlockCreated(prev, newId));
     setFocusedBlockId(newId);
   }, [handleConvertToTitle]);
 
@@ -1241,9 +1220,7 @@ export default function SpecEditor() {
       }
     }
     setBlocks(next);
-    // Refresh snapshots from the post-resolution state so subsequent edits
-    // diff against the correct baseline (not stale pre-accept text)
-    setTcState(s => tc.acceptAll(s, next));
+    setTcState(s => tc.acceptAll(s));
   }, []);
 
   const handleRejectAll = useCallback(() => {
@@ -1261,7 +1238,7 @@ export default function SpecEditor() {
       }
     }
     setBlocks(next);
-    setTcState(s => tc.rejectAll(s, next));
+    setTcState(s => tc.rejectAll(s));
   }, []);
 
   // Persist dark mode
@@ -2313,13 +2290,9 @@ export default function SpecEditor() {
         <RevisionControls
           trackChanges={trackChanges}
           onTrackChangesChange={(val) => {
-            // The track-changes module owns the "what's the new baseline?"
-            // logic. enable() snapshots visible text from current blocks;
-            // disable() clears snapshots. Both bump publishSeq so the
-            // publish effect picks the change up.
-            setTcState(prev => val
-              ? tc.enable(prev, blocksRef.current)
-              : tc.disable(prev));
+            // Q35: enable/disable only flip the flag + bump publishSeq.
+            // Per-keystroke marking lives in PmEditableBlock's dispatchTransaction.
+            setTcState(prev => val ? tc.enable(prev) : tc.disable(prev));
           }}
           showRevisions={showRevisions}
           onShowRevisionsChange={setShowRevisions}
@@ -2408,8 +2381,8 @@ export default function SpecEditor() {
           <FloatingToolbar
             editorRef={editorRef}
             onBlockUpdate={handleBlockUpdate}
-            onRevisionAction={handleRevisionAction}
-            onRefreshTcSnapshot={handleRefreshTcSnapshot}
+            onRevisionAction={handleBlockUpdate}
+            onRefreshTcSnapshot={handleBlockUpdatePmSync}
             trackChanges={trackChanges}
             onCommentCreate={handleCommentCreate}
             identity={identity}
@@ -2608,12 +2581,10 @@ export default function SpecEditor() {
                   resolveHtml={resolveHtml}
                   tailorKey={tailorKey}
                   trackChanges={trackChanges}
-                  snapshotText={tc.getSnapshot(tcState, block.id)}
                   identity={identity}
                   readOnly={collabReadOnly}
                   onAcceptRevision={(id) => {
                     resumeHistory();
-                    let resolvedHtml = '';
                     setBlocks(prev => {
                       const idx = prev.findIndex(b => b.id === id);
                       if (idx < 0) return prev;
@@ -2621,16 +2592,13 @@ export default function SpecEditor() {
                       if (b.revision === 'del') return prev.filter(bl => bl.id !== id);
                       const next = [...prev];
                       const html = b.html ? acceptAllInline(b.html) : b.html;
-                      resolvedHtml = html || '';
                       if (activeYStore && typeof html === 'string') setBlockHtml(activeYStore, id, html);
                       next[idx] = { ...b, revision: undefined, html };
                       return next;
                     });
-                    setTcState(prev => tc.acceptInline(prev, id, resolvedHtml));
                   }}
                   onRejectRevision={(id) => {
                     resumeHistory();
-                    let resolvedHtml = '';
                     setBlocks(prev => {
                       const idx = prev.findIndex(b => b.id === id);
                       if (idx < 0) return prev;
@@ -2638,15 +2606,13 @@ export default function SpecEditor() {
                       if (b.revision === 'add') return prev.filter(bl => bl.id !== id);
                       const next = [...prev];
                       const html = b.html ? rejectAllInline(b.html) : b.html;
-                      resolvedHtml = html || '';
                       if (activeYStore && typeof html === 'string') setBlockHtml(activeYStore, id, html);
                       next[idx] = { ...b, revision: undefined, html };
                       return next;
                     });
-                    setTcState(prev => tc.rejectInline(prev, id, resolvedHtml));
                   }}
-                  onRevisionAction={handleRevisionAction}
-                  onRefreshTcSnapshot={handleRefreshTcSnapshot}
+                  onRevisionAction={handleBlockUpdate}
+                  onRefreshTcSnapshot={handleBlockUpdatePmSync}
                   commentsState={commentsState}
                   onCommentClick={handleCommentClick}
                   onInlineFix={handleComplianceAcceptFix}

@@ -12,15 +12,19 @@
  *                                     depth, section, level?, html: Y.Text,
  *                                     table?, ref?, revision? }
  *   yMeta:     Y.Map                  { sectionNumber, sectionTitle, date, fileName }
- *   yTc:       Y.Map                  { enabled: boolean,
- *                                       snapshots: Y.Map<blockId, string> }
- *                                     Room-wide Track Changes state. When
- *                                     `enabled` flips on, `snapshots` is
- *                                     populated with the plaintext of every
- *                                     block at that moment (the baseline
- *                                     everyone diffs against). Flipping off
- *                                     clears `snapshots` in the same
- *                                     transaction.
+ *   yTc:       Y.Map                  { enabled: boolean }
+ *                                     Room-wide Track Changes state. Post-1h
+ *                                     (Q35/Q37) writes only `enabled`; per-
+ *                                     keystroke marking is performed by
+ *                                     PmEditableBlock's dispatchTransaction
+ *                                     intercept, so the snapshot Y.Map is
+ *                                     retired. Pre-1h rooms may still carry
+ *                                     a 'snapshots' Y.Map written by older
+ *                                     clients — readTc surfaces it for
+ *                                     backward compat but post-1h clients
+ *                                     leave it untouched. No schemaVersion
+ *                                     bump in 1h; 1i bumps to 3 when
+ *                                     legacy mode goes away.
  *   yComments: Y.Map<id, Y.Map>       Shared comment metadata. Each comment
  *                                     Y.Map has { blockId, status,
  *                                     highlightText, createdAt, authorId,
@@ -37,7 +41,7 @@
  * handleAfterTx's prefix filter suppresses local echo):
  *   'local-publish'   — block structure + html changes (yOrder + yStore)
  *   'local-meta'      — section metadata (yMeta)
- *   'local-tc'        — Track Changes toggle + snapshot updates (yTc)
+ *   'local-tc'        — Track Changes enabled-flag updates (yTc)
  *   'local-comments'  — comment create/reply/status/delete (yComments)
  *   'seed'            — initial room seeding (not a local edit)
  *   'local-apply'     — internal: applyBlocksToYDoc inner transaction (always
@@ -293,7 +297,12 @@ export function readYMeta(yMeta) {
  * Snapshot the yTc Y.Map as a plain `{ enabled, snapshots }` object.
  *
  * `enabled` is read directly from yTc; absent key coerces to false via `!!`.
- * Snapshot data lives in the nested 'snapshots' Y.Map keyed by block ID.
+ *
+ * `snapshots` is retained for backward compat with pre-1h schemas (Q37,
+ * #47 sub-PR 1h). Pre-1h clients wrote a nested 'snapshots' Y.Map; 1h
+ * clients ignore the field on read. The shape is preserved so a 1h client
+ * inspecting a mixed-version room can still see whatever the pre-1h peers
+ * wrote — useful for diagnostics. App-level applyRemote drops the field.
  */
 export function readTc(yTc) {
   const enabled = !!yTc.get('enabled');
@@ -306,28 +315,19 @@ export function readTc(yTc) {
 }
 
 /**
- * Apply a TC state update to yTc inside a 'local-tc' transaction. Writes
- * `enabled` and rewrites the `snapshots` Y.Map to match `snapshots` exactly
- * (deletes entries missing from the input). When enabled is false, callers
- * are expected to pass an empty snapshots object — this function does NOT
- * auto-clear snapshots, so the invariant lives in the caller.
+ * Apply a TC state update to yTc inside a 'local-tc' transaction.
+ *
+ * Q37 (#47 sub-PR 1h): writes ONLY the `enabled` flag. Any `snapshots`
+ * field on the payload is ignored, and any pre-existing nested 'snapshots'
+ * Y.Map (left over from a pre-1h client) is left untouched so the pre-1h
+ * peer's data round-trips cleanly. Post-1h-only rooms never grow a
+ * 'snapshots' key. No schemaVersion bump in 1h — pre-1h clients editing
+ * post-1h rooms degrade in edit fidelity only; 1i bumps schemaVersion to
+ * 3 when legacy goes away.
  */
-export function publishTcToDoc(ydoc, yTc, { enabled, snapshots }) {
+export function publishTcToDoc(ydoc, yTc, { enabled }) {
   ydoc.transact(() => {
     if (yTc.get('enabled') !== enabled) yTc.set('enabled', !!enabled);
-    let snapsMap = yTc.get('snapshots');
-    if (!(snapsMap instanceof Y.Map)) {
-      snapsMap = new Y.Map();
-      yTc.set('snapshots', snapsMap);
-    }
-    const next = snapshots && typeof snapshots === 'object' ? snapshots : {};
-    const nextKeys = new Set(Object.keys(next));
-    for (const k of Array.from(snapsMap.keys())) {
-      if (!nextKeys.has(k)) snapsMap.delete(k);
-    }
-    for (const [k, v] of Object.entries(next)) {
-      if (snapsMap.get(k) !== v) snapsMap.set(k, v);
-    }
   }, 'local-tc');
 }
 
@@ -762,21 +762,18 @@ export function createCollabSession({
       }
       // yTc requires NO seeding.
       //
-      // Seeding 'enabled' OR 'snapshots' in two independent docs creates a
-      // Yjs Y.Map LWW conflict: after cross-doc sync, whichever doc has the
-      // higher random clientID wins each key, regardless of which client
-      // actually called publishTcToDoc. This means:
-      //   - A seed of `enabled: false` can clobber a subsequent
-      //     `publishTc({ enabled: true })` from the other client.
-      //   - A seed of `snapshots: new Y.Map()` creates two independent
-      //     Y.Map instances for the same key; after merge only one wins
-      //     LWW — any data written into the losing instance is silently
-      //     discarded.
+      // Seeding 'enabled' in two independent docs creates a Yjs Y.Map LWW
+      // conflict: after cross-doc sync, whichever doc has the higher random
+      // clientID wins, regardless of which client called publishTcToDoc.
+      // A seed of `enabled: false` could clobber a subsequent
+      // `publishTc({ enabled: true })` from the other client.
       //
-      // The fix: leave BOTH keys absent until publishTcToDoc first writes
-      // them. publishTcToDoc creates the 'snapshots' Y.Map if absent, making
-      // it the sole creator of the instance — no LWW conflict is possible.
-      // readTc coerces an absent 'enabled' key to false via `!!`.
+      // The fix: leave 'enabled' absent until publishTcToDoc first writes
+      // it. readTc coerces an absent 'enabled' key to false via `!!`.
+      //
+      // Q37 (#47 sub-PR 1h): the legacy 'snapshots' Y.Map is no longer
+      // written by post-1h clients. If a pre-1h peer populated it, it
+      // survives untouched (publishTcToDoc never reads/writes the key).
       //
       // yComments is an empty Y.Map — no seeding needed; populated on
       // first comment create.

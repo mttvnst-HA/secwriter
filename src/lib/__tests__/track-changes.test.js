@@ -1,238 +1,197 @@
 import { describe, it, expect } from 'vitest';
 import * as tc from '../track-changes.js';
 
-const block = (id, html) => ({ id, type: 'txt', part: 1, depth: 1, html });
+// Q35 (#47 sub-PR 1h) — track-changes.js retirement.
+//
+// Per-keystroke marking is now performed by PmEditableBlock's
+// dispatchTransaction intercept (Q33). This reducer's only remaining
+// responsibility is:
+//   - the enabled flag (gates the PM marking pipeline + revision flags)
+//   - the publishSeq counter that drives the publish effect inside
+//     useCollabSession
+//
+// The snapshots Map and all snapshot-refresh verbs (acceptInline /
+// rejectInline / applyResolveAtBlock / markBlockCreated) are gone.
+// The wire payload (Q37) shrinks correspondingly to { enabled }.
 
-describe('createInitial', () => {
-  it('starts disabled with empty snapshots and zero publishSeq', () => {
+describe('state shape (Q35 retirement)', () => {
+  it('createInitial returns { enabled:false, publishSeq:0 } with NO snapshots field', () => {
     const s = tc.createInitial();
-    expect(tc.isEnabled(s)).toBe(false);
-    expect(s.snapshots.size).toBe(0);
+    expect(s.enabled).toBe(false);
     expect(s.publishSeq).toBe(0);
-  });
-});
-
-describe('enable', () => {
-  it('flips enabled flag', () => {
-    const s = tc.enable(tc.createInitial(), []);
-    expect(tc.isEnabled(s)).toBe(true);
+    expect('snapshots' in s).toBe(false);
   });
 
-  it('snapshots visible text of every html-bearing block', () => {
-    const blocks = [
-      block('a', 'hello'),
-      block('b', 'world <del class="mark-del">gone</del>'),
-      { id: 'c', type: 'pagebreak' },
-    ];
-    const s = tc.enable(tc.createInitial(), blocks);
-    expect(tc.getSnapshot(s, 'a')).toBe('hello');
-    expect(tc.getSnapshot(s, 'b')).toBe('world ');
-    expect(tc.getSnapshot(s, 'c')).toBeUndefined();
-  });
-
-  it('bumps publishSeq', () => {
+  it('enable returns { enabled:true, publishSeq:n+1 } with NO snapshots field', () => {
     const s0 = tc.createInitial();
-    const s1 = tc.enable(s0, []);
+    const s1 = tc.enable(s0);
+    expect(s1.enabled).toBe(true);
     expect(s1.publishSeq).toBe(s0.publishSeq + 1);
+    expect('snapshots' in s1).toBe(false);
   });
 
-  it('returns a new state object (immutable)', () => {
-    const s0 = tc.createInitial();
-    const s1 = tc.enable(s0, [block('a', 'x')]);
-    expect(s1).not.toBe(s0);
-    expect(s1.snapshots).not.toBe(s0.snapshots);
-  });
-});
-
-describe('disable', () => {
-  it('flips enabled flag and clears snapshots', () => {
-    const s0 = tc.enable(tc.createInitial(), [block('a', 'hello')]);
+  it('disable returns { enabled:false, publishSeq:n+1 } with NO snapshots field', () => {
+    const s0 = tc.enable(tc.createInitial());
     const s1 = tc.disable(s0);
-    expect(tc.isEnabled(s1)).toBe(false);
-    expect(s1.snapshots.size).toBe(0);
+    expect(s1.enabled).toBe(false);
+    expect(s1.publishSeq).toBe(s0.publishSeq + 1);
+    expect('snapshots' in s1).toBe(false);
   });
 
-  it('bumps publishSeq', () => {
-    const s0 = tc.enable(tc.createInitial(), [block('a', 'hello')]);
-    const s1 = tc.disable(s0);
-    expect(s1.publishSeq).toBe(s0.publishSeq + 1);
+  it('enable ignores any extra args (blocks no longer needed)', () => {
+    // Callers in App.jsx pass blocks today; the retired reducer accepts
+    // and ignores them so call sites can be swept incrementally.
+    const s = tc.enable(tc.createInitial(), [{ id: 'a', html: 'x' }]);
+    expect(s.enabled).toBe(true);
+    expect('snapshots' in s).toBe(false);
   });
 });
 
-describe('acceptInline / rejectInline / applyResolveAtBlock', () => {
-  it('refreshes the snapshot for the touched block to the new visible text', () => {
-    const s0 = tc.enable(tc.createInitial(), [block('a', 'hello world')]);
-    const s1 = tc.acceptInline(s0, 'a', 'hello brave world');
-    expect(tc.getSnapshot(s1, 'a')).toBe('hello brave world');
+describe('retired verbs are no longer exported', () => {
+  it('acceptInline is gone', () => {
+    expect(tc.acceptInline).toBeUndefined();
   });
 
-  it('strips inline del marks when computing the new snapshot', () => {
-    const s0 = tc.enable(tc.createInitial(), [block('a', 'old')]);
-    const s1 = tc.acceptInline(s0, 'a', 'new <del class="mark-del">deleted</del>text');
-    expect(tc.getSnapshot(s1, 'a')).toBe('new text');
+  it('rejectInline is gone', () => {
+    expect(tc.rejectInline).toBeUndefined();
   });
 
-  it('rejectInline behaves the same way at the snapshot level', () => {
-    const s0 = tc.enable(tc.createInitial(), [block('a', 'a')]);
-    const s1 = tc.rejectInline(s0, 'a', 'after');
-    expect(tc.getSnapshot(s1, 'a')).toBe('after');
+  it('applyResolveAtBlock is gone', () => {
+    expect(tc.applyResolveAtBlock).toBeUndefined();
   });
 
-  it('applyResolveAtBlock is the generic refresh verb', () => {
-    const s0 = tc.enable(tc.createInitial(), [block('a', 'a')]);
-    const s1 = tc.applyResolveAtBlock(s0, 'a', 'after');
-    expect(tc.getSnapshot(s1, 'a')).toBe('after');
+  it('markBlockCreated is gone', () => {
+    expect(tc.markBlockCreated).toBeUndefined();
   });
 
-  it('is a no-op when disabled', () => {
-    const s0 = tc.createInitial();
-    const s1 = tc.acceptInline(s0, 'a', 'whatever');
-    expect(s1).toBe(s0);
+  it('markBlockDeleted is gone (was a no-op kept for symmetry; no need post-Q35)', () => {
+    expect(tc.markBlockDeleted).toBeUndefined();
   });
 
-  it('does not touch snapshots for other blocks', () => {
-    const blocks = [block('a', 'aaa'), block('b', 'bbb')];
-    const s0 = tc.enable(tc.createInitial(), blocks);
-    const s1 = tc.acceptInline(s0, 'a', 'AAA');
-    expect(tc.getSnapshot(s1, 'a')).toBe('AAA');
-    expect(tc.getSnapshot(s1, 'b')).toBe('bbb');
-  });
-
-  it('bumps publishSeq when enabled', () => {
-    const s0 = tc.enable(tc.createInitial(), [block('a', 'a')]);
-    const s1 = tc.acceptInline(s0, 'a', 'b');
-    expect(s1.publishSeq).toBe(s0.publishSeq + 1);
+  it('getSnapshot is gone', () => {
+    expect(tc.getSnapshot).toBeUndefined();
   });
 });
 
-describe('acceptAll / rejectAll', () => {
-  it('rebuilds snapshots from the post-resolution blocks', () => {
-    const before = [block('a', 'old <del class="mark-del">x</del>'), block('b', 'b')];
-    const after  = [block('a', 'old '), block('b', 'b')];
-    const s0 = tc.enable(tc.createInitial(), before);
-    const s1 = tc.acceptAll(s0, after);
-    expect(tc.getSnapshot(s1, 'a')).toBe('old ');
-    expect(tc.getSnapshot(s1, 'b')).toBe('b');
+describe('acceptAll / rejectAll (snapshot-refresh removed)', () => {
+  it('acceptAll bumps publishSeq when enabled and ignores any blocks arg', () => {
+    const s0 = tc.enable(tc.createInitial());
+    const s1 = tc.acceptAll(s0, [{ id: 'a', html: 'x' }]);
+    expect(s1.enabled).toBe(true);
+    expect(s1.publishSeq).toBe(s0.publishSeq + 1);
+    expect('snapshots' in s1).toBe(false);
   });
 
-  it('rejectAll rebuilds snapshots the same way', () => {
-    const after = [block('a', 'restored'), block('b', 'b')];
-    const s0 = tc.enable(tc.createInitial(), [block('a', 'partial')]);
-    const s1 = tc.rejectAll(s0, after);
-    expect(tc.getSnapshot(s1, 'a')).toBe('restored');
-    expect(tc.getSnapshot(s1, 'b')).toBe('b');
+  it('rejectAll bumps publishSeq when enabled and ignores any blocks arg', () => {
+    const s0 = tc.enable(tc.createInitial());
+    const s1 = tc.rejectAll(s0);
+    expect(s1.enabled).toBe(true);
+    expect(s1.publishSeq).toBe(s0.publishSeq + 1);
   });
 
-  it('is a no-op when disabled', () => {
+  it('acceptAll is a no-op when disabled', () => {
     const s0 = tc.createInitial();
-    const s1 = tc.acceptAll(s0, [block('a', 'x')]);
+    const s1 = tc.acceptAll(s0);
     expect(s1).toBe(s0);
   });
 
-  it('bumps publishSeq when enabled', () => {
-    const s0 = tc.enable(tc.createInitial(), [block('a', 'x')]);
-    const s1 = tc.acceptAll(s0, [block('a', 'x')]);
-    expect(s1.publishSeq).toBe(s0.publishSeq + 1);
-  });
-});
-
-describe('markBlockCreated', () => {
-  it('seeds an empty-string snapshot when enabled', () => {
-    const s0 = tc.enable(tc.createInitial(), []);
-    const s1 = tc.markBlockCreated(s0, 'newId');
-    expect(tc.getSnapshot(s1, 'newId')).toBe('');
-  });
-
-  it('is a no-op when disabled', () => {
+  it('rejectAll is a no-op when disabled', () => {
     const s0 = tc.createInitial();
-    const s1 = tc.markBlockCreated(s0, 'newId');
+    const s1 = tc.rejectAll(s0);
     expect(s1).toBe(s0);
-  });
-
-  it('bumps publishSeq when enabled', () => {
-    const s0 = tc.enable(tc.createInitial(), []);
-    const s1 = tc.markBlockCreated(s0, 'newId');
-    expect(s1.publishSeq).toBe(s0.publishSeq + 1);
   });
 });
 
 describe('selectors', () => {
+  it('isEnabled reflects state.enabled', () => {
+    expect(tc.isEnabled(tc.createInitial())).toBe(false);
+    expect(tc.isEnabled(tc.enable(tc.createInitial()))).toBe(true);
+  });
+
+  it('getPublishableState returns { enabled } only — NO snapshots key (Q37 wire shrink)', () => {
+    const s = tc.enable(tc.createInitial());
+    const pub = tc.getPublishableState(s);
+    expect(pub).toEqual({ enabled: true });
+    expect('snapshots' in pub).toBe(false);
+  });
+
+  it('getPublishableState returns { enabled:false } when disabled', () => {
+    const s = tc.disable(tc.enable(tc.createInitial()));
+    const pub = tc.getPublishableState(s);
+    expect(pub).toEqual({ enabled: false });
+    expect('snapshots' in pub).toBe(false);
+  });
+
   it('revisionFlagForCreate returns "add" when enabled, undefined otherwise', () => {
     expect(tc.revisionFlagForCreate(tc.createInitial())).toBeUndefined();
-    expect(tc.revisionFlagForCreate(tc.enable(tc.createInitial(), []))).toBe('add');
+    expect(tc.revisionFlagForCreate(tc.enable(tc.createInitial()))).toBe('add');
   });
 
   it('revisionFlagForDelete returns "del" when enabled and block is not a pending add', () => {
-    const enabled = tc.enable(tc.createInitial(), []);
+    const enabled = tc.enable(tc.createInitial());
     expect(tc.revisionFlagForDelete(enabled, { id: 'a', html: 'x' })).toBe('del');
   });
 
   it('revisionFlagForDelete returns null for a pending-add block (real delete)', () => {
-    const enabled = tc.enable(tc.createInitial(), []);
+    const enabled = tc.enable(tc.createInitial());
     expect(tc.revisionFlagForDelete(enabled, { id: 'a', revision: 'add' })).toBeNull();
   });
 
   it('revisionFlagForDelete returns null when disabled (real delete)', () => {
     expect(tc.revisionFlagForDelete(tc.createInitial(), { id: 'a' })).toBeNull();
   });
-
-  it('getPublishableState returns enabled flag and snapshots-as-object', () => {
-    const s = tc.enable(tc.createInitial(), [block('a', 'aa'), block('b', 'bb')]);
-    const pub = tc.getPublishableState(s);
-    expect(pub.enabled).toBe(true);
-    expect(pub.snapshots).toEqual({ a: 'aa', b: 'bb' });
-  });
-
-  it('getPublishableState returns empty snapshots when disabled, regardless of stored map', () => {
-    const enabled = tc.enable(tc.createInitial(), [block('a', 'aa')]);
-    const disabled = tc.disable(enabled);
-    const pub = tc.getPublishableState(disabled);
-    expect(pub.enabled).toBe(false);
-    expect(pub.snapshots).toEqual({});
-  });
 });
 
-describe('applyRemote', () => {
-  it('replaces enabled + snapshots from a remote update', () => {
+describe('applyRemote (Q37 backward-compat)', () => {
+  it('replaces enabled flag from a remote payload', () => {
     const s0 = tc.createInitial();
-    const s1 = tc.applyRemote(s0, { enabled: true, snapshots: { a: 'aa' } });
+    const s1 = tc.applyRemote(s0, { enabled: true });
     expect(tc.isEnabled(s1)).toBe(true);
-    expect(tc.getSnapshot(s1, 'a')).toBe('aa');
+  });
+
+  it('IGNORES a legacy snapshots field in the payload (pre-1h wire compat)', () => {
+    // readTc still emits { enabled, snapshots } from pre-1h rooms; applyRemote
+    // must accept that shape without keeping the snapshots key on local state.
+    const s0 = tc.createInitial();
+    const s1 = tc.applyRemote(s0, { enabled: true, snapshots: { a: 'aa', b: 'bb' } });
+    expect(tc.isEnabled(s1)).toBe(true);
+    expect('snapshots' in s1).toBe(false);
   });
 
   it('does NOT bump publishSeq (would round-trip back to peers)', () => {
     const s0 = tc.createInitial();
-    const s1 = tc.applyRemote(s0, { enabled: true, snapshots: { a: 'aa' } });
+    const s1 = tc.applyRemote(s0, { enabled: true });
     expect(s1.publishSeq).toBe(s0.publishSeq);
   });
 
   it('coerces missing fields safely', () => {
     const s = tc.applyRemote(tc.createInitial(), null);
     expect(tc.isEnabled(s)).toBe(false);
-    expect(s.snapshots.size).toBe(0);
+    expect('snapshots' in s).toBe(false);
+  });
+
+  it('coerces a payload with no enabled key to false', () => {
+    const s = tc.applyRemote(tc.createInitial(), {});
+    expect(tc.isEnabled(s)).toBe(false);
   });
 });
 
-describe('invariant: snapshot[id] === visibleText(html)', () => {
-  it('holds after acceptInline', () => {
-    const s0 = tc.enable(tc.createInitial(), [block('a', 'before')]);
-    const html = 'after <del class="mark-del">cut</del>edit';
-    const s1 = tc.acceptInline(s0, 'a', html);
-    expect(tc.getSnapshot(s1, 'a')).toBe('after edit');
+describe('immutability', () => {
+  it('enable returns a new state object', () => {
+    const s0 = tc.createInitial();
+    const s1 = tc.enable(s0);
+    expect(s1).not.toBe(s0);
   });
 
-  it('holds after acceptAll across many blocks', () => {
-    const after = [
-      block('a', 'A'),
-      block('b', 'B <del class="mark-del">gone</del>!'),
-      block('c', 'C'),
-    ];
-    const s0 = tc.enable(tc.createInitial(), [block('a', 'old'), block('b', 'old'), block('c', 'old')]);
-    const s1 = tc.acceptAll(s0, after);
-    for (const b of after) {
-      expect(tc.getSnapshot(s1, b.id)).toBe(
-        b.html.replace(/<del\b[^>]*>[\s\S]*?<\/del>/gi, '').replace(/<[^>]+>/g, '')
-      );
-    }
+  it('disable returns a new state object', () => {
+    const s0 = tc.enable(tc.createInitial());
+    const s1 = tc.disable(s0);
+    expect(s1).not.toBe(s0);
+  });
+
+  it('acceptAll returns a new state object when enabled', () => {
+    const s0 = tc.enable(tc.createInitial());
+    const s1 = tc.acceptAll(s0);
+    expect(s1).not.toBe(s0);
   });
 });
