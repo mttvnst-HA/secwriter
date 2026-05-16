@@ -299,10 +299,13 @@ export default function FloatingToolbar({
       // PM path — 1g.7 (#88): restore relpos before dispatch.
       restoreSavedRelpos(view, saved);
       const kind = revType.tag === 'ADD' ? 'add' : 'del';
+      // Issue #97 — pass trackChanges so the verb can suppress its legacy
+      // toggle-off path on ranges already owned by per-keystroke marking
+      // (1h Q33). Out-of-TC mode the toggle remains intact.
       const tr = applyRevisionTr(view.state, kind, {
         authorId: identity?.id ?? null,
         authorColor: identity?.color ?? null,
-      });
+      }, trackChanges);
       if (tr) {
         if (typeof onForceFrame === 'function') onForceFrame();
         view.dispatch(tr);
@@ -342,7 +345,12 @@ export default function FloatingToolbar({
     sel.removeAllRanges();
     if (onBlockUpdate && blockEl) onBlockUpdate(blockId, blockEl.innerHTML);
     setVisible(false);
-  }, [onBlockUpdate, identity, onForceFrame]);
+    // Issue #97 — `trackChanges` must be in deps. Without it, the closure
+    // captures the initial value (false) and never observes the user
+    // flipping TC on; `applyRevisionTr` then runs the legacy toggle-off
+    // path on a range already marked by per-keystroke marking, stripping
+    // the marks the user just typed.
+  }, [onBlockUpdate, identity, onForceFrame, trackChanges]);
 
   // Change case: cycles UPPER → lower → Title
   const changeCase = useCallback(() => {

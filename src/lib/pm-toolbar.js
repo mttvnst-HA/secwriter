@@ -238,9 +238,24 @@ export function applyInlineMarkTr(state, kind, optionAttr) {
  * without an author check, which can strip another user's mark. The PM
  * path declines to reproduce that latent bug.
  *
- * Returns null on collapsed selection or unknown kind.
+ * Issue #97 — `trackChanges` gate (4th arg). Post-1h Q33 (#94), the per-
+ * keystroke marking pipeline wraps every typed character in revisionAdd
+ * immediately in `dispatchTransaction`. The legacy toggle-off path then
+ * mis-fires: a user selects their just-typed text, clicks "Mark as
+ * Addition", and the range — already entirely their own revisionAdd —
+ * triggers the toggle-off branch, stripping the marks. The TC gate
+ * suppresses toggle-off (returns null) when TC is on AND the range is
+ * already entirely the current user's mark: the toolbar verb becomes
+ * purely additive in TC mode, since per-keystroke marking owns the
+ * removal side via accept/reject. Defaults to false; out-of-TC mode and
+ * legacy callers (3-arg form, including the existing toggle-off unit
+ * test) are unaffected.
+ *
+ * Returns null on collapsed selection, unknown kind, OR — in TC mode —
+ * when the range is already entirely the current user's mark of the
+ * requested kind.
  */
-export function applyRevisionTr(state, kind, authorAttrs) {
+export function applyRevisionTr(state, kind, authorAttrs, trackChanges = false) {
   const { from, to, empty } = state.selection;
   if (empty) return null;
   const markTypeName = REVISION_MARK_TYPE_NAMES[kind];
@@ -252,6 +267,7 @@ export function applyRevisionTr(state, kind, authorAttrs) {
 
   const allMine = rangeAllHaveMarkWithAttrs(state.doc, from, to, markType, matchesMine);
   if (allMine) {
+    if (trackChanges) return null; // per-keystroke marking already owns this range
     const sample = findFirstMatchingMark(state.doc, from, to, markType, matchesMine);
     if (sample) return state.tr.removeMark(from, to, sample);
   }
