@@ -2,6 +2,7 @@ import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import SlashMenu, { SLASH_ITEMS } from "./SlashMenu.jsx";
 import { BLOCK_MARGINS } from "../lib/ini-config.js";
 import { cleanTaiClasses } from "../lib/tailor-profile.js";
+import { sanitizePasteText } from "../lib/paste-sanitize.js";
 import { annotateDomWithDiff, getVisibleTextFromHtml } from "../lib/text-diff.js";
 import { useBlockLinting } from "./useBlockLinting.js";
 import { useBlockBinder } from "./useBlockBinder.js";
@@ -17,11 +18,6 @@ import PmEditableBlock from "./PmEditableBlock.jsx";
 // through applyBlocksToYDoc on every character. Exported so tests can pin
 // against the same value.
 export const PUBLISH_DEBOUNCE_MS = 400;
-
-/** Sanitize pasted text: collapse newlines to single space, strip zero-width spaces, trim */
-export function sanitizePasteText(text) {
-  return text.replace(/[\r\n]+/g, ' ').replace(/\u200B/g, '').trimEnd();
-}
 
 // Mark class → SGML tag name mapping for inline tag labels
 const MARK_TAG_MAP = {

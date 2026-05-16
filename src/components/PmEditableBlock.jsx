@@ -68,6 +68,7 @@ import { dispatchDelAction } from '../lib/pm-del-popup.js';
 import { activeCommentPlugin } from '../lib/pm-plugins/active-comment.js';
 import { COMMENT_RECONCILE_META, reconcileCommentMarks } from '../lib/pm-comments.js';
 import { rewriteForTrackChanges, docHasInlineRevisions, TC_RESOLVE_META } from '../lib/pm-tc-mark.js';
+import { sanitizePasteText } from '../lib/paste-sanitize.js';
 import { useBlockLinting } from './useBlockLinting.js';
 
 /**
@@ -325,6 +326,29 @@ function PmEditableBlock({
         // Click elsewhere → dismiss any open popup
         setDelPopup(null);
         return false;
+      },
+      handlePaste(view, event) {
+        // Issue #99 — strip ALL clipboard formatting and insert plain text only,
+        // mirroring legacy EditableBlock's onPaste behavior. PM's default paste
+        // pipeline parses text/html via the schema's parseDOM rules; with `<b>`
+        // mapped to `bold`, generic rich-text from Word/web survives as marks
+        // unless we intercept here. We deliberately ignore the parsed `slice`
+        // argument and the text/html clipboard variant — SpecsIntact specs
+        // never carry ad-hoc inline formatting beyond schema-recognized marks,
+        // so plaintext-only paste is the safe default.
+        //
+        // Returning true tells PM "I handled it" so PM does not also process
+        // the event. preventDefault is explicit defense against any default
+        // browser paste behavior on the contentEditable surface.
+        //
+        // TC mode interaction: the dispatched insertText transaction passes
+        // through dispatchTransaction and triggers rewriteForTrackChanges when
+        // TC is on, so pasted text correctly enters as a tracked addition
+        // without additional wiring here.
+        event.preventDefault();
+        const text = sanitizePasteText(event.clipboardData?.getData('text/plain') ?? '');
+        if (text) view.dispatch(view.state.tr.insertText(text));
+        return true;
       },
       handleDOMEvents: {
         focus: () => {
