@@ -2466,6 +2466,7 @@ export default function SpecEditor() {
             onBlockUpdate={handleBlockUpdate}
             onRevisionAction={handleLegacyRevisionAction}
             onRefreshTcSnapshot={handleBlockUpdatePmSync}
+            onForceFrame={inRoom ? collab.forceFrame : localUndo.forceFrame}
             trackChanges={trackChanges}
             onCommentCreate={handleCommentCreate}
             identity={identity}

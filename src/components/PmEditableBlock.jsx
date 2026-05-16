@@ -657,6 +657,18 @@ function PmEditableBlock({
       clearTimeout(onUpdateDebounceRef.current);
       onUpdateDebounceRef.current = null;
     }
+    // 1h Q36 Commit C review — close the Yjs UndoManager's current
+    // capture window BEFORE the PM dispatch. dispatchDelAction calls
+    // view.dispatch(tr); ySyncPlugin writes a Yjs op with
+    // ySyncPluginKey origin synchronously. If the user typed within
+    // the prior 500ms, that op would coalesce with the typing burst
+    // into one undo frame (per the captureTimeout merge behavior the
+    // dual-origin-coalescing test pins). Calling forceFrame here makes
+    // this accept/reject its own Ctrl+Z step. (handleBlockUpdatePmSync
+    // ALSO calls forceFrame for FUTURE writes; this paired pre-dispatch
+    // call closes the prior window for PAST writes.)
+    const pmForceFrame = forceFrameRef.current;
+    if (typeof pmForceFrame === 'function') pmForceFrame();
     // 1g.5 (#86) — dispatch a PM transaction instead of mutating
     // serialized HTML. The substrate write rides ySyncPlugin; no
     // setBlockHtml round-trip. dispatchDelAction returns null on
