@@ -61,6 +61,7 @@ import { BLOCK_MARGINS } from '../lib/ini-config.js';
 import { slashMenuPlugin, slashMenuPluginKey } from '../lib/pm-plugins/slash-menu.js';
 import { tagLabelsPlugin, setTagsVisible } from '../lib/pm-plugins/tag-labels.js';
 import { blockKeymap } from '../lib/pm-plugins/keymap.js';
+import { wordBoundaryUndoPlugin } from '../lib/pm-plugins/word-boundary-undo.js';
 import { registerBlock, unregisterBlock } from '../lib/block-registry.js';
 import { subscribeBlock } from '../lib/block-html-store.js';
 import { dispatchDelAction } from '../lib/pm-del-popup.js';
@@ -113,6 +114,14 @@ function PmEditableBlock({
   lintingDispatch,
   showTags = false,
   readOnly = false,
+  // 1h Q36 Commit A — `collab.forceFrame` (or App's local-substrate
+  // equivalent once Commit B lands). The word-boundary plugin reads
+  // this through a ref on every keydown so a session create/destroy
+  // cycle picks up the latest reference without rebuilding the
+  // EditorView. Until Commit B adds `ySyncPluginKey` to the Yjs
+  // UndoManager's trackedOrigins, calling this has no production
+  // effect — but the plumbing lets Commit B land atomically.
+  forceFrame,
 }) {
   const containerRef = useRef(null);
   const viewRef = useRef(null);
@@ -170,6 +179,8 @@ function PmEditableBlock({
   const slashStateRef = useRef(slashState);
   slashStateRef.current = slashState;
   const filteredSlashRef = useRef([]);
+  const forceFrameRef = useRef(forceFrame);
+  forceFrameRef.current = forceFrame;
 
   const editable = useMemo(() => {
     const t = block.type;
@@ -256,6 +267,17 @@ function PmEditableBlock({
       slashMenuPlugin(),
       tagLabelsPlugin({ initialVisible: !!showTags }),
       activeCommentPlugin(),
+      // 1h Q36 Commit A — must precede blockKeymap so its handleKeyDown
+      // observes word-boundary keys BEFORE blockKeymap might consume
+      // Enter (slash-menu selection) or Tab (OLI level change). PM
+      // iterates plugins in order and stops at the first handler that
+      // returns true; this plugin always returns false (observational).
+      wordBoundaryUndoPlugin({
+        getForceFrame: () => {
+          const fn = forceFrameRef.current;
+          return typeof fn === 'function' ? fn : null;
+        },
+      }),
       blockKeymap({
         getBlockId: () => block.id,
         getBlockType: () => blockTypeRef.current,
@@ -635,6 +657,18 @@ function PmEditableBlock({
       clearTimeout(onUpdateDebounceRef.current);
       onUpdateDebounceRef.current = null;
     }
+    // 1h Q36 Commit C review — close the Yjs UndoManager's current
+    // capture window BEFORE the PM dispatch. dispatchDelAction calls
+    // view.dispatch(tr); ySyncPlugin writes a Yjs op with
+    // ySyncPluginKey origin synchronously. If the user typed within
+    // the prior 500ms, that op would coalesce with the typing burst
+    // into one undo frame (per the captureTimeout merge behavior the
+    // dual-origin-coalescing test pins). Calling forceFrame here makes
+    // this accept/reject its own Ctrl+Z step. (handleBlockUpdatePmSync
+    // ALSO calls forceFrame for FUTURE writes; this paired pre-dispatch
+    // call closes the prior window for PAST writes.)
+    const pmForceFrame = forceFrameRef.current;
+    if (typeof pmForceFrame === 'function') pmForceFrame();
     // 1g.5 (#86) — dispatch a PM transaction instead of mutating
     // serialized HTML. The substrate write rides ySyncPlugin; no
     // setBlockHtml round-trip. dispatchDelAction returns null on

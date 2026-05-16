@@ -100,6 +100,19 @@ import {
  * @property {() => boolean} tryRedo
  * @property {() => boolean} canUndo  False when no session.
  * @property {() => boolean} canRedo
+ * @property {(fn: () => void) => void} withUndoFrame
+ *   1h Q36 Commit A — when a session is live, wraps `fn` in
+ *   `ydoc.transact(fn, 'local-publish')` so its writes collapse to one
+ *   undo frame. When no session is live (out of room, or session not
+ *   yet created), runs `fn` directly so its non-Yjs side effects (like
+ *   `setBlocks`) still execute. This makes the helper safe to call
+ *   regardless of room state — Commit C's migrated sites don't need to
+ *   gate on `inRoom`. Stable identity across renders — safe to include
+ *   in `useMemo` / `useCallback` dep lists.
+ * @property {() => void} forceFrame
+ *   1h Q36 Commit A — ends the current UndoManager capture window so
+ *   the next 'local-publish' write starts a fresh frame. No-op when no
+ *   session is live. Stable identity across renders.
  * @property {Y.Map|null} yStore
  *   The session's per-block Y.Map<string, Y.Map> — exposed so App can
  *   compute `activeYStore = inRoom ? collab.yStore : localYStore` and
@@ -513,6 +526,36 @@ export function useCollabSession({
     return session ? session.canRedo() : false;
   }, []);
 
+  // 1h Q36 Commit A — undo helpers. Stable function identities returned
+  // from useCallback so App-level memos that depend on them don't re-run
+  // unnecessarily. Each call reads sessionRef.current so a session
+  // create/destroy cycle picks up the latest helpers without a re-render.
+  //
+  //   withUndoFrame: when a session is live, wraps `fn` in
+  //     ydoc.transact(fn, 'local-publish') so its Yjs writes collapse to
+  //     one undo frame. When NO session is live, runs `fn` directly so
+  //     its non-Yjs side effects (setBlocks, React state updates) still
+  //     execute — Commit C's migrated sites don't need to gate on
+  //     `inRoom`. The Commit B out-of-room local-substrate hook will own
+  //     framing for that path independently.
+  //   forceFrame: ends the UndoManager's current capture window when a
+  //     session is live; no-op otherwise.
+  const withUndoFrame = useCallback((fn) => {
+    const session = sessionRef.current;
+    if (session && typeof session.withUndoFrame === 'function') {
+      session.withUndoFrame(fn);
+      return;
+    }
+    fn();
+  }, []);
+
+  const forceFrame = useCallback(() => {
+    const session = sessionRef.current;
+    if (session && typeof session.forceFrame === 'function') {
+      session.forceFrame();
+    }
+  }, []);
+
   return {
     dispatchComment,
     markTcSeqApplied,
@@ -520,6 +563,8 @@ export function useCollabSession({
     tryRedo,
     canUndo,
     canRedo,
+    withUndoFrame,
+    forceFrame,
     yStore,
   };
 }

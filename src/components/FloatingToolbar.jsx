@@ -65,6 +65,12 @@ export default function FloatingToolbar({
   onBlockUpdate,
   onRevisionAction,
   onRefreshTcSnapshot,
+  // 1h Q36 Commit C review — forceFrame closes the active Yjs
+  // UndoManager capture window before a PM toolbar dispatch, so the
+  // toolbar action doesn't coalesce with the user's prior typing in
+  // Ctrl+Z. App passes `inRoom ? collab.forceFrame : localUndo.forceFrame`.
+  // Optional: defensive callers may omit it.
+  onForceFrame,
   trackChanges,
   onCommentCreate,
   identity,
@@ -243,6 +249,7 @@ export default function FloatingToolbar({
       if (!kind) return;
       const tr = applyInlineMarkTr(view.state, kind);
       if (tr) {
+        if (typeof onForceFrame === 'function') onForceFrame();
         view.dispatch(tr);
         if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
           flushPendingUpdateById(blockId);
@@ -280,7 +287,7 @@ export default function FloatingToolbar({
     sel.removeAllRanges();
     if (onBlockUpdate && blockEl) onBlockUpdate(blockId, blockEl.innerHTML);
     setVisible(false);
-  }, [onBlockUpdate]);
+  }, [onBlockUpdate, onForceFrame]);
 
   const applyRevision = useCallback((revType) => {
     const saved = selectionRef.current;
@@ -297,6 +304,7 @@ export default function FloatingToolbar({
         authorColor: identity?.color ?? null,
       });
       if (tr) {
+        if (typeof onForceFrame === 'function') onForceFrame();
         view.dispatch(tr);
         if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
           flushPendingUpdateById(blockId);
@@ -334,7 +342,7 @@ export default function FloatingToolbar({
     sel.removeAllRanges();
     if (onBlockUpdate && blockEl) onBlockUpdate(blockId, blockEl.innerHTML);
     setVisible(false);
-  }, [onBlockUpdate, identity]);
+  }, [onBlockUpdate, identity, onForceFrame]);
 
   // Change case: cycles UPPER → lower → Title
   const changeCase = useCallback(() => {
@@ -348,6 +356,7 @@ export default function FloatingToolbar({
       restoreSavedRelpos(view, saved);
       const tr = applyChangeCaseTr(view.state);
       if (tr) {
+        if (typeof onForceFrame === 'function') onForceFrame();
         view.dispatch(tr);
         if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
           flushPendingUpdateById(blockId);
@@ -373,7 +382,7 @@ export default function FloatingToolbar({
     sel.removeAllRanges();
     if (onBlockUpdate && blockEl) onBlockUpdate(blockId, blockEl.innerHTML);
     setVisible(false);
-  }, [onBlockUpdate]);
+  }, [onBlockUpdate, onForceFrame]);
 
   /**
    * Accept or reject an inline revision mark.
@@ -394,6 +403,10 @@ export default function FloatingToolbar({
       restoreSavedRelpos(view, saved);
       const tr = applyInlineRevisionResolveTr(view.state, action);
       if (tr) {
+        // Close the prior Yjs capture window BEFORE the PM dispatch so
+        // the action's ySyncPluginKey op enters a fresh frame, not the
+        // user's preceding typing burst.
+        if (typeof onForceFrame === 'function') onForceFrame();
         view.dispatch(tr);
         // CANCEL — not flush. Distinct from the other PM toolbar verbs
         // (format / inline-mark / revision-apply / change-case) which call
@@ -456,7 +469,7 @@ export default function FloatingToolbar({
     const updateFn = onRevisionAction || onBlockUpdate;
     if (updateFn && blockEl) updateFn(blockId, blockEl.innerHTML);
     setVisible(false);
-  }, [onBlockUpdate, onRevisionAction, onRefreshTcSnapshot]);
+  }, [onBlockUpdate, onRevisionAction, onRefreshTcSnapshot, onForceFrame]);
 
   const applyFormat = useCallback((formatType) => {
     const saved = selectionRef.current;
@@ -472,6 +485,7 @@ export default function FloatingToolbar({
       if (!kind) return;
       const tr = applyFormatTr(view.state, kind);
       if (tr) {
+        if (typeof onForceFrame === 'function') onForceFrame();
         view.dispatch(tr);
         if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
           flushPendingUpdateById(blockId);
@@ -508,7 +522,7 @@ export default function FloatingToolbar({
     sel.removeAllRanges();
     if (onBlockUpdate && blockEl) onBlockUpdate(blockId, blockEl.innerHTML);
     setVisible(false);
-  }, [onBlockUpdate]);
+  }, [onBlockUpdate, onForceFrame]);
 
   if (!visible || readOnly) return null;
 
@@ -707,6 +721,7 @@ export default function FloatingToolbar({
                 const commentId = `comment-${Date.now()}`;
                 const tr = applyCommentMarkTr(view.state, commentId);
                 if (!tr) { setVisible(false); return; }
+                if (typeof onForceFrame === 'function') onForceFrame();
                 view.dispatch(tr);
                 if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
                   flushPendingUpdateById(blockId);
