@@ -217,6 +217,52 @@ describe('useLocalSubstrateUndoManager', () => {
       expect(substrate.yStore.has('b1')).toBe(false);
     });
 
+    it('forceFrame from a first-render-captured api routes to the LIVE manager after manager swap', () => {
+      // Regression for the stale-closure bug surfaced by Commit C review.
+      // App's useCallback handlers capture `localUndo` from FIRST render
+      // and never refresh (their deps arrays omit localUndo to avoid TDZ
+      // on `collab`). When the hook's StrictMode-safe lifecycle swaps the
+      // useState seed (M1) for the effect-created manager (M2), the
+      // captured `localUndo` still references M1's bound forceFrame.
+      // Post-leak-fix M1 is destroyed, so the call hits a dead manager
+      // and the LIVE M2's capture window is NOT reset — out-of-room
+      // click actions coalesce with prior typing on Ctrl+Z, defeating
+      // Commit C's acceptance criterion 1.
+      //
+      // To accurately simulate App's closure pattern, capture the api
+      // on the FIRST render only (the if-guard mimics useCallback's
+      // empty-deps cache). result.current always returns the latest
+      // value, so it can't reproduce the bug on its own.
+      let capturedApi = null;
+      const { result } = renderHook(() => {
+        const api = useLocalSubstrateUndoManager(substrate);
+        if (!capturedApi) capturedApi = api;
+        return api;
+      });
+
+      // First write opens a capture window on the LIVE (post-effect) manager.
+      substrate.ydoc.transact(() => {
+        substrate.yStore.set('pre-force', new Y.Map());
+      }, 'local-publish');
+
+      expect(result.current.canUndo()).toBe(true);
+
+      // forceFrame via the FIRST-RENDER api. If the captured api routes
+      // to the now-destroyed seed manager, the live manager's window
+      // stays open and the next write coalesces into one frame.
+      capturedApi.forceFrame();
+
+      substrate.ydoc.transact(() => {
+        substrate.yStore.set('post-force', new Y.Map());
+      }, 'local-publish');
+
+      // Two frames means forceFrame reached the live manager. One frame
+      // means the call was a no-op on the dead seed.
+      result.current.tryUndo();
+      expect(substrate.yStore.has('post-force')).toBe(false);
+      expect(substrate.yStore.has('pre-force')).toBe(true);
+    });
+
     it('leaves no afterTransaction observer attached after unmount', () => {
       // Regression: the original Commit B implementation used a `useState`
       // seed that created an UndoManager immediately on first render, then

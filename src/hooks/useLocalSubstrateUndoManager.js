@@ -32,7 +32,7 @@
  * users hit different Ctrl+Z semantics — track them together.
  */
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as Y from 'yjs';
 import { ySyncPluginKey } from 'y-prosemirror';
 
@@ -88,8 +88,29 @@ export function useLocalSubstrateUndoManager(substrate) {
   // new one. This avoids the M1-leaks-an-observer wart where the useState
   // seed's afterTransaction handler stayed attached for the App's lifetime
   // and silently captured duplicate StackItems alongside the live manager.
-  // Pinned by the StrictMode test in useLocalSubstrateUndoManager.test.jsx.
+  // Pinned by the leak-regression test in useLocalSubstrateUndoManager.test.jsx.
   const [undoManager, setUndoManager] = useState(() => makeUndoManager(yOrder, yStore));
+
+  // Live-manager ref read by the stable api methods at invocation time.
+  // Updated both during render (so the value tracks `undoManager` state)
+  // and from inside the effect (so the post-effect-pre-next-render
+  // window also points at the fresh manager). Without these refs, App's
+  // useCallback handlers — which capture `localUndo` from the FIRST
+  // render to avoid TDZ on `collab` (declared 1300 lines below in App.jsx)
+  // — would call methods on the M1 closure even after M1 is destroyed
+  // and replaced by M2, making forceFrame a silent no-op out-of-room.
+  // Pinned by the "forceFrame from a first-render-captured api routes
+  // to the LIVE manager" stale-closure regression test.
+  const managerRef = useRef(undoManager);
+  managerRef.current = undoManager;
+
+  const helpersRef = useRef(null);
+  if (!helpersRef.current || helpersRef.current.manager !== undoManager) {
+    helpersRef.current = {
+      manager: undoManager,
+      helpers: makeUndoHelpers(ydoc, undoManager),
+    };
+  }
 
   useEffect(() => {
     const mgr = makeUndoManager(yOrder, yStore);
@@ -97,36 +118,39 @@ export function useLocalSubstrateUndoManager(substrate) {
       if (prev && prev !== mgr) prev.destroy();
       return mgr;
     });
+    // Refresh refs synchronously so handlers firing between this effect
+    // and the next render don't see the stale (now-destroyed) manager.
+    managerRef.current = mgr;
+    helpersRef.current = { manager: mgr, helpers: makeUndoHelpers(ydoc, mgr) };
     return () => { mgr.destroy(); };
   }, [yOrder, yStore]);
 
-  const helpersRef = useRef(null);
-  if (!helpersRef.current || helpersRef.current.undoManager !== undoManager) {
-    helpersRef.current = {
-      undoManager,
-      helpers: makeUndoHelpers(ydoc, undoManager),
-    };
-  }
-
-  const api = useMemo(() => {
-    const { helpers } = helpersRef.current;
-    return {
+  // Stable api object — initialized once on first render, returned
+  // unchanged across all subsequent renders. Methods read managerRef /
+  // helpersRef at invocation time so they always route to the live
+  // manager. Consumers (App's useCallback handlers) can capture this
+  // object once and call its methods later without staleness.
+  const apiRef = useRef(null);
+  if (apiRef.current === null) {
+    apiRef.current = {
       tryUndo() {
-        if (undoManager.undoStack.length === 0) return false;
-        undoManager.undo();
+        const m = managerRef.current;
+        if (!m || m.undoStack.length === 0) return false;
+        m.undo();
         return true;
       },
       tryRedo() {
-        if (undoManager.redoStack.length === 0) return false;
-        undoManager.redo();
+        const m = managerRef.current;
+        if (!m || m.redoStack.length === 0) return false;
+        m.redo();
         return true;
       },
-      canUndo() { return undoManager.undoStack.length > 0; },
-      canRedo() { return undoManager.redoStack.length > 0; },
-      withUndoFrame: helpers.withUndoFrame,
-      forceFrame: helpers.forceFrame,
+      canUndo() { return !!managerRef.current && managerRef.current.undoStack.length > 0; },
+      canRedo() { return !!managerRef.current && managerRef.current.redoStack.length > 0; },
+      withUndoFrame(fn) { helpersRef.current.helpers.withUndoFrame(fn); },
+      forceFrame() { helpersRef.current.helpers.forceFrame(); },
     };
-  }, [undoManager]);
+  }
 
-  return api;
+  return apiRef.current;
 }

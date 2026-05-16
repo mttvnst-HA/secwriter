@@ -1673,12 +1673,14 @@ export default function SpecEditor() {
     };
     document.addEventListener('keydown', handler);
     return () => document.removeEventListener('keydown', handler);
-    // collab.tryUndo/tryRedo and localUndo.tryUndo/tryRedo are stable —
-    // both hooks memoize them on the underlying UndoManager identity,
-    // which is itself memoized on substrate identity (App's
-    // `useState(() => …)` for localSubstrate, session ref for collab).
-    // Omitting them from deps prevents the listener re-binding every
-    // render; closure reads `.current`-style each invocation regardless.
+    // collab.tryUndo/tryRedo are stable — useCollabSession returns
+    // useCallback wrappers that read `sessionRef.current` at invocation
+    // time (`useCollabSession.js:480-527`). localUndo.tryUndo/tryRedo
+    // are stable after the Commit C review fix: the hook returns a
+    // useRef-cached api object whose methods read `managerRef.current`
+    // at invocation, so the M1→M2 swap during the initial-mount effect
+    // doesn't strand a stale closure here. Omitting both from deps
+    // prevents the listener re-binding every render.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [undo, redo, handleSave, zoomIn, zoomOut, zoomReset]);
 
