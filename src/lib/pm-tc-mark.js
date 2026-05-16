@@ -22,6 +22,23 @@
 import { ReplaceStep } from 'prosemirror-transform';
 
 /**
+ * PM-meta sentinel marking a transaction as a Track-Changes resolution
+ * (accept / reject of an existing revision mark) rather than a fresh user
+ * edit. `PmEditableBlock.dispatchTransaction` reads
+ * `tr.getMeta(TC_RESOLVE_META) === true` and skips `rewriteForTrackChanges`
+ * for that tr — without the gate, an accept-del that produces
+ * `tr.delete(from, to)` over a `revisionDel`-marked range would be hijacked
+ * by the rewriter and silently no-op'd (issue #96): `collectDeleteSegments`
+ * classifies the range as 'mark' (since the text has revisionDel, not
+ * revisionAdd), phase A re-adds the already-present mark and phase B has
+ * nothing to delete. Same shape as `COMMENT_RECONCILE_META` in pm-comments.js.
+ *
+ * NOT a Yjs origin. The corresponding Yjs op produced by ySyncPlugin still
+ * uses origin `ySyncPluginKey`; this meta only governs PM-side filtering.
+ */
+export const TC_RESOLVE_META = {};
+
+/**
  * @param {import('prosemirror-state').EditorState} oldState
  * @param {import('prosemirror-state').Transaction} originalTr
  * @param {{ id: string, color?: string|null }} identity
