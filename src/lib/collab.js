@@ -929,9 +929,17 @@ export function createCollabSession({
   // Yjs UndoManager first via App's keyboard handler, leaving the
   // snapshot stack stale. The 1i sub-PR retires `useUndoableBlocks` and
   // the wart goes away.
+  //
+  // captureTransaction rejects transactions whose `addToHistory` meta is
+  // false. y-prosemirror's sync-plugin propagates the PM-side
+  // `tr.setMeta('addToHistory', false)` to the Yjs transaction meta
+  // (sync-plugin.js:228), so PM transactions can opt out of undo capture.
+  // The comment-reconcile path uses this — see pm-comments.js. Mirrors the
+  // y-prosemirror UndoPlugin's own filter (undo-plugin.js:71).
   const undoManager = new Y.UndoManager([yOrder, yStore], {
     trackedOrigins: new Set(['local-publish', ySyncPluginKey]),
     captureTimeout: 500,
+    captureTransaction: tr => tr.meta.get('addToHistory') !== false,
   });
   const { withUndoFrame, forceFrame } = makeUndoHelpers(ydoc, undoManager);
 

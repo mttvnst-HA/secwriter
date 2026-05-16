@@ -78,6 +78,19 @@ describe('reconcileCommentMarks — orphan removal', () => {
     const tr = reconcileCommentMarks(state, commentsState([]));
     expect(tr.getMeta(COMMENT_RECONCILE_META)).toBe(true);
   });
+
+  it("tags the returned tr with 'addToHistory: false' (opts out of UndoManager capture)", () => {
+    // y-prosemirror's sync-plugin reads this meta (sync-plugin.js:147) and
+    // propagates it to the resulting Yjs transaction (sync-plugin.js:228).
+    // Both Y.UndoManager instances configure a `captureTransaction` filter
+    // that rejects transactions whose `addToHistory` meta is false — see
+    // collab.js's in-room manager and useLocalSubstrateUndoManager's
+    // out-of-room manager. Without this tag a peer-driven comment status
+    // flip would land its transparent reconcile on the local undo stack.
+    const state = stateFromHtml('<p><span class="mark-comment" data-comment-id="dead">x</span></p>');
+    const tr = reconcileCommentMarks(state, commentsState([]));
+    expect(tr.getMeta('addToHistory')).toBe(false);
+  });
 });
 
 describe('reconcileCommentMarks — status flip', () => {

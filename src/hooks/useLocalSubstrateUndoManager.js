@@ -63,11 +63,34 @@ import { makeUndoHelpers } from '../lib/undo-helpers.js';
  * @param {{ ydoc: Y.Doc, yOrder: Y.Array<string>, yStore: Y.Map<string, Y.Map> }} substrate
  * @returns {LocalSubstrateUndoApi}
  */
+// captureTransaction rejects transactions whose `addToHistory` meta is
+// false. y-prosemirror's sync-plugin propagates the PM-side
+// `tr.setMeta('addToHistory', false)` to the resulting Yjs transaction meta
+// (sync-plugin.js:228), so PM transactions can opt out of undo capture.
+// The comment-reconcile path uses this — see pm-comments.js. Mirrors the
+// y-prosemirror UndoPlugin's own filter (undo-plugin.js:71). Must stay in
+// lockstep with the in-room counterpart in collab.js.
 function makeUndoManager(yOrder, yStore) {
   return new Y.UndoManager([yOrder, yStore], {
     trackedOrigins: new Set(['local-publish', ySyncPluginKey]),
     captureTimeout: 500,
+    captureTransaction: tr => tr.meta.get('addToHistory') !== false,
   });
+}
+
+// Tracks managers we've already destroyed so the StrictMode double-mount
+// (effect cleanup destroys M2, then setup-2's setUndoManager updater
+// receives M2 as `prev` and would otherwise call destroy() a second time)
+// is a safe no-op rather than relying on Y.UndoManager.destroy() being
+// idempotent. Y's destroy() happens to be idempotent today (it just
+// `off`s already-removed observers), but the WeakSet makes the contract
+// explicit and removes the dependency.
+const destroyedManagers = new WeakSet();
+function destroyOnce(mgr) {
+  if (mgr && !destroyedManagers.has(mgr)) {
+    destroyedManagers.add(mgr);
+    mgr.destroy();
+  }
 }
 
 export function useLocalSubstrateUndoManager(substrate) {
@@ -115,14 +138,14 @@ export function useLocalSubstrateUndoManager(substrate) {
   useEffect(() => {
     const mgr = makeUndoManager(yOrder, yStore);
     setUndoManager(prev => {
-      if (prev && prev !== mgr) prev.destroy();
+      if (prev && prev !== mgr) destroyOnce(prev);
       return mgr;
     });
     // Refresh refs synchronously so handlers firing between this effect
     // and the next render don't see the stale (now-destroyed) manager.
     managerRef.current = mgr;
     helpersRef.current = { manager: mgr, helpers: makeUndoHelpers(ydoc, mgr) };
-    return () => { mgr.destroy(); };
+    return () => { destroyOnce(mgr); };
   }, [yOrder, yStore]);
 
   // Stable api object — initialized once on first render, returned

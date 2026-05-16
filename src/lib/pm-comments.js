@@ -16,6 +16,22 @@
  * `src/lib/__tests__/setblockhtml-echo-behavior.test.js` for the empirical
  * basis of that gate).
  *
+ * The returned tr is ALSO tagged with `addToHistory: false`. y-prosemirror's
+ * sync-plugin reads this meta (sync-plugin.js:147) and propagates it to the
+ * resulting Yjs transaction (sync-plugin.js:228) before invoking
+ * `ydoc.transact(..., ySyncPluginKey)`. Both Y.UndoManagers in this codebase
+ * (the in-room manager in collab.js and the out-of-room manager in
+ * useLocalSubstrateUndoManager.js) configure a `captureTransaction` filter
+ * that rejects transactions whose `addToHistory` meta is false. Without this
+ * tag, a peer-driven comment status flip would land a transparent reconcile
+ * tr on the LOCAL user's undo stack — the user could Ctrl+Z it, the next
+ * render's reconcile effect would immediately re-apply it (visible flicker),
+ * and a real frame would be displaced off the stack. The PM-side meta is
+ * pinned by `pm-comments.test.js` ("tags the returned tr with
+ * 'addToHistory: false'"); the Yjs-side captureTransaction filter is
+ * pinned by `useLocalSubstrateUndoManager.test.jsx` ("does NOT capture
+ * transactions tagged 'addToHistory: false' even on tracked origins").
+ *
  * Walks text nodes end → start so each tr.removeMark/addMark doesn't shift
  * positions of unprocessed ranges. Uses mark INSTANCE (not markType) in
  * removeMark so adjacent comment marks with different ids are preserved.
@@ -62,5 +78,5 @@ export function reconcileCommentMarks(state, commentsState) {
   }
 
   if (!dirty) return null;
-  return tr.setMeta(COMMENT_RECONCILE_META, true);
+  return tr.setMeta(COMMENT_RECONCILE_META, true).setMeta('addToHistory', false);
 }

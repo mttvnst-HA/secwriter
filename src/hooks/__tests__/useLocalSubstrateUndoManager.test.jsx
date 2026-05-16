@@ -114,6 +114,28 @@ describe('useLocalSubstrateUndoManager', () => {
 
       expect(result.current.canUndo()).toBe(false);
     });
+
+    it("does NOT capture transactions tagged 'addToHistory: false' even on tracked origins", () => {
+      // Pins the captureTransaction filter that lets the comment-reconcile
+      // path opt out of undo capture (see pm-comments.js). Without this
+      // filter, a peer-driven comment status flip would land its
+      // transparent reconcile tr on the local user's undo stack — the user
+      // could Ctrl+Z it, the next render's reconcile effect would
+      // immediately re-apply it (visible flicker), and a real frame would
+      // be displaced off the stack. The mechanism mirrors y-prosemirror's
+      // own UndoPlugin (undo-plugin.js:71). Must stay in lockstep with
+      // collab.js's in-room counterpart.
+      const { result } = renderHook(() => useLocalSubstrateUndoManager(substrate));
+
+      // Tracked origin (would normally be captured), but addToHistory=false.
+      substrate.ydoc.transact(tr => {
+        tr.meta.set('addToHistory', false);
+        substrate.yStore.set('opt-out', new Y.Map());
+      }, ySyncPluginKey);
+
+      expect(result.current.canUndo()).toBe(false);
+      expect(substrate.yStore.has('opt-out')).toBe(true); // write still happened
+    });
   });
 
   describe('tryUndo / tryRedo', () => {
@@ -201,7 +223,14 @@ describe('useLocalSubstrateUndoManager', () => {
       // cleanup) and destroys it in the effect's cleanup would leave the
       // hook holding a destroyed manager after the StrictMode dance —
       // writes would not enter the stack, and Ctrl+Z would silently break
-      // in dev. This test pins the post-StrictMode contract.
+      // in dev. This test pins the post-StrictMode contract. Also exercises
+      // the `destroyOnce` WeakSet contract in useLocalSubstrateUndoManager.js
+      // — the second setup's `setUndoManager(prev => ...)` updater receives
+      // a manager the first cleanup already destroyed; if `destroyOnce`
+      // ever stops short-circuiting, this test fails because the double
+      // `.destroy()` re-runs `off('afterTransaction', ...)` on an already-
+      // removed observer and Yjs internals could (post-version-bump) start
+      // throwing or no-op-mutating internal state.
       const { result } = renderHook(() => useLocalSubstrateUndoManager(substrate), {
         wrapper: ({ children }) => <StrictMode>{children}</StrictMode>,
       });
