@@ -221,6 +221,51 @@ describe('applyRevisionTr (1g.6 #87 — dispatches by MarkType)', () => {
     const state = stateOf(doc, 3, 3);
     expect(applyRevisionTr(state, 'add', { authorId: 'A' })).toBeNull();
   });
+
+  // 1h Q33 (#94) wraps every typed character in revisionAdd via the per-
+  // keystroke marking pipeline. The toolbar's "Mark as Addition" verb,
+  // pre-1h, ran against unmarked typed text (snapshot-diff annotation at
+  // blur). Post-1h, the same toolbar call finds the range ALREADY carries
+  // the current user's revisionAdd — the legacy toggle-off path then
+  // strips the marks, silently inverting the user's intent.
+  //
+  // Issue #97 — TC-aware fourth argument gates the toggle-off branch.
+  it('TC mode + allMine: returns null (no-op) instead of stripping marks (#97)', () => {
+    const add = schema.marks.revisionAdd.create({ authorId: 'A' });
+    const doc = docOf(txt('hello', add));
+    const state = stateOf(doc, 1, 6);
+    // 4th arg = trackChanges (true)
+    const tr = applyRevisionTr(state, 'add', { authorId: 'A' }, true);
+    expect(tr).toBeNull();
+  });
+
+  it('TC mode + plain text: still applies the mark (additive — adds to unmarked)', () => {
+    const doc = docOf(txt('hello'));
+    const state = stateOf(doc, 1, 6);
+    const tr = applyRevisionTr(state, 'add', { authorId: 'A' }, true);
+    expect(tr).not.toBeNull();
+    const newState = state.apply(tr);
+    const mark = findFirstMatchingMark(
+      newState.doc, 1, 6, schema.marks.revisionAdd, () => true,
+    );
+    expect(mark).not.toBeNull();
+    expect(mark.attrs.authorId).toBe('A');
+  });
+
+  it('TC mode + cross-author allMine miss: applies B\'s mark (multi-author rule unchanged)', () => {
+    // Confirms the TC gate ONLY changes the allMine=true branch — every
+    // other path matches the non-TC behavior.
+    const addA = schema.marks.revisionAdd.create({ authorId: 'A' });
+    const doc = docOf(txt('hello', addA));
+    const state = stateOf(doc, 1, 6);
+    const tr = applyRevisionTr(state, 'add', { authorId: 'B' }, true);
+    expect(tr).not.toBeNull();
+    const newState = state.apply(tr);
+    const markB = findFirstMatchingMark(
+      newState.doc, 1, 6, schema.marks.revisionAdd, (a) => a.authorId === 'B',
+    );
+    expect(markB).not.toBeNull();
+  });
 });
 
 describe('applyInlineRevisionResolveTr (1g.6 — tries Add/Del/Chg in order)', () => {
