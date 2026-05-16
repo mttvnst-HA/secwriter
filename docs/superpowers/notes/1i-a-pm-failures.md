@@ -4,7 +4,7 @@
 **Branch:** `feat/1i-a-ci-prep`
 **Baseline commit:** `8db3b27` (local `main`, 4 commits ahead of `origin/main`)
 **Author:** Claude (subagent under sub-PR 1i)
-**Status:** Interim — remove this file or move its content to the 1i-a PR description before merge.
+**Status:** Historical record — retained as the source for the 9-flake baseline cited in CLAUDE.md Testing Rule #10.
 
 ## Summary
 
