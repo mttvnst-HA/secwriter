@@ -127,7 +127,7 @@ Pinned PM versions: `y-prosemirror` is held at 1.x (see [ADR-0006](docs/adr/0006
 
 ## contentEditable Focus Management
 
-This is the LEGACY contentEditable path (pre-1e). PM-mounted blocks (`PmEditableBlock` under `VITE_PM_EDITOR=true`) take over focus via `block-registry` — see the "Nine non-obvious invariants" section for the post-1e pattern. The legacy notes below still apply when the flag is off.
+This is the LEGACY contentEditable path (pre-1e). PM-mounted blocks (`PmEditableBlock` under `VITE_PM_EDITOR=true`) take over focus via `block-registry` — see the "Non-obvious invariants" section for the post-1e pattern. The legacy notes below still apply when the flag is off.
 
 The pattern that works for the legacy path:
 
@@ -292,7 +292,7 @@ Post-#46 (sub-PR 1b), block **html** and block **scalars** travel separate paths
 
 **Implication:** post-1d, the substrate is Y.XmlFragment, but writes still go through a snapshot-shaped seam (`prosemirrorToYXmlFragment` does diff-and-merge against the existing fragment, but each binder write replaces the doc-level snapshot in a single transaction rather than producing one CRDT op per keystroke). Sub-PR 1e (EditorView mount + `ySyncPlugin`) is what flips the keystroke→op-stream relationship. The debounced-input symptom fix landed via #21 / PR #23.
 
-**Nine non-obvious invariants (load-bearing, easy to break):**
+**Non-obvious invariants (load-bearing, easy to break):**
 - **`yStore` is null until first sync.** `useCollabSession` only calls `setYStoreState(session.yStore)` from inside `if (meta?.initial)` (`fbc0d0f`). Until then `useBlockBinder.write` no-ops, and every direct `setBlockHtml(activeYStoreRef.current, ...)` caller in App must null-guard. Without this gate, a keystroke landing in the sync window CRDT-merges on top of the server's persisted state — the eee8977 corruption pattern via the new direct-substrate path.
 - **The Yjs UndoManager tracks `'local-publish'` AND `ySyncPluginKey` (post-1h-Commit-B).** `setBlockHtml` writes use `'local-publish'`; y-prosemirror's per-keystroke ops use `ySyncPluginKey`. New code that mutates html outside the binder must go through `setBlockHtml` (not `applyHtmlToYText` or `prosemirrorToYXmlFragment` directly) or undo coverage is silently lost. App.jsx already has many direct call sites (revisions, compliance fixes, search/replace, accept-all, comments-reconcile, etc.); follow that pattern. The in-room manager lives in `createCollabSession` (`src/lib/collab.js`); the out-of-room manager lives in `useLocalSubstrateUndoManager` (`src/hooks/useLocalSubstrateUndoManager.js`). Both must stay in trackedOrigins lockstep or Ctrl+Z drifts between modes — the integration test `src/lib/__tests__/word-boundary-undo.test.js` ("hello world. → 3 frames") catches a drop of `ySyncPluginKey`.
 - **`'migrate-v2'` is the broker-only origin.** Server-side migration writes (1d) use it. It is deliberately NOT `'local-*'` (so `handleAfterTx` in `collab.js` does NOT filter it — the first v2 client to join sees the migrated state via the normal sync path) and NOT `'local-publish'` (so the client-side UndoManager cannot Ctrl+Z a peer's pre-migration content). Don't reuse this origin for any write that originates on a client.
