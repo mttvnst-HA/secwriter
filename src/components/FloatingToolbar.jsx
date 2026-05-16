@@ -287,7 +287,7 @@ export default function FloatingToolbar({
     sel.removeAllRanges();
     if (onBlockUpdate && blockEl) onBlockUpdate(blockId, blockEl.innerHTML);
     setVisible(false);
-  }, [onBlockUpdate]);
+  }, [onBlockUpdate, onForceFrame]);
 
   const applyRevision = useCallback((revType) => {
     const saved = selectionRef.current;
@@ -342,7 +342,7 @@ export default function FloatingToolbar({
     sel.removeAllRanges();
     if (onBlockUpdate && blockEl) onBlockUpdate(blockId, blockEl.innerHTML);
     setVisible(false);
-  }, [onBlockUpdate, identity]);
+  }, [onBlockUpdate, identity, onForceFrame]);
 
   // Change case: cycles UPPER → lower → Title
   const changeCase = useCallback(() => {
@@ -382,7 +382,7 @@ export default function FloatingToolbar({
     sel.removeAllRanges();
     if (onBlockUpdate && blockEl) onBlockUpdate(blockId, blockEl.innerHTML);
     setVisible(false);
-  }, [onBlockUpdate]);
+  }, [onBlockUpdate, onForceFrame]);
 
   /**
    * Accept or reject an inline revision mark.
@@ -469,7 +469,7 @@ export default function FloatingToolbar({
     const updateFn = onRevisionAction || onBlockUpdate;
     if (updateFn && blockEl) updateFn(blockId, blockEl.innerHTML);
     setVisible(false);
-  }, [onBlockUpdate, onRevisionAction, onRefreshTcSnapshot]);
+  }, [onBlockUpdate, onRevisionAction, onRefreshTcSnapshot, onForceFrame]);
 
   const applyFormat = useCallback((formatType) => {
     const saved = selectionRef.current;
@@ -522,7 +522,7 @@ export default function FloatingToolbar({
     sel.removeAllRanges();
     if (onBlockUpdate && blockEl) onBlockUpdate(blockId, blockEl.innerHTML);
     setVisible(false);
-  }, [onBlockUpdate]);
+  }, [onBlockUpdate, onForceFrame]);
 
   if (!visible || readOnly) return null;
 

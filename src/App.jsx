@@ -221,8 +221,9 @@ export default function SpecEditor() {
   // (which is defined ~1300 lines below) can read the current value at
   // invocation time. Including `inRoom` directly in those callbacks'
   // deps arrays would trigger TDZ when `collab` is referenced.
-  // 1h Q36 Commit C — used by `framingForHandler()` to pick collab vs
-  // localUndo for forceFrame/withUndoFrame at click-driven undo sites.
+  // 1h Q36 Commit C — read by `framingForHandler()` (declared after
+  // `const collab` below) to pick collab vs localUndo for forceFrame/
+  // withUndoFrame at click-driven undo sites.
   const inRoomRef = useRef(inRoom);
   inRoomRef.current = inRoom;
   const [identity, setIdentity] = useState(() => (inRoom ? loadIdentity() : null));
@@ -670,7 +671,7 @@ export default function SpecEditor() {
 
   const handleReorderSection = useCallback((dragId, dropId, position) => {
     resumeHistory();
-    (inRoomRef.current ? collab : localUndo).forceFrame();
+    framingForHandler().forceFrame();
     setBlocks(prev => reorderSection(prev, dragId, dropId, position));
   }, [resumeHistory]);
 
@@ -846,7 +847,7 @@ export default function SpecEditor() {
   // limitation tracked alongside the existing Ctrl+Y redo off-by-one.
   const handleBlockUpdatePmSync = useCallback((id, html) => {
     resumeHistory();
-    (inRoomRef.current ? collab : localUndo).forceFrame();
+    framingForHandler().forceFrame();
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
   }, [resumeHistory]);
 
@@ -862,7 +863,7 @@ export default function SpecEditor() {
   // the rest of the legacy contentEditable path.
   const handleLegacyRevisionAction = useCallback((id, html) => {
     resumeHistory();
-    (inRoomRef.current ? collab : localUndo).forceFrame();
+    framingForHandler().forceFrame();
     const yStore = activeYStoreRef.current;
     if (yStore) setBlockHtml(yStore, id, html);
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
@@ -946,7 +947,7 @@ export default function SpecEditor() {
   // write below).
   const handleSearchReplace = useCallback((blockId, offset, length, replacement) => {
     resumeHistory();
-    (inRoomRef.current ? collab : localUndo).forceFrame();
+    framingForHandler().forceFrame();
     setBlocks(prev => prev.map(b => {
       if (b.id !== blockId || !b.html) return b;
       const newHtml = replaceMatchInHtml(b.html, offset, length, replacement);
@@ -961,7 +962,7 @@ export default function SpecEditor() {
   // Remove an orphaned RID entry from a REF block
   const handleRemoveOrphaned = useCallback((blockId, rid) => {
     resumeHistory();
-    (inRoomRef.current ? collab : localUndo).forceFrame();
+    framingForHandler().forceFrame();
     setBlocks(prev => prev.map(b => {
       if (b.id !== blockId || b.type !== 'ref' || !b.ref?.entries) return b;
       const filtered = b.ref.entries.filter(e => (e.rid || '').trim() !== rid);
@@ -976,7 +977,7 @@ export default function SpecEditor() {
   // Add reference from wizard — find or create the org's REF block, sorted insertion
   const handleAddReference = useCallback(({ org, rid, rtl }) => {
     resumeHistory();
-    (inRoomRef.current ? collab : localUndo).forceFrame();
+    framingForHandler().forceFrame();
     // Alphanumeric sort comparator for RIDs: letters first, then numbers
     const ridCompare = (a, b) => {
       const pa = (a.rid || '').replace(/^[A-Z/]+\s*/i, '');
@@ -1028,7 +1029,7 @@ export default function SpecEditor() {
 
   const handleEnterKey = useCallback((afterId) => {
     resumeHistory();
-    (inRoomRef.current ? collab : localUndo).forceFrame();
+    framingForHandler().forceFrame();
     const newId = `new-${Date.now()}`;
     setBlocks(prev => {
       const idx = prev.findIndex(b => b.id === afterId);
@@ -1069,7 +1070,7 @@ export default function SpecEditor() {
   // Tab/Shift+Tab on an OLI item: demote/promote list level (1..4, UFS Figure A-1).
   const handleChangeOliLevel = useCallback((blockId, delta) => {
     resumeHistory();
-    (inRoomRef.current ? collab : localUndo).forceFrame();
+    framingForHandler().forceFrame();
     setBlocks(prev => {
       const idx = prev.findIndex(b => b.id === blockId);
       if (idx < 0) return prev;
@@ -1087,7 +1088,7 @@ export default function SpecEditor() {
   // Delete a block and focus the previous one
   const handleDelete = useCallback((blockId) => {
     resumeHistory();
-    (inRoomRef.current ? collab : localUndo).forceFrame();
+    framingForHandler().forceFrame();
     setBlocks(prev => {
       const idx = prev.findIndex(b => b.id === blockId);
       if (idx <= 0) return prev; // don't delete first block
@@ -1149,7 +1150,7 @@ export default function SpecEditor() {
   // Convert a text block to a title
   const handleConvertToTitle = useCallback((blockId) => {
     resumeHistory();
-    (inRoomRef.current ? collab : localUndo).forceFrame();
+    framingForHandler().forceFrame();
     setBlocks(prev => {
       const idx = prev.findIndex(b => b.id === blockId);
       if (idx < 0) return prev;
@@ -1172,7 +1173,7 @@ export default function SpecEditor() {
   // General block type conversion (from slash menu)
   const handleConvertBlock = useCallback((blockId, newType) => {
     resumeHistory();
-    (inRoomRef.current ? collab : localUndo).forceFrame();
+    framingForHandler().forceFrame();
     if (newType === "title") {
       handleConvertToTitle(blockId);
       return;
@@ -1225,7 +1226,7 @@ export default function SpecEditor() {
   // Promote a title (decrease depth)
   const handlePromote = useCallback((blockId) => {
     resumeHistory();
-    (inRoomRef.current ? collab : localUndo).forceFrame();
+    framingForHandler().forceFrame();
     setBlocks(prev => prev.map(b => {
       if (b.id === blockId && b.type === "title" && b.depth > 1) {
         return { ...b, depth: b.depth - 1 };
@@ -1237,7 +1238,7 @@ export default function SpecEditor() {
   // Demote a title (increase depth)
   const handleDemote = useCallback((blockId) => {
     resumeHistory();
-    (inRoomRef.current ? collab : localUndo).forceFrame();
+    framingForHandler().forceFrame();
     setBlocks(prev => prev.map(b => {
       if (b.id === blockId && b.type === "title" && b.depth < 6) {
         return { ...b, depth: b.depth + 1 };
@@ -1252,7 +1253,7 @@ export default function SpecEditor() {
     // in withUndoFrame so they form ONE Yjs UndoManager frame regardless of
     // captureTimeout coalescing. forceFrame first to demarcate this frame
     // from any prior typing burst.
-    const framing = inRoomRef.current ? collab : localUndo;
+    const framing = framingForHandler();
     framing.forceFrame();
     const prev = blocksRef.current;
     const next = acceptAllRevisions(prev);
@@ -1278,7 +1279,7 @@ export default function SpecEditor() {
 
   const handleRejectAll = useCallback(() => {
     resumeHistory();
-    const framing = inRoomRef.current ? collab : localUndo;
+    const framing = framingForHandler();
     framing.forceFrame();
     const prev = blocksRef.current;
     const next = rejectAllRevisions(prev);
@@ -1435,7 +1436,7 @@ export default function SpecEditor() {
 
   const handleComplianceAcceptFix = useCallback((blockId, fixedText) => {
     resumeHistory();
-    (inRoomRef.current ? collab : localUndo).forceFrame();
+    framingForHandler().forceFrame();
     const yStore = activeYStoreRef.current;
     if (yStore) setBlockHtml(yStore, blockId, fixedText);
     setBlocks(prev => prev.map(b => b.id === blockId ? { ...b, html: fixedText } : b));
@@ -1443,7 +1444,7 @@ export default function SpecEditor() {
 
   const handleComplianceAcceptGroup = useCallback((fixesByBlock, label) => {
     resumeHistory();
-    const framing = inRoomRef.current ? collab : localUndo;
+    const framing = framingForHandler();
     framing.forceFrame();
     const yStore = activeYStoreRef.current;
     if (yStore) {
@@ -1614,6 +1615,19 @@ export default function SpecEditor() {
     pushToast: useCallback((toast) => toastPushRef.current?.(toast), []),
   });
   collabRef.current = collab;
+
+  // Picks the undo-framing source for a click-driven action: the collab
+  // session's UndoManager when in a room, the local-substrate hook's when
+  // out. Returns `{ forceFrame, withUndoFrame }`. Centralizes the prior
+  // `(inRoomRef.current ? collab : localUndo)` pattern at 20+ call sites
+  // above and the inline JSX below. Declared AFTER `const collab` so the
+  // closure resolves at call time; the useCallback handlers above reach
+  // it via lexical closure with no deps-array entry (same TDZ-skirting
+  // pattern used for `collab` itself). `inRoom` never flips mid-session
+  // (roomId is set once from URL via useState and never reassigned), so
+  // `inRoomRef.current` is read once at call time and the right branch
+  // is taken.
+  const framingForHandler = () => (inRoomRef.current ? collab : localUndo);
 
   // The active substrate for EditableBlock's binder. Session yStore wins
   // when in a room; the local Y.Doc is the substrate for single-user mode.
@@ -2583,7 +2597,7 @@ export default function SpecEditor() {
                   onFocus={handleClickFocus}
                   onUpdate={(id, data) => {
                     resumeHistory();
-                    (inRoom ? collab : localUndo).forceFrame();
+                    framingForHandler().forceFrame();
                     setBlocks(prev => prev.map(b => b.id === id ? { ...b, ...data } : b));
                   }}
                 />
@@ -2598,7 +2612,7 @@ export default function SpecEditor() {
                   onFocus={handleClickFocus}
                   onUpdate={(id, data) => {
                     resumeHistory();
-                    (inRoom ? collab : localUndo).forceFrame();
+                    framingForHandler().forceFrame();
                     setBlocks(prev => prev.map(b => b.id === id ? { ...b, ...data } : b));
                   }}
                   readOnly={collabReadOnly}
@@ -2621,7 +2635,7 @@ export default function SpecEditor() {
                   readOnly={collabReadOnly}
                   onAcceptRevision={(id) => {
                     resumeHistory();
-                    (inRoom ? collab : localUndo).forceFrame();
+                    framingForHandler().forceFrame();
                     setBlocks(prev => {
                       const idx = prev.findIndex(b => b.id === id);
                       if (idx < 0) return prev;
@@ -2634,7 +2648,7 @@ export default function SpecEditor() {
                   }}
                   onRejectRevision={(id) => {
                     resumeHistory();
-                    (inRoom ? collab : localUndo).forceFrame();
+                    framingForHandler().forceFrame();
                     setBlocks(prev => {
                       const idx = prev.findIndex(b => b.id === id);
                       if (idx < 0) return prev;
@@ -2673,7 +2687,7 @@ export default function SpecEditor() {
                   readOnly={collabReadOnly}
                   onAcceptRevision={(id) => {
                     resumeHistory();
-                    (inRoom ? collab : localUndo).forceFrame();
+                    framingForHandler().forceFrame();
                     setBlocks(prev => {
                       const idx = prev.findIndex(b => b.id === id);
                       if (idx < 0) return prev;
@@ -2688,7 +2702,7 @@ export default function SpecEditor() {
                   }}
                   onRejectRevision={(id) => {
                     resumeHistory();
-                    (inRoom ? collab : localUndo).forceFrame();
+                    framingForHandler().forceFrame();
                     setBlocks(prev => {
                       const idx = prev.findIndex(b => b.id === id);
                       if (idx < 0) return prev;
