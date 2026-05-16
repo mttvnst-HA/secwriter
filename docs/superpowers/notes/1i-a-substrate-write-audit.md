@@ -32,16 +32,16 @@ Categories:
 
 ## Summary
 
-| Category | Count | Disposition |
-|---|---|---|
-| PM-dispatch redundant | 4 (3 handlers + 1 binder write) | Remove during 1i-b.2; `useBlockBinder.write` keeps its `setBlockHtml` (binder write is the actual substrate-author path when the editor flag is off OR when the binder is the originator — it is NOT preceded by `view.dispatch`) |
-| Non-PM required | 6 | Keep |
-| Comment-reconcile | 1 | Move to silent variant (Task 1i-b.1 step 5) |
-| **Total production call sites** | **11** | — |
+| Category | Count | Cases | Disposition |
+|---|---|---|---|
+| Comment-reconcile | 1 | 1 | Move to silent variant (Task 1i-b.1 step 5) |
+| SPLIT (PM-dispatch redundant + Non-PM required) | 1 | 2 | Keep — TitleBlock (Non-PM) still calls `handleBlockUpdate`; PM-side redundancy is a benign zero-delta echo. May add a PM-aware fast-path during b.2; not strictly required. |
+| Non-PM required (TODAY) → REMOVED in b.2 | 1 | 3 | Delete `handleLegacyRevisionAction` entirely during 1i-b.2 along with the contentEditable legacy del-popup and FloatingToolbar legacy inline-resolve branch. |
+| Non-PM required | 8 | 4, 5, 6, 7, 8, 9, 10, 11 | Keep — HTML authored outside any PM `EditorView` (MarkSuggestions, search/replace, accept-all/reject-all, compliance fixes, block-level revision accept/reject). |
+| Non-PM required TODAY → DEAD AFTER 1i | 1 | 12 | Keep through 1i-b.2; deleted when `EditableBlock` + `useBlockBinder` retire in the legacy-removal sub-phase. |
+| **Total production call sites** | **12** | 1–12 | — |
 
-(11 = 11 hits in `src/App.jsx` + 1 hit in `src/components/useBlockBinder.js` − the binder is a Non-PM hot path and is counted in row 2.)
-
-Recount with the binder included: 4 PM-dispatch redundant + 6 Non-PM required (including the binder) + 1 Comment-reconcile = 11. Cross-checked against the Grep output.
+(12 = 11 hits in `src/App.jsx` (cases 1–11) + 1 hit in `src/components/useBlockBinder.js` (case 12). 11 + 1 = 12. Cross-checked against the Grep output.)
 
 ## Per-Call-Site Audit
 
