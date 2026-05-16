@@ -1,8 +1,9 @@
 import { describe, it, expect } from 'vitest';
 
 // The paste handler logic: extract plain text, strip all formatting
-// We test the sanitization function that will be used by onPaste
-import { sanitizePasteText } from '../../components/EditableBlock.jsx';
+// We test the sanitization function used by both EditableBlock (legacy
+// onPaste) and PmEditableBlock (PM EditorView handlePaste).
+import { sanitizePasteText } from '../paste-sanitize.js';
 
 describe('sanitizePasteText', () => {
   it.each([
