@@ -66,7 +66,7 @@ import { subscribeBlock } from '../lib/block-html-store.js';
 import { dispatchDelAction } from '../lib/pm-del-popup.js';
 import { activeCommentPlugin } from '../lib/pm-plugins/active-comment.js';
 import { COMMENT_RECONCILE_META, reconcileCommentMarks } from '../lib/pm-comments.js';
-import { rewriteForTrackChanges, docHasInlineRevisions } from '../lib/pm-tc-mark.js';
+import { rewriteForTrackChanges, docHasInlineRevisions, TC_RESOLVE_META } from '../lib/pm-tc-mark.js';
 import { useBlockLinting } from './useBlockLinting.js';
 
 /**
@@ -354,12 +354,19 @@ function PmEditableBlock({
         const isRemote = ySyncMeta != null;
         const isUndoRedo = ySyncMeta && ySyncMeta.isUndoRedoOperation === true;
         const isReconcile = tr.getMeta(COMMENT_RECONCILE_META) === true;
+        // TC_RESOLVE_META (#96): producers of TC-resolution transactions
+        // (pm-del-popup.js dispatchDelAction) tag their tr so the rewriter
+        // does not hijack the literal delete/removeMark step. The synthesized
+        // 'input' event and onUpdate debounce below still fire — the doc
+        // genuinely changed, the linter and React state need to see it.
+        const isTcResolve = tr.getMeta(TC_RESOLVE_META) === true;
         let appliedTr = tr;
         if (
           trackChangesRef.current
           && !isRemote
           && !isUndoRedo
           && !isReconcile
+          && !isTcResolve
           && tr.docChanged
         ) {
           const rewritten = rewriteForTrackChanges(

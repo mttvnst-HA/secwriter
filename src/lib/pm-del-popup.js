@@ -32,6 +32,7 @@
  */
 
 import { applyInlineRevisionResolveTr } from './pm-toolbar.js';
+import { TC_RESOLVE_META } from './pm-tc-mark.js';
 
 /**
  * Dispatch a PM transaction resolving the revisionDel mark at `delEl`.
@@ -63,6 +64,14 @@ export function dispatchDelAction(view, delEl, action) {
   // declared rank order).
   const tr = applyInlineRevisionResolveTr(view.state, action, pos, 'del');
   if (!tr) return null;
+  // Tag as a TC resolution so PmEditableBlock.dispatchTransaction skips
+  // rewriteForTrackChanges. Without this gate, accept-del dispatches a
+  // `tr.delete(from, to)` over a revisionDel-marked range; the rewriter
+  // re-classifies the range as a fresh user delete, re-applies revisionDel,
+  // and produces a no-op (issue #96). The meta is consumed in
+  // PmEditableBlock; the corresponding Yjs op still flows through
+  // ySyncPlugin with its normal origin.
+  tr.setMeta(TC_RESOLVE_META, true);
   view.dispatch(tr);
   return tr;
 }
