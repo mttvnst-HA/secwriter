@@ -39,13 +39,14 @@
  *
  * Transaction origins used by this module (all must begin with 'local-' so
  * handleAfterTx's prefix filter suppresses local echo):
- *   'local-publish'   — block structure + html changes (yOrder + yStore)
+ *   'local-publish'   — block structure + html changes (yOrder + yStore).
+ *                       Carries both setBlockHtml writes AND structural
+ *                       publishBlocks / applyBlocksToYDoc writes. Tracked
+ *                       by the in-room and out-of-room UndoManagers.
  *   'local-meta'      — section metadata (yMeta)
  *   'local-tc'        — Track Changes enabled-flag updates (yTc)
  *   'local-comments'  — comment create/reply/status/delete (yComments)
  *   'seed'            — initial room seeding (not a local edit)
- *   'local-apply'     — internal: applyBlocksToYDoc inner transaction (always
- *                        nested inside 'local-publish'; outer origin wins)
  *
  * Why split ordering from storage:
  *   Yjs shared types (Y.Map/Y.Text) cannot be moved between positions in a
@@ -679,7 +680,7 @@ export function applyBlocksToYDoc(ydoc, yOrder, yStore, blocks) {
       yOrder.insert(cursor, [id]);
       cursor++;
     }
-  }, 'local-apply');
+  }, 'local-publish');
 }
 
 /**
