@@ -632,7 +632,7 @@ export default function SpecEditor() {
     setFocusedBlockId(id);
     const tryFocus = () => focusBlockById(id, { atEnd });
     const fallbackToDom = () => {
-      const el = document.querySelector(`[data-block-id="${id}"]`);
+      const el = document.querySelector(/* allowed: block-registry fallback */ `[data-block-id="${id}"]`);
       if (!el) return;
       el.focus();
       // PM owns the cursor for its own DOM — don't fight it with a manual
@@ -1383,7 +1383,7 @@ export default function SpecEditor() {
     let firstRange = null;
     for (const v of group.instances) {
       const blockEl = getBlockDom(v.blockId)
-        || document.querySelector(`[data-block-id="${v.blockId}"]`);
+        || document.querySelector(/* allowed: block-registry fallback */ `[data-block-id="${v.blockId}"]`);
       if (!blockEl) continue;
       const targets = findHighlightTargetsInBlock(blockEl, v.match);
       for (const t of targets) {
