@@ -677,10 +677,9 @@ export default function SpecEditor() {
   }, [focusBlock]);
 
   const handleReorderSection = useCallback((dragId, dropId, position) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     setBlocks(prev => reorderSection(prev, dragId, dropId, position));
-  }, [resumeHistory]);
+  }, []);
 
   // Comment dispatcher — thin wrapper that routes a PublishEnvelope to the
   // collab session via the useCollabSession hook (set up further below).
@@ -845,22 +844,13 @@ export default function SpecEditor() {
   // the substrate, so this handler ONLY updates React state. Skipping
   // setBlockHtml avoids a redundant 'local-publish' op + duplicate broadcast.
   //
-  // resumeHistory() is retained because legacy useUndoableBlocks auto-pauses
-  // after every keystroke flush; without it, this setBlocks captures NO
-  // snapshot, leaving out-of-room inline TC accept/reject non-undoable.
-  // FloatingToolbar's PM caller skips flushPendingUpdateById and calls
-  // cancelPendingUpdateById instead, so this setBlocks is the first frame in
-  // the action's lifecycle and `prev` is the true pre-action state.
-  //
-  // In-room undo prefers collab.tryUndo (Yjs UndoManager) which tracks
-  // 'local-publish' ops; setBlockHtml after ySyncPlugin's write is a no-op
-  // delta, so in-room out-of-PM-mode users hit the broader PM-mode undo
-  // limitation tracked alongside the existing Ctrl+Y redo off-by-one.
+  // forceFrame() closes the active Yjs UndoManager capture window before
+  // the React state update so a subsequent ySyncPlugin op (from later
+  // typing) opens a fresh frame instead of coalescing with the action.
   const handleBlockUpdatePmSync = useCallback((id, html) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
-  }, [resumeHistory]);
+  }, []);
 
   // Update block HTML and sync the contentEditable DOM (used by MarkSuggestions).
   // For PM-mounted blocks the substrate write is the source of truth — the
@@ -938,7 +928,6 @@ export default function SpecEditor() {
   // blocks (they re-render via ySyncPlugin's observe of the substrate
   // write below).
   const handleSearchReplace = useCallback((blockId, offset, length, replacement) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     setBlocks(prev => prev.map(b => {
       if (b.id !== blockId || !b.html) return b;
@@ -953,7 +942,6 @@ export default function SpecEditor() {
 
   // Remove an orphaned RID entry from a REF block
   const handleRemoveOrphaned = useCallback((blockId, rid) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     setBlocks(prev => prev.map(b => {
       if (b.id !== blockId || b.type !== 'ref' || !b.ref?.entries) return b;
@@ -968,7 +956,6 @@ export default function SpecEditor() {
 
   // Add reference from wizard — find or create the org's REF block, sorted insertion
   const handleAddReference = useCallback(({ org, rid, rtl }) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     // Alphanumeric sort comparator for RIDs: letters first, then numbers
     const ridCompare = (a, b) => {
@@ -1020,7 +1007,6 @@ export default function SpecEditor() {
   }, []);
 
   const handleEnterKey = useCallback((afterId) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     const newId = `new-${Date.now()}`;
     setBlocks(prev => {
@@ -1061,7 +1047,6 @@ export default function SpecEditor() {
 
   // Tab/Shift+Tab on an OLI item: demote/promote list level (1..4, UFS Figure A-1).
   const handleChangeOliLevel = useCallback((blockId, delta) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     setBlocks(prev => {
       const idx = prev.findIndex(b => b.id === blockId);
@@ -1079,7 +1064,6 @@ export default function SpecEditor() {
 
   // Delete a block and focus the previous one
   const handleDelete = useCallback((blockId) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     setBlocks(prev => {
       const idx = prev.findIndex(b => b.id === blockId);
@@ -1141,7 +1125,6 @@ export default function SpecEditor() {
 
   // Convert a text block to a title
   const handleConvertToTitle = useCallback((blockId) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     setBlocks(prev => {
       const idx = prev.findIndex(b => b.id === blockId);
@@ -1164,7 +1147,6 @@ export default function SpecEditor() {
 
   // General block type conversion (from slash menu)
   const handleConvertBlock = useCallback((blockId, newType) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     if (newType === "title") {
       handleConvertToTitle(blockId);
@@ -1217,7 +1199,6 @@ export default function SpecEditor() {
 
   // Promote a title (decrease depth)
   const handlePromote = useCallback((blockId) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     setBlocks(prev => prev.map(b => {
       if (b.id === blockId && b.type === "title" && b.depth > 1) {
@@ -1229,7 +1210,6 @@ export default function SpecEditor() {
 
   // Demote a title (increase depth)
   const handleDemote = useCallback((blockId) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     setBlocks(prev => prev.map(b => {
       if (b.id === blockId && b.type === "title" && b.depth < 6) {
@@ -1240,7 +1220,6 @@ export default function SpecEditor() {
   }, []);
 
   const handleAcceptAll = useCallback(() => {
-    resumeHistory();
     // 1h Q36 Commit C — multi-write gesture: wrap the N setBlockHtml writes
     // in withUndoFrame so they form ONE Yjs UndoManager frame regardless of
     // captureTimeout coalescing. forceFrame first to demarcate this frame
@@ -1270,7 +1249,6 @@ export default function SpecEditor() {
   }, []);
 
   const handleRejectAll = useCallback(() => {
-    resumeHistory();
     const framing = framingForHandler();
     framing.forceFrame();
     const prev = blocksRef.current;
@@ -1427,7 +1405,6 @@ export default function SpecEditor() {
   // ── Compliance Checker Handlers ──
 
   const handleComplianceAcceptFix = useCallback((blockId, fixedText) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     const yStore = activeYStoreRef.current;
     if (yStore) setBlockHtml(yStore, blockId, fixedText);
@@ -1435,7 +1412,6 @@ export default function SpecEditor() {
   }, []);
 
   const handleComplianceAcceptGroup = useCallback((fixesByBlock, label) => {
-    resumeHistory();
     const framing = framingForHandler();
     framing.forceFrame();
     const yStore = activeYStoreRef.current;
@@ -2614,7 +2590,6 @@ export default function SpecEditor() {
                   isFocused={focusedBlockId === block.id}
                   onFocus={handleClickFocus}
                   onUpdate={(id, data) => {
-                    resumeHistory();
                     framingForHandler().forceFrame();
                     setBlocks(prev => prev.map(b => b.id === id ? { ...b, ...data } : b));
                   }}
@@ -2629,7 +2604,6 @@ export default function SpecEditor() {
                   isFocused={focusedBlockId === block.id}
                   onFocus={handleClickFocus}
                   onUpdate={(id, data) => {
-                    resumeHistory();
                     framingForHandler().forceFrame();
                     setBlocks(prev => prev.map(b => b.id === id ? { ...b, ...data } : b));
                   }}
@@ -2652,7 +2626,6 @@ export default function SpecEditor() {
                   onFocus={handleClickFocus}
                   readOnly={collabReadOnly}
                   onAcceptRevision={(id) => {
-                    resumeHistory();
                     framingForHandler().forceFrame();
                     setBlocks(prev => {
                       const idx = prev.findIndex(b => b.id === id);
@@ -2665,7 +2638,6 @@ export default function SpecEditor() {
                     });
                   }}
                   onRejectRevision={(id) => {
-                    resumeHistory();
                     framingForHandler().forceFrame();
                     setBlocks(prev => {
                       const idx = prev.findIndex(b => b.id === id);
@@ -2704,7 +2676,6 @@ export default function SpecEditor() {
                   identity={identity}
                   readOnly={collabReadOnly}
                   onAcceptRevision={(id) => {
-                    resumeHistory();
                     framingForHandler().forceFrame();
                     setBlocks(prev => {
                       const idx = prev.findIndex(b => b.id === id);
@@ -2719,7 +2690,6 @@ export default function SpecEditor() {
                     });
                   }}
                   onRejectRevision={(id) => {
-                    resumeHistory();
                     framingForHandler().forceFrame();
                     setBlocks(prev => {
                       const idx = prev.findIndex(b => b.id === id);
