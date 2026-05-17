@@ -59,6 +59,13 @@ const COLLAB_HTTP_URL = DEFAULT_HTTP_URL;
 // Walk text nodes under `root` to compute the plain-text offset of
 // (node, offset). Used to transport a caret position across a DOM rewrite
 // caused by a remote collab update.
+//
+// 1i-b.2 — post-PM-only world, the only surface that still needs this is
+// TitleBlock's contentEditable title span (TitleBlock isn't a PM
+// EditorView). PM-mounted blocks short-circuit via the `data-pm-editor`
+// gate in onBlocksReceived and let y-prosemirror's relpos plugin own
+// selection management. Ref/table contentEditable inputs live on inner
+// elements that don't carry `data-block-id` so the gate also skips them.
 function getPlainTextOffset(root, node, offset) {
   if (!root || !node) return -1;
   let total = 0;
