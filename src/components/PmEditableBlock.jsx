@@ -209,41 +209,59 @@ function PmEditableBlock({
     return typeEditable && !readOnly;
   }, [block.type, block.isNew, readOnly]);
 
-  // Subscribe to yStore for THIS block's slot existence + identity. The
-  // mount effect below depends on `yStore.get(block.id)` being present, but
-  // React fires child effects before parent effects in the commit phase —
-  // so a freshly-created block (Enter / slash-convert) reaches PmEditableBlock's
-  // mount BEFORE App's seeding effect (`applyBlocksToYDoc` in App.jsx ~line 287
-  // for out-of-room, or useCollabSession's publish effect for in-room) has run.
-  // Without this subscription the mount effect bails on missing yMap and never
-  // re-fires, leaving the new block with no EditorView. subscribeBlock from
-  // block-html-store.js fires when (a) the slot first appears, (b) the slot's
-  // html shape changes (1d migration broker swap), or (c) the slot is removed —
-  // exactly the events that gate the EditorView lifecycle. The snapshot is the
-  // yMap reference itself (or null) so React re-renders when it flips, and the
-  // mount effect's dep list catches both "slot appeared" and "slot identity
-  // changed" with no extra wiring.
-  const yMapBound = useSyncExternalStore(
+  // Subscribe to the html SLOT reference (not the outer yMap). Two distinct
+  // races make this load-bearing:
+  //
+  //   1. Mount race (1f.5): React fires child effects before parent effects
+  //      in the commit phase, so a freshly-created block (Enter / slash-
+  //      convert) reaches PmEditableBlock's mount BEFORE App's seeding
+  //      effect (`applyBlocksToYDoc` out-of-room, or useCollabSession's
+  //      publish effect in-room) has run. Without an external-store
+  //      subscription the mount effect would bail on missing yMap and
+  //      never re-fire.
+  //
+  //   2. Broker swap race (1i-b.2 fix): the 1d server-side migration
+  //      broker swaps the slot from Y.Text → Y.XmlFragment mid-session
+  //      without changing the outer yMap's identity. If getSnapshot
+  //      returned the yMap, useSyncExternalStore would Object.is-compare
+  //      the unchanged yMap and skip the re-render — leaving
+  //      PmEditableBlock stuck on the migration-partial banner forever
+  //      on the original client. Returning the html slot makes the swap
+  //      observable: identity flips when the broker calls
+  //      yMap.set('html', newFragment).
+  //
+  // The seedRoom → broker race in collab.spec.js's two-tab text sync test
+  // pins case 2: User A receives Y.Text slots from the seed, the broker
+  // swaps to Y.XmlFragment when User B's WS upgrade fires, and A's
+  // PmEditableBlock must re-render to mount the EditorView.
+  const yHtmlSlot = useSyncExternalStore(
     useCallback(
       (notify) => (yStore ? subscribeBlock(yStore, block.id, notify) : () => {}),
       [yStore, block.id],
     ),
     useCallback(
-      () => (yStore ? (yStore.get(block.id) || null) : null),
+      () => {
+        if (!yStore) return null;
+        const map = yStore.get(block.id);
+        return map ? (map.get('html') || null) : null;
+      },
       [yStore, block.id],
     ),
     () => null, // SSR — no Y substrate
   );
+  // The outer yMap reference is stable as long as the block exists in
+  // yStore. Read it on every render so the mount effect's `yMap.get('html')`
+  // calls see the current slot. yHtmlSlot is what triggers re-renders;
+  // yMapBound is what the code below reads for the binding.
+  const yMapBound = yStore ? (yStore.get(block.id) || null) : null;
 
-  // 1i-b.1 — derive migrationPartial state from the live yMap. This branch
-  // owns the user-facing fallback for blocks whose html slot is still
-  // Y.Text (rooms partially migrated by the 1d broker). The yMapBound
-  // subscription already fires when the slot shape changes (1d migration
-  // broker swap), so this useMemo's dep list catches every transition.
+  // 1i-b.1 — derive migrationPartial state from the live html slot. The
+  // useSyncExternalStore subscription above re-renders when the broker
+  // swaps the slot identity, so this useMemo's dep list catches every
+  // transition.
   const isMigrationPartial = useMemo(() => {
-    if (!yMapBound) return false;
-    return isLegacyYTextSlot(yMapBound.get('html'));
-  }, [yMapBound]);
+    return isLegacyYTextSlot(yHtmlSlot);
+  }, [yHtmlSlot]);
 
   // ── Mount: create EditorView wired to the block's Y.XmlFragment ─────────
   useEffect(() => {

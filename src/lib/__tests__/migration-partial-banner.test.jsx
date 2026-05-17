@@ -147,4 +147,51 @@ describe('migrationPartial blocks render a read-only banner', () => {
     // PmEditableBlock-mount-race.test.jsx; here we only need to confirm the
     // banner does NOT swallow the v2-shape case.
   });
+
+  it('unmounts the banner when the broker swaps Y.Text → Y.XmlFragment mid-session', async () => {
+    // Regression for collab.spec.js:169 ("two-tab text sync") — the server
+    // seeds a fresh room with Y.Text slots, then the 1d broker swaps them
+    // to Y.XmlFragment on the next WS upgrade. The clients already
+    // connected at seed time receive the swap via yMap.set('html', frag)
+    // — same yMap reference, NEW html slot reference.
+    //
+    // Without subscribing to the slot identity (the pre-fix bug),
+    // useSyncExternalStore's Object.is on the unchanged yMap would
+    // dedupe the re-render, leaving the banner stuck on screen and the
+    // EditorView unmounted forever on the original client.
+    seedSlotV1Legacy(yStore, ydoc, 'mp3', '<p>legacy</p>');
+
+    let container;
+    await act(async () => {
+      ({ container } = render(
+        <PmEditableBlock {...defaultProps({
+          yStore,
+          block: { id: 'mp3', type: 'txt', html: '<p>legacy</p>' },
+        })} />,
+      ));
+    });
+
+    // Pre-condition: banner is showing.
+    expect(container.querySelector('.migration-partial-banner')).not.toBeNull();
+
+    // Simulate the broker: replace the Y.Text slot with a Y.XmlFragment.
+    // The outer yMap identity is unchanged — only the inner 'html' slot
+    // gets a new reference. This mirrors migrate-pm-substrate.cjs's
+    // per-block conversion under its 'migrate-v2' origin.
+    await act(async () => {
+      ydoc.transact(() => {
+        const yMap = yStore.get('mp3');
+        const yXml = new Y.XmlFragment();
+        yMap.set('html', yXml);
+        prosemirrorToYXmlFragment(htmlToPmFragment('<p>migrated</p>'), yXml);
+      }, 'migrate-v2');
+    });
+
+    // Banner must be gone. (We don't assert the EditorView mounts
+    // synchronously — jsdom-based EditorView mount has known quirks; the
+    // contract that matters here is "the migration-partial gate releases
+    // when the slot swaps." The Playwright two-tab text-sync test pins
+    // the live mount + sync end-to-end.)
+    expect(container.querySelector('.migration-partial-banner')).toBeNull();
+  });
 });
