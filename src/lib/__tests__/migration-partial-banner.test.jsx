@@ -7,12 +7,11 @@
 // asking the operator to re-run conversion. Mirrors the duck-typing in
 // block-html-store.js's deriveHtml.
 //
-// Why this matters under 1i-b.2: today PmEditableBlock bails silently on
-// the Y.Text shape because EditableBlock owns the render path for those
-// blocks under flag-off. Once EditableBlock is removed, the silent bail
-// would produce an invisible-but-uneditable block — breaking ADR-0006's
+// Why this matters: PmEditableBlock bails silently on the Y.Text shape
+// (its ySyncPlugin requires Y.XmlFragment). Without a banner, the user
+// sees an invisible-but-uneditable block — breaking ADR-0006's
 // "half-migrated rooms remain editable" promise. The banner is the
-// user-facing fallback.
+// user-facing fallback for Y.Text-slot blocks in migrationPartial rooms.
 //
 // Test fixture mirrors PmEditableBlock-mount-race.test.jsx — props are the
 // minimum shape PmEditableBlock destructures, linting disabled to avoid

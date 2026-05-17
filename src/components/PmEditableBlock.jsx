@@ -2,11 +2,12 @@
  * PmEditableBlock — y-prosemirror-backed editable block.
  *
  * Sub-PR 1e (#47, ADR-0006). Mounts a PM EditorView per block, bound via
- * `ySyncPlugin` to the block's Y.XmlFragment in the substrate. Replaces the
- * legacy `EditableBlock`'s contentEditable + binder snapshot-write path
- * when `VITE_PM_EDITOR=true`.
+ * `ySyncPlugin` to the block's Y.XmlFragment in the substrate. The sole
+ * editor for editable text blocks since sub-PR 1i-b.2 retired the legacy
+ * contentEditable path (EditableBlock.jsx, useBlockBinder.js, the
+ * `VITE_PM_EDITOR` flag).
  *
- * Surface parity with `EditableBlock` (same props, same behavior to App):
+ * Props (App→block surface):
  *   - block, yStore, onUpdate, onEnterKey, isFocused, onFocus
  *   - oliLabel, onDelete, onFocusPrev, onFocusNext
  *   - onConvertBlock, onChangeOliLevel
@@ -234,9 +235,9 @@ function PmEditableBlock({
     () => null, // SSR — no Y substrate
   );
 
-  // 1i-b.1 — derive migrationPartial state from the live yMap. Once
-  // EditableBlock is removed (1i-b.2), this branch owns the user-facing
-  // fallback for blocks whose html slot is still Y.Text. The yMapBound
+  // 1i-b.1 — derive migrationPartial state from the live yMap. This branch
+  // owns the user-facing fallback for blocks whose html slot is still
+  // Y.Text (rooms partially migrated by the 1d broker). The yMapBound
   // subscription already fires when the slot shape changes (1d migration
   // broker swap), so this useMemo's dep list catches every transition.
   const isMigrationPartial = useMemo(() => {
@@ -629,12 +630,10 @@ function PmEditableBlock({
       cancelPendingUpdate: () => {
         // 1f.9 — clear the onUpdate debounce WITHOUT firing it. Used by
         // the inline TC accept/reject path which owns its own setBlocks
-        // via onRefreshTcSnapshot; without this, a debounce scheduled by
+        // via onRefreshTcSnapshot. Without this, a debounce scheduled by
         // the toolbar's view.dispatch would fire 400ms later and re-issue
-        // setBlocks via handleBlockUpdate. Because handleBlockUpdate runs
-        // outside the resumeHistory() window, that late setBlocks would
-        // capture a snapshot of the post-action state, shadowing the
-        // intended undoable frame from handleRefreshTcSnapshot.
+        // setBlocks via handleBlockUpdate, redundantly mutating React
+        // state after onRefreshTcSnapshot has already settled.
         if (onUpdateDebounceRef.current) {
           clearTimeout(onUpdateDebounceRef.current);
           onUpdateDebounceRef.current = null;
@@ -713,8 +712,8 @@ function PmEditableBlock({
     // pre-action html and clobber the post-action React state. This
     // mirrors FloatingToolbar's PM-mode inline TC accept/reject path
     // (cancelPendingUpdateById, 1f.9): a debounce firing AFTER
-    // onRefreshTcSnapshot's setBlocks would land outside the
-    // resumeHistory() window and shadow the intended undoable frame.
+    // onRefreshTcSnapshot's setBlocks would redundantly mutate React
+    // state with the same html that onRefreshTcSnapshot just wrote.
     if (onUpdateDebounceRef.current) {
       clearTimeout(onUpdateDebounceRef.current);
       onUpdateDebounceRef.current = null;
@@ -742,9 +741,10 @@ function PmEditableBlock({
     // PM dispatch already wrote the substrate via ySyncPlugin. App owns
     // the React state + TC snapshot refresh via onRefreshTcSnapshot,
     // same path FloatingToolbar uses for its PM-mode inline TC actions
-    // (1f.9). The handler does NOT call setBlockHtml — it only runs
-    // resumeHistory + setBlocks + setTcState so the local UndoManager
-    // captures a snapshot of the post-action state.
+    // (1f.9). The handler (handleBlockUpdatePmSync) does NOT call
+    // setBlockHtml — only forceFrame + setBlocks — because the Yjs
+    // UndoManager already captured the PM dispatch above as its own
+    // frame (forceFrame ran before view.dispatch).
     if (onRefreshTcSnapshotRef.current) {
       try {
         const html = pmFragmentToHtml(view.state.doc);

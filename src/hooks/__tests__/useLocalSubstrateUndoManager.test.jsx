@@ -9,7 +9,9 @@
 //      origins (drift between in-room and out-of-room would yield
 //      different Ctrl+Z semantics depending on collab mode).
 //   2. tryUndo / tryRedo return false when the respective stack is empty
-//      (so App's keydown handler can fall through to useUndoableBlocks).
+//      (this is the final undo tier post-1i-b.2; there is no further
+//      fall-through, but the return value still lets App's keydown
+//      handler distinguish "handled" from "no-op").
 //   3. The UndoManager is destroyed on unmount (no listener leak across
 //      session-mode flips).
 

@@ -16,10 +16,9 @@ function blockSel(id) {
 
 /**
  * Return a CSS selector for a block's OUTER WRAPPER (the div carrying
- * block-revision-* and data-tag classes). Works in both legacy and PM
- * modes — both `EditableBlock` and `PmEditableBlock` set id="block-{id}"
- * on the outer wrapper. Use this instead of `locator('..')` when asserting
- * on revision styling or gutter buttons.
+ * block-revision-* and data-tag classes). `PmEditableBlock` sets
+ * id="block-{id}" on the outer wrapper. Use this instead of
+ * `locator('..')` when asserting on revision styling or gutter buttons.
  */
 function blockWrapperSel(id) {
   return `#block-${id}`;

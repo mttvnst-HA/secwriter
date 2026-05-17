@@ -3,12 +3,13 @@
  *
  * Sub-PR 1d (#47, [ADR-0006](../../docs/adr/0006-pm-substrate-migration.md))
  * swaps the per-block CRDT from Y.Text to Y.XmlFragment so the substrate
- * speaks ProseMirror natively. The public API is unchanged — the binder
- * (`useBlockBinder`) continues to call `getBlockHtml` / `setBlockHtml` /
- * `subscribeBlock`, and App-side direct-substrate writes (revisions,
- * compliance fixes, search/replace, comments-reconcile, etc.) keep flowing
- * through `setBlockHtml` so the `'local-publish'` UndoManager origin stays
- * intact.
+ * speaks ProseMirror natively. PmEditableBlock's ySyncPlugin binds
+ * directly to the fragment and produces per-keystroke ops with origin
+ * `ySyncPluginKey`. App-side direct-substrate writes (revisions,
+ * compliance fixes, search/replace, comments-reconcile, etc.) call
+ * `setBlockHtml` (origin `'local-publish'`) so the UndoManager captures
+ * them; PmEditableBlock's substrate subscription comes through
+ * `subscribeBlock`.
  *
  * Read pathway:
  *   getBlockHtml derives via `pmFragmentToHtml(yXml)` (1c serializer; duck-

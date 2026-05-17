@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
-import { getBlockView } from "../lib/block-registry.js";
 
 /**
  * Get the current author name from localStorage, or null if not set.
@@ -70,25 +69,14 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
     if (!showAuthorInput && isNewComment) createInputRef.current?.focus();
   }, [isNewComment, showAuthorInput]);
 
-  // Activate highlight on the comment span. Sets a `data-active` attribute
-  // (cleared on unmount) so the styling is purely a CSS attribute selector.
-  // App.jsx's reconcileBlocks effect owns the className — the popup must
-  // not write it, otherwise the next reconcile would clobber the active
-  // styling and an in-flight popup-close could leave a stale className
-  // out of sync with `comment.status`.
-  // 1g: PM-mounted editable blocks have a registered EditorView and own
-  // the active highlight via activeCommentPlugin's inline decoration
-  // (class 'mark-comment-active'). Ref/table blocks have no PM view; the
-  // imperative setAttribute provides the active styling for comment spans
-  // inside those non-PM components (it duplicates the React-rendered
-  // `data-active` prop those components emit — harmless).
-  useEffect(() => {
-    if (getBlockView(comment.blockId) != null) return undefined;
-    const el = document.querySelector(`[data-comment-id="${comment.id}"]`);
-    if (!el) return undefined;
-    el.setAttribute('data-active', 'true');
-    return () => { el.removeAttribute('data-active'); };
-  }, [comment.id, comment.blockId]);
+  // Active-highlight styling:
+  // - PM-mounted editable blocks: `activeCommentPlugin` emits an inline
+  //   decoration with class 'mark-comment-active' over the matching mark
+  //   range. App.jsx calls `setActiveComment(view, commentId)` via
+  //   block-registry. See src/lib/pm-plugins/active-comment.js.
+  // - RefBlock / TableBlock: render `data-active="true"` from the
+  //   `activeCommentId` prop directly in JSX (see renderCellContent /
+  //   renderWithCommentMarks). CSS uses `[data-active="true"]` selector.
 
   const handleSaveAuthor = () => {
     if (!authorName.trim()) return;

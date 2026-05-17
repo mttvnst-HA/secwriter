@@ -23,11 +23,11 @@
  *
  * The helpers are deliberately NOT methods on the UndoManager itself:
  *   - withUndoFrame needs the ydoc, not the manager.
- *   - Both need to be available out-of-room (Commit B's local-substrate
- *     UndoManager hook constructs its own pair).
+ *   - Both need to be available out-of-room (local-substrate UndoManager
+ *     hook constructs its own pair via the same makeUndoHelpers factory).
  *
- * Commit A ships these as dead code — no call site uses them yet. The
- * Commit C migration replaces the 23 `resumeHistory()` sites in App.jsx.
+ * App.jsx call sites pick the appropriate pair via
+ * `framingForHandler = () => (inRoomRef.current ? collab : localUndo)`.
  */
 
 /**

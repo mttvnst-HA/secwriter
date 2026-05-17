@@ -1,17 +1,17 @@
 /**
- * block-registry.js — App-scoped registry of mounted EditableBlock /
- * PmEditableBlock components, keyed by blockId.
+ * block-registry.js — App-scoped registry of mounted block components
+ * (PmEditableBlock and TitleBlock), keyed by blockId.
  *
- * Sub-PR 1e (#47, v2 plan Q17/E4). The legacy code path used
- * `document.querySelector('[data-block-id="…"]')` to imperatively focus
- * blocks, sync DOM after mark-suggestion replaces, and restore caret after
- * remote updates. PM-mounted blocks own their internal DOM and do not
- * expose a single contentEditable for these reach-ins.
+ * Sub-PR 1e (#47, v2 plan Q17/E4). Replaces the previous
+ * `document.querySelector('[data-block-id="…"]')` reach-ins used for
+ * imperative focus, mark-suggestion DOM syncs, and caret restoration.
+ * PM-mounted blocks own their internal DOM and don't expose a single
+ * contentEditable for those reach-ins.
  *
- * The registry is a single module-level Map. Mounted EditableBlock /
- * PmEditableBlock register their imperative handle on mount and unregister
- * on unmount. App.jsx callsites that previously did querySelector(...) now
- * call `focusBlockById(id, { atEnd })` etc.
+ * The registry is a single module-level Map. Mounted blocks register
+ * their imperative handle on mount and unregister on unmount. App.jsx
+ * callsites that previously did querySelector(...) now call
+ * `focusBlockById(id, { atEnd })` etc.
  *
  * Module-level (not via React Context) because:
  *   1. App.jsx hooks are deeply nested — threading the registry through
@@ -23,16 +23,14 @@
  * Each entry is a `BlockHandle`:
  *   focus({ atEnd?: boolean }) — places the caret in the block
  *   getDom() → Element | null — the block's outer container element
- *   getEditable() → Element | null — the contentEditable (legacy) or PM
- *     EditorView's DOM root (1e)
+ *   getEditable() → Element | null — the block's editable surface
+ *     (PmEditableBlock returns its EditorView's DOM root; TitleBlock
+ *     returns its contentEditable title span)
  *   getPlainText() → string — current text content (DOM-safe)
- *   setHtml(html) — legacy contentEditable path: replace innerHTML
- *     (used by MarkSuggestions). PM path: NO-OP. PM owns its DOM and
- *     re-renders from state.doc on every dispatch, so innerHTML writes
- *     are clobbered. App-level callsites that need the change to reach
- *     the substrate must call `setBlockHtml(yStore, id, html)` from
- *     `block-html-store.js` directly — `handle.setHtml` is retained on
- *     the PM handle only so the legacy callsite signature compiles.
+ *   setHtml(html) — PmEditableBlock: NO-OP (PM owns its DOM and
+ *     re-renders from state.doc on every dispatch; App callers needing
+ *     to push html into PM should call `setBlockHtml(yStore, id, html)`
+ *     directly so ySyncPlugin observes the substrate change).
  */
 
 const handles = new Map();
@@ -141,10 +139,10 @@ export function listBlocksInDocumentOrder() {
 }
 
 /**
- * Return the EditorView for a PM-mounted block, or null. For legacy blocks
- * (EditableBlock's contentEditable path) and brand-new PM blocks not yet
- * mounted, returns null. Use the null result to fork between the PM
- * transaction path and the legacy DOM-mutation path in FloatingToolbar.
+ * Return the EditorView for a PM-mounted block, or null. Returns null for
+ * non-PM blocks (TitleBlock, RefBlock, TableBlock) and for brand-new PM
+ * blocks not yet mounted. Use the null result to fork between the PM
+ * transaction path and the DOM-mutation path in FloatingToolbar.
  */
 export function getBlockView(blockId) {
   const h = handles.get(blockId);

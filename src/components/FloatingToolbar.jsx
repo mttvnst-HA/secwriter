@@ -335,23 +335,19 @@ export default function FloatingToolbar({
       // CANCEL — not flush. Distinct from the other PM toolbar verbs
       // (format / inline-mark / revision-apply / change-case) which call
       // flushPendingUpdateById to push the new html through
-      // handleBlockUpdate → setBlocks. Here we DON'T want that path —
-      // handleBlockUpdate runs outside any resumeHistory() window, so
-      // its setBlocks lands inside useUndoableBlocks's paused state and
-      // does NOT capture a snapshot. If we then call onRefreshTcSnapshot
-      // (which DOES resumeHistory), its setBlocks would capture a
-      // snapshot of the post-handleBlockUpdate state — the wrong "prev".
-      // Skipping the flush and letting onRefreshTcSnapshot own the
-      // single setBlocks call makes the captured snapshot the true
-      // pre-action state. Cancel the pending debounce so a late timer
-      // doesn't re-issue setBlocks 400ms later with the same html.
+      // handleBlockUpdate → setBlocks. Here we DON'T want that path:
+      // the post-1i Yjs UndoManager already captures the PM dispatch as
+      // its own frame (forceFrame above closed the prior capture window),
+      // and onRefreshTcSnapshot below issues the single React-side
+      // setBlocks for this action. A debounced handleBlockUpdate firing
+      // 400ms later would redundantly setBlocks with the same html.
+      // Cancel the pending debounce so that late timer never fires.
       if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
         cancelPendingUpdateById(blockId);
       }
       // TC snapshot refresh — DOES NOT call setBlockHtml (PM dispatch
-      // already wrote the substrate via ySyncPlugin) but DOES call
-      // resumeHistory + setBlocks + setTcState, so the action enters
-      // the App-level useUndoableBlocks stack as one frame.
+      // already wrote the substrate via ySyncPlugin); calls setBlocks
+      // + setTcState to reflect the action in React state.
       if (onRefreshTcSnapshot) {
         try {
           const html = pmFragmentToHtml(view.state.doc);

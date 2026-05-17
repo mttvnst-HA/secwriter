@@ -142,18 +142,16 @@ export default function SpecEditor() {
   // `activeYStoreRef` and `onUpdateRef` inside PmEditableBlock.
   const clearHistoryRef = useRef(() => {});
   const clearHistory = useCallback(() => clearHistoryRef.current(), []);
-  // 1i-b.1 — tcState no longer rides on useUndoableBlocks' snapshot
-  // stack. Post-1h Q35+Q37 the reducer is `{ enabled, publishSeq }`
-  // and the publishSeq counter handles echo-gating with no per-block
-  // snapshot to keep in lockstep with `blocks`. Accepted regression:
-  // a Ctrl+Z crossing a TC enable/disable boundary no longer rolls
-  // back the toggle (it's an explicit user gesture, never a
-  // typing-frame mutation).
+  // Post-1h Q35+Q37 the TC reducer is `{ enabled, publishSeq }` and the
+  // publishSeq counter handles echo-gating. Accepted regression: a
+  // Ctrl+Z crossing a TC enable/disable boundary no longer rolls back
+  // the toggle (it's an explicit user gesture, never a typing-frame
+  // mutation).
   const [tcState, setTcState] = useState(() => tc.createInitial());
-  // Local Y.Doc — the no-room substrate for block html. EditableBlock's
-  // useBlockBinder reads/writes this when !inRoom. In-room mode, the
-  // session's Y.Doc takes over; the local substrate stays allocated but
-  // dormant. See ADR-0004 (#22 sub-PR 1b).
+  // Local Y.Doc — the no-room substrate for block html. PmEditableBlock's
+  // ySyncPlugin binds to this when !inRoom. In-room mode, the session's
+  // Y.Doc takes over; the local substrate stays allocated but dormant.
+  // See ADR-0004 (#22 sub-PR 1b).
   const [localSubstrate] = useState(() => {
     const ydoc = new Y.Doc();
     const yOrder = ydoc.getArray('order');
@@ -336,7 +334,7 @@ export default function SpecEditor() {
   }, [tree, sidebarSearch]);
 
   // TAI resolution: compute a key that changes when tailoring settings change,
-  // forcing EditableBlock to re-render with resolved HTML
+  // forcing PmEditableBlock to re-render with resolved HTML
   const tailorKey = useMemo(() => {
     if (!tailorActive || !tailorProfile.branch) return null;
     return `${tailorProfile.branch}-${tailorProfile.region || ''}-${tailorProfile.deliveryMethod || ''}-${tailorShowAll}`;
@@ -613,15 +611,15 @@ export default function SpecEditor() {
     }
   }, [roomId, sectionMeta.sectionNumber, authHeaders]);
 
-  // Programmatic focus for EXISTING elements (arrow nav, tree select, delete-focus-prev)
-  // New blocks focus themselves via the ref callback in EditableBlock.
+  // Programmatic focus for EXISTING elements (arrow nav, tree select, delete-focus-prev).
+  // New blocks focus themselves from their own mount effect (see
+  // PmEditableBlock's `block.isNew` auto-focus and TitleBlock's mount).
   //
   // Sub-PR 1e (#47, v2 plan Q17/E4). Was: querySelector('[data-block-id=…]')
   // + manual Range placement. Now goes through block-registry's imperative
   // handle so PM-mounted blocks (which own their internal DOM and don't
   // surface a single contentEditable) can route the focus to PM's
-  // EditorView.dispatch + Selection.atEnd. The 1i sub-PR will lint-fail any
-  // re-introduction of the querySelector pattern.
+  // EditorView.dispatch + Selection.atEnd.
   //
   // Race safety (QC major-5): the legacy fallback's manual Range placement
   // fights PM's own selection management. We give the registry two chances
@@ -830,11 +828,13 @@ export default function SpecEditor() {
   }, [blocks, commentsState, setBlocksDirect]);
 
   const handleBlockUpdate = useCallback((id, html) => {
-    // Mirror the new html into the active Y.Doc substrate so non-typing
-    // mutations stay observable through getBlockHtml. Typing flows through
-    // useBlockBinder.write directly and skips this codepath; this handler
-    // remains for handleBlur, programmatic onUpdate calls, and anything
-    // routed via FloatingToolbar.onBlockUpdate.
+    // Mirror the new html into the active Y.Doc substrate so non-PM
+    // authors (TitleBlock raw contentEditable, MarkSuggestions accept
+    // via handleBlockUpdateWithSync) stay observable through
+    // getBlockHtml. PM typing flows through ySyncPlugin directly and
+    // reaches React state through PmEditableBlock's debounced onUpdate
+    // → this handler; the substrate write is then a byte-stable echo
+    // op that the UndoManager merges into the same frame.
     const yStore = activeYStoreRef.current;
     if (yStore) setBlockHtml(yStore, id, html);
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
@@ -887,12 +887,11 @@ export default function SpecEditor() {
         const b = blocksRef.current.find((x) => x.id === id);
         return b ? b.html : null;
       },
-      // handleBlockUpdateWithSync (not plain handleBlockUpdate) so the legacy
-      // EditableBlock's contentEditable DOM stays in sync — the legacy DOM
-      // sync effect skips writes while the block is focused (avoids fighting
-      // active typing), so a focused-block injection via plain
-      // handleBlockUpdate would update React state + substrate but leave the
-      // stale DOM, and the next blur would read the stale DOM and clobber.
+      // Route through handleBlockUpdateWithSync (also called by
+      // MarkSuggestions). Writes substrate via setBlockHtml + setBlocks,
+      // and ySyncPlugin observes the substrate write and re-renders the
+      // PM view — so the test sees its html land on the EditorView,
+      // not just in React state.
       setBlockHtml: (id, html) => { handleBlockUpdateWithSync(id, html); },
       // 1f.9 — read PM selection range for E3 (selection-persistence test).
       getPmSelection: (id) => {
@@ -1599,11 +1598,11 @@ export default function SpecEditor() {
   // is taken.
   const framingForHandler = () => (inRoomRef.current ? collab : localUndo);
 
-  // The active substrate for EditableBlock's binder. Session yStore wins
-  // when in a room; the local Y.Doc is the substrate for single-user mode.
-  // Reference identity flips on room transitions, which the binder hook's
-  // subscribe deps watch — it tears down the old subscription and attaches
-  // to the new yStore in one render cycle.
+  // The active substrate for PmEditableBlock's ySyncPlugin. Session yStore
+  // wins when in a room; the local Y.Doc is the substrate for single-user
+  // mode. Reference identity flips on room transitions, which the per-
+  // block useSyncExternalStore subscription watches — it tears down the
+  // old EditorView and attaches to the new yStore in one render cycle.
   const activeYStore = inRoom ? collab.yStore : localSubstrate.yStore;
   // Mirror the active substrate into the ref so callbacks declared above
   // (which can't reach the const due to JS hoisting / TDZ rules) read the
@@ -1626,8 +1625,8 @@ export default function SpecEditor() {
 
   // Keyboard listener for undo/redo and search.
   //
-  // 1i-b.2 — two-tier undo routing. The useUndoableBlocks snapshot stack
-  // has been deleted; the Yjs UndoManager is the only undo source.
+  // 1i-b.2 — two-tier undo routing. The Yjs UndoManager is the only
+  // undo source post-1i-b.2 (snapshot-stack tier retired).
   //   1. collab.tryUndo()    — in-room Yjs UndoManager (no-op if no session)
   //   2. localUndo.tryUndo() — out-of-room Yjs UndoManager (always alive;
   //                            empty when in-room because all writes route

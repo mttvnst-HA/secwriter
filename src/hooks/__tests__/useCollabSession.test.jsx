@@ -281,7 +281,7 @@ describe('useCollabSession — imperative API', () => {
     expect(lastSession().redo).toHaveBeenCalledTimes(1);
 
     // Stack empty — tryUndo/tryRedo MUST return false AND MUST NOT call session.undo/redo.
-    // Without this gate, App.jsx's Ctrl+Z/Ctrl+Y fall-through to useUndoableBlocks never fires.
+    // Without this gate, App.jsx's Ctrl+Z/Ctrl+Y fall-through to localUndo never fires.
     const session = lastSession();
     session.canUndo = vi.fn(() => false);
     session.canRedo = vi.fn(() => false);
