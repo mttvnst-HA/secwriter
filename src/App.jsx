@@ -43,7 +43,7 @@ import * as linting from "./lib/linting.js";
 import * as comp from "./lib/compliance.js";
 import { findHighlightTargetsInBlock } from "./lib/compliance-ranges.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
-import { getRoomFromUrl, buildRoomUrl, generateRoomId, DEFAULT_HTTP_URL, applyBlocksToYDoc } from "./lib/collab.js";
+import { getRoomFromUrl, buildRoomUrl, generateRoomId, DEFAULT_HTTP_URL, applyBlocksToYDoc, yBlocksToArray } from "./lib/collab.js";
 import { useCollabSession } from "./hooks/useCollabSession.js";
 import { useLocalSubstrateUndoManager } from "./hooks/useLocalSubstrateUndoManager.js";
 import * as cm from "./lib/comments.js";
@@ -1673,10 +1673,38 @@ export default function SpecEditor() {
     const handler = (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
         e.preventDefault();
-        if (!collab.tryUndo() && !localUndo.tryUndo()) undo();
+        if (collab.tryUndo()) {
+          // In-room: useCollabSession.onBlocksReceived bridges substrate → blocks.
+        } else if (localUndo.tryUndo()) {
+          // 1i-b.1 (PR #107): out-of-room sync. localUndo reverts the substrate
+          // (yOrder + yStore) but does NOT touch React's `blocks` state — no
+          // observer bridges the gap out-of-room. PM EditorViews bound to per-
+          // block Y.XmlFragments propagate THEIR undos through onUpdate, but
+          // structural ops (Enter creating a block, slash-convert, delete)
+          // mutate yOrder + yStore which no PM view observes. Sync blocks from
+          // the substrate; setBlocksDirect bypasses the useUndoableBlocks
+          // snapshot capture so we don't push a spurious frame on top of the
+          // one we just popped. In-room mode already gets this for free via
+          // session.onBlocksReceived. Once 1i-b.2 retires useUndoableBlocks,
+          // this sync becomes the only React-update path for substrate-driven
+          // undo and lives on permanently.
+          if (!inRoomRef.current) {
+            setBlocksDirect(yBlocksToArray(localSubstrate.yOrder, localSubstrate.yStore));
+          }
+        } else {
+          undo();
+        }
       } else if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
         e.preventDefault();
-        if (!collab.tryRedo() && !localUndo.tryRedo()) redo();
+        if (collab.tryRedo()) {
+          // In-room: onBlocksReceived bridges substrate → blocks.
+        } else if (localUndo.tryRedo()) {
+          if (!inRoomRef.current) {
+            setBlocksDirect(yBlocksToArray(localSubstrate.yOrder, localSubstrate.yStore));
+          }
+        } else {
+          redo();
+        }
       } else if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
         e.preventDefault();
         setSearchOpen(true);
