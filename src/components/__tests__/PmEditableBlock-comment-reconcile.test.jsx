@@ -218,3 +218,70 @@ describe('PmEditableBlock — per-block reconcile effect', () => {
     root.unmount();
   });
 });
+
+// Regression: the deleted E2E test "clicking comment-highlighted text shows
+// popup" (editor.spec.js, removed in PR #107) verified that a comment span
+// living in the substrate renders as a visible DOM node in PM mode. Its
+// surviving sibling pmdoc-html.test.js pins the substrate-level mark
+// (YXmlText delta carries the comment attribute), but not the rendered DOM.
+// This test covers the gap directly: substrate-mounted comment mark → PM
+// view → visible <span class="mark-comment"> with data-comment-id intact.
+describe('PmEditableBlock — substrate-rendered comment span visibility', () => {
+  it('renders <span class="mark-comment"> for a comment mark living in the substrate', async () => {
+    const html = '<p>before <span class="mark-comment" data-comment-id="c-1">marked</span> after</p>';
+    const { yStore } = setupYStore('b4', html);
+    const commentsState = {
+      byId: new Map([[
+        'c-1',
+        { id: 'c-1', blockId: 'b4', highlightText: 'marked', status: 'open', entries: [] },
+      ]]),
+      seenRemoteIds: new Set(),
+    };
+    const block = { id: 'b4', type: 'txt', html, isNew: false };
+
+    const root = createRoot(container);
+    await act(async () => {
+      root.render(
+        <PmEditableBlock
+          block={block}
+          yStore={yStore}
+          commentsState={commentsState}
+          onUpdate={() => {}}
+          identity={{ id: 'u', name: 'U', color: '#000' }}
+          showTags={false}
+          lintingState={linting.createInitial({ enabled: false })}
+          lintingDispatch={vi.fn()}
+          onEnterKey={vi.fn()}
+          isFocused={false}
+          onFocus={vi.fn()}
+          oliLabel={null}
+          onDelete={vi.fn()}
+          onFocusPrev={vi.fn()}
+          onFocusNext={vi.fn()}
+          onConvertBlock={vi.fn()}
+          onChangeOliLevel={vi.fn()}
+          resolveHtml={(h) => h}
+          tailorKey={null}
+          trackChanges={false}
+          snapshotText={vi.fn(() => '')}
+          onAcceptRevision={vi.fn()}
+          onRejectRevision={vi.fn()}
+          onRevisionAction={vi.fn()}
+          onCommentClick={vi.fn()}
+          onInlineFix={vi.fn()}
+          readOnly={false}
+        />,
+      );
+    });
+    await new Promise((r) => setTimeout(r, 100));
+
+    const view = getBlockView('b4');
+    expect(view).toBeTruthy();
+    // The substrate mark must survive PM's DOM render — the gap left by
+    // the deleted E2E test.
+    const span = view.dom.querySelector('span.mark-comment[data-comment-id="c-1"]');
+    expect(span).not.toBeNull();
+    expect(span.textContent).toBe('marked');
+    root.unmount();
+  });
+});

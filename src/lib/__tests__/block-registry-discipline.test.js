@@ -3,6 +3,15 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync, readdirSync, statSync } from 'fs';
 import { join, relative } from 'path';
 
+// Scope: production source under src/ only. tests/e2e/ is deliberately
+// excluded — Playwright in-page evaluate() runs in the browser context
+// where block-registry is not exposed as a global, so test scripts must
+// use a DOM query to inspect the rendered editor (e.g.
+// `tests/e2e/editor.spec.js:413` reads injected block html for assertions).
+// The discipline being enforced here is the App.jsx ↔ component focus
+// path: production code must go through the imperative-handle registry,
+// not querySelector. Widening to tests/ would only force a whitelist
+// marker on every in-page evaluate, with no behavioral benefit.
 const SRC = join(process.cwd(), 'src');
 // Allow the literal pattern inside the registry itself + the registry's
 // own tests + the inline whitelist marker `/* allowed: block-registry fallback */`.

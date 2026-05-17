@@ -43,6 +43,10 @@
  *                       Carries both setBlockHtml writes AND structural
  *                       publishBlocks / applyBlocksToYDoc writes. Tracked
  *                       by the in-room and out-of-room UndoManagers.
+ *   'local-reconcile' — mechanical substrate mirrors (setBlockHtmlSilent),
+ *                       e.g. comment-status reclassify, orphan span unwrap.
+ *                       NOT in either UndoManager's trackedOrigins — a
+ *                       reconcile must never enter the user's undo stack.
  *   'local-meta'      — section metadata (yMeta)
  *   'local-tc'        — Track Changes enabled-flag updates (yTc)
  *   'local-comments'  — comment create/reply/status/delete (yComments)
