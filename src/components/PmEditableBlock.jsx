@@ -23,10 +23,14 @@
  *      tailorKey, etc.) flow into the view via dispatched meta or
  *      imperative calls.
  *   2. `ySyncPlugin` is the substrate binding. y-prosemirror's
- *      `ySyncPluginKey` Y origin is what every PM-driven write carries —
- *      the Yjs UndoManager (configured in `src/lib/collab.js` to track
- *      `'local-publish'`) does NOT pick up these ops. App-level undo flows
- *      through `useUndoableBlocks` snapshots; this is preserved per Q16/Q32.
+ *      `ySyncPluginKey` Y origin is what every PM-driven write carries.
+ *      Both UndoManagers (in-room in `src/lib/collab.js`, out-of-room in
+ *      `src/hooks/useLocalSubstrateUndoManager.js`) track BOTH
+ *      `ySyncPluginKey` and `'local-publish'`, so PM keystrokes and the
+ *      debounced echo write via `setBlockHtml` join the same undo frame.
+ *      The word-boundary-undo plugin calls `forceFrame` on space /
+ *      punctuation / Enter so typing bursts split into per-word frames
+ *      matching Word/Notion convention.
  *   3. NO_EXFIL_PROPS goes through `EditorProps.attributes` with lowercase
  *      HTML attribute names (Q31/E2). React's camelCase props don't reach
  *      PM's DOM root because PM owns its DOM.
