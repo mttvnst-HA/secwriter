@@ -9,7 +9,6 @@ import { useBlockBinder } from "./useBlockBinder.js";
 import InlineTooltip from "./InlineTooltip.jsx";
 import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
 import { registerBlock, unregisterBlock } from "../lib/block-registry.js";
-import { isPmEditorEnabled } from "../lib/feature-flags.js";
 import PmEditableBlock from "./PmEditableBlock.jsx";
 
 // Idle window after the last keystroke before we fire onUpdate (and therefore
@@ -58,15 +57,11 @@ function stripTagLabels(html) {
 }
 
 function EditableBlock(props) {
-  // Sub-PR 1e (#47, ADR-0006). When VITE_PM_EDITOR is on, delegate to the
-  // PM-backed sibling. Decision is per-render so the legacy and PM paths
-  // can co-exist behind the flag without mounting both per block. The
-  // legacy path remains the default through 1e/1f/1g/1h; the 1i sub-PR
-  // removes both this branch and the legacy implementation.
-  if (isPmEditorEnabled()) {
-    return <PmEditableBlock {...props} />;
-  }
-  return <LegacyEditableBlock {...props} />;
+  // 1i-b.2 transient — the flag is gone and the wrapper now unconditionally
+  // delegates to PmEditableBlock. The whole file (and LegacyEditableBlock
+  // below) gets deleted in Task b2.4 alongside the test that still imports
+  // it. Kept buildable here so the b2.2 commit can land cleanly.
+  return <PmEditableBlock {...props} />;
 }
 
 function LegacyEditableBlock({ block, yStore, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, onChangeOliLevel, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, identity, comments, onCommentClick, onInlineFix, lintingState, lintingDispatch, showTags = false, readOnly = false }) {
