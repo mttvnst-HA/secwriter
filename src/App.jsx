@@ -2,7 +2,7 @@ import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import { FileText, Search, Upload, Download, Check, Loader, Users } from "lucide-react";
 import TreeNode from "./components/TreeNode.jsx";
 // MarkLegend component preserved for future user manual documentation (removed from toolbar UI)
-import EditableBlock from "./components/EditableBlock.jsx";
+import PmEditableBlock from "./components/PmEditableBlock.jsx";
 import TitleBlock from "./components/TitleBlock.jsx";
 import TableBlock from "./components/TableBlock.jsx";
 import PreformattedBlock from "./components/PreformattedBlock.jsx";
@@ -37,7 +37,6 @@ import { seedBlockArray, resetBlockArray, setBlockHtml, setBlockHtmlSilent, getB
 import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, getBlockView, listBlocksInDocumentOrder } from "./lib/block-registry.js";
 import { setActiveComment } from "./lib/pm-plugins/active-comment.js";
 import { TextSelection } from "prosemirror-state";
-import { isPmEditorEnabled } from "./lib/feature-flags.js";
 import * as tc from "./lib/track-changes.js";
 import * as linting from "./lib/linting.js";
 import * as comp from "./lib/compliance.js";
@@ -921,7 +920,7 @@ export default function SpecEditor() {
       // handleBlockUpdate would update React state + substrate but leave the
       // stale DOM, and the next blur would read the stale DOM and clobber.
       setBlockHtml: (id, html) => { handleBlockUpdateWithSync(id, html); },
-      getEditorMode: () => (isPmEditorEnabled() ? 'pm' : 'legacy'),
+      getEditorMode: () => 'pm',
       // 1f.9 — read PM selection range for E3 (selection-persistence test).
       getPmSelection: (id) => {
         const view = getBlockView(id);
@@ -2707,7 +2706,7 @@ export default function SpecEditor() {
             }
             return (
               <div key={`${block.id}-${block.type}`}>
-                <EditableBlock
+                <PmEditableBlock
                   block={block}
                   yStore={activeYStore}
                   onUpdate={handleBlockUpdate}
