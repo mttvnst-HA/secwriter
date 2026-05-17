@@ -806,19 +806,17 @@ export default function SpecEditor() {
   // local UndoManager does NOT capture it. Without this gate, Ctrl+Z after a
   // reconcile fires would undo the reconcile (which then re-fires on the
   // next render) rather than the user's action.
+  //
+  // 1i-b.1: uniform reconcile walk. Pre-1i.b.1 we skipped PM-mounted blocks
+  // because reconcileCommentMarks in PmEditableBlock handles those at the
+  // PM substrate level — and the html-walk's substrate mirror would have
+  // entered local undo. Now that the mirror uses setBlockHtmlSilent (origin
+  // 'local-reconcile', non-tracked), the worst case for PM-mounted blocks
+  // is a redundant write that PM's domObserver swallows as a no-op. The
+  // simpler uniform walk wins.
   useEffect(() => {
     setBlocksDirect(prev => {
-      // 1g: PM-mounted blocks own their comment reconcile via the per-block
-      // PM effect in PmEditableBlock.jsx (reconcileCommentMarks dispatch).
-      // Skip them here so the html walk doesn't redundantly rewrite their
-      // mark spans (which would then be clobbered by the PM dispatch anyway).
-      const pmMountedIds = new Set();
-      for (const b of prev) {
-        if (getBlockView(b.id) != null) pmMountedIds.add(b.id);
-      }
-      const next = cm.reconcileBlocks(prev, commentsState, {
-        shouldSkip: (id) => pmMountedIds.has(id),
-      });
+      const next = cm.reconcileBlocks(prev, commentsState);
       const yStore = activeYStoreRef.current;
       if (next !== prev && yStore) {
         for (const b of next) {
