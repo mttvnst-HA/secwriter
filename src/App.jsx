@@ -122,7 +122,7 @@ function restorePlainTextOffset(root, startIndex, endIndex) {
 
 export default function SpecEditor() {
   const {
-    blocks, tcState, setBlocks, setBlocksDirect, setTcState,
+    blocks, setBlocks, setBlocksDirect,
     undo, redo, canUndo, canRedo, clearHistory, resumeHistory,
   } = useUndoableBlocks(INITIAL_BLOCKS, {
     // Sub-PR 1f: PM-mode dirty-html resolver. For PM EditorView blocks the
@@ -141,6 +141,14 @@ export default function SpecEditor() {
       }
     },
   });
+  // 1i-b.1 — tcState no longer rides on useUndoableBlocks' snapshot
+  // stack. Post-1h Q35+Q37 the reducer is `{ enabled, publishSeq }`
+  // and the publishSeq counter handles echo-gating with no per-block
+  // snapshot to keep in lockstep with `blocks`. Accepted regression:
+  // a Ctrl+Z crossing a TC enable/disable boundary no longer rolls
+  // back the toggle (it's an explicit user gesture, never a
+  // typing-frame mutation).
+  const [tcState, setTcState] = useState(() => tc.createInitial());
   // Local Y.Doc — the no-room substrate for block html. EditableBlock's
   // useBlockBinder reads/writes this when !inRoom. In-room mode, the
   // session's Y.Doc takes over; the local substrate stays allocated but
