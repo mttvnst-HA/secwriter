@@ -32,4 +32,18 @@ describe('structural undo via applyBlocksToYDoc origin', () => {
     s.undoManager.undo();
     expect(s.yStore.get('n1').get('type')).toBe('txt');
   });
+
+  it('idempotent applyBlocksToYDoc produces zero undo frames (no spurious capture)', () => {
+    const initial = [
+      { id: 'n1', type: 'txt', html: 'hello' },
+      { id: 'n2', type: 'oli', html: 'world', level: 1 },
+    ];
+    const s = makeSubstrate(initial);
+    const before = s.undoManager.undoStack.length;
+    // Re-apply the same blocks unchanged — simulates App.jsx's
+    // useEffect([blocks, ...]) firing for a non-scalar reason (e.g.
+    // commentsState change re-rendering App without mutating blocks).
+    applyBlocksToYDoc(s.ydoc, s.yOrder, s.yStore, initial);
+    expect(s.undoManager.undoStack.length).toBe(before);
+  });
 });
