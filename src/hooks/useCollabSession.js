@@ -113,6 +113,12 @@ import {
  *   1h Q36 Commit A — ends the current UndoManager capture window so
  *   the next 'local-publish' write starts a fresh frame. No-op when no
  *   session is live. Stable identity across renders.
+ * @property {() => void} clearStack
+ *   1i-b.2 — drops both undo and redo stacks atomically (via
+ *   Y.UndoManager.clear). App's file-import handler calls this so
+ *   Ctrl+Z cannot cross the file boundary. No-op when no session is
+ *   live (the out-of-room equivalent lives on the local-substrate
+ *   manager).
  * @property {Y.Map|null} yStore
  *   The session's per-block Y.Map<string, Y.Map> — exposed so App can
  *   compute `activeYStore = inRoom ? collab.yStore : localYStore` and
@@ -556,6 +562,16 @@ export function useCollabSession({
     }
   }, []);
 
+  // 1i-b.2 — drop both undo and redo stacks atomically. App's file-import
+  // handler calls this so Ctrl+Z cannot cross the file boundary. No-op when
+  // out of room (sessionRef is null).
+  const clearStack = useCallback(() => {
+    const session = sessionRef.current;
+    if (session && typeof session.clearStack === 'function') {
+      session.clearStack();
+    }
+  }, []);
+
   return {
     dispatchComment,
     markTcSeqApplied,
@@ -565,6 +581,7 @@ export function useCollabSession({
     canRedo,
     withUndoFrame,
     forceFrame,
+    clearStack,
     yStore,
   };
 }

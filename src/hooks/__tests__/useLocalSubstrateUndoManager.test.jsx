@@ -35,10 +35,10 @@ afterEach(() => { cleanup(); });
 
 describe('useLocalSubstrateUndoManager', () => {
   describe('shape', () => {
-    it('returns { tryUndo, tryRedo, canUndo, canRedo, withUndoFrame, forceFrame }', () => {
+    it('returns { tryUndo, tryRedo, canUndo, canRedo, withUndoFrame, forceFrame, clearStack }', () => {
       const { result } = renderHook(() => useLocalSubstrateUndoManager(substrate));
       expect(Object.keys(result.current).sort()).toEqual(
-        ['canRedo', 'canUndo', 'forceFrame', 'tryRedo', 'tryUndo', 'withUndoFrame'],
+        ['canRedo', 'canUndo', 'clearStack', 'forceFrame', 'tryRedo', 'tryUndo', 'withUndoFrame'],
       );
       expect(typeof result.current.tryUndo).toBe('function');
       expect(typeof result.current.tryRedo).toBe('function');
@@ -46,6 +46,7 @@ describe('useLocalSubstrateUndoManager', () => {
       expect(typeof result.current.canRedo).toBe('function');
       expect(typeof result.current.withUndoFrame).toBe('function');
       expect(typeof result.current.forceFrame).toBe('function');
+      expect(typeof result.current.clearStack).toBe('function');
     });
   });
 

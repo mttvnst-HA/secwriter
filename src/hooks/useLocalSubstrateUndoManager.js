@@ -57,6 +57,10 @@ import { makeUndoHelpers } from '../lib/undo-helpers.js';
  *   Ends the current capture window; the next 'local-publish' or
  *   ySyncPluginKey write starts a fresh frame. Word-boundary-undo plugin
  *   calls this on space / punctuation / Enter keydowns.
+ * @property {() => void} clearStack
+ *   Drops both the undo and redo stacks atomically. Used by App's
+ *   file-import handler so Ctrl+Z cannot cross the file boundary into
+ *   the previous file's content.
  */
 
 /**
@@ -172,6 +176,13 @@ export function useLocalSubstrateUndoManager(substrate) {
       canRedo() { return !!managerRef.current && managerRef.current.redoStack.length > 0; },
       withUndoFrame(fn) { helpersRef.current.helpers.withUndoFrame(fn); },
       forceFrame() { helpersRef.current.helpers.forceFrame(); },
+      // 1i-b.2 — App's file-import handler calls this to prevent Ctrl+Z
+      // from crossing the file boundary. Y.UndoManager's public clear()
+      // drops both undo and redo stacks atomically.
+      clearStack() {
+        const m = managerRef.current;
+        if (m) m.clear();
+      },
     };
   }
 

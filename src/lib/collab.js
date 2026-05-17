@@ -1033,6 +1033,12 @@ export function createCollabSession({
     // semantics (including the partial-write-on-exception contract).
     withUndoFrame,
     forceFrame,
+    // 1i-b.2 — App's file-import handler calls this through useCollabSession
+    // so Ctrl+Z cannot cross the file boundary into the previous file's
+    // content. Y.UndoManager's clear() drops both stacks atomically.
+    clearStack() {
+      undoManager.clear();
+    },
     destroy() {
       ydoc.off('afterTransaction', handleAfterTx);
       awareness.off('change', handleAwareness);
