@@ -2905,14 +2905,13 @@ test.describe('Comment active highlight (1g)', () => {
     return { span, blockId };
   }
 
-  test('clicking a comment span applies the active-highlight class (PM mode)', async ({ page, forcePmEditor }) => {
-    test.skip(!forcePmEditor, 'PM-only test');
+  test('clicking a comment span applies the active-highlight class (PM-mounted block)', async ({ page }) => {
     await page.goto('/');
     await waitForApp(page);
 
     const { span, blockId } = await seedComment(page);
 
-    // Click the span to open the popup. In PM mode, App's useEffect fires
+    // Click the span to open the popup. App's useEffect fires
     // setActiveComment(view, commentId) which dispatches a PM transaction
     // adding the 'mark-comment-active' decoration.
     await span.click();
@@ -2931,23 +2930,13 @@ test.describe('Comment active highlight (1g)', () => {
     await expect(activeDecoLocator).not.toBeVisible();
   });
 
-  test('clicking a comment span sets data-active attribute (legacy mode)', async ({ page, forcePmEditor }) => {
-    test.skip(forcePmEditor, 'Legacy-only test');
-    await page.goto('/');
-    await waitForApp(page);
-
-    const { span } = await seedComment(page);
-
-    // Click the span to open the popup. In legacy mode, CommentPopup's mount
-    // effect calls el.setAttribute('data-active', 'true') on the span.
-    // isNewComment is false (comment already submitted) so the reply input
-    // does not auto-focus — no handleBlur interference with the DOM.
-    await span.click();
-    await expect(span).toHaveAttribute('data-active', 'true', { timeout: 5000 });
-
-    // Close the popup by clicking outside; the cleanup effect removes the attr.
-    await page.mouse.click(10, 10);
-    await page.waitForTimeout(200);
-    await expect(span).not.toHaveAttribute('data-active', 'true');
-  });
+  // The previous "Legacy mode — clicking a comment span sets data-active"
+  // counterpart asserted CommentPopup's imperative `el.setAttribute('data-
+  // active', 'true')` path. That code path still exists (and stays per
+  // CLAUDE.md Comments §6 / Task b2.8) for ref + table block comment spans
+  // — they have no PM EditorView registered, so the setAttribute effect
+  // fires for them. Re-seeding a comment inside a ref or table block needs
+  // a different helper than `seedComment` (which uses createFreshBlock /
+  // editable contentEditable selection), so the coverage moved to a
+  // follow-up issue rather than a synthetic rewrite here.
 });

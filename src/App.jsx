@@ -920,7 +920,6 @@ export default function SpecEditor() {
       // handleBlockUpdate would update React state + substrate but leave the
       // stale DOM, and the next blur would read the stale DOM and clobber.
       setBlockHtml: (id, html) => { handleBlockUpdateWithSync(id, html); },
-      getEditorMode: () => 'pm',
       // 1f.9 — read PM selection range for E3 (selection-persistence test).
       getPmSelection: (id) => {
         const view = getBlockView(id);

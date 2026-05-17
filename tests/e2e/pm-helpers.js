@@ -1,13 +1,12 @@
-// pm-helpers.js — editor-mode-agnostic test helpers for Playwright E2E.
+// pm-helpers.js — test helpers for Playwright E2E.
 //
-// 1f.7 (#47): in PM mode (`VITE_PM_EDITOR=true`, or `?pm=1`, or
-// `window.__SIM_FORCE_PM_EDITOR=true`) the contentEditable host is owned by
-// ProseMirror — a direct `el.innerHTML = '...'` is overwritten on the next
-// render cycle, and reading `el.innerHTML` produces PM-wrapped shape (e.g.
-// `<p>text</p>` instead of `text`). These helpers route through App's
-// DEV-only `window.__simEditorTestUtils` so tests work identically in both
-// modes. The utility is wired in `src/App.jsx` under `import.meta.env.DEV`;
-// our Playwright `webServer` runs Vite dev, so it's always available.
+// PmEditableBlock owns the contentEditable host for editable blocks — a
+// direct `el.innerHTML = '...'` is overwritten on the next render cycle, and
+// reading `el.innerHTML` produces PM-wrapped shape (e.g. `<p>text</p>`
+// instead of `text`). These helpers route through App's DEV-only
+// `window.__simEditorTestUtils` so test injection and reads stay flat. The
+// utility is wired in `src/App.jsx` under `import.meta.env.DEV`; our
+// Playwright `webServer` runs Vite dev, so it's always available.
 //
 // Usage:
 //   import { readBlockHtml, injectBlockHtml } from './pm-helpers.js';
@@ -56,23 +55,6 @@ export async function injectBlockHtml(page, blockId, html) {
   // Allow React commit + PM ySyncPlugin observe to flush before the next
   // assertion runs. 50ms is comfortably above the typical render window.
   await page.waitForTimeout(50);
-}
-
-/**
- * Report the active editor mode for tests that need to branch behavior
- * (e.g. asserts that target a PM widget decoration vs a legacy DOM span).
- *
- * @param {import('@playwright/test').Page} page
- * @returns {Promise<'pm'|'legacy'>}
- */
-export async function getEditorMode(page) {
-  return page.evaluate(() => {
-    const utils = window.__simEditorTestUtils;
-    if (!utils) {
-      throw new Error('getEditorMode: window.__simEditorTestUtils unavailable — DEV-only hook missing');
-    }
-    return utils.getEditorMode();
-  });
 }
 
 /**
