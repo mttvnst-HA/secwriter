@@ -33,7 +33,7 @@ import { serializeSEC } from "./lib/sec-serializer.js";
 import { encodeWindows1252 } from "./lib/encoding.js";
 import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
 import * as Y from "yjs";
-import { seedBlockArray, resetBlockArray, setBlockHtml, getBlockHtml } from "./lib/block-html-store.js";
+import { seedBlockArray, resetBlockArray, setBlockHtml, setBlockHtmlSilent, getBlockHtml } from "./lib/block-html-store.js";
 import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, getBlockView, listBlocksInDocumentOrder } from "./lib/block-registry.js";
 import { setActiveComment } from "./lib/pm-plugins/active-comment.js";
 import { TextSelection } from "prosemirror-state";
@@ -800,6 +800,12 @@ export default function SpecEditor() {
   // Post-1b: also mirror the html change into the substrate so the binder
   // (and remote peers) see the orphan-unwrap or status-reclass — applyBlocksToYDoc
   // no longer touches html for existing yText.
+  //
+  // 1i-b.1: substrate mirror uses setBlockHtmlSilent (origin 'local-reconcile')
+  // instead of setBlockHtml — the mirror still broadcasts to peers, but the
+  // local UndoManager does NOT capture it. Without this gate, Ctrl+Z after a
+  // reconcile fires would undo the reconcile (which then re-fires on the
+  // next render) rather than the user's action.
   useEffect(() => {
     setBlocksDirect(prev => {
       // 1g: PM-mounted blocks own their comment reconcile via the per-block
@@ -818,7 +824,7 @@ export default function SpecEditor() {
         for (const b of next) {
           if (typeof b.html !== 'string') continue;
           const before = prev.find(p => p.id === b.id);
-          if (before && before.html !== b.html) setBlockHtml(yStore, b.id, b.html);
+          if (before && before.html !== b.html) setBlockHtmlSilent(yStore, b.id, b.html);
         }
       }
       return next;
