@@ -31,7 +31,6 @@ import { generateCommentReport } from "./lib/comment-report.js";
 import { parseSEC } from "./lib/sec-parser.js";
 import { serializeSEC } from "./lib/sec-serializer.js";
 import { encodeWindows1252 } from "./lib/encoding.js";
-import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
 import * as Y from "yjs";
 import { seedBlockArray, resetBlockArray, setBlockHtml, setBlockHtmlSilent, getBlockHtml } from "./lib/block-html-store.js";
 import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, getBlockView, listBlocksInDocumentOrder } from "./lib/block-registry.js";
@@ -120,26 +119,22 @@ function restorePlainTextOffset(root, startIndex, endIndex) {
 }
 
 export default function SpecEditor() {
-  const {
-    blocks, setBlocks, setBlocksDirect,
-    undo, redo, canUndo, canRedo, clearHistory, resumeHistory,
-  } = useUndoableBlocks(INITIAL_BLOCKS, {
-    // Sub-PR 1f: PM-mode dirty-html resolver. For PM EditorView blocks the
-    // hook reads the substrate (synchronous per-keystroke writes via
-    // ySyncPlugin) instead of `activeEl.innerHTML` (which contains widget
-    // decorations from tag-labels). Legacy blocks fall through to the
-    // hook's default innerHTML capture. The closure over `activeYStoreRef`
-    // is safe even though the ref is declared below — the function is only
-    // invoked at undo-time, well after all consts in this render initialize.
-    getPmDirtyHtml: (id) => {
-      try {
-        const yStore = activeYStoreRef.current;
-        return yStore ? getBlockHtml(yStore, id) : null;
-      } catch {
-        return null;
-      }
-    },
-  });
+  // 1i-b.2 — blocks state migrates to plain React useState. The Yjs
+  // UndoManager (collab.undoManager in-room, localUndo.undoStack out-of-
+  // room) is now the only undo source. `setBlocksDirect` and `setBlocks`
+  // converge — both are plain React setters now; the "direct vs undoable"
+  // distinction died with the snapshot stack.
+  const [blocks, setBlocks] = useState(INITIAL_BLOCKS);
+  const setBlocksDirect = setBlocks;
+  // `clearHistory` is defined here as a stable wrapper that delegates to
+  // `clearHistoryRef.current()` at call time. The ref is populated by an
+  // effect below (after `useCollabSession` is in scope) so the wrapper
+  // points to a function that clears both UndoManagers. This is the
+  // standard React idiom for "I need to call X from a callback declared
+  // earlier than X exists" — the same pattern App uses for
+  // `activeYStoreRef` and `onUpdateRef` inside PmEditableBlock.
+  const clearHistoryRef = useRef(() => {});
+  const clearHistory = useCallback(() => clearHistoryRef.current(), []);
   // 1i-b.1 — tcState no longer rides on useUndoableBlocks' snapshot
   // stack. Post-1h Q35+Q37 the reducer is `{ enabled, publishSeq }`
   // and the publishSeq counter handles echo-gating with no per-block
@@ -1608,47 +1603,50 @@ export default function SpecEditor() {
   // current substrate at call time, not the initial one.
   activeYStoreRef.current = activeYStore;
 
+  // 1i-b.2 — populate the clearHistoryRef hoisted near the top of the
+  // component. Effect re-runs whenever collab or localUndo identity
+  // changes, so the wrapper always invokes the latest snapshot. App's
+  // file-import handler calls clearHistory() (the stable wrapper) so
+  // Ctrl+Z cannot cross the file boundary. Both UndoManagers expose
+  // clearStack() per Task b2.6b; collab?.clearStack is a no-op out of
+  // room and localUndo is always alive (dormant when in-room).
+  useEffect(() => {
+    clearHistoryRef.current = () => {
+      collab?.clearStack?.();
+      localUndo.clearStack();
+    };
+  }, [collab, localUndo]);
+
   // Keyboard listener for undo/redo and search.
   //
-  // 1h Q36 Commit B — undo routing. Three sources, preferred in order:
-  //   1. collab.tryUndo()        — in-room Yjs UndoManager (no-op if no session)
-  //   2. localUndo.tryUndo()     — out-of-room Yjs UndoManager (always alive;
-  //                                empty when in-room because all writes route
-  //                                to collab.yStore, leaving localSubstrate
-  //                                dormant per `activeYStore` selection)
-  //   3. undo()                  — useUndoableBlocks snapshot stack (legacy
-  //                                fallback; 1i retires it with the legacy
-  //                                contentEditable path)
+  // 1i-b.2 — two-tier undo routing. The useUndoableBlocks snapshot stack
+  // has been deleted; the Yjs UndoManager is the only undo source.
+  //   1. collab.tryUndo()    — in-room Yjs UndoManager (no-op if no session)
+  //   2. localUndo.tryUndo() — out-of-room Yjs UndoManager (always alive;
+  //                            empty when in-room because all writes route
+  //                            to collab.yStore, leaving localSubstrate
+  //                            dormant per `activeYStore` selection)
   //
-  // tryUndo returns true iff it popped a frame; falling through to the next
-  // source lets a Ctrl+Z on a structural change (publishBlocks → Yjs op)
-  // beat the legacy snapshot stack, while structural-only sites (ref/table
-  // blocks that don't go through any Yjs origin we track) still get undone
-  // via the snapshot stack. Same pattern for redo.
+  // tryUndo returns true iff it popped a frame. Same pattern for redo.
   useEffect(() => {
     const handler = (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
         e.preventDefault();
+        // Two-tier: in-room Yjs UM first, out-of-room Yjs UM fallback.
         if (collab.tryUndo()) {
           // In-room: useCollabSession.onBlocksReceived bridges substrate → blocks.
         } else if (localUndo.tryUndo()) {
-          // 1i-b.1 (PR #107): out-of-room sync. localUndo reverts the substrate
-          // (yOrder + yStore) but does NOT touch React's `blocks` state — no
-          // observer bridges the gap out-of-room. PM EditorViews bound to per-
-          // block Y.XmlFragments propagate THEIR undos through onUpdate, but
+          // Out-of-room sync. localUndo reverts the substrate (yOrder +
+          // yStore) but does NOT touch React's `blocks` state — no observer
+          // bridges the gap out-of-room. PM EditorViews bound to per-block
+          // Y.XmlFragments propagate THEIR undos through onUpdate, but
           // structural ops (Enter creating a block, slash-convert, delete)
-          // mutate yOrder + yStore which no PM view observes. Sync blocks from
-          // the substrate; setBlocksDirect bypasses the useUndoableBlocks
-          // snapshot capture so we don't push a spurious frame on top of the
-          // one we just popped. In-room mode already gets this for free via
-          // session.onBlocksReceived. Once 1i-b.2 retires useUndoableBlocks,
-          // this sync becomes the only React-update path for substrate-driven
-          // undo and lives on permanently.
+          // mutate yOrder + yStore which no PM view observes. Sync blocks
+          // from the substrate. In-room mode gets this for free via
+          // session.onBlocksReceived.
           if (!inRoomRef.current) {
             setBlocksDirect(yBlocksToArray(localSubstrate.yOrder, localSubstrate.yStore));
           }
-        } else {
-          undo();
         }
       } else if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
         e.preventDefault();
@@ -1658,8 +1656,6 @@ export default function SpecEditor() {
           if (!inRoomRef.current) {
             setBlocksDirect(yBlocksToArray(localSubstrate.yOrder, localSubstrate.yStore));
           }
-        } else {
-          redo();
         }
       } else if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
         e.preventDefault();
@@ -1685,14 +1681,12 @@ export default function SpecEditor() {
     return () => document.removeEventListener('keydown', handler);
     // collab.tryUndo/tryRedo are stable — useCollabSession returns
     // useCallback wrappers that read `sessionRef.current` at invocation
-    // time (`useCollabSession.js:480-527`). localUndo.tryUndo/tryRedo
-    // are stable after the Commit C review fix: the hook returns a
-    // useRef-cached api object whose methods read `managerRef.current`
-    // at invocation, so the M1→M2 swap during the initial-mount effect
-    // doesn't strand a stale closure here. Omitting both from deps
-    // prevents the listener re-binding every render.
+    // time. localUndo.tryUndo/tryRedo are stable after the Commit C
+    // review fix: the hook returns a useRef-cached api object whose
+    // methods read `managerRef.current` at invocation, so the M1→M2 swap
+    // during the initial-mount effect doesn't strand a stale closure.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [undo, redo, handleSave, zoomIn, zoomOut, zoomReset]);
+  }, [handleSave, zoomIn, zoomOut, zoomReset]);
 
   // Share button handler: generate a room and reload into it, or copy the current room URL.
   const handleShare = useCallback(() => {
