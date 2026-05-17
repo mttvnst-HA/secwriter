@@ -62,8 +62,6 @@ function restoreSavedRelpos(view, saved) {
 
 export default function FloatingToolbar({
   editorRef,
-  onBlockUpdate,
-  onRevisionAction,
   onRefreshTcSnapshot,
   // 1h Q36 Commit C review — forceFrame closes the active Yjs
   // UndoManager capture window before a PM toolbar dispatch, so the
@@ -237,120 +235,57 @@ export default function FloatingToolbar({
     if (!saved) return;
     const { blockId } = saved;
     const view = blockId ? getBlockView(blockId) : null;
+    if (!view) { setVisible(false); return; }
 
-    if (view) {
-      // PM path — read selection from PM state.
-      // 1g.7 (#88): restore the Y.RelativePosition-anchored selection so a
-      // peer's edit between toolbar open and click doesn't shift the action
-      // off the user's intended target.
-      restoreSavedRelpos(view, saved);
-      const kindMap = { 'mark-rid': 'rid', 'mark-srf': 'srf', 'mark-sub': 'sub' };
-      const kind = kindMap[markType.cls];
-      if (!kind) return;
-      const tr = applyInlineMarkTr(view.state, kind);
-      if (tr) {
-        if (typeof onForceFrame === 'function') onForceFrame();
-        view.dispatch(tr);
-        if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
-          flushPendingUpdateById(blockId);
-        }
-      }
-      setVisible(false);
-      return;
-    }
-
-    // Legacy path — DOM mutation (unchanged from pre-1f.9).
-    const { range, blockEl } = saved;
-    const sel = window.getSelection();
-    sel.removeAllRanges();
-    sel.addRange(range);
-
-    let parentMark = range.commonAncestorContainer;
-    if (parentMark.nodeType === 3) parentMark = parentMark.parentElement;
-    const existingMark = parentMark.closest?.(`.${markType.cls}`);
-
-    if (existingMark) {
-      const text = document.createTextNode(existingMark.textContent);
-      existingMark.parentNode.replaceChild(text, existingMark);
-    } else {
-      const span = document.createElement("span");
-      span.className = markType.cls;
-      try {
-        range.surroundContents(span);
-      } catch {
-        const fragment = range.extractContents();
-        span.appendChild(fragment);
-        range.insertNode(span);
+    // 1g.7 (#88): restore the Y.RelativePosition-anchored selection so a
+    // peer's edit between toolbar open and click doesn't shift the action
+    // off the user's intended target.
+    restoreSavedRelpos(view, saved);
+    const kindMap = { 'mark-rid': 'rid', 'mark-srf': 'srf', 'mark-sub': 'sub' };
+    const kind = kindMap[markType.cls];
+    if (!kind) return;
+    const tr = applyInlineMarkTr(view.state, kind);
+    if (tr) {
+      if (typeof onForceFrame === 'function') onForceFrame();
+      view.dispatch(tr);
+      if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
+        flushPendingUpdateById(blockId);
       }
     }
-
-    sel.removeAllRanges();
-    if (onBlockUpdate && blockEl) onBlockUpdate(blockId, blockEl.innerHTML);
     setVisible(false);
-  }, [onBlockUpdate, onForceFrame]);
+  }, [onForceFrame]);
 
   const applyRevision = useCallback((revType) => {
     const saved = selectionRef.current;
     if (!saved) return;
     const { blockId } = saved;
     const view = blockId ? getBlockView(blockId) : null;
+    if (!view) { setVisible(false); return; }
 
-    if (view) {
-      // PM path — 1g.7 (#88): restore relpos before dispatch.
-      restoreSavedRelpos(view, saved);
-      const kind = revType.tag === 'ADD' ? 'add' : 'del';
-      // Issue #97 — pass trackChanges so the verb can suppress its legacy
-      // toggle-off path on ranges already owned by per-keystroke marking
-      // (1h Q33). Out-of-TC mode the toggle remains intact.
-      const tr = applyRevisionTr(view.state, kind, {
-        authorId: identity?.id ?? null,
-        authorColor: identity?.color ?? null,
-      }, trackChanges);
-      if (tr) {
-        if (typeof onForceFrame === 'function') onForceFrame();
-        view.dispatch(tr);
-        if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
-          flushPendingUpdateById(blockId);
-        }
-      }
-      setVisible(false);
-      return;
-    }
-
-    // Legacy path
-    const { range, blockEl } = saved;
-    const sel = window.getSelection();
-    sel.removeAllRanges();
-    sel.addRange(range);
-
-    let parentNode = range.commonAncestorContainer;
-    if (parentNode.nodeType === 3) parentNode = parentNode.parentElement;
-    const existingEl = parentNode.closest?.(revType.htmlTag + "." + revType.cls);
-
-    if (existingEl && blockEl.contains(existingEl)) {
-      const text = document.createTextNode(existingEl.textContent);
-      existingEl.parentNode.replaceChild(text, existingEl);
-    } else {
-      const el = document.createElement(revType.htmlTag);
-      el.className = revType.cls;
-      try {
-        range.surroundContents(el);
-      } catch {
-        const fragment = range.extractContents();
-        el.appendChild(fragment);
-        range.insertNode(el);
+    // 1g.7 (#88): restore relpos before dispatch.
+    restoreSavedRelpos(view, saved);
+    const kind = revType.tag === 'ADD' ? 'add' : 'del';
+    // Issue #97 — pass trackChanges so the verb can suppress its legacy
+    // toggle-off path on ranges already owned by per-keystroke marking
+    // (1h Q33). Out-of-TC mode the toggle remains intact.
+    const tr = applyRevisionTr(view.state, kind, {
+      authorId: identity?.id ?? null,
+      authorColor: identity?.color ?? null,
+    }, trackChanges);
+    if (tr) {
+      if (typeof onForceFrame === 'function') onForceFrame();
+      view.dispatch(tr);
+      if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
+        flushPendingUpdateById(blockId);
       }
     }
-
-    sel.removeAllRanges();
-    if (onBlockUpdate && blockEl) onBlockUpdate(blockId, blockEl.innerHTML);
     setVisible(false);
     // Issue #97 — `trackChanges` must be in deps. Without it, the closure
     // captures the initial value (false) and never observes the user
     // flipping TC on; `applyRevisionTr` then runs the legacy toggle-off
     // path on a range already marked by per-keystroke marking, stripping
     // the marks the user just typed.
-  }, [onBlockUpdate, identity, onForceFrame, trackChanges]);
+  }, [identity, onForceFrame, trackChanges]);
 
   // Change case: cycles UPPER → lower → Title
   const changeCase = useCallback(() => {
@@ -358,39 +293,20 @@ export default function FloatingToolbar({
     if (!saved || saved.isRefBlock) return;
     const { blockId } = saved;
     const view = blockId ? getBlockView(blockId) : null;
+    if (!view) { setVisible(false); return; }
 
-    if (view) {
-      // PM path — 1g.7 (#88): restore relpos before dispatch.
-      restoreSavedRelpos(view, saved);
-      const tr = applyChangeCaseTr(view.state);
-      if (tr) {
-        if (typeof onForceFrame === 'function') onForceFrame();
-        view.dispatch(tr);
-        if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
-          flushPendingUpdateById(blockId);
-        }
+    // 1g.7 (#88): restore relpos before dispatch.
+    restoreSavedRelpos(view, saved);
+    const tr = applyChangeCaseTr(view.state);
+    if (tr) {
+      if (typeof onForceFrame === 'function') onForceFrame();
+      view.dispatch(tr);
+      if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
+        flushPendingUpdateById(blockId);
       }
-      setVisible(false);
-      return;
     }
-
-    // Legacy path
-    const { range, blockEl } = saved;
-    const sel = window.getSelection();
-    sel.removeAllRanges();
-    sel.addRange(range);
-    const text = range.toString();
-    if (!text) return;
-    let newText;
-    if (text === text.toUpperCase()) newText = text.toLowerCase();
-    else if (text === text.toLowerCase()) newText = text.replace(/\b\w/g, c => c.toUpperCase());
-    else newText = text.toUpperCase();
-    range.deleteContents();
-    range.insertNode(document.createTextNode(newText));
-    sel.removeAllRanges();
-    if (onBlockUpdate && blockEl) onBlockUpdate(blockId, blockEl.innerHTML);
     setVisible(false);
-  }, [onBlockUpdate, onForceFrame]);
+  }, [onForceFrame]);
 
   /**
    * Accept or reject an inline revision mark.
@@ -399,138 +315,76 @@ export default function FloatingToolbar({
   const handleInlineRevisionAction = useCallback((action) => {
     const saved = selectionRef.current;
     if (!saved) return;
-    const { blockId, blockEl } = saved;
+    const { blockId } = saved;
     const view = blockId ? getBlockView(blockId) : null;
+    if (!view) { setVisible(false); return; }
 
-    if (view) {
-      // PM path — 1g.7 (#88): restore relpos before dispatch. For the
-      // inline TC resolve case the resolved position is what governs
-      // which mark gets accepted/rejected — the relpos restore is
-      // particularly valuable here, since a peer's edit can shift the
-      // mark's text away from where the user clicked the popup.
-      restoreSavedRelpos(view, saved);
-      const tr = applyInlineRevisionResolveTr(view.state, action);
-      if (tr) {
-        // Close the prior Yjs capture window BEFORE the PM dispatch so
-        // the action's ySyncPluginKey op enters a fresh frame, not the
-        // user's preceding typing burst.
-        if (typeof onForceFrame === 'function') onForceFrame();
-        view.dispatch(tr);
-        // CANCEL — not flush. Distinct from the other PM toolbar verbs
-        // (format / inline-mark / revision-apply / change-case) which call
-        // flushPendingUpdateById to push the new html through
-        // handleBlockUpdate → setBlocks. Here we DON'T want that path —
-        // handleBlockUpdate runs outside any resumeHistory() window, so
-        // its setBlocks lands inside useUndoableBlocks's paused state and
-        // does NOT capture a snapshot. If we then call onRefreshTcSnapshot
-        // (which DOES resumeHistory), its setBlocks would capture a
-        // snapshot of the post-handleBlockUpdate state — the wrong "prev".
-        // Skipping the flush and letting onRefreshTcSnapshot own the
-        // single setBlocks call makes the captured snapshot the true
-        // pre-action state. Cancel the pending debounce so a late timer
-        // doesn't re-issue setBlocks 400ms later with the same html.
-        if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
-          cancelPendingUpdateById(blockId);
-        }
-        // TC snapshot refresh — DOES NOT call setBlockHtml (PM dispatch
-        // already wrote the substrate via ySyncPlugin) but DOES call
-        // resumeHistory + setBlocks + setTcState, so the action enters
-        // the App-level useUndoableBlocks stack as one frame.
-        if (onRefreshTcSnapshot) {
-          try {
-            const html = pmFragmentToHtml(view.state.doc);
-            onRefreshTcSnapshot(blockId, html);
-          } catch { /* defensive */ }
-        }
+    // 1g.7 (#88): restore relpos before dispatch. For the inline TC
+    // resolve case the resolved position is what governs which mark gets
+    // accepted/rejected — the relpos restore is particularly valuable
+    // here, since a peer's edit can shift the mark's text away from
+    // where the user clicked the popup.
+    restoreSavedRelpos(view, saved);
+    const tr = applyInlineRevisionResolveTr(view.state, action);
+    if (tr) {
+      // Close the prior Yjs capture window BEFORE the PM dispatch so
+      // the action's ySyncPluginKey op enters a fresh frame, not the
+      // user's preceding typing burst.
+      if (typeof onForceFrame === 'function') onForceFrame();
+      view.dispatch(tr);
+      // CANCEL — not flush. Distinct from the other PM toolbar verbs
+      // (format / inline-mark / revision-apply / change-case) which call
+      // flushPendingUpdateById to push the new html through
+      // handleBlockUpdate → setBlocks. Here we DON'T want that path —
+      // handleBlockUpdate runs outside any resumeHistory() window, so
+      // its setBlocks lands inside useUndoableBlocks's paused state and
+      // does NOT capture a snapshot. If we then call onRefreshTcSnapshot
+      // (which DOES resumeHistory), its setBlocks would capture a
+      // snapshot of the post-handleBlockUpdate state — the wrong "prev".
+      // Skipping the flush and letting onRefreshTcSnapshot own the
+      // single setBlocks call makes the captured snapshot the true
+      // pre-action state. Cancel the pending debounce so a late timer
+      // doesn't re-issue setBlocks 400ms later with the same html.
+      if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
+        cancelPendingUpdateById(blockId);
       }
-      window.getSelection()?.removeAllRanges();
-      setVisible(false);
-      return;
-    }
-
-    // Legacy path
-    const sel = window.getSelection();
-    const range = saved.range;
-    let node = range.commonAncestorContainer;
-    if (node.nodeType === 3) node = node.parentElement;
-
-    const insEl = node.closest?.("ins.mark-add");
-    const delEl = node.closest?.("del.mark-del");
-
-    if (insEl && blockEl.contains(insEl)) {
-      if (action === "accept") {
-        const text = document.createTextNode(insEl.textContent);
-        insEl.parentNode.replaceChild(text, insEl);
-      } else {
-        insEl.parentNode.removeChild(insEl);
-      }
-    } else if (delEl && blockEl.contains(delEl)) {
-      if (action === "accept") {
-        delEl.parentNode.removeChild(delEl);
-      } else {
-        const text = document.createTextNode(delEl.textContent);
-        delEl.parentNode.replaceChild(text, delEl);
+      // TC snapshot refresh — DOES NOT call setBlockHtml (PM dispatch
+      // already wrote the substrate via ySyncPlugin) but DOES call
+      // resumeHistory + setBlocks + setTcState, so the action enters
+      // the App-level useUndoableBlocks stack as one frame.
+      if (onRefreshTcSnapshot) {
+        try {
+          const html = pmFragmentToHtml(view.state.doc);
+          onRefreshTcSnapshot(blockId, html);
+        } catch { /* defensive */ }
       }
     }
-
-    sel.removeAllRanges();
-    const updateFn = onRevisionAction || onBlockUpdate;
-    if (updateFn && blockEl) updateFn(blockId, blockEl.innerHTML);
+    window.getSelection()?.removeAllRanges();
     setVisible(false);
-  }, [onBlockUpdate, onRevisionAction, onRefreshTcSnapshot, onForceFrame]);
+  }, [onRefreshTcSnapshot, onForceFrame]);
 
   const applyFormat = useCallback((formatType) => {
     const saved = selectionRef.current;
     if (!saved) return;
     const { blockId } = saved;
     const view = blockId ? getBlockView(blockId) : null;
+    if (!view) { setVisible(false); return; }
 
-    if (view) {
-      // PM path — 1g.7 (#88): restore relpos before dispatch.
-      restoreSavedRelpos(view, saved);
-      const kindMap = { 'BLD': 'bold', 'ITA': 'italic', 'UND': 'underline' };
-      const kind = kindMap[formatType.tag];
-      if (!kind) return;
-      const tr = applyFormatTr(view.state, kind);
-      if (tr) {
-        if (typeof onForceFrame === 'function') onForceFrame();
-        view.dispatch(tr);
-        if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
-          flushPendingUpdateById(blockId);
-        }
-      }
-      setVisible(false);
-      return;
-    }
-
-    // Legacy path
-    const { range, blockEl } = saved;
-    const sel = window.getSelection();
-    sel.removeAllRanges();
-    sel.addRange(range);
-
-    let parentNode = range.commonAncestorContainer;
-    if (parentNode.nodeType === 3) parentNode = parentNode.parentElement;
-    const existingTag = parentNode.closest?.(formatType.htmlTag);
-
-    if (existingTag && blockEl.contains(existingTag)) {
-      const text = document.createTextNode(existingTag.textContent);
-      existingTag.parentNode.replaceChild(text, existingTag);
-    } else {
-      const el = document.createElement(formatType.htmlTag);
-      try {
-        range.surroundContents(el);
-      } catch {
-        const fragment = range.extractContents();
-        el.appendChild(fragment);
-        range.insertNode(el);
+    // 1g.7 (#88): restore relpos before dispatch.
+    restoreSavedRelpos(view, saved);
+    const kindMap = { 'BLD': 'bold', 'ITA': 'italic', 'UND': 'underline' };
+    const kind = kindMap[formatType.tag];
+    if (!kind) return;
+    const tr = applyFormatTr(view.state, kind);
+    if (tr) {
+      if (typeof onForceFrame === 'function') onForceFrame();
+      view.dispatch(tr);
+      if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
+        flushPendingUpdateById(blockId);
       }
     }
-
-    sel.removeAllRanges();
-    if (onBlockUpdate && blockEl) onBlockUpdate(blockId, blockEl.innerHTML);
     setVisible(false);
-  }, [onBlockUpdate, onForceFrame]);
+  }, [onForceFrame]);
 
   if (!visible || readOnly) return null;
 

@@ -12,7 +12,7 @@
  *   - onConvertBlock, onChangeOliLevel
  *   - resolveHtml, tailorKey
  *   - trackChanges, identity
- *   - onAcceptRevision, onRejectRevision, onRevisionAction
+ *   - onAcceptRevision, onRejectRevision
  *   - comments, onCommentClick, onInlineFix
  *   - lintingState, lintingDispatch, showTags, readOnly
  *
@@ -124,7 +124,6 @@ function PmEditableBlock({
   identity,
   onAcceptRevision,
   onRejectRevision,
-  onRevisionAction,
   onRefreshTcSnapshot,  // 1g.5 (#86): PM-tr del-popup path — substrate-only refresh
   commentsState,    // 1g: drives per-block reconcile effect via reconcileCommentMarks
   onCommentClick,
@@ -177,8 +176,6 @@ function PmEditableBlock({
   onConvertBlockRef.current = onConvertBlock;
   const onCommentClickRef = useRef(onCommentClick);
   onCommentClickRef.current = onCommentClick;
-  const onRevisionActionRef = useRef(onRevisionAction);
-  onRevisionActionRef.current = onRevisionAction;
   const onRefreshTcSnapshotRef = useRef(onRefreshTcSnapshot);
   onRefreshTcSnapshotRef.current = onRefreshTcSnapshot;
   const blockTypeRef = useRef(block.type);
@@ -742,26 +739,13 @@ function PmEditableBlock({
     // the React state + TC snapshot refresh via onRefreshTcSnapshot,
     // same path FloatingToolbar uses for its PM-mode inline TC actions
     // (1f.9). The handler does NOT call setBlockHtml — it only runs
-    // resumeHistory + setBlocks + setTcState so App-level
-    // useUndoableBlocks captures a snapshot of the post-action state.
-    //
-    // Legacy fallback (onRevisionAction → App.handleRevisionAction) is
-    // intentionally not invoked here: that path writes setBlockHtml
-    // ('local-publish'), producing a redundant Yjs op on top of the
-    // substrate write we just made via ySyncPlugin.
+    // resumeHistory + setBlocks + setTcState so the local UndoManager
+    // captures a snapshot of the post-action state.
     if (onRefreshTcSnapshotRef.current) {
       try {
         const html = pmFragmentToHtml(view.state.doc);
         onRefreshTcSnapshotRef.current(block.id, html);
       } catch { /* defensive — view tear-down race */ }
-    } else if (onRevisionActionRef.current) {
-      // Defensive fallback if App fails to pass onRefreshTcSnapshot
-      // (e.g. older render path). Stays correct, just produces the
-      // redundant substrate op.
-      try {
-        const html = pmFragmentToHtml(view.state.doc);
-        onRevisionActionRef.current(block.id, html);
-      } catch { /* defensive */ }
     }
   }, [delPopup, block.id]);
 
