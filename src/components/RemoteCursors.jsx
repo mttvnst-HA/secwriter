@@ -76,7 +76,7 @@ export default function RemoteCursors({ peers, selfId, editorRef }) {
         const registered = getBlockEditable(cursor.blockId);
         const inScope = registered && (!container || container.contains(registered));
         const blockEl = (inScope ? registered : null)
-          || root.querySelector(`[data-block-id="${cursor.blockId}"]`);
+          || root.querySelector(/* allowed: block-registry fallback */ `[data-block-id="${cursor.blockId}"]`);
         if (!blockEl) continue;
         const rect = caretRectAt(blockEl, cursor.index || 0);
         if (!rect) continue;

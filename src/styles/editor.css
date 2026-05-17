@@ -643,3 +643,19 @@ body {
   font-weight: 500;
   border-bottom: 1px solid #fbbf24;
 }
+
+/* 1i-b.1 — read-only fallback for migrationPartial blocks (PmEditableBlock). */
+.migration-partial-banner {
+  padding: 8px 12px;
+  margin: 4px 0;
+  background-color: #fff3cd;
+  border-left: 3px solid #ffc107;
+  color: #856404;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.migration-partial-banner .banner-icon {
+  font-size: 16px;
+}

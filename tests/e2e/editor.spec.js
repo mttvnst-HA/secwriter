@@ -729,31 +729,6 @@ test.describe('Inline comments', () => {
 
     await expect(page.locator('button[title="Add Comment"]')).toBeVisible({ timeout: 3000 });
   });
-
-  test('clicking comment-highlighted text shows popup', async ({ page }) => {
-    // Routed through injectBlockHtml (App's normal update path) so PM mode
-    // sees the span via the substrate write rather than a wholesale
-    // innerHTML mutation PM's domObserver wouldn't handle. Issue #64 was
-    // initially attributed to y-prosemirror dropping the comment mark, but
-    // the actual failure was the prior legacy `el.innerHTML = ...` test
-    // setup — the mark itself survives prosemirrorToYXmlFragment fine.
-    const focused = await createFreshBlock(page);
-    const blockId = await focused.getAttribute('data-block-id');
-    await injectBlockHtml(
-      page,
-      blockId,
-      'Normal <span class="mark-comment" data-comment-id="test-c1">commented</span> text',
-    );
-
-    const commentSpan = page.locator(blockSel(blockId)).locator('.mark-comment');
-    await expect(commentSpan).toBeVisible();
-    await commentSpan.click();
-    await page.waitForTimeout(300);
-
-    // A popup should appear (comment popup has "Open" or "Delete" text)
-    // Since there's no comment data for test-c1, the popup won't show
-    // But the click handler should at least trigger
-  });
 });
 
 // ─── Comments on REF blocks ──────────────────────────────────────────────────

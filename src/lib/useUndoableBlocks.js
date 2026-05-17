@@ -1,18 +1,20 @@
 import { useState, useRef, useCallback } from "react";
-import * as tc from "./track-changes.js";
 
 const MAX_HISTORY = 100;
 
 /**
- * Custom hook that wraps blocks + opaque track-changes state with undo/redo
- * history.
+ * Custom hook that wraps blocks with undo/redo history.
  *
  * Debounce: the first setBlocks call after unpause captures a snapshot,
  * then auto-pauses. Structural actions call resumeHistory() before their
  * setBlocks, which unpauses and ensures a new undo entry is created.
  *
- * The hook is agnostic about the shape of `tcState` — it stores whatever
- * the track-changes module hands it and restores it on undo/redo.
+ * Snapshots are `{ blocks }` only. tcState used to ride here for atomic
+ * (blocks, tcState) capture, but post-1h Q35+Q37 the TC reducer state is
+ * `{ enabled, publishSeq }` — the lockstep bought nothing once per-block
+ * snapshots left tcState, so 1i-b.1 moved tcState to a plain useState in
+ * App. Accepted regression: Ctrl+Z across a TC enable/disable boundary
+ * no longer undoes the toggle.
  *
  * @param {Array} initialBlocks
  * @param {Object} [options]
@@ -28,12 +30,11 @@ const MAX_HISTORY = 100;
  */
 export function useUndoableBlocks(initialBlocks, options) {
   const [blocks, _setBlocks] = useState(initialBlocks);
-  const [tcState, _setTcState] = useState(() => tc.createInitial());
 
   const historyRef = useRef({ past: [], future: [] });
   const pausedRef = useRef(false);
   const undoingRef = useRef(false); // true during undo/redo to suppress blur-triggered setBlocks
-  const currentRef = useRef({ blocks: initialBlocks, tcState: tc.createInitial() });
+  const currentRef = useRef({ blocks: initialBlocks });
   // Mirror options into a ref so the latest closure (which may reference
   // refs declared after the hook call) is read at undo-time.
   const optionsRef = useRef(options || null);
@@ -41,7 +42,6 @@ export function useUndoableBlocks(initialBlocks, options) {
 
   // Keep currentRef in sync
   currentRef.current.blocks = blocks;
-  currentRef.current.tcState = tcState;
 
   const setBlocks = useCallback((updater) => {
     // During undo/redo, blur-triggered setBlocks calls must be suppressed
@@ -52,10 +52,9 @@ export function useUndoableBlocks(initialBlocks, options) {
       const next = typeof updater === 'function' ? updater(prev) : updater;
 
       if (!pausedRef.current) {
-        // Capture (blocks, tcState) snapshot atomically before mutation.
+        // Capture blocks snapshot before mutation.
         const snapshot = {
           blocks: prev,
-          tcState: currentRef.current.tcState,
         };
         const h = historyRef.current;
         h.past.push(snapshot);
@@ -76,10 +75,6 @@ export function useUndoableBlocks(initialBlocks, options) {
   const setBlocksDirect = useCallback((updater) => {
     if (undoingRef.current) return;
     _setBlocks(prev => (typeof updater === 'function' ? updater(prev) : updater));
-  }, []);
-
-  const setTcState = useCallback((updater) => {
-    _setTcState(prev => (typeof updater === 'function' ? updater(prev) : updater));
   }, []);
 
   const resumeHistory = useCallback(() => {
@@ -148,11 +143,9 @@ export function useUndoableBlocks(initialBlocks, options) {
     const snapshot = h.past.pop();
     h.future.push({
       blocks: currentBlocks,
-      tcState: currentRef.current.tcState,
     });
 
     _setBlocks(snapshot.blocks);
-    _setTcState(snapshot.tcState);
     pausedRef.current = false;
     undoingRef.current = false;
   }, []);
@@ -169,11 +162,9 @@ export function useUndoableBlocks(initialBlocks, options) {
     const snapshot = h.future.pop();
     h.past.push({
       blocks: currentRef.current.blocks,
-      tcState: currentRef.current.tcState,
     });
 
     _setBlocks(snapshot.blocks);
-    _setTcState(snapshot.tcState);
     pausedRef.current = false;
     undoingRef.current = false;
   }, []);
@@ -183,10 +174,8 @@ export function useUndoableBlocks(initialBlocks, options) {
 
   return {
     blocks,
-    tcState,
     setBlocks,
     setBlocksDirect,
-    setTcState,
     undo,
     redo,
     canUndo,

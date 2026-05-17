@@ -34,11 +34,12 @@
  *   leftover), the legacy `applyHtmlToYText` path is taken. v1 clients
  *   keep editing the same Y.Text against this v2 client's snapshot writes.
  *
- * Public API (unchanged from 1b):
+ * Public API (1i-b.1):
  *   seedBlockArray(ydoc, yOrder, yStore, plainBlocks)
  *   resetBlockArray(ydoc, yOrder, yStore, plainBlocks)
  *   getBlockHtml(yStore, blockId) → string
- *   setBlockHtml(yStore, blockId, html) → void
+ *   setBlockHtml(yStore, blockId, html) → void          ['local-publish' origin]
+ *   setBlockHtmlSilent(yStore, blockId, html) → void    ['local-reconcile' origin, NOT tracked]
  *   subscribeBlock(yStore, blockId, listener) → unsubscribe
  *
  * Block scalars (id, type, part, depth, section, level, revision) and
@@ -174,6 +175,44 @@ export function setBlockHtml(yStore, blockId, html) {
     return;
   }
   // Unknown shape — silently drop the write rather than corrupt the doc.
+}
+
+/**
+ * 1i-b.1 — non-tracked-origin variant of setBlockHtml for mechanical
+ * substrate mirrors (comment-status reclassify, orphan span unwrap)
+ * that must NOT enter the local UndoManager. The Yjs op still
+ * broadcasts to peers (origin doesn't gate replication), but Ctrl+Z
+ * after the mirror fires will revert the underlying user action in
+ * one stroke rather than undoing the mirror.
+ *
+ * Same shape rules as setBlockHtml: Y.XmlFragment slots go through
+ * htmlToPmFragment + prosemirrorToYXmlFragment; Y.Text slots
+ * (migrationPartial leftover) go through applyHtmlToYText. Only the
+ * transaction origin differs.
+ */
+export function setBlockHtmlSilent(yStore, blockId, html) {
+  const yMap = yStore.get(blockId);
+  if (!yMap) return;
+  const yHtml = yMap.get('html');
+  if (!yHtml) return;
+  const ydoc = yStore.doc;
+  if (!ydoc) return;
+  const next = typeof html === 'string' ? html : '';
+
+  if (typeof yHtml.toArray === 'function' && typeof yHtml.nodeName !== 'string') {
+    ydoc.transact(() => {
+      const pmNode = htmlToPmFragment(next);
+      prosemirrorToYXmlFragment(pmNode, yHtml);
+    }, 'local-reconcile');
+    return;
+  }
+
+  if (typeof yHtml.toDelta === 'function') {
+    ydoc.transact(() => {
+      applyHtmlToYText(yHtml, next);
+    }, 'local-reconcile');
+    return;
+  }
 }
 
 export function subscribeBlock(yStore, blockId, listener) {

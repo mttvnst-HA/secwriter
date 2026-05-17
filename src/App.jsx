@@ -33,7 +33,7 @@ import { serializeSEC } from "./lib/sec-serializer.js";
 import { encodeWindows1252 } from "./lib/encoding.js";
 import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
 import * as Y from "yjs";
-import { seedBlockArray, resetBlockArray, setBlockHtml, getBlockHtml } from "./lib/block-html-store.js";
+import { seedBlockArray, resetBlockArray, setBlockHtml, setBlockHtmlSilent, getBlockHtml } from "./lib/block-html-store.js";
 import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, getBlockView, listBlocksInDocumentOrder } from "./lib/block-registry.js";
 import { setActiveComment } from "./lib/pm-plugins/active-comment.js";
 import { TextSelection } from "prosemirror-state";
@@ -43,7 +43,7 @@ import * as linting from "./lib/linting.js";
 import * as comp from "./lib/compliance.js";
 import { findHighlightTargetsInBlock } from "./lib/compliance-ranges.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
-import { getRoomFromUrl, buildRoomUrl, generateRoomId, DEFAULT_HTTP_URL, applyBlocksToYDoc } from "./lib/collab.js";
+import { getRoomFromUrl, buildRoomUrl, generateRoomId, DEFAULT_HTTP_URL, applyBlocksToYDoc, yBlocksToArray } from "./lib/collab.js";
 import { useCollabSession } from "./hooks/useCollabSession.js";
 import { useLocalSubstrateUndoManager } from "./hooks/useLocalSubstrateUndoManager.js";
 import * as cm from "./lib/comments.js";
@@ -122,7 +122,7 @@ function restorePlainTextOffset(root, startIndex, endIndex) {
 
 export default function SpecEditor() {
   const {
-    blocks, tcState, setBlocks, setBlocksDirect, setTcState,
+    blocks, setBlocks, setBlocksDirect,
     undo, redo, canUndo, canRedo, clearHistory, resumeHistory,
   } = useUndoableBlocks(INITIAL_BLOCKS, {
     // Sub-PR 1f: PM-mode dirty-html resolver. For PM EditorView blocks the
@@ -141,6 +141,14 @@ export default function SpecEditor() {
       }
     },
   });
+  // 1i-b.1 — tcState no longer rides on useUndoableBlocks' snapshot
+  // stack. Post-1h Q35+Q37 the reducer is `{ enabled, publishSeq }`
+  // and the publishSeq counter handles echo-gating with no per-block
+  // snapshot to keep in lockstep with `blocks`. Accepted regression:
+  // a Ctrl+Z crossing a TC enable/disable boundary no longer rolls
+  // back the toggle (it's an explicit user gesture, never a
+  // typing-frame mutation).
+  const [tcState, setTcState] = useState(() => tc.createInitial());
   // Local Y.Doc — the no-room substrate for block html. EditableBlock's
   // useBlockBinder reads/writes this when !inRoom. In-room mode, the
   // session's Y.Doc takes over; the local substrate stays allocated but
@@ -624,7 +632,7 @@ export default function SpecEditor() {
     setFocusedBlockId(id);
     const tryFocus = () => focusBlockById(id, { atEnd });
     const fallbackToDom = () => {
-      const el = document.querySelector(`[data-block-id="${id}"]`);
+      const el = document.querySelector(/* allowed: block-registry fallback */ `[data-block-id="${id}"]`);
       if (!el) return;
       el.focus();
       // PM owns the cursor for its own DOM — don't fight it with a manual
@@ -792,25 +800,29 @@ export default function SpecEditor() {
   // Post-1b: also mirror the html change into the substrate so the binder
   // (and remote peers) see the orphan-unwrap or status-reclass — applyBlocksToYDoc
   // no longer touches html for existing yText.
+  //
+  // 1i-b.1: substrate mirror uses setBlockHtmlSilent (origin 'local-reconcile')
+  // instead of setBlockHtml — the mirror still broadcasts to peers, but the
+  // local UndoManager does NOT capture it. Without this gate, Ctrl+Z after a
+  // reconcile fires would undo the reconcile (which then re-fires on the
+  // next render) rather than the user's action.
+  //
+  // 1i-b.1: uniform reconcile walk. Pre-1i.b.1 we skipped PM-mounted blocks
+  // because reconcileCommentMarks in PmEditableBlock handles those at the
+  // PM substrate level — and the html-walk's substrate mirror would have
+  // entered local undo. Now that the mirror uses setBlockHtmlSilent (origin
+  // 'local-reconcile', non-tracked), the worst case for PM-mounted blocks
+  // is a redundant write that PM's domObserver swallows as a no-op. The
+  // simpler uniform walk wins.
   useEffect(() => {
     setBlocksDirect(prev => {
-      // 1g: PM-mounted blocks own their comment reconcile via the per-block
-      // PM effect in PmEditableBlock.jsx (reconcileCommentMarks dispatch).
-      // Skip them here so the html walk doesn't redundantly rewrite their
-      // mark spans (which would then be clobbered by the PM dispatch anyway).
-      const pmMountedIds = new Set();
-      for (const b of prev) {
-        if (getBlockView(b.id) != null) pmMountedIds.add(b.id);
-      }
-      const next = cm.reconcileBlocks(prev, commentsState, {
-        shouldSkip: (id) => pmMountedIds.has(id),
-      });
+      const next = cm.reconcileBlocks(prev, commentsState);
       const yStore = activeYStoreRef.current;
       if (next !== prev && yStore) {
         for (const b of next) {
           if (typeof b.html !== 'string') continue;
           const before = prev.find(p => p.id === b.id);
-          if (before && before.html !== b.html) setBlockHtml(yStore, b.id, b.html);
+          if (before && before.html !== b.html) setBlockHtmlSilent(yStore, b.id, b.html);
         }
       }
       return next;
@@ -1371,7 +1383,7 @@ export default function SpecEditor() {
     let firstRange = null;
     for (const v of group.instances) {
       const blockEl = getBlockDom(v.blockId)
-        || document.querySelector(`[data-block-id="${v.blockId}"]`);
+        || document.querySelector(/* allowed: block-registry fallback */ `[data-block-id="${v.blockId}"]`);
       if (!blockEl) continue;
       const targets = findHighlightTargetsInBlock(blockEl, v.match);
       for (const t of targets) {
@@ -1661,10 +1673,38 @@ export default function SpecEditor() {
     const handler = (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
         e.preventDefault();
-        if (!collab.tryUndo() && !localUndo.tryUndo()) undo();
+        if (collab.tryUndo()) {
+          // In-room: useCollabSession.onBlocksReceived bridges substrate → blocks.
+        } else if (localUndo.tryUndo()) {
+          // 1i-b.1 (PR #107): out-of-room sync. localUndo reverts the substrate
+          // (yOrder + yStore) but does NOT touch React's `blocks` state — no
+          // observer bridges the gap out-of-room. PM EditorViews bound to per-
+          // block Y.XmlFragments propagate THEIR undos through onUpdate, but
+          // structural ops (Enter creating a block, slash-convert, delete)
+          // mutate yOrder + yStore which no PM view observes. Sync blocks from
+          // the substrate; setBlocksDirect bypasses the useUndoableBlocks
+          // snapshot capture so we don't push a spurious frame on top of the
+          // one we just popped. In-room mode already gets this for free via
+          // session.onBlocksReceived. Once 1i-b.2 retires useUndoableBlocks,
+          // this sync becomes the only React-update path for substrate-driven
+          // undo and lives on permanently.
+          if (!inRoomRef.current) {
+            setBlocksDirect(yBlocksToArray(localSubstrate.yOrder, localSubstrate.yStore));
+          }
+        } else {
+          undo();
+        }
       } else if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
         e.preventDefault();
-        if (!collab.tryRedo() && !localUndo.tryRedo()) redo();
+        if (collab.tryRedo()) {
+          // In-room: onBlocksReceived bridges substrate → blocks.
+        } else if (localUndo.tryRedo()) {
+          if (!inRoomRef.current) {
+            setBlocksDirect(yBlocksToArray(localSubstrate.yOrder, localSubstrate.yStore));
+          }
+        } else {
+          redo();
+        }
       } else if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
         e.preventDefault();
         setSearchOpen(true);

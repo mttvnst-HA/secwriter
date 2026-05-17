@@ -72,6 +72,24 @@ import { sanitizePasteText } from '../lib/paste-sanitize.js';
 import { useBlockLinting } from './useBlockLinting.js';
 
 /**
+ * 1i-b.1 — migrationPartial detection. A block whose html slot is still
+ * Y.Text (per-block conversion failed in the 1d migration broker) cannot
+ * be safely mounted on ySyncPlugin (it expects Y.XmlFragment). Render
+ * a read-only banner instead. Operator must re-run conversion to recover
+ * full editability. Mirrors block-html-store.js's deriveHtml duck-typing:
+ * Y.XmlFragment has toArray() and (unlike YXmlElement which has nodeName)
+ * does NOT expose a nodeName property. Y.Text has toDelta() and no toArray.
+ */
+function isLegacyYTextSlot(yHtml) {
+  if (!yHtml) return false;
+  if (typeof yHtml.toArray === 'function' && typeof yHtml.nodeName !== 'string') {
+    return false;
+  }
+  if (typeof yHtml.toDelta === 'function') return true;
+  return false;
+}
+
+/**
  * NO_EXFIL attributes for PM EditorProps. PM uses raw HTML attribute names
  * (lowercase) on the rendered DOM, not React's camelCase prop names. This
  * is the explicit translation; tested by no-exfil.test.js.
@@ -215,18 +233,30 @@ function PmEditableBlock({
     () => null, // SSR — no Y substrate
   );
 
+  // 1i-b.1 — derive migrationPartial state from the live yMap. Once
+  // EditableBlock is removed (1i-b.2), this branch owns the user-facing
+  // fallback for blocks whose html slot is still Y.Text. The yMapBound
+  // subscription already fires when the slot shape changes (1d migration
+  // broker swap), so this useMemo's dep list catches every transition.
+  const isMigrationPartial = useMemo(() => {
+    if (!yMapBound) return false;
+    return isLegacyYTextSlot(yMapBound.get('html'));
+  }, [yMapBound]);
+
   // ── Mount: create EditorView wired to the block's Y.XmlFragment ─────────
   useEffect(() => {
     if (!containerRef.current) return;
     if (!editable) return;
     if (!yStore) return;
     if (!yMapBound) return;
+    if (isMigrationPartial) return; // 1i-b.1 — banner-only render path
 
     const yMap = yMapBound;
     const yXml = yMap.get('html');
-    // Only the PM-substrate path mounts EditorView. Legacy Y.Text slots
-    // (migrationPartial leftover) fall through to the legacy editor; this
-    // component is rendered only when the flag + substrate combine.
+    // Defensive — isMigrationPartial above catches the Y.Text case, but
+    // keep this guard for any other unexpected slot shape (e.g. yMap with
+    // no html key, slot mid-replacement). Without isMigrationPartial we'd
+    // still bail silently here, which 1i-b.2 turns into an invisible block.
     if (!yXml || typeof yXml.toArray !== 'function' || typeof yXml.nodeName === 'string') {
       return;
     }
@@ -505,7 +535,7 @@ function PmEditableBlock({
     // block mount race — when the slot first appears or its identity flips
     // (1d migration broker), we re-mount the EditorView against the new shape.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [block.id, yStore, editable, yMapBound]);
+  }, [block.id, yStore, editable, yMapBound, isMigrationPartial]);
 
   // ── Auto-focus on first mount when block.isNew ───────────────────────────
   // 1f.7 (#47) — mirrors EditableBlock.jsx:172-210 (`needsFocus` path). Block
@@ -785,6 +815,27 @@ function PmEditableBlock({
 
   const revisionClass = `${block.revision ? `block-revision-${block.revision}` : ''} ${isNote ? 'block-type-note' : ''}`.trim();
   const sgmlTag = { txt: 'TXT', note: 'NTE', oli: 'OLI', item: 'ITM', lst: 'LST' }[block.type] || 'TXT';
+
+  // 1i-b.1 — user-facing fallback for migrationPartial blocks. The mount
+  // effect bails before constructing EditorView for this shape, so the
+  // banner is the only thing the user sees for this block until the
+  // operator re-runs conversion. role="alert" surfaces to assistive tech.
+  if (isMigrationPartial) {
+    return (
+      <div
+        data-block-id={block.id}
+        id={`block-${block.id}`}
+        className="migration-partial-banner"
+        role="alert"
+      >
+        <span className="banner-icon" aria-hidden="true">&#9888;</span>
+        <span className="banner-text">
+          This block needs re-migration. The room is partially migrated;
+          contact your operator to re-run conversion.
+        </span>
+      </div>
+    );
+  }
 
   return (
     <div id={`block-${block.id}`} style={{ position: 'relative' }} className={revisionClass} data-tag={sgmlTag}>
