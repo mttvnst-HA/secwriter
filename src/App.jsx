@@ -15,28 +15,27 @@ import { NO_EXFIL_PROPS } from "./lib/no-exfil.js";
 import { resolveTaiInHtml, cleanTaiClasses } from "./lib/tailor-profile.js";
 import RevisionControls from "./components/RevisionControls.jsx";
 import CrossRefPanel from "./components/CrossRefPanel.jsx";
-import SearchBar, { replaceMatchInHtml } from "./components/SearchBar.jsx";
+import SearchBar from "./components/SearchBar.jsx";
 import BracketReplace from "./components/BracketReplace.jsx";
 import ValidationPanel from "./components/ValidationPanel.jsx";
 import RefWizard from "./components/RefWizard.jsx";
 import CommentPopup, { getAuthorName } from "./components/CommentPopup.jsx";
 import CompliancePanel from "./components/CompliancePanel.jsx";
-import { acceptAllRevisions, rejectAllRevisions, acceptAllInline, rejectAllInline } from "./lib/revisions.js";
 import { compileRegister, generateRegisterReport } from "./lib/submittal-register.js";
 import { generateExportHtml } from "./lib/doc-export.js";
 import { autoSave, loadAutoSave, clearAutoSave, getAutoSaveTimestamp, supportsFileSystemAccess, saveToFileHandle } from "./lib/auto-save.js";
 import { buildTree } from "./lib/tree-builder.js";
-import { reorderSection } from "./lib/block-reorder.js";
 import { generateCommentReport } from "./lib/comment-report.js";
 import { parseSEC } from "./lib/sec-parser.js";
 import { serializeSEC } from "./lib/sec-serializer.js";
 import { encodeWindows1252 } from "./lib/encoding.js";
 import * as Y from "yjs";
-import { seedBlockArray, resetBlockArray, setBlockHtml, setBlockHtmlSilent, getBlockHtml } from "./lib/block-html-store.js";
-import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, getBlockView, listBlocksInDocumentOrder, flushAllPendingUpdates } from "./lib/block-registry.js";
+import { seedBlockArray, resetBlockArray, setBlockHtmlSilent, getBlockHtml } from "./lib/block-html-store.js";
+import { focusBlockById, getBlockEditable, getBlockDom, getBlockView, listBlocksInDocumentOrder } from "./lib/block-registry.js";
 import { setActiveComment } from "./lib/pm-plugins/active-comment.js";
 import { Selection, TextSelection } from "prosemirror-state";
 import * as tc from "./lib/track-changes.js";
+import * as Blocks from "./lib/blocks.js";
 import * as linting from "./lib/linting.js";
 import * as comp from "./lib/compliance.js";
 import { findHighlightTargetsInBlock } from "./lib/compliance-ranges.js";
@@ -676,10 +675,26 @@ export default function SpecEditor() {
     }
   }, [focusBlock]);
 
+  // 2026-05-19 — single dispatcher for every blocks mutation. Reads `yStore`
+  // and `framing` at call time (not closure-capture time) so a mid-session
+  // room transition / collab swap doesn't strand a stale reference. See
+  // src/lib/blocks.js for the verb + effects shape. Declared up here so
+  // every handler below (starting with handleReorderSection) can put it
+  // in its useCallback deps without a TDZ.
+  const dispatchBlocks = useCallback((compute, opts) => {
+    return Blocks.dispatchBlocksVerb({
+      blocksRef,
+      setBlocks,
+      yStore: activeYStoreRef.current,
+      framing: framingForHandler(),
+      setFocusedBlockId,
+      focusBlock,
+    }, compute, opts);
+  }, [focusBlock]);
+
   const handleReorderSection = useCallback((dragId, dropId, position) => {
-    framingForHandler().forceFrame();
-    setBlocks(prev => reorderSection(prev, dragId, dropId, position));
-  }, []);
+    dispatchBlocks((b) => Blocks.reorderSectionVerb(b, dragId, dropId, position));
+  }, [dispatchBlocks]);
 
   // Comment dispatcher — thin wrapper that routes a PublishEnvelope to the
   // collab session via the useCollabSession hook (set up further below).
@@ -827,47 +842,29 @@ export default function SpecEditor() {
     });
   }, [blocks, commentsState, setBlocksDirect]);
 
+  // Typing-debounce path. PM ySyncPlugin already wrote the substrate; the
+  // verb's substrateWrite is a byte-stable echo op that the UndoManager
+  // merges into the same captureTimeout frame.
   const handleBlockUpdate = useCallback((id, html) => {
-    // Mirror the new html into the active Y.Doc substrate so non-PM
-    // authors (TitleBlock raw contentEditable, MarkSuggestions accept
-    // via handleBlockUpdateWithSync) stay observable through
-    // getBlockHtml. PM typing flows through ySyncPlugin directly and
-    // reaches React state through PmEditableBlock's debounced onUpdate
-    // → this handler; the substrate write is then a byte-stable echo
-    // op that the UndoManager merges into the same frame.
-    const yStore = activeYStoreRef.current;
-    if (yStore) setBlockHtml(yStore, id, html);
-    setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
-  }, []);
+    dispatchBlocks((b) => Blocks.updateBlockHtml(b, id, html));
+  }, [dispatchBlocks]);
 
-  // 1h Q35 — PM-only sibling of handleBlockUpdate. Used by FloatingToolbar
-  // inline-revision-resolve and PmEditableBlock's del-popup; both code paths
-  // dispatch a PM transaction whose ySyncPlugin write has already updated
-  // the substrate, so this handler ONLY updates React state. Skipping
-  // setBlockHtml avoids a redundant 'local-publish' op + duplicate broadcast.
-  //
-  // forceFrame() closes the active Yjs UndoManager capture window before
-  // the React state update so a subsequent ySyncPlugin op (from later
-  // typing) opens a fresh frame instead of coalescing with the action.
+  // 1h Q35 — PM click path (FloatingToolbar inline-revision-resolve,
+  // PmEditableBlock del-popup). PM dispatch already wrote the substrate,
+  // so the verb emits NO substrateWrite. framing.forceFrame closes the
+  // active capture window so the next typing burst opens a fresh frame.
   const handleBlockUpdatePmSync = useCallback((id, html) => {
-    framingForHandler().forceFrame();
-    setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
-  }, []);
+    dispatchBlocks((b) => Blocks.updateBlockHtmlPmSync(b, id, html));
+  }, [dispatchBlocks]);
 
-  // Update block HTML and sync the contentEditable DOM (used by MarkSuggestions).
-  // For PM-mounted blocks the substrate write is the source of truth — the
-  // EditorView re-renders via ySyncPlugin's observe — and the registry's
-  // setHtml is a no-op. For legacy blocks, registry.setHtml replaces the
-  // contentEditable's innerHTML and clears dataset.init so React's setRef
-  // doesn't overwrite on remount.
+  // MarkSuggestions accept-suggestion path. PM-mounted; substrate write is
+  // the source of truth (EditorView re-renders via ySyncPlugin observe).
+  // The pre-1i-b.2 `getBlockHandle(id).setHtml(html)` mirror is dropped —
+  // PmEditableBlock's setHtml handle is a documented no-op, and TitleBlock
+  // never registered a handle.
   const handleBlockUpdateWithSync = useCallback((id, html) => {
-    const handle = getBlockHandle(id);
-    if (handle) handle.setHtml(html);
-    const yStore = activeYStoreRef.current;
-    if (yStore) setBlockHtml(yStore, id, html);
-    // Then update React state to match
-    setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
-  }, []);
+    dispatchBlocks((b) => Blocks.updateBlockHtml(b, id, html));
+  }, [dispatchBlocks]);
 
   // 1f.7 (#47) — DEV-only Playwright test utilities. The legacy contentEditable
   // path let tests do `el.innerHTML = '...'; el.dispatchEvent('input')` because
@@ -941,171 +938,33 @@ export default function SpecEditor() {
     return () => { delete window.__simEditorTestUtils; };
   }, [handleBlockUpdateWithSync]);
 
-  // Replace a match in a block's HTML at a given visible-text offset.
-  // Sub-PR 1e (#47, v2 plan Q17/E4): the contentEditable DOM sync routes
-  // through block-registry's setHtml — which is a no-op for PM-mounted
-  // blocks (they re-render via ySyncPlugin's observe of the substrate
-  // write below).
   const handleSearchReplace = useCallback((blockId, offset, length, replacement) => {
-    framingForHandler().forceFrame();
-    setBlocks(prev => prev.map(b => {
-      if (b.id !== blockId || !b.html) return b;
-      const newHtml = replaceMatchInHtml(b.html, offset, length, replacement);
-      const handle = getBlockHandle(blockId);
-      if (handle) handle.setHtml(newHtml);
-      const yStore = activeYStoreRef.current;
-      if (yStore) setBlockHtml(yStore, blockId, newHtml);
-      return { ...b, html: newHtml };
-    }));
-  }, []);
+    dispatchBlocks((b) => Blocks.searchReplaceAt(b, blockId, offset, length, replacement));
+  }, [dispatchBlocks]);
 
-  // Remove an orphaned RID entry from a REF block
   const handleRemoveOrphaned = useCallback((blockId, rid) => {
-    framingForHandler().forceFrame();
-    setBlocks(prev => prev.map(b => {
-      if (b.id !== blockId || b.type !== 'ref' || !b.ref?.entries) return b;
-      const filtered = b.ref.entries.filter(e => (e.rid || '').trim() !== rid);
-      if (filtered.length === 0) {
-        // Remove the entire ref block if no entries remain
-        return null;
-      }
-      return { ...b, ref: { ...b.ref, entries: filtered } };
-    }).filter(Boolean));
-  }, []);
+    dispatchBlocks((b) => Blocks.removeOrphanedRid(b, blockId, rid));
+  }, [dispatchBlocks]);
 
-  // Add reference from wizard — find or create the org's REF block, sorted insertion
   const handleAddReference = useCallback(({ org, rid, rtl }) => {
-    framingForHandler().forceFrame();
-    // Alphanumeric sort comparator for RIDs: letters first, then numbers
-    const ridCompare = (a, b) => {
-      const pa = (a.rid || '').replace(/^[A-Z/]+\s*/i, '');
-      const pb = (b.rid || '').replace(/^[A-Z/]+\s*/i, '');
-      // Compare the designation part (after the org prefix)
-      const na = parseFloat(pa) || 0;
-      const nb = parseFloat(pb) || 0;
-      if (pa[0] !== pb[0]) return pa.localeCompare(pb);
-      if (na !== nb) return na - nb;
-      return pa.localeCompare(pb);
-    };
-
-    setBlocks(prev => {
-      const refBlock = prev.find(b => b.type === 'ref' && b.ref?.org === org);
-      if (refBlock) {
-        // Add entry in sorted position within existing block
-        return prev.map(b => {
-          if (b.id !== refBlock.id) return b;
-          const entries = [...b.ref.entries, { rid, rtl }].sort(ridCompare);
-          return { ...b, ref: { ...b.ref, entries } };
-        });
-      }
-      // Create new REF block — insert in alphabetical org order among existing REF blocks
-      const refBlocks = prev.map((b, i) => ({ b, i })).filter(x => x.b.type === 'ref' && x.b.part === 1);
-      let insertIdx;
-      if (refBlocks.length === 0) {
-        // No REF blocks — find the end of Part 1 section 1.1 (REFERENCES)
-        insertIdx = prev.length;
-      } else {
-        // Find insertion point: after the last REF block whose org comes before this one alphabetically
-        const afterIdx = refBlocks.reduce((acc, x) => {
-          if ((x.b.ref?.org || '').localeCompare(org) < 0) return x.i;
-          return acc;
-        }, -1);
-        insertIdx = afterIdx >= 0 ? afterIdx + 1 : refBlocks[0].i;
-      }
-      const newBlock = {
-        id: `ref-${Date.now()}`,
-        type: 'ref',
-        part: 1,
-        depth: 1,
-        ref: { org, entries: [{ rid, rtl }] },
-      };
-      const next = [...prev];
-      next.splice(insertIdx, 0, newBlock);
-      return next;
-    });
-  }, []);
+    dispatchBlocks((b) => Blocks.addReference(b, { org, rid, rtl, newId: `ref-${Date.now()}` }));
+  }, [dispatchBlocks]);
 
   const handleEnterKey = useCallback((afterId) => {
-    framingForHandler().forceFrame();
     const newId = `new-${Date.now()}`;
-    setBlocks(prev => {
-      const idx = prev.findIndex(b => b.id === afterId);
-      if (idx === -1) return prev;
-      const current = prev[idx];
-
-      // Enter on an empty list item exits back to paragraph
-      const isEmpty = !(current.html || "").replace(/\u200B/g, "").trim();
-      if (isEmpty && (current.type === "oli" || current.type === "item")) {
-        const next = [...prev];
-        next[idx] = { ...current, type: "txt", isNew: true, id: newId };
-        return next;
-      }
-
-      // Propagate type for list-like blocks
-      const propagateTypes = { oli: "oli", item: "item" };
-      const newType = propagateTypes[current.type] || "txt";
-
-      const revisionFlag = tc.revisionFlagForCreate(tcState);
-      const newBlock = {
-        id: newId,
-        type: newType,
-        part: current.part,
-        depth: current.depth,
-        section: current.section,
-        level: current.level,
-        html: "",
-        isNew: true,
-        ...(revisionFlag ? { revision: revisionFlag } : {}),
-      };
-      const next = [...prev];
-      next.splice(idx + 1, 0, newBlock);
-      return next;
-    });
-    setFocusedBlockId(newId);
-  }, [tcState]);
+    dispatchBlocks((b) => Blocks.createBlockAfter(b, afterId, { newId, tcState }));
+  }, [dispatchBlocks, tcState]);
 
   // Tab/Shift+Tab on an OLI item: demote/promote list level (1..4, UFS Figure A-1).
   const handleChangeOliLevel = useCallback((blockId, delta) => {
-    framingForHandler().forceFrame();
-    setBlocks(prev => {
-      const idx = prev.findIndex(b => b.id === blockId);
-      if (idx < 0) return prev;
-      const current = prev[idx];
-      if (current.type !== "oli") return prev;
-      const currentLevel = current.level || 1;
-      const nextLevel = Math.max(1, Math.min(currentLevel + delta, 4));
-      if (nextLevel === currentLevel) return prev;
-      const next = [...prev];
-      next[idx] = { ...current, level: nextLevel };
-      return next;
-    });
-  }, []);
+    dispatchBlocks((b) => Blocks.changeOliLevel(b, blockId, delta));
+  }, [dispatchBlocks]);
 
-  // Delete a block and focus the previous one
+  // Delete a block and focus the previous one. The verb's focus effect
+  // handles the setTimeout-queued focusBlock; nothing imperative here.
   const handleDelete = useCallback((blockId) => {
-    framingForHandler().forceFrame();
-    setBlocks(prev => {
-      const idx = prev.findIndex(b => b.id === blockId);
-      if (idx <= 0) return prev; // don't delete first block
-      const block = prev[idx];
-
-      const flag = tc.revisionFlagForDelete(tcState, block);
-      if (flag === 'del') {
-        // Track Changes: mark as deleted instead of removing
-        const next = [...prev];
-        next[idx] = { ...block, revision: 'del' };
-        const prevBlock = prev[idx - 1];
-        setTimeout(() => focusBlock(prevBlock.id, true), 0);
-        return next;
-      }
-
-      const prevBlock = prev[idx - 1];
-      const next = prev.filter(b => b.id !== blockId);
-      // Focus previous block
-      setTimeout(() => focusBlock(prevBlock.id, true), 0);
-      return next;
-    });
-  }, [focusBlock, tcState]);
+    dispatchBlocks((b) => Blocks.deleteBlock(b, blockId, tcState));
+  }, [dispatchBlocks, tcState]);
 
   // A block is focusable if it's a title or an editable text block
   const isFocusable = useCallback((block) => {
@@ -1142,163 +1001,38 @@ export default function SpecEditor() {
     }
   }, [focusBlock, isFocusable]);
 
-  // Convert a text block to a title
   const handleConvertToTitle = useCallback((blockId) => {
-    framingForHandler().forceFrame();
-    setBlocks(prev => {
-      const idx = prev.findIndex(b => b.id === blockId);
-      if (idx < 0) return prev;
-      const block = prev[idx];
-      // Determine appropriate depth - look at surrounding titles
-      let depth = 1;
-      for (let i = idx - 1; i >= 0; i--) {
-        if (prev[i].type === "title") {
-          depth = prev[i].depth;
-          break;
-        }
-      }
-      const next = [...prev];
-      next[idx] = { ...block, type: "title", depth, isNew: false };
-      return next;
-    });
-    setTimeout(() => focusBlock(blockId, true), 0);
-  }, [focusBlock]);
+    dispatchBlocks((b) => Blocks.convertToTitle(b, blockId));
+  }, [dispatchBlocks]);
 
-  // General block type conversion (from slash menu)
   const handleConvertBlock = useCallback((blockId, newType) => {
-    framingForHandler().forceFrame();
-    if (newType === "title") {
-      handleConvertToTitle(blockId);
-      return;
-    }
-    // Replace with a brand new block (new ID) so it goes through the exact same
-    // mount path as Enter-created blocks, which we know works for focus
     const newId = `new-${Date.now()}`;
-    setBlocks(prev => {
-      const idx = prev.findIndex(b => b.id === blockId);
-      if (idx < 0) return prev;
-      const block = prev[idx];
-      const next = [...prev];
-      const newBlock = {
-        id: newId,
-        type: newType,
-        part: block.part,
-        depth: block.depth,
-        section: block.section,
-        html: "",
-        isNew: true,
-      };
-      // REF blocks need structured data, not html
-      if (newType === 'ref') {
-        newBlock.ref = { org: '', entries: [{ rid: '', rtl: '' }] };
-        delete newBlock.html;
-      }
-      // Page break blocks have no content
-      if (newType === 'pagebreak') {
-        delete newBlock.html;
-        delete newBlock.isNew;
-      }
-      // Table blocks need table data, not html
-      if (newType === 'table') {
-        newBlock.table = {
-          columns: 2,
-          rows: [
-            [{ text: '', colspan: 1 }, { text: '', colspan: 1 }],
-            [{ text: '', colspan: 1 }, { text: '', colspan: 1 }],
-          ],
-        };
-        delete newBlock.html;
-        delete newBlock.isNew;
-      }
-      next[idx] = newBlock;
-      return next;
-    });
-    setFocusedBlockId(newId);
-  }, [handleConvertToTitle]);
+    dispatchBlocks((b) => Blocks.convertBlock(b, blockId, newType, { newId }));
+  }, [dispatchBlocks]);
 
-  // Promote a title (decrease depth)
   const handlePromote = useCallback((blockId) => {
-    framingForHandler().forceFrame();
-    setBlocks(prev => prev.map(b => {
-      if (b.id === blockId && b.type === "title" && b.depth > 1) {
-        return { ...b, depth: b.depth - 1 };
-      }
-      return b;
-    }));
-  }, []);
+    dispatchBlocks((b) => Blocks.promoteTitle(b, blockId));
+  }, [dispatchBlocks]);
 
-  // Demote a title (increase depth)
   const handleDemote = useCallback((blockId) => {
-    framingForHandler().forceFrame();
-    setBlocks(prev => prev.map(b => {
-      if (b.id === blockId && b.type === "title" && b.depth < 6) {
-        return { ...b, depth: b.depth + 1 };
-      }
-      return b;
-    }));
-  }, []);
+    dispatchBlocks((b) => Blocks.demoteTitle(b, blockId));
+  }, [dispatchBlocks]);
 
+  // #109 M4 — preFlush='all' drains every PM block's pending 400ms onUpdate
+  // debounce so the verb's compute reads post-debounce html (including any
+  // revisionAdd/revisionDel marks the user just typed). The verb returns
+  // framing=wrappedFrame so N substrate writes form ONE Yjs UndoManager
+  // frame regardless of captureTimeout. The tcState transition stays here
+  // because it's a separate reducer (`tc.acceptAll` / `tc.rejectAll`).
   const handleAcceptAll = useCallback(() => {
-    // #109 M4 fix — flush every PM block's pending 400ms onUpdate debounce
-    // so blocksRef.current reflects the current PM substrate (including any
-    // revisionAdd/revisionDel marks the user just typed). Without this,
-    // acceptAllRevisions runs against pre-debounce html, the <ins>/<del>
-    // tags it would strip aren't there yet, and the surviving marks land in
-    // React state when the debounce flushes ~400ms later — after TC has
-    // already been disabled by this handler, leaving the marks unreachable.
-    flushAllPendingUpdates();
-    // 1h Q36 Commit C — multi-write gesture: wrap the N setBlockHtml writes
-    // in withUndoFrame so they form ONE Yjs UndoManager frame regardless of
-    // captureTimeout coalescing. forceFrame first to demarcate this frame
-    // from any prior typing burst.
-    const framing = framingForHandler();
-    framing.forceFrame();
-    const prev = blocksRef.current;
-    const next = acceptAllRevisions(prev);
-    // Push every changed block's html to the substrate so the binder
-    // and remote peers see the resolution, not just the React-state cache.
-    // Done OUTSIDE the React state updater — setBlockHtml is a side effect
-    // that must not run inside a (potentially-reinvoked-in-StrictMode) updater.
-    const yStore = activeYStoreRef.current;
-    if (yStore) {
-      framing.withUndoFrame(() => {
-        for (let i = 0; i < next.length; i++) {
-          const b = next[i];
-          const before = prev.find(p => p.id === b.id);
-          if (before && typeof b.html === 'string' && before.html !== b.html) {
-            setBlockHtml(yStore, b.id, b.html);
-          }
-        }
-      });
-    }
-    setBlocks(next);
+    dispatchBlocks(Blocks.acceptAllRevisionsVerb, { preFlush: 'all' });
     setTcState(s => tc.acceptAll(s));
-  }, []);
+  }, [dispatchBlocks]);
 
   const handleRejectAll = useCallback(() => {
-    // #109 M4 fix — see handleAcceptAll above for the stale-debounce rationale.
-    // Symmetric: rejectAllRevisions also reads blocksRef.current and shares the
-    // same window.
-    flushAllPendingUpdates();
-    const framing = framingForHandler();
-    framing.forceFrame();
-    const prev = blocksRef.current;
-    const next = rejectAllRevisions(prev);
-    const yStore = activeYStoreRef.current;
-    if (yStore) {
-      framing.withUndoFrame(() => {
-        for (let i = 0; i < next.length; i++) {
-          const b = next[i];
-          const before = prev.find(p => p.id === b.id);
-          if (before && typeof b.html === 'string' && before.html !== b.html) {
-            setBlockHtml(yStore, b.id, b.html);
-          }
-        }
-      });
-    }
-    setBlocks(next);
+    dispatchBlocks(Blocks.rejectAllRevisionsVerb, { preFlush: 'all' });
     setTcState(s => tc.rejectAll(s));
-  }, []);
+  }, [dispatchBlocks]);
 
   // Persist dark mode
   useEffect(() => {
@@ -1436,28 +1170,14 @@ export default function SpecEditor() {
   // ── Compliance Checker Handlers ──
 
   const handleComplianceAcceptFix = useCallback((blockId, fixedText) => {
-    framingForHandler().forceFrame();
-    const yStore = activeYStoreRef.current;
-    if (yStore) setBlockHtml(yStore, blockId, fixedText);
-    setBlocks(prev => prev.map(b => b.id === blockId ? { ...b, html: fixedText } : b));
-  }, []);
+    dispatchBlocks((b) => Blocks.applyInlineFix(b, blockId, fixedText));
+  }, [dispatchBlocks]);
 
-  const handleComplianceAcceptGroup = useCallback((fixesByBlock, label) => {
-    const framing = framingForHandler();
-    framing.forceFrame();
-    const yStore = activeYStoreRef.current;
-    if (yStore) {
-      framing.withUndoFrame(() => {
-        for (const [bid, html] of fixesByBlock) {
-          if (typeof html === 'string') setBlockHtml(yStore, bid, html);
-        }
-      });
-    }
-    setBlocks(prev => prev.map(b => {
-      const fix = fixesByBlock.get(b.id);
-      return fix ? { ...b, html: fix } : b;
-    }));
-  }, []);
+  // Caller passes a `label` 2nd arg (panel "group accepted" toast text); the
+  // verb itself ignores it, so the param is dropped at the dispatch boundary.
+  const handleComplianceAcceptGroup = useCallback((fixesByBlock) => {
+    dispatchBlocks((b) => Blocks.complianceAcceptGroup(b, fixesByBlock));
+  }, [dispatchBlocks]);
 
   // Auto-save to localStorage every 3 seconds (silent, no UI).
   // Suppressed in a collab room — the server-persisted Yjs doc is the source of truth.
@@ -2619,10 +2339,7 @@ export default function SpecEditor() {
                   block={block}
                   isFocused={focusedBlockId === block.id}
                   onFocus={handleClickFocus}
-                  onUpdate={(id, data) => {
-                    framingForHandler().forceFrame();
-                    setBlocks(prev => prev.map(b => b.id === id ? { ...b, ...data } : b));
-                  }}
+                  onUpdate={(id, data) => dispatchBlocks((b) => Blocks.mergeBlockData(b, id, data))}
                 />
               );
             }
@@ -2633,10 +2350,7 @@ export default function SpecEditor() {
                   block={block}
                   isFocused={focusedBlockId === block.id}
                   onFocus={handleClickFocus}
-                  onUpdate={(id, data) => {
-                    framingForHandler().forceFrame();
-                    setBlocks(prev => prev.map(b => b.id === id ? { ...b, ...data } : b));
-                  }}
+                  onUpdate={(id, data) => dispatchBlocks((b) => Blocks.mergeBlockData(b, id, data))}
                   readOnly={collabReadOnly}
                   commentsState={commentsState}
                   activeCommentId={openCommentId}
@@ -2649,36 +2363,12 @@ export default function SpecEditor() {
                 <RefBlock
                   key={block.id}
                   block={block}
-                  onUpdate={(id, data) => setBlocks(prev => prev.map(b =>
-                    b.id === id ? { ...b, ref: data.ref } : b
-                  ))}
+                  onUpdate={(id, data) => dispatchBlocks((b) => Blocks.updateRefScalar(b, id, data))}
                   isFocused={focusedBlockId === block.id}
                   onFocus={handleClickFocus}
                   readOnly={collabReadOnly}
-                  onAcceptRevision={(id) => {
-                    framingForHandler().forceFrame();
-                    setBlocks(prev => {
-                      const idx = prev.findIndex(b => b.id === id);
-                      if (idx < 0) return prev;
-                      const b = prev[idx];
-                      if (b.revision === 'del') return prev.filter(bl => bl.id !== id);
-                      const next = [...prev];
-                      next[idx] = { ...b, revision: undefined };
-                      return next;
-                    });
-                  }}
-                  onRejectRevision={(id) => {
-                    framingForHandler().forceFrame();
-                    setBlocks(prev => {
-                      const idx = prev.findIndex(b => b.id === id);
-                      if (idx < 0) return prev;
-                      const b = prev[idx];
-                      if (b.revision === 'add') return prev.filter(bl => bl.id !== id);
-                      const next = [...prev];
-                      next[idx] = { ...b, revision: undefined };
-                      return next;
-                    });
-                  }}
+                  onAcceptRevision={(id) => dispatchBlocks((b) => Blocks.acceptBlockRevision(b, id))}
+                  onRejectRevision={(id) => dispatchBlocks((b) => Blocks.rejectBlockRevision(b, id))}
                   onCommentClick={handleCommentClick}
                   commentsState={commentsState}
                   activeCommentId={openCommentId}
@@ -2705,34 +2395,8 @@ export default function SpecEditor() {
                   trackChanges={trackChanges}
                   identity={identity}
                   readOnly={collabReadOnly}
-                  onAcceptRevision={(id) => {
-                    framingForHandler().forceFrame();
-                    setBlocks(prev => {
-                      const idx = prev.findIndex(b => b.id === id);
-                      if (idx < 0) return prev;
-                      const b = prev[idx];
-                      if (b.revision === 'del') return prev.filter(bl => bl.id !== id);
-                      const next = [...prev];
-                      const html = b.html ? acceptAllInline(b.html) : b.html;
-                      if (activeYStore && typeof html === 'string') setBlockHtml(activeYStore, id, html);
-                      next[idx] = { ...b, revision: undefined, html };
-                      return next;
-                    });
-                  }}
-                  onRejectRevision={(id) => {
-                    framingForHandler().forceFrame();
-                    setBlocks(prev => {
-                      const idx = prev.findIndex(b => b.id === id);
-                      if (idx < 0) return prev;
-                      const b = prev[idx];
-                      if (b.revision === 'add') return prev.filter(bl => bl.id !== id);
-                      const next = [...prev];
-                      const html = b.html ? rejectAllInline(b.html) : b.html;
-                      if (activeYStore && typeof html === 'string') setBlockHtml(activeYStore, id, html);
-                      next[idx] = { ...b, revision: undefined, html };
-                      return next;
-                    });
-                  }}
+                  onAcceptRevision={(id) => dispatchBlocks((b) => Blocks.acceptBlockRevision(b, id))}
+                  onRejectRevision={(id) => dispatchBlocks((b) => Blocks.rejectBlockRevision(b, id))}
                   onRefreshTcSnapshot={handleBlockUpdatePmSync}
                   commentsState={commentsState}
                   onCommentClick={handleCommentClick}
