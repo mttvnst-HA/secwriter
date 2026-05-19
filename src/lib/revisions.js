@@ -185,7 +185,11 @@ export function countRevisions(blocks) {
     if (b.html) {
       const addMatches = b.html.match(/<ins\s+class="mark-add"[^>]*>/g);
       const delMatches = b.html.match(/<del\s+class="mark-del"[^>]*>/g);
-      const chgMatches = b.html.match(/<span\s+class="mark-chg">/g);
+      // `[^>]*` matches the per-author attribution attrs emitted by the 1h TC
+      // marking pipeline (data-author-id, style). Without it, chgs authored by
+      // the per-keystroke rewriter went uncounted — same bug shape as the add
+      // and del regexes had pre-#109 (spawned-from-#109 follow-up).
+      const chgMatches = b.html.match(/<span\s+class="mark-chg"[^>]*>/g);
       if (addMatches) adds += addMatches.length;
       if (delMatches) dels += delMatches.length;
       if (chgMatches) chgs += chgMatches.length;
