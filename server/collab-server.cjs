@@ -456,7 +456,11 @@ function createCollabServer(config) {
 function startFromEnv() {
   const PORT = Number(process.env.COLLAB_PORT || 1234);
   const HOST = process.env.COLLAB_HOST || '127.0.0.1';
-  const DATA_DIR = path.resolve(process.cwd(), 'server/collab-db');
+  // SIM_LOCAL_STORAGE_DIR isolates test storage from dev storage so an E2E
+  // run can wipe rooms in its own directory without touching the developer's
+  // work-in-progress rooms in server/collab-db/. Without isolation, dev rooms
+  // accumulated in shared storage make GET /rooms slow (see issue #100).
+  const DATA_DIR = path.resolve(process.cwd(), process.env.SIM_LOCAL_STORAGE_DIR || 'server/collab-db');
 
   let storage;
   if (process.env.SIM_STORAGE_BACKEND === 'azure') {

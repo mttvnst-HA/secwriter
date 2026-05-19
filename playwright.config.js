@@ -6,6 +6,7 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   fullyParallel: true,
   workers: process.env.CI ? 4 : undefined,
+  globalSetup: './tests/e2e/global-setup.js',
   use: {
     baseURL: 'http://localhost:5173',
     headless: true,
@@ -27,6 +28,7 @@ export default defineConfig({
         SIM_RATE_LIMIT_HTTP_WRITE_PER_MIN: '10000',
         SIM_RATE_LIMIT_HTTP_READ_PER_MIN: '10000',
         SIM_RATE_LIMIT_WS_PER_MIN: '10000',
+        SIM_LOCAL_STORAGE_DIR: 'server/collab-db-e2e',
       },
     },
   ],
