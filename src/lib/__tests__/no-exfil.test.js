@@ -29,8 +29,10 @@ describe('NO_EXFIL_PROPS is spread on every typing surface', () => {
   // Each entry: [file, expected spread occurrences].
   // If you add a new contentEditable / input / textarea that accepts spec or
   // comment text, add it here AND spread {...NO_EXFIL_PROPS} on the element.
+  // 1i-b.2: EditableBlock.jsx retired; PmEditableBlock's typing surface is
+  // covered by the NO_EXFIL_PM_ATTRS describe block below — PM uses
+  // EditorProps.attributes (lowercase HTML names), not React {...spread}.
   const surfaces = [
-    ['src/components/EditableBlock.jsx', 1],
     ['src/components/TitleBlock.jsx', 1],
     ['src/components/PreformattedBlock.jsx', 1],
     ['src/components/SearchBar.jsx', 2],       // find + replace

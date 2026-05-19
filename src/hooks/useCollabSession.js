@@ -113,11 +113,18 @@ import {
  *   1h Q36 Commit A — ends the current UndoManager capture window so
  *   the next 'local-publish' write starts a fresh frame. No-op when no
  *   session is live. Stable identity across renders.
+ * @property {() => void} clearStack
+ *   1i-b.2 — drops both undo and redo stacks atomically (via
+ *   Y.UndoManager.clear). App's file-import handler calls this so
+ *   Ctrl+Z cannot cross the file boundary. No-op when no session is
+ *   live (the out-of-room equivalent lives on the local-substrate
+ *   manager).
  * @property {Y.Map|null} yStore
  *   The session's per-block Y.Map<string, Y.Map> — exposed so App can
  *   compute `activeYStore = inRoom ? collab.yStore : localYStore` and
- *   pass it to EditableBlock's binder. State, not ref: re-renders when
- *   the session is created or destroyed so the binder resubscribes.
+ *   pass it to PmEditableBlock's ySyncPlugin. State, not ref: re-renders
+ *   when the session is created or destroyed so PmEditableBlock's
+ *   useSyncExternalStore subscription resubscribes to the new substrate.
  */
 
 /**
@@ -153,10 +160,10 @@ export function useCollabSession({
   // The session itself.
   const sessionRef = useRef(null);
 
-  // Active session's yStore as state — mirrors sessionRef.current?.yStore but
-  // re-renders the consumer when the session is (re)created or destroyed so
-  // EditableBlock's binder resubscribes against the right substrate. Null
-  // when out of room.
+  // Active session's yStore as state — mirrors sessionRef.current?.yStore
+  // but re-renders the consumer when the session is (re)created or
+  // destroyed so PmEditableBlock's useSyncExternalStore subscription
+  // resubscribes against the right substrate. Null when out of room.
   const [yStore, setYStoreState] = useState(null);
 
   // Echo guard for blocks: every remote payload is stashed here BEFORE
@@ -190,9 +197,10 @@ export function useCollabSession({
   // Sub-PR 1b.1 (#47 v2 plan, Q25). Trips when the room's
   // yMeta.schemaVersion is higher than this client's max supported version.
   // Forces collab into read-only via the 'incompatible' status; gates all
-  // publish paths so a stale write cannot land in a v2 doc; nulls the yStore
-  // exposure so EditableBlock's binder writes also no-op. The user reloads
-  // to pick up a newer client.
+  // publish paths so a stale write cannot land in a v2 doc; nulls the
+  // yStore exposure so PmEditableBlock's substrate subscription resolves
+  // to null and the EditorView stays unmounted. The user reloads to pick
+  // up a newer client.
   //
   // Sub-PR 1d (#47, ADR-0006) bumps max-supported to 2: this client speaks
   // the Y.XmlFragment substrate. A future v3 client/server pair will bump
@@ -261,13 +269,14 @@ export function useCollabSession({
         if (meta?.initial) {
           sessionReadyRef.current = true;
           // Expose the session yStore only AFTER first sync so
-          // EditableBlock's binder (and every App handler that reads
-          // activeYStoreRef.current) cannot write into a Y.Doc that
-          // hasn't yet absorbed the server's persisted state. Without
-          // this gate, a typed character or programmatic html mutation
-          // landing in the sync window CRDT-merges on top of the
-          // remote state — the eee8977 corruption pattern, via the
-          // direct setBlockHtml path instead of publishBlocks.
+          // PmEditableBlock's substrate subscription (and every App
+          // handler that reads activeYStoreRef.current) cannot write
+          // into a Y.Doc that hasn't yet absorbed the server's
+          // persisted state. Without this gate, a typed character or
+          // programmatic html mutation landing in the sync window
+          // CRDT-merges on top of the remote state — the eee8977
+          // corruption pattern, via the direct setBlockHtml path
+          // instead of publishBlocks.
           setYStoreState(session.yStore);
         }
         onBlocksReceivedRef.current?.(nextBlocks, meta);
@@ -556,6 +565,16 @@ export function useCollabSession({
     }
   }, []);
 
+  // 1i-b.2 — drop both undo and redo stacks atomically. App's file-import
+  // handler calls this so Ctrl+Z cannot cross the file boundary. No-op when
+  // out of room (sessionRef is null).
+  const clearStack = useCallback(() => {
+    const session = sessionRef.current;
+    if (session && typeof session.clearStack === 'function') {
+      session.clearStack();
+    }
+  }, []);
+
   return {
     dispatchComment,
     markTcSeqApplied,
@@ -565,6 +584,7 @@ export function useCollabSession({
     canRedo,
     withUndoFrame,
     forceFrame,
+    clearStack,
     yStore,
   };
 }

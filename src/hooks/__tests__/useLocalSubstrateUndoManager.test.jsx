@@ -9,7 +9,9 @@
 //      origins (drift between in-room and out-of-room would yield
 //      different Ctrl+Z semantics depending on collab mode).
 //   2. tryUndo / tryRedo return false when the respective stack is empty
-//      (so App's keydown handler can fall through to useUndoableBlocks).
+//      (this is the final undo tier post-1i-b.2; there is no further
+//      fall-through, but the return value still lets App's keydown
+//      handler distinguish "handled" from "no-op").
 //   3. The UndoManager is destroyed on unmount (no listener leak across
 //      session-mode flips).
 
@@ -35,10 +37,10 @@ afterEach(() => { cleanup(); });
 
 describe('useLocalSubstrateUndoManager', () => {
   describe('shape', () => {
-    it('returns { tryUndo, tryRedo, canUndo, canRedo, withUndoFrame, forceFrame }', () => {
+    it('returns { tryUndo, tryRedo, canUndo, canRedo, withUndoFrame, forceFrame, clearStack }', () => {
       const { result } = renderHook(() => useLocalSubstrateUndoManager(substrate));
       expect(Object.keys(result.current).sort()).toEqual(
-        ['canRedo', 'canUndo', 'forceFrame', 'tryRedo', 'tryUndo', 'withUndoFrame'],
+        ['canRedo', 'canUndo', 'clearStack', 'forceFrame', 'tryRedo', 'tryUndo', 'withUndoFrame'],
       );
       expect(typeof result.current.tryUndo).toBe('function');
       expect(typeof result.current.tryRedo).toBe('function');
@@ -46,6 +48,7 @@ describe('useLocalSubstrateUndoManager', () => {
       expect(typeof result.current.canRedo).toBe('function');
       expect(typeof result.current.withUndoFrame).toBe('function');
       expect(typeof result.current.forceFrame).toBe('function');
+      expect(typeof result.current.clearStack).toBe('function');
     });
   });
 

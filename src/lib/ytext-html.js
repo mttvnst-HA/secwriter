@@ -1,8 +1,10 @@
 /**
  * ytext-html.js — Y.Text deltas ↔ HTML string conversion
  *
- * Receive direction: yTextToHtml converts Y.Text (with formatting attributes)
- * into an HTML string that EditableBlock can render.
+ * Receive direction: yTextToHtml converts Y.Text (with formatting
+ * attributes) into an HTML string. Retained for migrationPartial rooms
+ * whose html slot is still Y.Text — see block-html-store.js for the
+ * duck-typed read branch.
  *
  * Nesting order (outermost → innermost): comment → revision → mark → format
  *

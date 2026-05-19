@@ -68,9 +68,9 @@ const TOOLTIP_DEBOUNCE_MS = 100;
  * @param {number} [args.elVersion=0]
  *   Monotonically increasing tick the caller bumps whenever `getEl()` would
  *   start returning a different DOM node (e.g. PM EditorView mounted late
- *   after the initial render because yStore was null). When omitted (legacy
- *   contentEditable path) the value stays 0 and the input-listener effect
- *   binds once on mount as before.
+ *   after the initial render because yStore was null). PmEditableBlock is
+ *   the sole supplier post-1i-b.2; it always passes a non-zero version on
+ *   mount.
  * @returns {{
  *   severity: 'high'|'medium'|'low'|null,
  *   tooltipFinding: {range: Range, violation: object} | null,

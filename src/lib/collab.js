@@ -573,13 +573,12 @@ function updateYMapFromBlock(ymap, block) {
     ymap.delete('ref');
   }
 
-  // HTML lives in the per-block CRDT slot and is owned by the binder
-  // (useBlockBinder) for existing blocks (#22 sub-PR 1b). Per-keystroke
-  // writes flow through setBlockHtml directly; React-state-driven publishes
-  // (handleRevisionAction, search/replace, MarkSuggestions, etc.) call
-  // setBlockHtml in addition to setBlocks. This path skips html for any
-  // existing slot — re-applying a stale React block.html would clobber
-  // typing in flight.
+  // HTML lives in the per-block CRDT slot. Per-keystroke writes flow
+  // through y-prosemirror's ySyncPlugin (ySyncPluginKey origin);
+  // React-state-driven publishes (handleRevisionAction, search/replace,
+  // MarkSuggestions, etc.) call setBlockHtml in addition to setBlocks.
+  // This path skips html for any existing slot — re-applying a stale
+  // React block.html would clobber typing in flight.
   //
   // Sub-PR 1d (#47, ADR-0006): the slot can be Y.XmlFragment (post-broker)
   // OR Y.Text (legacy / migrationPartial). Both shapes are valid; the
@@ -927,14 +926,6 @@ export function createCollabSession({
   // punctuation / Enter keydowns to split typing bursts into per-word
   // frames, matching Word/Notion convention.
   //
-  // Known limitation (dual-stack-no-coalescing wart — documented in
-  // CLAUDE.md): App-level `useUndoableBlocks` snapshots also capture
-  // every setBlocks call. After a PM keystroke or structural change,
-  // both stacks contain a corresponding frame; Ctrl+Z routes to this
-  // Yjs UndoManager first via App's keyboard handler, leaving the
-  // snapshot stack stale. The 1i sub-PR retires `useUndoableBlocks` and
-  // the wart goes away.
-  //
   // captureTransaction rejects transactions whose `addToHistory` meta is
   // false. y-prosemirror's sync-plugin propagates the PM-side
   // `tr.setMeta('addToHistory', false)` to the Yjs transaction meta
@@ -1026,13 +1017,20 @@ export function createCollabSession({
     // wired through useCollabSession + PmEditableBlock into the
     // word-boundary-undo plugin, which calls it on every word-boundary
     // keydown. Commit B adds `ySyncPluginKey` to trackedOrigins, so
-    // forceFrame now splits typing bursts into per-word undo frames in
-    // production (matching Word/Notion convention). `withUndoFrame` is
-    // unused in production until Commit C migrates the App.jsx
-    // `resumeHistory` sites. See src/lib/undo-helpers.js for full
-    // semantics (including the partial-write-on-exception contract).
+    // forceFrame splits typing bursts into per-word undo frames in
+    // production (matching Word/Notion convention). `withUndoFrame`
+    // wraps multi-write gestures (handleAcceptAll, handleRejectAll,
+    // handleComplianceAcceptGroup) into a single frame. See
+    // src/lib/undo-helpers.js for full semantics (including the
+    // partial-write-on-exception contract).
     withUndoFrame,
     forceFrame,
+    // 1i-b.2 — App's file-import handler calls this through useCollabSession
+    // so Ctrl+Z cannot cross the file boundary into the previous file's
+    // content. Y.UndoManager's clear() drops both stacks atomically.
+    clearStack() {
+      undoManager.clear();
+    },
     destroy() {
       ydoc.off('afterTransaction', handleAfterTx);
       awareness.off('change', handleAwareness);

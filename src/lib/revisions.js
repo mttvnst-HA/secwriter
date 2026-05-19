@@ -9,11 +9,16 @@
 
 /**
  * Accept inline ADD: strip <ins class="mark-add"> tags, keep content.
+ *
+ * The `[^>]*` after `class="mark-add"` matches the per-author attribution
+ * attrs (data-author-id, style) that the 1h TC marking pipeline emits.
+ * Without it, marks authored by the post-1h per-keystroke rewriter survived
+ * "Accept All" (#109 M4 follow-up — paired with the registry flush).
  */
 export function acceptInlineAdd(html) {
   if (!html) return html;
   return html
-    .replace(/<ins\s+class="mark-add">/g, '')
+    .replace(/<ins\s+class="mark-add"[^>]*>/g, '')
     .replace(/<\/ins>/g, '');
 }
 
@@ -36,10 +41,13 @@ export function acceptInlineDel(html) {
  * Preserves word boundaries — if removing the ins tag would concatenate two
  * word characters (e.g., "The<ins>...</ins>Contractor" → "TheContractor"),
  * inserts a space to prevent word concatenation.
+ *
+ * `[^>]*` matches the per-author attribution attrs emitted by the 1h TC
+ * marking pipeline (see acceptInlineAdd note).
  */
 export function rejectInlineAdd(html) {
   if (!html) return html;
-  return html.replace(/<ins\s+class="mark-add">[\s\S]*?<\/ins>/g, (match, offset, str) => {
+  return html.replace(/<ins\s+class="mark-add"[^>]*>[\s\S]*?<\/ins>/g, (match, offset, str) => {
     const before = str[offset - 1];
     const after = str[offset + match.length];
     // If both adjacent characters are word characters, insert a space
@@ -177,7 +185,11 @@ export function countRevisions(blocks) {
     if (b.html) {
       const addMatches = b.html.match(/<ins\s+class="mark-add"[^>]*>/g);
       const delMatches = b.html.match(/<del\s+class="mark-del"[^>]*>/g);
-      const chgMatches = b.html.match(/<span\s+class="mark-chg">/g);
+      // `[^>]*` matches the per-author attribution attrs emitted by the 1h TC
+      // marking pipeline (data-author-id, style). Without it, chgs authored by
+      // the per-keystroke rewriter went uncounted — same bug shape as the add
+      // and del regexes had pre-#109 (spawned-from-#109 follow-up).
+      const chgMatches = b.html.match(/<span\s+class="mark-chg"[^>]*>/g);
       if (addMatches) adds += addMatches.length;
       if (delMatches) dels += delMatches.length;
       if (chgMatches) chgs += chgMatches.length;

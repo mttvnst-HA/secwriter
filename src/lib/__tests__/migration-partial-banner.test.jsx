@@ -7,12 +7,11 @@
 // asking the operator to re-run conversion. Mirrors the duck-typing in
 // block-html-store.js's deriveHtml.
 //
-// Why this matters under 1i-b.2: today PmEditableBlock bails silently on
-// the Y.Text shape because EditableBlock owns the render path for those
-// blocks under flag-off. Once EditableBlock is removed, the silent bail
-// would produce an invisible-but-uneditable block — breaking ADR-0006's
+// Why this matters: PmEditableBlock bails silently on the Y.Text shape
+// (its ySyncPlugin requires Y.XmlFragment). Without a banner, the user
+// sees an invisible-but-uneditable block — breaking ADR-0006's
 // "half-migrated rooms remain editable" promise. The banner is the
-// user-facing fallback.
+// user-facing fallback for Y.Text-slot blocks in migrationPartial rooms.
 //
 // Test fixture mirrors PmEditableBlock-mount-race.test.jsx — props are the
 // minimum shape PmEditableBlock destructures, linting disabled to avoid
@@ -147,5 +146,52 @@ describe('migrationPartial blocks render a read-only banner', () => {
     // The full EditorView mount path in jsdom is exercised by
     // PmEditableBlock-mount-race.test.jsx; here we only need to confirm the
     // banner does NOT swallow the v2-shape case.
+  });
+
+  it('unmounts the banner when the broker swaps Y.Text → Y.XmlFragment mid-session', async () => {
+    // Regression for collab.spec.js:169 ("two-tab text sync") — the server
+    // seeds a fresh room with Y.Text slots, then the 1d broker swaps them
+    // to Y.XmlFragment on the next WS upgrade. The clients already
+    // connected at seed time receive the swap via yMap.set('html', frag)
+    // — same yMap reference, NEW html slot reference.
+    //
+    // Without subscribing to the slot identity (the pre-fix bug),
+    // useSyncExternalStore's Object.is on the unchanged yMap would
+    // dedupe the re-render, leaving the banner stuck on screen and the
+    // EditorView unmounted forever on the original client.
+    seedSlotV1Legacy(yStore, ydoc, 'mp3', '<p>legacy</p>');
+
+    let container;
+    await act(async () => {
+      ({ container } = render(
+        <PmEditableBlock {...defaultProps({
+          yStore,
+          block: { id: 'mp3', type: 'txt', html: '<p>legacy</p>' },
+        })} />,
+      ));
+    });
+
+    // Pre-condition: banner is showing.
+    expect(container.querySelector('.migration-partial-banner')).not.toBeNull();
+
+    // Simulate the broker: replace the Y.Text slot with a Y.XmlFragment.
+    // The outer yMap identity is unchanged — only the inner 'html' slot
+    // gets a new reference. This mirrors migrate-pm-substrate.cjs's
+    // per-block conversion under its 'migrate-v2' origin.
+    await act(async () => {
+      ydoc.transact(() => {
+        const yMap = yStore.get('mp3');
+        const yXml = new Y.XmlFragment();
+        yMap.set('html', yXml);
+        prosemirrorToYXmlFragment(htmlToPmFragment('<p>migrated</p>'), yXml);
+      }, 'migrate-v2');
+    });
+
+    // Banner must be gone. (We don't assert the EditorView mounts
+    // synchronously — jsdom-based EditorView mount has known quirks; the
+    // contract that matters here is "the migration-partial gate releases
+    // when the slot swaps." The Playwright two-tab text-sync test pins
+    // the live mount + sync end-to-end.)
+    expect(container.querySelector('.migration-partial-banner')).toBeNull();
   });
 });

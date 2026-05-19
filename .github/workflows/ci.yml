@@ -126,12 +126,10 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      # 1i-a (#47) — CI now runs the chromium project (PM EditorView).
-      # The chromium-legacy project remains in playwright.config.js as a
-      # safety net through 1i-b.1 but is no longer required to be green.
-      # 1i-b.2 deletes both the chromium-legacy project and any test
-      # blocks marked PM-only/Legacy-only.
-      - name: E2E tests (chromium / PM editor)
+      # 1i-b.2 (#47) — single-project gate. The chromium-legacy project
+      # and the VITE_PM_EDITOR flag retired with this PR; PmEditableBlock
+      # is the only editor.
+      - name: E2E tests (chromium)
         run: npx playwright test --project=chromium
         env:
           # Raise collab-server rate limits for E2E. Defaults (20 write/min,

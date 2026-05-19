@@ -2,7 +2,7 @@ import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import { FileText, Search, Upload, Download, Check, Loader, Users } from "lucide-react";
 import TreeNode from "./components/TreeNode.jsx";
 // MarkLegend component preserved for future user manual documentation (removed from toolbar UI)
-import EditableBlock from "./components/EditableBlock.jsx";
+import PmEditableBlock from "./components/PmEditableBlock.jsx";
 import TitleBlock from "./components/TitleBlock.jsx";
 import TableBlock from "./components/TableBlock.jsx";
 import PreformattedBlock from "./components/PreformattedBlock.jsx";
@@ -31,13 +31,11 @@ import { generateCommentReport } from "./lib/comment-report.js";
 import { parseSEC } from "./lib/sec-parser.js";
 import { serializeSEC } from "./lib/sec-serializer.js";
 import { encodeWindows1252 } from "./lib/encoding.js";
-import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
 import * as Y from "yjs";
 import { seedBlockArray, resetBlockArray, setBlockHtml, setBlockHtmlSilent, getBlockHtml } from "./lib/block-html-store.js";
-import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, getBlockView, listBlocksInDocumentOrder } from "./lib/block-registry.js";
+import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, getBlockView, listBlocksInDocumentOrder, flushAllPendingUpdates } from "./lib/block-registry.js";
 import { setActiveComment } from "./lib/pm-plugins/active-comment.js";
 import { TextSelection } from "prosemirror-state";
-import { isPmEditorEnabled } from "./lib/feature-flags.js";
 import * as tc from "./lib/track-changes.js";
 import * as linting from "./lib/linting.js";
 import * as comp from "./lib/compliance.js";
@@ -61,6 +59,13 @@ const COLLAB_HTTP_URL = DEFAULT_HTTP_URL;
 // Walk text nodes under `root` to compute the plain-text offset of
 // (node, offset). Used to transport a caret position across a DOM rewrite
 // caused by a remote collab update.
+//
+// 1i-b.2 — post-PM-only world, the only surface that still needs this is
+// TitleBlock's contentEditable title span (TitleBlock isn't a PM
+// EditorView). PM-mounted blocks short-circuit via the `data-pm-editor`
+// gate in onBlocksReceived and let y-prosemirror's relpos plugin own
+// selection management. Ref/table contentEditable inputs live on inner
+// elements that don't carry `data-block-id` so the gate also skips them.
 function getPlainTextOffset(root, node, offset) {
   if (!root || !node) return -1;
   let total = 0;
@@ -121,38 +126,32 @@ function restorePlainTextOffset(root, startIndex, endIndex) {
 }
 
 export default function SpecEditor() {
-  const {
-    blocks, setBlocks, setBlocksDirect,
-    undo, redo, canUndo, canRedo, clearHistory, resumeHistory,
-  } = useUndoableBlocks(INITIAL_BLOCKS, {
-    // Sub-PR 1f: PM-mode dirty-html resolver. For PM EditorView blocks the
-    // hook reads the substrate (synchronous per-keystroke writes via
-    // ySyncPlugin) instead of `activeEl.innerHTML` (which contains widget
-    // decorations from tag-labels). Legacy blocks fall through to the
-    // hook's default innerHTML capture. The closure over `activeYStoreRef`
-    // is safe even though the ref is declared below — the function is only
-    // invoked at undo-time, well after all consts in this render initialize.
-    getPmDirtyHtml: (id) => {
-      try {
-        const yStore = activeYStoreRef.current;
-        return yStore ? getBlockHtml(yStore, id) : null;
-      } catch {
-        return null;
-      }
-    },
-  });
-  // 1i-b.1 — tcState no longer rides on useUndoableBlocks' snapshot
-  // stack. Post-1h Q35+Q37 the reducer is `{ enabled, publishSeq }`
-  // and the publishSeq counter handles echo-gating with no per-block
-  // snapshot to keep in lockstep with `blocks`. Accepted regression:
-  // a Ctrl+Z crossing a TC enable/disable boundary no longer rolls
-  // back the toggle (it's an explicit user gesture, never a
-  // typing-frame mutation).
+  // 1i-b.2 — blocks state migrates to plain React useState. The Yjs
+  // UndoManager (collab.undoManager in-room, localUndo.undoStack out-of-
+  // room) is now the only undo source. `setBlocksDirect` and `setBlocks`
+  // converge — both are plain React setters now; the "direct vs undoable"
+  // distinction died with the snapshot stack.
+  const [blocks, setBlocks] = useState(INITIAL_BLOCKS);
+  const setBlocksDirect = setBlocks;
+  // `clearHistory` is defined here as a stable wrapper that delegates to
+  // `clearHistoryRef.current()` at call time. The ref is populated by an
+  // effect below (after `useCollabSession` is in scope) so the wrapper
+  // points to a function that clears both UndoManagers. This is the
+  // standard React idiom for "I need to call X from a callback declared
+  // earlier than X exists" — the same pattern App uses for
+  // `activeYStoreRef` and `onUpdateRef` inside PmEditableBlock.
+  const clearHistoryRef = useRef(() => {});
+  const clearHistory = useCallback(() => clearHistoryRef.current(), []);
+  // Post-1h Q35+Q37 the TC reducer is `{ enabled, publishSeq }` and the
+  // publishSeq counter handles echo-gating. Accepted regression: a
+  // Ctrl+Z crossing a TC enable/disable boundary no longer rolls back
+  // the toggle (it's an explicit user gesture, never a typing-frame
+  // mutation).
   const [tcState, setTcState] = useState(() => tc.createInitial());
-  // Local Y.Doc — the no-room substrate for block html. EditableBlock's
-  // useBlockBinder reads/writes this when !inRoom. In-room mode, the
-  // session's Y.Doc takes over; the local substrate stays allocated but
-  // dormant. See ADR-0004 (#22 sub-PR 1b).
+  // Local Y.Doc — the no-room substrate for block html. PmEditableBlock's
+  // ySyncPlugin binds to this when !inRoom. In-room mode, the session's
+  // Y.Doc takes over; the local substrate stays allocated but dormant.
+  // See ADR-0004 (#22 sub-PR 1b).
   const [localSubstrate] = useState(() => {
     const ydoc = new Y.Doc();
     const yOrder = ydoc.getArray('order');
@@ -335,7 +334,7 @@ export default function SpecEditor() {
   }, [tree, sidebarSearch]);
 
   // TAI resolution: compute a key that changes when tailoring settings change,
-  // forcing EditableBlock to re-render with resolved HTML
+  // forcing PmEditableBlock to re-render with resolved HTML
   const tailorKey = useMemo(() => {
     if (!tailorActive || !tailorProfile.branch) return null;
     return `${tailorProfile.branch}-${tailorProfile.region || ''}-${tailorProfile.deliveryMethod || ''}-${tailorShowAll}`;
@@ -612,15 +611,15 @@ export default function SpecEditor() {
     }
   }, [roomId, sectionMeta.sectionNumber, authHeaders]);
 
-  // Programmatic focus for EXISTING elements (arrow nav, tree select, delete-focus-prev)
-  // New blocks focus themselves via the ref callback in EditableBlock.
+  // Programmatic focus for EXISTING elements (arrow nav, tree select, delete-focus-prev).
+  // New blocks focus themselves from their own mount effect (see
+  // PmEditableBlock's `block.isNew` auto-focus and TitleBlock's mount).
   //
   // Sub-PR 1e (#47, v2 plan Q17/E4). Was: querySelector('[data-block-id=…]')
   // + manual Range placement. Now goes through block-registry's imperative
   // handle so PM-mounted blocks (which own their internal DOM and don't
   // surface a single contentEditable) can route the focus to PM's
-  // EditorView.dispatch + Selection.atEnd. The 1i sub-PR will lint-fail any
-  // re-introduction of the querySelector pattern.
+  // EditorView.dispatch + Selection.atEnd.
   //
   // Race safety (QC major-5): the legacy fallback's manual Range placement
   // fights PM's own selection management. We give the registry two chances
@@ -678,10 +677,9 @@ export default function SpecEditor() {
   }, [focusBlock]);
 
   const handleReorderSection = useCallback((dragId, dropId, position) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     setBlocks(prev => reorderSection(prev, dragId, dropId, position));
-  }, [resumeHistory]);
+  }, []);
 
   // Comment dispatcher — thin wrapper that routes a PublishEnvelope to the
   // collab session via the useCollabSession hook (set up further below).
@@ -830,11 +828,13 @@ export default function SpecEditor() {
   }, [blocks, commentsState, setBlocksDirect]);
 
   const handleBlockUpdate = useCallback((id, html) => {
-    // Mirror the new html into the active Y.Doc substrate so non-typing
-    // mutations stay observable through getBlockHtml. Typing flows through
-    // useBlockBinder.write directly and skips this codepath; this handler
-    // remains for handleBlur, programmatic onUpdate calls, and anything
-    // routed via FloatingToolbar.onBlockUpdate.
+    // Mirror the new html into the active Y.Doc substrate so non-PM
+    // authors (TitleBlock raw contentEditable, MarkSuggestions accept
+    // via handleBlockUpdateWithSync) stay observable through
+    // getBlockHtml. PM typing flows through ySyncPlugin directly and
+    // reaches React state through PmEditableBlock's debounced onUpdate
+    // → this handler; the substrate write is then a byte-stable echo
+    // op that the UndoManager merges into the same frame.
     const yStore = activeYStoreRef.current;
     if (yStore) setBlockHtml(yStore, id, html);
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
@@ -846,40 +846,13 @@ export default function SpecEditor() {
   // the substrate, so this handler ONLY updates React state. Skipping
   // setBlockHtml avoids a redundant 'local-publish' op + duplicate broadcast.
   //
-  // resumeHistory() is retained because legacy useUndoableBlocks auto-pauses
-  // after every keystroke flush; without it, this setBlocks captures NO
-  // snapshot, leaving out-of-room inline TC accept/reject non-undoable.
-  // FloatingToolbar's PM caller skips flushPendingUpdateById and calls
-  // cancelPendingUpdateById instead, so this setBlocks is the first frame in
-  // the action's lifecycle and `prev` is the true pre-action state.
-  //
-  // In-room undo prefers collab.tryUndo (Yjs UndoManager) which tracks
-  // 'local-publish' ops; setBlockHtml after ySyncPlugin's write is a no-op
-  // delta, so in-room out-of-PM-mode users hit the broader PM-mode undo
-  // limitation tracked alongside the existing Ctrl+Y redo off-by-one.
+  // forceFrame() closes the active Yjs UndoManager capture window before
+  // the React state update so a subsequent ySyncPlugin op (from later
+  // typing) opens a fresh frame instead of coalescing with the action.
   const handleBlockUpdatePmSync = useCallback((id, html) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
-  }, [resumeHistory]);
-
-  // 1h Q35 — legacy del-popup sibling of handleBlockUpdate. Wired into
-  // LegacyEditableBlock's onRevisionAction so the user gesture of clicking
-  // "Accept" / "Reject" on a del popup enters useUndoableBlocks as one
-  // undoable frame. Without resumeHistory(), a popup click landing inside
-  // the post-keystroke pause window (useUndoableBlocks auto-pauses for
-  // ~400ms after each input flush) lands a setBlocks while paused — no
-  // snapshot captured, undo silently broken. Same setBlockHtml + setBlocks
-  // body as handleBlockUpdate because the legacy popup mutates serialized
-  // HTML directly and the substrate must catch up. Goes away in 1i with
-  // the rest of the legacy contentEditable path.
-  const handleLegacyRevisionAction = useCallback((id, html) => {
-    resumeHistory();
-    framingForHandler().forceFrame();
-    const yStore = activeYStoreRef.current;
-    if (yStore) setBlockHtml(yStore, id, html);
-    setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
-  }, [resumeHistory]);
+  }, []);
 
   // Update block HTML and sync the contentEditable DOM (used by MarkSuggestions).
   // For PM-mounted blocks the substrate write is the source of truth — the
@@ -914,14 +887,12 @@ export default function SpecEditor() {
         const b = blocksRef.current.find((x) => x.id === id);
         return b ? b.html : null;
       },
-      // handleBlockUpdateWithSync (not plain handleBlockUpdate) so the legacy
-      // EditableBlock's contentEditable DOM stays in sync — the legacy DOM
-      // sync effect skips writes while the block is focused (avoids fighting
-      // active typing), so a focused-block injection via plain
-      // handleBlockUpdate would update React state + substrate but leave the
-      // stale DOM, and the next blur would read the stale DOM and clobber.
+      // Route through handleBlockUpdateWithSync (also called by
+      // MarkSuggestions). Writes substrate via setBlockHtml + setBlocks,
+      // and ySyncPlugin observes the substrate write and re-renders the
+      // PM view — so the test sees its html land on the EditorView,
+      // not just in React state.
       setBlockHtml: (id, html) => { handleBlockUpdateWithSync(id, html); },
-      getEditorMode: () => (isPmEditorEnabled() ? 'pm' : 'legacy'),
       // 1f.9 — read PM selection range for E3 (selection-persistence test).
       getPmSelection: (id) => {
         const view = getBlockView(id);
@@ -958,7 +929,6 @@ export default function SpecEditor() {
   // blocks (they re-render via ySyncPlugin's observe of the substrate
   // write below).
   const handleSearchReplace = useCallback((blockId, offset, length, replacement) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     setBlocks(prev => prev.map(b => {
       if (b.id !== blockId || !b.html) return b;
@@ -973,7 +943,6 @@ export default function SpecEditor() {
 
   // Remove an orphaned RID entry from a REF block
   const handleRemoveOrphaned = useCallback((blockId, rid) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     setBlocks(prev => prev.map(b => {
       if (b.id !== blockId || b.type !== 'ref' || !b.ref?.entries) return b;
@@ -988,7 +957,6 @@ export default function SpecEditor() {
 
   // Add reference from wizard — find or create the org's REF block, sorted insertion
   const handleAddReference = useCallback(({ org, rid, rtl }) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     // Alphanumeric sort comparator for RIDs: letters first, then numbers
     const ridCompare = (a, b) => {
@@ -1040,7 +1008,6 @@ export default function SpecEditor() {
   }, []);
 
   const handleEnterKey = useCallback((afterId) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     const newId = `new-${Date.now()}`;
     setBlocks(prev => {
@@ -1081,7 +1048,6 @@ export default function SpecEditor() {
 
   // Tab/Shift+Tab on an OLI item: demote/promote list level (1..4, UFS Figure A-1).
   const handleChangeOliLevel = useCallback((blockId, delta) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     setBlocks(prev => {
       const idx = prev.findIndex(b => b.id === blockId);
@@ -1099,7 +1065,6 @@ export default function SpecEditor() {
 
   // Delete a block and focus the previous one
   const handleDelete = useCallback((blockId) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     setBlocks(prev => {
       const idx = prev.findIndex(b => b.id === blockId);
@@ -1161,7 +1126,6 @@ export default function SpecEditor() {
 
   // Convert a text block to a title
   const handleConvertToTitle = useCallback((blockId) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     setBlocks(prev => {
       const idx = prev.findIndex(b => b.id === blockId);
@@ -1184,7 +1148,6 @@ export default function SpecEditor() {
 
   // General block type conversion (from slash menu)
   const handleConvertBlock = useCallback((blockId, newType) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     if (newType === "title") {
       handleConvertToTitle(blockId);
@@ -1237,7 +1200,6 @@ export default function SpecEditor() {
 
   // Promote a title (decrease depth)
   const handlePromote = useCallback((blockId) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     setBlocks(prev => prev.map(b => {
       if (b.id === blockId && b.type === "title" && b.depth > 1) {
@@ -1249,7 +1211,6 @@ export default function SpecEditor() {
 
   // Demote a title (increase depth)
   const handleDemote = useCallback((blockId) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     setBlocks(prev => prev.map(b => {
       if (b.id === blockId && b.type === "title" && b.depth < 6) {
@@ -1260,7 +1221,14 @@ export default function SpecEditor() {
   }, []);
 
   const handleAcceptAll = useCallback(() => {
-    resumeHistory();
+    // #109 M4 fix — flush every PM block's pending 400ms onUpdate debounce
+    // so blocksRef.current reflects the current PM substrate (including any
+    // revisionAdd/revisionDel marks the user just typed). Without this,
+    // acceptAllRevisions runs against pre-debounce html, the <ins>/<del>
+    // tags it would strip aren't there yet, and the surviving marks land in
+    // React state when the debounce flushes ~400ms later — after TC has
+    // already been disabled by this handler, leaving the marks unreachable.
+    flushAllPendingUpdates();
     // 1h Q36 Commit C — multi-write gesture: wrap the N setBlockHtml writes
     // in withUndoFrame so they form ONE Yjs UndoManager frame regardless of
     // captureTimeout coalescing. forceFrame first to demarcate this frame
@@ -1290,7 +1258,10 @@ export default function SpecEditor() {
   }, []);
 
   const handleRejectAll = useCallback(() => {
-    resumeHistory();
+    // #109 M4 fix — see handleAcceptAll above for the stale-debounce rationale.
+    // Symmetric: rejectAllRevisions also reads blocksRef.current and shares the
+    // same window.
+    flushAllPendingUpdates();
     const framing = framingForHandler();
     framing.forceFrame();
     const prev = blocksRef.current;
@@ -1447,7 +1418,6 @@ export default function SpecEditor() {
   // ── Compliance Checker Handlers ──
 
   const handleComplianceAcceptFix = useCallback((blockId, fixedText) => {
-    resumeHistory();
     framingForHandler().forceFrame();
     const yStore = activeYStoreRef.current;
     if (yStore) setBlockHtml(yStore, blockId, fixedText);
@@ -1455,7 +1425,6 @@ export default function SpecEditor() {
   }, []);
 
   const handleComplianceAcceptGroup = useCallback((fixesByBlock, label) => {
-    resumeHistory();
     const framing = framingForHandler();
     framing.forceFrame();
     const yStore = activeYStoreRef.current;
@@ -1641,58 +1610,61 @@ export default function SpecEditor() {
   // is taken.
   const framingForHandler = () => (inRoomRef.current ? collab : localUndo);
 
-  // The active substrate for EditableBlock's binder. Session yStore wins
-  // when in a room; the local Y.Doc is the substrate for single-user mode.
-  // Reference identity flips on room transitions, which the binder hook's
-  // subscribe deps watch — it tears down the old subscription and attaches
-  // to the new yStore in one render cycle.
+  // The active substrate for PmEditableBlock's ySyncPlugin. Session yStore
+  // wins when in a room; the local Y.Doc is the substrate for single-user
+  // mode. Reference identity flips on room transitions, which the per-
+  // block useSyncExternalStore subscription watches — it tears down the
+  // old EditorView and attaches to the new yStore in one render cycle.
   const activeYStore = inRoom ? collab.yStore : localSubstrate.yStore;
   // Mirror the active substrate into the ref so callbacks declared above
   // (which can't reach the const due to JS hoisting / TDZ rules) read the
   // current substrate at call time, not the initial one.
   activeYStoreRef.current = activeYStore;
 
+  // 1i-b.2 — populate the clearHistoryRef hoisted near the top of the
+  // component. Effect re-runs whenever collab or localUndo identity
+  // changes, so the wrapper always invokes the latest snapshot. App's
+  // file-import handler calls clearHistory() (the stable wrapper) so
+  // Ctrl+Z cannot cross the file boundary. Both UndoManagers expose
+  // clearStack() per Task b2.6b; collab?.clearStack is a no-op out of
+  // room and localUndo is always alive (dormant when in-room).
+  useEffect(() => {
+    clearHistoryRef.current = () => {
+      collab?.clearStack?.();
+      localUndo.clearStack();
+    };
+  }, [collab, localUndo]);
+
   // Keyboard listener for undo/redo and search.
   //
-  // 1h Q36 Commit B — undo routing. Three sources, preferred in order:
-  //   1. collab.tryUndo()        — in-room Yjs UndoManager (no-op if no session)
-  //   2. localUndo.tryUndo()     — out-of-room Yjs UndoManager (always alive;
-  //                                empty when in-room because all writes route
-  //                                to collab.yStore, leaving localSubstrate
-  //                                dormant per `activeYStore` selection)
-  //   3. undo()                  — useUndoableBlocks snapshot stack (legacy
-  //                                fallback; 1i retires it with the legacy
-  //                                contentEditable path)
+  // 1i-b.2 — two-tier undo routing. The Yjs UndoManager is the only
+  // undo source post-1i-b.2 (snapshot-stack tier retired).
+  //   1. collab.tryUndo()    — in-room Yjs UndoManager (no-op if no session)
+  //   2. localUndo.tryUndo() — out-of-room Yjs UndoManager (always alive;
+  //                            empty when in-room because all writes route
+  //                            to collab.yStore, leaving localSubstrate
+  //                            dormant per `activeYStore` selection)
   //
-  // tryUndo returns true iff it popped a frame; falling through to the next
-  // source lets a Ctrl+Z on a structural change (publishBlocks → Yjs op)
-  // beat the legacy snapshot stack, while structural-only sites (ref/table
-  // blocks that don't go through any Yjs origin we track) still get undone
-  // via the snapshot stack. Same pattern for redo.
+  // tryUndo returns true iff it popped a frame. Same pattern for redo.
   useEffect(() => {
     const handler = (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
         e.preventDefault();
+        // Two-tier: in-room Yjs UM first, out-of-room Yjs UM fallback.
         if (collab.tryUndo()) {
           // In-room: useCollabSession.onBlocksReceived bridges substrate → blocks.
         } else if (localUndo.tryUndo()) {
-          // 1i-b.1 (PR #107): out-of-room sync. localUndo reverts the substrate
-          // (yOrder + yStore) but does NOT touch React's `blocks` state — no
-          // observer bridges the gap out-of-room. PM EditorViews bound to per-
-          // block Y.XmlFragments propagate THEIR undos through onUpdate, but
+          // Out-of-room sync. localUndo reverts the substrate (yOrder +
+          // yStore) but does NOT touch React's `blocks` state — no observer
+          // bridges the gap out-of-room. PM EditorViews bound to per-block
+          // Y.XmlFragments propagate THEIR undos through onUpdate, but
           // structural ops (Enter creating a block, slash-convert, delete)
-          // mutate yOrder + yStore which no PM view observes. Sync blocks from
-          // the substrate; setBlocksDirect bypasses the useUndoableBlocks
-          // snapshot capture so we don't push a spurious frame on top of the
-          // one we just popped. In-room mode already gets this for free via
-          // session.onBlocksReceived. Once 1i-b.2 retires useUndoableBlocks,
-          // this sync becomes the only React-update path for substrate-driven
-          // undo and lives on permanently.
+          // mutate yOrder + yStore which no PM view observes. Sync blocks
+          // from the substrate. In-room mode gets this for free via
+          // session.onBlocksReceived.
           if (!inRoomRef.current) {
             setBlocksDirect(yBlocksToArray(localSubstrate.yOrder, localSubstrate.yStore));
           }
-        } else {
-          undo();
         }
       } else if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
         e.preventDefault();
@@ -1702,8 +1674,6 @@ export default function SpecEditor() {
           if (!inRoomRef.current) {
             setBlocksDirect(yBlocksToArray(localSubstrate.yOrder, localSubstrate.yStore));
           }
-        } else {
-          redo();
         }
       } else if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
         e.preventDefault();
@@ -1729,14 +1699,12 @@ export default function SpecEditor() {
     return () => document.removeEventListener('keydown', handler);
     // collab.tryUndo/tryRedo are stable — useCollabSession returns
     // useCallback wrappers that read `sessionRef.current` at invocation
-    // time (`useCollabSession.js:480-527`). localUndo.tryUndo/tryRedo
-    // are stable after the Commit C review fix: the hook returns a
-    // useRef-cached api object whose methods read `managerRef.current`
-    // at invocation, so the M1→M2 swap during the initial-mount effect
-    // doesn't strand a stale closure here. Omitting both from deps
-    // prevents the listener re-binding every render.
+    // time. localUndo.tryUndo/tryRedo are stable after the Commit C
+    // review fix: the hook returns a useRef-cached api object whose
+    // methods read `managerRef.current` at invocation, so the M1→M2 swap
+    // during the initial-mount effect doesn't strand a stale closure.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [undo, redo, handleSave, zoomIn, zoomOut, zoomReset]);
+  }, [handleSave, zoomIn, zoomOut, zoomReset]);
 
   // Share button handler: generate a room and reload into it, or copy the current room URL.
   const handleShare = useCallback(() => {
@@ -2517,8 +2485,6 @@ export default function SpecEditor() {
         >
           <FloatingToolbar
             editorRef={editorRef}
-            onBlockUpdate={handleBlockUpdate}
-            onRevisionAction={handleLegacyRevisionAction}
             onRefreshTcSnapshot={handleBlockUpdatePmSync}
             onForceFrame={inRoom ? collab.forceFrame : localUndo.forceFrame}
             trackChanges={trackChanges}
@@ -2636,7 +2602,6 @@ export default function SpecEditor() {
                   isFocused={focusedBlockId === block.id}
                   onFocus={handleClickFocus}
                   onUpdate={(id, data) => {
-                    resumeHistory();
                     framingForHandler().forceFrame();
                     setBlocks(prev => prev.map(b => b.id === id ? { ...b, ...data } : b));
                   }}
@@ -2651,7 +2616,6 @@ export default function SpecEditor() {
                   isFocused={focusedBlockId === block.id}
                   onFocus={handleClickFocus}
                   onUpdate={(id, data) => {
-                    resumeHistory();
                     framingForHandler().forceFrame();
                     setBlocks(prev => prev.map(b => b.id === id ? { ...b, ...data } : b));
                   }}
@@ -2674,7 +2638,6 @@ export default function SpecEditor() {
                   onFocus={handleClickFocus}
                   readOnly={collabReadOnly}
                   onAcceptRevision={(id) => {
-                    resumeHistory();
                     framingForHandler().forceFrame();
                     setBlocks(prev => {
                       const idx = prev.findIndex(b => b.id === id);
@@ -2687,7 +2650,6 @@ export default function SpecEditor() {
                     });
                   }}
                   onRejectRevision={(id) => {
-                    resumeHistory();
                     framingForHandler().forceFrame();
                     setBlocks(prev => {
                       const idx = prev.findIndex(b => b.id === id);
@@ -2707,7 +2669,7 @@ export default function SpecEditor() {
             }
             return (
               <div key={`${block.id}-${block.type}`}>
-                <EditableBlock
+                <PmEditableBlock
                   block={block}
                   yStore={activeYStore}
                   onUpdate={handleBlockUpdate}
@@ -2726,7 +2688,6 @@ export default function SpecEditor() {
                   identity={identity}
                   readOnly={collabReadOnly}
                   onAcceptRevision={(id) => {
-                    resumeHistory();
                     framingForHandler().forceFrame();
                     setBlocks(prev => {
                       const idx = prev.findIndex(b => b.id === id);
@@ -2741,7 +2702,6 @@ export default function SpecEditor() {
                     });
                   }}
                   onRejectRevision={(id) => {
-                    resumeHistory();
                     framingForHandler().forceFrame();
                     setBlocks(prev => {
                       const idx = prev.findIndex(b => b.id === id);
@@ -2755,7 +2715,6 @@ export default function SpecEditor() {
                       return next;
                     });
                   }}
-                  onRevisionAction={handleLegacyRevisionAction}
                   onRefreshTcSnapshot={handleBlockUpdatePmSync}
                   commentsState={commentsState}
                   onCommentClick={handleCommentClick}

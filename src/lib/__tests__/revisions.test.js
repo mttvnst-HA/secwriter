@@ -253,4 +253,25 @@ describe('countRevisions', () => {
     ];
     expect(countRevisions(blocks)).toEqual({ adds: 0, dels: 2, chgs: 0 });
   });
+
+  // Spawned-from-#109 follow-up: countRevisions had a latent regex gap for
+  // chg — the add and del lines used `[^>]*` between the class attr and `>`,
+  // but the chg line required `>` immediately after `class="mark-chg"`. Post-1h
+  // TC marks emit per-author attribution attrs (data-author-id, style) so the
+  // pattern silently dropped every attributed mark from the count. Mirrors the
+  // attr-aware del case above.
+  it('counts inline chg/add/del marks with per-author attribution attrs (#87 1h schema)', () => {
+    const blocks = [
+      {
+        id: 'a',
+        type: 'txt',
+        html: [
+          '<ins class="mark-add" data-author-id="alice" style="--author-color:#ff6b6b">A</ins>',
+          '<del class="mark-del" data-author-id="alice" style="--author-color:#ff6b6b">D</del>',
+          '<span class="mark-chg" data-author-id="alice" style="--author-color:#ff6b6b">C</span>',
+        ].join(' '),
+      },
+    ];
+    expect(countRevisions(blocks)).toEqual({ adds: 1, dels: 1, chgs: 1 });
+  });
 });

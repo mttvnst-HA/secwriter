@@ -2,17 +2,18 @@
  * PmEditableBlock — y-prosemirror-backed editable block.
  *
  * Sub-PR 1e (#47, ADR-0006). Mounts a PM EditorView per block, bound via
- * `ySyncPlugin` to the block's Y.XmlFragment in the substrate. Replaces the
- * legacy `EditableBlock`'s contentEditable + binder snapshot-write path
- * when `VITE_PM_EDITOR=true`.
+ * `ySyncPlugin` to the block's Y.XmlFragment in the substrate. The sole
+ * editor for editable text blocks since sub-PR 1i-b.2 retired the legacy
+ * contentEditable path (EditableBlock.jsx, useBlockBinder.js, the
+ * `VITE_PM_EDITOR` flag).
  *
- * Surface parity with `EditableBlock` (same props, same behavior to App):
+ * Props (App→block surface):
  *   - block, yStore, onUpdate, onEnterKey, isFocused, onFocus
  *   - oliLabel, onDelete, onFocusPrev, onFocusNext
  *   - onConvertBlock, onChangeOliLevel
  *   - resolveHtml, tailorKey
  *   - trackChanges, identity
- *   - onAcceptRevision, onRejectRevision, onRevisionAction
+ *   - onAcceptRevision, onRejectRevision
  *   - comments, onCommentClick, onInlineFix
  *   - lintingState, lintingDispatch, showTags, readOnly
  *
@@ -23,10 +24,14 @@
  *      tailorKey, etc.) flow into the view via dispatched meta or
  *      imperative calls.
  *   2. `ySyncPlugin` is the substrate binding. y-prosemirror's
- *      `ySyncPluginKey` Y origin is what every PM-driven write carries —
- *      the Yjs UndoManager (configured in `src/lib/collab.js` to track
- *      `'local-publish'`) does NOT pick up these ops. App-level undo flows
- *      through `useUndoableBlocks` snapshots; this is preserved per Q16/Q32.
+ *      `ySyncPluginKey` Y origin is what every PM-driven write carries.
+ *      Both UndoManagers (in-room in `src/lib/collab.js`, out-of-room in
+ *      `src/hooks/useLocalSubstrateUndoManager.js`) track BOTH
+ *      `ySyncPluginKey` and `'local-publish'`, so PM keystrokes and the
+ *      debounced echo write via `setBlockHtml` join the same undo frame.
+ *      The word-boundary-undo plugin calls `forceFrame` on space /
+ *      punctuation / Enter so typing bursts split into per-word frames
+ *      matching Word/Notion convention.
  *   3. NO_EXFIL_PROPS goes through `EditorProps.attributes` with lowercase
  *      HTML attribute names (Q31/E2). React's camelCase props don't reach
  *      PM's DOM root because PM owns its DOM.
@@ -124,7 +129,6 @@ function PmEditableBlock({
   identity,
   onAcceptRevision,
   onRejectRevision,
-  onRevisionAction,
   onRefreshTcSnapshot,  // 1g.5 (#86): PM-tr del-popup path — substrate-only refresh
   commentsState,    // 1g: drives per-block reconcile effect via reconcileCommentMarks
   onCommentClick,
@@ -177,8 +181,6 @@ function PmEditableBlock({
   onConvertBlockRef.current = onConvertBlock;
   const onCommentClickRef = useRef(onCommentClick);
   onCommentClickRef.current = onCommentClick;
-  const onRevisionActionRef = useRef(onRevisionAction);
-  onRevisionActionRef.current = onRevisionAction;
   const onRefreshTcSnapshotRef = useRef(onRefreshTcSnapshot);
   onRefreshTcSnapshotRef.current = onRefreshTcSnapshot;
   const blockTypeRef = useRef(block.type);
@@ -207,41 +209,59 @@ function PmEditableBlock({
     return typeEditable && !readOnly;
   }, [block.type, block.isNew, readOnly]);
 
-  // Subscribe to yStore for THIS block's slot existence + identity. The
-  // mount effect below depends on `yStore.get(block.id)` being present, but
-  // React fires child effects before parent effects in the commit phase —
-  // so a freshly-created block (Enter / slash-convert) reaches PmEditableBlock's
-  // mount BEFORE App's seeding effect (`applyBlocksToYDoc` in App.jsx ~line 287
-  // for out-of-room, or useCollabSession's publish effect for in-room) has run.
-  // Without this subscription the mount effect bails on missing yMap and never
-  // re-fires, leaving the new block with no EditorView. subscribeBlock from
-  // block-html-store.js fires when (a) the slot first appears, (b) the slot's
-  // html shape changes (1d migration broker swap), or (c) the slot is removed —
-  // exactly the events that gate the EditorView lifecycle. The snapshot is the
-  // yMap reference itself (or null) so React re-renders when it flips, and the
-  // mount effect's dep list catches both "slot appeared" and "slot identity
-  // changed" with no extra wiring.
-  const yMapBound = useSyncExternalStore(
+  // Subscribe to the html SLOT reference (not the outer yMap). Two distinct
+  // races make this load-bearing:
+  //
+  //   1. Mount race (1f.5): React fires child effects before parent effects
+  //      in the commit phase, so a freshly-created block (Enter / slash-
+  //      convert) reaches PmEditableBlock's mount BEFORE App's seeding
+  //      effect (`applyBlocksToYDoc` out-of-room, or useCollabSession's
+  //      publish effect in-room) has run. Without an external-store
+  //      subscription the mount effect would bail on missing yMap and
+  //      never re-fire.
+  //
+  //   2. Broker swap race (1i-b.2 fix): the 1d server-side migration
+  //      broker swaps the slot from Y.Text → Y.XmlFragment mid-session
+  //      without changing the outer yMap's identity. If getSnapshot
+  //      returned the yMap, useSyncExternalStore would Object.is-compare
+  //      the unchanged yMap and skip the re-render — leaving
+  //      PmEditableBlock stuck on the migration-partial banner forever
+  //      on the original client. Returning the html slot makes the swap
+  //      observable: identity flips when the broker calls
+  //      yMap.set('html', newFragment).
+  //
+  // The seedRoom → broker race in collab.spec.js's two-tab text sync test
+  // pins case 2: User A receives Y.Text slots from the seed, the broker
+  // swaps to Y.XmlFragment when User B's WS upgrade fires, and A's
+  // PmEditableBlock must re-render to mount the EditorView.
+  const yHtmlSlot = useSyncExternalStore(
     useCallback(
       (notify) => (yStore ? subscribeBlock(yStore, block.id, notify) : () => {}),
       [yStore, block.id],
     ),
     useCallback(
-      () => (yStore ? (yStore.get(block.id) || null) : null),
+      () => {
+        if (!yStore) return null;
+        const map = yStore.get(block.id);
+        return map ? (map.get('html') || null) : null;
+      },
       [yStore, block.id],
     ),
     () => null, // SSR — no Y substrate
   );
+  // The outer yMap reference is stable as long as the block exists in
+  // yStore. Read it on every render so the mount effect's `yMap.get('html')`
+  // calls see the current slot. yHtmlSlot is what triggers re-renders;
+  // yMapBound is what the code below reads for the binding.
+  const yMapBound = yStore ? (yStore.get(block.id) || null) : null;
 
-  // 1i-b.1 — derive migrationPartial state from the live yMap. Once
-  // EditableBlock is removed (1i-b.2), this branch owns the user-facing
-  // fallback for blocks whose html slot is still Y.Text. The yMapBound
-  // subscription already fires when the slot shape changes (1d migration
-  // broker swap), so this useMemo's dep list catches every transition.
+  // 1i-b.1 — derive migrationPartial state from the live html slot. The
+  // useSyncExternalStore subscription above re-renders when the broker
+  // swaps the slot identity, so this useMemo's dep list catches every
+  // transition.
   const isMigrationPartial = useMemo(() => {
-    if (!yMapBound) return false;
-    return isLegacyYTextSlot(yMapBound.get('html'));
-  }, [yMapBound]);
+    return isLegacyYTextSlot(yHtmlSlot);
+  }, [yHtmlSlot]);
 
   // ── Mount: create EditorView wired to the block's Y.XmlFragment ─────────
   useEffect(() => {
@@ -628,12 +648,10 @@ function PmEditableBlock({
       cancelPendingUpdate: () => {
         // 1f.9 — clear the onUpdate debounce WITHOUT firing it. Used by
         // the inline TC accept/reject path which owns its own setBlocks
-        // via onRefreshTcSnapshot; without this, a debounce scheduled by
+        // via onRefreshTcSnapshot. Without this, a debounce scheduled by
         // the toolbar's view.dispatch would fire 400ms later and re-issue
-        // setBlocks via handleBlockUpdate. Because handleBlockUpdate runs
-        // outside the resumeHistory() window, that late setBlocks would
-        // capture a snapshot of the post-action state, shadowing the
-        // intended undoable frame from handleRefreshTcSnapshot.
+        // setBlocks via handleBlockUpdate, redundantly mutating React
+        // state after onRefreshTcSnapshot has already settled.
         if (onUpdateDebounceRef.current) {
           clearTimeout(onUpdateDebounceRef.current);
           onUpdateDebounceRef.current = null;
@@ -712,8 +730,8 @@ function PmEditableBlock({
     // pre-action html and clobber the post-action React state. This
     // mirrors FloatingToolbar's PM-mode inline TC accept/reject path
     // (cancelPendingUpdateById, 1f.9): a debounce firing AFTER
-    // onRefreshTcSnapshot's setBlocks would land outside the
-    // resumeHistory() window and shadow the intended undoable frame.
+    // onRefreshTcSnapshot's setBlocks would redundantly mutate React
+    // state with the same html that onRefreshTcSnapshot just wrote.
     if (onUpdateDebounceRef.current) {
       clearTimeout(onUpdateDebounceRef.current);
       onUpdateDebounceRef.current = null;
@@ -741,27 +759,15 @@ function PmEditableBlock({
     // PM dispatch already wrote the substrate via ySyncPlugin. App owns
     // the React state + TC snapshot refresh via onRefreshTcSnapshot,
     // same path FloatingToolbar uses for its PM-mode inline TC actions
-    // (1f.9). The handler does NOT call setBlockHtml — it only runs
-    // resumeHistory + setBlocks + setTcState so App-level
-    // useUndoableBlocks captures a snapshot of the post-action state.
-    //
-    // Legacy fallback (onRevisionAction → App.handleRevisionAction) is
-    // intentionally not invoked here: that path writes setBlockHtml
-    // ('local-publish'), producing a redundant Yjs op on top of the
-    // substrate write we just made via ySyncPlugin.
+    // (1f.9). The handler (handleBlockUpdatePmSync) does NOT call
+    // setBlockHtml — only forceFrame + setBlocks — because the Yjs
+    // UndoManager already captured the PM dispatch above as its own
+    // frame (forceFrame ran before view.dispatch).
     if (onRefreshTcSnapshotRef.current) {
       try {
         const html = pmFragmentToHtml(view.state.doc);
         onRefreshTcSnapshotRef.current(block.id, html);
       } catch { /* defensive — view tear-down race */ }
-    } else if (onRevisionActionRef.current) {
-      // Defensive fallback if App fails to pass onRefreshTcSnapshot
-      // (e.g. older render path). Stays correct, just produces the
-      // redundant substrate op.
-      try {
-        const html = pmFragmentToHtml(view.state.doc);
-        onRevisionActionRef.current(block.id, html);
-      } catch { /* defensive */ }
     }
   }, [delPopup, block.id]);
 

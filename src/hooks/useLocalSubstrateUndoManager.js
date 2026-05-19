@@ -9,13 +9,14 @@
  * whether or not the user is in a collab room.
  *
  * Why this isn't part of `createCollabSession`:
- *   The collab session is only created when `inRoom && identity`. Until
- *   1i removes legacy mode, ALL editing — typing in a PM block, accept/
- *   reject revisions, slash-convert, etc. — must remain Ctrl+Z-undoable
- *   out of room too. The local substrate Y.Doc is allocated once in App
- *   (`localSubstrate`) and used by `useBlockBinder` for substrate
- *   reads/writes whenever `!inRoom`. This hook wraps that same Y.Doc
- *   in a UndoManager + helper pair so App can route Ctrl+Z through it.
+ *   The collab session is only created when `inRoom && identity`. All
+ *   out-of-room editing — typing in a PM block, accept/reject revisions,
+ *   slash-convert, etc. — must still be Ctrl+Z-undoable. The local
+ *   substrate Y.Doc is allocated once in App (`localSubstrate`) and is
+ *   what PmEditableBlock's ySyncPlugin binds to (plus any direct
+ *   setBlockHtml writes from App handlers) whenever `!inRoom`. This
+ *   hook wraps that same Y.Doc in a UndoManager + helper pair so App
+ *   can route Ctrl+Z through it.
  *
  * Lifetime: the UndoManager is created on first render against
  *   `{yOrder, yStore}` and destroyed when the hook unmounts (or when
@@ -42,8 +43,9 @@ import { makeUndoHelpers } from '../lib/undo-helpers.js';
  * @typedef {Object} LocalSubstrateUndoApi
  * @property {() => boolean} tryUndo
  *   If the UndoManager has frames, pop one and return true. Else return
- *   false so the caller can fall through to a different undo source
- *   (App's `useUndoableBlocks` snapshot stack).
+ *   false. Post-1i-b.2 there is no further fall-through — this is the
+ *   final undo tier in two-tier routing (in-room collab → out-of-room
+ *   localUndo).
  * @property {() => boolean} tryRedo
  * @property {() => boolean} canUndo
  * @property {() => boolean} canRedo
@@ -57,6 +59,10 @@ import { makeUndoHelpers } from '../lib/undo-helpers.js';
  *   Ends the current capture window; the next 'local-publish' or
  *   ySyncPluginKey write starts a fresh frame. Word-boundary-undo plugin
  *   calls this on space / punctuation / Enter keydowns.
+ * @property {() => void} clearStack
+ *   Drops both the undo and redo stacks atomically. Used by App's
+ *   file-import handler so Ctrl+Z cannot cross the file boundary into
+ *   the previous file's content.
  */
 
 /**
@@ -172,6 +178,13 @@ export function useLocalSubstrateUndoManager(substrate) {
       canRedo() { return !!managerRef.current && managerRef.current.redoStack.length > 0; },
       withUndoFrame(fn) { helpersRef.current.helpers.withUndoFrame(fn); },
       forceFrame() { helpersRef.current.helpers.forceFrame(); },
+      // 1i-b.2 — App's file-import handler calls this to prevent Ctrl+Z
+      // from crossing the file boundary. Y.UndoManager's public clear()
+      // drops both undo and redo stacks atomically.
+      clearStack() {
+        const m = managerRef.current;
+        if (m) m.clear();
+      },
     };
   }
 
