@@ -99,6 +99,79 @@ export async function pmGetSelection(page, blockId) {
 }
 
 /**
+ * Create a fresh empty block by clicking into an anchor block and pressing
+ * Enter, then wait for the new block's PM EditorView to mount AND for its
+ * auto-focus useEffect to fire. Returns a Playwright Locator pointing at the
+ * new block's outer `[data-block-id]` element.
+ *
+ * Why this exists: the naive pattern
+ *
+ *     await anchor.click();
+ *     await page.keyboard.press('Enter');
+ *     const focused = page.locator('[data-block-id]:focus');
+ *     await expect(focused).toBeVisible({ timeout: 3000 });
+ *
+ * is racy. After `Enter`, the OLD block (e.g. n24) still holds focus until
+ * PmEditableBlock mounts for the new block and its `isNew` useEffect
+ * dispatches `view.focus()` + `Selection.atEnd`. The `:focus` selector is
+ * satisfied immediately by the OLD block; subsequent keystrokes / Backspace
+ * race the mount and either leak into the wrong block (typing) or no-op the
+ * intended target (Backspace lands on n24 instead of the empty new block).
+ *
+ * This helper waits for BOTH conditions:
+ *   1. document.activeElement is inside a [data-block-id] whose id differs
+ *      from the block that held focus before Enter was pressed.
+ *   2. window.__simEditorTestUtils.getPmSelection(newId) returns a non-null
+ *      { from, to } — which is the post-condition of PmEditableBlock's
+ *      mount-time view.focus() + Selection.atEnd dispatch.
+ *
+ * Tracks issue #114.
+ *
+ * @param {import('@playwright/test').Page} page
+ * @param {string} [anchorBlockId='n24'] block to click into before Enter
+ * @returns {Promise<import('@playwright/test').Locator>}
+ */
+export async function createFreshBlock(page, anchorBlockId = 'n24') {
+  const anchor = page.locator(`[data-block-id="${anchorBlockId}"]`);
+  await anchor.click();
+
+  // Capture the block id that currently holds focus. We must observe focus
+  // LEAVING this block before we trust the new block.
+  const oldId = await page.evaluate(() => {
+    const el = document.activeElement?.closest('[data-block-id]');
+    return el?.getAttribute('data-block-id') ?? null;
+  });
+
+  await page.keyboard.press('Enter');
+
+  const newId = await page.evaluate(
+    async (prevId) => {
+      const deadline = Date.now() + 3000;
+      while (Date.now() < deadline) {
+        const focusedEl = document.activeElement?.closest('[data-block-id]');
+        const id = focusedEl?.getAttribute('data-block-id');
+        if (id && id !== prevId) {
+          const sel = window.__simEditorTestUtils?.getPmSelection?.(id);
+          // sel is non-null only after PmEditableBlock's mount-time
+          // auto-focus useEffect has dispatched its initial selection.
+          if (sel && typeof sel.from === 'number') return id;
+        }
+        await new Promise((r) => setTimeout(r, 10));
+      }
+      return null;
+    },
+    oldId,
+  );
+
+  if (!newId) {
+    throw new Error(
+      `createFreshBlock: timed out waiting for a new block to mount + auto-focus (anchor=${anchorBlockId}, oldId=${oldId})`,
+    );
+  }
+  return page.locator(`[data-block-id="${newId}"]`);
+}
+
+/**
  * Returns the data-comment-id of the currently-active comment span (the one
  * with class 'mark-comment-active', applied by activeCommentPlugin's inline
  * decoration). Returns null when no comment is active. 1g — DOM-based so no
