@@ -1,5 +1,5 @@
 import { test, expect } from './fixtures.js';
-import { injectBlockHtml } from './pm-helpers.js';
+import { injectBlockHtml, readBlockHtml, createFreshBlock as createFreshBlockHelper, pmSetSelection } from './pm-helpers.js';
 import fs from 'fs';
 
 // ─── Helpers ───────────────────────────────────────────────────────────────────
@@ -26,15 +26,14 @@ function blockWrapperSel(id) {
 
 /**
  * Create a fresh empty block after n24 and return its locator.
- * This is the most reliable way to get a clean block for testing.
+ *
+ * Thin wrapper over the PM-mount-aware helper in pm-helpers.js — see #114.
+ * The naive `Enter → [data-block-id]:focus → toBeVisible` pattern returns
+ * the OLD block before the new block's PM EditorView has mounted and
+ * auto-focused; the helper polls for both conditions.
  */
 async function createFreshBlock(page) {
-  const txt = page.locator(blockSel('n24'));
-  await txt.click();
-  await page.keyboard.press('Enter');
-  const focused = page.locator('[data-block-id]:focus');
-  await expect(focused).toBeVisible({ timeout: 3000 });
-  return focused;
+  return createFreshBlockHelper(page, 'n24');
 }
 
 /** Get the current block count from the status bar. */
@@ -86,6 +85,65 @@ test.describe('Page load & layout', () => {
 
   test('shows filename in status bar', async ({ page }) => {
     await expect(page.locator('text=31_00_00.SEC')).toBeVisible();
+  });
+});
+
+// ─── createFreshBlock invariant (#114 regression) ──────────────────────────────
+
+test.describe('createFreshBlock invariant (#114)', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+    await page.waitForSelector('text=/\\d+ blocks/');
+  });
+
+  test('immediate Backspace after createFreshBlock removes the new block, not n24', async ({ page }) => {
+    // Pinned regression for #114. The naive `Enter → :focus → toBeVisible`
+    // pattern returns n24's locator before the new block's PmEditableBlock
+    // has mounted; the subsequent Backspace then lands on n24 (which has
+    // content), not on the empty new block, so the block count never
+    // returns to its prior value. createFreshBlock must wait for both the
+    // focused [data-block-id] to differ from n24 AND for the new block's
+    // PM EditorView to be mounted with a selection placed.
+    const countBefore = await getBlockCount(page);
+    const newBlock = await createFreshBlock(page);
+    expect(await getBlockCount(page)).toBe(countBefore + 1);
+
+    const newId = await newBlock.getAttribute('data-block-id');
+    expect(newId).not.toBe('n24');
+
+    await page.keyboard.press('Backspace');
+
+    await page.waitForFunction(
+      (before) => {
+        const m = document.body.innerText.match(/(\d+) blocks/);
+        return m && parseInt(m[1]) === before;
+      },
+      countBefore,
+      { timeout: 3000 },
+    );
+  });
+
+  test('typing immediately after createFreshBlock lands entirely in the new block', async ({ page }) => {
+    // The :918 failure shape — keystrokes leak into n24 because the
+    // :focus selector resolves before PM mount. Asserts both invariants:
+    // (a) the new block ends up holding the full string, (b) n24's html
+    // is unchanged.
+    const n24Before = await readBlockHtml(page, 'n24');
+
+    const newBlock = await createFreshBlock(page);
+    const newId = await newBlock.getAttribute('data-block-id');
+    expect(newId).not.toBe('n24');
+
+    await page.keyboard.type('Integration test content');
+
+    // Allow PM's 400ms onUpdate debounce to flush before reading html.
+    await page.waitForTimeout(500);
+
+    const newHtml = await readBlockHtml(page, newId);
+    const n24After = await readBlockHtml(page, 'n24');
+
+    expect(newHtml).toContain('Integration test content');
+    expect(n24After).toBe(n24Before);
   });
 });
 
@@ -407,16 +465,14 @@ test.describe('Arrow key navigation', () => {
     const blockId = await focused.getAttribute('data-block-id');
     await page.keyboard.type('short');
 
-    // Place cursor at the very start of the block content
-    await page.evaluate((id) => {
-      const el = document.querySelector(`[data-block-id="${id}"]`);
-      const range = document.createRange();
-      const sel = window.getSelection();
-      range.setStart(el, 0);
-      range.collapse(true);
-      sel.removeAllRanges();
-      sel.addRange(range);
-    }, blockId);
+    // Place caret at the very start of the block content. After typing 'short'
+    // the PM doc shape is <p>short</p>; position 1 is inside the paragraph
+    // immediately before 's'. Setting selection through pmSetSelection routes
+    // through __simEditorTestUtils.setPmSelection, which uses PM's
+    // TextSelection.create + view.dispatch — unlike a raw DOM Range, this
+    // updates view.state.selection so the ArrowUp keymap reads the intended
+    // selection rather than whatever Selection.atEnd left from auto-focus.
+    await pmSetSelection(page, blockId, 1, 1);
 
     await page.keyboard.press('ArrowUp');
 
@@ -916,22 +972,28 @@ test.describe('Combined keyboard workflow', () => {
   });
 
   test('full workflow: create block, type, navigate up', async ({ page }) => {
-    // 1. Click into existing txt block
-    const txt = page.locator(blockSel('n24'));
-    await txt.click();
+    // 1. Create new block via the PM-mount-aware helper (#114) — the raw
+    //    `txt.click → Enter → :focus` pattern returns n24 before the new
+    //    block's PM EditorView has mounted, so subsequent type() keystrokes
+    //    leak into n24 instead of the new block.
+    const newBlock = await createFreshBlock(page);
+    const newId = await newBlock.getAttribute('data-block-id');
 
-    // 2. Press Enter to create new block
-    await page.keyboard.press('Enter');
-    const newBlock = page.locator('[data-block-id]:focus');
-    await expect(newBlock).toBeVisible({ timeout: 3000 });
-
-    // 3. Type content
+    // 2. Type content
     await page.keyboard.type('Integration test content');
     const content = await newBlock.textContent();
     expect(content).toContain('Integration test');
 
-    // 4. Navigate up with ArrowUp (cursor is at end of single-line text)
-    await page.keyboard.press('Home');
+    // 3. Place caret at the start of the new block via PM, not via Home.
+    //    Home is browser-native and PM's domObserver picks up the new
+    //    selection asynchronously; pressing ArrowUp before the observer
+    //    runs reads stale state.selection.from (still at end-of-text), so
+    //    keymap.js's isCursorAtStart check returns false and ArrowUp
+    //    becomes a no-op. pmSetSelection updates view.state.selection
+    //    synchronously, eliminating the race.
+    await pmSetSelection(page, newId, 1, 1);
+
+    // 4. Navigate up with ArrowUp
     await page.keyboard.press('ArrowUp');
     const afterUp = page.locator('[data-block-id]:focus');
     await expect(afterUp).toBeVisible({ timeout: 3000 });
@@ -1184,14 +1246,12 @@ test.describe('Track changes: block deletion', () => {
     // Enable Track Changes
     await page.locator('button:has-text("Track Changes")').click();
 
-    // Create a new block (will get revision="add")
-    const txt = page.locator(blockSel('n24'));
-    await txt.click();
+    // Create a new block (will get revision="add"). The PM-mount-aware
+    // helper (#114) ensures the new block is the one holding focus before
+    // we press Backspace — otherwise Backspace lands on n24 and the empty
+    // revision-add block remains, so countAfter never returns to countBefore.
     const countBefore = await getBlockCount(page);
-    await page.keyboard.press('Enter');
-
-    const focused = page.locator('[data-block-id]:focus');
-    await expect(focused).toBeVisible({ timeout: 3000 });
+    await createFreshBlock(page);
 
     // Delete it — since it's a new "add" block, it should be removed entirely
     await page.keyboard.press('Backspace');
