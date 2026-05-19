@@ -1,10 +1,10 @@
 {
   "metadata": {
     "corpusType": "clean",
-    "corpusFile": "C:\\github\\specsintact-modern\\corpus\\clean\\all_clean.json",
+    "corpusFile": "C:\\github\\secwriter\\corpus\\clean\\all_clean.json",
     "blocksProcessed": 2583,
-    "timestamp": "2026-04-08T04:38:42.621Z",
-    "elapsedSeconds": 20.5,
+    "timestamp": "2026-05-19T18:54:46.883Z",
+    "elapsedSeconds": 47.7,
     "grammarEnabled": true
   },
   "stats": {
@@ -16,39 +16,37 @@
     "findingsByEngine": {
       "static": 8,
       "nlp": 331,
-      "grammar": 297
+      "grammar": 260
     },
     "findingsByRule": {
       "GRAMMAR-Style": 90,
       "GRAMMAR-Repetition": 6,
       "NLP-PASSIVE-001": 331,
-      "GRAMMAR-Spelling": 103,
+      "GRAMMAR-Spelling": 93,
       "GRAMMAR-Capitalization": 10,
-      "GRAMMAR-Typo": 21,
       "GRAMMAR-WordChoice": 38,
       "GRAMMAR-Grammar": 3,
       "VAGUE-applicable": 3,
-      "GRAMMAR-Usage": 7,
       "TERM-oicc": 1,
+      "GRAMMAR-Punctuation": 4,
       "GRAMMAR-Agreement": 11,
       "TERM-conforming-to": 1,
       "TERM-adequate": 2,
       "GRAMMAR-Redundancy": 4,
       "TERM-per": 1,
-      "GRAMMAR-Regionalism": 1,
-      "GRAMMAR-Punctuation": 3
+      "GRAMMAR-Regionalism": 1
     },
     "findingsBySection": {
-      "03 30 00": 161,
-      "22 00 00": 209,
-      "26 20 00": 118,
-      "32 12 16.16": 37,
-      "33 71 02": 111
+      "03 30 00": 151,
+      "22 00 00": 207,
+      "26 20 00": 115,
+      "32 12 16.16": 32,
+      "33 71 02": 94
     },
     "noteBlockFindings": {
       "static": 0,
       "nlp": 0,
-      "grammar": 118
+      "grammar": 106
     }
   },
   "findings": [
@@ -389,18 +387,6 @@
       "isNoteBlock": false
     },
     {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "waterstop",
-      "index": 31,
-      "message": "`waterstop` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "03_30_00-P2-B171",
-      "section": "03 30 00",
-      "isNoteBlock": false
-    },
-    {
       "blockId": "03_30_00-P2-B191",
       "section": "03 30 00",
       "ruleId": "NLP-PASSIVE-001",
@@ -425,18 +411,6 @@
       "isNoteBlock": false
     },
     {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "waterstop",
-      "index": 6,
-      "message": "`waterstop` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "03_30_00-P2-B197",
-      "section": "03 30 00",
-      "isNoteBlock": true
-    },
-    {
       "ruleId": "GRAMMAR-WordChoice",
       "match": "data sheet",
       "index": 22,
@@ -444,18 +418,6 @@
       "severity": "info",
       "engine": "grammar",
       "category": "WordChoice",
-      "blockId": "03_30_00-P2-B198",
-      "section": "03 30 00",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "waterstop",
-      "index": 36,
-      "message": "`waterstop` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
       "blockId": "03_30_00-P2-B198",
       "section": "03 30 00",
       "isNoteBlock": false
@@ -582,6 +544,54 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
+      "match": "entraining",
+      "index": 81,
+      "message": "Did you mean to spell `entraining` this way?",
+      "severity": "info",
+      "engine": "grammar",
+      "category": "Spelling",
+      "blockId": "03_30_00-P2-B281",
+      "section": "03 30 00",
+      "isNoteBlock": true
+    },
+    {
+      "ruleId": "GRAMMAR-Spelling",
+      "match": "entraining",
+      "index": 199,
+      "message": "Did you mean to spell `entraining` this way?",
+      "severity": "info",
+      "engine": "grammar",
+      "category": "Spelling",
+      "blockId": "03_30_00-P2-B283",
+      "section": "03 30 00",
+      "isNoteBlock": true
+    },
+    {
+      "ruleId": "GRAMMAR-Spelling",
+      "match": "entraining",
+      "index": 376,
+      "message": "Did you mean to spell `entraining` this way?",
+      "severity": "info",
+      "engine": "grammar",
+      "category": "Spelling",
+      "blockId": "03_30_00-P2-B283",
+      "section": "03 30 00",
+      "isNoteBlock": true
+    },
+    {
+      "ruleId": "GRAMMAR-Spelling",
+      "match": "entraining",
+      "index": 12,
+      "message": "Did you mean to spell `entraining` this way?",
+      "severity": "info",
+      "engine": "grammar",
+      "category": "Spelling",
+      "blockId": "03_30_00-P2-B286",
+      "section": "03 30 00",
+      "isNoteBlock": false
+    },
+    {
+      "ruleId": "GRAMMAR-Spelling",
       "match": "under exposure",
       "index": 124,
       "message": "This looks like a prefix that can be joined with the rest of the word.",
@@ -603,18 +613,6 @@
       "blockId": "03_30_00-P2-B296",
       "section": "03 30 00",
       "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "nonsparkling",
-      "index": 161,
-      "message": "Did you mean to spell `nonsparkling` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B301",
-      "section": "03 30 00",
-      "isNoteBlock": true
     },
     {
       "ruleId": "GRAMMAR-WordChoice",
@@ -673,6 +671,18 @@
       "engine": "grammar",
       "category": "Style",
       "blockId": "03_30_00-P2-B335",
+      "section": "03 30 00",
+      "isNoteBlock": false
+    },
+    {
+      "ruleId": "GRAMMAR-Spelling",
+      "match": "entraining",
+      "index": 15,
+      "message": "Did you mean to spell `entraining` this way?",
+      "severity": "info",
+      "engine": "grammar",
+      "category": "Spelling",
+      "blockId": "03_30_00-P2-B347",
       "section": "03 30 00",
       "isNoteBlock": false
     },
@@ -941,18 +951,6 @@
       "isNoteBlock": true
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Mockup",
-      "index": 325,
-      "message": "Did you mean to spell `Mockup` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B513",
-      "section": "03 30 00",
-      "isNoteBlock": true
-    },
-    {
       "ruleId": "GRAMMAR-Capitalization",
       "match": "deep",
       "index": 459,
@@ -1085,66 +1083,6 @@
       "isNoteBlock": false
     },
     {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "waterstop",
-      "index": 32,
-      "message": "`waterstop` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "03_30_00-P3-B535",
-      "section": "03 30 00",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "waterstop",
-      "index": 150,
-      "message": "`waterstop` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "03_30_00-P3-B535",
-      "section": "03 30 00",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "waterstop",
-      "index": 42,
-      "message": "`waterstop` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "03_30_00-P3-B537",
-      "section": "03 30 00",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "waterstop",
-      "index": 159,
-      "message": "`waterstop` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "03_30_00-P3-B537",
-      "section": "03 30 00",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "waterstop",
-      "index": 283,
-      "message": "`waterstop` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "03_30_00-P3-B537",
-      "section": "03 30 00",
-      "isNoteBlock": false
-    },
-    {
       "blockId": "03_30_00-P3-B539",
       "section": "03 30 00",
       "ruleId": "NLP-PASSIVE-001",
@@ -1154,30 +1092,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "waterstop",
-      "index": 82,
-      "message": "`waterstop` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "03_30_00-P3-B539",
-      "section": "03 30 00",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "waterstop",
-      "index": 306,
-      "message": "`waterstop` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "03_30_00-P3-B539",
-      "section": "03 30 00",
       "isNoteBlock": false
     },
     {
@@ -1649,18 +1563,6 @@
       "isNoteBlock": false
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "undersurfaces",
-      "index": 48,
-      "message": "Did you mean to spell `undersurfaces` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B711",
-      "section": "03 30 00",
-      "isNoteBlock": false
-    },
-    {
       "blockId": "03_30_00-P3-B715",
       "section": "03 30 00",
       "ruleId": "NLP-PASSIVE-001",
@@ -1850,30 +1752,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Usage",
-      "match": "each",
-      "index": 866,
-      "message": "Use 'every' instead of 'each' before a number.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Usage",
-      "blockId": "03_30_00-P3-B728",
-      "section": "03 30 00",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Usage",
-      "match": "each",
-      "index": 923,
-      "message": "Use 'every' instead of 'each' before a number.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Usage",
-      "blockId": "03_30_00-P3-B728",
-      "section": "03 30 00",
       "isNoteBlock": false
     },
     {
@@ -2645,6 +2523,18 @@
       "isNoteBlock": true
     },
     {
+      "ruleId": "GRAMMAR-Punctuation",
+      "match": "double check",
+      "index": 465,
+      "message": "Use the hyphenated form in this compound.",
+      "severity": "info",
+      "engine": "grammar",
+      "category": "Punctuation",
+      "blockId": "22_00_00-P2-B256",
+      "section": "22 00 00",
+      "isNoteBlock": false
+    },
+    {
       "blockId": "22_00_00-P2-B259",
       "section": "22 00 00",
       "ruleId": "NLP-PASSIVE-001",
@@ -2678,18 +2568,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "nontilting",
-      "index": 67,
-      "message": "Did you mean to spell `nontilting` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B268",
-      "section": "22 00 00",
       "isNoteBlock": false
     },
     {
@@ -2773,18 +2651,6 @@
       "engine": "grammar",
       "category": "Spelling",
       "blockId": "22_00_00-P2-B311",
-      "section": "22 00 00",
-      "isNoteBlock": true
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "exchangers",
-      "index": 17,
-      "message": "Did you mean to spell `exchangers` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B322",
       "section": "22 00 00",
       "isNoteBlock": true
     },
@@ -4085,18 +3951,6 @@
       "isNoteBlock": false
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "nailheads",
-      "index": 600,
-      "message": "Did you mean `airheads`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B513",
-      "section": "22 00 00",
-      "isNoteBlock": false
-    },
-    {
       "blockId": "22_00_00-P3-B514",
       "section": "22 00 00",
       "ruleId": "NLP-PASSIVE-001",
@@ -4190,18 +4044,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "pretreat",
-      "index": 7,
-      "message": "`pretreat` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "22_00_00-P3-B538",
-      "section": "22 00 00",
       "isNoteBlock": false
     },
     {
@@ -4334,6 +4176,18 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
+      "isNoteBlock": false
+    },
+    {
+      "ruleId": "GRAMMAR-Spelling",
+      "match": "entraining",
+      "index": 170,
+      "message": "Did you mean to spell `entraining` this way?",
+      "severity": "info",
+      "engine": "grammar",
+      "category": "Spelling",
+      "blockId": "22_00_00-P3-B561",
+      "section": "22 00 00",
       "isNoteBlock": false
     },
     {
@@ -4865,18 +4719,6 @@
       "isNoteBlock": false
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "sunrooms",
-      "index": 239,
-      "message": "Did you mean to spell `sunrooms` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B314",
-      "section": "26 20 00",
-      "isNoteBlock": true
-    },
-    {
       "blockId": "26_20_00-P2-B332",
       "section": "26 20 00",
       "ruleId": "NLP-PASSIVE-001",
@@ -4901,18 +4743,6 @@
       "isNoteBlock": false
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "sunrooms",
-      "index": 214,
-      "message": "Did you mean to spell `sunrooms` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B352",
-      "section": "26 20 00",
-      "isNoteBlock": true
-    },
-    {
       "blockId": "26_20_00-P2-B367",
       "section": "26 20 00",
       "ruleId": "NLP-PASSIVE-001",
@@ -4935,18 +4765,6 @@
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
       "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "sunrooms",
-      "index": 214,
-      "message": "Did you mean to spell `sunrooms` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B370",
-      "section": "26 20 00",
-      "isNoteBlock": true
     },
     {
       "ruleId": "GRAMMAR-Punctuation",
@@ -6125,18 +5943,6 @@
       "isNoteBlock": false
     },
     {
-      "ruleId": "GRAMMAR-Usage",
-      "match": "each",
-      "index": 788,
-      "message": "Use 'every' instead of 'each' before a number.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Usage",
-      "blockId": "32_12_16_16-P2-B115",
-      "section": "32 12 16.16",
-      "isNoteBlock": false
-    },
-    {
       "ruleId": "GRAMMAR-Style",
       "match": "location",
       "index": 1502,
@@ -6156,18 +5962,6 @@
       "severity": "info",
       "engine": "grammar",
       "category": "Punctuation",
-      "blockId": "32_12_16_16-P2-B136",
-      "section": "32 12 16.16",
-      "isNoteBlock": true
-    },
-    {
-      "ruleId": "GRAMMAR-Usage",
-      "match": "option",
-      "index": 1588,
-      "message": "The construction `one of the ...` should use a plural noun.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Usage",
       "blockId": "32_12_16_16-P2-B136",
       "section": "32 12 16.16",
       "isNoteBlock": true
@@ -6242,42 +6036,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Usage",
-      "match": "each",
-      "index": 241,
-      "message": "Use 'every' instead of 'each' before a number.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Usage",
-      "blockId": "32_12_16_16-P3-B188",
-      "section": "32 12 16.16",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Usage",
-      "match": "each",
-      "index": 350,
-      "message": "Use 'every' instead of 'each' before a number.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Usage",
-      "blockId": "32_12_16_16-P3-B188",
-      "section": "32 12 16.16",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Usage",
-      "match": "each",
-      "index": 499,
-      "message": "Use 'every' instead of 'each' before a number.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Usage",
-      "blockId": "32_12_16_16-P3-B188",
-      "section": "32 12 16.16",
       "isNoteBlock": false
     },
     {
@@ -6641,30 +6399,6 @@
       "isNoteBlock": true
     },
     {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "ICEA S",
-      "index": 49,
-      "message": "Is the space between `ICEA` and `S` one character out of place?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "33_71_02-P2-B139",
-      "section": "33 71 02",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "ICEA S",
-      "index": 142,
-      "message": "Is the space between `ICEA` and `S` one character out of place?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "33_71_02-P2-B139",
-      "section": "33 71 02",
-      "isNoteBlock": false
-    },
-    {
       "ruleId": "GRAMMAR-Agreement",
       "match": "an aluminum",
       "index": 310,
@@ -6687,102 +6421,6 @@
       "blockId": "33_71_02-P2-B143",
       "section": "33 71 02",
       "isNoteBlock": true
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "ICEA S",
-      "index": 70,
-      "message": "Is the space between `ICEA` and `S` one character out of place?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "33_71_02-P2-B144",
-      "section": "33 71 02",
-      "isNoteBlock": true
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "ICEA S",
-      "index": 133,
-      "message": "Is the space between `ICEA` and `S` one character out of place?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "33_71_02-P2-B144",
-      "section": "33 71 02",
-      "isNoteBlock": true
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "ICEA S",
-      "index": 66,
-      "message": "Is the space between `ICEA` and `S` one character out of place?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "33_71_02-P2-B145",
-      "section": "33 71 02",
-      "isNoteBlock": true
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "ICEA S",
-      "index": 104,
-      "message": "Is the space between `ICEA` and `S` one character out of place?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "33_71_02-P2-B146",
-      "section": "33 71 02",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "ICEA S",
-      "index": 136,
-      "message": "Is the space between `ICEA` and `S` one character out of place?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "33_71_02-P2-B146",
-      "section": "33 71 02",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "ICEA S",
-      "index": 169,
-      "message": "Is the space between `ICEA` and `S` one character out of place?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "33_71_02-P2-B146",
-      "section": "33 71 02",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "ICEA S",
-      "index": 303,
-      "message": "Is the space between `ICEA` and `S` one character out of place?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "33_71_02-P2-B146",
-      "section": "33 71 02",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "ICEA S",
-      "index": 335,
-      "message": "Is the space between `ICEA` and `S` one character out of place?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "33_71_02-P2-B146",
-      "section": "33 71 02",
-      "isNoteBlock": false
     },
     {
       "ruleId": "GRAMMAR-Spelling",
@@ -6822,18 +6460,6 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "prestretched",
-      "index": 42,
-      "message": "Did you mean to spell `prestretched` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158",
-      "section": "33 71 02",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "diene",
       "index": 237,
       "message": "Did you mean to spell `diene` this way?",
@@ -6841,18 +6467,6 @@
       "engine": "grammar",
       "category": "Spelling",
       "blockId": "33_71_02-P2-B158",
-      "section": "33 71 02",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "nontracking",
-      "index": 167,
-      "message": "Did you mean `contracting`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B160",
       "section": "33 71 02",
       "isNoteBlock": false
     },
@@ -7386,33 +7000,9 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "ductbanks",
-      "index": 299,
-      "message": "Did you mean to spell `ductbanks` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P3-B297",
-      "section": "33 71 02",
-      "isNoteBlock": true
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "UNREINFORCED",
       "index": 78,
       "message": "Did you mean to spell `UNREINFORCED` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P3-B299",
-      "section": "33 71 02",
-      "isNoteBlock": true
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "ductbanks",
-      "index": 139,
-      "message": "Did you mean to spell `ductbanks` this way?",
       "severity": "info",
       "engine": "grammar",
       "category": "Spelling",
@@ -7433,18 +7023,6 @@
       "isNoteBlock": true
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "ductbanks",
-      "index": 347,
-      "message": "Did you mean to spell `ductbanks` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P3-B299",
-      "section": "33 71 02",
-      "isNoteBlock": true
-    },
-    {
       "ruleId": "GRAMMAR-Style",
       "match": "w/",
       "index": 417,
@@ -7452,18 +7030,6 @@
       "severity": "info",
       "engine": "grammar",
       "category": "Style",
-      "blockId": "33_71_02-P3-B299",
-      "section": "33 71 02",
-      "isNoteBlock": true
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "ductbanks",
-      "index": 446,
-      "message": "Did you mean to spell `ductbanks` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
       "blockId": "33_71_02-P3-B299",
       "section": "33 71 02",
       "isNoteBlock": true
@@ -7490,18 +7056,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
-      "isNoteBlock": false
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "turnups",
-      "index": 404,
-      "message": "Did you mean to spell `turnups` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P3-B310",
-      "section": "33 71 02",
       "isNoteBlock": false
     },
     {

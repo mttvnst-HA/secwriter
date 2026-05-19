@@ -1,12 +1,17 @@
 {
+  "metadata": {
+    "corpusFile": "C:\\github\\secwriter\\corpus\\adversarial\\adversarial.json",
+    "timestamp": "2026-05-19T18:55:36.815Z",
+    "elapsedSeconds": 4.4
+  },
   "summary": {
-    "correct": 146,
+    "correct": 139,
     "total": 150,
-    "accuracy": 0.9733333333333334
+    "accuracy": 0.9266666666666666
   },
   "byCategory": {
     "false-positive-trap": {
-      "correct": 54,
+      "correct": 49,
       "total": 54
     },
     "true-positive": {
@@ -14,62 +19,106 @@
       "total": 43
     },
     "borderline-compliance": {
-      "correct": 12,
+      "correct": 11,
       "total": 13
     },
     "nlp-ambiguity": {
-      "correct": 28,
+      "correct": 29,
       "total": 30
     },
     "domain-jargon-trap": {
-      "correct": 10,
+      "correct": 8,
       "total": 10
     }
   },
   "failures": [
     {
-      "id": "ADV-029",
-      "category": "nlp-ambiguity",
-      "text": "The pipe is installed by the Contractor in accessible locations.",
-      "ruleId": "NLP-PASSIVE-001",
+      "id": "ADV-004",
       "shouldFlag": true,
-      "actuallyFlagged": false,
-      "reason": "'is installed by' — clear passive voice with agent ('by the Contractor'). 'installed' is NOT in ENGINEERING_ADJECTIVES. Should flag.",
-      "findings": []
+      "ruleId": "SYM-and",
+      "text": "Install P & T relief valves on all water heaters.",
+      "category": "false-positive-trap",
+      "reason": "SYM-and matches & between words. 'P & T' is a standard abbreviation (Pressure & Temperature) — real FP found 5x in clean corpus."
+    },
+    {
+      "id": "ADV-005",
+      "shouldFlag": true,
+      "ruleId": "SYM-and",
+      "text": "The Instrumentation & Control system conforms to ASHRAE standards.",
+      "category": "false-positive-trap",
+      "reason": "SYM-and has no proper-name exclusion for & in organization names. Real FP from clean corpus."
+    },
+    {
+      "id": "ADV-006",
+      "shouldFlag": true,
+      "ruleId": "COLLOQ-head",
+      "text": "Install head pressure gauges at each pump discharge.",
+      "category": "false-positive-trap",
+      "reason": "COLLOQ-head has NO compound-term exclusion for 'head pressure'. Simple \\bhead\\b matches. Real FP (17 in clean corpus)."
+    },
+    {
+      "id": "ADV-007",
+      "shouldFlag": true,
+      "ruleId": "COLLOQ-head",
+      "text": "Provide shower head assemblies conforming to the flow rate requirements.",
+      "category": "false-positive-trap",
+      "reason": "COLLOQ-head has no exclusion for 'shower head'. Will flag despite being standard plumbing terminology."
+    },
+    {
+      "id": "ADV-009",
+      "shouldFlag": true,
+      "ruleId": "COLLOQ-head",
+      "text": "Calculate head loss through the piping system per ASHRAE Fundamentals.",
+      "category": "false-positive-trap",
+      "reason": "COLLOQ-head will match 'head' even though 'head loss' is standard hydraulic engineering terminology. No context exclusion exists."
     },
     {
       "id": "ADV-038",
-      "category": "nlp-ambiguity",
-      "text": "The laminated beam is manufactured off-site and delivered to the project.",
-      "ruleId": "NLP-PASSIVE-001",
       "shouldFlag": true,
-      "actuallyFlagged": false,
-      "reason": "'is manufactured' — passive voice. 'manufactured' is NOT in ENGINEERING_ADJECTIVES. Engine should flag the passive.",
-      "findings": []
+      "ruleId": "NLP-PASSIVE-001",
+      "text": "The laminated beam is manufactured off-site and delivered to the project.",
+      "category": "nlp-ambiguity",
+      "reason": "'is manufactured' — passive voice. 'manufactured' is NOT in ENGINEERING_ADJECTIVES. Engine should flag the passive."
+    },
+    {
+      "id": "ADV-065",
+      "shouldFlag": true,
+      "ruleId": "TERM-suitable",
+      "text": "Suitable for the intended application as defined in ASTM D4263.",
+      "category": "borderline-compliance",
+      "reason": "'suitable' — TERM-suitable has no context exclusion. Even with a specific ASTM reference making it arguably precise, the engine flags the word itself."
     },
     {
       "id": "ADV-066",
-      "category": "borderline-compliance",
-      "text": "Properly aligned as verified by transit survey to within 3 mm tolerance.",
-      "ruleId": "TERM-adequate",
       "shouldFlag": true,
-      "actuallyFlagged": false,
-      "reason": "'properly' — TERM-adequate/VAGUE matches. Even though specific verification method and tolerance are stated, 'properly' itself triggers the rule.",
-      "findings": [
-        "TERM-properly"
-      ]
+      "ruleId": "TERM-adequate",
+      "text": "Properly aligned as verified by transit survey to within 3 mm tolerance.",
+      "category": "borderline-compliance",
+      "reason": "'properly' — TERM-adequate/VAGUE matches. Even though specific verification method and tolerance are stated, 'properly' itself triggers the rule."
+    },
+    {
+      "id": "ADV-076",
+      "shouldFlag": true,
+      "ruleId": "COLLOQ-head",
+      "text": "Provide dead head anchors at each end of the tensioning strand.",
+      "category": "domain-jargon-trap",
+      "reason": "'head' in 'dead head' — COLLOQ-head has no exclusion for this post-tensioning term. Will flag."
+    },
+    {
+      "id": "ADV-077",
+      "shouldFlag": true,
+      "ruleId": "COLLOQ-head",
+      "text": "Maintain minimum static head of 3 meters at the pump suction.",
+      "category": "domain-jargon-trap",
+      "reason": "'head' in 'static head' — standard hydraulics term but COLLOQ-head has no exclusion. Will flag."
     },
     {
       "id": "ADV-122",
-      "category": "true-positive",
-      "text": "Test each interval per the inspection schedule.",
-      "ruleId": "TERM-per",
       "shouldFlag": false,
-      "actuallyFlagged": true,
-      "reason": "'per the' is NOT in the exclusion list — but wait, 'the' is not a unit. This is 'per' meaning 'in accordance with'. Let me check: the exclusion is a lookahead, 'the' is not in it. This WILL flag.",
-      "findings": [
-        "TERM-per"
-      ]
+      "ruleId": "TERM-per",
+      "text": "Test each interval per the inspection schedule.",
+      "category": "true-positive",
+      "reason": "'per the' is NOT in the exclusion list — but wait, 'the' is not a unit. This is 'per' meaning 'in accordance with'. Let me check: the exclusion is a lookahead, 'the' is not in it. This WILL flag."
     }
   ]
 }
