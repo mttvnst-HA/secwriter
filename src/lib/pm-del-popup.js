@@ -62,8 +62,14 @@ export function dispatchDelAction(view, delEl, action) {
   // kindHint: 'del' — the popup is del-specific. Without it, a peer's
   // overlapping revisionAdd would resolve instead (Add precedes Del in
   // declared rank order).
-  const tr = applyInlineRevisionResolveTr(view.state, action, pos, 'del');
-  if (!tr) return null;
+  // The verb returns `{ tr, settlement: 'caller-owned', range }` post-2026-
+  // 05-19 dispatcher refactor; unwrap to the Transaction. We don't go
+  // through `dispatchToolbarVerb` here because the del-popup owns its own
+  // dispatch (and tags the tr with TC_RESOLVE_META, which the dispatcher
+  // doesn't know about) — the same in-file dispatch pattern as before.
+  const result = applyInlineRevisionResolveTr(view.state, action, pos, 'del');
+  if (!result) return null;
+  const tr = result.tr;
   // Tag as a TC resolution so PmEditableBlock.dispatchTransaction skips
   // rewriteForTrackChanges. Without this gate, accept-del dispatches a
   // `tr.delete(from, to)` over a revisionDel-marked range; the rewriter

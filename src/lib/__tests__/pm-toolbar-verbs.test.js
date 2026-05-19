@@ -23,13 +23,24 @@ function stateOf(doc, from = 0, to = from) {
   return EditorState.create({ doc, selection: sel });
 }
 
+/**
+ * Test helper: pull the PM Transaction out of a VerbResult descriptor.
+ * Verbs return `{ tr, settlement, range }` post-2026-05-19 dispatcher
+ * refactor; the existing assertion bodies remain readable when this helper
+ * unwraps the descriptor. Returns null when the verb returns null (decline
+ * paths: collapsed selection, unknown kind, allMine-in-TC-mode, ...).
+ */
+function trOf(result) {
+  return result ? result.tr : null;
+}
+
 describe('applyFormatTr', () => {
   it.each(['bold', 'italic', 'underline'])(
     '%s — toggles ON over plain selection',
     (kind) => {
       const doc = docOf(txt('hello'));
       const state = stateOf(doc, 1, 6);
-      const tr = applyFormatTr(state, kind);
+      const tr = trOf(applyFormatTr(state, kind));
       expect(tr).not.toBeNull();
       expect(tr.docChanged).toBe(true);
       const newState = state.apply(tr);
@@ -46,7 +57,7 @@ describe('applyFormatTr', () => {
       const markInstance = schema.marks[kind].create();
       const doc = docOf(txt('hello', markInstance));
       const state = stateOf(doc, 1, 6);
-      const tr = applyFormatTr(state, kind);
+      const tr = trOf(applyFormatTr(state, kind));
       expect(tr).not.toBeNull();
       const newState = state.apply(tr);
       const mark = findFirstMatchingMark(
@@ -61,13 +72,22 @@ describe('applyFormatTr', () => {
     const state = stateOf(doc, 3, 3);
     expect(applyFormatTr(state, 'bold')).toBeNull();
   });
+
+  it('descriptor carries settlement "self" + range matching selection', () => {
+    const doc = docOf(txt('hello'));
+    const state = stateOf(doc, 1, 6);
+    const result = applyFormatTr(state, 'bold');
+    expect(result).not.toBeNull();
+    expect(result.settlement).toBe('self');
+    expect(result.range).toEqual({ from: 1, to: 6 });
+  });
 });
 
 describe('applyInlineMarkTr', () => {
   it('RID toggles ON over plain selection', () => {
     const doc = docOf(txt('hello'));
     const state = stateOf(doc, 1, 6);
-    const tr = applyInlineMarkTr(state, 'rid');
+    const tr = trOf(applyInlineMarkTr(state, 'rid'));
     expect(tr).not.toBeNull();
     const newState = state.apply(tr);
     const mark = findFirstMatchingMark(
@@ -80,7 +100,7 @@ describe('applyInlineMarkTr', () => {
     const rid = schema.marks.inlineMark.create({ kind: 'rid', option: null });
     const doc = docOf(txt('hello', rid));
     const state = stateOf(doc, 1, 6);
-    const tr = applyInlineMarkTr(state, 'rid');
+    const tr = trOf(applyInlineMarkTr(state, 'rid'));
     const newState = state.apply(tr);
     expect(findFirstMatchingMark(
       newState.doc, 1, 6, schema.marks.inlineMark, (a) => a.kind === 'rid',
@@ -98,7 +118,7 @@ describe('applyInlineMarkTr', () => {
     const srf = schema.marks.inlineMark.create({ kind: 'srf', option: null });
     const doc = docOf(txt('hello', srf));
     const state = stateOf(doc, 1, 6);
-    const tr = applyInlineMarkTr(state, 'rid');
+    const tr = trOf(applyInlineMarkTr(state, 'rid'));
     expect(tr).not.toBeNull();
     const newState = state.apply(tr);
     expect(findFirstMatchingMark(
@@ -109,7 +129,7 @@ describe('applyInlineMarkTr', () => {
   it('TAI carries the option attr', () => {
     const doc = docOf(txt('hello'));
     const state = stateOf(doc, 1, 6);
-    const tr = applyInlineMarkTr(state, 'tai', 'GULF');
+    const tr = trOf(applyInlineMarkTr(state, 'tai', 'GULF'));
     const newState = state.apply(tr);
     const mark = findFirstMatchingMark(
       newState.doc, 1, 6, schema.marks.inlineMark, (a) => a.kind === 'tai',
@@ -123,13 +143,21 @@ describe('applyInlineMarkTr', () => {
     const state = stateOf(doc, 2, 2);
     expect(applyInlineMarkTr(state, 'rid')).toBeNull();
   });
+
+  it('descriptor carries settlement "self" + range matching selection', () => {
+    const doc = docOf(txt('hello'));
+    const state = stateOf(doc, 1, 6);
+    const result = applyInlineMarkTr(state, 'rid');
+    expect(result.settlement).toBe('self');
+    expect(result.range).toEqual({ from: 1, to: 6 });
+  });
 });
 
 describe('applyRevisionTr (1g.6 #87 — dispatches by MarkType)', () => {
   it('applies ADD with current authorId via revisionAdd MarkType', () => {
     const doc = docOf(txt('hello'));
     const state = stateOf(doc, 1, 6);
-    const tr = applyRevisionTr(state, 'add', { authorId: 'A', authorColor: '#f00' });
+    const tr = trOf(applyRevisionTr(state, 'add', { authorId: 'A', authorColor: '#f00' }));
     const newState = state.apply(tr);
     const mark = findFirstMatchingMark(
       newState.doc, 1, 6, schema.marks.revisionAdd, () => true,
@@ -143,7 +171,7 @@ describe('applyRevisionTr (1g.6 #87 — dispatches by MarkType)', () => {
   it('applies DEL via revisionDel MarkType (not revisionAdd)', () => {
     const doc = docOf(txt('hello'));
     const state = stateOf(doc, 1, 6);
-    const tr = applyRevisionTr(state, 'del', { authorId: 'A' });
+    const tr = trOf(applyRevisionTr(state, 'del', { authorId: 'A' }));
     const newState = state.apply(tr);
     expect(findFirstMatchingMark(newState.doc, 1, 6, schema.marks.revisionDel, () => true)).not.toBeNull();
     expect(findFirstMatchingMark(newState.doc, 1, 6, schema.marks.revisionAdd, () => true)).toBeNull();
@@ -159,7 +187,7 @@ describe('applyRevisionTr (1g.6 #87 — dispatches by MarkType)', () => {
     const add = schema.marks.revisionAdd.create({ authorId: 'A' });
     const doc = docOf(txt('hello', add));
     const state = stateOf(doc, 1, 6);
-    const tr = applyRevisionTr(state, 'add', { authorId: 'A' });
+    const tr = trOf(applyRevisionTr(state, 'add', { authorId: 'A' }));
     const newState = state.apply(tr);
     expect(findFirstMatchingMark(
       newState.doc, 1, 6, schema.marks.revisionAdd, () => true,
@@ -173,7 +201,7 @@ describe('applyRevisionTr (1g.6 #87 — dispatches by MarkType)', () => {
     const addA = schema.marks.revisionAdd.create({ authorId: 'A' });
     const doc = docOf(txt('hello', addA));
     const state = stateOf(doc, 1, 6);
-    const tr = applyRevisionTr(state, 'add', { authorId: 'B' });
+    const tr = trOf(applyRevisionTr(state, 'add', { authorId: 'B' }));
     expect(tr).not.toBeNull();
     const newState = state.apply(tr);
     const markA = findFirstMatchingMark(
@@ -193,7 +221,7 @@ describe('applyRevisionTr (1g.6 #87 — dispatches by MarkType)', () => {
     const addA = schema.marks.revisionAdd.create({ authorId: 'A' });
     const doc = docOf(txt('hello', addA));
     const state = stateOf(doc, 1, 6);
-    const tr = applyRevisionTr(state, 'del', { authorId: 'A' });
+    const tr = trOf(applyRevisionTr(state, 'del', { authorId: 'A' }));
     const newState = state.apply(tr);
     expect(findFirstMatchingMark(newState.doc, 1, 6, schema.marks.revisionAdd, () => true)).not.toBeNull();
     expect(findFirstMatchingMark(newState.doc, 1, 6, schema.marks.revisionDel, () => true)).not.toBeNull();
@@ -208,7 +236,7 @@ describe('applyRevisionTr (1g.6 #87 — dispatches by MarkType)', () => {
     const addB = schema.marks.revisionAdd.create({ authorId: 'B' });
     const doc = docOf(txt('aa', addA), txt('bb', addB));
     const state = stateOf(doc, 1, 5);
-    const tr = applyRevisionTr(state, 'add', { authorId: 'A' });
+    const tr = trOf(applyRevisionTr(state, 'add', { authorId: 'A' }));
     expect(tr).not.toBeNull();
     const newState = state.apply(tr);
     expect(findFirstMatchingMark(
@@ -235,14 +263,13 @@ describe('applyRevisionTr (1g.6 #87 — dispatches by MarkType)', () => {
     const doc = docOf(txt('hello', add));
     const state = stateOf(doc, 1, 6);
     // 4th arg = trackChanges (true)
-    const tr = applyRevisionTr(state, 'add', { authorId: 'A' }, true);
-    expect(tr).toBeNull();
+    expect(applyRevisionTr(state, 'add', { authorId: 'A' }, true)).toBeNull();
   });
 
   it('TC mode + plain text: still applies the mark (additive — adds to unmarked)', () => {
     const doc = docOf(txt('hello'));
     const state = stateOf(doc, 1, 6);
-    const tr = applyRevisionTr(state, 'add', { authorId: 'A' }, true);
+    const tr = trOf(applyRevisionTr(state, 'add', { authorId: 'A' }, true));
     expect(tr).not.toBeNull();
     const newState = state.apply(tr);
     const mark = findFirstMatchingMark(
@@ -258,13 +285,21 @@ describe('applyRevisionTr (1g.6 #87 — dispatches by MarkType)', () => {
     const addA = schema.marks.revisionAdd.create({ authorId: 'A' });
     const doc = docOf(txt('hello', addA));
     const state = stateOf(doc, 1, 6);
-    const tr = applyRevisionTr(state, 'add', { authorId: 'B' }, true);
+    const tr = trOf(applyRevisionTr(state, 'add', { authorId: 'B' }, true));
     expect(tr).not.toBeNull();
     const newState = state.apply(tr);
     const markB = findFirstMatchingMark(
       newState.doc, 1, 6, schema.marks.revisionAdd, (a) => a.authorId === 'B',
     );
     expect(markB).not.toBeNull();
+  });
+
+  it('descriptor carries settlement "self" + range matching selection', () => {
+    const doc = docOf(txt('hello'));
+    const state = stateOf(doc, 1, 6);
+    const result = applyRevisionTr(state, 'add', { authorId: 'A' });
+    expect(result.settlement).toBe('self');
+    expect(result.range).toEqual({ from: 1, to: 6 });
   });
 });
 
@@ -278,7 +313,7 @@ describe('applyInlineRevisionResolveTr (1g.6 — tries Add/Del/Chg in order)', (
   it('accept ADD strips the mark and clears storedMarks', () => {
     const doc = docWithMark('add');
     const state = stateOf(doc, 5);
-    const tr = applyInlineRevisionResolveTr(state, 'accept');
+    const tr = trOf(applyInlineRevisionResolveTr(state, 'accept'));
     expect(tr).not.toBeNull();
     const newState = state.apply(tr);
     expect(findFirstMatchingMark(
@@ -290,7 +325,7 @@ describe('applyInlineRevisionResolveTr (1g.6 — tries Add/Del/Chg in order)', (
   it('reject ADD deletes the marked range', () => {
     const doc = docWithMark('add', 'word');
     const state = stateOf(doc, 5);
-    const tr = applyInlineRevisionResolveTr(state, 'reject');
+    const tr = trOf(applyInlineRevisionResolveTr(state, 'reject'));
     const newState = state.apply(tr);
     expect(newState.doc.textContent).toBe('xxyy');
   });
@@ -298,7 +333,7 @@ describe('applyInlineRevisionResolveTr (1g.6 — tries Add/Del/Chg in order)', (
   it('accept DEL deletes the marked range', () => {
     const doc = docWithMark('del');
     const state = stateOf(doc, 5);
-    const tr = applyInlineRevisionResolveTr(state, 'accept');
+    const tr = trOf(applyInlineRevisionResolveTr(state, 'accept'));
     const newState = state.apply(tr);
     expect(newState.doc.textContent).toBe('xxyy');
   });
@@ -306,7 +341,7 @@ describe('applyInlineRevisionResolveTr (1g.6 — tries Add/Del/Chg in order)', (
   it('reject DEL strips the mark and clears storedMarks', () => {
     const doc = docWithMark('del');
     const state = stateOf(doc, 5);
-    const tr = applyInlineRevisionResolveTr(state, 'reject');
+    const tr = trOf(applyInlineRevisionResolveTr(state, 'reject'));
     const newState = state.apply(tr);
     expect(findFirstMatchingMark(
       newState.doc, 3, 7, schema.marks.revisionDel, () => true,
@@ -317,7 +352,7 @@ describe('applyInlineRevisionResolveTr (1g.6 — tries Add/Del/Chg in order)', (
   it('accept CHG strips the mark (content stays — CHG is a record, not a pending edit)', () => {
     const doc = docWithMark('chg');
     const state = stateOf(doc, 5);
-    const tr = applyInlineRevisionResolveTr(state, 'accept');
+    const tr = trOf(applyInlineRevisionResolveTr(state, 'accept'));
     expect(tr).not.toBeNull();
     const newState = state.apply(tr);
     expect(newState.doc.textContent).toBe('xxwordyy');
@@ -329,7 +364,7 @@ describe('applyInlineRevisionResolveTr (1g.6 — tries Add/Del/Chg in order)', (
   it('cursor at immediate right boundary of mark resolves the mark', () => {
     const doc = docWithMark('add');
     const state = stateOf(doc, 7);
-    const tr = applyInlineRevisionResolveTr(state, 'accept');
+    const tr = trOf(applyInlineRevisionResolveTr(state, 'accept'));
     expect(tr).not.toBeNull();
   });
 
@@ -347,7 +382,7 @@ describe('applyInlineRevisionResolveTr (1g.6 — tries Add/Del/Chg in order)', (
     const del = schema.marks.revisionDel.create({ authorId: 'B' });
     const doc = docOf(txt('xx'), txt('overlap', add, del), txt('yy'));
     const state = stateOf(doc, 5);
-    const tr = applyInlineRevisionResolveTr(state, 'accept');
+    const tr = trOf(applyInlineRevisionResolveTr(state, 'accept'));
     const newState = state.apply(tr);
     // ADD stripped (accept-ADD = strip), text preserved
     expect(newState.doc.textContent).toBe('xxoverlapyy');
@@ -369,7 +404,7 @@ describe('applyInlineRevisionResolveTr (1g.6 — tries Add/Del/Chg in order)', (
     const del = schema.marks.revisionDel.create({ authorId: 'B' });
     const doc = docOf(txt('xx'), txt('overlap', add, del), txt('yy'));
     const state = stateOf(doc, 5);
-    const tr = applyInlineRevisionResolveTr(state, 'accept', undefined, 'del');
+    const tr = trOf(applyInlineRevisionResolveTr(state, 'accept', undefined, 'del'));
     const newState = state.apply(tr);
     // DEL accept = delete range; "overlap" is removed
     expect(newState.doc.textContent).toBe('xxyy');
@@ -394,7 +429,7 @@ describe('applyInlineRevisionResolveTr (1g.6 — tries Add/Del/Chg in order)', (
     // Selection on the ADD range (positions 3..6)
     const state = stateOf(doc, 4);
     // pos override pointing into the DEL range
-    const tr = applyInlineRevisionResolveTr(state, 'accept', 10);
+    const tr = trOf(applyInlineRevisionResolveTr(state, 'accept', 10));
     expect(tr).not.toBeNull();
     const newState = state.apply(tr);
     // DEL accept deletes the range — text becomes 'xxaaamidyy'
@@ -410,12 +445,24 @@ describe('applyInlineRevisionResolveTr (1g.6 — tries Add/Del/Chg in order)', (
     const add = schema.marks.revisionAdd.create({ authorId: 'A' });
     const doc = docOf(txt('xx'), txt('word', add), txt('yy'));
     const state = stateOf(doc, 5);
-    const tr = applyInlineRevisionResolveTr(state, 'accept');
+    const tr = trOf(applyInlineRevisionResolveTr(state, 'accept'));
     expect(tr).not.toBeNull();
     const newState = state.apply(tr);
     expect(findFirstMatchingMark(
       newState.doc, 3, 7, schema.marks.revisionAdd, () => true,
     )).toBeNull();
+  });
+
+  it('descriptor carries settlement "caller-owned" + range covering the mark', () => {
+    // Resolve verb is the ONLY one with `caller-owned` settlement: the
+    // FloatingToolbar action issues its own setBlocks via onRefreshTcSnapshot
+    // and cancels the per-block debounce instead of flushing.
+    const doc = docWithMark('add');
+    const state = stateOf(doc, 5);
+    const result = applyInlineRevisionResolveTr(state, 'accept');
+    expect(result.settlement).toBe('caller-owned');
+    // Mark covers positions 3..7 (xx + 'word' + yy → marked is positions 3..7).
+    expect(result.range).toEqual({ from: 3, to: 7 });
   });
 });
 
@@ -427,7 +474,7 @@ describe('applyChangeCaseTr', () => {
   ])('%s', (_label, input, expected) => {
     const doc = docOf(txt(input));
     const state = stateOf(doc, 1, input.length + 1);
-    const tr = applyChangeCaseTr(state);
+    const tr = trOf(applyChangeCaseTr(state));
     expect(state.apply(tr).doc.textContent).toBe(expected);
   });
 
@@ -438,7 +485,7 @@ describe('applyChangeCaseTr', () => {
     const bold = schema.marks.bold.create();
     const doc = docOf(txt('hello', bold));
     const state = stateOf(doc, 1, 6);
-    const tr = applyChangeCaseTr(state);
+    const tr = trOf(applyChangeCaseTr(state));
     const newState = state.apply(tr);
     const mark = findFirstMatchingMark(
       newState.doc, 1, 6, schema.marks.bold, () => true,
@@ -448,13 +495,21 @@ describe('applyChangeCaseTr', () => {
     const emptyState = stateOf(docOf(txt('hello')), 3, 3);
     expect(applyChangeCaseTr(emptyState)).toBeNull();
   });
+
+  it('descriptor carries settlement "self" + range matching selection', () => {
+    const doc = docOf(txt('hello'));
+    const state = stateOf(doc, 1, 6);
+    const result = applyChangeCaseTr(state);
+    expect(result.settlement).toBe('self');
+    expect(result.range).toEqual({ from: 1, to: 6 });
+  });
 });
 
 describe('applyCommentMarkTr (issue #64)', () => {
   it('adds comment mark with id+resolved attrs over selection', () => {
     const doc = docOf(txt('hello world'));
     const state = stateOf(doc, 1, 6);
-    const tr = applyCommentMarkTr(state, 'c-abc');
+    const tr = trOf(applyCommentMarkTr(state, 'c-abc'));
     expect(tr).not.toBeNull();
     const newState = state.apply(tr);
     const mark = findFirstMatchingMark(
@@ -471,6 +526,14 @@ describe('applyCommentMarkTr (issue #64)', () => {
     expect(applyCommentMarkTr(stateOf(doc, 1, 6), null)).toBeNull();
     expect(applyCommentMarkTr(stateOf(doc, 1, 6), 123)).toBeNull();
   });
+
+  it('descriptor carries settlement "self" + range matching selection', () => {
+    const doc = docOf(txt('hello world'));
+    const state = stateOf(doc, 1, 6);
+    const result = applyCommentMarkTr(state, 'c-abc');
+    expect(result.settlement).toBe('self');
+    expect(result.range).toEqual({ from: 1, to: 6 });
+  });
 });
 
 describe('Multi-paragraph round-trip', () => {
@@ -486,7 +549,7 @@ describe('Multi-paragraph round-trip', () => {
     const p2 = schema.node('paragraph', null, [txt('bar')]);
     const doc = schema.node('doc', null, [p1, p2]);
     const state = stateOf(doc, 1, 9);
-    const tr = applyInlineMarkTr(state, 'rid');
+    const tr = trOf(applyInlineMarkTr(state, 'rid'));
     expect(tr).not.toBeNull();
     const newState = state.apply(tr);
     expect(newState.doc.childCount).toBe(2);

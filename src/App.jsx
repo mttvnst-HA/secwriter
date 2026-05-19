@@ -881,7 +881,6 @@ export default function SpecEditor() {
   useEffect(() => {
     if (!import.meta.env.DEV) return;
     if (typeof window === 'undefined') return;
-    let flushOverridden = false;
     window.__simEditorTestUtils = {
       getBlockHtml: (id) => {
         const b = blocksRef.current.find((x) => x.id === id);
@@ -938,11 +937,6 @@ export default function SpecEditor() {
           return true;
         } catch { return false; }
       },
-      // 1f.9 — negative control for E1 (flushPendingUpdate test). When
-      // called with false, FloatingToolbar's PM branch will skip the flush
-      // and React state will lag by the 400ms debounce.
-      __overrideFlush: (enabled) => { flushOverridden = !enabled; },
-      __isFlushOverridden: () => flushOverridden,
     };
     return () => { delete window.__simEditorTestUtils; };
   }, [handleBlockUpdateWithSync]);

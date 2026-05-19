@@ -1,10 +1,31 @@
 /**
- * pm-toolbar.js — Pure transaction builders for FloatingToolbar's PM path
- * (sub-PR 1f.9, issue #47).
+ * pm-toolbar.js — PM toolbar verbs + dispatcher for FloatingToolbar
+ * (sub-PR 1f.9, issue #47; dispatcher consolidation 2026-05-19).
  *
- * Each verb takes an EditorState + parameters and returns a Transaction or
- * null. Never touches DOM, never reads window selection, never dispatches.
- * The caller (FloatingToolbar in PM mode) dispatches via view.dispatch(tr).
+ * Two layers in one file:
+ *
+ *   1. **Verbs** (`applyFormatTr` / `applyInlineMarkTr` / `applyRevisionTr`
+ *      / `applyInlineRevisionResolveTr` / `applyChangeCaseTr` /
+ *      `applyCommentMarkTr`). Pure. Each takes an EditorState + parameters
+ *      and returns a `VerbResult` (`{ tr, settlement, range }`) or null.
+ *      Never touch DOM, never read window selection, never dispatch.
+ *
+ *   2. **Dispatcher** (`dispatchToolbarVerb`). Side-effectful. Owns the
+ *      protocol: restore Y.RelativePosition-saved selection -> close prior
+ *      UndoManager frame -> view.dispatch(tr) -> snapshot view.state ->
+ *      flush or cancel the per-block debounce per the verb's settlement.
+ *      Returns `{ dispatched, blockId, state, range }` to the caller.
+ *
+ *   3. **Extractors** (`extractHtml` / `extractRangeText`). Pure helpers
+ *      colocated with the verbs that produce ranges they operate over.
+ *      Read a PM EditorState snapshot. PM imports (pmFragmentToHtml,
+ *      textBetween) stay in this module — callers (FloatingToolbar) never
+ *      touch PM internals.
+ *
+ * Mirrors the in-file pattern established by `pm-del-popup.js` (verb +
+ * dispatch helper in one module). The split-file alternative was rejected
+ * because it would orphan a "pm-toolbar-dispatch.js" sibling while
+ * `pm-del-popup.js` keeps its dispatch in-file.
  *
  * Two helpers replace PM's built-in rangeHasMark / toggleMark because those
  * compare by MarkType only, ignoring attrs. The schema's inlineMark (kind
@@ -23,9 +44,37 @@
  * `excludes: ''` (1g.6 schema) two same-MarkType marks with different
  * attrs coexist instead of replacing each other, so the safety check
  * `rangeAllHaveMarkWithAttrs(...)` is what gates removal.
+ *
+ * ## VerbResult shape (2026-05-19 dispatcher refactor)
+ *
+ *   `{ tr: Transaction, settlement: 'self' | 'caller-owned', range: {from, to} }`
+ *
+ * - `settlement: 'self'` — dispatcher calls `flushPendingUpdateById(blockId)`
+ *   after dispatch. The verb's PM op produces a substrate change whose React-
+ *   state mirror flows through PmEditableBlock's debounced `onUpdate`; flushing
+ *   collapses the 400ms window so React state reflects the new html
+ *   synchronously. Used by format/inline-mark/revision-apply/change-case/
+ *   comment-create.
+ * - `settlement: 'caller-owned'` — dispatcher calls `cancelPendingUpdateById`.
+ *   The caller will issue its own setBlocks via a post-dispatch callback
+ *   (e.g. `onRefreshTcSnapshot`), so the debounce must be cancelled to prevent
+ *   a 400ms-later setBlocks from clobbering the caller's already-settled
+ *   snapshot. Used by accept-inline (revision-resolve).
+ * - `range` — the pre-dispatch (verb-determined for resolve) selection range
+ *   the verb operated on. Exposed to callers via the dispatcher's return so
+ *   extractors (`extractRangeText`) can read text by index post-dispatch.
+ *   For verbs that don't change document length (add/remove mark), this is
+ *   the original selection; for resolve, it's the mark's extent walked by
+ *   `findMarkRangeAt`.
  */
 
 import { REVISION_MARK_TYPE_NAMES } from './pm-schema.js';
+import { pmFragmentToHtml } from './pmdoc-html.js';
+import {
+  flushPendingUpdateById,
+  cancelPendingUpdateById,
+} from './block-registry.js';
+import { restoreSelection as restorePmRelpos } from './pm-relpos.js';
 
 // Order matters — applyInlineRevisionResolveTr tries these in declared
 // rank order. The first MarkType with a range at the cursor wins.
@@ -179,6 +228,7 @@ export function findMarkRangeAt(doc, pos, markType, attrPredicate) {
  * the mark" semantics (matches prosemirror-commands.toggleMark).
  *
  * Returns null when the selection is collapsed or the kind is unknown.
+ * Otherwise returns a VerbResult with `settlement: 'self'`.
  */
 export function applyFormatTr(state, kind) {
   const { from, to, empty } = state.selection;
@@ -186,10 +236,10 @@ export function applyFormatTr(state, kind) {
   const markType = state.schema.marks[kind];
   if (!markType) return null;
   const existing = findFirstMatchingMark(state.doc, from, to, markType, () => true);
-  if (existing) {
-    return state.tr.removeMark(from, to, markType);
-  }
-  return state.tr.addMark(from, to, markType.create());
+  const tr = existing
+    ? state.tr.removeMark(from, to, markType)
+    : state.tr.addMark(from, to, markType.create());
+  return { tr, settlement: 'self', range: { from, to } };
 }
 
 /**
@@ -209,14 +259,17 @@ export function applyInlineMarkTr(state, kind, optionAttr) {
   const existing = findFirstMatchingMark(
     state.doc, from, to, markType, (a) => a.kind === kind,
   );
+  let tr;
   if (existing) {
-    return state.tr.removeMark(from, to, existing);
+    tr = state.tr.removeMark(from, to, existing);
+  } else {
+    const attrs = {
+      kind,
+      option: kind === 'tai' ? (optionAttr ?? null) : null,
+    };
+    tr = state.tr.addMark(from, to, markType.create(attrs));
   }
-  const attrs = {
-    kind,
-    option: kind === 'tai' ? (optionAttr ?? null) : null,
-  };
-  return state.tr.addMark(from, to, markType.create(attrs));
+  return { tr, settlement: 'self', range: { from, to } };
 }
 
 /**
@@ -266,15 +319,19 @@ export function applyRevisionTr(state, kind, authorAttrs, trackChanges = false) 
   const matchesMine = (a) => a.authorId === currentAuthorId;
 
   const allMine = rangeAllHaveMarkWithAttrs(state.doc, from, to, markType, matchesMine);
+  let tr = null;
   if (allMine) {
     if (trackChanges) return null; // per-keystroke marking already owns this range
     const sample = findFirstMatchingMark(state.doc, from, to, markType, matchesMine);
-    if (sample) return state.tr.removeMark(from, to, sample);
+    if (sample) tr = state.tr.removeMark(from, to, sample);
   }
-  return state.tr.addMark(from, to, markType.create({
-    authorId: currentAuthorId,
-    authorColor: authorAttrs?.authorColor ?? null,
-  }));
+  if (!tr) {
+    tr = state.tr.addMark(from, to, markType.create({
+      authorId: currentAuthorId,
+      authorColor: authorAttrs?.authorColor ?? null,
+    }));
+  }
+  return { tr, settlement: 'self', range: { from, to } };
 }
 
 /**
@@ -349,7 +406,11 @@ export function applyInlineRevisionResolveTr(state, action, pos, kindHint) {
   } else {
     return null;
   }
-  return tr.setStoredMarks([]);
+  return {
+    tr: tr.setStoredMarks([]),
+    settlement: 'caller-owned',
+    range: { from: range.from, to: range.to },
+  };
 }
 
 /**
@@ -382,7 +443,8 @@ export function applyCommentMarkTr(state, commentId) {
   if (typeof commentId !== 'string' || !commentId) return null;
   const markType = state.schema.marks.comment;
   if (!markType) return null;
-  return state.tr.addMark(from, to, markType.create({ id: commentId, resolved: false }));
+  const tr = state.tr.addMark(from, to, markType.create({ id: commentId, resolved: false }));
+  return { tr, settlement: 'self', range: { from, to } };
 }
 
 /**
@@ -407,5 +469,144 @@ export function applyChangeCaseTr(state) {
   } else {
     newText = text.toUpperCase();
   }
-  return state.tr.replaceWith(from, to, state.schema.text(newText));
+  const tr = state.tr.replaceWith(from, to, state.schema.text(newText));
+  return { tr, settlement: 'self', range: { from, to } };
+}
+
+// ---------------------------------------------------------------------------
+// Dispatcher (2026-05-19 refactor — issue #100 follow-up). Owns the post-PM-
+// dispatch coordination protocol shared by every FloatingToolbar PM verb.
+//
+// Pre-refactor: FloatingToolbar.jsx repeated this 7 times across 5 callbacks
+// (applyMark / applyRevision / changeCase / handleInlineRevisionAction /
+// applyFormat / comment-create), with a one-line variation between flush vs
+// cancel:
+//
+//   restoreSavedRelpos(view, saved);
+//   const tr = applyXxxTr(view.state, ...);
+//   if (tr) {
+//     onForceFrame?.();
+//     view.dispatch(tr);
+//     if (!__isFlushOverridden?.()) flushPendingUpdateById(blockId);
+//     // ... or cancelPendingUpdateById for accept-inline
+//   }
+//   setVisible(false);
+//
+// The deletion test for `flushPendingUpdateById` / `cancelPendingUpdateById`
+// concentrates complexity here: settlement is a property of the verb's
+// effect intent (does the action also issue its own React-side setBlocks?),
+// so colocating settlement with the verb (in the VerbResult descriptor)
+// and centralizing the dispatch + settlement choice in this function keeps
+// every callsite of FloatingToolbar to a single line.
+//
+// The `__overrideFlush` window test seam was retired with this refactor —
+// grep confirmed zero test consumers; the seam was documented but never
+// wired. ---------------------------------------------------------------------
+
+/**
+ * Dispatch a toolbar verb against an EditorView, honoring the verb's
+ * settlement contract.
+ *
+ * Sequence:
+ *   1. If `view` or `saved` is null, bail with `{ dispatched: false }`.
+ *   2. Restore the Y.RelativePosition saved on `saved` (no-op if missing /
+ *      cross-block / pre-1g.7 caller). MUST happen before `compute(...)`
+ *      because most verbs build their tr from `state.selection`; computing
+ *      pre-restore would mark/replace the wrong range when a peer's edit
+ *      landed between toolbar open and click.
+ *   3. Call `compute(view.state)` to derive the VerbResult against the
+ *      relpos-corrected state. When the verb declines (collapsed selection,
+ *      unknown kind, allMine-in-TC-mode, etc.) it returns null and the
+ *      dispatcher bails.
+ *   4. Invoke `onForceFrame?.()` so the Yjs UndoManager closes the prior
+ *      capture window — the verb's PM op enters a fresh undo frame, not
+ *      the user's preceding typing burst.
+ *   5. view.dispatch(tr).
+ *   6. Snapshot view.state IMMEDIATELY (PM EditorStates are immutable, so
+ *      this reference is frozen — no peer-op race when callers read it
+ *      asynchronously).
+ *   7. Honor the verb's settlement: 'self' -> flushPendingUpdateById,
+ *      'caller-owned' -> cancelPendingUpdateById.
+ *
+ * Returns `{ dispatched: false }` when nothing ran (null view, null saved,
+ * or verb returned null), or `{ dispatched: true, blockId, state, range }`
+ * after successful dispatch. Callers read `state` (a frozen post-dispatch
+ * EditorState) for any post-dispatch extracts via `extractHtml` /
+ * `extractRangeText` below.
+ *
+ * @param {Object} params
+ * @param {import('prosemirror-view').EditorView | null} params.view
+ * @param {Object | null} params.saved
+ *   The selectionRef value from FloatingToolbar — carries `blockId` and
+ *   optional `savedRelpos` (Y.RelativePosition). When null, bails.
+ * @param {(state: import('prosemirror-state').EditorState) => Object | null} params.compute
+ *   Called with the relpos-corrected EditorState. Returns a VerbResult
+ *   (`{ tr, settlement, range }`) or null. Typical body:
+ *   `(state) => applyFormatTr(state, kind)`.
+ * @param {() => void} [params.onForceFrame]
+ *   Optional UndoManager frame-closer. Production wiring: App passes
+ *   `inRoom ? collab.forceFrame : localUndo.forceFrame`. Tests can omit.
+ *
+ * @returns {{ dispatched: false } | {
+ *   dispatched: true,
+ *   blockId: string,
+ *   state: import('prosemirror-state').EditorState,
+ *   range: { from: number, to: number },
+ * }}
+ */
+export function dispatchToolbarVerb({ view, saved, compute, onForceFrame }) {
+  if (!view || !saved) return { dispatched: false };
+  if (typeof compute !== 'function') return { dispatched: false };
+
+  const { blockId, savedRelpos } = saved;
+  if (savedRelpos) {
+    try { restorePmRelpos(view, savedRelpos); }
+    catch { /* defensive — fall back to view.state.selection unchanged */ }
+  }
+
+  const verbResult = compute(view.state);
+  if (!verbResult) return { dispatched: false };
+
+  if (typeof onForceFrame === 'function') onForceFrame();
+  view.dispatch(verbResult.tr);
+
+  const stateAfter = view.state;
+
+  if (verbResult.settlement === 'caller-owned') {
+    cancelPendingUpdateById(blockId);
+  } else {
+    flushPendingUpdateById(blockId);
+  }
+
+  return {
+    dispatched: true,
+    blockId,
+    state: stateAfter,
+    range: verbResult.range,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Extractors — pure helpers that read a PM EditorState snapshot. Colocated
+// with the verbs so PM serialization concerns (pmFragmentToHtml,
+// textBetween) stay in this module instead of leaking back into
+// FloatingToolbar. Callers use the dispatcher's returned `state` + `range`.
+// ---------------------------------------------------------------------------
+
+/** Serialize the doc of a post-dispatch EditorState to html. */
+export function extractHtml(state) {
+  return pmFragmentToHtml(state.doc);
+}
+
+/**
+ * Read plain text for a verb's operated-on range from a post-dispatch
+ * EditorState. Honors PM's `textBetween` newline behavior (single '\n'
+ * between blocks, empty string for inline-leaf separators).
+ *
+ * Used by comment-create to derive the highlightText for the comments
+ * envelope from the snapshot the dispatcher returned, without the caller
+ * touching PM internals.
+ */
+export function extractRangeText(state, range) {
+  return state.doc.textBetween(range.from, range.to, '\n', '');
 }

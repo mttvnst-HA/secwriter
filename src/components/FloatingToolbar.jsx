@@ -6,14 +6,12 @@ import {
   applyInlineRevisionResolveTr,
   applyChangeCaseTr,
   applyCommentMarkTr,
+  dispatchToolbarVerb,
+  extractHtml,
+  extractRangeText,
 } from '../lib/pm-toolbar.js';
-import {
-  getBlockView,
-  flushPendingUpdateById,
-  cancelPendingUpdateById,
-} from '../lib/block-registry.js';
-import { pmFragmentToHtml } from '../lib/pmdoc-html.js';
-import { saveSelection as savePmRelpos, restoreSelection as restorePmRelpos } from '../lib/pm-relpos.js';
+import { getBlockView } from '../lib/block-registry.js';
+import { saveSelection as savePmRelpos } from '../lib/pm-relpos.js';
 
 /**
  * Inline mark types available in the floating toolbar.
@@ -46,19 +44,14 @@ const REVISION_TYPES = [
 ];
 
 /**
- * 1g.7 (#88) — restore the saved Y.RelativePosition onto the view's
- * current state before dispatching a PM tr. If the saved relpos is null
- * (legacy/ref/table block) or restore fails (no binding, cross-fragment),
- * this is a no-op and the caller proceeds with whatever the view's
- * current selection is — same as pre-1g.7 behavior. The benefit only
- * accrues to PM-mounted blocks when a peer's edit lands between toolbar
- * open and action click.
+ * 1g.7 (#88) — Y.RelativePosition save/restore for the floating toolbar:
+ * save happens here on `selectionchange` (so the saved tuple captures
+ * the user's intended target the moment they finish selecting); restore
+ * happens inside `dispatchToolbarVerb` immediately before the verb's PM
+ * dispatch. If the saved relpos is null (legacy/ref/table block — no PM
+ * EditorView), the restore is a no-op and the verb runs against
+ * `view.state.selection` as-is.
  */
-function restoreSavedRelpos(view, saved) {
-  if (!view || !saved || !saved.savedRelpos) return;
-  try { restorePmRelpos(view, saved.savedRelpos); }
-  catch { /* defensive — fall back to view.state.selection unchanged */ }
-}
 
 export default function FloatingToolbar({
   editorRef,
@@ -233,52 +226,36 @@ export default function FloatingToolbar({
   const applyMark = useCallback((markType) => {
     const saved = selectionRef.current;
     if (!saved) return;
-    const { blockId } = saved;
-    const view = blockId ? getBlockView(blockId) : null;
-    if (!view) { setVisible(false); return; }
-
-    // 1g.7 (#88): restore the Y.RelativePosition-anchored selection so a
-    // peer's edit between toolbar open and click doesn't shift the action
-    // off the user's intended target.
-    restoreSavedRelpos(view, saved);
+    const view = saved.blockId ? getBlockView(saved.blockId) : null;
     const kindMap = { 'mark-rid': 'rid', 'mark-srf': 'srf', 'mark-sub': 'sub' };
     const kind = kindMap[markType.cls];
     if (!kind) return;
-    const tr = applyInlineMarkTr(view.state, kind);
-    if (tr) {
-      if (typeof onForceFrame === 'function') onForceFrame();
-      view.dispatch(tr);
-      if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
-        flushPendingUpdateById(blockId);
-      }
-    }
+    dispatchToolbarVerb({
+      view,
+      saved,
+      compute: (state) => applyInlineMarkTr(state, kind),
+      onForceFrame,
+    });
     setVisible(false);
   }, [onForceFrame]);
 
   const applyRevision = useCallback((revType) => {
     const saved = selectionRef.current;
     if (!saved) return;
-    const { blockId } = saved;
-    const view = blockId ? getBlockView(blockId) : null;
-    if (!view) { setVisible(false); return; }
-
-    // 1g.7 (#88): restore relpos before dispatch.
-    restoreSavedRelpos(view, saved);
+    const view = saved.blockId ? getBlockView(saved.blockId) : null;
     const kind = revType.tag === 'ADD' ? 'add' : 'del';
     // Issue #97 — pass trackChanges so the verb can suppress its legacy
     // toggle-off path on ranges already owned by per-keystroke marking
     // (1h Q33). Out-of-TC mode the toggle remains intact.
-    const tr = applyRevisionTr(view.state, kind, {
-      authorId: identity?.id ?? null,
-      authorColor: identity?.color ?? null,
-    }, trackChanges);
-    if (tr) {
-      if (typeof onForceFrame === 'function') onForceFrame();
-      view.dispatch(tr);
-      if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
-        flushPendingUpdateById(blockId);
-      }
-    }
+    dispatchToolbarVerb({
+      view,
+      saved,
+      compute: (state) => applyRevisionTr(state, kind, {
+        authorId: identity?.id ?? null,
+        authorColor: identity?.color ?? null,
+      }, trackChanges),
+      onForceFrame,
+    });
     setVisible(false);
     // Issue #97 — `trackChanges` must be in deps. Without it, the closure
     // captures the initial value (false) and never observes the user
@@ -291,69 +268,41 @@ export default function FloatingToolbar({
   const changeCase = useCallback(() => {
     const saved = selectionRef.current;
     if (!saved || saved.isRefBlock) return;
-    const { blockId } = saved;
-    const view = blockId ? getBlockView(blockId) : null;
-    if (!view) { setVisible(false); return; }
-
-    // 1g.7 (#88): restore relpos before dispatch.
-    restoreSavedRelpos(view, saved);
-    const tr = applyChangeCaseTr(view.state);
-    if (tr) {
-      if (typeof onForceFrame === 'function') onForceFrame();
-      view.dispatch(tr);
-      if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
-        flushPendingUpdateById(blockId);
-      }
-    }
+    const view = saved.blockId ? getBlockView(saved.blockId) : null;
+    dispatchToolbarVerb({
+      view,
+      saved,
+      compute: (state) => applyChangeCaseTr(state),
+      onForceFrame,
+    });
     setVisible(false);
   }, [onForceFrame]);
 
   /**
    * Accept or reject an inline revision mark.
    * action: "accept" or "reject"
+   *
+   * Settlement is 'caller-owned' (declared in applyInlineRevisionResolveTr's
+   * descriptor): the dispatcher calls cancelPendingUpdateById, not flush.
+   * The 400ms onUpdate debounce is cleared so a late-firing setBlocks does
+   * not clobber the snapshot that onRefreshTcSnapshot is about to settle.
    */
   const handleInlineRevisionAction = useCallback((action) => {
     const saved = selectionRef.current;
     if (!saved) return;
-    const { blockId } = saved;
-    const view = blockId ? getBlockView(blockId) : null;
-    if (!view) { setVisible(false); return; }
-
-    // 1g.7 (#88): restore relpos before dispatch. For the inline TC
-    // resolve case the resolved position is what governs which mark gets
-    // accepted/rejected — the relpos restore is particularly valuable
-    // here, since a peer's edit can shift the mark's text away from
-    // where the user clicked the popup.
-    restoreSavedRelpos(view, saved);
-    const tr = applyInlineRevisionResolveTr(view.state, action);
-    if (tr) {
-      // Close the prior Yjs capture window BEFORE the PM dispatch so
-      // the action's ySyncPluginKey op enters a fresh frame, not the
-      // user's preceding typing burst.
-      if (typeof onForceFrame === 'function') onForceFrame();
-      view.dispatch(tr);
-      // CANCEL — not flush. Distinct from the other PM toolbar verbs
-      // (format / inline-mark / revision-apply / change-case) which call
-      // flushPendingUpdateById to push the new html through
-      // handleBlockUpdate → setBlocks. Here we DON'T want that path:
-      // the post-1i Yjs UndoManager already captures the PM dispatch as
-      // its own frame (forceFrame above closed the prior capture window),
-      // and onRefreshTcSnapshot below issues the single React-side
-      // setBlocks for this action. A debounced handleBlockUpdate firing
-      // 400ms later would redundantly setBlocks with the same html.
-      // Cancel the pending debounce so that late timer never fires.
-      if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
-        cancelPendingUpdateById(blockId);
-      }
+    const view = saved.blockId ? getBlockView(saved.blockId) : null;
+    const result = dispatchToolbarVerb({
+      view,
+      saved,
+      compute: (state) => applyInlineRevisionResolveTr(state, action),
+      onForceFrame,
+    });
+    if (result.dispatched && onRefreshTcSnapshot) {
       // TC snapshot refresh — DOES NOT call setBlockHtml (PM dispatch
       // already wrote the substrate via ySyncPlugin); calls setBlocks
       // + setTcState to reflect the action in React state.
-      if (onRefreshTcSnapshot) {
-        try {
-          const html = pmFragmentToHtml(view.state.doc);
-          onRefreshTcSnapshot(blockId, html);
-        } catch { /* defensive */ }
-      }
+      try { onRefreshTcSnapshot(result.blockId, extractHtml(result.state)); }
+      catch { /* defensive */ }
     }
     window.getSelection()?.removeAllRanges();
     setVisible(false);
@@ -362,23 +311,16 @@ export default function FloatingToolbar({
   const applyFormat = useCallback((formatType) => {
     const saved = selectionRef.current;
     if (!saved) return;
-    const { blockId } = saved;
-    const view = blockId ? getBlockView(blockId) : null;
-    if (!view) { setVisible(false); return; }
-
-    // 1g.7 (#88): restore relpos before dispatch.
-    restoreSavedRelpos(view, saved);
+    const view = saved.blockId ? getBlockView(saved.blockId) : null;
     const kindMap = { 'BLD': 'bold', 'ITA': 'italic', 'UND': 'underline' };
     const kind = kindMap[formatType.tag];
     if (!kind) return;
-    const tr = applyFormatTr(view.state, kind);
-    if (tr) {
-      if (typeof onForceFrame === 'function') onForceFrame();
-      view.dispatch(tr);
-      if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
-        flushPendingUpdateById(blockId);
-      }
-    }
+    dispatchToolbarVerb({
+      view,
+      saved,
+      compute: (state) => applyFormatTr(state, kind),
+      onForceFrame,
+    });
     setVisible(false);
   }, [onForceFrame]);
 
@@ -567,26 +509,31 @@ export default function FloatingToolbar({
             title="Add Comment"
             onMouseDown={(e) => e.preventDefault()}
             onClick={() => {
-              const { range, blockId, blockEl, isRefBlock: refBlock } = selectionRef.current || {};
+              const saved = selectionRef.current || {};
+              const { range, blockId, blockEl, isRefBlock: refBlock } = saved;
               if (!range || !blockEl) return;
               const view = blockId ? getBlockView(blockId) : null;
 
               if (view && !refBlock) {
-                // PM path — 1g.7 (#88): restore relpos before dispatch.
-                restoreSavedRelpos(view, selectionRef.current);
-                const { from, to } = view.state.selection;
-                if (from === to) { setVisible(false); return; }
+                // PM path. commentId is caller-generated pre-dispatch
+                // so it can flow into the verb's args AND into the
+                // post-dispatch onCommentCreate envelope. The verb's
+                // descriptor still owns settlement (flush) + range.
                 const commentId = `comment-${Date.now()}`;
-                const tr = applyCommentMarkTr(view.state, commentId);
-                if (!tr) { setVisible(false); return; }
-                if (typeof onForceFrame === 'function') onForceFrame();
-                view.dispatch(tr);
-                if (!window.__simEditorTestUtils?.__isFlushOverridden?.()) {
-                  flushPendingUpdateById(blockId);
+                const result = dispatchToolbarVerb({
+                  view,
+                  saved,
+                  compute: (state) => applyCommentMarkTr(state, commentId),
+                  onForceFrame,
+                });
+                if (result.dispatched) {
+                  onCommentCreate(
+                    result.blockId,
+                    extractHtml(result.state),
+                    commentId,
+                    extractRangeText(result.state, result.range),
+                  );
                 }
-                const html = pmFragmentToHtml(view.state.doc);
-                const highlightText = view.state.doc.textBetween(from, to, '\n', '');
-                onCommentCreate(blockId, html, commentId, highlightText);
                 setVisible(false);
                 return;
               }
