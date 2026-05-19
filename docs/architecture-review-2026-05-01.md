@@ -42,19 +42,9 @@ Architecture vocabulary used below — *module, interface, depth, seam, leverage
 
 ## 3. Three linting tiers + a suppression rule scattered across App, EditableBlock, and module globals
 
-**Status:** Open
+**Status:** Landed (PR #35) — `src/lib/linting.js` is a pure reducer over `{ enabled, suspended, byBlock: Map<blockId, { compliance, nlp, grammar, grammarText }> }` with verbs (`createInitial / setEnabled / setSuspended / setBlockFindings / clearBlock / clearAll`), selectors (`isActive / isEnabled / isSuspended / getBlockFindings / getAllFindings / getBlockSeverity / getGrammarText / getRangesByTier`), pure dedup helpers (`dedupNlpAgainstCompliance`, `dedupGrammarAgainstFindings`), and the `DEFERRED_TO_PANEL` set. `src/components/useBlockLinting.js` owns DOM-bound + async effects (debounced lint cycle, focus lint, Harper Worker dispatch with stale detection, Range creation, tooltip detection). App-level `useEffect([lintingState])` mutates `CSS.highlights` via `linting.getRangesByTier`. Suspension flips via separate `useEffect([complianceOpen])` dispatching `linting.setSuspended`. Range objects are opaque to the reducer — plain-Vitest testable.
 
-**Files:** `src/App.jsx:146,1211,2197,2659`, `src/components/EditableBlock.jsx:62,6`, `src/lib/inline-linter.js:26–76`, `src/lib/grammar-checker.js`, `src/lib/nlp-rules.js`, `src/lib/compliance-rules.js`
-
-**Friction:** to know whether a block will lint, you need three facts in three files: `inlineLintingEnabled` (App state, prop-drilled), `compliancePanelActive` (App state, prop-drilled, used to *suspend* linting), and per-engine readiness (lazy-loaded module globals in `inline-linter.js`). Findings live in three module-global Maps. The "static rules win on overlap" de-dup rule and the "deferred to panel" filter both live inside `inline-linter.js` but the gating policy lives in EditableBlock.
-
-**Why shallow:** the inline-linter module is a bag-of-functions, not a seam. Its caller (EditableBlock) knows internal facts (which Maps to clear, when to suppress). Hiding state in module globals while exposing the gate to callers is the worst of both — global mutable state with no central invariant.
-
-**Deletion test:** moving gating, readiness, and finding-storage behind one module's interface concentrates ~6 coordinated mutations into one place. The CompliancePanel suppression becomes a single method call instead of a prop wired through two components.
-
-**Sketch:** a linting module that owns the three tiers' state, exposes a single "lint this focused block under these conditions" verb, and surfaces readiness as one boolean.
-
-**Tests improve:** today `inline-linter.test.js` exists but most behavior is exercised through EditableBlock's lifecycle. A module makes the de-dup and deferral rules table-testable.
+**Files:** `src/lib/linting.js` (new), `src/components/useBlockLinting.js` (new), `src/lib/__tests__/linting.test.js` (new), `src/App.jsx`, retired references in the old `EditableBlock.jsx`.
 
 ---
 
@@ -85,4 +75,12 @@ Architecture vocabulary used below — *module, interface, depth, seam, leverage
 ## Honorable mentions (not candidates)
 
 - **App.jsx (2852 lines, ~50 callbacks):** size is a *symptom* of the missing domain seams in #1–#5, not a candidate of its own. If we deepen TC, comments, linting, compliance, and publish, App.jsx ends up around 1000–1200 lines without targeting it directly.
-- **`src/lib/compliance-diff.js`:** verified — only referenced by itself and `COMPLIANCE.md`. This is dead code, not architecture; just delete it (separate task).
+- **`src/lib/compliance-diff.js`:** verified — only referenced by itself and `COMPLIANCE.md`. This is dead code, not architecture; just delete it (separate task). Still present as of 2026-05-18.
+
+---
+
+## Since 2026-05-02
+
+The PM substrate migration (issue #47, sub-PRs 1c..1i-b.2) completed between 2026-05-02 and 2026-05-19. It is not a deepening of the original six entries — it is a separate architectural arc captured in ADR-0006 (substrate migration), the PM substrate section of [`CONTEXT.md`](../CONTEXT.md), and the "ProseMirror / y-prosemirror / Yjs — Authoritative Sources" section of `CLAUDE.md`. Net effect on the metrics this backlog measured: App.jsx is now around 2050 lines (down from 2469 after #40), and the legacy contentEditable path (`EditableBlock.jsx`, `useBlockBinder.js`, `useUndoableBlocks.js`, `VITE_PM_EDITOR` flag, `FloatingToolbar` legacy branches, `chromium-legacy` Playwright project) is fully retired.
+
+Candidates the substrate work has surfaced for a future review: (a) PM plugin set vs. App's keymap callbacks — the plugins now own behavior App used to coordinate; (b) the `block-registry` flush helpers as a single seam vs. their current per-call-site pattern; (c) `useCollabSession`'s coordination-refs cluster — five refs collectively encode "what state has and hasn't been sent." None of these is shallow today, but each is a candidate if the next layer of work shifts the picture.
