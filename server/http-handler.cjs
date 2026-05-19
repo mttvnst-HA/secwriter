@@ -364,6 +364,14 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
         const rooms = [];
 
         for (const id of roomIds) {
+          // Yield to the event loop every iteration. Y.applyUpdate below is
+          // CPU-bound and synchronous, and the surrounding storage awaits may
+          // resolve from OS file cache without releasing the loop. Without
+          // this yield, listing N persisted rooms freezes the loop for
+          // N * decode_ms — enough to starve WS handshakes and HTTP handlers
+          // for other clients. See issue #100.
+          await new Promise(resolve => setImmediate(resolve));
+
           const entry = { id, displayName: id, sectionNumber: null, sectionTitle: null, lastModified: null, activeUsers: [], locked: false, sizeBytes: 0 };
 
           // Try live doc first (has awareness for active users)
