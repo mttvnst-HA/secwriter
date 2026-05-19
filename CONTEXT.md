@@ -28,7 +28,7 @@ For architecture vocabulary (module, interface, depth, seam, adapter, leverage, 
 
 ## Editor model
 
-**Block** — The atomic unit of the document. A flat-array entry with `id`, `type`, `part`, `depth`, `html`, optional `revision`, and type-specific payloads. Blocks are not nested in state — nesting is implied by `part` + `depth` + `section`.
+**Block** — The atomic unit of the document. A flat-array entry with `id`, `type`, `part`, `depth`, `html`, optional `revision`, and type-specific payloads. Blocks are not nested in state — nesting is implied by `part` + `depth` + `section`. Each editable block is rendered by `PmEditableBlock` (one PM `EditorView` per block) bound to its Y.XmlFragment substrate.
 
 **Block type** — One of: `title`, `txt`, `note`, `oli`, `item`, `lst`, `table`, `ref`, `pagebreak`, `tbl`. Determined by SGML tag at parse time, chosen via slash menu at edit time.
 
@@ -86,17 +86,19 @@ For architecture vocabulary (module, interface, depth, seam, adapter, leverage, 
 
 ## Track changes
 
-**Revision** — A pending mutation to a block: `add`, `del`, or `chg` (block-level), or inline `<add>` / `<del>` marks (within HTML).
+**Revision** — A pending mutation to a block. Block-level: `add`, `del`, or `chg` on `block.revision`. Inline: PM marks `revisionAdd` / `revisionDel` / `revisionChg`, serialized as `<ins|del|span class="mark-{add|del|chg}" data-author-id="…" style="--author-color:…">`.
 
-**TC snapshot** — The plain text of a block at the moment Track Changes was enabled. Held inside the track-changes state's `snapshots: Map<blockId, plainText>`. Diffed against current text on blur to synthesize revision marks.
+**Per-keystroke marking** — In PM mode (the only mode post-1i-b.2), revision marks are applied inside `PmEditableBlock`'s `dispatchTransaction` via `rewriteForTrackChanges` (`src/lib/pm-tc-mark.js`). Every typed character lands already wrapped in the right mark; there is no blur-time diff. The legacy snapshot-then-diff pipeline (`TC snapshot`, `diffWords`, `refineWordDiff`) is retired.
 
-**Track-changes state** — The bundle owned by the track-changes module (`src/lib/track-changes.js`): `{ enabled, snapshots, publishSeq }`. Captures every fact needed to (a) decide whether the next blur should produce revision marks, (b) emit the next collab publish, (c) restore on undo. State transitions go through the module's verbs (`enable`, `disable`, `acceptInline`/`rejectInline`, `acceptAll`/`rejectAll`, `markBlockCreated`, `applyResolveAtBlock`, `applyRemote`); direct mutation of `snapshots` is not part of the contract. The invariant the module enforces: after every verb, `snapshot[id] === getVisibleTextFromHtml(blocks[id].html)` for every block id the verb touched.
+**Track-changes state** — The bundle owned by the track-changes module (`src/lib/track-changes.js`): `{ enabled, publishSeq }`. A 70-LOC shell that holds the on/off bit and the publish sequence number. Verbs: `enable`, `disable`, `acceptAll`, `rejectAll`, `applyRemote`. Selectors: `isEnabled`, `getPublishableState`, `revisionFlagForCreate`, `revisionFlagForDelete`.
 
 **publishSeq** — A monotonically-increasing integer on the TC state, bumped by every user-driven verb but not by `applyRemote`. The collab publish effect compares it against `lastPublishedTcSeqRef` to decide whether the local state has diverged from what peers have seen — replacing the imperative `tcDirtyRef` flag and making round-tripping a structural property rather than something the caller has to remember to set.
 
-**Diff pipeline** — `diffWords()` → `refineWordDiff()` → `diffChars()`. Refinement applies character-level sub-diff to consecutive del→add pairs sharing ≥50% common characters.
+**Per-author attribution attrs** — The `data-author-id` and `style="--author-color:…"` carried on every inline revision mark span (the `#87` 1h schema split). Regexes parsing these spans must use `[^>]*` between the class attribute and the closing `>`; the pre-1h `<ins class="mark-add">` shape is the no-attribution case only.
 
-**Accept / Reject** — User actions that resolve a revision. Accept All / Reject All operate on every revision in scope. Inline accept/reject operates on one mark.
+**`TC_RESOLVE_META`** — A PM-meta sentinel (`src/lib/pm-tc-mark.js`) producers attach to accept/reject transactions for existing revision marks; `dispatchTransaction` reads it and skips `rewriteForTrackChanges`. Without it, accept-del under TC dispatches `tr.delete(...)` over a `revisionDel`-marked range and the rewriter silently re-applies the mark. Currently set by `pm-del-popup.js`'s `dispatchDelAction`.
+
+**Accept / Reject** — User actions that resolve a revision. Accept All / Reject All operate on every revision in scope. Inline accept/reject operates on one mark. Document-wide gestures (`handleAcceptAll`, `handleRejectAll`) call `flushAllPendingUpdates()` first so the 400ms `onUpdate` debounce window does not hide just-typed revision marks from React state.
 
 ---
 
@@ -120,6 +122,12 @@ For architecture vocabulary (module, interface, depth, seam, adapter, leverage, 
 
 **Ref/table render-time highlights** — Ref/table block text lives outside `b.html` (in `b.ref` / `b.table`), so `reconcileBlocks` is a no-op for them. Instead, `RefBlock` and `TableBlock` derive `mark-comment` / `mark-comment-resolved` wrappings at render time via `cm.getBlockComments(state, blockId)` + `cm.computeCommentSegments`. This is *not* a separate sync mechanism — the spans are recomputed from metadata on every render, so drift is impossible by construction.
 
+**`COMMENT_RECONCILE_META`** — A PM-meta sentinel (`src/lib/pm-comments.js`) attached to reconcile transactions produced by `reconcileCommentMarks`. `dispatchTransaction` in `PmEditableBlock` reads it and skips both the synthesized `'input'` event (linter) and the `onUpdate` debounce (no `setBlockHtml` echo). The Yjs op produced by ySyncPlugin still uses origin `ySyncPluginKey`; the meta governs only PM-side filtering. Distinct from a Yjs origin — don't conflate.
+
+**`reconcileCommentMarks(state, commentsState)`** — Pure verb (`src/lib/pm-comments.js`) that returns a PM transaction reconciling `comment` marks against `commentsState` (status flips, removals). Idempotent — returns null when the doc already matches. Dispatched from a per-block `useEffect([commentsState])` in `PmEditableBlock`.
+
+**Active comment** — The single comment id whose popup is currently open. PM editable blocks: the `activeCommentPlugin` (`src/lib/pm-plugins/active-comment.js`) holds the id in plugin state and emits an inline `Decoration` applying `mark-comment-active` over the matching mark's range. Ref/table blocks: `RefBlock` / `TableBlock` render `data-active="true"` directly from the `activeCommentId` prop.
+
 ---
 
 ## Collaboration
@@ -128,15 +136,61 @@ For architecture vocabulary (module, interface, depth, seam, adapter, leverage, 
 
 **Identity** — The user's display name + color, stored in localStorage. The collab session is gated on `inRoom && identity` — without an identity, the WebSocketProvider is never instantiated.
 
-**Y.Doc / Y.Text** — Yjs CRDT primitives. SecWriter uses one Y.Doc per room with shared types `yOrder`, `yStore`, `yMeta`, `yTc`, `yComments`.
+**Y.Doc / Y.XmlFragment / Y.Text** — Yjs CRDT primitives. SecWriter uses one Y.Doc per room with shared types `yOrder`, `yStore`, `yMeta`, `yTc`, `yComments`. Per-block html slots are Y.XmlFragment in schemaVersion=2 rooms (the default post-1d) and Y.Text in pre-1d / migrationPartial rooms.
 
-**Publish path** — The pipeline that gets block content into the Y.Doc: `EditableBlock.onUpdate` (debounced 400ms or on blur) → `App.handleBlockUpdate` → publish effect (owned by `src/hooks/useCollabSession.js`) → `applyBlocksToYDoc` → `applyHtmlToYText`. String-diff at publish time, not a live Y.Text↔DOM binding. See ADR-0004.
+**Substrate** — The Yjs shared type at `yStore.get(blockId).get('html')` — the CRDT-backed source of truth for a block's html. Y.XmlFragment (PM-bound via ySyncPlugin) for v2 rooms; Y.Text for legacy/migrationPartial rooms.
 
-**Snapshot diff (collab)** — The publish-path strategy of diffing new HTML against existing Y.Text inside `applyHtmlToYText`. Distinct from the **TC snapshot** (plain-text baseline for revision diffs) — same word, different concept.
+**`useCollabSession`** — The hook (`src/hooks/useCollabSession.js`) that owns the session lifecycle, the four publish effects (blocks, meta, TC, comments dispatch), the coordination refs (`sessionReadyRef`, `metaReadyRef`, `lastRemoteBlocksRef`, `lastPublishedTcSeqRef`, `publishDisabledRef`), the migrationPartial pin, and the cursor broadcast. App passes in remote-event callbacks; reads back `{ dispatchComment, markTcSeqApplied, tryUndo, tryRedo, canUndo, canRedo, clearStack }`.
+
+**Publish path (html)** — Per PM keystroke, via ySyncPlugin: `PmEditableBlock`'s `EditorView` is bound to the block's Y.XmlFragment; each PM transaction translates to a Yjs op on the fragment (origin `ySyncPluginKey`). No debounce on the substrate. A 400ms-debounced `onUpdate` then serializes html back into App's `blocks` array so non-PM consumers (compliance, exports) see latest content. See ADR-0004, ADR-0006.
+
+**Publish path (scalars/structure)** — `App.handleBlockUpdate` calls `setBlocks`; the publish effect in `useCollabSession` calls `applyBlocksToYDoc`, which reconciles structure (yOrder, yStore keys, scalar fields) and **skips html for existing slots** — only seeds html for brand-new blocks. PM EditorView ownership over html is exclusive once a slot exists.
+
+**Origin model** — Every Yjs write carries an origin. `'local-publish'`: explicit `setBlockHtml` writes (TitleBlock, MarkSuggestions, debounced PM echo, accept-all, compliance fixes). `ySyncPluginKey`: per-keystroke PM ops. `'silent'`: peer-driven comment reconcile mirrors (not undo-tracked). `'migrate-v2'`: server-side broker writes during substrate migration (deliberately distinct so clients cannot Ctrl+Z a peer's pre-migration content). Both UndoManagers (`'local-publish'` + `ySyncPluginKey`) track local edits but skip `'silent'` and `'migrate-v2'`.
+
+**schemaVersion** — Integer in `yMeta` marking the substrate version. v1 = html slot is Y.Text. v2 = html slot is Y.XmlFragment. Clients enforce `MAX_SUPPORTED_SCHEMA_VERSION` (currently 2); a remote `schemaVersion > MAX_SUPPORTED_SCHEMA_VERSION` surfaces an `'incompatible'` connection status and gates editing.
+
+**Migration broker** — Server-side handler (`server/migrate-pm-substrate.cjs`) that converts v1 rooms to v2 on first WS upgrade. Archives the room (via `storage.archiveRoom`) before mutating, runs under a per-room async lock, and stamps either `schemaVersion=2` or `migrationPartial=true` (mutually exclusive). Per-block conversion failures don't roll back — affected slots stay Y.Text and the room flips to migrationPartial. See ADR-0006.
+
+**migrationPartial** — A `yMeta` boolean flag set by the broker when any block failed to convert. The connection status `'migration-partial'` is editable (not read-only) and sticky (re-pinned by `useCollabSession` on every `'connected'` transition).
+
+**Snapshot diff (collab, legacy)** — String-diff strategy inside `applyHtmlToYText`. Only applies to v1 / migrationPartial slots. v2 slots use `prosemirrorToYXmlFragment` via ySyncPlugin.
 
 **Awareness** — Yjs cursor/presence broadcast. Carries identity, color, and selection range.
 
-**Eviction guard** — The `server/collab-server.cjs` patch around `setupWSConnection` that re-installs the preloaded Y.Doc into y-websocket's `docs` Map after the preload `await`. Prevents y-websocket v1's `closeConn` from evicting our doc by name during a stale-close race. See ADR-0002.
+**Eviction guard** — The `server/collab-server.cjs` patch around `setupWSConnection` that re-installs the preloaded Y.Doc into y-websocket's `docs` Map after the preload `await`. Prevents y-websocket v1's `closeConn` from evicting our doc by name during a stale-close race. Re-installed a second time after the migration broker `await` for the same reason. See ADR-0002.
+
+---
+
+## PM substrate
+
+**PM (ProseMirror)** — The editor framework SecWriter uses for every editable block. Post-1i-b.2, the only editor — the legacy contentEditable path (`EditableBlock`, `useBlockBinder`, `useUndoableBlocks`, `VITE_PM_EDITOR` flag) is retired.
+
+**`PmEditableBlock`** — The block component (`src/components/PmEditableBlock.jsx`) that mounts a PM `EditorView` per block and binds it to the block's Y.XmlFragment substrate via ySyncPlugin. The single editor mode.
+
+**`EditorView`** — PM's view object. Bound to a Y.XmlFragment via ySyncPlugin so per-keystroke transactions translate directly to Yjs ops.
+
+**`ySyncPlugin`** — y-prosemirror's plugin that binds a PM doc to a Y.XmlFragment. Translates PM transactions → Yjs ops (origin `ySyncPluginKey`) and Yjs updates → PM transactions. Source-of-truth API: `node_modules/y-prosemirror/src/sync-plugin.js` (pinned at v1; do not bump without re-verifying every PM empirical claim in this repo's tests).
+
+**PM schema** — Defined in `src/lib/pm-schema.js`. Nodes: `doc`, `paragraph`, `text`, plus block-specific. Marks include the standard inline marks (`bold`, `italic`, etc.), the SGML transparent-tag marks, the comment mark, and the revision marks (`revisionAdd`, `revisionDel`, `revisionChg`) carrying per-author attribution attrs. `pmdoc-html.js` serializes PM docs to/from html.
+
+**PM plugin set** — `src/lib/pm-plugins/`: `slash-menu.js` (open/filter state), `tag-labels.js` (widget decorations for inline mark labels — pseudo-elements don't create caret positions, widgets do), `keymap.js` (Enter / Tab / Backspace-on-empty / arrow-at-boundary callbacks), `relpos-selection.js` (Y.RelativePosition save/restore), `active-comment.js` (active-comment decoration). Plus the word-grain undo plugin and the linter-input synth.
+
+**`block-registry`** — Module (`src/lib/block-registry.js`) holding an App-scoped Map of `blockId → imperative handle`. Each block component (`PmEditableBlock`, `TitleBlock`) registers a handle on mount; App uses `focusBlockById(id, { atEnd })` instead of `document.querySelector('[data-block-id="…"]')`. The registry also exposes flush helpers.
+
+**`flushPendingUpdateById(blockId)`** — Fires the 400ms `onUpdate` debounce immediately for one block, so React state reflects the just-typed html synchronously. Paired with single-block toolbar verbs (format, mark, revision-apply, etc.).
+
+**`flushAllPendingUpdates()`** — Same, for every registered PM block. Document-wide TC gestures (`handleAcceptAll`, `handleRejectAll`) call this before reading `blocksRef.current` so sub-debounce clicks don't run against pre-debounce html.
+
+**`cancelPendingUpdateById(blockId)`** — Clears the debounce without firing the callback. Used by inline accept/reject in the FloatingToolbar where the action's own setBlocks has already settled the substrate snapshot.
+
+**`__simEditorTestUtils`** — DEV-only test seam (`window.__simEditorTestUtils`, wired in `src/App.jsx`) routing through `handleBlockUpdateWithSync`. Playwright E2E injects block html via `injectBlockHtml(page, blockId, html)` / reads via `readBlockHtml(page, blockId)` (`tests/e2e/pm-helpers.js`). Necessary because PM's render cycle overwrites direct DOM mutation.
+
+**Skeleton-then-populate** — Yjs invariant: every nested shared type must be attached to its parent (`yMap.set('html', yChild)`, `yStore.set(id, yMap)`) BEFORE any operation reads its children. Violations surface as `"Invalid access: Add Yjs type to a document before reading data"`. Enforced in `src/lib/collab.js` (`blockToYMapSkeleton` + `populateBlockHtml` + `populateBlockTableRef`), `block-html-store.js` (`seedHtmlSlot`), and `ytable-crdt.js` (every nested level).
+
+**UndoManager pair** — Two Y.UndoManagers track local edits. In-room: created inside `createCollabSession` (`src/lib/collab.js`). Out-of-room: `useLocalSubstrateUndoManager` (`src/hooks/useLocalSubstrateUndoManager.js`). Both have `trackedOrigins = { 'local-publish', ySyncPluginKey }` and both honor `tr.meta.get('addToHistory') === false`. App's Ctrl+Z routes through `collab.tryUndo` (in-room) then `localUndo.tryUndo` (out-of-room).
+
+**Word-grain framing** — PM's word-grain undo plugin calls `forceFrame()` on the active UndoManager at word boundaries (and before click-driven `setBlocks` calls) so Ctrl+Z reverts a word at a time rather than per keystroke. Matches Word/Notion. Mass gestures (`handleAcceptAll`, `handleRejectAll`, `handleComplianceAcceptGroup`) wrap their N writes in `framing.withUndoFrame(...)` so the loop forms one frame.
 
 ---
 
@@ -169,3 +223,6 @@ For architecture vocabulary (module, interface, depth, seam, adapter, leverage, 
 - "Service" — not a SecWriter concept. Say "module" or name the verb.
 - "Element" — ambiguous between SGML element and DOM element. Say "tag" or "DOM node."
 - "Annotation" — too vague. Say "mark," "comment span," "revision mark," or "tag label" depending on which is meant.
+- "EditableBlock" — retired in 1i-b.2. Say "`PmEditableBlock`" for the current block component, or "legacy contentEditable path" for the pre-1i-b.2 system if referring to history.
+- "Binder" / "snapshot stack" / "useUndoableBlocks" / "VITE_PM_EDITOR" — all retired in 1i-b.2. The current substrate-bound model uses ySyncPlugin and the dual UndoManager pair.
+- "TC snapshot" — retired in 1h Q35/Q37. Revision marks are applied per-keystroke; there is no plain-text baseline. Say "per-keystroke marking" or "TC mode is on."

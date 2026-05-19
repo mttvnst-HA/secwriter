@@ -39,3 +39,5 @@ Each ADR is one Markdown file: `NNNN-short-slug.md`. Use [`0000-template.md`](00
 | [0003](0003-compliance-rules-as-data.md) | Compliance rules live in JSON, not source code | Accepted |
 | [0004](0004-collab-publish-snapshot-diff.md) | Collab publish path uses snapshot diff, not live Y.Text binding | Accepted (deferred refactor tracked at issue #22) |
 | [0005](0005-storage-adapter-atomicity-per-backend.md) | Room storage: base class + adapters; multi-artifact atomicity stays per-backend | Accepted |
+| [0006](0006-pm-substrate-migration.md) | Server-side broker migrates v1 (Y.Text) rooms to v2 (Y.XmlFragment) on first v2 connect | Accepted |
+| [0007](0007-single-pm-editor.md) | Retire the legacy contentEditable path; SecWriter is a single PM-based editor | Accepted |
