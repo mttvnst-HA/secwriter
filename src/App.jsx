@@ -33,7 +33,7 @@ import { serializeSEC } from "./lib/sec-serializer.js";
 import { encodeWindows1252 } from "./lib/encoding.js";
 import * as Y from "yjs";
 import { seedBlockArray, resetBlockArray, setBlockHtml, setBlockHtmlSilent, getBlockHtml } from "./lib/block-html-store.js";
-import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, getBlockView, listBlocksInDocumentOrder } from "./lib/block-registry.js";
+import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, getBlockView, listBlocksInDocumentOrder, flushAllPendingUpdates } from "./lib/block-registry.js";
 import { setActiveComment } from "./lib/pm-plugins/active-comment.js";
 import { TextSelection } from "prosemirror-state";
 import * as tc from "./lib/track-changes.js";
@@ -1221,6 +1221,14 @@ export default function SpecEditor() {
   }, []);
 
   const handleAcceptAll = useCallback(() => {
+    // #109 M4 fix — flush every PM block's pending 400ms onUpdate debounce
+    // so blocksRef.current reflects the current PM substrate (including any
+    // revisionAdd/revisionDel marks the user just typed). Without this,
+    // acceptAllRevisions runs against pre-debounce html, the <ins>/<del>
+    // tags it would strip aren't there yet, and the surviving marks land in
+    // React state when the debounce flushes ~400ms later — after TC has
+    // already been disabled by this handler, leaving the marks unreachable.
+    flushAllPendingUpdates();
     // 1h Q36 Commit C — multi-write gesture: wrap the N setBlockHtml writes
     // in withUndoFrame so they form ONE Yjs UndoManager frame regardless of
     // captureTimeout coalescing. forceFrame first to demarcate this frame
@@ -1250,6 +1258,10 @@ export default function SpecEditor() {
   }, []);
 
   const handleRejectAll = useCallback(() => {
+    // #109 M4 fix — see handleAcceptAll above for the stale-debounce rationale.
+    // Symmetric: rejectAllRevisions also reads blocksRef.current and shares the
+    // same window.
+    flushAllPendingUpdates();
     const framing = framingForHandler();
     framing.forceFrame();
     const prev = blocksRef.current;

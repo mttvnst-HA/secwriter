@@ -175,6 +175,29 @@ export function cancelPendingUpdateById(blockId) {
   }
 }
 
+/**
+ * Synchronously flush every registered PM block's pending debounced
+ * onUpdate. Used by document-wide gestures (Accept All / Reject All, future
+ * bulk operations) that read App's blocksRef.current and need it to reflect
+ * the current PM substrate rather than the pre-debounce snapshot.
+ *
+ * #109 M4 regression: handleAcceptAll/handleRejectAll without this flush
+ * see stale block html for any block whose user just typed into PM within
+ * the 400ms onUpdate debounce window. The TC marks (revisionAdd / revisionDel)
+ * live in the substrate but not yet in React state, so acceptAllRevisions
+ * cannot strip the <ins>/<del> serialization — and once TC is disabled by
+ * the same handler, those marks survive with no UI to clear them.
+ *
+ * Safe to call when no handles are registered or no debounces are pending.
+ */
+export function flushAllPendingUpdates() {
+  for (const [, h] of handles) {
+    if (h && typeof h.flushPendingUpdate === 'function') {
+      try { h.flushPendingUpdate(); } catch { /* defensive */ }
+    }
+  }
+}
+
 /** Test-only — full reset between Vitest cases. */
 export function __resetBlockRegistry() {
   handles.clear();
