@@ -140,16 +140,23 @@ describe('findMarkRangeAt', () => {
 });
 
 describe('pm-toolbar API surface', () => {
-  it('exports the eight expected functions (U16)', () => {
+  it('exports the expected functions (U16; expanded with dispatcher refactor 2026-05-19)', () => {
     const names = [
+      // Verbs
       'applyFormatTr',
       'applyInlineMarkTr',
       'applyRevisionTr',
       'applyInlineRevisionResolveTr',
       'applyChangeCaseTr',
+      'applyCommentMarkTr',
+      // Helpers
       'findFirstMatchingMark',
       'rangeAllHaveMarkWithAttrs',
       'findMarkRangeAt',
+      // Dispatcher + extractors
+      'dispatchToolbarVerb',
+      'extractHtml',
+      'extractRangeText',
     ];
     for (const n of names) {
       expect(typeof pmToolbar[n]).toBe('function');
