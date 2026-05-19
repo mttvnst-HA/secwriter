@@ -1,12 +1,12 @@
-# SIM Text Analysis Engine — Corpus Test Report
+# SecWriter Text Analysis Engine — Corpus Test Report
 
-Generated: 2026-04-08T04:40:11.559Z
+Generated: 2026-05-19T18:59:30.794Z
 
 ## 1. Calibration Results (Raw UFGS Master Text)
 
 - **Blocks processed:** 2583
-- **Total findings:** 3482
-- **Static:** 329 | **NLP:** 902 | **Grammar:** 2251
+- **Total findings:** 1510
+- **Static:** 329 | **NLP:** 902 | **Grammar:** 279
 
 ### Note Block Exemption
 
@@ -14,7 +14,7 @@ Generated: 2026-04-08T04:40:11.559Z
 |--------|:-------------------:|--------|
 | Static | 0 | ✅ PASS |
 | NLP | 0 | ✅ PASS |
-| Grammar | 431 | (acceptable on notes) |
+| Grammar | 106 | (acceptable on notes) |
 
 **FMT-001 regression check:** ✅ PASS (rule absent)
 
@@ -22,34 +22,29 @@ Generated: 2026-04-08T04:40:11.559Z
 
 | Rule | Total | On Notes |
 |------|:-----:|:--------:|
-| GRAMMAR-Spelling | 1478 | 285 |
 | NLP-PASSIVE-001 | 902 | 0 |
-| GRAMMAR-Formatting | 313 | 26 |
-| GRAMMAR-Readability | 153 | 41 |
-| GRAMMAR-Punctuation | 90 | 10 |
+| GRAMMAR-Spelling | 108 | 55 |
+| GRAMMAR-Style | 92 | 24 |
 | TERM-any | 86 | 0 |
-| GRAMMAR-Style | 85 | 20 |
-| GRAMMAR-WordChoice | 38 | 7 |
+| GRAMMAR-WordChoice | 39 | 7 |
 | TERM-conforming-to | 35 | 0 |
 | TERM-suitable | 32 | 0 |
 | VAGUE-applicable | 28 | 0 |
-| GRAMMAR-Capitalization | 28 | 16 |
 | TERM-per | 27 | 0 |
 | TERM-adequate | 22 | 0 |
-| GRAMMAR-Grammar | 18 | 2 |
 | TERM-to-be | 17 | 0 |
-| GRAMMAR-Miscellaneous | 15 | 8 |
 | TERM-furnish | 14 | 0 |
 | TERM-securely | 13 | 0 |
 | TERM-properly | 12 | 0 |
+| GRAMMAR-Agreement | 11 | 3 |
+| GRAMMAR-Capitalization | 10 | 3 |
 | TERM-thoroughly | 10 | 0 |
-| GRAMMAR-Typo | 10 | 3 |
 | CAP-Contract | 9 | 0 |
-| GRAMMAR-Agreement | 8 | 3 |
 | GRAMMAR-Repetition | 6 | 6 |
 | TERM-carefully | 5 | 0 |
+| GRAMMAR-Grammar | 4 | 2 |
+| GRAMMAR-Punctuation | 4 | 3 |
 | GRAMMAR-Redundancy | 4 | 3 |
-| GRAMMAR-Usage | 4 | 1 |
 | TERM-should | 4 | 0 |
 | TERM-as-necessary | 3 | 0 |
 | TERM-contractor-must-provide | 3 | 0 |
@@ -72,7 +67,7 @@ Generated: 2026-04-08T04:40:11.559Z
 |--------|:-----------:|:-------:|:--------------------:|
 | Static | 8 | 0.31% | <5% |
 | NLP | 331 | 12.81% | <20% |
-| Grammar | 297 | (informational) | N/A |
+| Grammar | 260 | (informational) | N/A |
 
 ### False Positives by Rule
 
@@ -99,7 +94,7 @@ Generated: 2026-04-08T04:40:11.559Z
 | COLLOQ-furnish | TERM-furnish | 21 | 19 | 90.5% | 80% | ✅ |
 | FMT-002 | FMT-002 | 21 | 21 | 100.0% | 80% | ✅ |
 | GRAMMAR-Agreement | GRAMMAR-Agreement | 50 | 19 | 38.0% | 70% | ❌ |
-| GRAMMAR-Spelling | GRAMMAR-Spelling | 75 | 66 | 88.0% | 70% | ✅ |
+| GRAMMAR-Spelling | GRAMMAR-Spelling | 75 | 63 | 84.0% | 70% | ✅ |
 | NLP-INDICATIVE-001 | NLP-INDICATIVE-001 | 41 | 23 | 56.1% | 60% | ❌ |
 | NLP-PASSIVE-001 | NLP-PASSIVE-001 | 82 | 60 | 73.2% | 60% | ✅ |
 | SYM-001 | SYM-percent | 3 | 3 | 100.0% | 80% | ✅ |
@@ -127,7 +122,7 @@ Generated: 2026-04-08T04:40:11.559Z
 |--------|:--------:|:--------:|:------:|:------:|
 | Static | 352 | 405 | 86.9% | ≥80% |
 | NLP | 83 | 123 | 67.5% | ≥60% |
-| Grammar | 85 | 125 | 68.0% | ≥70% |
+| Grammar | 82 | 125 | 65.6% | ≥70% |
 
 ### Note on ID Mapping
 
@@ -138,25 +133,32 @@ mismatches. Recall figures above use corrected IDs.
 ## 4. Adversarial Results
 
 - **Total entries:** 150
-- **Overall accuracy:** 97.3%
+- **Overall accuracy:** 92.7%
 
 ### By Category
 
 | Category | Total | Correct | Accuracy |
 |----------|:-----:|:-------:|:--------:|
-| false-positive-trap | 54 | 54 | 100.0% |
+| false-positive-trap | 54 | 49 | 90.7% |
 | true-positive | 43 | 42 | 97.7% |
-| borderline-compliance | 13 | 12 | 92.3% |
-| nlp-ambiguity | 30 | 28 | 93.3% |
-| domain-jargon-trap | 10 | 10 | 100.0% |
+| borderline-compliance | 13 | 11 | 84.6% |
+| nlp-ambiguity | 30 | 29 | 96.7% |
+| domain-jargon-trap | 10 | 8 | 80.0% |
 
 ### Incorrect Engine Behaviors
 
 | ID | Category | Rule | Issue | Text |
 |----|----------|------|-------|------|
-| ADV-029 | nlp-ambiguity | NLP-PASSIVE-001 | Missed (should flag) | The pipe is installed by the Contractor in accessi... |
+| ADV-004 | false-positive-trap | SYM-and | Missed (should flag) | Install P & T relief valves on all water heaters.... |
+| ADV-005 | false-positive-trap | SYM-and | Missed (should flag) | The Instrumentation & Control system conforms to A... |
+| ADV-006 | false-positive-trap | COLLOQ-head | Missed (should flag) | Install head pressure gauges at each pump discharg... |
+| ADV-007 | false-positive-trap | COLLOQ-head | Missed (should flag) | Provide shower head assemblies conforming to the f... |
+| ADV-009 | false-positive-trap | COLLOQ-head | Missed (should flag) | Calculate head loss through the piping system per ... |
 | ADV-038 | nlp-ambiguity | NLP-PASSIVE-001 | Missed (should flag) | The laminated beam is manufactured off-site and de... |
+| ADV-065 | borderline-compliance | TERM-suitable | Missed (should flag) | Suitable for the intended application as defined i... |
 | ADV-066 | borderline-compliance | TERM-adequate | Missed (should flag) | Properly aligned as verified by transit survey to ... |
+| ADV-076 | domain-jargon-trap | COLLOQ-head | Missed (should flag) | Provide dead head anchors at each end of the tensi... |
+| ADV-077 | domain-jargon-trap | COLLOQ-head | Missed (should flag) | Maintain minimum static head of 3 meters at the pu... |
 | ADV-122 | true-positive | TERM-per | False positive (should not flag) | Test each interval per the inspection schedule.... |
 
 ## 5. Actionable Engine Improvements

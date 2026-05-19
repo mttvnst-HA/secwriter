@@ -124,6 +124,11 @@ export const ENGINEERING_TERMS = [
   'PTFE', 'CPVC', 'EPDM', 'HDPE', 'LLDPE', 'XLPE',
   'THWN', 'THHN', 'XHHW',
   'jobsite', 'jobsites', 'standoff', 'standoffs',
+  // Additional singular/plural variants surfaced by harper.js 2.0 (May 2026)
+  // — flagged under the new GRAMMAR-Typo lint_kind as "missing space between
+  // words". All are legitimate UFGS compound words.
+  'waterstop', 'gages', 'broomed', 'precharged', 'prewired',
+  'pretreat', 'hotstick', 'antislip', 'longsweep',
 ];
 
 // User-editable custom dictionary (persisted in localStorage)
@@ -190,19 +195,29 @@ export async function addUserWord(word) {
   return updated;
 }
 
-// Harper rules to disable for construction specification text
+// Harper rules to disable for construction specification text. Keys are
+// individual rule names from harper.js's lint config (709 entries in 2.0).
+// `Formatting` and `Readability` were 1.x rule names that were retired in
+// 2.0 (no longer present in getLintConfig()); category-level filtering for
+// 2.0 lint_kinds lives in DISABLED_LINT_KINDS below.
 export const DISABLED_RULES = {
   LongSentences: false,     // Specs routinely have 40+ word sentences
   Spaces: false,            // UFGS uses double spaces after periods
   SpelledNumbers: false,    // "24 inches", "600 mm" are standard
   BoringWords: false,       // "provide", "install" are correct spec verbs
-  // Noise rules — produce thousands of trailing-whitespace and long-sentence
-  // findings on UFGS text without offering actionable fixes for spec authors.
-  Formatting: false,        // "Unnecessary space at end of sentence" — UFGS-tolerated
-  Readability: false,       // Long-sentence variant; specs are inherently long
   // NOTE: Repetition stays enabled — disabling it regressed GRAMMAR-Agreement
   // recall from 56% → 38% on the dirty corpus.
 };
+
+// Lint kinds (harper.js 2.0 categories — distinct from per-rule keys above)
+// suppressed via post-filter. Used by both production checkGrammar() and the
+// corpus runner so measurement matches user-visible behavior.
+export const DISABLED_LINT_KINDS = new Set([
+  // 5 of 6 calibration findings flag "each <number>" (suggesting "every"),
+  // which is standard UFGS measurement language ("each 24 inches"). Volume
+  // too low to justify per-rule tuning.
+  'Usage',
+]);
 
 // Pre-compute lowercase set for case-insensitive dictionary lookup. Harper's
 // importWords is case-sensitive (so "cementitious" doesn't cover "Cementitious"
@@ -219,9 +234,12 @@ const ENGINEERING_TERMS_LOWER = new Set(
  *
  * @param {string} problemText - The token Harper flagged
  * @param {Set<string>} userDictLower - User dictionary in lowercase
+ * @param {string} [lintKind] - harper.js 2.0 lint_kind for category-level filtering
  * @returns {boolean} true if the finding should be discarded
  */
-export function shouldSuppressGrammarFinding(problemText, userDictLower) {
+export function shouldSuppressGrammarFinding(problemText, userDictLower, lintKind) {
+  // Drop entire lint_kind categories that misfire on spec text.
+  if (lintKind && DISABLED_LINT_KINDS.has(lintKind)) return true;
   if (!problemText) return true;
   // Skip alphanumeric reference designators (ASTM D4829, AASHTO T99, M-43)
   if (/^[A-Z]{0,4}\d[\w-]*$/i.test(problemText)) return true;
@@ -236,6 +254,10 @@ export function shouldSuppressGrammarFinding(problemText, userDictLower) {
   // with standards organizations and discipline acronyms — Harper has no
   // hope of recognizing them all.
   if (/^[A-Z]{2,6}s?$/.test(problemText)) return true;
+  // Skip standards-citation patterns: acronym + space + single letter, used
+  // for standard series designators ("ICEA S-95-658", "IEEE C57.13",
+  // "ANSI/IEEE C2"). Harper 2.0 misreads these as misplaced spaces.
+  if (/^[A-Z]{2,6}\s[A-Z]$/.test(problemText)) return true;
   // Skip lowercase hyphenated compounds with standard English prefixes:
   // "non-conforming", "post-industrial", "pre-cast", "sub-base", "semi-annual"
   if (/^(non|pre|post|sub|semi|multi|anti|re|un|over|under|inter|intra|cross)-[a-z]+$/i.test(problemText)) return true;
@@ -333,11 +355,12 @@ export async function checkGrammar(plainText, blockId) {
       const problemText = lint.get_problem_text();
 
       // Apply shared FP filter (alphanumeric refs, single chars, formula
-      // notation, engineering dict, user dict). Harper's importWords is
-      // case-sensitive and only suppresses unknown-word findings, so this
-      // catch-all also handles capitalized variants and grammar/style rules
-      // firing on words the dictionary already covers.
-      if (shouldSuppressGrammarFinding(problemText, userDictLower)) continue;
+      // notation, engineering dict, user dict, plus the harper.js 2.0
+      // lint_kind category filter). Harper's importWords is case-sensitive
+      // and only suppresses unknown-word findings, so this catch-all also
+      // handles capitalized variants and grammar/style rules firing on
+      // words the dictionary already covers.
+      if (shouldSuppressGrammarFinding(problemText, userDictLower, lint.lint_kind())) continue;
 
       const suggestions = lint.suggestions();
       const hasSuggestion = suggestions.length > 0;

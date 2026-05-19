@@ -1,10 +1,10 @@
 {
   "metadata": {
     "corpusType": "dirty",
-    "corpusFile": "C:\\github\\specsintact-modern\\corpus\\dirty\\all_dirty.json",
+    "corpusFile": "C:\\github\\secwriter\\corpus\\dirty\\all_dirty.json",
     "blocksProcessed": 644,
-    "timestamp": "2026-04-08T05:04:41.766Z",
-    "elapsedSeconds": 5.1,
+    "timestamp": "2026-05-19T18:58:31.734Z",
+    "elapsedSeconds": 13.2,
     "grammarEnabled": true
   },
   "stats": {
@@ -16,14 +16,13 @@
     "findingsByEngine": {
       "static": 480,
       "nlp": 262,
-      "grammar": 158
+      "grammar": 148
     },
     "findingsByRule": {
       "TERM-shall": 157,
       "NLP-PASSIVE-001": 237,
       "TERM-should": 28,
       "GRAMMAR-WordChoice": 31,
-      "GRAMMAR-Typo": 9,
       "TERM-per": 7,
       "TERM-any": 33,
       "TERM-and-or": 38,
@@ -37,7 +36,7 @@
       "SYM-percent": 3,
       "SYM-and": 28,
       "NLP-INDICATIVE-001": 25,
-      "GRAMMAR-Spelling": 104,
+      "GRAMMAR-Spelling": 101,
       "CAP-Contract": 1,
       "GRAMMAR-Style": 5,
       "TERM-as-approved-by-co": 5,
@@ -52,10 +51,11 @@
       "TERM-thoroughly": 4,
       "TERM-carefully": 3,
       "CAP-Government": 8,
+      "GRAMMAR-Typo": 2,
       "GRAMMAR-Agreement": 5
     },
     "findingsBySection": {
-      "undefined": 900
+      "undefined": 890
     },
     "noteBlockFindings": {
       "static": 0,
@@ -302,16 +302,6 @@
       "severity": "info",
       "engine": "grammar",
       "category": "WordChoice",
-      "blockId": "03_30_00-P2-B198"
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "waterstop",
-      "index": 43,
-      "message": "`waterstop` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
       "blockId": "03_30_00-P2-B198"
     },
     {
@@ -645,16 +635,6 @@
       "blockId": "03_30_00-P2-B198"
     },
     {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "waterstop",
-      "index": 29,
-      "message": "`waterstop` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "03_30_00-P2-B198"
-    },
-    {
       "blockId": "03_30_00-P2-B434",
       "ruleId": "TERM-to-be",
       "match": "is to be",
@@ -805,16 +785,6 @@
       "blockId": "03_30_00-P2-B198"
     },
     {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "waterstop",
-      "index": 36,
-      "message": "`waterstop` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "03_30_00-P2-B198"
-    },
-    {
       "blockId": "03_30_00-P2-B368",
       "ruleId": "TERM-etc",
       "match": "etc.",
@@ -885,16 +855,6 @@
       "blockId": "03_30_00-P2-B198"
     },
     {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "waterstop",
-      "index": 45,
-      "message": "`waterstop` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "03_30_00-P2-B198"
-    },
-    {
       "blockId": "03_30_00-P2-B198",
       "ruleId": "TERM-adequate",
       "match": "adequate",
@@ -912,16 +872,6 @@
       "severity": "info",
       "engine": "grammar",
       "category": "WordChoice",
-      "blockId": "03_30_00-P2-B198"
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "waterstop",
-      "index": 45,
-      "message": "`waterstop` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
       "blockId": "03_30_00-P2-B198"
     },
     {
@@ -1092,16 +1042,6 @@
       "severity": "info",
       "engine": "grammar",
       "category": "WordChoice",
-      "blockId": "03_30_00-P2-B198"
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "waterstop",
-      "index": 36,
-      "message": "`waterstop` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
       "blockId": "03_30_00-P2-B198"
     },
     {
@@ -1885,16 +1825,6 @@
       "blockId": "03_30_00-P2-B198"
     },
     {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "waterstop",
-      "index": 36,
-      "message": "`waterstop` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "03_30_00-P2-B198"
-    },
-    {
       "blockId": "22_00_00-P1-B18",
       "ruleId": "TERM-shall",
       "match": "shall",
@@ -2333,16 +2263,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "nontilting",
-      "index": 67,
-      "message": "Did you mean to spell `nontilting` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B268"
     },
     {
       "ruleId": "GRAMMAR-WordChoice",
@@ -2875,6 +2795,16 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
+      "ruleId": "GRAMMAR-Spelling",
+      "match": "entraining",
+      "index": 170,
+      "message": "Did you mean to spell `entraining` this way?",
+      "severity": "info",
+      "engine": "grammar",
+      "category": "Spelling",
+      "blockId": "22_00_00-P3-B561"
+    },
+    {
       "ruleId": "GRAMMAR-WordChoice",
       "match": "end point",
       "index": 1056,
@@ -2923,6 +2853,16 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
+    },
+    {
+      "ruleId": "GRAMMAR-Spelling",
+      "match": "entraining",
+      "index": 170,
+      "message": "Did you mean to spell `entraining` this way?",
+      "severity": "info",
+      "engine": "grammar",
+      "category": "Spelling",
+      "blockId": "22_00_00-P3-B561"
     },
     {
       "ruleId": "GRAMMAR-Capitalization",
@@ -3175,6 +3115,16 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
+      "ruleId": "GRAMMAR-Spelling",
+      "match": "entraining",
+      "index": 170,
+      "message": "Did you mean to spell `entraining` this way?",
+      "severity": "info",
+      "engine": "grammar",
+      "category": "Spelling",
+      "blockId": "22_00_00-P3-B561"
+    },
+    {
       "ruleId": "GRAMMAR-WordChoice",
       "match": "end point",
       "index": 1051,
@@ -3303,6 +3253,16 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
+    },
+    {
+      "ruleId": "GRAMMAR-Spelling",
+      "match": "entraining",
+      "index": 170,
+      "message": "Did you mean to spell `entraining` this way?",
+      "severity": "info",
+      "engine": "grammar",
+      "category": "Spelling",
+      "blockId": "22_00_00-P3-B561"
     },
     {
       "ruleId": "GRAMMAR-WordChoice",
@@ -3796,16 +3756,6 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "materails",
-      "index": 41,
-      "message": "Did you mean to spell `materails` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P1-B89"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "Cemment",
       "index": 16,
       "message": "Did you mean to spell `Cemment` this way?",
@@ -4103,6 +4053,16 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
+    },
+    {
+      "ruleId": "GRAMMAR-Spelling",
+      "match": "entraining",
+      "index": 170,
+      "message": "Did you mean to spell `entraining` this way?",
+      "severity": "info",
+      "engine": "grammar",
+      "category": "Spelling",
+      "blockId": "22_00_00-P3-B561"
     },
     {
       "ruleId": "GRAMMAR-WordChoice",
@@ -6106,16 +6066,6 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "suppported",
-      "index": 29,
-      "message": "Did you mean to spell `suppported` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B251"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "accordnace",
       "index": 18,
       "message": "Did you mean `accordance`?",
@@ -6143,16 +6093,6 @@
       "engine": "grammar",
       "category": "Typo",
       "blockId": "26_20_00-P2-B372"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "folowing",
-      "index": 63,
-      "message": "Did you mean to spell `folowing` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B445"
     },
     {
       "blockId": "26_20_00-P2-B494",
@@ -8166,16 +8106,6 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "prestretched",
-      "index": 42,
-      "message": "Did you mean to spell `prestretched` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "diene",
       "index": 237,
       "message": "Did you mean to spell `diene` this way?",
@@ -8263,16 +8193,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "prestretched",
-      "index": 42,
-      "message": "Did you mean to spell `prestretched` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
     },
     {
       "ruleId": "GRAMMAR-Spelling",
@@ -8413,16 +8333,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "prestretched",
-      "index": 42,
-      "message": "Did you mean to spell `prestretched` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
     },
     {
       "ruleId": "GRAMMAR-Spelling",
@@ -9013,16 +8923,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "prestretched",
-      "index": 42,
-      "message": "Did you mean to spell `prestretched` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
     },
     {
       "ruleId": "GRAMMAR-Spelling",

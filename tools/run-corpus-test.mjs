@@ -30,6 +30,13 @@ const corpusType = args.includes('--corpus') ? args[args.indexOf('--corpus') + 1
 const skipGrammar = args.includes('--no-grammar');
 const singleSection = args.includes('--section') ? args[args.indexOf('--section') + 1] : null;
 
+// Adversarial corpus has a different shape (entries with expected behavior,
+// not blocks to scan). Delegate to the dedicated scorer.
+if (corpusType === 'adversarial') {
+  await import('./score-adversarial.mjs');
+  process.exit(0);
+}
+
 // --- Load engines ---
 console.log('Loading engines...');
 
@@ -86,8 +93,9 @@ function filterHarperResults(results, text) {
       const json = item.to_json();
       const parsed = typeof json === 'string' ? JSON.parse(json) : json;
       const problemText = parsed.problem_text || text.substring(parsed.span.start, parsed.span.end);
+      const lintKind = parsed.inner?.lint_kind;
 
-      if (shouldSuppressGrammarFinding(problemText, EMPTY_USER_DICT)) continue;
+      if (shouldSuppressGrammarFinding(problemText, EMPTY_USER_DICT, lintKind)) continue;
 
       // Skip suggestions that introduce spaces into single words
       const suggestions = parsed.inner?.suggestions || [];

@@ -232,9 +232,11 @@ Three text-analysis engines measured against real UFGS text using a 4-corpus sui
 3. **Dirty** (`corpus/dirty/`) — 644 blocks with 1,438 labeled injected violations. Measures recall per rule.
 4. **Adversarial** (`corpus/adversarial/`) — 150 edge cases (FP traps, NLP ambiguity, domain jargon). Measures robustness.
 
-**Regenerating results:** `node --import ./tools/json-loader.mjs tools/run-corpus-test.mjs --corpus clean` (or `dirty`, `calibration`). Then `node tools/generate-report.mjs` for REPORT.md + metrics.json.
+**Regenerating results:** `node --import ./tools/json-loader.mjs tools/run-corpus-test.mjs --corpus clean` (or `dirty`, `calibration`, `adversarial`). Adversarial delegates to `tools/score-adversarial.mjs` since its shape is pass/fail per entry, not a findings list. Then `node tools/generate-report.mjs` for REPORT.md + metrics.json.
 
-**Baseline (March 2026):** Static recall 86.9%, NLP recall 67.5%, Grammar recall 78.4%. Static FP rate 0.31%. Adversarial accuracy 97.3%. Full report: `corpus/results/REPORT.md`.
+**Baseline (May 2026, harper.js 2.0):** Static recall 86.9%, NLP recall 67.5%, Grammar recall 65.6%. Static FP rate 0.31%. Adversarial accuracy 92.7%. Full report: `corpus/results/REPORT.md`.
+
+The Grammar drop from the March 2026 baseline (78.4% → 65.6%) tracks the harper.js 1.12 → 2.0 bump in [#57](https://github.com/mttvnst-HA/secwriter/pull/57); 2.0 retired several rule categories and tightened agreement detection (GRAMMAR-Agreement recall: ~56% → 38%). The tradeoff is an 86% reduction in grammar FPs on the calibration corpus (2251 → 279 findings on 2,583 raw UFGS blocks), which is the more impactful axis for spec text where FPs vastly outnumber TPs. New 2.0 lint kinds (`Typo`, `Usage`) are evaluated in `DISABLED_LINT_KINDS` in `src/lib/grammar-checker.js`. Adversarial drop from 97.3% → 92.7% is unrelated to harper — post-March compliance rule tightening (e.g., COLLOQ-head's `head pressure` / `head loss` / `shower head` exclusions) made several `shouldFlag: true` "known FP" expectations in `corpus/adversarial/adversarial.json` stale. The expectations themselves should be refreshed in a future pass.
 
 **Rule ID mapping:** The injection plan used semantic IDs (e.g., `COLLOQ-furnish`) that don't match sequential IDs from `buildRules()` (e.g., `TERM-034`). Mapping at `corpus/results/rule-id-mapping.json`. Any future recall analysis must use this mapping.
 
