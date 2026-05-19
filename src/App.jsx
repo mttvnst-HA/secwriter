@@ -35,7 +35,7 @@ import * as Y from "yjs";
 import { seedBlockArray, resetBlockArray, setBlockHtml, setBlockHtmlSilent, getBlockHtml } from "./lib/block-html-store.js";
 import { focusBlockById, getBlockHandle, getBlockEditable, getBlockDom, getBlockView, listBlocksInDocumentOrder, flushAllPendingUpdates } from "./lib/block-registry.js";
 import { setActiveComment } from "./lib/pm-plugins/active-comment.js";
-import { TextSelection } from "prosemirror-state";
+import { Selection, TextSelection } from "prosemirror-state";
 import * as tc from "./lib/track-changes.js";
 import * as linting from "./lib/linting.js";
 import * as comp from "./lib/compliance.js";
@@ -909,6 +909,30 @@ export default function SpecEditor() {
         if (!view) return false;
         try {
           const sel = TextSelection.create(view.state.doc, from, to);
+          view.dispatch(view.state.tr.setSelection(sel));
+          view.focus();
+          return true;
+        } catch { return false; }
+      },
+      // #116 — collapsed-caret variant supporting 'start' | 'end' | number.
+      // The 'end' sentinel resolves to Selection.atEnd at dispatch time so
+      // callers don't need to know the block's text length; this is the
+      // dispatch-synchronous equivalent of keyboard.press('End') without
+      // PM's async domObserver settle.
+      setPmCaret: (id, position) => {
+        const view = getBlockView(id);
+        if (!view) return false;
+        try {
+          let sel;
+          if (position === 'start') {
+            sel = Selection.atStart(view.state.doc);
+          } else if (position === 'end') {
+            sel = Selection.atEnd(view.state.doc);
+          } else if (typeof position === 'number') {
+            sel = TextSelection.create(view.state.doc, position, position);
+          } else {
+            return false;
+          }
           view.dispatch(view.state.tr.setSelection(sel));
           view.focus();
           return true;

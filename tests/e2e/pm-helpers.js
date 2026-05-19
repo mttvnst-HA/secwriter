@@ -84,6 +84,40 @@ export async function pmSetSelection(page, blockId, from, to) {
 }
 
 /**
+ * Place a collapsed caret on a block. Use INSTEAD of
+ * `keyboard.press('Home' | 'End')` whenever the next test step invokes a
+ * PM keymap handler that reads `state.selection` synchronously
+ * (Arrow keys, Backspace, Tab, '/'). See issue #116.
+ *
+ * `Home`/`End` are browser-native and update the DOM `Selection`; PM's
+ * `domObserver` translates that back into `state.selection` on a
+ * microtask + animation-frame schedule. If the next Playwright keystroke
+ * fires before the observer settles, the keymap handler reads stale
+ * `state.selection.from` and falls through (e.g. `isCursorAtStart`/
+ * `isCursorAtEnd` in `src/lib/pm-plugins/keymap.js`).
+ *
+ * This helper dispatches a PM `TextSelection` synchronously via
+ * `view.dispatch`, so the read-after is always coherent.
+ *
+ * @param {import('@playwright/test').Page} page
+ * @param {string} blockId
+ * @param {'start' | 'end' | number} position 'start'/'end' resolve via
+ *   `Selection.atStart`/`atEnd`; a number is a PM document position
+ *   (first text pos is 1; last is N+1 for an N-character paragraph).
+ */
+export async function pmSetCaret(page, blockId, position) {
+  const ok = await page.evaluate(
+    ({ id, position }) => {
+      const utils = window.__simEditorTestUtils;
+      if (!utils?.setPmCaret) return false;
+      return utils.setPmCaret(id, position);
+    },
+    { id: blockId, position },
+  );
+  if (!ok) throw new Error(`pmSetCaret: setPmCaret failed for block ${blockId} (position=${position})`);
+}
+
+/**
  * Read PM selection range for assertions. Returns { from, to } or null
  * if the block has no mounted PM view.
  *

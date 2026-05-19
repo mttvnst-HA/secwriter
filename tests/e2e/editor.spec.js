@@ -1,5 +1,5 @@
 import { test, expect } from './fixtures.js';
-import { injectBlockHtml, readBlockHtml, createFreshBlock as createFreshBlockHelper, pmSetSelection } from './pm-helpers.js';
+import { injectBlockHtml, readBlockHtml, createFreshBlock as createFreshBlockHelper, pmSetSelection, pmSetCaret } from './pm-helpers.js';
 import fs from 'fs';
 
 // ─── Helpers ───────────────────────────────────────────────────────────────────
@@ -497,8 +497,9 @@ test.describe('Arrow key navigation', () => {
     const newId = await newBlock.getAttribute('data-block-id');
 
     // Now cursor is at end of "short". Press ArrowDown.
-    await page.keyboard.press('End');
-    await page.waitForTimeout(200);
+    // #116 — pmSetCaret('end') instead of keyboard.press('End') so PM's
+    // state.selection is updated synchronously before ArrowDown reads it.
+    await pmSetCaret(page, newId, 'end');
     await page.keyboard.press('ArrowDown');
 
     const focused = page.locator('[data-block-id]:focus');
@@ -715,8 +716,9 @@ test.describe('Floating toolbar', () => {
     const blockId = await focused.getAttribute('data-block-id');
     await page.keyboard.type('bold text');
 
-    // Select "bold" (first 4 characters)
-    await page.keyboard.press('Home');
+    // Select "bold" (first 4 characters). #116 — pmSetCaret('start') so
+    // PM state.selection is current before Shift+ArrowRight extends it.
+    await pmSetCaret(page, blockId, 'start');
     for (let i = 0; i < 4; i++) await page.keyboard.press('Shift+ArrowRight');
     await page.waitForTimeout(200);
 
@@ -1552,8 +1554,8 @@ test.describe('Track changes: floating toolbar revision buttons', () => {
     const blockId = await focused.getAttribute('data-block-id');
     await page.keyboard.type('added text here');
 
-    // Select "added"
-    await page.keyboard.press('Home');
+    // Select "added". #116 — pmSetCaret instead of Home.
+    await pmSetCaret(page, blockId, 'start');
     for (let i = 0; i < 5; i++) await page.keyboard.press('Shift+ArrowRight');
     await page.waitForTimeout(200);
 
@@ -1575,8 +1577,8 @@ test.describe('Track changes: floating toolbar revision buttons', () => {
     const blockId = await focused.getAttribute('data-block-id');
     await page.keyboard.type('delete this word');
 
-    // Select "delete"
-    await page.keyboard.press('Home');
+    // Select "delete". #116 — pmSetCaret instead of Home.
+    await pmSetCaret(page, blockId, 'start');
     for (let i = 0; i < 6; i++) await page.keyboard.press('Shift+ArrowRight');
     await page.waitForTimeout(200);
 
@@ -1786,10 +1788,10 @@ test.describe('Track changes: del element click popup', () => {
       await page.waitForTimeout(500);
     }
 
-    // Re-focus and select "remove"
+    // Re-focus and select "remove". #116 — pmSetCaret instead of Home.
     await page.locator(blockSel(blockId)).click();
     await page.waitForTimeout(200);
-    await page.keyboard.press('Home');
+    await pmSetCaret(page, blockId, 'start');
     for (let i = 0; i < 5; i++) await page.keyboard.press('ArrowRight'); // past "keep "
     for (let i = 0; i < 6; i++) await page.keyboard.press('Shift+ArrowRight'); // select "remove"
     await page.waitForTimeout(200);
@@ -1831,10 +1833,10 @@ test.describe('Track changes: del element click popup', () => {
       await page.waitForTimeout(500);
     }
 
-    // Re-focus and select "deleted"
+    // Re-focus and select "deleted". #116 — pmSetCaret instead of Home.
     await page.locator(blockSel(blockId)).click();
     await page.waitForTimeout(200);
-    await page.keyboard.press('Home');
+    await pmSetCaret(page, blockId, 'start');
     for (let i = 0; i < 7; i++) await page.keyboard.press('ArrowRight'); // past "before "
     for (let i = 0; i < 7; i++) await page.keyboard.press('Shift+ArrowRight'); // select "deleted"
     await page.waitForTimeout(200);
@@ -1887,10 +1889,10 @@ test.describe('Track changes: del element click popup', () => {
       await page.waitForTimeout(500);
     }
 
-    // Re-focus the block and select "restore"
+    // Re-focus the block and select "restore". #116 — pmSetCaret.
     await page.locator(blockSel(blockId)).click();
     await page.waitForTimeout(200);
-    await page.keyboard.press('Home');
+    await pmSetCaret(page, blockId, 'start');
     for (let i = 0; i < 5; i++) await page.keyboard.press('ArrowRight'); // past "keep "
     for (let i = 0; i < 7; i++) await page.keyboard.press('Shift+ArrowRight'); // select "restore"
     await page.waitForTimeout(200);
@@ -2476,8 +2478,8 @@ test.describe('Cross-reference validation panel', () => {
     const blockId = await focused.getAttribute('data-block-id');
     await page.keyboard.type('See FAKE Z9999');
 
-    // Select "FAKE Z9999" and mark as RID
-    await page.keyboard.press('Home');
+    // Select "FAKE Z9999" and mark as RID. #116 — pmSetCaret.
+    await pmSetCaret(page, blockId, 'start');
     for (let i = 0; i < 4; i++) await page.keyboard.press('ArrowRight'); // past "See "
     for (let i = 0; i < 10; i++) await page.keyboard.press('Shift+ArrowRight'); // select "FAKE Z9999"
     await page.waitForTimeout(200);
