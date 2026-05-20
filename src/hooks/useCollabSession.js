@@ -2,7 +2,7 @@
  * useCollabSession — owns the Yjs collaboration session lifecycle and the
  * four publish effects (blocks, meta, TC, comments).
  *
- * Architecture-review entry #5 (docs/architecture-review-2026-05-01.md):
+ * Architecture-review entry #5 (docs/architecture-review.md):
  * before this hook existed, the publish-path coordination was inlined in
  * App.jsx. App held five refs (`collabSessionRef`, `lastRemoteBlocksRef`,
  * `sessionReadyRef`, `metaReadyRef`, `lastPublishedTcSeqRef`,

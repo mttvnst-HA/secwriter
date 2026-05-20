@@ -98,3 +98,72 @@ Candidates the substrate work has surfaced for a future review: (a) PM plugin se
 53 new unit tests in `blocks.test.js` (verb purity per-verb, dispatcher protocol ordering, four property invariants asserting effects shape and substrate-id ⊆ state-id integrity). Five App.jsx imports retired: `acceptAllRevisions`/`rejectAllRevisions`/`acceptAllInline`/`rejectAllInline` (now reached via verbs), `replaceMatchInHtml` (same), `reorderSection` (same), `setBlockHtml` (dispatcher owns it), `getBlockHandle` (dead mirror), `flushAllPendingUpdates` (only the dispatcher needs it). Two latent fragility windows discovered + tested-against during landing: (a) `handleSearchReplace` "Replace All" mode and `handleRemoveOrphaned` "Remove All Orphaned" mode are synchronous N-call loops over the verb dispatcher — without the synchronous `blocksRef.current` mutation, only the first replacement persisted (caught by re-running editor.spec.js post-refactor); (b) `acceptAllRevisions` always returns a fresh array even when no revisions exist, so the verb's "no-op" detection compares `prev.length` + per-id revision presence rather than ref-equality.
 
 **Files:** `src/lib/blocks.js` (new — 21 verbs + dispatcher, ~640 LOC), `src/lib/__tests__/blocks.test.js` (new — 53 tests), `src/App.jsx` (14 handlers + 7 inline JSX handlers rewritten, 5 imports retired), `CLAUDE.md` (new "Blocks Reducer Architecture" section), `CONTEXT.md` (`Blocks reducer`, `VerbResult (blocks)`, `dispatchBlocksVerb` entries).
+
+---
+
+# Open backlog
+
+Refilled 2026-05-19 after PRs #120 (toolbar dispatcher) and #123 (blocks reducer). Verifies the three "future review" hints from "Since 2026-05-02" above.
+
+## 9. `PmEditableBlock`: view-mount tangled with per-keystroke verb rewriting
+
+**Files:** `src/components/PmEditableBlock.jsx` (~980 LOC)
+
+**Friction:** Three concerns glued in one component: (a) `EditorView` lifecycle (mount, ySyncPlugin bind, handle register, unmount), (b) `dispatchTransaction` interceptor (TC rewrite via `rewriteForTrackChanges`, `TC_RESOLVE_META` skip, `COMMENT_RECONCILE_META` skip, synthesized `'input'` for linter, debounce settle, `onUpdate` echo gating), and (c) prop wiring (paste sanitizer, click → del-popup dispatch, auto-focus for `isNew`). The verb-rewrite logic (b) lives mid-component; invariants like "TC_RESOLVE_META skips rewriter only, not linter or onUpdate" are inferred from CLAUDE.md item 7 + CONTEXT.md, not enforced by a module.
+
+**Why shallow:** the interceptor reads as inline component code, but its real interface is "given a tr, decide which side effects fire" — a non-trivial state machine over PM-meta keys. The interface (a function reference) is dramatically smaller than the implementation (~200 LOC of branching across TC, comments, linter, onUpdate, ySync identification).
+
+**Deletion test:** extract (b) into `pmEditorInterceptors`. PmEditableBlock shrinks to ~300 LOC mount wrapper. The TC + comment-reconcile + linter-synth + onUpdate-gate coordination concentrates in one testable module; the four CLAUDE.md "load-bearing meta sentinel" facts become unit-tested invariants instead of comment lore.
+
+**Sketch direction:** a `dispatchTransaction` factory `(callbacks, metaHandlers) → tr => void` that owns the verb rewrite layer; PmEditableBlock owns mount/unmount only.
+
+---
+
+## 10. `useCollabSession` coordination-refs cluster — implicit state machine
+
+**Files:** `src/hooks/useCollabSession.js` (~605 LOC); refs scattered ~lines 159–223
+
+**Friction:** Seven refs (`sessionReadyRef`, `metaReadyRef`, `lastRemoteBlocksRef`, `lastPublishedTcSeqRef`, `publishDisabledRef`, `schemaIncompatibleRef`, `migrationPartialRef`) collectively encode the session heartbeat: "blocks synced? meta synced? TC echo-guarded? doc over cap? room migration-partial? schema compatible?". Each ref mutates in a different callback (`onRemoteBlocks`, `onRemoteMeta`, `markTcSeqApplied`, doc-size error path, broker handshake). Reading any one is meaningless without all seven; invariants like "blocks sync must precede any publish" live as caller discipline, not module guarantee.
+
+**Why shallow:** the refs ARE the state, and the four publish effects + the migration-partial pin together form a state machine that's never named. Hint (c) from the prior review verified — directly mirrors the pre-#34 TC `tcDirtyRef` situation, which became `publishSeq` + `track-changes.js` reducer.
+
+**Deletion test:** replace the refs with a pure-reducer-style `sessionCoordination` bundle. The hook becomes transport-only; coordination invariants become property-tested verb transitions. Same playbook as TC / comments / linting / compliance / blocks.
+
+**Sketch direction:** a `sessionCoordination.js` reducer with state `{blocks, meta, tc, doc, schema, migration}`, verbs (`onBlocksSync`, `onMetaSync`, `markTcSeqApplied`, `capDocSize`, …) and selectors (`canPublishBlocks`, `canPublishTc`, …).
+
+---
+
+## 11. `block-registry` flush helpers — three mechanical iterators, scattered call-site reasoning
+
+**Files:** `src/lib/block-registry.js` lines ~157–199 (`flushPendingUpdateById`, `flushAllPendingUpdates`, `cancelPendingUpdateById`); call sites in App.jsx (`handleAcceptAll`, `handleRejectAll`), FloatingToolbar via `dispatchToolbarVerb`, inline-TC accept
+
+**Friction:** Three near-identical iterators (~50 LOC of duplicated handle-iteration + try/catch). The *why* — M4 regression guard ("doc-wide TC gestures must flush the 400ms PM debounce first or accept-all silently no-ops because revision marks haven't landed in React state yet"), toolbar settle, inline-TC cancel — lives at call sites as comments + CLAUDE.md TC item 9. Helpers are mechanical; cohesion is invisible.
+
+**Why shallow:** interface is wider than the implementation (three method names for what is really one "flush coordinator for DOM-bridge gestures") and the load-bearing reason for each call lives outside the module. Hint (b) from the prior review verified.
+
+**Deletion test:** concentrates rather than vanishes. A `flushCoordinator` module that names each call-site purpose as a verb (`flushForDocWideTcGesture`, `flushAfterToolbarDispatch`, `cancelForInlineTcAcceptSettlement`) pins the M4 regression as a structural feature instead of a load-bearing comment.
+
+**Sketch direction:** replace the three mechanical helpers with named-intent verbs; original three become private impl.
+
+---
+
+## 12. PM plugin construction scattered across PmEditableBlock — no single seam
+
+**Files:** `src/lib/pm-plugins/*` (six files: slash-menu, tag-labels, keymap, relpos-selection, active-comment, word-boundary-undo) + construction site in `PmEditableBlock.jsx`
+
+**Friction:** Six PM plugins constructed inline at `EditorView` setup. Inter-plugin dependencies (slash-menu state read by keymap, word-boundary-undo coordinating with the UndoManager pair) live as implicit ordering at the construction site. Adding a new plugin requires editing `PmEditableBlock`. Looks pluggable, isn't.
+
+**Why shallow:** the *appearance* of a plugin seam (six independent files) without the *substance* (a single place to register, configure, or test the set together). Hint (a) from the prior review — fading but not dead.
+
+**Deletion test:** borderline. Concentrating into `createPmPluginSet(callbacks)` gives a single testable seam (construct plugin set in isolation, assert order + callback wiring) but does not unlock new tests for any individual plugin. Lower-priority than #9–#11.
+
+**Sketch direction:** plugin-set factory, callbacks-in / plugin-array-out, ordering and inter-plugin deps documented in one place.
+
+---
+
+## Non-candidates (post-#123)
+
+- **App.jsx (~2050 LOC):** still ~400 over ideal but is a symptom of #9 + #10 + #11, not a target. Land those, App drops ~200 LOC.
+- **FloatingToolbar (~589 LOC):** deepened in #120; remaining size is UI state + mark-button iteration. Bottom-heavy, not shallow.
+- **`revisions.js` / `revision-resolve` / `pm-tc-mark`:** parsing duplication checked — no overlap. revisions.js operates on HTML strings (regex-driven accept/reject for plain html); pm-tc-mark operates on PM marks (per-keystroke rewriter). Distinct substrates, tight modules.
+- **server-side (`collab-server.cjs`, `http-handler.cjs`, `migrate-pm-substrate.cjs`):** `GET /rooms` event-loop fix (#112) closed the recent shallow seam. Migration broker already extracts cleanly. No candidates surface today.
