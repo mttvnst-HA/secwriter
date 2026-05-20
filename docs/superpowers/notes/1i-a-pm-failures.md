@@ -4,7 +4,7 @@
 **Branch:** `feat/1i-a-ci-prep`
 **Baseline commit:** `8db3b27` (local `main`, 4 commits ahead of `origin/main`)
 **Author:** Claude (subagent under sub-PR 1i)
-**Status:** Historical record — retained as the source for the 9-flake baseline cited in CLAUDE.md Testing Rule #10.
+**Status:** HISTORICAL SNAPSHOT — do not rely on the failure list below for current baseline. The 9-flake set captured here predates sub-PR 1i-b.2 (single-PM-editor cutover), issue [#100](https://github.com/mttvnst-HA/secwriter/issues/100)'s bisect, the [#114](https://github.com/mttvnst-HA/secwriter/issues/114) persistent-races investigation + PR [#115](https://github.com/mttvnst-HA/secwriter/pull/115) helper fix, PR [#117](https://github.com/mttvnst-HA/secwriter/pull/117)'s `pmSetCaret` replacement of racy `Home`/`End`, the [#126](https://github.com/mttvnst-HA/secwriter/issues/126) parallel-load tracking, and PRs [#142](https://github.com/mttvnst-HA/secwriter/pull/142)/[#143](https://github.com/mttvnst-HA/secwriter/pull/143) closing two #126 children. Current baseline is tracked at [#126](https://github.com/mttvnst-HA/secwriter/issues/126); the post-#114 verification follow-up is [#145](https://github.com/mttvnst-HA/secwriter/issues/145). The "zero persistent failures" claim in §Run-level numbers was accurate on 2026-05-16 against commit `8db3b27` but does not reflect the post-1i-b.2 baseline that #100/#114/#126 surfaced. Retained for historical reference + as an example of the 1i-a triage methodology.
 
 ## Summary
 
