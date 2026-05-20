@@ -325,18 +325,17 @@ export function useCollabSession({
         //     'migration-partial' so the operator-actionable banner
         //     survives reconnects. Other statuses pass through (a
         //     real disconnect should still read as 'disconnected').
-        const effective = sc.effectiveStatus(coordRef.current, status);
-        // The 'incompatible' collapse short-circuits any other status
-        // — but suppressing duplicate 'incompatible' emissions matches
-        // the pre-reducer behavior (line 341 only let the original
-        // 'incompatible' through, never a derived one).
-        if (
-          coordRef.current.schemaIncompatible &&
-          status !== 'incompatible'
-        ) {
-          return;
-        }
-        onStatusChangeRef.current?.(effective, meta);
+        // Read coord once so the suppression check and effectiveStatus
+        // call share the same snapshot. The post-incompatibility
+        // suppression rule: pre-refactor only let the original
+        // 'incompatible' emission through; a later 'connected' was
+        // suppressed entirely rather than re-emitted as a derived
+        // 'incompatible'. We preserve that — sc.effectiveStatus would
+        // happily collapse a 'connected' to 'incompatible', but App
+        // does not need duplicate banner pings.
+        const coord = coordRef.current;
+        if (coord.schemaIncompatible && status !== 'incompatible') return;
+        onStatusChangeRef.current?.(sc.effectiveStatus(coord, status), meta);
       },
     });
 
@@ -376,11 +375,14 @@ export function useCollabSession({
       session.publishBlocks(blocks);
       // Success — clear any previous over-cap latch and trigger the
       // resumed toast on the prev→next overcap diff (per design lock,
-      // toast is a hook-side side effect, not a reducer concern).
+      // toast is a hook-side side effect, not a reducer concern). The
+      // assignment is unconditional even when the verb is a no-op
+      // (next === prev by ref) so reducer hygiene reads cleanly at the
+      // call site; the toast only fires on the actual transition.
       const prev = coordRef.current;
       const next = sc.onPublishSucceeded(prev);
+      coordRef.current = next;
       if (prev.publishOvercap && !next.publishOvercap) {
-        coordRef.current = next;
         pushToastRef.current?.({
           kind: 'success',
           title: 'Sync resumed',
@@ -394,8 +396,8 @@ export function useCollabSession({
         // to avoid spamming the user on every keystroke while oversized.
         const prev = coordRef.current;
         const next = sc.onPublishOvercap(prev);
+        coordRef.current = next;
         if (!prev.publishOvercap && next.publishOvercap) {
-          coordRef.current = next;
           pushToastRef.current?.({
             kind: 'error',
             title: 'Document too large to sync',

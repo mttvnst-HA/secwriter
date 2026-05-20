@@ -363,11 +363,15 @@ describe('useCollabSession — schema-version gate (1b.1)', () => {
     expect(lastSession().publishBlocks).not.toHaveBeenCalled();
   });
 
-  it('does not publish meta when the gate has tripped (initial-sync path; metaReady gate)', () => {
-    // Initial-sync path: the gate returns BEFORE flipping metaReadyRef, so
-    // publishMeta is guarded by `!metaReadyRef.current`. This asserts the
-    // observable behavior (no publish) even though the schemaIncompatibleRef
-    // guard is not the line being exercised here.
+  it('does not publish meta when schema-incompatible (initial-sync path; canPublishMeta gate)', () => {
+    // Post-arch-review-#10 (2026-05-19): sc.onMetaSync flips BOTH
+    // metaReady AND schemaIncompatible in the same call on an initial
+    // incompatible payload. canPublishMeta requires
+    // sessionReady && metaReady && !schemaIncompatible, so the gate
+    // closes via the schema check (not via metaReady, which IS true at
+    // this point). The pre-refactor behavior was different — metaReady
+    // would stay false because the hook short-circuited before flipping
+    // it — but the observable "no publish" outcome is unchanged.
     const initial = defaultParams();
     const { rerender } = renderHook((p) => useCollabSession(p), { initialProps: initial });
     fireInitialSync({ schemaVersion: 3 });
@@ -375,17 +379,15 @@ describe('useCollabSession — schema-version gate (1b.1)', () => {
     expect(lastSession().publishMeta).not.toHaveBeenCalled();
   });
 
-  it('does not publish meta after the gate trips even when metaReady has been flipped by a later non-initial meta delivery', () => {
-    // PR #49 review (score 78) flagged that the schemaIncompatibleRef
-    // guard on publishMeta is unreachable in the initial-sync path —
-    // metaReadyRef stays false because the gate returns before flipping
-    // it. But a later non-initial onRemoteMeta callback DOES go through
-    // the un-gated branch (the second-fire path is intentionally not
-    // schema-checked because non-initial schema bumps are not expected),
-    // flipping metaReadyRef to true. This is the path where the
-    // `if (schemaIncompatibleRef.current) return;` line in publishMeta
-    // is the actual guard. Without it, a peer's later meta nudge would
-    // unmask publishMeta into firing for an incompatible room.
+  it('does not publish meta after the gate trips even when a later non-initial meta delivery re-confirms metaReady', () => {
+    // PR #49 review (score 78) flagged the schemaIncompatible guard on
+    // publishMeta. Post-arch-review-#10, the gate is canPublishMeta and
+    // schemaIncompatible is the load-bearing field. A later non-initial
+    // onRemoteMeta callback goes through the un-gated branch (non-initial
+    // schema bumps are not expected and so not re-checked); sc.onMetaSync
+    // is still called and re-flips metaReady=true (idempotent). Without
+    // canPublishMeta's !schemaIncompatible clause, a peer's later meta
+    // nudge would unmask publishMeta into firing for an incompatible room.
     const initial = defaultParams();
     const { rerender } = renderHook((p) => useCollabSession(p), { initialProps: initial });
     fireInitialSync({ schemaVersion: 3 });

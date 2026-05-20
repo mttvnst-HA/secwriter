@@ -112,6 +112,33 @@ describe('I2 — every canPublish* selector implies sessionReady && !schemaIncom
   });
 });
 
+describe('I2-converse — the gate predicates must actually unlock when their preconditions hold', () => {
+  // Without this, an "always returns false" canPublishBlocks would pass
+  // I2 silently. Asserts the gate fires whenever its sufficient
+  // preconditions hold across all 32 boolean state shapes — i.e. the
+  // selectors are not over-strict.
+  const bools = [false, true];
+  const states = [];
+  for (const sessionReady of bools)
+    for (const metaReady of bools)
+      for (const schemaIncompatible of bools)
+        for (const migrationPartial of bools)
+          for (const publishOvercap of bools)
+            states.push({ sessionReady, metaReady, schemaIncompatible, migrationPartial, publishOvercap });
+
+  it.each(states)('state %o', (s) => {
+    if (s.sessionReady && !s.schemaIncompatible) {
+      expect(sc.canPublishBlocks(s)).toBe(true);
+      expect(sc.canPublishTc(s)).toBe(true);
+      if (s.metaReady) expect(sc.canPublishMeta(s)).toBe(true);
+    }
+    if (!s.schemaIncompatible) {
+      expect(sc.canDispatchComment(s)).toBe(true);
+      expect(sc.canBroadcastCursor(s)).toBe(true);
+    }
+  });
+});
+
 describe('I3 — effectiveStatus collapses connected → migration-partial', () => {
   it('returns migration-partial when migrationPartial AND raw is connected AND not incompatible', () => {
     const s = sc.onMetaSync(sc.createInitial(), { schemaVersion: 2, migrationPartial: true });
