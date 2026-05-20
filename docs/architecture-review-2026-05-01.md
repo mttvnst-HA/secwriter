@@ -75,7 +75,7 @@ Architecture vocabulary used below — *module, interface, depth, seam, leverage
 ## Honorable mentions (not candidates)
 
 - **App.jsx (2852 lines, ~50 callbacks):** size is a *symptom* of the missing domain seams in #1–#5, not a candidate of its own. If we deepen TC, comments, linting, compliance, and publish, App.jsx ends up around 1000–1200 lines without targeting it directly.
-- **`src/lib/compliance-diff.js`:** verified — only referenced by itself and `COMPLIANCE.md`. This is dead code, not architecture; just delete it (separate task). Still present as of 2026-05-18.
+- **`src/lib/compliance-diff.js`:** verified — only referenced by itself and `COMPLIANCE.md`. This is dead code, not architecture; just delete it (separate task). ~~Still present as of 2026-05-18.~~ Deleted 2026-05-19.
 
 ---
 
