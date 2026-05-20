@@ -24,6 +24,7 @@ import CompliancePanel from "./components/CompliancePanel.jsx";
 import { compileRegister, generateRegisterReport } from "./lib/submittal-register.js";
 import { generateExportHtml } from "./lib/doc-export.js";
 import { autoSave, loadAutoSave, clearAutoSave, getAutoSaveTimestamp, supportsFileSystemAccess, saveToFileHandle } from "./lib/auto-save.js";
+import { CURRENT_FILE_INITIAL, getDisplayName, getSidecarName } from "./lib/current-file.js";
 import { buildTree } from "./lib/tree-builder.js";
 import { generateCommentReport } from "./lib/comment-report.js";
 import { parseSEC } from "./lib/sec-parser.js";
@@ -173,7 +174,10 @@ export default function SpecEditor() {
   const [selectedTreeId, setSelectedTreeId] = useState(null);
   const [focusedBlockId, setFocusedBlockId] = useState(null);
   const [isDragOver, setIsDragOver] = useState(false);
-  const [fileName, setFileName] = useState("31_00_00.SEC");
+  // Current-file record — bundles SEC handle/fallbackName + sidecar handle so
+  // cross-file loads can swap the whole record atomically (see CONTEXT.md
+  // "Local file"). `displayName` is derived via getDisplayName at use sites.
+  const [currentFile, setCurrentFile] = useState(CURRENT_FILE_INITIAL);
   const [tailorActive, setTailorActive] = useState(false);
   const [tailorProfile, setTailorProfile] = useState({ branch: null, region: null, deliveryMethod: null });
   const [tailorShowAll, setTailorShowAll] = useState(false);
@@ -288,8 +292,6 @@ export default function SpecEditor() {
   // hook call can still dispatch through it (e.g. dispatchComment).
   const collabRef = useRef(null);
 
-  const fileHandleRef = useRef(null); // File System Access API handle for SEC file
-  const commentsHandleRef = useRef(null); // File System Access API handle for comments sidecar
   const editorRef = useRef(null);
   const fileInputRef = useRef(null);
   const blocksRef = useRef(blocks);
@@ -377,18 +379,16 @@ export default function SpecEditor() {
         resetBlockArray(localSubstrate.ydoc, localSubstrate.yOrder, localSubstrate.yStore, parsed);
       }
       setBlocks(parsed);
-      setFileName(name);
+      // Atomic record swap — drops stale FSA handles in the same update so
+      // Ctrl+S cannot silently overwrite the previous file with the newly
+      // loaded content.
+      setCurrentFile({ sec: { handle: null, fallbackName: name }, sidecar: { handle: null } });
       setSectionMeta(extractMetadata(content));
       setSelectedTreeId(null);
       setFocusedBlockId(null);
       // In a room, yComments is the authoritative source — do not wipe shared
       // comment state on a local file import.
       if (!inRoom) setCommentsState(cm.createInitial());
-      // Prevent cross-file data loss: a stale handle from a previous file
-      // would otherwise cause Ctrl+S to silently overwrite that file with
-      // the newly-loaded content.
-      fileHandleRef.current = null;
-      commentsHandleRef.current = null;
       // Drop any localStorage auto-save from the previous file so a future
       // mount-time restore cannot resurrect it over a freshly-loaded file.
       clearAutoSave();
@@ -447,7 +447,7 @@ export default function SpecEditor() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = fileName || 'output.SEC';
+    a.download = getDisplayName(currentFile);
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -460,31 +460,31 @@ export default function SpecEditor() {
       const commentsUrl = URL.createObjectURL(commentsBlob);
       const ca = document.createElement('a');
       ca.href = commentsUrl;
-      ca.download = (fileName || 'output.SEC').replace(/\.sec$/i, '.comments.json');
+      ca.download = getSidecarName(currentFile);
       document.body.appendChild(ca);
       ca.click();
       document.body.removeChild(ca);
       URL.revokeObjectURL(commentsUrl);
     }
-  }, [blocks, sectionMeta, fileName, comments]);
+  }, [blocks, sectionMeta, currentFile, comments]);
 
   // Save helpers
   const doFileSave = useCallback(async (encoded, promptNewLocation) => {
     // Try existing file handle first (unless forcing new location)
-    if (!promptNewLocation && fileHandleRef.current) {
-      const ok = await saveToFileHandle(fileHandleRef.current, encoded);
+    if (!promptNewLocation && currentFile.sec.handle) {
+      const ok = await saveToFileHandle(currentFile.sec.handle, encoded);
       if (ok) return true;
     }
     // Try File System Access API — prompt for location
     if (supportsFileSystemAccess()) {
       try {
         const handle = await window.showSaveFilePicker({
-          suggestedName: fileName || 'output.SEC',
+          suggestedName: getDisplayName(currentFile),
           types: [{ description: 'SEC File', accept: { 'application/octet-stream': ['.sec', '.SEC'] } }],
         });
-        fileHandleRef.current = handle;
-        // Update fileName from the handle
-        if (handle.name) setFileName(handle.name);
+        // handle.name becomes authoritative via getDisplayName — no separate
+        // setter needed for the displayed name.
+        setCurrentFile(prev => ({ ...prev, sec: { ...prev.sec, handle } }));
         return await saveToFileHandle(handle, encoded);
       } catch {
         return false; // user cancelled
@@ -493,17 +493,17 @@ export default function SpecEditor() {
     // Fallback: download
     handleExport();
     return true;
-  }, [fileName, handleExport]);
+  }, [currentFile, handleExport]);
 
   // Save comments sidecar alongside the SEC file
   const saveCommentsSidecar = useCallback(async (promptNew) => {
     if (comments.size === 0) return;
     const commentsData = { version: 1, comments: Array.from(comments.values()) };
-    const sidecarName = (fileName || 'output.SEC').replace(/\.sec$/i, '.comments.json');
+    const sidecarName = getSidecarName(currentFile);
 
     // Try existing handle
-    if (!promptNew && commentsHandleRef.current) {
-      await saveToFileHandle(commentsHandleRef.current,
+    if (!promptNew && currentFile.sidecar.handle) {
+      await saveToFileHandle(currentFile.sidecar.handle,
         new TextEncoder().encode(JSON.stringify(commentsData, null, 2)));
       return;
     }
@@ -515,7 +515,7 @@ export default function SpecEditor() {
           suggestedName: sidecarName,
           types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
         });
-        commentsHandleRef.current = handle;
+        setCurrentFile(prev => ({ ...prev, sidecar: { ...prev.sidecar, handle } }));
         await saveToFileHandle(handle,
           new TextEncoder().encode(JSON.stringify(commentsData, null, 2)));
         return;
@@ -532,7 +532,7 @@ export default function SpecEditor() {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-  }, [comments, fileName]);
+  }, [comments, currentFile]);
 
   // Save (Ctrl+S) — save to current location, or prompt if first save
   const handleSave = useCallback(async () => {
@@ -1184,10 +1184,10 @@ export default function SpecEditor() {
   useEffect(() => {
     if (inRoom) return;
     const timer = setTimeout(() => {
-      autoSave(blocks, sectionMeta, comments, fileName);
+      autoSave(blocks, sectionMeta, comments, getDisplayName(currentFile));
     }, 3000);
     return () => clearTimeout(timer);
-  }, [blocks, sectionMeta, comments, fileName, inRoom]);
+  }, [blocks, sectionMeta, comments, currentFile, inRoom]);
 
   // Track dirty state — any block/comment change marks dirty
   useEffect(() => {
@@ -1208,7 +1208,9 @@ export default function SpecEditor() {
     resetBlockArray(localSubstrate.ydoc, localSubstrate.yOrder, localSubstrate.yStore, saved.blocks);
     setBlocks(saved.blocks);
     if (saved.sectionMeta) setSectionMeta(saved.sectionMeta);
-    setFileName(saved.fileName);
+    // Restored state has no attached file handle — atomic swap forces the
+    // next Ctrl+S to prompt so it cannot land on an unrelated file.
+    setCurrentFile({ sec: { handle: null, fallbackName: saved.fileName }, sidecar: { handle: null } });
     if (saved.comments && Array.isArray(saved.comments)) {
       const obj = {};
       for (const c of saved.comments) obj[c.id] = c;
@@ -1220,10 +1222,6 @@ export default function SpecEditor() {
       setCommentsState({ byId, seenRemoteIds: new Set() });
     }
     setIsDirty(false);
-    // Restored state has no attached file handle — force a prompt on
-    // the next Ctrl+S so it cannot land on an unrelated file.
-    fileHandleRef.current = null;
-    commentsHandleRef.current = null;
   }, [inRoom, localSubstrate]);
 
   // ── Collab session ──
@@ -1247,12 +1245,15 @@ export default function SpecEditor() {
 
     blocks,
     sectionMeta,
-    fileName,
+    fileName: getDisplayName(currentFile),
     tcState,
     getPublishableTc: tc.getPublishableState,
 
     getInitialBlocks: useCallback(() => blocksRef.current, []),
-    getInitialMeta: useCallback(() => ({ ...sectionMetaRef.current, fileName }), [fileName]),
+    getInitialMeta: useCallback(
+      () => ({ ...sectionMetaRef.current, fileName: getDisplayName(currentFile) }),
+      [currentFile],
+    ),
 
     onBlocksReceived: useCallback((nextBlocks /* , meta */) => {
       // Preserve caret — and any non-collapsed selection — across a
@@ -1303,7 +1304,13 @@ export default function SpecEditor() {
     onMetaReceived: useCallback((remote) => {
       if (!remote || typeof remote !== 'object') return;
       setSectionMeta((prev) => ({ ...prev, ...remote }));
-      if (remote.fileName) setFileName(remote.fileName);
+      // Remote peers don't share an FSA handle — update fallbackName so the
+      // displayed name reflects the room's authoritative file name when no
+      // local handle is set. If a local Save-As-in-room set sec.handle,
+      // handle.name takes priority via getDisplayName.
+      if (remote.fileName) {
+        setCurrentFile((prev) => ({ ...prev, sec: { ...prev.sec, fallbackName: remote.fileName } }));
+      }
       if ('locked' in remote) setRoomLocked(!!remote.locked);
       if ('lockedBy' in remote) setRoomLockedBy(remote.lockedBy || null);
       if ('lockedByName' in remote) setRoomLockedByName(remote.lockedByName || null);
@@ -1829,7 +1836,7 @@ export default function SpecEditor() {
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = (fileName || 'output.SEC').replace(/\.sec$/i, '.doc');
+                a.download = getDisplayName(currentFile).replace(/\.sec$/i, '.doc');
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
@@ -2576,7 +2583,7 @@ export default function SpecEditor() {
         }}>
           <span>{blocks.length} blocks | {blocks.filter(b => b.type === "title").length} sections | {blocks.filter(b => b.type === "table").length} tables</span>
           <span>Enter: new paragraph | Backspace: delete empty | / : insert block type | Tab/Shift+Tab: heading level | Ctrl+Z: undo | Ctrl+Y: redo</span>
-          <span>{fileName}</span>
+          <span>{getDisplayName(currentFile)}</span>
         </div>
       </div>
 

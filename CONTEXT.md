@@ -204,6 +204,16 @@ For architecture vocabulary (module, interface, depth, seam, adapter, leverage, 
 
 ---
 
+## Local file
+
+**Current-file record** — The client-side identity of the file the user is editing on disk. Shape: `{ sec: { handle: FileSystemFileHandle | null, fallbackName: string }, sidecar: { handle: FileSystemFileHandle | null } }`. Cross-file load swaps the whole record atomically so a stale `sec.handle` cannot survive into a save against the next file (the silent-data-loss path: Ctrl+S writing to the previously-loaded file). Per-field update is reserved for handle acquisition within the SAME file (first Ctrl+S resolves an FSA prompt and fills `sec.handle`); cross-file transitions always swap the whole record.
+
+**`sec.fallbackName`** — Display name used when `sec.handle` is null (drag-drop import, file-input picker, autosave-restore, brand-new doc). Once `sec.handle` exists, `handle.name` is authoritative — `fallbackName` becomes inert. The render-time selector `getDisplayName(currentFile)` returns `sec.handle?.name ?? sec.fallbackName ?? 'output.SEC'`, pinning the priority rule in one place.
+
+**Sidecar pairing** — The .comments.json sidecar's name is always derived from `getDisplayName(currentFile)` (`<secName>.replace(/\.sec$/i, '.comments.json')`), never stored. `sidecar.handle` is the only sidecar-specific mutable field; if it's non-null it was acquired against the current sec name and survives until cross-file load wipes both handles in the record swap.
+
+---
+
 ## Storage
 
 **Backend** — One of `local`, `azure`, `s3`. Selected via `SIM_STORAGE_BACKEND`. Each backend extends `RoomStorageBase` (`server/room-storage.cjs`) and implements seven adapter primitives (`_putBytes / _getBytes / _deleteKey / _listKeys / _statKey / _copyKey / _keyForArtifact`) plus three name-parsing hooks. The base class owns the public methodset (`writeRoom / readRoom / deleteRoom / listRooms / statRoom / quarantineRoom / archiveRoom / restoreRoom / listArchivedRooms / deleteArchivedRoom`).
