@@ -74,6 +74,7 @@ export default function RevisionControls({
       {/* Track Changes toggle */}
       <button
         onClick={() => onTrackChangesChange(!trackChanges)}
+        aria-pressed={trackChanges}
         style={btnStyle(trackChanges, "#2563eb")}
       >
         <span style={{
