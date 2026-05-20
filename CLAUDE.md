@@ -70,6 +70,7 @@ When fixing bugs, verify the fix doesn't introduce regressions by running the fu
 - Always run tests before committing
 - Feature branches named `type/short-description` (e.g., `feat/slash-commands`)
 - `test-results/` and `tools/harper-candidates.*` are intentionally untracked — do not commit generated audit output or dictionary candidates
+- Ask before pushing — confirm with the human before any `git push` (overrides the default "do not push unless asked"; the human prefers an explicit prompt over silent abstention)
 
 ## Testing Rules
 
