@@ -6,6 +6,8 @@ A modern web-based editor for UFGS (Unified Facilities Guide Specifications) .SE
 
 **Terminology:** "SecWriter" = this web app (previously called "SpecsIntact Modern" / "SIM"; renamed to comply with the legacy SpecsIntact EULA). "SpecsIntact" / "SIEditor" = the legacy Windows desktop application — that name refers only to the legacy product, never to this app.
 
+**Independence:** SecWriter is an independent project. It is not affiliated with, endorsed by, or sponsored by the U.S. Department of Defense, USACE, NAVFAC, NASA, or any other agency or vendor associated with UFGS or SpecsIntact. UFGS and SpecsIntact are referenced by name solely to identify the file format and editing workflow this project addresses.
+
 ## Project Context
 
 **What this is:** A rich text editor that reads and writes SpecsIntact .SEC files (XML-based SGML, windows-1252 encoding, used by the U.S. military for construction specifications). The editor feels like Google Docs or Notion while preserving the underlying SGML structure.
