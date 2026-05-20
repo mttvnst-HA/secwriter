@@ -28,16 +28,18 @@ src/lib/
   compliance-rules.js      # Static rule engine — loads ufs-1-300-02-rules.json, generates regex patterns
   compliance-ai.js         # AI rewrite module (Anthropic API calls, with HTML preservation)
   compliance-checker.js    # Orchestrator: runs static rules first, AI on remainder, groups by type
-  compliance-diff.js       # Word-level diff between original and proposed text
+  compliance.js            # Pure reducer — { scope, status, result, decisions, activeGroup, ai } + verbs/selectors
+  compliance-ranges.js     # Pure walker — text-node + offset tuples for each violation match (drives CSS.highlights)
 
 src/data/
   ufs-1-300-02-rules.json # Authoritative rule data extracted from UFS 1-300-02 PDF (65KB)
 
 src/components/
   CompliancePanel.jsx      # Right-side panel: progressive summary, grouped findings, batch controls
-  ComplianceDiff.jsx       # Inline diff rendering within blocks (green additions, red strikeouts)
   ComplianceSettings.jsx   # API key configuration modal (masked input, test connection)
 ```
+
+The reducer + ranges walker were extracted in 2026 (see [ADR-0005](docs/adr/0005-storage-adapter-atomicity-per-backend.md) for the pure-reducer playbook this follows — same shape as `track-changes.js`, `comments.js`, `linting.js`). State lives in App; the panel reads via selectors and dispatches verbs.
 
 ## UX Design Principles
 
@@ -412,65 +414,39 @@ function getBlocksInScope(blocks, scopeType, anchorBlockId) {
 - `Ctrl+Shift+C` — Run compliance check on current block (quick single-block check)
 - No document-wide shortcut (too easy to trigger accidentally with API costs)
 
-## Diff Rendering
+## Applying Fixes
 
-### Algorithm
+### How fixes reach the block
 
-Use the existing `diffWords()` from `text-diff.js` to compute word-level diffs between original and proposed text. This reuses proven infrastructure.
+When the engineer clicks **Accept** (single item, group, or auto-fix all formatting), the panel computes the new HTML via the pure helpers in `compliance.js`:
 
-### Inline Diff Display
+- `computeItemFix(violation, blocks)` — single violation
+- `computeGroupFixes(group, blocks)` — every instance of one rule
+- `computeFormattingFixes(result, blocks)` — every FMT-* rule across the document
 
-When a block has a proposed compliance change, the block content is replaced with a diff view:
+Each returns `[{ blockId, html }, ...]`. The panel then dispatches `Blocks.updateBlockHtml` (or the corresponding doc-wide verb) through the blocks reducer, which writes the new HTML through `setBlockHtml(yStore, blockId, html, origin)`. There is no diff-preview modal — the edit lands directly in the block and the engineer sees the result inline in the editor.
 
-```jsx
-<div className="compliance-diff">
-  <span className="cdiff-del">The Contractor shall provide</span>
-  <span className="cdiff-add">Provide</span>
-  <span> a minimum of 24 inches of cover.</span>
-</div>
-```
+Decisions (accept/reject) are stored on the reducer state, not on block HTML, so reopening the panel after a check shows which groups have been actioned.
 
-CSS (respects dark mode via custom properties):
-```css
-.cdiff-del {
-  background: var(--color-compliance-del-bg, #fee2e2);
-  color: var(--color-compliance-del-text, #991b1b);
-  text-decoration: line-through;
-}
-.cdiff-add {
-  background: var(--color-compliance-add-bg, #dcfce7);
-  color: var(--color-compliance-add-text, #166534);
-  text-decoration: underline;
-}
-```
+### Highlighting the active group
 
-### Accept/Reject Controls
+While a group card is selected in the panel, the editor highlights every instance of that rule's violations using the **CSS Custom Highlight API** — the same primitive that powers inline linting:
 
-Each block with proposed changes shows:
-- **✓** (green) — Accept this change. The block content updates to the proposed text.
-- **✗** (red) — Reject this change. The diff view is dismissed, original content preserved.
-- **Skip** — Move to the next finding without accepting or rejecting
+1. App's `useEffect([complianceOpen, complianceState.activeGroup, complianceState.result, blocks])` reads the active group's violations.
+2. `compliance-ranges.js` walks the block text nodes and returns `(textNode, startOffset, endOffset)` tuples for each match. The walker is word-boundary aware and skips text inside `<del class="mark-del">`.
+3. App builds `Range` objects from the tuples and registers them via `CSS.highlights.set('compliance-active', new Highlight(...ranges))`.
 
-Navigation: Up/Down arrows move between findings in the panel.
+This replaced the earlier `<span class="compliance-highlight">` injection model (sub-PR 1f, #47) so highlights survive PM `EditorView` re-renders without ad-hoc DOM coordination. Selecting a different group rebuilds the highlight set; closing the panel clears it.
 
-### "Return to Position" After Scrolling
+### Track Changes integration is automatic
 
-When clicking a finding scrolls the editor to a different location, a floating **"Return ↩"** button appears (pinned to bottom-right of the editor). Clicking it scrolls back to the engineer's previous position. The button auto-dismisses after 10 seconds or when the engineer scrolls manually.
+Track Changes is now applied **per-keystroke via PM's `dispatchTransaction` intercept** (sub-PR 1h). When a compliance accept lands new HTML in a block via `setBlockHtml`, PM's `ySyncPlugin` writes the Yjs op and the next PM render shows the result. If TC is on, the `rewriteForTrackChanges` pass in `dispatchTransaction` wraps the diff with `revisionAdd` / `revisionDel` marks automatically — the compliance code itself never has to know whether TC is on or off.
 
-### Track Changes Integration
+The pre-1h snapshot-baseline model that compliance had to coordinate with is retired. See the "Track Changes Architecture" section of `CLAUDE.md` for the current semantics.
 
-If Track Changes is enabled when a compliance fix is accepted:
-- The change is applied as a tracked revision (the accepted text appears as `<ins>`, the removed text as `<del>`)
-- This gives engineers a full audit trail of what the compliance checker changed
-- If TC is off, changes are applied directly (no revision marks)
+### Single undo frame for batch operations
 
-### Undo Checkpoint for Batch Operations
-
-Before applying any batch operation (Accept All in a group, Auto-fix FMT, AI Fix All):
-- Push a **single undo checkpoint** with a label: e.g., "Compliance: accepted 30 fixes"
-- `Ctrl+Z` after a batch reverts ALL changes from that batch in one action
-- The engineer never has to click Undo 30 times to revert a batch accept
-- Individual accept/reject operations use normal per-action undo (one Ctrl+Z per accept)
+The three multi-write gestures — `handleAcceptAll` equivalents for groups, formatting auto-fix, AI-rewrite-all — wrap their N `setBlockHtml` writes in `framing.withUndoFrame(() => { … })`. The Yjs UndoManager then captures all N writes as one frame regardless of `captureTimeout`, so one Ctrl+Z reverts the entire batch. Individual accept operations rely on the normal word-grain undo behavior. See the "Blocks Reducer Architecture" section of `CLAUDE.md` for `withUndoFrame` semantics.
 
 ## Compliance Panel (Right Side)
 
@@ -582,8 +558,8 @@ function clearApiKey() {
 1. **Static rule engine** (`compliance-rules.js`) — loads `ufs-1-300-02-rules.json`, generates ~81 rule objects with patterns and fix functions
 2. **Compliance checker orchestrator** (`compliance-checker.js`) — runs rules against block scope, collects violations, **groups by rule type**, computes severity stats
 3. **CompliancePanel** — right-side panel with **progressive summary view**, severity filter (default: High), **grouped findings with batch accept/reject**, context preview, "Why?" toggle, "Return ↩" scroll button
-4. **ComplianceDiff** — inline diff rendering in blocks using existing `diffWords()`
-5. **Accept/reject flow** — apply fixes to block HTML, with TC integration. **Batch operations push single undo checkpoint.** Individual operations use normal undo.
+4. **CSS Custom Highlight integration** — `compliance-ranges.js` walks block text nodes for the active group; App registers `CSS.highlights.set('compliance-active', ...)`
+5. **Accept/reject flow** — apply fixes directly to block HTML via `setBlockHtml` + the blocks reducer. **Batch operations wrap N writes in a single `withUndoFrame` so one Ctrl+Z reverts the batch.** TC integration is automatic through PM's per-keystroke `dispatchTransaction` intercept.
 6. **First-run onboarding** — tooltip on first panel open, localStorage flag
 7. **Unit tests** — rule engine tests (pattern matching, fix functions, grouping), checker tests, diff tests, undo checkpoint tests
 8. **E2E tests** — run check on sample data, verify grouped findings, batch accept, individual accept/reject, undo batch, first-run tooltip
