@@ -1409,14 +1409,17 @@ test.describe('Track changes: accept all / reject all', () => {
   test('revision stats show addition count', async ({ page }) => {
     await page.locator('button:has-text("Track Changes")').click();
 
-    const txt = page.locator(blockSel('n24'));
-    await txt.click();
-    await page.keyboard.press('Enter');
-    const focused = page.locator('[data-block-id]:focus');
-    await expect(focused).toBeVisible({ timeout: 3000 });
-    await page.keyboard.type('New paragraph');
+    // Just create the empty block — the new block carries block-level
+    // revision='add', so countRevisions returns adds=1 deterministically.
+    // Typing into the block under TC adds a per-keystroke inline ins span
+    // (sub-PR 1h, src/lib/pm-tc-mark.js), so once the 400ms onUpdate
+    // debounce flushes adds becomes 2 — racing the toBeVisible polling
+    // window with whether "1 addition" appears before the second add lands.
+    // The deterministic count is 1 with an empty new block; the inline
+    // ins counting is pinned by revisions.test.js (countRevisions) at the
+    // unit level instead.
+    await createFreshBlock(page);
 
-    // Stats should show "1 addition"
     await expect(page.locator('text=1 addition')).toBeVisible({ timeout: 3000 });
   });
 
