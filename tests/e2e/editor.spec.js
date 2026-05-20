@@ -1207,29 +1207,23 @@ test.describe('Track changes: block deletion', () => {
   });
 
   test('Backspace on empty block marks as deleted instead of removing when Track Changes is on', async ({ page }) => {
-    // Create a new block first (without Track Changes so it has no revision)
-    const txt = page.locator(blockSel('n24'));
-    await txt.click();
-    await page.keyboard.press('Enter');
-
-    const focused = page.locator('[data-block-id]:focus');
-    await expect(focused).toBeVisible({ timeout: 3000 });
-    await page.keyboard.type('temporary');
-
-    // Save the block id
-    const newBlockId = await focused.getAttribute('data-block-id');
-
-    // Clear the text to make it empty
-    await page.keyboard.press('Home');
-    await page.keyboard.down('Shift');
-    await page.keyboard.press('End');
-    await page.keyboard.up('Shift');
-    await page.keyboard.press('Delete');
+    // Create a new EMPTY block (no Track Changes yet, so block.revision is undefined).
+    // PM-mount-aware helper (#114) — see createFreshBlock comment for why the naive
+    // Enter → :focus → toBeVisible pattern raced the OLD block's focus.
+    const newBlock = await createFreshBlock(page);
+    const newBlockId = await newBlock.getAttribute('data-block-id');
 
     const countBefore = await getBlockCount(page);
 
-    // Now enable Track Changes
-    await page.locator('button:has-text("Track Changes")').click();
+    // Enable Track Changes and wait for the React commit. handleDelete is a
+    // useCallback over tcState; without this wait the immediate re-click +
+    // Backspace below can fire while the closure still captures enabled=false,
+    // tc.revisionFlagForDelete returns null, and the empty block is removed
+    // outright instead of marked. aria-pressed flips synchronously with the
+    // trackChanges prop in RevisionControls.jsx.
+    const tcBtn = page.locator('button:has-text("Track Changes")');
+    await tcBtn.click();
+    await expect(tcBtn).toHaveAttribute('aria-pressed', 'true');
 
     // Focus back on the block and delete
     await page.locator(blockSel(newBlockId)).click();
