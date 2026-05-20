@@ -24,20 +24,6 @@ Vocabulary: architecture terms (*module, interface, depth, seam, leverage, local
 
 ---
 
-## 10. `useCollabSession` coordination-refs cluster — implicit state machine
-
-**Files:** `src/hooks/useCollabSession.js` (~605 LOC); refs scattered ~lines 159–223
-
-**Friction:** Seven refs (`sessionReadyRef`, `metaReadyRef`, `lastRemoteBlocksRef`, `lastPublishedTcSeqRef`, `publishDisabledRef`, `schemaIncompatibleRef`, `migrationPartialRef`) collectively encode the session heartbeat: "blocks synced? meta synced? TC echo-guarded? doc over cap? room migration-partial? schema compatible?". Each mutates in a different callback. Reading any one is meaningless without all seven; invariants like "blocks sync must precede any publish" live as caller discipline, not module guarantee.
-
-**Why shallow:** the refs ARE the state, and the four publish effects + the migration-partial pin together form a state machine that's never named. Directly mirrors the pre-#34 TC `tcDirtyRef` situation, which became `publishSeq` + `track-changes.js`.
-
-**Deletion test:** replace with a pure-reducer-style `sessionCoordination` bundle. The hook becomes transport-only; coordination invariants become property-tested verb transitions.
-
-**Sketch:** a `sessionCoordination.js` reducer with state `{blocks, meta, tc, doc, schema, migration}`, verbs (`onBlocksSync`, `markTcSeqApplied`, `capDocSize`, …), selectors (`canPublishBlocks`, `canPublishTc`, …).
-
----
-
 ## 11. `block-registry` flush helpers — mechanical iterators, scattered call-site reasoning
 
 **Files:** `src/lib/block-registry.js` lines ~157–199 (`flushPendingUpdateById`, `flushAllPendingUpdates`, `cancelPendingUpdateById`); call sites in App.jsx (`handleAcceptAll` / `handleRejectAll`), FloatingToolbar via `dispatchToolbarVerb`, inline-TC accept
@@ -87,6 +73,7 @@ Vocabulary: architecture terms (*module, interface, depth, seam, leverage, local
 | 6 | Storage backends — three near-identical atomicity loops | 2026-05-02 | `server/room-storage.cjs`, ADR-0005 |
 | 7 | FloatingToolbar PM-verb dispatch protocol | #120 | `dispatchToolbarVerb` in `src/lib/pm-toolbar.js` |
 | 8 | Blocks reducer + dispatcher | #123 | `src/lib/blocks.js` |
+| 10 | `useCollabSession` coordination refs as pure reducer | 2026-05-19 | `src/lib/session-coordination.js` |
 
 Pattern that emerged across #1–#6: a pure reducer `{ state, verbs, selectors, property-tested invariants }`. Used by `track-changes.js`, `comments.js`, `linting.js`, `compliance.js`, and `room-storage.cjs`. Established playbook for new domain modules.
 

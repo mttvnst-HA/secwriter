@@ -11,6 +11,16 @@
  * document either round-tripped (corrupting persistence) or stopped
  * publishing (silently losing edits).
  *
+ * Architecture-review entry #10 (2026-05-19): the five lifecycle / UX
+ * latches that grew on top of #5 — sessionReady, metaReady,
+ * publishDisabled (now publishOvercap), schemaIncompatible,
+ * migrationPartial — landed as a pure reducer in
+ * `src/lib/session-coordination.js`. The hook applies it to a
+ * `coordRef.current` (not React useState) so coord transitions do NOT
+ * invalidate the publish-effect dep lists. Echo caches
+ * (lastRemoteBlocksRef, lastPublishedTcSeqRef) and the session handle
+ * stay as plain refs — they're not state-machine nodes.
+ *
  * Responsibilities (what the hook owns):
  *   - Session creation + teardown, gated on `inRoom && identity`.
  *   - Echo guard refs: a fresh remote payload is stashed before App's
@@ -44,6 +54,7 @@ import {
   createCollabSession,
   DocSizeLimitError,
 } from '../lib/collab.js';
+import * as sc from '../lib/session-coordination.js';
 
 /**
  * @typedef {Object} CollabSessionParams
@@ -156,7 +167,7 @@ export function useCollabSession({
 
   pushToast,
 }) {
-  // ── Coordination refs (all hook-owned) ────────────────────────────────
+  // ── Coordination state ────────────────────────────────────────────────
   // The session itself.
   const sessionRef = useRef(null);
 
@@ -174,53 +185,16 @@ export function useCollabSession({
   // Y.UndoManager track remote edits, breaking Ctrl+Z).
   const lastRemoteBlocksRef = useRef(null);
 
-  // Suspends the blocks publish effect until the initial server sync
-  // completes. Without this, the first render would push INITIAL_BLOCKS
-  // into Y.Doc before the server's persisted state arrives, duplicating
-  // the document on rejoin.
-  const sessionReadyRef = useRef(false);
-
-  // I-3: suspends the meta publish effect until the first remote meta
-  // observation, so a stale local sectionMeta cannot clobber the room's
-  // server-side meta on first join.
-  const metaReadyRef = useRef(false);
-
   // M-shared-tc echo gate. See markTcSeqApplied below.
   const lastPublishedTcSeqRef = useRef(0);
 
-  // A4 latch: once the doc exceeds MAX_PUBLISH_BYTES, we hold until the
-  // user shrinks it back under the cap. Without this latch the publish
-  // effect re-runs `estimatePublishBytes` and re-pushes a sticky toast on
-  // every keystroke.
-  const publishDisabledRef = useRef(false);
-
-  // Sub-PR 1b.1 (#47 v2 plan, Q25). Trips when the room's
-  // yMeta.schemaVersion is higher than this client's max supported version.
-  // Forces collab into read-only via the 'incompatible' status; gates all
-  // publish paths so a stale write cannot land in a v2 doc; nulls the
-  // yStore exposure so PmEditableBlock's substrate subscription resolves
-  // to null and the EditorView stays unmounted. The user reloads to pick
-  // up a newer client.
-  //
-  // Sub-PR 1d (#47, ADR-0006) bumps max-supported to 2: this client speaks
-  // the Y.XmlFragment substrate. A future v3 client/server pair will bump
-  // this further; the gate's purpose is unchanged.
-  const schemaIncompatibleRef = useRef(false);
-  const MAX_SUPPORTED_SCHEMA_VERSION = 2;
-
-  // Sub-PR 1d (#47, ADR-0006). Trips when the broker reports
-  // yMeta.migrationPartial === true on the first sync. Unlike
-  // schemaIncompatibleRef the room remains editable; the ref only exists
-  // to keep the banner sticky. Without this, the trailing
-  // handleSync('connected') in collab.js (fired immediately after
-  // onRemoteMeta) clobbers the 'migration-partial' status with 'connected'
-  // and the banner disappears, hiding the operator-actionable signal that
-  // some blocks failed to migrate. Reconnect cycles also fire 'connected'
-  // through handleStatus — we re-pin to 'migration-partial' on every
-  // 'connected' transition so the banner survives the full session.
-  // 'connecting' / 'disconnected' / 'syncing' / 'incompatible' are NOT
-  // suppressed — those carry more urgent state for the user.
-  const migrationPartialRef = useRef(false);
+  // Lifecycle / UX state — see src/lib/session-coordination.js. Pure
+  // reducer applied to a ref so coord transitions do not invalidate the
+  // publish-effect dep lists (which would otherwise cause re-publish
+  // storms when publishOvercap yo-yos around the cap, or when
+  // schemaIncompatible trips between meta edits — see architecture-review
+  // entry #10).
+  const coordRef = useRef(sc.createInitial());
 
   // ── Stable callback refs ──────────────────────────────────────────────
   // The session lifecycle effect depends only on roomId+identity (so the
@@ -267,7 +241,7 @@ export function useCollabSession({
         // applying a remote payload, skip the echo."
         lastRemoteBlocksRef.current = nextBlocks;
         if (meta?.initial) {
-          sessionReadyRef.current = true;
+          coordRef.current = sc.onBlocksSync(coordRef.current);
           // Expose the session yStore only AFTER first sync so
           // PmEditableBlock's substrate subscription (and every App
           // handler that reads activeYStoreRef.current) cannot write
@@ -286,13 +260,19 @@ export function useCollabSession({
         // schemaVersion exceeds what this client supports, refuse the room.
         // Pull the yStore back out of the binder so local writes can't even
         // touch the substrate, and route the ConnectionBanner to its
-        // 'incompatible' state via onStatusChange. metaReadyRef stays false
-        // and onMetaReceived never fires, so App's downstream state machine
-        // sees nothing.
+        // 'incompatible' state via onStatusChange. metaReady IS flipped
+        // (sc.onMetaSync always flips it) but every canPublish* selector
+        // gates on !schemaIncompatible, so the App callback chain remains
+        // muted: we short-circuit BEFORE invoking onMetaReceived, so App's
+        // downstream state machine sees nothing.
+        let coord = coordRef.current;
         if (meta?.initial) {
-          const v = remote?.schemaVersion;
-          if (typeof v === 'number' && v > MAX_SUPPORTED_SCHEMA_VERSION) {
-            schemaIncompatibleRef.current = true;
+          coord = sc.onMetaSync(coord, {
+            schemaVersion: remote?.schemaVersion,
+            migrationPartial: remote?.migrationPartial,
+          });
+          coordRef.current = coord;
+          if (coord.schemaIncompatible) {
             setYStoreState(null);
             onStatusChangeRef.current?.('incompatible', { reconnectIn: 0 });
             return;
@@ -302,15 +282,16 @@ export function useCollabSession({
           // substrate. Surface the banner so the user knows the room had
           // issues, but do NOT short-circuit — onMetaReceived must still
           // fire and publish gates must remain open.
-          if (remote?.migrationPartial === true) {
-            migrationPartialRef.current = true;
+          if (coord.migrationPartial) {
             onStatusChangeRef.current?.('migration-partial', { reconnectIn: 0 });
           }
+        } else {
+          // I-3: flip metaReady BEFORE the App callback so a
+          // setSectionMeta fired inside onMetaReceived can be safely
+          // published on the next render. (For meta.initial=true the
+          // sc.onMetaSync call above already did this.)
+          coordRef.current = sc.onMetaSync(coord);
         }
-        // I-3: flip ready BEFORE the App callback so a setSectionMeta
-        // fired inside onMetaReceived can be safely published on the
-        // next render.
-        metaReadyRef.current = true;
         onMetaReceivedRef.current?.(remote, meta);
       },
       onRemoteTc: (payload, meta) => {
@@ -326,33 +307,36 @@ export function useCollabSession({
         onPresenceChangeRef.current?.(states);
       },
       onStatusChange: (status, meta) => {
-        // 1b.1 sticky-incompatible. Once the schema-version gate has
-        // tripped, the room is permanently unusable for this session.
-        // Suppress any subsequent status transitions so they cannot clobber
-        // the 'incompatible' banner. This covers two clobber paths:
-        //   1. collab.js handleSync fires onStatusChange('connected') a few
-        //      lines after onRemoteMeta returns — without this guard the
-        //      banner would flash 'incompatible' and immediately revert,
-        //      leaving an editable-looking UI where typing silently never
-        //      persists (the four publish paths are still gated, so writes
-        //      go nowhere).
-        //   2. y-websocket reconnect events fire 'connecting'/'disconnected'
-        //      via handleStatus — same clobber pattern over a longer window.
-        if (schemaIncompatibleRef.current && status !== 'incompatible') {
+        // Sticky-status filter — see sc.effectiveStatus:
+        //   - schemaIncompatible is terminal: every incoming status
+        //     collapses to 'incompatible' so the banner cannot be
+        //     clobbered by a later 'connected' / 'connecting' /
+        //     'disconnected' transition. Two clobber paths this guards:
+        //       1. collab.js handleSync fires onStatusChange('connected')
+        //          a few lines after onRemoteMeta returns — without
+        //          this guard the banner would flash 'incompatible' and
+        //          immediately revert, leaving an editable-looking UI
+        //          where typing silently never persists (publish gates
+        //          are still closed, so writes go nowhere).
+        //       2. y-websocket reconnect events fire 'connecting' /
+        //          'disconnected' via handleStatus — same clobber
+        //          pattern over a longer window.
+        //   - migrationPartial replaces 'connected' with
+        //     'migration-partial' so the operator-actionable banner
+        //     survives reconnects. Other statuses pass through (a
+        //     real disconnect should still read as 'disconnected').
+        const effective = sc.effectiveStatus(coordRef.current, status);
+        // The 'incompatible' collapse short-circuits any other status
+        // — but suppressing duplicate 'incompatible' emissions matches
+        // the pre-reducer behavior (line 341 only let the original
+        // 'incompatible' through, never a derived one).
+        if (
+          coordRef.current.schemaIncompatible &&
+          status !== 'incompatible'
+        ) {
           return;
         }
-        // 1d sticky-migration-partial. handleSync emits 'connected'
-        // shortly after onRemoteMeta sets the partial flag — and every
-        // reconnect re-emits 'connected' too. Replacing 'connected' with
-        // 'migration-partial' (rather than swallowing it entirely)
-        // preserves the rest of the status state machine: a subsequent
-        // 'disconnected' or 'connecting' still reaches the consumer, and
-        // when the room reconnects the banner re-pins automatically.
-        if (migrationPartialRef.current && status === 'connected') {
-          onStatusChangeRef.current?.('migration-partial', meta);
-          return;
-        }
-        onStatusChangeRef.current?.(status, meta);
+        onStatusChangeRef.current?.(effective, meta);
       },
     });
 
@@ -368,13 +352,9 @@ export function useCollabSession({
       session.destroy();
       sessionRef.current = null;
       setYStoreState(null);
-      sessionReadyRef.current = false;
-      metaReadyRef.current = false;
       lastRemoteBlocksRef.current = null;
       lastPublishedTcSeqRef.current = 0;
-      publishDisabledRef.current = false;
-      schemaIncompatibleRef.current = false;
-      migrationPartialRef.current = false;
+      coordRef.current = sc.createInitial();
       if (EXPOSE_DEBUG && typeof window !== 'undefined') delete window.__collab;
     };
     // Intentionally depend only on roomId + identity. initialBlocks /
@@ -388,16 +368,19 @@ export function useCollabSession({
     if (!inRoom) return;
     const session = sessionRef.current;
     if (!session) return;
-    if (!sessionReadyRef.current) return;
-    if (schemaIncompatibleRef.current) return;
+    if (!sc.canPublishBlocks(coordRef.current)) return;
     // Reference-identity echo guard: if blocks IS the array onRemoteBlocks
     // just stashed, this update came from us applying a remote payload.
     if (blocks === lastRemoteBlocksRef.current) return;
     try {
       session.publishBlocks(blocks);
-      // Success — clear any previous over-cap latch.
-      if (publishDisabledRef.current) {
-        publishDisabledRef.current = false;
+      // Success — clear any previous over-cap latch and trigger the
+      // resumed toast on the prev→next overcap diff (per design lock,
+      // toast is a hook-side side effect, not a reducer concern).
+      const prev = coordRef.current;
+      const next = sc.onPublishSucceeded(prev);
+      if (prev.publishOvercap && !next.publishOvercap) {
+        coordRef.current = next;
         pushToastRef.current?.({
           kind: 'success',
           title: 'Sync resumed',
@@ -409,8 +392,10 @@ export function useCollabSession({
       if (err instanceof DocSizeLimitError) {
         // M7 — only push the error toast the first time we hit the limit
         // to avoid spamming the user on every keystroke while oversized.
-        if (!publishDisabledRef.current) {
-          publishDisabledRef.current = true;
+        const prev = coordRef.current;
+        const next = sc.onPublishOvercap(prev);
+        if (!prev.publishOvercap && next.publishOvercap) {
+          coordRef.current = next;
           pushToastRef.current?.({
             kind: 'error',
             title: 'Document too large to sync',
@@ -436,9 +421,7 @@ export function useCollabSession({
     if (!inRoom) return;
     const session = sessionRef.current;
     if (!session) return;
-    if (!sessionReadyRef.current) return;
-    if (!metaReadyRef.current) return;
-    if (schemaIncompatibleRef.current) return;
+    if (!sc.canPublishMeta(coordRef.current)) return;
     session.publishMeta({ ...sectionMeta, fileName });
   }, [sectionMeta, fileName, inRoom]);
 
@@ -450,8 +433,7 @@ export function useCollabSession({
     if (!inRoom) return;
     const session = sessionRef.current;
     if (!session) return;
-    if (!sessionReadyRef.current) return;
-    if (schemaIncompatibleRef.current) return;
+    if (!sc.canPublishTc(coordRef.current)) return;
     if (tcState.publishSeq === lastPublishedTcSeqRef.current) return;
     lastPublishedTcSeqRef.current = tcState.publishSeq;
     try {
@@ -463,14 +445,14 @@ export function useCollabSession({
 
   // ── Cursor broadcast ──────────────────────────────────────────────────
   // Listens for selectionchange and broadcasts the caret position so other
-  // peers see a live cursor. Gated on schemaIncompatibleRef so an
+  // peers see a live cursor. Gated on canBroadcastCursor so an
   // incompatible-room session does not leak the user's caret position into
   // awareness after the banner has told them the room is locked
   // (privacy / consistency with the four publish paths).
   useEffect(() => {
     if (!inRoom) return;
     const handler = () => {
-      if (schemaIncompatibleRef.current) return;
+      if (!sc.canBroadcastCursor(coordRef.current)) return;
       const session = sessionRef.current;
       if (!session) return;
       const active = document.activeElement;
@@ -502,7 +484,7 @@ export function useCollabSession({
   // ── Imperative API ────────────────────────────────────────────────────
   const dispatchComment = useCallback((envelope) => {
     if (!envelope || !inRoom) return;
-    if (schemaIncompatibleRef.current) return;
+    if (!sc.canDispatchComment(coordRef.current)) return;
     const session = sessionRef.current;
     if (!session) return;
     try { session.dispatchComment(envelope); }
