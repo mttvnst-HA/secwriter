@@ -515,7 +515,7 @@ export default function SpecEditor() {
           suggestedName: sidecarName,
           types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
         });
-        setCurrentFile(prev => ({ ...prev, sidecar: { handle } }));
+        setCurrentFile(prev => ({ ...prev, sidecar: { ...prev.sidecar, handle } }));
         await saveToFileHandle(handle,
           new TextEncoder().encode(JSON.stringify(commentsData, null, 2)));
         return;
