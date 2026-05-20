@@ -10,54 +10,19 @@ Vocabulary: architecture terms (*module, interface, depth, seam, leverage, local
 
 # Open backlog
 
-## 9. `PmEditableBlock`: view-mount tangled with per-keystroke verb rewriting
-
-**Files:** `src/components/PmEditableBlock.jsx` (~980 LOC)
-
-**Friction:** Three concerns glued in one component: (a) `EditorView` lifecycle (mount, ySyncPlugin bind, handle register, unmount), (b) `dispatchTransaction` interceptor (TC rewrite via `rewriteForTrackChanges`, `TC_RESOLVE_META` skip, `COMMENT_RECONCILE_META` skip, synthesized `'input'` for linter, debounce settle, `onUpdate` echo gating), (c) prop wiring (paste sanitizer, click → del-popup dispatch, auto-focus for `isNew`). The verb-rewrite logic (b) lives mid-component; invariants like "TC_RESOLVE_META skips rewriter only, not linter or onUpdate" are inferred from CLAUDE.md item 7, not enforced by a module.
-
-**Why shallow:** the interceptor reads as inline component code, but its real interface is "given a tr, decide which side effects fire" — a non-trivial state machine over PM-meta keys. Interface (a function reference) is dramatically smaller than implementation (~200 LOC of branching).
-
-**Deletion test:** extract (b) into `pmEditorInterceptors`. PmEditableBlock shrinks to ~300 LOC mount wrapper; the four "load-bearing meta sentinel" facts become unit-tested invariants instead of comment lore.
-
-**Sketch:** a `dispatchTransaction` factory `(callbacks, metaHandlers) → tr => void` that owns the verb rewrite layer; PmEditableBlock owns mount/unmount only.
-
----
-
-## 11. `block-registry` flush helpers — mechanical iterators, scattered call-site reasoning
-
-**Files:** `src/lib/block-registry.js` lines ~157–199 (`flushPendingUpdateById`, `flushAllPendingUpdates`, `cancelPendingUpdateById`); call sites in App.jsx (`handleAcceptAll` / `handleRejectAll`), FloatingToolbar via `dispatchToolbarVerb`, inline-TC accept
-
-**Friction:** Three near-identical iterators (~50 LOC of duplicated handle iteration + try/catch). The *why* — M4 regression guard ("doc-wide TC gestures must flush the 400ms PM debounce first or accept-all silently no-ops"), toolbar settle, inline-TC cancel — lives at call sites as comments + CLAUDE.md TC item 9. Helpers are mechanical; cohesion is invisible.
-
-**Why shallow:** three method names for what is really one "flush coordinator for DOM-bridge gestures"; load-bearing reason for each call lives outside the module.
-
-**Deletion test:** concentrates. A `flushCoordinator` module that names each call-site purpose as a verb (`flushForDocWideTcGesture`, `flushAfterToolbarDispatch`, `cancelForInlineTcAcceptSettlement`) pins the M4 regression as a structural feature instead of comment lore.
-
-**Sketch:** replace the three mechanical helpers with named-intent verbs; originals become private impl.
-
----
-
-## 12. PM plugin construction scattered across `PmEditableBlock` — no single seam
-
-**Files:** `src/lib/pm-plugins/*` (slash-menu, tag-labels, keymap, relpos-selection, active-comment, word-boundary-undo) + construction site in `PmEditableBlock.jsx`
-
-**Friction:** Six plugins constructed inline at `EditorView` setup. Inter-plugin dependencies (slash-menu state read by keymap, word-boundary-undo coordinating with the UndoManager pair) live as implicit ordering. Adding a new plugin requires editing `PmEditableBlock`. Looks pluggable, isn't.
-
-**Why shallow:** appearance of a plugin seam without the substance (no single place to register, configure, or test the set together).
-
-**Deletion test:** borderline. `createPmPluginSet(callbacks)` gives one testable seam (assert order + callback wiring) but does not unlock new tests for any individual plugin. Lower-priority than #9–#11.
-
-**Sketch:** plugin-set factory, callbacks-in / plugin-array-out, ordering and inter-plugin deps documented in one place.
+*Empty as of 2026-05-19.* The post-PM-migration backlog and the fresh post-#123 pass are both fully resolved (see Non-candidates and Landed log). Rerun `/improve-codebase-architecture` against the current tree to surface new candidates.
 
 ---
 
 # Non-candidates (verified, not opportunities today)
 
-- **App.jsx (~2050 LOC):** symptom of #9 + #10 + #11, not a target. Land those, App drops ~200 LOC.
+- **App.jsx (~2050 LOC):** symptom of #10 (landed) — already absorbed. Not a target.
 - **FloatingToolbar (~589 LOC):** deepened in #120 — bottom-heavy (UI state + mark-button iteration), not shallow.
 - **`revisions.js` / `revision-resolve` / `pm-tc-mark`:** parsing duplication checked — no overlap. revisions.js operates on HTML strings; pm-tc-mark operates on PM marks. Distinct substrates.
 - **server-side:** `GET /rooms` event-loop fix (#112) closed the recent shallow seam. Migration broker already extracts cleanly.
+- **PmEditableBlock `dispatchTransaction` extraction (was #9):** grilled 2026-05-19. The four meta-sentinel invariants are already pinned at integration level (`PmEditableBlock-tc-resolve.test.jsx:92-117`, `PmEditableBlock-comment-reconcile.test.jsx:36-99`, `PmEditableBlock-tc-marking.test.jsx:94-190`, `pm-editor-dispatch.test.js:42-101`) — not undertested folklore. Replay-the-last-3-changes test on the 431-531 region: 1 cleaner (#96 TC_RESOLVE_META), 2 wash (1h Q33, 1g) — pure dispatchTransaction edits are 1/3 of changes; the other 2/3 are cross-cutting commits where the dispatchTransaction slice is one of several PmEditableBlock edits. Extraction win is aesthetic only and realizes 1/3 of the time. Not worth the ref-passing risk.
+- **`block-registry` flush helpers (was #11):** grilled 2026-05-19. Backlog claimed "three near-identical iterators ~50 LOC + scattered call sites in App.jsx". Actual: 21 LOC across 3 different-shape helpers (single-id flush, single-id cancel, all-id flush), and post-#123 the App.jsx direct call sites are GONE — `flushAllPendingUpdates` now lives behind `dispatchBlocksVerb`'s `opts.preFlush='all'` (2 call sites in `App.jsx`) and `flushPendingUpdateById` / `cancelPendingUpdateById` live behind `dispatchToolbarVerb`'s settlement switch (`pm-toolbar.js:575-579`, 6 self + 1 caller-owned). The "named-intent verb" proposal (`flushForDocWideTcGesture` etc.) re-encodes purpose that already lives in the dispatchers' verb names. M4 regression guard documented centrally in `flushAllPendingUpdates`'s jsdoc (lines 184-189). preFlush is a property of WHEN convergence happens, not WHAT the verb does — pure-state callers (test harnesses using dispatchBlocksVerb directly) have no PM debounces to flush, so coupling preFlush to verb identity would mis-fit them.
+- **PM plugin construction (was #12):** grilled 2026-05-19. Backlog claimed "inter-plugin dependencies (slash-menu state read by keymap, word-boundary-undo coordinating with UndoManager) live as implicit ordering." Actual: zero plugin-to-plugin state reads. `keymap.js` re-exports `getSlashMenuState` at line 149 but never imports it as a state read — real coordination is the `cb.isSlashOpen()` callback supplied by PmEditableBlock. word-boundary-undo coordinates with the UndoManager via a `getForceFrame` callback ref, not plugin state. Construction site is 28 LOC (PmEditableBlock.jsx:316-343); a `createPmPluginSet(callbacks)` factory removes those 28 LOC but cannot absorb the 41 LOC of upstream callback assembly (slashCallbacks bag + blockKeymap callback bag) because those are React-ref-shaped. Backlog's own self-assessment ("borderline, does not unlock new tests for any individual plugin") was correct. Ordering invariant (word-boundary BEFORE keymap) already pinned by 5-line inline comment + `word-boundary-undo.test.js`.
 
 ---
 
@@ -74,9 +39,12 @@ Vocabulary: architecture terms (*module, interface, depth, seam, leverage, local
 | 7 | FloatingToolbar PM-verb dispatch protocol | #120 | `dispatchToolbarVerb` in `src/lib/pm-toolbar.js` |
 | 8 | Blocks reducer + dispatcher | #123 | `src/lib/blocks.js` |
 | 10 | `useCollabSession` coordination refs as pure reducer | 2026-05-19 | `src/lib/session-coordination.js` |
+| 13 | Current-file record (sec.handle + sidecar.handle + fallbackName) — atomic swap on cross-file load | 2026-05-19 | `src/lib/current-file.js` |
 
 Pattern that emerged across #1–#6: a pure reducer `{ state, verbs, selectors, property-tested invariants }`. Used by `track-changes.js`, `comments.js`, `linting.js`, `compliance.js`, and `room-storage.cjs`. Established playbook for new domain modules.
 
 The PM substrate migration (issue #47, sub-PRs 1c..1i-b.2, complete 2026-05-19) is a separate architectural arc captured in [ADR-0006](adr/0006-pm-substrate-migration.md), the PM substrate section of [`CONTEXT.md`](../CONTEXT.md), and `CLAUDE.md`. Net effect on the metrics this backlog measured: App.jsx ~2050 (down from 2852); legacy contentEditable path (`EditableBlock.jsx`, `useBlockBinder.js`, `useUndoableBlocks.js`, `VITE_PM_EDITOR`, `chromium-legacy` Playwright project) retired.
 
-Three "future review" hints surfaced at the end of the substrate work — verified by the 2026-05-19 pass: (a) PM plugin set vs App keymap = fading, folded into #12; (b) block-registry flush helpers = real, #11; (c) useCollabSession refs = real, #10.
+Three "future review" hints surfaced at the end of the substrate work — re-grilled 2026-05-19: (a) useCollabSession refs was the only one that landed (#10 / `session-coordination.js`). (b) `block-registry` flush helpers (was #11) and (c) PM plugin set (was #12) were both rejected post-#123 — the dispatchers (`dispatchBlocksVerb`, `dispatchToolbarVerb`) already concentrate the cohesion the proposals were chasing. PmEditableBlock `dispatchTransaction` (was #9) also rejected — meta-sentinel invariants pinned at integration level, not folklore. See Non-candidates for details.
+
+**Post-#123 audit complete (2026-05-19).** All four backlog candidates surfaced by the post-substrate-migration review have been resolved. Run `/improve-codebase-architecture` to surface new candidates against the current tree.
