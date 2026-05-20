@@ -46,3 +46,5 @@ Each ADR is one Markdown file: `NNNN-short-slug.md`. Use [`0000-template.md`](00
 | [0010](0010-comments-reducer-dual-reconcile.md) | Comments architecture — opaque reducer + dual reconcile (substrate + html-walk) | Accepted |
 | [0011](0011-compliance-rule-engine.md) | Compliance checker — data-driven rule engine with two-tier (regex + AI) evaluation | Accepted |
 | [0012](0012-inline-linting-css-highlights.md) | Inline linting via CSS Custom Highlight API + three engines | Accepted |
+| [0013](0013-storage-backends.md) | Pluggable storage backends — local, Azure Blob, S3-compatible | Accepted |
+| [0014](0014-collab-server-yjs-relay.md) | Collab server — Yjs + y-websocket relay, CJS, four non-obvious patterns | Accepted |
