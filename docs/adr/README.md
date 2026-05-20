@@ -41,3 +41,8 @@ Each ADR is one Markdown file: `NNNN-short-slug.md`. Use [`0000-template.md`](00
 | [0005](0005-storage-adapter-atomicity-per-backend.md) | Room storage: base class + adapters; multi-artifact atomicity stays per-backend | Accepted |
 | [0006](0006-pm-substrate-migration.md) | Server-side broker migrates v1 (Y.Text) rooms to v2 (Y.XmlFragment) on first v2 connect | Accepted |
 | [0007](0007-single-pm-editor.md) | Retire the legacy contentEditable path; SecWriter is a single PM-based editor | Accepted |
+| [0008](0008-blocks-reducer-architecture.md) | Single blocks-reducer dispatcher owns every mutation of the blocks array | Accepted |
+| [0009](0009-track-changes-per-keystroke.md) | Track Changes marks per-keystroke via PM dispatchTransaction intercept | Accepted |
+| [0010](0010-comments-reducer-dual-reconcile.md) | Comments architecture — opaque reducer + dual reconcile (substrate + html-walk) | Accepted |
+| [0011](0011-compliance-rule-engine.md) | Compliance checker — data-driven rule engine with two-tier (regex + AI) evaluation | Accepted |
+| [0012](0012-inline-linting-css-highlights.md) | Inline linting via CSS Custom Highlight API + three engines | Accepted |
