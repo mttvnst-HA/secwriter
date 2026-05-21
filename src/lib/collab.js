@@ -859,6 +859,8 @@ export function createCollabSession({
   onRemoteTc,
   onRemoteComments,
   onRemoteLint,
+  onRemoteLintIgnored,
+  onRemoteLintMutedNlp,
   onPresenceChange,
   onStatusChange,
 }) {
@@ -871,6 +873,10 @@ export function createCollabSession({
   // Issue #150: block-fingerprint-keyed lint cache. Empty Y.Map — populated
   // on first local lint publish. Not in UndoManager (cache, not user edits).
   const yLint = ydoc.getMap('lint');
+  // Issue #140: persistent rule ignores + NLP mutes. Empty Y.Maps — populated
+  // on first dismiss/mute action. Not in UndoManager (dismissals are not undoable).
+  const yLintIgnored = ydoc.getMap('lintIgnored');
+  const yLintMutedNlp = ydoc.getMap('lintMutedNlp');
 
   // y-websocket builds the URL as `${wsUrl}/${roomName}`.
   // Append token as query param by encoding it into the room name.
@@ -942,6 +948,8 @@ export function createCollabSession({
       onRemoteTc?.(readTc(yTc), { initial: true });
       onRemoteComments?.(readComments(yComments), { initial: true });
       onRemoteLint?.(readLint(yLint), { initial: true });
+      onRemoteLintIgnored?.(readLintIgnored(yLintIgnored), { initial: true });
+      onRemoteLintMutedNlp?.(readLintMutedNlp(yLintMutedNlp), { initial: true });
     }
     // Single source of truth for connection status (see onStatusChange
     // duplication fix — we only fire from the sync handler).
@@ -1022,6 +1030,8 @@ export function createCollabSession({
     const tcChanged = cpt.has(yTc) || ch.has(yTc);
     const commentsChanged = cpt.has(yComments) || ch.has(yComments);
     const lintChanged = cpt.has(yLint) || ch.has(yLint);
+    const lintIgnoredChanged = cpt.has(yLintIgnored) || ch.has(yLintIgnored);
+    const lintMutedNlpChanged = cpt.has(yLintMutedNlp) || ch.has(yLintMutedNlp);
 
     if (blocksChanged) {
       onRemoteBlocks?.(yBlocksToArray(yOrder, yStore), { initial: false });
@@ -1037,6 +1047,12 @@ export function createCollabSession({
     }
     if (lintChanged) {
       onRemoteLint?.(readLint(yLint), { initial: false });
+    }
+    if (lintIgnoredChanged) {
+      onRemoteLintIgnored?.(readLintIgnored(yLintIgnored), { initial: false });
+    }
+    if (lintMutedNlpChanged) {
+      onRemoteLintMutedNlp?.(readLintMutedNlp(yLintMutedNlp), { initial: false });
     }
   };
   ydoc.on('afterTransaction', handleAfterTx);
@@ -1106,6 +1122,8 @@ export function createCollabSession({
     yTc,
     yComments,
     yLint,
+    yLintIgnored,
+    yLintMutedNlp,
     awareness,
     provider,
     undoManager,
@@ -1149,6 +1167,18 @@ export function createCollabSession({
       // clobber each other. Origin 'local-lint' is filtered by handleAfterTx
       // (startsWith 'local-') so the writer doesn't re-emit to itself.
       publishLintToDoc(ydoc, yLint, payload);
+    },
+    publishLintIgnored(entries) {
+      // Issue #140: publish a Map<ignoreKey, IgnoreEntry> to yLintIgnored.
+      // Origin 'local-lint-ignored' is filtered by handleAfterTx so the
+      // writer doesn't re-emit to itself. Dismissals are not undoable.
+      publishLintIgnoredToDoc(ydoc, yLintIgnored, entries);
+    },
+    publishLintMutedNlp(entries) {
+      // Issue #140: publish a Map<ruleId, MuteEntry> to yLintMutedNlp.
+      // Origin 'local-lint-muted-nlp' is filtered by handleAfterTx so
+      // the writer doesn't re-emit to itself.
+      publishLintMutedNlpToDoc(ydoc, yLintMutedNlp, entries);
     },
     dispatchComment(envelope) {
       // Single entry point for the comments module's PublishEnvelope union.
