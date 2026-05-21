@@ -254,3 +254,65 @@ export async function projectDecoded(decoded, blocks) {
   }
   return out;
 }
+
+const PAYLOAD_VERSION_V2 = 2;
+
+/**
+ * v2 encoder — wraps `encodeSidecar` and appends `ignoredFindings` +
+ * `mutedNlpRules` if either is non-empty. Falls through to v1 shape if both
+ * are empty (preserves byte-stable round-trip for existing tests). Arrays are
+ * sorted by primary key for deterministic output.
+ *
+ * @param {Map} byBlock — same as encodeSidecar
+ * @param {Array} blocksOrder — same as encodeSidecar
+ * @param {{ ignoredFindings: Array, mutedNlpRules: Array }} ignored
+ */
+export async function encodeSidecarV2(byBlock, blocksOrder, ignored) {
+  const v1 = await encodeSidecar(byBlock, blocksOrder);
+  const ignoredFindings = Array.isArray(ignored?.ignoredFindings) ? ignored.ignoredFindings : [];
+  const mutedNlpRules = Array.isArray(ignored?.mutedNlpRules) ? ignored.mutedNlpRules : [];
+
+  if (ignoredFindings.length === 0 && mutedNlpRules.length === 0) {
+    return v1;
+  }
+
+  const sortedFindings = [...ignoredFindings]
+    .filter(f => f && typeof f.ignoreKey === 'string')
+    .map(f => normalizeIgnoredFindingEntry(f))
+    .sort((a, b) => a.ignoreKey.localeCompare(b.ignoreKey));
+
+  const sortedMutes = [...mutedNlpRules]
+    .filter(r => r && typeof r.ruleId === 'string')
+    .map(r => normalizeMutedRuleEntry(r))
+    .sort((a, b) => a.ruleId.localeCompare(b.ruleId));
+
+  return {
+    ...v1,
+    v: PAYLOAD_VERSION_V2,
+    ignoredFindings: sortedFindings,
+    mutedNlpRules: sortedMutes,
+  };
+}
+
+function normalizeIgnoredFindingEntry(f) {
+  const out = {
+    ignoreKey: f.ignoreKey,
+    ruleId: typeof f.ruleId === 'string' ? f.ruleId : '',
+    blockHash: typeof f.blockHash === 'string' ? f.blockHash : '',
+    match: typeof f.match === 'string' ? f.match : '',
+    ts: typeof f.ts === 'number' ? f.ts : 0,
+    authorId: typeof f.authorId === 'string' ? f.authorId : '',
+  };
+  if (f.tombstone === true) out.tombstone = true;
+  return out;
+}
+
+function normalizeMutedRuleEntry(r) {
+  const out = {
+    ruleId: r.ruleId,
+    ts: typeof r.ts === 'number' ? r.ts : 0,
+    authorId: typeof r.authorId === 'string' ? r.authorId : '',
+  };
+  if (r.tombstone === true) out.tombstone = true;
+  return out;
+}
