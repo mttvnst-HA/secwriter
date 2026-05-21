@@ -33,6 +33,7 @@ export default function CompliancePanel({
   onAcceptFix,
   onAcceptGroupFix,
   unitDisplay,
+  onItemDismiss,
 }) {
   const result = comp.getResult(complianceState);
   const scope = comp.getScope(complianceState);
@@ -656,6 +657,25 @@ export default function CompliancePanel({
                               >
                                 ✗ Reject
                               </button>
+                              {onItemDismiss && (
+                                <button
+                                  onClick={() => onItemDismiss(group.ruleId, v)}
+                                  onMouseDown={(e) => e.preventDefault()}
+                                  title="Persistent — survives reload"
+                                  style={{
+                                    padding: '2px 8px',
+                                    fontSize: 11,
+                                    fontWeight: 500,
+                                    backgroundColor: '#fff',
+                                    color: '#475569',
+                                    border: '1px solid #cbd5e1',
+                                    borderRadius: 3,
+                                    cursor: 'pointer',
+                                  }}
+                                >
+                                  Dismiss
+                                </button>
+                              )}
                             </div>
                           )}
                         </div>

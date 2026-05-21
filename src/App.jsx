@@ -2776,6 +2776,16 @@ export default function SpecEditor() {
             onAcceptFix={handleComplianceAcceptFix}
             onAcceptGroupFix={handleComplianceAcceptGroup}
             unitDisplay={unitDisplay}
+            onItemDismiss={(ruleId, item) => {
+              const blockHash = lintingState.byBlock.get(item.blockId)?.blockHash;
+              if (!blockHash) return;
+              linting.computeIgnoreKey(ruleId, blockHash, item.match).then(ignoreKey => {
+                setLintingState(s => linting.ignoreFinding(s, {
+                  ignoreKey, ruleId, blockHash, match: item.match,
+                  identity: effectiveIdentity(), ts: Date.now(),
+                }));
+              });
+            }}
           />
         )}
 
