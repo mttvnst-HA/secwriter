@@ -114,6 +114,10 @@ export function createInitial({ enabled = true } = {}) {
     enabled,
     suspended: false,
     byBlock: new Map(),
+    ignored: {
+      findings: new Map(),
+      mutedRules: new Map(),
+    },
   };
 }
 
@@ -292,4 +296,69 @@ export function getRangesByTier(state) {
     for (const f of b.nlp) if (f.range) nlp.push(f.range);
   }
   return { compliance, grammar, nlp };
+}
+
+// ── Persistent dismiss / mute (#140) ────────────────────────────────────────
+
+const IGNORE_KEY_HEX_CHARS = 24;
+
+/**
+ * SHA-256(JSON.stringify([ruleId, blockHash, match])) truncated to 24 hex
+ * chars. JSON.stringify isolates the components so 'a|b' in match cannot
+ * collide with 'block1|' in blockHash (pipe-edge regression — see test).
+ *
+ * Async because Web Crypto's `crypto.subtle.digest` is async. Pre-cached on
+ * each finding via `useBlockLinting.js` — projection layer reads sync.
+ */
+export async function computeIgnoreKey(ruleId, blockHash, match) {
+  const text = JSON.stringify([ruleId, blockHash, match]);
+  const subtle = globalThis.crypto?.subtle;
+  if (!subtle || typeof subtle.digest !== 'function') {
+    return fallbackIgnoreKey(text);
+  }
+  const bytes = new TextEncoder().encode(text);
+  const digest = await subtle.digest('SHA-256', bytes);
+  const view = new Uint8Array(digest);
+  let out = '';
+  for (let i = 0; i < view.length && out.length < IGNORE_KEY_HEX_CHARS; i++) {
+    out += view[i].toString(16).padStart(2, '0');
+  }
+  return out.slice(0, IGNORE_KEY_HEX_CHARS);
+}
+
+function fallbackIgnoreKey(text) {
+  let h1 = 0xcbf29ce4, h2 = 0x84222325;
+  for (let i = 0; i < text.length; i++) {
+    const c = text.charCodeAt(i);
+    h1 = (h1 ^ c) >>> 0;
+    h2 = (h2 ^ c) >>> 0;
+    h1 = Math.imul(h1, 0x01000193) >>> 0;
+    h2 = Math.imul(h2, 0x01000193) >>> 0;
+  }
+  const a = h1.toString(16).padStart(8, '0');
+  const b = h2.toString(16).padStart(8, '0');
+  return (a + b + a).slice(0, IGNORE_KEY_HEX_CHARS);
+}
+
+/** True when state has a non-tombstoned entry for this ignore-key. */
+export function isFindingIgnored(state, ignoreKey) {
+  if (!state.ignored || typeof ignoreKey !== 'string') return false;
+  const entry = state.ignored.findings.get(ignoreKey);
+  return !!entry && entry.tombstone !== true;
+}
+
+/** True when state has a non-tombstoned mute entry for this ruleId. */
+export function isNlpRuleMuted(state, ruleId) {
+  if (!state.ignored || typeof ruleId !== 'string') return false;
+  const entry = state.ignored.mutedRules.get(ruleId);
+  return !!entry && entry.tombstone !== true;
+}
+
+/** Count of active (non-tombstoned) dismissals + mutes. */
+export function getIgnoredCount(state) {
+  if (!state.ignored) return 0;
+  let n = 0;
+  for (const e of state.ignored.findings.values()) if (e && e.tombstone !== true) n++;
+  for (const e of state.ignored.mutedRules.values()) if (e && e.tombstone !== true) n++;
+  return n;
 }
