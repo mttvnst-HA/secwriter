@@ -15,11 +15,14 @@ function f(violation, range = { __range: true }) {
 
 describe('linting / pure helpers', () => {
   describe('isDeferredRule', () => {
-    it('defers the four context-dependent rule ids', () => {
-      expect(L.isDeferredRule({ ruleId: 'TERM-suitable' })).toBe(true);
-      expect(L.isDeferredRule({ ruleId: 'TERM-any' })).toBe(true);
-      expect(L.isDeferredRule({ ruleId: 'TERM-should' })).toBe(true);
-      expect(L.isDeferredRule({ ruleId: 'VAGUE-applicable' })).toBe(true);
+    // Per #156, the four formerly deferred rules (TERM-suitable, TERM-any,
+    // TERM-should, VAGUE-applicable) now run inline via POS-window + quote
+    // tracking in compliance-rules.js. DEFERRED_TO_PANEL is empty.
+    it('returns false for the four formerly deferred rule ids', () => {
+      expect(L.isDeferredRule({ ruleId: 'TERM-suitable' })).toBe(false);
+      expect(L.isDeferredRule({ ruleId: 'TERM-any' })).toBe(false);
+      expect(L.isDeferredRule({ ruleId: 'TERM-should' })).toBe(false);
+      expect(L.isDeferredRule({ ruleId: 'VAGUE-applicable' })).toBe(false);
     });
 
     it('does not defer ordinary static rules', () => {

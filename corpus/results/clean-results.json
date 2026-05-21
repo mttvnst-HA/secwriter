@@ -3,8 +3,8 @@
     "corpusType": "clean",
     "corpusFile": "C:\\github\\secwriter\\corpus\\clean\\all_clean.json",
     "blocksProcessed": 2583,
-    "timestamp": "2026-05-20T23:54:11.024Z",
-    "elapsedSeconds": 51.4,
+    "timestamp": "2026-05-21T04:20:24.308Z",
+    "elapsedSeconds": 52.2,
     "grammarEnabled": true
   },
   "stats": {
@@ -14,7 +14,7 @@
       "nlp": 0
     },
     "findingsByEngine": {
-      "static": 8,
+      "static": 5,
       "nlp": 331,
       "grammar": 260
     },
@@ -26,7 +26,6 @@
       "GRAMMAR-Capitalization": 10,
       "GRAMMAR-WordChoice": 38,
       "GRAMMAR-Grammar": 3,
-      "VAGUE-applicable": 3,
       "TERM-oicc": 1,
       "GRAMMAR-Punctuation": 4,
       "GRAMMAR-Agreement": 11,
@@ -37,9 +36,9 @@
       "GRAMMAR-Regionalism": 1
     },
     "findingsBySection": {
-      "03 30 00": 151,
+      "03 30 00": 149,
       "22 00 00": 207,
-      "26 20 00": 115,
+      "26 20 00": 114,
       "32 12 16.16": 32,
       "33 71 02": 94
     },
@@ -829,30 +828,6 @@
       "blockId": "03_30_00-P2-B423",
       "section": "03 30 00",
       "isNoteBlock": true
-    },
-    {
-      "blockId": "03_30_00-P2-B426",
-      "section": "03 30 00",
-      "ruleId": "VAGUE-applicable",
-      "match": "applicable",
-      "index": 222,
-      "severity": "medium",
-      "engine": "static",
-      "category": "vague-language",
-      "message": "\"applicable\" is vague per UFS 1-300-02 §2-4.4. Use specific, measurable language.",
-      "isNoteBlock": false
-    },
-    {
-      "blockId": "03_30_00-P2-B426",
-      "section": "03 30 00",
-      "ruleId": "VAGUE-applicable",
-      "match": "applicable",
-      "index": 552,
-      "severity": "medium",
-      "engine": "static",
-      "category": "vague-language",
-      "message": "\"applicable\" is vague per UFS 1-300-02 §2-4.4. Use specific, measurable language.",
-      "isNoteBlock": false
     },
     {
       "ruleId": "GRAMMAR-Style",
@@ -5124,18 +5099,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
-      "isNoteBlock": false
-    },
-    {
-      "blockId": "26_20_00-P2-B522",
-      "section": "26 20 00",
-      "ruleId": "VAGUE-applicable",
-      "match": "applicable",
-      "index": 60,
-      "severity": "medium",
-      "engine": "static",
-      "category": "vague-language",
-      "message": "\"applicable\" is vague per UFS 1-300-02 §2-4.4. Use specific, measurable language.",
       "isNoteBlock": false
     },
     {

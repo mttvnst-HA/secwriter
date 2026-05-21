@@ -32,14 +32,11 @@
 const SEVERITY_ORDER = { high: 0, medium: 1, low: 2 };
 
 // Context-dependent rules that produce too many false positives in real-time
-// inline linting. They still run in the compliance panel where the user
-// explicitly requests a full scan and can review.
-export const DEFERRED_TO_PANEL = new Set([
-  'TERM-suitable',     // "suitable for [specific]" — needs sentence context
-  'TERM-any',          // determiner vs. indefinite — needs clause context
-  'TERM-should',       // quoted meta-text boilerplate — needs quote detection
-  'VAGUE-applicable',  // "applicable codes/standards" — legitimate in many contexts
-]);
+// inline linting. Empty as of #156: TERM-suitable, TERM-any, TERM-should, and
+// VAGUE-applicable were brought back inline via POS-window suppression and
+// full-text quote tracking in src/lib/compliance-rules.js (computeQuoteRanges
+// + computePosSuppression).
+export const DEFERRED_TO_PANEL = new Set([]);
 
 // ── Pure helpers (testable independently) ────────────────────────────────────
 
