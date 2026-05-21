@@ -1055,8 +1055,17 @@ export default function SpecEditor() {
 
   // Delete a block and focus the previous one. The verb's focus effect
   // handles the setTimeout-queued focusBlock; nothing imperative here.
+  //
+  // Clears the deleted block's linting findings (#148). Under TC, deleteBlock
+  // only marks the block revision='del' and the block stays in the array, so
+  // clearBlock is a no-op (the byBlock entry stays valid). Once the user
+  // accepts the del-revision the block is removed for real and the orphan-
+  // pruning effect (below the highlight effect) cleans up byBlock for it.
+  // clearBlock is idempotent (linting.js:166 returns the same state ref when
+  // the entry is absent), so dispatching it unconditionally is safe.
   const handleDelete = useCallback((blockId) => {
     dispatchBlocks((b) => Blocks.deleteBlock(b, blockId, tcState));
+    setLintingState(s => linting.clearBlock(s, blockId));
   }, [dispatchBlocks, tcState]);
 
   // A block is focusable if it's a title or an editable text block
@@ -1162,6 +1171,29 @@ export default function SpecEditor() {
     sync('grammar-error', groups.grammar);
     sync('passive-voice', groups.nlp);
   }, [lintingState]);
+
+  // Prune lintingState.byBlock entries whose blocks no longer exist (#148).
+  // Defense in depth on top of handleDelete's explicit clearBlock and
+  // useBlockLinting's per-block unmount cleanup. Covers every removal path
+  // by deriving truth from the blocks array itself: handleDelete (non-TC),
+  // acceptBlockRevision (revision='del'), rejectBlockRevision (revision='add'),
+  // accept/rejectAllRevisionsVerb (bulk), convertBlock (ID swap), undo of
+  // an insertion (Yjs-driven), and peer-driven deletion (collab session
+  // onBlocksReceived). pruneOrphanedBlocks is idempotent and ref-equal on
+  // no-op, so this is a zero-cost steady-state pass — the setLintingState
+  // bails via Object.is when the reducer returns the same state ref.
+  //
+  // Deps are [blocks] only — orphans can only appear when blocks shrinks.
+  // Including lintingState would fire this effect on every lint dispatch
+  // (debounced typing, Harper async return, accept-fix), each one a wasted
+  // Set construction. The byBlock.size === 0 fast-bail reads from the
+  // closure at body-execution time, which is fresh at every blocks change.
+  useEffect(() => {
+    if (lintingState.byBlock.size === 0) return;
+    const liveIds = new Set(blocks.map(b => b.id));
+    setLintingState(s => linting.pruneOrphanedBlocks(s, liveIds));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [blocks]);
 
   // Compliance highlight via CSS Custom Highlight API. Mirrors the linting
   // tier-effect pattern above. Building Range objects (instead of injecting
