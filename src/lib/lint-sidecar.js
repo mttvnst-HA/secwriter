@@ -196,7 +196,11 @@ export function decodeSidecar(payload) {
   const fingerprints = new Map();
   const byFingerprint = new Map();
   if (!payload || typeof payload !== 'object') return { fingerprints, byFingerprint };
-  if (payload.v !== PAYLOAD_VERSION) return { fingerprints, byFingerprint };
+  // Forward-compat: accept any v >= 1 so future v2+ payloads decode their
+  // v1-shared fields. Reject missing or non-numeric v.
+  if (typeof payload.v !== 'number' || payload.v < 1) {
+    return { fingerprints, byFingerprint };
+  }
 
   const good = typeof payload.good === 'string' ? payload.good : '';
   if (good.length % FINGERPRINT_LEN === 0) {
