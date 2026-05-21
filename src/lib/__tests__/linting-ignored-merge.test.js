@@ -127,3 +127,62 @@ describe('linting / prefillIgnored', () => {
     expect(L.isFindingIgnored(s, 'k1')).toBe(false);
   });
 });
+
+describe('linting / ignored property tests', () => {
+  function rand(rng, n) { return Math.floor(rng() * n); }
+  function makeRng(seed) {
+    let s = seed >>> 0 || 1;
+    return () => {
+      s = Math.imul(s ^ (s >>> 16), 2246822507) >>> 0;
+      s = Math.imul(s ^ (s >>> 13), 3266489909) >>> 0;
+      s ^= s >>> 16;
+      return (s >>> 0) / 0xffffffff;
+    };
+  }
+
+  it('200 randomized verb sequences keep ignored.findings keys monotonic (never lose entries)', () => {
+    const rng = makeRng(0xfeed1234);
+    let s = L.createInitial();
+    let everSeen = new Set();
+    for (let i = 0; i < 200; i++) {
+      const action = rand(rng, 4);
+      const key = `k${rand(rng, 8)}`;
+      const ts = i + 1;
+      const ruleId = 'NLP-passive';
+      switch (action) {
+        case 0:
+          s = L.ignoreFinding(s, { ignoreKey: key, ruleId: 'R', blockHash: 'bh', match: 'm', identity: { id: 'u' }, ts });
+          everSeen.add(key);
+          break;
+        case 1: s = L.unignoreFinding(s, { ignoreKey: key, ts }); break;
+        case 2: s = L.muteNlpRule(s, { ruleId, identity: { id: 'u' }, ts }); break;
+        case 3: s = L.unmuteNlpRule(s, { ruleId, ts }); break;
+      }
+    }
+    for (const k of everSeen) expect(s.ignored.findings.has(k)).toBe(true);
+  });
+
+  it('mergeRemoteIgnored is idempotent', () => {
+    const rng = makeRng(0xc0ffee);
+    let s = L.createInitial();
+    for (let i = 0; i < 50; i++) {
+      const key = `k${rand(rng, 5)}`;
+      s = L.ignoreFinding(s, { ignoreKey: key, ruleId: 'R', blockHash: 'bh', match: 'm', identity: { id: 'u' }, ts: i });
+    }
+    const remote = new Map();
+    for (const [k, v] of s.ignored.findings) remote.set(k, v);
+    const s2 = L.mergeRemoteIgnored(s, remote);
+    const s3 = L.mergeRemoteIgnored(s2, remote);
+    expect(s3.ignored.findings.size).toBe(s2.ignored.findings.size);
+  });
+
+  it('resetIgnored then ignoreFinding restores entry as non-tombstone', () => {
+    let s = L.createInitial();
+    s = L.ignoreFinding(s, { ignoreKey: 'k1', ruleId: 'R', blockHash: 'bh', match: 'm', identity: { id: 'a' }, ts: 1 });
+    s = L.resetIgnored(s, { ts: 2 });
+    expect(s.ignored.findings.get('k1').tombstone).toBe(true);
+    s = L.ignoreFinding(s, { ignoreKey: 'k1', ruleId: 'R', blockHash: 'bh', match: 'm', identity: { id: 'a' }, ts: 3 });
+    expect(s.ignored.findings.get('k1').tombstone).toBeFalsy();
+    expect(L.isFindingIgnored(s, 'k1')).toBe(true);
+  });
+});
