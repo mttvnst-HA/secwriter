@@ -8,9 +8,13 @@ Run this AFTER _build.py so it overwrites the auto-downscaled icon-16.png, then
 rebuild favicon.ico to pick up the hand-tuned 16px layer.
 """
 from pathlib import Path
-from PIL import Image, ImageDraw
+
+from PIL import Image
 
 ROOT = Path(__file__).parent
+REPO = ROOT.parent.parent
+PUBLIC = REPO / "public"
+
 BG = (14, 165, 233, 255)   # #0ea5e9
 T = (0, 0, 0, 0)
 W = (255, 255, 255, 255)
@@ -38,15 +42,18 @@ slash = [
 for c, r in chev_l_outer + chev_l_inner + chev_r_outer + chev_r_inner + slash:
     img.putpixel((c, r), W)
 
-img.save(ROOT / "icon-16.png")
-print("  icon-16.png  hand-tuned 16x16 written")
+img.save(PUBLIC / "icon-16.png")
+print(f"  {(PUBLIC / 'icon-16.png').relative_to(REPO)}  hand-tuned 16x16 written")
 
-# Rebuild favicon.ico so its 16x16 layer uses the hand-tuned image
-icons = [Image.open(ROOT / f"icon-{s}.png") for s in (16, 32, 48)]
+icons = [
+    Image.open(PUBLIC / "icon-16.png"),
+    Image.open(PUBLIC / "icon-32.png"),
+    Image.open(ROOT / "icon-48.png"),
+]
 icons[0].save(
-    ROOT / "favicon.ico",
+    PUBLIC / "favicon.ico",
     format="ICO",
     sizes=[(16, 16), (32, 32), (48, 48)],
     append_images=icons[1:],
 )
-print("  favicon.ico  rebuilt with hand-tuned 16x16 layer")
+print(f"  {(PUBLIC / 'favicon.ico').relative_to(REPO)}  rebuilt with hand-tuned 16x16 layer")
