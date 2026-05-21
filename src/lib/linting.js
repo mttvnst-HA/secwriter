@@ -229,6 +229,7 @@ export function prefillFromSidecar(state, projection) {
       nlp: Array.isArray(bf.nlp) ? bf.nlp : [],
       grammar: Array.isArray(bf.grammar) ? bf.grammar : [],
       grammarText: typeof bf.grammarText === 'string' ? bf.grammarText : null,
+      blockHash: null,
     });
   }
   return { ...state, byBlock };

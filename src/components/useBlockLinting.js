@@ -157,8 +157,7 @@ export function useBlockLinting({
         computeIgnoreKey(f.violation.ruleId, blockHash, f.violation.match)));
       const nKeys = await Promise.all(nlpFindings.map(f =>
         computeIgnoreKey(f.violation.ruleId, blockHash, f.violation.match)));
-      const curEl = getEl();
-      if (!curEl || curEl.innerHTML !== htmlSnapshot) return;  // stale
+      if (!el.isConnected || el.innerHTML !== htmlSnapshot) return;  // stale
       dispatch(s => setBlockFindings(s, blockId, {
         compliance: complianceFindings.map((f, i) => ({ ...f, ignoreKey: cKeys[i] })),
         nlp: nlpFindings.map((f, i) => ({ ...f, ignoreKey: nKeys[i] })),
