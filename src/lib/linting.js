@@ -169,6 +169,28 @@ export function clearBlock(state, blockId) {
   return { ...state, byBlock };
 }
 
+/**
+ * Drop byBlock entries whose blockId is not in `liveIds` (#148). Defends
+ * against block-removal paths that don't go through useBlockLinting's
+ * per-block unmount cleanup — bulk accept/reject of revisions, undo of an
+ * insertion, peer-driven deletion, convertBlock's ID swap, and any block
+ * whose linting hook was inactive (editable=false) when it was removed.
+ *
+ * `liveIds` must be a Set (or any iterable whose membership check is O(1)
+ * via .has). Returns the same state ref when no entries are stale.
+ */
+export function pruneOrphanedBlocks(state, liveIds) {
+  if (state.byBlock.size === 0) return state;
+  const stale = [];
+  for (const id of state.byBlock.keys()) {
+    if (!liveIds.has(id)) stale.push(id);
+  }
+  if (stale.length === 0) return state;
+  const byBlock = new Map(state.byBlock);
+  for (const id of stale) byBlock.delete(id);
+  return { ...state, byBlock };
+}
+
 /** Clear all per-block findings. Preserves enabled/suspended. */
 export function clearAll(state) {
   if (state.byBlock.size === 0) return state;

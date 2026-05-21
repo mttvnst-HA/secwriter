@@ -235,6 +235,80 @@ describe('linting / reducer', () => {
       expect(L.clearAll(s0)).toBe(s0);
     });
   });
+
+  describe('pruneOrphanedBlocks (#148)', () => {
+    it('drops byBlock entries whose id is not in liveIds', () => {
+      let s = L.createInitial();
+      s = L.setBlockFindings(s, 'b1', { compliance: [f(v('a', 0, 'x'))] });
+      s = L.setBlockFindings(s, 'b2', { compliance: [f(v('b', 0, 'y'))] });
+      s = L.setBlockFindings(s, 'b3', { compliance: [f(v('c', 0, 'z'))] });
+
+      // Simulate App.jsx: blocks array is now [b1, b3] — b2 was deleted.
+      const pruned = L.pruneOrphanedBlocks(s, new Set(['b1', 'b3']));
+
+      expect(pruned.byBlock.has('b1')).toBe(true);
+      expect(pruned.byBlock.has('b2')).toBe(false);
+      expect(pruned.byBlock.has('b3')).toBe(true);
+    });
+
+    it('returns same ref when every byBlock id is live', () => {
+      let s = L.createInitial();
+      s = L.setBlockFindings(s, 'b1', { compliance: [f(v('a', 0, 'x'))] });
+      const liveIds = new Set(['b1', 'b2', 'b3']);
+      expect(L.pruneOrphanedBlocks(s, liveIds)).toBe(s);
+    });
+
+    it('returns same ref when byBlock is already empty', () => {
+      const s0 = L.createInitial();
+      expect(L.pruneOrphanedBlocks(s0, new Set(['b1']))).toBe(s0);
+    });
+
+    it('drops every entry when liveIds is empty', () => {
+      let s = L.createInitial();
+      s = L.setBlockFindings(s, 'b1', { compliance: [f(v('a', 0, 'x'))] });
+      s = L.setBlockFindings(s, 'b2', { compliance: [f(v('b', 0, 'y'))] });
+      const pruned = L.pruneOrphanedBlocks(s, new Set());
+      expect(pruned.byBlock.size).toBe(0);
+    });
+
+    it('preserves enabled and suspended flags', () => {
+      let s = L.createInitial({ enabled: true });
+      s = L.setSuspended(s, true);
+      s = L.setBlockFindings(s, 'b1', { compliance: [f(v('a', 0, 'x'))] });
+      const pruned = L.pruneOrphanedBlocks(s, new Set());
+      expect(pruned.enabled).toBe(true);
+      expect(pruned.suspended).toBe(true);
+    });
+
+    it('regression: create -> lint -> delete sequence does not leak byBlock', () => {
+      // Simulates App's lifecycle: user types in block A (findings stored),
+      // user clicks block B (A blurs, findings persist across blur per
+      // CLAUDE.md "Inline Linting Architecture"), user deletes block A.
+      // The App-level prune effect runs whenever `blocks` changes and
+      // pruneOrphanedBlocks must drop A's byBlock entry.
+      let s = L.createInitial({ enabled: true });
+
+      // Block A focused, findings stored.
+      s = L.setBlockFindings(s, 'block-a', {
+        compliance: [f(v('TERM-shall', 0, 'shall'))],
+        grammarText: 'shall be tested',
+      });
+      expect(s.byBlock.has('block-a')).toBe(true);
+
+      // User clicks block B — A blurs. Findings persist (no clearBlock
+      // dispatch on blur). byBlock still has 'block-a'.
+      expect(s.byBlock.has('block-a')).toBe(true);
+
+      // User deletes block A via handleDelete. blocks now contains only
+      // [block-b]. The prune effect runs.
+      const liveIds = new Set(['block-b']);
+      const pruned = L.pruneOrphanedBlocks(s, liveIds);
+
+      expect(pruned.byBlock.has('block-a')).toBe(false);
+      // And it really is gone — getBlockFindings reads through the Map.
+      expect(L.getBlockFindings(pruned, 'block-a')).toEqual([]);
+    });
+  });
 });
 
 // ── Selectors ────────────────────────────────────────────────────────────────
