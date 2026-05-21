@@ -1,0 +1,34 @@
+{
+  "v": 2,
+  "_comment": "Hand-curated ignored entries for corpus FP reduction. ignoredFindings entries suppress specific findings when running 'node tools/run-corpus-test.mjs --with-ignores'. blockHash values are fingerprintBlock(block.text) — SHA-256 of the corpus block's plain-text content, truncated to 24 hex chars. ignoreKey values are computeIgnoreKey(ruleId, blockHash, match) — SHA-256 of JSON.stringify([ruleId, blockHash, match]), truncated to 24 hex chars. These are distinct from live-app blockHash values (which fingerprint block.html). To compute real entries: run the corpus tool, inspect calibration-results.json, pick FP entries, then run tools/build-corpus-fixture.mjs (future task). The current entries are TEMPLATE PLACEHOLDERS — no actual filtering occurs until real ignoreKey values are inserted.",
+  "ignoredFindings": [
+    {
+      "_comment": "TEMPLATE: Replace with real values computed by tools/build-corpus-fixture.mjs",
+      "ignoreKey": "placeholder1234567890abcd",
+      "ruleId": "TERM-suitable",
+      "blockHash": "placeholder1234567890abcd",
+      "match": "as suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "_comment": "TEMPLATE: Replace with real values",
+      "ignoreKey": "placeholder2345678901bcde",
+      "ruleId": "VAGUE-applicable",
+      "blockHash": "placeholder2345678901bcde",
+      "match": "applicable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "_comment": "TEMPLATE: Replace with real values",
+      "ignoreKey": "placeholder3456789012cdef",
+      "ruleId": "TERM-any",
+      "blockHash": "placeholder3456789012cdef",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    }
+  ],
+  "mutedNlpRules": []
+}
