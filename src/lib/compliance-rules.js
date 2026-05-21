@@ -7,8 +7,135 @@
  */
 
 import rulesData from '../data/ufs-1-300-02-rules.json';
+import { getNlp, isNlpReady, preloadNlp } from './nlp-rules.js';
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
+
+/**
+ * Compute quote-enclosed character ranges in text. Returns Array<[start, end)>
+ * covering content strictly INSIDE matched quote pairs (the inner span — the
+ * quote characters themselves are not included). Sorted ascending by start.
+ *
+ * Pairing rules:
+ *   - Straight " " — alternate occurrences (1st=open, 2nd=close, 3rd=open, …).
+ *     Pairs with inside-content > MAX_STRAIGHT_PAIR_LEN chars are dropped on
+ *     the assumption they reflect a stray unmatched quote, not real meta-text.
+ *   - Curly " " (U+201C / U+201D) — directional pairing.
+ *
+ * Used by the TERM-should suppression in runStaticRules to recognise quoted
+ * meta-text (e.g. 'interpret the word "should" as "must"') without relying
+ * on the prior ±5-char heuristic, which missed cases like:
+ *   The word should appear as written: "shall".
+ *
+ * Exported for testing and for any future rule that needs quote awareness.
+ */
+const MAX_STRAIGHT_PAIR_LEN = 80;
+export function computeQuoteRanges(text) {
+  const ranges = [];
+  if (!text) return ranges;
+
+  // Straight double quotes: alternating open/close.
+  const straight = [];
+  for (let i = 0; i < text.length; i++) {
+    if (text.charCodeAt(i) === 0x22) straight.push(i);
+  }
+  for (let i = 0; i + 1 < straight.length; i += 2) {
+    const open = straight[i];
+    const close = straight[i + 1];
+    if (close - open - 1 <= MAX_STRAIGHT_PAIR_LEN) {
+      ranges.push([open + 1, close]);
+    }
+  }
+
+  // Curly double quotes: pair U+201C with the next U+201D.
+  let curlyOpen = -1;
+  for (let i = 0; i < text.length; i++) {
+    const c = text.charCodeAt(i);
+    if (c === 0x201C) {
+      if (curlyOpen === -1) curlyOpen = i;
+    } else if (c === 0x201D) {
+      if (curlyOpen !== -1) {
+        ranges.push([curlyOpen + 1, i]);
+        curlyOpen = -1;
+      }
+    }
+  }
+
+  ranges.sort((a, b) => a[0] - b[0]);
+  return ranges;
+}
+
+/** Whether [start, end) is fully contained within any computed quote range. */
+function isInsideAnyQuoteRange(ranges, start, end) {
+  for (const [qs, qe] of ranges) {
+    if (start >= qs && end <= qe) return true;
+    if (qs >= end) break; // sorted by start
+  }
+  return false;
+}
+
+/**
+ * Compute a per-keyword suppression set using compromise.js POS tags so the
+ * four formerly DEFERRED_TO_PANEL rules can run inline with low FP:
+ *
+ *   TERM-suitable     — suppress "suitable for #Acronym|#ProperNoun|#Value"
+ *                       (e.g. "suitable for ASTM D4263" three-token-adjacent;
+ *                       longer paraphrases like "suitable for the intended
+ *                       application as defined in ASTM D4263" still flag).
+ *   VAGUE-applicable  — suppress "(as|when|where|if) applicable" (adverbial
+ *                       clause, legitimate spec idiom) and
+ *                       "applicable #Acronym|#ProperNoun" (specific named
+ *                       reference).
+ *
+ * TERM-any is intentionally NOT in this set: the rule's regex in buildRules()
+ * already excludes "any of the following / one of / portion / point / three /
+ * …" and similar — empirically that fully covers the clean corpus (0 FPs at
+ * baseline). Layering a POS pattern such as "any #Acronym" over-suppresses
+ * dirty-corpus cases like "any CPVC Plastic Pipe" / "any LEED projects" /
+ * "Any Floor Flatness" / "Any Handholes", regressing recall by 4 on the dirty
+ * corpus (TERM-006 33/36 → 29/36) without a corresponding precision gain.
+ *
+ * Returns a Map<ruleId, Set<offset>>. When compromise is not yet loaded,
+ * returns empty sets and warms the lazy load for the next call. Existing
+ * regex heuristics in runStaticRules continue to apply either way.
+ */
+function computePosSuppression(plainText) {
+  const empty = { 'TERM-suitable': new Set(), 'VAGUE-applicable': new Set() };
+  if (!isNlpReady()) {
+    preloadNlp();
+    return empty;
+  }
+  const nlp = getNlp();
+  if (!nlp) return empty;
+
+  let doc;
+  try { doc = nlp(plainText); }
+  catch { return empty; }
+
+  const out = empty;
+  const collect = (matchSet, ruleId, keyword) => {
+    let json;
+    try { json = matchSet.json({ offset: true }); }
+    catch { return; }
+    for (const m of (json || [])) {
+      for (const t of (m.terms || [])) {
+        if (t.normal === keyword && typeof t.offset?.start === 'number') {
+          out[ruleId].add(t.offset.start);
+        }
+      }
+    }
+  };
+
+  try {
+    collect(doc.match('suitable for (#Acronym|#ProperNoun|#Value)'), 'TERM-suitable', 'suitable');
+  } catch { /* compromise pattern failed — skip */ }
+  try {
+    collect(doc.match('(as|when|where|if) applicable'), 'VAGUE-applicable', 'applicable');
+    collect(doc.match('applicable (#Acronym|#ProperNoun)'), 'VAGUE-applicable', 'applicable');
+  } catch { /* skip */ }
+
+  return out;
+}
 
 function escapeRegex(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -382,6 +509,12 @@ export function runStaticRules(plainText, blockId, rules, options = {}) {
     bracketRanges.sort((a, b) => a.start - b.start);
   }
 
+  // Pre-process once per call: quote ranges for TERM-should and POS-window
+  // suppression sets for the three context-dependent term/vague rules.
+  // Both fall back to no-op when their input signal is unavailable.
+  const quoteRanges = computeQuoteRanges(plainText);
+  const posSuppress = computePosSuppression(plainText);
+
   for (const rule of rules) {
     if (!rule.pattern) continue;
 
@@ -424,17 +557,22 @@ export function runStaticRules(plainText, blockId, rules, options = {}) {
         if (after.match(/^\s*in\s*(feet|meters|metres|inches|mm|m\b)/)) continue;
       }
 
-      // Skip "should" when it appears inside quotes (meta-text discussing the word itself)
-      // e.g., 'interpret the word "should" as "must"'
+      // Skip "should" when it appears inside quotes (meta-text discussing the
+      // word itself, e.g. 'interpret the word "should" as "must"').
+      // Replaced the prior ±5-char heuristic with full-text quote tracking
+      // so cases like `The word should appear as written: "shall"` work too.
       if (rule.id === 'TERM-should') {
-        const before = plainText.slice(Math.max(0, matchStart - 5), matchStart);
-        const after = plainText.slice(matchEnd, matchEnd + 5);
-        // Check if surrounded by quotes (straight or curly)
-        if (/[""\u201c]\s*$/.test(before) && /^\s*[""\u201d]/.test(after)) continue;
+        if (isInsideAnyQuoteRange(quoteRanges, matchStart, matchEnd)) continue;
       }
 
-      // Skip "suitable for [specific criteria]" and ALL CAPS "SUITABLE" (nameplate markings)
+
+      // Skip "suitable for [specific criteria]" and ALL CAPS "SUITABLE" (nameplate markings).
+      // POS-window check additionally suppresses "suitable for #Acronym|#ProperNoun|#Value"
+      // (e.g. "suitable for ASTM D4263") with three-token adjacency. Longer
+      // paraphrases such as "Suitable for the intended application as defined
+      // in ASTM D4263" still flag (cf. corpus/adversarial ADV-065).
       if (rule.id === 'TERM-suitable') {
+        if (posSuppress['TERM-suitable'].has(matchStart)) continue;
         const after = plainText.slice(matchEnd, matchEnd + 30).toLowerCase();
         // "suitable for a 3/4 inch", "suitable for the pressure", "suitable for type of"
         if (after.match(/^\s*for\s+(a |the |type |non-|use )/)) continue;
@@ -444,6 +582,13 @@ export function runStaticRules(plainText, blockId, rules, options = {}) {
         // ALL CAPS context (nameplate marking: "SUITABLE FOR NON-LINEAR LOADS")
         if (match[0] === match[0].toUpperCase()) continue;
       }
+
+      // POS-window suppression for VAGUE-applicable: "(as|when|where|if)
+      // applicable" adverbial clauses and "applicable #Acronym|#ProperNoun"
+      // are legitimate spec idioms that the regex-only path treated as FPs
+      // (3 of 8 baseline clean-corpus FPs were of this shape).
+      // TERM-any deliberately omitted — see computePosSuppression docs.
+      if (rule.id === 'VAGUE-applicable' && posSuppress['VAGUE-applicable'].has(matchStart)) continue;
 
       // Skip "&" in standard abbreviations (P & T, NEMA TC 6 & 8) and organization names
       // The match includes surrounding words (e.g., "P & T"), so check the match itself

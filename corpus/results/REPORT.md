@@ -1,12 +1,12 @@
 # SecWriter Text Analysis Engine — Corpus Test Report
 
-Generated: 2026-05-21T03:23:41.929Z
+Generated: 2026-05-21T04:24:34.566Z
 
 ## 1. Calibration Results (Raw UFGS Master Text)
 
 - **Blocks processed:** 2583
-- **Total findings:** 1510
-- **Static:** 329 | **NLP:** 902 | **Grammar:** 279
+- **Total findings:** 1494
+- **Static:** 313 | **NLP:** 902 | **Grammar:** 279
 
 ### Note Block Exemption
 
@@ -29,13 +29,13 @@ Generated: 2026-05-21T03:23:41.929Z
 | GRAMMAR-WordChoice | 39 | 7 |
 | TERM-conforming-to | 35 | 0 |
 | TERM-suitable | 32 | 0 |
-| VAGUE-applicable | 28 | 0 |
 | TERM-per | 27 | 0 |
 | TERM-adequate | 22 | 0 |
 | TERM-to-be | 17 | 0 |
 | TERM-furnish | 14 | 0 |
 | TERM-securely | 13 | 0 |
 | TERM-properly | 12 | 0 |
+| VAGUE-applicable | 12 | 0 |
 | GRAMMAR-Agreement | 11 | 3 |
 | GRAMMAR-Capitalization | 10 | 3 |
 | TERM-thoroughly | 10 | 0 |
@@ -65,7 +65,7 @@ Generated: 2026-05-21T03:23:41.929Z
 
 | Engine | Non-Note FPs | FP Rate | Regression Threshold |
 |--------|:-----------:|:-------:|:--------------------:|
-| Static | 8 | 0.31% | <5% |
+| Static | 5 | 0.19% | <5% |
 | NLP | 331 | 12.81% | <20% |
 | Grammar | 260 | (informational) | N/A |
 
@@ -74,7 +74,6 @@ Generated: 2026-05-21T03:23:41.929Z
 | Rule | Engine | FPs | Precision |
 |------|--------|:---:|:---------:|
 | NLP-PASSIVE-001 | nlp | 331 | 87.19% |
-| VAGUE-applicable | static | 3 | 99.88% |
 | TERM-adequate | static | 2 | 99.92% |
 | TERM-oicc | static | 1 | 99.96% |
 | TERM-conforming-to | static | 1 | 99.96% |

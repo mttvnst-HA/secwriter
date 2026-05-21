@@ -32,6 +32,15 @@ export function isNlpReady() {
 }
 
 /**
+ * Get the loaded compromise instance, or null if not yet loaded. Exposed so
+ * peer modules (e.g. compliance-rules.js POS-window suppression) can reuse
+ * the same lazy-loaded module without re-importing.
+ */
+export function getNlp() {
+  return nlp;
+}
+
+/**
  * Pre-load compromise.js without blocking. Call early to warm the cache.
  */
 export function preloadNlp() {
