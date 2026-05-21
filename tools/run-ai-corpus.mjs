@@ -65,7 +65,8 @@ if (!existsSync(dirtyPath)) {
 
 // ── Load static engine for correctness measurement ──
 console.log('Loading static engine for correctness scoring…');
-const { runStaticRules } = await import('../src/lib/compliance-rules.js');
+const { getRules, runStaticRules } = await import('../src/lib/compliance-rules.js');
+const rules = getRules();
 
 // ── Load AI module ──
 const { requestAIRewrite } = await import('../src/lib/compliance-ai.js');
@@ -79,9 +80,11 @@ console.log(`Running AI tier on ${targetBlocks.length} block(s) with model ${MOD
 const perBlock = [];
 for (let i = 0; i < targetBlocks.length; i++) {
   const block = targetBlocks[i];
-  // Measure violations BEFORE the rewrite.
-  const beforeText = block.text || block.html || '';
-  const before = runStaticRules(beforeText) || [];
+  // Measure violations BEFORE the rewrite. Dirty corpus blocks expose the
+  // text with injected violations as `block.dirty` (see
+  // `corpus/dirty/all_dirty.json`, keys: { id, clean, dirty, violations }).
+  const beforeText = block.dirty || block.text || block.html || '';
+  const before = runStaticRules(beforeText, block.id, rules) || [];
   const violationsBefore = before.length;
 
   if (violationsBefore === 0) {
@@ -107,7 +110,7 @@ for (let i = 0; i < targetBlocks.length; i++) {
     );
     const rewrite = result.rewrites.find(r => r.blockId === block.id);
     const afterText = rewrite?.proposed || beforeText;
-    const after = runStaticRules(afterText) || [];
+    const after = runStaticRules(afterText, block.id, rules) || [];
     const violationsAfter = after.length;
     const correctness = 1 - (violationsAfter / violationsBefore);
     perBlock.push({

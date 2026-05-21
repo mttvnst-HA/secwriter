@@ -149,7 +149,12 @@ export class ComplianceAPIError extends Error {
  * @param {Array} violations - Violations where fix is null
  * @param {string} apiKey - Anthropic API key
  * @param {Object} options - { model, abortSignal, onProgress }
- * @returns {Array} rewrites - [{ blockId, original, proposed, changes }]
+ * @returns {Promise<{ rewrites: Array<{ blockId, original, proposed, changes }>,
+ *                    tokensUsed: number, inputTokens: number, outputTokens: number }>}
+ *   `tokensUsed` is `inputTokens + outputTokens`, preserved for callers that
+ *   read a single token total (e.g. CompliancePanel). `inputTokens` /
+ *   `outputTokens` are surfaced separately for the #137 C²/$ corpus metric
+ *   (different per-1k rates for input vs output).
  */
 export async function requestAIRewrite(blocks, violations, apiKey, options = {}) {
   const {
