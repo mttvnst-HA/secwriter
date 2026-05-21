@@ -34,6 +34,7 @@ export default function CompliancePanel({
   onAcceptGroupFix,
   unitDisplay,
   onItemDismiss,
+  onGroupDismiss,
 }) {
   const result = comp.getResult(complianceState);
   const scope = comp.getScope(complianceState);
@@ -580,6 +581,26 @@ export default function CompliancePanel({
                           }}
                         >
                           {isExpanded ? "Collapse" : `View All ${group.instances.length} ▸`}
+                        </button>
+                      )}
+                      {onGroupDismiss && group.instances.length > 0 && (
+                        <button
+                          onClick={(e) => { e.stopPropagation(); onGroupDismiss(group); }}
+                          onMouseDown={(e) => e.preventDefault()}
+                          title="Dismiss all findings for this rule in the current document. Persistent."
+                          style={{
+                            padding: '3px 10px',
+                            fontSize: 12,
+                            fontWeight: 500,
+                            backgroundColor: '#fff',
+                            color: '#475569',
+                            border: '1px solid #cbd5e1',
+                            borderRadius: 4,
+                            cursor: 'pointer',
+                            marginLeft: 4,
+                          }}
+                        >
+                          Dismiss all
                         </button>
                       )}
                       {!hasFix && (

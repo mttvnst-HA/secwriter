@@ -2786,6 +2786,22 @@ export default function SpecEditor() {
                 }));
               });
             }}
+            onGroupDismiss={async (group) => {
+              // Batched single state update via reduce.
+              const updates = [];
+              for (const item of group.instances) {
+                const blockHash = lintingState.byBlock.get(item.blockId)?.blockHash;
+                if (!blockHash) continue;
+                const ignoreKey = await linting.computeIgnoreKey(group.ruleId, blockHash, item.match);
+                updates.push({ ignoreKey, ruleId: group.ruleId, blockHash, match: item.match });
+              }
+              const identity = effectiveIdentity();
+              const ts = Date.now();
+              setLintingState(s => updates.reduce(
+                (acc, args) => linting.ignoreFinding(acc, { ...args, identity, ts }),
+                s,
+              ));
+            }}
           />
         )}
 
