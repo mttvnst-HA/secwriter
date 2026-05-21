@@ -15,6 +15,10 @@
  *     enabled: boolean,                         // user toggle
  *     suspended: boolean,                       // CompliancePanel open → suspend inline
  *     byBlock: Map<blockId, BlockFindings>,
+ *     ignored: {
+ *       findings: Map<ignoreKey, entry>,        // per-finding suppression; entry may carry tombstone: true
+ *       mutedRules: Map<ruleId, entry>,         // per-rule mute; entry may carry tombstone: true
+ *     },
  *   }
  *
  * BlockFindings:
