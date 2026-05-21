@@ -474,3 +474,110 @@ export function applyRemoteMutedRule(state, args) {
   mutedRules.set(ruleId, { ...entry });
   return { ...state, ignored: { ...state.ignored, mutedRules } };
 }
+
+/**
+ * Tombstone every dismissal + mute. Preserves keys so peers see explicit
+ * tombstone writes for convergence. Race window: a peer's concurrent dismiss
+ * landing AFTER this transaction is NOT retroactively cleared.
+ */
+export function resetIgnored(state, { ts } = {}) {
+  const stamp = typeof ts === 'number' ? ts : Date.now();
+  if (state.ignored.findings.size === 0 && state.ignored.mutedRules.size === 0) {
+    return state;
+  }
+  const findings = new Map();
+  for (const [k, v] of state.ignored.findings) {
+    findings.set(k, { ...v, tombstone: true, ts: stamp });
+  }
+  const mutedRules = new Map();
+  for (const [k, v] of state.ignored.mutedRules) {
+    mutedRules.set(k, { ...v, tombstone: true, ts: stamp });
+  }
+  return { ...state, ignored: { findings, mutedRules } };
+}
+
+/**
+ * Partial reset: tombstone findings only. Used by the Settings "Reset ignored
+ * findings" button when the UX requires independent reset of the two columns.
+ */
+export function resetIgnoredFindings(state, { ts } = {}) {
+  if (state.ignored.findings.size === 0) return state;
+  const stamp = typeof ts === 'number' ? ts : Date.now();
+  const findings = new Map();
+  for (const [k, v] of state.ignored.findings) {
+    findings.set(k, { ...v, tombstone: true, ts: stamp });
+  }
+  return { ...state, ignored: { ...state.ignored, findings } };
+}
+
+/** Partial reset: tombstone mutedRules only. */
+export function resetMutedRules(state, { ts } = {}) {
+  if (state.ignored.mutedRules.size === 0) return state;
+  const stamp = typeof ts === 'number' ? ts : Date.now();
+  const mutedRules = new Map();
+  for (const [k, v] of state.ignored.mutedRules) {
+    mutedRules.set(k, { ...v, tombstone: true, ts: stamp });
+  }
+  return { ...state, ignored: { ...state.ignored, mutedRules } };
+}
+
+/**
+ * Bulk merge for `initial: true` handleSync payload. LWW per key over
+ * remoteMap ∪ local; local-only entries preserved unconditionally (never
+ * tombstoned by absence — ignores use never-delete tombstones so peer
+ * deletions arrive AS entries with tombstone:true, never as absence).
+ */
+export function mergeRemoteIgnored(state, remoteMap) {
+  if (!(remoteMap instanceof Map)) return state;
+  if (remoteMap.size === 0) return state;
+  let next = state;
+  for (const [key, entry] of remoteMap) {
+    next = applyRemoteIgnored(next, { key, entry });
+  }
+  return next;
+}
+
+/** Same semantics as mergeRemoteIgnored, for mutedRules. */
+export function mergeRemoteMutedRules(state, remoteMap) {
+  if (!(remoteMap instanceof Map)) return state;
+  if (remoteMap.size === 0) return state;
+  let next = state;
+  for (const [ruleId, entry] of remoteMap) {
+    next = applyRemoteMutedRule(next, { ruleId, entry });
+  }
+  return next;
+}
+
+/**
+ * Merge sidecar payload into state. LWW per key; local-only entries preserved.
+ * Caller gates to file-mode (in collab mode the room is authoritative).
+ */
+export function prefillIgnored(state, { findings, mutedRules }) {
+  let next = state;
+  if (Array.isArray(findings)) {
+    for (const f of findings) {
+      if (!f || typeof f.ignoreKey !== 'string') continue;
+      const entry = {
+        ruleId: f.ruleId,
+        blockHash: f.blockHash,
+        match: f.match,
+        authorId: f.authorId || '',
+        ts: typeof f.ts === 'number' ? f.ts : 0,
+      };
+      if (f.tombstone === true) entry.tombstone = true;
+      next = applyRemoteIgnored(next, { key: f.ignoreKey, entry });
+    }
+  }
+  if (Array.isArray(mutedRules)) {
+    for (const r of mutedRules) {
+      if (!r || typeof r.ruleId !== 'string') continue;
+      const entry = {
+        authorId: r.authorId || '',
+        ts: typeof r.ts === 'number' ? r.ts : 0,
+      };
+      if (r.tombstone === true) entry.tombstone = true;
+      next = applyRemoteMutedRule(next, { ruleId: r.ruleId, entry });
+    }
+  }
+  return next;
+}
