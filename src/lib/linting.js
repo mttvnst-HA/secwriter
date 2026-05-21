@@ -109,7 +109,7 @@ export function pickHighestSeverityFinding(findings) {
 // ── Reducer state ────────────────────────────────────────────────────────────
 
 function emptyBlockFindings() {
-  return { compliance: [], nlp: [], grammar: [], grammarText: null };
+  return { compliance: [], nlp: [], grammar: [], grammarText: null, blockHash: null };
 }
 
 /** Create initial state. */
@@ -151,13 +151,15 @@ export function setBlockFindings(state, blockId, partial) {
     nlp: partial.nlp !== undefined ? partial.nlp : prev.nlp,
     grammar: partial.grammar !== undefined ? partial.grammar : prev.grammar,
     grammarText: partial.grammarText !== undefined ? partial.grammarText : prev.grammarText,
+    blockHash: partial.blockHash !== undefined ? partial.blockHash : prev.blockHash,
   };
   // Bail if nothing actually changed (referential equality)
   if (
     next.compliance === prev.compliance &&
     next.nlp === prev.nlp &&
     next.grammar === prev.grammar &&
-    next.grammarText === prev.grammarText
+    next.grammarText === prev.grammarText &&
+    next.blockHash === prev.blockHash
   ) {
     return state;
   }

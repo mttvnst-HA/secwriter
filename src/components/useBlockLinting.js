@@ -32,7 +32,9 @@ import {
   getGrammarText,
   isActive,
   isDeferredRule,
+  computeIgnoreKey,
 } from '../lib/linting.js';
+import { fingerprintBlock } from '../lib/lint-sidecar.js';
 import { runStaticRules, getRules } from '../lib/compliance-rules.js';
 import {
   checkGrammar,
@@ -132,15 +134,37 @@ export function useBlockLinting({
     // Build Range objects against the live DOM and stash sync findings.
     // Clear stale grammar in the same dispatch; if grammar is ready, the snapshot
     // text doubles as the stale-detection key for the upcoming async pass.
-    const complianceFindings = toFindings(el, complianceViolations);
-    const nlpFindings = toFindings(el, nlpViolations);
+    // Findings are emitted with ignoreKey: null placeholder — the async pass below
+    // populates real ignoreKeys once fingerprintBlock resolves (spec §6.2).
     const grammarReady = isGrammarReady();
+    const complianceFindings = toFindings(el, complianceViolations).map(f => ({ ...f, ignoreKey: null }));
+    const nlpFindings = toFindings(el, nlpViolations).map(f => ({ ...f, ignoreKey: null }));
     dispatch(s => setBlockFindings(s, blockId, {
       compliance: complianceFindings,
       nlp: nlpFindings,
       grammar: [],
       grammarText: grammarReady ? plainText : null,
     }));
+
+    // Async hash + per-finding ignoreKey population. Race-safe: el.innerHTML
+    // re-check before the second dispatch guards against stale results when the
+    // user edits the block during the async window.
+    const htmlSnapshot = el.innerHTML;
+    (async () => {
+      let blockHash;
+      try { blockHash = await fingerprintBlock(htmlSnapshot); } catch { return; }
+      const cKeys = await Promise.all(complianceFindings.map(f =>
+        computeIgnoreKey(f.violation.ruleId, blockHash, f.violation.match)));
+      const nKeys = await Promise.all(nlpFindings.map(f =>
+        computeIgnoreKey(f.violation.ruleId, blockHash, f.violation.match)));
+      const curEl = getEl();
+      if (!curEl || curEl.innerHTML !== htmlSnapshot) return;  // stale
+      dispatch(s => setBlockFindings(s, blockId, {
+        compliance: complianceFindings.map((f, i) => ({ ...f, ignoreKey: cKeys[i] })),
+        nlp: nlpFindings.map((f, i) => ({ ...f, ignoreKey: nKeys[i] })),
+        blockHash,
+      }));
+    })();
 
     // 3. Grammar — async; merge results on resolve, abort if stale.
     if (grammarReady) {
@@ -307,17 +331,34 @@ function toFindings(el, violations) {
  * Run Harper grammar check and merge results into state. Includes stale-result
  * detection (text changed mid-flight). Dedup against compliance + NLP runs in
  * getRangesByTier (projection layer) — see #140 / spec §4.3.
+ *
+ * Findings are emitted with ignoreKey: null placeholder synchronously, then a
+ * second dispatch populates real ignoreKeys once fingerprintBlock resolves.
  */
 function runGrammarPass({ el, plainText, blockId, dispatch }) {
   // Caller has already stashed plainText as grammarText for stale detection.
-  checkGrammar(plainText, blockId).then(grammarViolations => {
+  checkGrammar(plainText, blockId).then(async grammarViolations => {
+    const htmlSnapshot = el.innerHTML;
+    const grammarFindings = toFindings(el, grammarViolations).map(f => ({ ...f, ignoreKey: null }));
     dispatch(s => {
       // Stale check: if grammarText changed while we awaited, our results are stale.
       if (getGrammarText(s, blockId) !== plainText) return s;
       // Store grammar verbatim; projection layer dedupes against the
       // post-filter compliance + nlp set.
-      const grammarFindings = toFindings(el, grammarViolations);
       return setBlockFindings(s, blockId, { grammar: grammarFindings });
+    });
+
+    // Async hash + per-finding ignoreKey population for grammar findings.
+    let blockHash;
+    try { blockHash = await fingerprintBlock(htmlSnapshot); } catch { return; }
+    const keys = await Promise.all(grammarFindings.map(f =>
+      computeIgnoreKey(f.violation.ruleId, blockHash, f.violation.match)));
+    if (!el.isConnected || el.innerHTML !== htmlSnapshot) return;  // stale
+    dispatch(s => {
+      if (getGrammarText(s, blockId) !== plainText) return s;
+      return setBlockFindings(s, blockId, {
+        grammar: grammarFindings.map((f, i) => ({ ...f, ignoreKey: keys[i] })),
+      });
     });
   }).catch(() => {});
 }
