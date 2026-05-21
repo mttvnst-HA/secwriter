@@ -145,6 +145,8 @@ function PmEditableBlock({
   // UndoManager's trackedOrigins, calling this has no production
   // effect — but the plumbing lets Commit B land atomically.
   forceFrame,
+  // #140 persistent rule ignores
+  onSuppress,
 }) {
   const containerRef = useRef(null);
   const viewRef = useRef(null);
@@ -705,6 +707,9 @@ function PmEditableBlock({
   });
 
   const lintingActive = lintingState ? (lintingState.enabled && !lintingState.suspended) : false;
+  // #140 — blockHash for the Dismiss button. Derived from lintingState so it
+  // updates whenever the block's cached findings are refreshed.
+  const blockHash = lintingState?.byBlock?.get(block.id)?.blockHash || null;
 
   // ── Filtered slash items for keyboard nav (refresh on filter change) ─────
   const slashFiltered = useMemo(() => {
@@ -944,6 +949,8 @@ function PmEditableBlock({
           onDismiss={dismissTooltip}
           onAddToDictionary={handleAddToDictionary}
           blockEl={viewRef.current?.dom}
+          onSuppress={onSuppress}
+          blockHash={blockHash}
         />
       )}
       {slashState.open && editable && (

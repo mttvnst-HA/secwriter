@@ -2667,6 +2667,19 @@ export default function SpecEditor() {
                   lintingDispatch={setLintingState}
                   showTags={showTags}
                   forceFrame={inRoom ? collab.forceFrame : localUndo.forceFrame}
+                  onSuppress={(ruleId, blockHash, match) => {
+                    if (!blockHash) return;
+                    // Single dispatch path — production AND tests share it. The DEV seam
+                    // `__simEditorTestUtils.dispatchLintIgnore` exists for E2E tests that
+                    // need to inject envelopes WITHOUT a tooltip mounted.
+                    // Do NOT call it from here (would double-dispatch in DEV).
+                    linting.computeIgnoreKey(ruleId, blockHash, match).then(ignoreKey => {
+                      setLintingState(s => linting.ignoreFinding(s, {
+                        ignoreKey, ruleId, blockHash, match,
+                        identity: effectiveIdentity(), ts: Date.now(),
+                      }));
+                    });
+                  }}
                 />
                 {focusedBlockId === block.id && (
                   <MarkSuggestions

@@ -13,7 +13,10 @@ import { useState, useEffect, useRef, useCallback } from "react";
  *   onDismiss  - () callback to hide tooltip
  *   blockEl    - the contentEditable DOM element (for computing fix text)
  */
-export default function InlineTooltip({ finding, blockId, onFix, onDismiss, blockEl, onAddToDictionary }) {
+export default function InlineTooltip({
+  finding, blockId, onFix, onDismiss, blockEl,
+  onAddToDictionary, onSuppress, blockHash,
+}) {
   const [showWhy, setShowWhy] = useState(false);
   const tooltipRef = useRef(null);
   const [pos, setPos] = useState(null);  // { top, left, below }
@@ -321,6 +324,30 @@ export default function InlineTooltip({ finding, blockId, onFix, onDismiss, bloc
             }}
           >
             + Add "{violation.match.length > 20 ? violation.match.slice(0, 17) + '...' : violation.match}" to dictionary
+          </button>
+        )}
+        {/* Persistent Dismiss — survives reload */}
+        {typeof onSuppress === 'function' && typeof blockHash === 'string' && (
+          <button
+            onClick={() => {
+              onSuppress(violation.ruleId, blockHash, violation.match);
+              onDismiss();
+            }}
+            onMouseDown={(e) => e.preventDefault()}
+            title="Dismiss this specific finding (persists across reload; reset from Settings)"
+            style={{
+              padding: '3px 10px',
+              fontSize: 12,
+              fontWeight: 500,
+              backgroundColor: '#fff',
+              color: '#475569',
+              border: '1px solid #cbd5e1',
+              borderRadius: 4,
+              cursor: 'pointer',
+              fontFamily: 'inherit',
+            }}
+          >
+            Dismiss
           </button>
         )}
       </div>
