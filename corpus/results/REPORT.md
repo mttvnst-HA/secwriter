@@ -1,6 +1,6 @@
 # SecWriter Text Analysis Engine — Corpus Test Report
 
-Generated: 2026-05-20T23:55:07.517Z
+Generated: 2026-05-21T03:23:41.929Z
 
 ## 1. Calibration Results (Raw UFGS Master Text)
 
@@ -161,7 +161,7 @@ mismatches. Recall figures above use corrected IDs.
 | ADV-077 | domain-jargon-trap | COLLOQ-head | Missed (should flag) | Maintain minimum static head of 3 meters at the pu... |
 | ADV-122 | true-positive | TERM-per | False positive (should not flag) | Test each interval per the inspection schedule.... |
 
-## 5. Actionable Engine Improvements
+## 6. Actionable Engine Improvements
 
 Identified through corpus testing:
 
@@ -175,7 +175,7 @@ Identified through corpus testing:
 | 6 | TERM-properly (properly) | Consider adding "proper" (adjective) alongside "properly" (adverb) | Low |
 | 7 | (missing) | "as required" not separately prohibited — consider adding | Low |
 
-## 6. Success Criteria Assessment
+## 7. Success Criteria Assessment
 
 | # | Criterion | Status |
 |---|-----------|--------|
