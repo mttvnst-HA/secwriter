@@ -143,6 +143,39 @@ describe('serializeRoom', () => {
     assert.ok(secText.includes('01 00 00'), 'SEC contains section number');
   });
 
+  // #150 — yLint round-trips into lintJson on flush.
+  it('includes yLint entries in lintJson', async () => {
+    const Y = await import('yjs');
+    const ydoc = await buildTestDoc();
+    const yLint = ydoc.getMap('lint');
+    const fpGood = '0000000000000000000000aa';
+    const fpBad  = '0000000000000000000000bb';
+
+    ydoc.transact(() => {
+      yLint.set(fpGood, { kind: 'good' });
+      yLint.set(fpBad, {
+        kind: 'bad',
+        g: [{ violation: { ruleId: 'GRAM-X' } }],
+        n: [],
+        c: [],
+      });
+    });
+
+    const { lintJson } = await serializeRoom(ydoc);
+    assert.equal(typeof lintJson, 'string', 'lintJson is a string when yLint is non-empty');
+    const parsed = JSON.parse(lintJson);
+    assert.equal(parsed.v, 1);
+    assert.ok(parsed.good.includes(fpGood), 'good fingerprint is in payload');
+    assert.ok(parsed.bad[fpBad], 'bad fingerprint is in payload');
+    assert.equal(parsed.bad[fpBad].g[0].violation.ruleId, 'GRAM-X');
+  });
+
+  it('emits lintJson = null when yLint is empty (skips artifact write)', async () => {
+    const ydoc = await buildTestDoc();
+    const { lintJson } = await serializeRoom(ydoc);
+    assert.equal(lintJson, null);
+  });
+
   it('includes comments in commentsJson', async () => {
     const Y = await import('yjs');
     const ydoc = await buildTestDoc();

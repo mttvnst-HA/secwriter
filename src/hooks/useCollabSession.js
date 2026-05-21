@@ -54,6 +54,7 @@ import {
   createCollabSession,
   DocSizeLimitError,
 } from '../lib/collab.js';
+import { encodeSidecar } from '../lib/lint-sidecar.js';
 import * as sc from '../lib/session-coordination.js';
 
 /**
@@ -88,6 +89,10 @@ import * as sc from '../lib/session-coordination.js';
  *   App is expected to call `markTcSeqApplied(next.publishSeq)` from inside
  *   its setTcState updater so the publish effect does not echo.
  * @property {(commentsObj:Object, meta:{initial:boolean}) => void} onCommentsReceived
+ * @property {(lintPayload:Object, meta:{initial:boolean}) => void} [onLintReceived]
+ *   Issue #150: a v1 lint-sidecar payload arriving from a peer (or from
+ *   server-persisted state on join). App is expected to feed it into
+ *   `decodeSidecar` + `projectDecoded` + `prefillFromSidecar`.
  * @property {(states:Array) => void} onPresenceChange
  * @property {(status:string, meta:{reconnectIn:number}) => void} onStatusChange
  *
@@ -153,6 +158,7 @@ export function useCollabSession({
   sectionMeta,
   fileName,
   tcState,
+  lintingState,
   getPublishableTc,
 
   getInitialBlocks,
@@ -162,6 +168,7 @@ export function useCollabSession({
   onMetaReceived,
   onTcReceived,
   onCommentsReceived,
+  onLintReceived,
   onPresenceChange,
   onStatusChange,
 
@@ -188,6 +195,13 @@ export function useCollabSession({
   // M-shared-tc echo gate. See markTcSeqApplied below.
   const lastPublishedTcSeqRef = useRef(0);
 
+  // Issue #150 lint echo guard. Skips the async encode when byBlock has not
+  // changed since the last publish. A remote receive creates a new byBlock
+  // Map (via prefillFromSidecar), so this guard is a true ref identity check
+  // — the encode still runs after a remote receive, but publishLintToDoc
+  // diffs the result against yLint and no-ops if nothing actually changed.
+  const lastPublishedLintByBlockRef = useRef(null);
+
   // Lifecycle / UX state — see src/lib/session-coordination.js. Pure
   // reducer applied to a ref so coord transitions do not invalidate the
   // publish-effect dep lists (which would otherwise cause re-publish
@@ -209,6 +223,8 @@ export function useCollabSession({
   onTcReceivedRef.current = onTcReceived;
   const onCommentsReceivedRef = useRef(onCommentsReceived);
   onCommentsReceivedRef.current = onCommentsReceived;
+  const onLintReceivedRef = useRef(onLintReceived);
+  onLintReceivedRef.current = onLintReceived;
   const onPresenceChangeRef = useRef(onPresenceChange);
   onPresenceChangeRef.current = onPresenceChange;
   const onStatusChangeRef = useRef(onStatusChange);
@@ -303,6 +319,9 @@ export function useCollabSession({
       onRemoteComments: (commentsObj, meta) => {
         onCommentsReceivedRef.current?.(commentsObj, meta);
       },
+      onRemoteLint: (lintPayload, meta) => {
+        onLintReceivedRef.current?.(lintPayload, meta);
+      },
       onPresenceChange: (states) => {
         onPresenceChangeRef.current?.(states);
       },
@@ -353,6 +372,7 @@ export function useCollabSession({
       setYStoreState(null);
       lastRemoteBlocksRef.current = null;
       lastPublishedTcSeqRef.current = 0;
+      lastPublishedLintByBlockRef.current = null;
       coordRef.current = sc.createInitial();
       if (EXPOSE_DEBUG && typeof window !== 'undefined') delete window.__collab;
     };
@@ -444,6 +464,47 @@ export function useCollabSession({
       console.error('[collab] publishTc failed:', err);
     }
   }, [tcState, inRoom]);
+
+  // ── Publish effect: lint sidecar (#150) ───────────────────────────────
+  // Encodes the linting reducer's byBlock map into a v1 sidecar payload
+  // and writes diffs into yLint. Async because fingerprinting goes through
+  // Web Crypto. Phase 1 is set-only (never deletes): a fingerprint that
+  // disappears from one peer's payload may still be valid for another
+  // peer's block. Garbage collection is deferred to a phase 3 ticket.
+  //
+  // Gating: shares the canPublishMeta gate — meta and lint both want to
+  // wait for first sync + schema compatibility. canPublishBlocks would
+  // also work but meta is closer in spirit (cache state, not user verb).
+  useEffect(() => {
+    if (!inRoom) return;
+    const session = sessionRef.current;
+    if (!session || typeof session.publishLint !== 'function') return;
+    if (!sc.canPublishMeta(coordRef.current)) return;
+    if (!lintingState || !lintingState.byBlock || lintingState.byBlock.size === 0) return;
+    if (lintingState.byBlock === lastPublishedLintByBlockRef.current) return;
+    let cancelled = false;
+    (async () => {
+      let payload;
+      try {
+        payload = await encodeSidecar(lintingState.byBlock, blocks);
+      } catch (err) {
+        console.error('[collab] encodeSidecar failed:', err);
+        return;
+      }
+      if (cancelled) return;
+      // Phase-1 set-only: only push when there's something to push.
+      const hasGood = typeof payload.good === 'string' && payload.good.length > 0;
+      const hasBad = payload.bad && Object.keys(payload.bad).length > 0;
+      if (!hasGood && !hasBad) return;
+      try {
+        session.publishLint(payload);
+        lastPublishedLintByBlockRef.current = lintingState.byBlock;
+      } catch (err) {
+        console.error('[collab] publishLint failed:', err);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [lintingState, blocks, inRoom]);
 
   // ── Cursor broadcast ──────────────────────────────────────────────────
   // Listens for selectionchange and broadcasts the caret position so other

@@ -578,4 +578,78 @@ test.describe('Collab', () => {
     }
   });
 
+  // ── 12. Lint sidecar collab round-trip (#150) ─────────────────────────────────
+  // Peer A publishes a fingerprint-keyed lint payload via `window.__collab.publishLint`.
+  // Peer B joins and observes the yLint contents through the Yjs sync without
+  // running the lint engines locally — the entries arrive over the wire.
+  //
+  // We exercise the wire path directly rather than typing-then-waiting-for-lint
+  // because (a) the engines are debounced + lazy and (b) the unit tests in
+  // `src/lib/__tests__/collab-lint.test.js` already cover encode/decode/publish.
+  // The thing only an E2E can verify is "does the y-websocket sync actually
+  // carry yLint between peers."
+  test('lint sidecar: Peer A publishes → Peer B receives via Yjs sync (#150)', { timeout: 60000 }, async ({ browser }) => {
+    const room = uniqueRoom();
+    const ctxA = await browser.newContext();
+    const ctxB = await browser.newContext();
+    try {
+      await createRoom(room);
+
+      const pageA = await joinRoom(ctxA, room);
+      await dismissIdentityModal(pageA, 'User A');
+      await waitForConnected(pageA);
+      await seedRoom(room, MINIMAL_SEC);
+      await waitForEditable(pageA);
+      await pageA.waitForTimeout(1000);
+
+      // Peer A publishes a v1 lint payload directly. The 24-char fingerprints
+      // are arbitrary — we're testing wire delivery, not the encoder.
+      const FP_GOOD = '0000000000000000000000aa';
+      const FP_BAD  = '0000000000000000000000bb';
+      await pageA.evaluate(({ good, bad }) => {
+        window.__collab.publishLint({
+          v: 1,
+          good,
+          bad: { [bad]: { g: [{ violation: { ruleId: 'GRAM-X' } }], n: [], c: [] } },
+        });
+      }, { good: FP_GOOD, bad: FP_BAD });
+
+      // Verify peer A's local yLint reflects the publish before B joins —
+      // this rules out "the publish never landed locally" as a failure mode.
+      await expect.poll(
+        () => pageA.evaluate(() => window.__collab?.yLint?.size ?? 0),
+        { timeout: 5_000, intervals: [100, 200] }
+      ).toBe(2);
+
+      // Peer B joins — receives the seeded blocks AND the lint cache via sync.
+      const pageB = await joinRoom(ctxB, room);
+      await dismissIdentityModal(pageB, 'User B');
+      await waitForConnected(pageB);
+      await waitForEditable(pageB);
+
+      // Poll peer B's yLint for the two fingerprints. This is the
+      // acceptance-criteria assertion: "joining peer sees cached findings".
+      await expect.poll(
+        () => pageB.evaluate(({ good, bad }) => {
+          const y = window.__collab?.yLint;
+          if (!y || typeof y.get !== 'function') return null;
+          return {
+            size: y.size,
+            good: y.get(good),
+            bad: y.get(bad),
+          };
+        }, { good: FP_GOOD, bad: FP_BAD }),
+        { timeout: 15_000, intervals: [200, 500, 1000] }
+      ).toMatchObject({
+        size: 2,
+        good: { kind: 'good' },
+        bad: { kind: 'bad', g: [{ violation: { ruleId: 'GRAM-X' } }], n: [], c: [] },
+      });
+    } finally {
+      await deleteRoom(room);
+      await ctxA.close();
+      await ctxB.close();
+    }
+  });
+
 });

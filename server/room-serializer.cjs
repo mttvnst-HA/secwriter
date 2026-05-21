@@ -17,6 +17,7 @@ let _encodeWindows1252 = null;
 let _yBlocksToArray = null;
 let _readYMeta = null;
 let _readComments = null;
+let _readLint = null;
 
 async function loadModules() {
   if (_serializeSEC) return;
@@ -30,13 +31,14 @@ async function loadModules() {
   _yBlocksToArray = collabMod.yBlocksToArray;
   _readYMeta = collabMod.readYMeta;
   _readComments = collabMod.readComments;
+  _readLint = collabMod.readLint;
 }
 
 /**
  * Serialize a room's Y.Doc into all persistence artifacts.
  *
  * @param {import('yjs').Doc} ydoc
- * @returns {Promise<{ ydocBytes: Uint8Array, secBytes: Uint8Array, commentsJson: string }>}
+ * @returns {Promise<{ ydocBytes: Uint8Array, secBytes: Uint8Array, commentsJson: string, lintJson: string|null }>}
  */
 async function serializeRoom(ydoc) {
   await loadModules();
@@ -45,6 +47,7 @@ async function serializeRoom(ydoc) {
   const yStore = ydoc.getMap('store');
   const yMeta = ydoc.getMap('meta');
   const yComments = ydoc.getMap('comments');
+  const yLint = ydoc.getMap('lint');
 
   // 1. Binary CRDT snapshot
   const ydocBytes = Y.encodeStateAsUpdate(ydoc);
@@ -68,7 +71,17 @@ async function serializeRoom(ydoc) {
   const commentsArray = Object.values(commentsObj);
   const commentsJson = JSON.stringify({ version: 1, comments: commentsArray });
 
-  return { ydocBytes, secBytes, commentsJson };
+  // 4. Lint sidecar (#150). yLint stores entries keyed by block-html
+  // fingerprint; _readLint reconstructs the v1 sidecar payload that
+  // mirrors the file-mode `.lint.json` format. Persisted only when the
+  // room has actually had lint findings — empty payload returns null so
+  // planArtifactWrites skips the kind entirely.
+  const lintPayload = _readLint(yLint);
+  const hasLint = (lintPayload.good && lintPayload.good.length > 0) ||
+                  (lintPayload.bad && Object.keys(lintPayload.bad).length > 0);
+  const lintJson = hasLint ? JSON.stringify(lintPayload) : null;
+
+  return { ydocBytes, secBytes, commentsJson, lintJson };
 }
 
 // ── Server-side block seeding (CJS Yjs) ──────────────────────────────────
