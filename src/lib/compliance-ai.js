@@ -160,7 +160,8 @@ export async function requestAIRewrite(blocks, violations, apiKey, options = {})
 
   const chunks = chunkViolations(blocks, violations);
   const results = [];
-  let totalTokensUsed = 0;
+  let totalInputTokens = 0;
+  let totalOutputTokens = 0;
 
   for (let i = 0; i < chunks.length; i++) {
     if (abortSignal?.aborted) {
@@ -203,13 +204,22 @@ export async function requestAIRewrite(blocks, violations, apiKey, options = {})
     }
 
     const data = await response.json();
-    totalTokensUsed += (data.usage?.input_tokens || 0) + (data.usage?.output_tokens || 0);
+    totalInputTokens += data.usage?.input_tokens || 0;
+    totalOutputTokens += data.usage?.output_tokens || 0;
 
     const parsed = parseAIResponse(data);
     results.push(...parsed);
   }
 
-  return { rewrites: results, tokensUsed: totalTokensUsed };
+  // #137: return input/output token counts separately for the C²/$ corpus
+  // metric (different per-1k rates for input vs output). `tokensUsed` is
+  // preserved for backwards compatibility — App's CompliancePanel reads it.
+  return {
+    rewrites: results,
+    tokensUsed: totalInputTokens + totalOutputTokens,
+    inputTokens: totalInputTokens,
+    outputTokens: totalOutputTokens,
+  };
 }
 
 /**

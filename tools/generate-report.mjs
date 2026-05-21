@@ -24,11 +24,12 @@ function loadJson(filename) {
   return JSON.parse(readFileSync(path, 'utf-8'));
 }
 
-function main() {
+async function main() {
   const calibration = loadJson('calibration-results.json');
   const clean = loadJson('clean-results.json');
   const dirty = loadJson('dirty-results.json');
   const adversarial = loadJson('adversarial-results.json');
+  const aiResults = loadJson('ai-results.json'); // #137: optional AI-tier corpus runs
   const idMap = loadJson('rule-id-mapping.json') || {};
   const dirtyCorpus = (() => {
     const p = join(PROJECT_ROOT, 'corpus', 'dirty', 'all_dirty.json');
@@ -42,6 +43,7 @@ function main() {
     precision: {},
     recall: {},
     adversarial: {},
+    ai: {}, // #137: cost-per-correctness per model
   };
 
   const lines = [];
@@ -241,8 +243,59 @@ function main() {
     }
   }
 
+  // ========== AI TIER VALUE (C²/$) — #137 ==========
+  // Metric only, no policy. Loaded only when corpus/results/ai-results.json
+  // exists; that file is populated by `tools/run-ai-corpus.mjs` against the
+  // dirty corpus when ANTHROPIC_API_KEY is set. Without it, this section
+  // is omitted entirely (existing precision/recall numbers are unchanged).
+  if (aiResults && Array.isArray(aiResults.runs) && aiResults.runs.length > 0) {
+    const { aggregateByModel } = await import('./ai-value-metric.mjs');
+    const pricingDoc = JSON.parse(readFileSync(join(__dirname, 'model-pricing.json'), 'utf-8'));
+
+    // Flatten the runs file: each top-level run has a model + blocks array.
+    // The metric helper wants a flat list of `{ model, correctness, inputTokens, outputTokens }`.
+    const flat = [];
+    for (const run of aiResults.runs) {
+      if (!run || !Array.isArray(run.blocks)) continue;
+      for (const b of run.blocks) {
+        if (!b || typeof b.correctness !== 'number') continue;
+        flat.push({
+          model: run.model,
+          correctness: b.correctness,
+          inputTokens: b.inputTokens || 0,
+          outputTokens: b.outputTokens || 0,
+        });
+      }
+    }
+
+    const byModel = aggregateByModel(flat, pricingDoc);
+    if (byModel.size > 0) {
+      lines.push('## 5. AI Tier Value (C²/$)');
+      lines.push('');
+      lines.push('`Value (C²/$) = avg_correctness² ÷ avg_USD_per_run`. The squaring punishes "cheap but unreliable" models. Metric only — see `corpus/results/README.md` for the scope and rationale.');
+      lines.push('');
+      lines.push('| Model | Runs | Avg Correctness | Avg $/run | Value (C²/$) |');
+      lines.push('|-------|:----:|:---------------:|:---------:|:------------:|');
+      for (const [modelId, agg] of byModel) {
+        const displayName = pricingDoc.models?.[modelId]?.displayName || modelId;
+        const valueDisplay = Number.isFinite(agg.value) ? agg.value.toFixed(3) : '—';
+        lines.push(
+          `| ${displayName} | ${agg.runs} | ${(agg.avgCorrectness * 100).toFixed(1)}% | ` +
+          `$${agg.avgUsdPerRun.toFixed(4)} | ${valueDisplay} |`,
+        );
+        metrics.ai[modelId] = {
+          runs: agg.runs,
+          avgCorrectness: agg.avgCorrectness,
+          avgUsdPerRun: agg.avgUsdPerRun,
+          value: Number.isFinite(agg.value) ? agg.value : null,
+        };
+      }
+      lines.push('');
+    }
+  }
+
   // ========== ACTIONABLE IMPROVEMENTS ==========
-  lines.push('## 5. Actionable Engine Improvements');
+  lines.push('## 6. Actionable Engine Improvements');
   lines.push('');
   lines.push('Identified through corpus testing:');
   lines.push('');
@@ -258,7 +311,7 @@ function main() {
   lines.push('');
 
   // ========== SUCCESS CRITERIA ==========
-  lines.push('## 6. Success Criteria Assessment');
+  lines.push('## 7. Success Criteria Assessment');
   lines.push('');
 
   const criteria = [
@@ -323,4 +376,7 @@ function main() {
   console.log(`\nSuccess criteria: ${passed}/${criteria.length} met`);
 }
 
-main();
+main().catch(err => {
+  console.error(err);
+  process.exit(1);
+});

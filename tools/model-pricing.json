@@ -1,0 +1,27 @@
+{
+  "_comment": "Per-1k-token USD rates for the Anthropic API. Update when providers change rates. Source: https://docs.anthropic.com/en/docs/about-claude/pricing (May 2026). Cache prices not modeled — corpus runs don't benefit from prompt caching enough to matter at this granularity.",
+  "schemaVersion": 1,
+  "currency": "USD",
+  "models": {
+    "claude-opus-4-7": {
+      "displayName": "Claude Opus 4.7",
+      "input_per_1k": 15.0,
+      "output_per_1k": 75.0
+    },
+    "claude-sonnet-4-6": {
+      "displayName": "Claude Sonnet 4.6",
+      "input_per_1k": 3.0,
+      "output_per_1k": 15.0
+    },
+    "claude-sonnet-4-20250514": {
+      "displayName": "Claude Sonnet 4 (2025-05-14)",
+      "input_per_1k": 3.0,
+      "output_per_1k": 15.0
+    },
+    "claude-haiku-4-5": {
+      "displayName": "Claude Haiku 4.5",
+      "input_per_1k": 1.0,
+      "output_per_1k": 5.0
+    }
+  }
+}
