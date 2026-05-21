@@ -24,6 +24,7 @@ const {
   ARTIFACT_KIND_YDOC,
   ARTIFACT_KIND_SEC,
   ARTIFACT_KIND_COMMENTS,
+  ARTIFACT_KIND_LINT,
   planArtifactWrites,
 } = require('./storage-shared.cjs');
 
@@ -33,6 +34,7 @@ const SUFFIX_BY_KIND = {
   // existing rooms readable. (Local/S3 use uppercase `.SEC`.)
   [ARTIFACT_KIND_SEC]: 'room.sec',
   [ARTIFACT_KIND_COMMENTS]: 'room.comments.json',
+  [ARTIFACT_KIND_LINT]: 'room.lint.json',
 };
 
 class AzureStorageBackend extends RoomStorageBase {

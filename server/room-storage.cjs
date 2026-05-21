@@ -42,6 +42,7 @@ const {
   ARTIFACT_KIND_YDOC,
   ARTIFACT_KIND_SEC,
   ARTIFACT_KIND_COMMENTS,
+  ARTIFACT_KIND_LINT,
   sanitize,
   planArtifactWrites,
 } = require('./storage-shared.cjs');
@@ -60,7 +61,8 @@ class RoomStorageBase {
 
   /**
    * Read a room's artifacts. Returns null if `.ydoc` doesn't exist.
-   * Missing optional sidecars (`.SEC`, `.comments.json`) are returned as null.
+   * Missing optional sidecars (`.SEC`, `.comments.json`, `.lint.json`) are
+   * returned as null.
    */
   async readRoom(roomId) {
     const ydocKey = this._keyForArtifact(roomId, ARTIFACT_KIND_YDOC);
@@ -74,7 +76,11 @@ class RoomStorageBase {
     const commentsBuf = await this._getBytes(commentsKey);
     const commentsJson = commentsBuf == null ? null : commentsBuf.toString('utf-8');
 
-    return { ydocBytes, secBytes, commentsJson };
+    const lintKey = this._keyForArtifact(roomId, ARTIFACT_KIND_LINT);
+    const lintBuf = lintKey == null ? null : await this._getBytes(lintKey);
+    const lintJson = lintBuf == null ? null : lintBuf.toString('utf-8');
+
+    return { ydocBytes, secBytes, commentsJson, lintJson };
   }
 
   async deleteRoom(roomId) {
