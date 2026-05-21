@@ -147,6 +147,7 @@ function PmEditableBlock({
   forceFrame,
   // #140 persistent rule ignores
   onSuppress,
+  onMuteNlpRule,
 }) {
   const containerRef = useRef(null);
   const viewRef = useRef(null);
@@ -951,6 +952,7 @@ function PmEditableBlock({
           blockEl={viewRef.current?.dom}
           onSuppress={onSuppress}
           blockHash={blockHash}
+          onMuteNlpRule={onMuteNlpRule}
         />
       )}
       {slashState.open && editable && (

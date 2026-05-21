@@ -2680,6 +2680,11 @@ export default function SpecEditor() {
                       }));
                     });
                   }}
+                  onMuteNlpRule={(ruleId) => {
+                    setLintingState(s => linting.muteNlpRule(s, {
+                      ruleId, identity: effectiveIdentity(), ts: Date.now(),
+                    }));
+                  }}
                 />
                 {focusedBlockId === block.id && (
                   <MarkSuggestions

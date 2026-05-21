@@ -15,7 +15,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
  */
 export default function InlineTooltip({
   finding, blockId, onFix, onDismiss, blockEl,
-  onAddToDictionary, onSuppress, blockHash,
+  onAddToDictionary, onSuppress, blockHash, onMuteNlpRule,
 }) {
   const [showWhy, setShowWhy] = useState(false);
   const tooltipRef = useRef(null);
@@ -126,6 +126,9 @@ export default function InlineTooltip({
   const isGrammar = typeof violation.ruleId === 'string' && violation.ruleId.startsWith('GRAMMAR-');
   const isSingleWord = isGrammar && /^[A-Za-z][A-Za-z'-]*$/.test(violation.match || '');
   const canAddToDict = isSingleWord && typeof onAddToDictionary === 'function';
+
+  const isNlp = typeof violation.ruleId === 'string' && violation.ruleId.startsWith('NLP-');
+  const canMute = isNlp && typeof onMuteNlpRule === 'function';
 
   const handleAddToDict = () => {
     if (!canAddToDict) return;
@@ -348,6 +351,32 @@ export default function InlineTooltip({
             }}
           >
             Dismiss
+          </button>
+        )}
+        {canMute && (
+          <button
+            onClick={() => {
+              const ok = window.confirm(`Mute ${violation.ruleId} in this document?`);
+              if (ok) {
+                onMuteNlpRule(violation.ruleId);
+                onDismiss();
+              }
+            }}
+            onMouseDown={(e) => e.preventDefault()}
+            title={`Suppress all ${violation.ruleId} findings in this document. Reset from Settings.`}
+            style={{
+              padding: '3px 10px',
+              fontSize: 12,
+              fontWeight: 500,
+              backgroundColor: '#fff',
+              color: '#92400e',
+              border: '1px solid #fde68a',
+              borderRadius: 4,
+              cursor: 'pointer',
+              fontFamily: 'inherit',
+            }}
+          >
+            Mute {violation.ruleId}
           </button>
         )}
       </div>
