@@ -2802,6 +2802,14 @@ export default function SpecEditor() {
                 s,
               ));
             }}
+            ignoredCount={Array.from(lintingState.ignored.findings.values()).filter(e => !e.tombstone).length}
+            mutedCount={Array.from(lintingState.ignored.mutedRules.values()).filter(e => !e.tombstone).length}
+            onResetIgnored={() => {
+              setLintingState(s => linting.resetIgnoredFindings(s, { ts: Date.now() }));
+            }}
+            onResetMuted={() => {
+              setLintingState(s => linting.resetMutedRules(s, { ts: Date.now() }));
+            }}
           />
         )}
 

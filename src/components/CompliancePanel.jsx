@@ -35,6 +35,10 @@ export default function CompliancePanel({
   unitDisplay,
   onItemDismiss,
   onGroupDismiss,
+  ignoredCount,
+  mutedCount,
+  onResetIgnored,
+  onResetMuted,
 }) {
   const result = comp.getResult(complianceState);
   const scope = comp.getScope(complianceState);
@@ -802,7 +806,13 @@ export default function CompliancePanel({
 
       {/* Settings Modal */}
       {showSettings && (
-        <ComplianceSettings onClose={() => setShowSettings(false)} />
+        <ComplianceSettings
+          onClose={() => setShowSettings(false)}
+          ignoredCount={ignoredCount}
+          mutedCount={mutedCount}
+          onResetIgnored={onResetIgnored}
+          onResetMuted={onResetMuted}
+        />
       )}
     </div>
   );
