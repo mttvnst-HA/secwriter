@@ -271,6 +271,36 @@ for (const { name, factory } of BACKENDS) {
       assert.ok(!rooms.includes('q1'), 'quarantined room should not appear in listRooms');
     });
 
+    // Task 15 (#140) — v2 lint sidecar (ignoredFindings + mutedNlpRules)
+    // round-trips through writeRoom + readRoom unchanged.
+    it('lintJson with v2 sidecar round-trips through writeRoom + readRoom', async () => {
+      const v2Sidecar = {
+        v: 2,
+        good: 'aabbcc',
+        bad: {},
+        ignoredFindings: [
+          { ignoreKey: 'k1', ruleId: 'GRAM-X', blockHash: 'bh', match: 'm', ts: 1, authorId: 'u1' },
+        ],
+        mutedNlpRules: [
+          { ruleId: 'NLP-passive', ts: 2, authorId: 'u2', tombstone: true },
+        ],
+      };
+      const lintJson = JSON.stringify(v2Sidecar);
+      await backend.writeRoom('lint-v2', {
+        ydocBytes: Buffer.from([0xAB]),
+        secBytes: null,
+        commentsJson: null,
+        lintJson,
+      });
+      const r = await backend.readRoom('lint-v2');
+      assert.ok(r, 'room should be readable');
+      assert.strictEqual(r.lintJson, lintJson, 'v2 lintJson must survive save+load verbatim');
+      const parsed = JSON.parse(r.lintJson);
+      assert.strictEqual(parsed.v, 2);
+      assert.strictEqual(parsed.ignoredFindings.length, 1);
+      assert.strictEqual(parsed.mutedNlpRules[0].tombstone, true);
+    });
+
     it('writeRoom is idempotent — second write replaces first', async () => {
       await backend.writeRoom('idem', {
         ydocBytes: Buffer.from([1]),
