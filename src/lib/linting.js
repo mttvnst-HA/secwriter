@@ -287,19 +287,73 @@ export function getGrammarText(state, blockId) {
 
 /**
  * Return ranges grouped by tier — the projection that App turns into
- * CSS.highlights groups. Skips findings with null Range (createRangeForMatch
- * may have failed if the matched text was inside a skipped span).
+ * CSS.highlights groups. Pipeline per call:
+ *   1. Read cached findings + blockHash from byBlock.
+ *   2. Skip findings whose f.ignoreKey is null (async hash cache not yet
+ *      populated for this engine cycle).
+ *   3. Apply ignore-filter (isFindingIgnored) and mute-filter (isNlpRuleMuted).
+ *   4. Run cross-tier dedup (dedupNlpAgainstCompliance, dedupGrammarAgainstFindings)
+ *      AFTER ignore-filter so dismissing a static finding surfaces the suppressed
+ *      NLP/grammar overlap.
+ *   5. Collect surviving Ranges into per-tier arrays.
  */
 export function getRangesByTier(state) {
   const compliance = [];
   const grammar = [];
   const nlp = [];
-  for (const b of state.byBlock.values()) {
-    for (const f of b.compliance) if (f.range) compliance.push(f.range);
-    for (const f of b.grammar) if (f.range) grammar.push(f.range);
-    for (const f of b.nlp) if (f.range) nlp.push(f.range);
+  if (!state.byBlock || state.byBlock.size === 0) {
+    return { compliance, grammar, nlp };
+  }
+  // Per-block: filter, dedup, then push.
+  for (const bf of state.byBlock.values()) {
+    // 1+2+3: filter each tier by ignored / muted + null-key skip
+    const cFiltered = filterFindings(bf.compliance, state);
+    const nFiltered = filterFindings(bf.nlp, state);
+    const gFiltered = filterFindings(bf.grammar, state);
+
+    // 4: cross-tier dedup, post-filter
+    const cViolations = cFiltered.map(f => f.violation);
+    const nViolationsDeduped = dedupNlpAgainstCompliance(
+      nFiltered.map(f => f.violation),
+      cViolations,
+    );
+    const gViolationsDeduped = dedupGrammarAgainstFindings(
+      gFiltered.map(f => f.violation),
+      [...cViolations, ...nViolationsDeduped],
+    );
+
+    // 5: map back to findings (matched by violation identity), collect Ranges
+    const nSurvive = new Set(nViolationsDeduped);
+    const gSurvive = new Set(gViolationsDeduped);
+    for (const f of cFiltered) if (f.range) compliance.push(f.range);
+    for (const f of nFiltered) if (f.range && nSurvive.has(f.violation)) nlp.push(f.range);
+    for (const f of gFiltered) if (f.range && gSurvive.has(f.violation)) grammar.push(f.range);
   }
   return { compliance, grammar, nlp };
+}
+
+/**
+ * Filter findings by ignored.findings + ignored.mutedRules.
+ * Null-`ignoreKey` findings pass through unfiltered (hash cache lag — see §6.2).
+ * Delegates to spec §4.2 selectors `isFindingIgnored` / `isNlpRuleMuted` so the
+ * "active" predicate stays in one place.
+ */
+function filterFindings(findings, state) {
+  if (!findings || findings.length === 0) return [];
+  if (!state || !state.ignored) return findings;
+  const out = [];
+  for (const f of findings) {
+    if (!f) continue;
+    const v = f.violation;
+    if (!v) continue;
+    // Skip filter when ignoreKey not yet computed (async cache placeholder).
+    if (f.ignoreKey != null && isFindingIgnored(state, f.ignoreKey)) continue;
+    // Mute NLP rules at projection time.
+    if (typeof v.ruleId === 'string' && v.ruleId.startsWith('NLP-')
+        && isNlpRuleMuted(state, v.ruleId)) continue;
+    out.push(f);
+  }
+  return out;
 }
 
 // ── Persistent dismiss / mute (#140) ────────────────────────────────────────
