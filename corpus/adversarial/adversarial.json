@@ -1,14 +1,14 @@
 {
   "metadata": {
     "description": "Adversarial corpus for SIM compliance/grammar testing (Phase 3.5)",
-    "version": "2.0.0",
-    "generated": "2026-03-23",
-    "totalEntries": 150,
+    "version": "2.1.0",
+    "generated": "2026-05-20",
+    "totalEntries": 156,
     "categories": {
-      "false-positive-trap": 54,
+      "false-positive-trap": 57,
       "borderline-compliance": 13,
       "nlp-ambiguity": 30,
-      "true-positive": 43,
+      "true-positive": 46,
       "domain-jargon-trap": 10
     }
   },
@@ -1662,6 +1662,72 @@
       },
       "difficulty": "edge",
       "category": "true-positive"
+    },
+    {
+      "id": "ADV-151",
+      "text": "Per ASTM C150 standards, materials were delivered to the staging area.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "Abbreviation-boundary regression (issue #135): ASTM period must not split the sentence so #PastTense for delivered tags correctly; were delivered is passive."
+      },
+      "difficulty": "medium",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-152",
+      "text": "The U.S. Army Corps of Engineers performed acceptance testing.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "Abbreviation-boundary trap: U.S. contains two internal periods. Sentence has no be-aux; performed is simple past, not passive."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-153",
+      "text": "Per NAVFAC requirements, the Contractor furnishes all testing equipment.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "NLP-INDICATIVE-001",
+        "reason": "Abbreviation-boundary regression: NAVFAC is 6 alpha chars (heuristic edge); period must not split before the Contractor furnishes pattern."
+      },
+      "difficulty": "medium",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-154",
+      "text": "Use 1.5 inches of granular fill material beneath the slab.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "Decimal-boundary trap: 1.5 must not be treated as sentence boundary; imperative Use, no passive."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-155",
+      "text": "Per ACI 301 procedures, formwork was removed after seven days.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "Abbreviation-boundary regression: ACI is 3 alpha chars; was removed is passive voice and must survive the abbreviation period."
+      },
+      "difficulty": "medium",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-156",
+      "text": "Submit shop drawings to Dr. Smith for review prior to fabrication.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "Abbreviation-boundary trap: Dr. is a 2-char honorific abbreviation. Sentence is imperative (Submit), no be-aux + past participle, no passive voice."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
     }
   ]
 }

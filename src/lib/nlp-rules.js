@@ -6,6 +6,7 @@
  */
 
 import { replaceAtOffset } from './fix-utils.js';
+import { maskAbbreviationPeriods } from './nlp-abbrev.js';
 
 let nlp = null;
 let loadPromise = null;
@@ -81,8 +82,13 @@ export function detectNlpIssues(plainText, blockId, isNoteBlock = false) {
   // --- Passive Voice Detection ---
   // Use explicit pattern matching for "be + past participle" constructions.
   // compromise's #Passive tag is unreliable for spec language.
+  //
+  // Mask abbreviation periods (U.S., USACE, ASTM, etc.) before tokenizing so
+  // compromise does not split a sentence mid-stride and mis-tag #PastTense
+  // tokens (issue #135). Substitution is 1:1 char, preserving offsets.
   try {
-    const doc = nlp(plainText);
+    const maskedForNlp = maskAbbreviationPeriods(plainText);
+    const doc = nlp(maskedForNlp);
 
     // Match: (is|are|was|were|be|been|being) + #PastTense
     // This catches: "are placed", "is tested", "was removed", "were installed",
