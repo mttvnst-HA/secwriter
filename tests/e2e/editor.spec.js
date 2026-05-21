@@ -3179,7 +3179,9 @@ test('reset from Settings clears ignored state and disables the reset button', a
   await page.waitForTimeout(300);
 
   // Change scope to "Entire Document" so the scan always produces violations.
-  await page.selectOption('select', 'document');
+  // Target specifically the scope select (it contains option[value="document"]);
+  // other <select> elements on the page (TailoringProfile, AI model) don't.
+  await page.selectOption('select:has(option[value="document"])', 'document');
 
   // Run the compliance scan.
   await page.locator('button:has-text("Run Check")').click();
