@@ -3158,7 +3158,9 @@ test('reset from Settings clears ignored state and disables the reset button', a
   await page.goto('/');
   await waitForApp(page);
 
-  // Seed 3 ignored findings via the test seam.
+  // Seed 3 ignored findings via the test seam. Each dispatch is async
+  // (SHA-256 + React setState + lintingStateRef useEffect) so we stagger
+  // with 400ms and then poll until all 3 appear before proceeding.
   for (const [ruleId, blockHash, match] of [
     ['TERM-should', 'aaa000', 'should'],
     ['COLLOQ-furnish', 'bbb000', 'furnish'],
@@ -3167,10 +3169,11 @@ test('reset from Settings clears ignored state and disables the reset button', a
     await page.evaluate(({ ruleId, blockHash, match }) => {
       window.__simEditorTestUtils.dispatchLintIgnore({ kind: 'ignore', ruleId, blockHash, match });
     }, { ruleId, blockHash, match });
-    // Stagger dispatches to avoid SHA-256 hash collision in the Map.
-    await page.waitForTimeout(150);
+    await page.waitForTimeout(400);
   }
 
+  // Poll until all 3 keys appear (guards against race on slow CI runners).
+  await page.waitForFunction(() => window.__simEditorTestUtils.getIgnoredKeys().length >= 3, { timeout: 5000 });
   const beforeReset = await page.evaluate(() => window.__simEditorTestUtils.getIgnoredKeys());
   expect(beforeReset).toHaveLength(3);
 
