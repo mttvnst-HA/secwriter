@@ -20,6 +20,16 @@ export default function InlineTooltip({
   const [showWhy, setShowWhy] = useState(false);
   const tooltipRef = useRef(null);
   const [pos, setPos] = useState(null);  // { top, left, below }
+  const [showDismissOnboarding, setShowDismissOnboarding] = useState(false);
+
+  useEffect(() => {
+    // Only show on first time a tooltip with a Dismiss button is opened.
+    const seen = typeof window !== 'undefined' && localStorage.getItem('sim-dismiss-onboarded') === '1';
+    if (!seen && typeof onSuppress === 'function' && finding) {
+      setShowDismissOnboarding(true);
+      localStorage.setItem('sim-dismiss-onboarded', '1');
+    }
+  }, [finding, onSuppress]);
 
   // Position the tooltip near the cursor, measuring actual height to avoid off-screen
   useEffect(() => {
@@ -380,6 +390,19 @@ export default function InlineTooltip({
           </button>
         )}
       </div>
+      {showDismissOnboarding && (
+        <div style={{
+          marginTop: 8,
+          padding: '6px 10px',
+          backgroundColor: 'rgba(59, 130, 246, 0.1)',
+          border: '1px solid #93c5fd',
+          borderRadius: 4,
+          fontSize: 11,
+          color: '#1e3a8a',
+        }}>
+          💡 Dismiss is persistent — survives reload. Reset from ⚙ Settings.
+        </div>
+      )}
     </div>
   );
 }
