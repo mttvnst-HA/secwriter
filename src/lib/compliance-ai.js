@@ -6,6 +6,7 @@
  * for sentence-level restructuring.
  */
 
+import { jsonrepair } from 'jsonrepair';
 import rulesData from '../data/ufs-1-300-02-rules.json';
 
 const MAX_BLOCKS_PER_CHUNK = 20;
@@ -213,23 +214,46 @@ export async function requestAIRewrite(blocks, violations, apiKey, options = {})
 
 /**
  * Parse the AI response to extract rewrites.
+ *
+ * Primary path: JSON.parse on the matched JSON object.
+ * Fallback path: when JSON.parse throws (trailing commas, Python literals,
+ * unterminated strings, etc.), run the matched text through `jsonrepair`
+ * and try again. Logs a console.warn with the original error message so
+ * the frequency of malformed-but-recoverable responses is visible in dev
+ * consoles; intentionally does NOT log the full response (could contain
+ * spec text). If repair also throws, return [] (original behavior).
  */
-function parseAIResponse(data) {
+export function parseAIResponse(data) {
+  // The response content is in data.content[0].text
+  const text = data?.content?.[0]?.text || '';
+
+  // Prefer the matched {...} substring; fall back to the full text (covers
+  // unterminated-object cases where the regex can't find a closing brace).
+  const jsonMatch = text.match(/\{[\s\S]*\}/);
+  const candidate = jsonMatch ? jsonMatch[0] : text;
+  if (!candidate || candidate.indexOf('{') === -1) return [];
+
+  let parsed;
   try {
-    // The response content is in data.content[0].text
-    const text = data.content?.[0]?.text || '';
-
-    // Try to parse as JSON
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) return [];
-
-    const parsed = JSON.parse(jsonMatch[0]);
-    if (!parsed.rewrites || !Array.isArray(parsed.rewrites)) return [];
-
-    return parsed.rewrites.filter(r => r.blockId && r.proposed && r.proposed !== r.original);
-  } catch {
-    return [];
+    parsed = JSON.parse(candidate);
+  } catch (parseErr) {
+    try {
+      // jsonrepair can salvage trailing commas, Python True/None/false-y
+      // literals, single quotes, missing/extra brackets, and unterminated
+      // strings — see https://github.com/josdejong/jsonrepair.
+      const repaired = jsonrepair(candidate);
+      parsed = JSON.parse(repaired);
+      // eslint-disable-next-line no-console
+      console.warn(
+        `[compliance-ai] JSON.parse failed, jsonrepair salvaged response: ${parseErr.message}`,
+      );
+    } catch {
+      return [];
+    }
   }
+
+  if (!parsed || !parsed.rewrites || !Array.isArray(parsed.rewrites)) return [];
+  return parsed.rewrites.filter(r => r.blockId && r.proposed && r.proposed !== r.original);
 }
 
 // ── Test Connection ──────────────────────────────────────────────────────────

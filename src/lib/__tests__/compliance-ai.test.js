@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from 'vitest';
-import { buildSystemPrompt, chunkViolations, estimateTokens, estimateCost } from '../compliance-ai.js';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { buildSystemPrompt, chunkViolations, estimateTokens, estimateCost, parseAIResponse } from '../compliance-ai.js';
 
 describe('buildSystemPrompt', () => {
   it('returns a non-empty string', () => {
@@ -91,5 +91,87 @@ describe('estimateCost', () => {
 
   it('cost increases with tokens', () => {
     expect(estimateCost(10000)).toBeGreaterThan(estimateCost(1000));
+  });
+});
+
+describe('parseAIResponse', () => {
+  const wrap = (jsonText) => ({ content: [{ text: jsonText }] });
+  const validRewrite = { blockId: 'n42', original: 'foo', proposed: 'bar', changes: ['x'] };
+
+  let warnSpy;
+  beforeEach(() => {
+    warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+  });
+  afterEach(() => {
+    warnSpy.mockRestore();
+  });
+
+  it('parses well-formed JSON without warning', () => {
+    const data = wrap(JSON.stringify({ rewrites: [validRewrite] }));
+    const rewrites = parseAIResponse(data);
+    expect(rewrites).toEqual([validRewrite]);
+    expect(warnSpy).not.toHaveBeenCalled();
+  });
+
+  it('returns [] when no JSON object found', () => {
+    const rewrites = parseAIResponse(wrap('not json at all'));
+    expect(rewrites).toEqual([]);
+    expect(warnSpy).not.toHaveBeenCalled();
+  });
+
+  it('repairs trailing comma via jsonrepair fallback', () => {
+    const malformed = '{ "rewrites": [ { "blockId": "n42", "original": "foo", "proposed": "bar", "changes": ["x"], }, ] }';
+    const rewrites = parseAIResponse(wrap(malformed));
+    expect(rewrites).toEqual([validRewrite]);
+    expect(warnSpy).toHaveBeenCalledTimes(1);
+    expect(warnSpy.mock.calls[0][0]).toMatch(/jsonrepair salvaged/);
+  });
+
+  it('repairs Python True/None literals via jsonrepair fallback', () => {
+    const malformed = '{ "rewrites": [ { "blockId": "n42", "original": "foo", "proposed": "bar", "ok": True, "skip": None } ] }';
+    const rewrites = parseAIResponse(wrap(malformed));
+    expect(rewrites.length).toBe(1);
+    expect(rewrites[0].blockId).toBe('n42');
+    expect(warnSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('repairs unterminated string via jsonrepair fallback', () => {
+    const malformed = '{ "rewrites": [ { "blockId": "n42", "original": "foo", "proposed": "bar';
+    const rewrites = parseAIResponse(wrap(malformed));
+    expect(rewrites.length).toBe(1);
+    expect(rewrites[0].blockId).toBe('n42');
+    expect(rewrites[0].proposed).toBe('bar');
+    expect(warnSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not log the response text (only the error message)', () => {
+    const secret = 'CONFIDENTIAL_SPEC_TEXT_DO_NOT_LEAK';
+    const malformed = `{ "rewrites": [ { "blockId": "n1", "original": "${secret}", "proposed": "bar", }, ] }`;
+    parseAIResponse(wrap(malformed));
+    expect(warnSpy).toHaveBeenCalledTimes(1);
+    const logged = warnSpy.mock.calls[0].join(' ');
+    expect(logged).not.toContain(secret);
+  });
+
+  it('returns [] when repair also fails (unrepairable)', () => {
+    // Garbage that even jsonrepair can't salvage into a parseable object
+    // with a `rewrites` array. After repair this becomes something whose
+    // parsed shape lacks `rewrites`.
+    const garbage = '{ this is not even close to JSON ::: ??? }';
+    const rewrites = parseAIResponse(wrap(garbage));
+    expect(rewrites).toEqual([]);
+  });
+
+  it('filters rewrites missing blockId/proposed or where proposed === original', () => {
+    const data = wrap(JSON.stringify({
+      rewrites: [
+        validRewrite,
+        { blockId: 'n2', proposed: 'same', original: 'same' }, // dropped
+        { proposed: 'x' }, // dropped (no blockId)
+        { blockId: 'n3' }, // dropped (no proposed)
+      ],
+    }));
+    const rewrites = parseAIResponse(data);
+    expect(rewrites).toEqual([validRewrite]);
   });
 });
