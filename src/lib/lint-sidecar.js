@@ -316,3 +316,62 @@ function normalizeMutedRuleEntry(r) {
   if (r.tombstone === true) out.tombstone = true;
   return out;
 }
+
+/**
+ * v2-aware decoder — wraps decodeSidecar and also extracts ignoredFindings +
+ * mutedNlpRules. Silent on malformed entries (load-boundary tolerance, mirrors
+ * comments.normalizeForLoad). Forward-compat: future v3+ payloads still have
+ * their v2 fields decoded.
+ *
+ * @returns {{
+ *   fingerprints: Map, byFingerprint: Map,        // from decodeSidecar
+ *   ignoredFindings: Array<{ ignoreKey, ruleId, blockHash, match, ts, authorId, tombstone? }>,
+ *   mutedNlpRules: Array<{ ruleId, ts, authorId, tombstone? }>,
+ * }}
+ */
+export function decodeSidecarV2(payload) {
+  const base = decodeSidecar(payload);
+  const out = {
+    ...base,
+    ignoredFindings: [],
+    mutedNlpRules: [],
+  };
+  if (!payload || typeof payload !== 'object') return out;
+  if (typeof payload.v !== 'number' || payload.v < 1) return out;
+
+  const ignored = Array.isArray(payload.ignoredFindings) ? payload.ignoredFindings : [];
+  for (const f of ignored) {
+    if (!f || typeof f !== 'object') continue;
+    if (typeof f.ignoreKey !== 'string') continue;
+    if (typeof f.ruleId !== 'string') continue;
+    if (typeof f.blockHash !== 'string') continue;
+    if (typeof f.match !== 'string') continue;
+    if (typeof f.ts !== 'number') continue;
+    const entry = {
+      ignoreKey: f.ignoreKey,
+      ruleId: f.ruleId,
+      blockHash: f.blockHash,
+      match: f.match,
+      ts: f.ts,
+      authorId: typeof f.authorId === 'string' ? f.authorId : '',
+    };
+    if (f.tombstone === true) entry.tombstone = true;
+    out.ignoredFindings.push(entry);
+  }
+
+  const muted = Array.isArray(payload.mutedNlpRules) ? payload.mutedNlpRules : [];
+  for (const r of muted) {
+    if (!r || typeof r !== 'object') continue;
+    if (typeof r.ruleId !== 'string') continue;
+    if (typeof r.ts !== 'number') continue;
+    const entry = {
+      ruleId: r.ruleId,
+      ts: r.ts,
+      authorId: typeof r.authorId === 'string' ? r.authorId : '',
+    };
+    if (r.tombstone === true) entry.tombstone = true;
+    out.mutedNlpRules.push(entry);
+  }
+
+  return out;
+}
