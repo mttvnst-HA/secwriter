@@ -366,3 +366,59 @@ export function getIgnoredCount(state) {
   for (const e of state.ignored.mutedRules.values()) if (e && e.tombstone !== true) n++;
   return n;
 }
+
+/**
+ * Insert/overwrite a finding-ignore entry. `ignoreKey` is the SHA-prefix
+ * pre-computed by `useBlockLinting.js`. Tombstoned entries are revived as
+ * non-tombstone (a fresh ignoreFinding after an unignore is identity-restore).
+ */
+export function ignoreFinding(state, { ignoreKey, ruleId, blockHash, match, identity, ts }) {
+  if (typeof ignoreKey !== 'string' || typeof ruleId !== 'string') return state;
+  if (typeof blockHash !== 'string' || typeof match !== 'string') return state;
+  const entry = {
+    ruleId,
+    blockHash,
+    match,
+    ts: typeof ts === 'number' ? ts : Date.now(),
+    authorId: identity?.id || '',
+  };
+  const findings = new Map(state.ignored.findings);
+  findings.set(ignoreKey, entry);
+  return { ...state, ignored: { ...state.ignored, findings } };
+}
+
+/**
+ * Tombstone an existing finding-ignore entry. Preserves ruleId / blockHash /
+ * match from the original so peers can still inspect the lineage; only sets
+ * `tombstone: true` and bumps `ts`.
+ */
+export function unignoreFinding(state, { ignoreKey, ts }) {
+  if (typeof ignoreKey !== 'string') return state;
+  const prev = state.ignored.findings.get(ignoreKey);
+  if (!prev) return state;
+  const findings = new Map(state.ignored.findings);
+  findings.set(ignoreKey, { ...prev, tombstone: true, ts: typeof ts === 'number' ? ts : Date.now() });
+  return { ...state, ignored: { ...state.ignored, findings } };
+}
+
+/**
+ * Per-key remote update — LWW-by-timestamp, ties broken by authorId
+ * lexicographic order for deterministic convergence.
+ */
+export function applyRemoteIgnored(state, args) {
+  if (!args || typeof args !== 'object') return state;
+  const { key, entry } = args;
+  if (typeof key !== 'string' || !entry || typeof entry !== 'object') return state;
+  if (typeof entry.ts !== 'number') return state;
+  const prev = state.ignored.findings.get(key);
+  if (prev) {
+    if (prev.ts > entry.ts) return state;
+    if (prev.ts === entry.ts) {
+      // Ties: lexicographic by authorId (smaller wins for determinism)
+      if ((prev.authorId || '') <= (entry.authorId || '')) return state;
+    }
+  }
+  const findings = new Map(state.ignored.findings);
+  findings.set(key, { ...entry });
+  return { ...state, ignored: { ...state.ignored, findings } };
+}

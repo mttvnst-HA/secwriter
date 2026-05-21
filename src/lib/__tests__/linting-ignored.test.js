@@ -59,3 +59,91 @@ describe('linting / computeIgnoreKey', () => {
     expect(k1).not.toBe(k2);
   });
 });
+
+describe('linting / ignoreFinding', () => {
+  const identity = { id: 'u-1', name: 'Alice', color: '#abc' };
+
+  it('adds an IgnoreEntry keyed by ignoreKey', () => {
+    const s0 = L.createInitial();
+    const s1 = L.ignoreFinding(s0, {
+      ignoreKey: 'k1', ruleId: 'TERM-shall', blockHash: 'bh', match: 'shall',
+      identity, ts: 1000,
+    });
+    expect(s1.ignored.findings.get('k1')).toMatchObject({
+      ruleId: 'TERM-shall', blockHash: 'bh', match: 'shall',
+      ts: 1000, authorId: 'u-1',
+    });
+    expect(s1.ignored.findings.get('k1').tombstone).toBeFalsy();
+  });
+
+  it('overwrites existing entry on duplicate key with newer ts', () => {
+    const s0 = L.createInitial();
+    const s1 = L.ignoreFinding(s0, { ignoreKey: 'k1', ruleId: 'R', blockHash: 'bh', match: 'm', identity, ts: 1000 });
+    const s2 = L.ignoreFinding(s1, { ignoreKey: 'k1', ruleId: 'R', blockHash: 'bh', match: 'm', identity, ts: 2000 });
+    expect(s2.ignored.findings.get('k1').ts).toBe(2000);
+  });
+
+  it('returns same state ref on missing required fields', () => {
+    const s0 = L.createInitial();
+    expect(L.ignoreFinding(s0, { ignoreKey: 'k1', ruleId: 'R' /* no blockHash/match */, identity, ts: 1 })).toBe(s0);
+  });
+});
+
+describe('linting / unignoreFinding', () => {
+  it('writes tombstone preserving original ruleId / blockHash / match', () => {
+    let s = L.createInitial();
+    s = L.ignoreFinding(s, { ignoreKey: 'k1', ruleId: 'R', blockHash: 'bh', match: 'm', identity: { id: 'u' }, ts: 1 });
+    s = L.unignoreFinding(s, { ignoreKey: 'k1', ts: 2 });
+    expect(s.ignored.findings.get('k1').tombstone).toBe(true);
+    expect(s.ignored.findings.get('k1').ts).toBe(2);
+    expect(s.ignored.findings.get('k1').ruleId).toBe('R');
+  });
+
+  it('returns same state ref when key absent', () => {
+    const s0 = L.createInitial();
+    expect(L.unignoreFinding(s0, { ignoreKey: 'absent', ts: 1 })).toBe(s0);
+  });
+
+  it('isFindingIgnored returns false after tombstone', () => {
+    let s = L.createInitial();
+    s = L.ignoreFinding(s, { ignoreKey: 'k1', ruleId: 'R', blockHash: 'bh', match: 'm', identity: { id: 'u' }, ts: 1 });
+    s = L.unignoreFinding(s, { ignoreKey: 'k1', ts: 2 });
+    expect(L.isFindingIgnored(s, 'k1')).toBe(false);
+  });
+});
+
+describe('linting / applyRemoteIgnored', () => {
+  it('overwrites local when remote ts is newer (LWW)', () => {
+    let s = L.createInitial();
+    s = L.ignoreFinding(s, { ignoreKey: 'k1', ruleId: 'R', blockHash: 'bh', match: 'm', identity: { id: 'a' }, ts: 1 });
+    s = L.applyRemoteIgnored(s, { key: 'k1', entry: { ruleId: 'R', blockHash: 'bh', match: 'm', authorId: 'b', ts: 2 } });
+    expect(s.ignored.findings.get('k1').authorId).toBe('b');
+  });
+
+  it('preserves local when local ts is newer', () => {
+    let s = L.createInitial();
+    s = L.ignoreFinding(s, { ignoreKey: 'k1', ruleId: 'R', blockHash: 'bh', match: 'm', identity: { id: 'a' }, ts: 10 });
+    s = L.applyRemoteIgnored(s, { key: 'k1', entry: { ruleId: 'R', blockHash: 'bh', match: 'm', authorId: 'b', ts: 5 } });
+    expect(s.ignored.findings.get('k1').authorId).toBe('a');
+  });
+
+  it('breaks ts ties by authorId lexicographic order (deterministic)', () => {
+    let s = L.createInitial();
+    s = L.ignoreFinding(s, { ignoreKey: 'k1', ruleId: 'R', blockHash: 'bh', match: 'm', identity: { id: 'b' }, ts: 10 });
+    s = L.applyRemoteIgnored(s, { key: 'k1', entry: { ruleId: 'R', blockHash: 'bh', match: 'm', authorId: 'a', ts: 10 } });
+    // 'a' < 'b' so remote wins
+    expect(s.ignored.findings.get('k1').authorId).toBe('a');
+  });
+
+  it('inserts entry when key absent locally', () => {
+    let s = L.createInitial();
+    s = L.applyRemoteIgnored(s, { key: 'k1', entry: { ruleId: 'R', blockHash: 'bh', match: 'm', authorId: 'b', ts: 1 } });
+    expect(s.ignored.findings.has('k1')).toBe(true);
+  });
+
+  it('returns same state ref on invalid input', () => {
+    const s0 = L.createInitial();
+    expect(L.applyRemoteIgnored(s0, null)).toBe(s0);
+    expect(L.applyRemoteIgnored(s0, { key: null, entry: {} })).toBe(s0);
+  });
+});
