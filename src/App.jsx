@@ -1090,6 +1090,16 @@ export default function SpecEditor() {
         // construct an ignoreKey envelope without round-tripping through the DOM.
         return lintingStateRef.current.byBlock.get(blockId)?.blockHash || null;
       },
+      getMutedRuleIds: () => {
+        // Returns active (non-tombstoned) muted NLP rule IDs. Used by Task 24
+        // E2E test to verify mute-nlp + reset state without relying on CSS
+        // Custom Highlights (which require actual linted content to be non-empty).
+        const out = [];
+        lintingStateRef.current.ignored.mutedRules.forEach((entry, ruleId) => {
+          if (entry.tombstone !== true) out.push(ruleId);
+        });
+        return out;
+      },
       isFindingIgnored: (ruleId, blockHash, match) => {
         // Async — returns a Promise from test land.
         return linting.computeIgnoreKey(ruleId, blockHash, match)
