@@ -483,6 +483,100 @@ export function deleteCommentFromDoc(ydoc, yComments, id) {
 }
 
 /**
+ * Snapshot `yLint` as a v1 lint-sidecar payload `{ v, good, bad }`. Each
+ * entry in `yLint` is stored as `{ kind: 'good' }` (clean block) or
+ * `{ kind: 'bad', g, n, c }` (per-tier finding arrays). Keys are block-html
+ * fingerprints (24-char SHA-256 prefix from `lint-sidecar.fingerprintBlock`).
+ *
+ * The decoded payload feeds straight into `lint-sidecar.decodeSidecar` +
+ * `projectDecoded`, so the in-room load path mirrors file-mode drag-drop.
+ */
+export function readLint(yLint) {
+  const goodParts = [];
+  const bad = {};
+  if (!yLint || typeof yLint.forEach !== 'function') {
+    return { v: 1, good: '', bad };
+  }
+  yLint.forEach((val, fp) => {
+    if (!val || typeof val !== 'object') return;
+    if (val.kind === 'good') {
+      goodParts.push(fp);
+    } else if (val.kind === 'bad') {
+      bad[fp] = {
+        g: Array.isArray(val.g) ? val.g : [],
+        n: Array.isArray(val.n) ? val.n : [],
+        c: Array.isArray(val.c) ? val.c : [],
+      };
+    }
+  });
+  return { v: 1, good: goodParts.join(''), bad };
+}
+
+/**
+ * Publish a v1 lint-sidecar payload to `yLint`, writing only the diff against
+ * the current Y.Map state. The diff is per-fingerprint:
+ *   - new / changed-kind entries → set
+ *   - missing entries (present in yLint, absent in payload) → delete
+ *
+ * Diffing keeps two peers linting different blocks from clobbering each
+ * other (Y.Map is LWW per key — a per-key set is cheap; an unconditional
+ * clear-and-replace would race). The 'local-lint' origin is not in either
+ * UndoManager's trackedOrigins, so peer-driven cache updates stay off the
+ * undo stack.
+ */
+export function publishLintToDoc(ydoc, yLint, payload) {
+  if (!payload || typeof payload !== 'object') return;
+  if (payload.v !== 1) return;
+  const goodStr = typeof payload.good === 'string' ? payload.good : '';
+  const bad = payload.bad && typeof payload.bad === 'object' ? payload.bad : {};
+  const FP_LEN = 24;
+
+  // Walk the v1 payload into a flat target map keyed by fingerprint.
+  const target = new Map();
+  if (goodStr.length % FP_LEN === 0) {
+    for (let i = 0; i < goodStr.length; i += FP_LEN) {
+      target.set(goodStr.slice(i, i + FP_LEN), { kind: 'good' });
+    }
+  }
+  for (const [fp, entry] of Object.entries(bad)) {
+    if (typeof fp !== 'string' || fp.length !== FP_LEN) continue;
+    if (!entry || typeof entry !== 'object') continue;
+    target.set(fp, {
+      kind: 'bad',
+      g: Array.isArray(entry.g) ? entry.g : [],
+      n: Array.isArray(entry.n) ? entry.n : [],
+      c: Array.isArray(entry.c) ? entry.c : [],
+    });
+  }
+
+  // Phase 1 deletion semantics: never delete. Each peer encodes from its own
+  // `byBlock` (keyed by blockId for blocks it has locally), so a fingerprint
+  // absent from one peer's payload may still be valid for another peer's
+  // block. Set-only avoids racing the union away. Phase 3 (future ticket)
+  // can add a deletion protocol (e.g., tombstone with author + ts) once
+  // multi-peer GC semantics are needed.
+  ydoc.transact(() => {
+    for (const [fp, next] of target) {
+      const cur = yLint.get(fp);
+      if (!lintEntryEqual(cur, next)) yLint.set(fp, next);
+    }
+  }, 'local-lint');
+}
+
+function lintEntryEqual(a, b) {
+  if (a === b) return true;
+  if (!a || !b) return false;
+  if (a.kind !== b.kind) return false;
+  if (a.kind === 'good') return true;
+  // 'bad': compare per-tier arrays by length + JSON.
+  return (
+    JSON.stringify(a.g) === JSON.stringify(b.g) &&
+    JSON.stringify(a.n) === JSON.stringify(b.n) &&
+    JSON.stringify(a.c) === JSON.stringify(b.c)
+  );
+}
+
+/**
  * Snapshot the current document state as a plain block array by walking
  * the ordering in `yOrder` and resolving each ID against `yStore`.
  */
@@ -709,6 +803,7 @@ export function createCollabSession({
   onRemoteMeta,
   onRemoteTc,
   onRemoteComments,
+  onRemoteLint,
   onPresenceChange,
   onStatusChange,
 }) {
@@ -718,6 +813,9 @@ export function createCollabSession({
   const yMeta = ydoc.getMap('meta');
   const yTc = ydoc.getMap('tc');
   const yComments = ydoc.getMap('comments');
+  // Issue #150: block-fingerprint-keyed lint cache. Empty Y.Map — populated
+  // on first local lint publish. Not in UndoManager (cache, not user edits).
+  const yLint = ydoc.getMap('lint');
 
   // y-websocket builds the URL as `${wsUrl}/${roomName}`.
   // Append token as query param by encoding it into the room name.
@@ -782,11 +880,13 @@ export function createCollabSession({
       //
       // yComments is an empty Y.Map — no seeding needed; populated on
       // first comment create.
+      // yLint (#150) is also empty until the first lint publish.
       // Emit the current (possibly remote) state once to initialize React.
       onRemoteBlocks?.(yBlocksToArray(yOrder, yStore), { initial: true });
       onRemoteMeta?.(readYMeta(yMeta), { initial: true });
       onRemoteTc?.(readTc(yTc), { initial: true });
       onRemoteComments?.(readComments(yComments), { initial: true });
+      onRemoteLint?.(readLint(yLint), { initial: true });
     }
     // Single source of truth for connection status (see onStatusChange
     // duplication fix — we only fire from the sync handler).
@@ -866,6 +966,7 @@ export function createCollabSession({
     const metaChanged = cpt.has(yMeta) || ch.has(yMeta);
     const tcChanged = cpt.has(yTc) || ch.has(yTc);
     const commentsChanged = cpt.has(yComments) || ch.has(yComments);
+    const lintChanged = cpt.has(yLint) || ch.has(yLint);
 
     if (blocksChanged) {
       onRemoteBlocks?.(yBlocksToArray(yOrder, yStore), { initial: false });
@@ -878,6 +979,9 @@ export function createCollabSession({
     }
     if (commentsChanged) {
       onRemoteComments?.(readComments(yComments), { initial: false });
+    }
+    if (lintChanged) {
+      onRemoteLint?.(readLint(yLint), { initial: false });
     }
   };
   ydoc.on('afterTransaction', handleAfterTx);
@@ -946,6 +1050,7 @@ export function createCollabSession({
     yMeta,
     yTc,
     yComments,
+    yLint,
     awareness,
     provider,
     undoManager,
@@ -982,6 +1087,13 @@ export function createCollabSession({
       // disabling, callers pass an empty snapshots object so the baseline
       // is cleared in the same transaction as the flag flip.
       publishTcToDoc(ydoc, yTc, tc);
+    },
+    publishLint(payload) {
+      // Issue #150: publish a v1 lint-sidecar payload to yLint. Diffs
+      // against current state so two peers linting different blocks don't
+      // clobber each other. Origin 'local-lint' is filtered by handleAfterTx
+      // (startsWith 'local-') so the writer doesn't re-emit to itself.
+      publishLintToDoc(ydoc, yLint, payload);
     },
     dispatchComment(envelope) {
       // Single entry point for the comments module's PublishEnvelope union.

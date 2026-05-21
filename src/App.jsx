@@ -1376,6 +1376,7 @@ export default function SpecEditor() {
     sectionMeta,
     fileName: getDisplayName(currentFile),
     tcState,
+    lintingState,
     getPublishableTc: tc.getPublishableState,
 
     getInitialBlocks: useCallback(() => blocksRef.current, []),
@@ -1458,6 +1459,18 @@ export default function SpecEditor() {
     onCommentsReceived: useCallback((commentsObj) => {
       const normalized = cm.normalizeForLoad(commentsObj || {});
       setCommentsState(prev => cm.mergeRemote(prev, normalized));
+    }, []),
+
+    // Issue #150: remote lint cache update. Decode the v1 payload, project
+    // it against the current blocks (fingerprint → blockId), and prefill
+    // into the linting reducer so squiggles appear without engines running.
+    onLintReceived: useCallback(async (payload) => {
+      if (!payload || typeof payload !== 'object') return;
+      const decoded = decodeSidecar(payload);
+      if (decoded.fingerprints.size === 0) return;
+      const projection = await projectDecoded(decoded, blocksRef.current || []);
+      if (projection.size === 0) return;
+      setLintingState(s => linting.prefillFromSidecar(s, projection));
     }, []),
 
     onPresenceChange: useCallback((states) => setPeers(states), []),
