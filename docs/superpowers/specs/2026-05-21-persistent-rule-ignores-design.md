@@ -1,7 +1,7 @@
 # Persistent rule ignores — design spec
 
 **Issue:** [#140](https://github.com/mttvnst-HA/secwriter/issues/140) — `linting: persistent rule ignores (UI + reducer + sidecar)`
-**Status:** Approved through 5 sections of brainstorming + 4 rounds of independent agent critique
+**Status:** Approved through 5 sections of brainstorming + 5 rounds of independent agent critique (final whole-doc pass: 13 findings applied)
 **Date:** 2026-05-21
 **Related:**
 - [#138](https://github.com/mttvnst-HA/secwriter/issues/138) — `.lint.json` sidecar (shipped, prerequisite)
@@ -56,11 +56,22 @@ Two new top-level Y.Maps, siblings to the existing `yLint`, `yComments`, etc.:
 
 **Why two new maps, not array slots on `yLint`:** Y.Map values of type Array are LWW per-key — concurrent writes by two peers lose one peer's data at the substrate level (not just a race window; steady state). Per-key Y.Map writes are CRDT-safe. Mirrors the `yComments` precedent.
 
-**Echo origin:** all client writes use `'local-lint-ignored'`. Caught by `handleAfterTx`'s `'local-'` prefix filter at `src/lib/collab.js:944`; never re-enters `mergeRemoteIgnored`.
+**Echo origin:** all client writes use `'local-lint-ignored'`. Caught by `handleAfterTx`'s `'local-'` prefix filter at `src/lib/collab.js:944`; never re-enters `applyRemoteIgnored`.
+
+**Not in UndoManager `trackedOrigins`.** `collab.js:1040` lists `['local-publish', ySyncPluginKey]`; `'local-lint'` is deliberately absent so lint cache writes stay off the undo stack (lines 524-525). `'local-lint-ignored'` follows the same precedent — Ctrl+Z does NOT un-dismiss. Dismissal is meta on the linter view, not document content; users undo it via Reset in ⚙ Settings. Pinned by `collab-lint-ignored.test.js` regression assertion (writes with this origin do not appear on `undoManager.undoStack`).
 
 ### 3.3 Sidecar payload
 
-`.lint.json` bumps v1 → v2. v2 is fully backward-compatible: decoder accepts v1 (treats new fields as empty), forward-compat (v3+ payloads preserve v1+v2 fields they understand, follow the existing pattern at `src/lib/__tests__/lint-sidecar.test.js:170-189`).
+`.lint.json` bumps v1 → v2. v2 is fully backward-compatible.
+
+**Existing decoder behavior change required.** `lint-sidecar.js:199` currently does `if (payload.v !== PAYLOAD_VERSION) return { empty }` and `lint-sidecar.test.js:173` pins that contract (`v: 999` → empty). This must be loosened:
+
+- `payload.v < 1` (missing / negative / non-number) → return empty.
+- `payload.v >= 1` → decode known fields (`good`, `bad`, `ignoredFindings`, `mutedNlpRules`); silently drop unknown top-level keys.
+
+The existing v1 test that asserts `v: 999` → empty must be rewritten to assert `v: 999` decodes known fields as v2 does (forward-compat). Without this loosening, the same v2 client/server fleet cannot read a future v3 payload — rollback would corrupt rooms whose sidecar advanced.
+
+**Rollout order:** v2 decoder ships to frontend AND server-side `room-serializer.cjs` in the same release before the v2 encoder activates. v1 encoder shape stays the default when both new fields are empty (preserves existing tests' byte-stable round-trip).
 
 ```json
 {
@@ -108,26 +119,35 @@ All non-test work lands in:
 | `ignoreFinding(state, { ruleId, blockHash, match, identity, ts })` | Computes `computeIgnoreKey`. Adds `IgnoreEntry` to `ignored.findings`. No-op on duplicate. |
 | `unignoreFinding(state, { ruleId, blockHash, match, ts })` | Writes `{...existing, tombstone: true, ts}`. No-op if key absent. |
 | `applyRemoteIgnored(state, { key, entry })` | Per-key remote add or tombstone — overwrites local entry if remote `ts` is newer (LWW-by-timestamp; ties broken by `authorId` lexicographic order for determinism). |
-| `resetIgnored(state, { ts })` | Tombstones all entries (preserves keys for collab convergence). |
+| `mergeRemoteIgnored(state, remoteMap)` | Bulk variant for the `initial: true` `handleSync` payload. Walks `remoteMap` ∪ `state.ignored.findings`: remote-present → LWW per-key via `applyRemoteIgnored`; local-only with no `seenRemoteIds` mark → preserved (offline-dismissed entry, not yet published); local-only previously seen-remote → tombstone (peer deletion via never-delete discipline would still send a tombstone, so absence on initial sync implies local-only). Mirrors `comments.mergeRemote` pattern (`src/lib/comments.js:157`). Identical bulk merge `mergeRemoteMutedRules` for the `lintMutedNlp` map. |
+| `resetIgnored(state, { ts })` | Tombstones all entries (preserves keys for collab convergence). Best-effort tombstone-all: if a peer publishes a new ignore concurrently with the reset transaction, that ignore lands AFTER the reset and is NOT retroactively cleared. Documented behavior. |
 | `muteNlpRule(state, { ruleId, identity, ts })` | Adds `MuteEntry` if `ruleId.startsWith('NLP-')`. Silent no-op otherwise. |
 | `unmuteNlpRule(state, { ruleId, ts })` | Writes tombstone. No-op on missing. |
 | `applyRemoteMutedRule(state, { ruleId, entry })` | Per-rule remote update; LWW-by-timestamp with `authorId` tiebreak. |
-| `prefillIgnored(state, { findings, mutedRules })` | Replace local state with sidecar payload. Authoritative at load. |
+| `prefillIgnored(state, { findings, mutedRules })` | **Merge** (NOT replace) sidecar payload into state. For each sidecar entry, LWW-by-timestamp against the existing in-memory entry (`applyRemoteIgnored` semantics per-key). Local-only entries with no sidecar match are preserved — covers the offline-dismiss + collab-join sequence (mirrors `comments.mergeRemote` rather than overwriting). Sidecar is authoritative for entries it contains; not for entries absent. |
 
 ### 4.2 New selectors
 
 | Selector | Purpose |
 |---|---|
-| `computeIgnoreKey(ruleId, blockHash, match)` | Exported helper. Async-free at call site (Web Crypto's SHA-256 is async, so this is *pre-cached* — see §6.2). |
-| `isFindingIgnored(state, ignoreKey)` | `state.ignored.findings.get(key)?.tombstone !== true` and entry exists. |
+| `computeIgnoreKey(ruleId, blockHash, match)` | Async exported helper (Web Crypto SHA-256). Not called from projection layer — `ignoreKey` is pre-computed by the engine pipeline and cached on each finding as `f.ignoreKey` (see §6.2). |
+| `isFindingIgnored(state, ignoreKey)` | Sync; `state.ignored.findings.get(key)?.tombstone !== true` and entry exists. |
 | `isNlpRuleMuted(state, ruleId)` | `state.ignored.mutedRules.get(ruleId)?.tombstone !== true` and entry exists. |
 | `getIgnoredCount(state)` | Counts non-tombstoned findings + non-tombstoned muted rules. |
 
+**`getRangesByTier(state)` signature.** Unchanged shape (`{ compliance: Range[], grammar: Range[], nlp: Range[] }`), but the implementation now iterates `state.byBlock.entries()` to access per-block `blockHash` and per-finding `violation.ruleId` + `f.ignoreKey`. Pipeline described in §4.3.
+
 ### 4.3 Filter sites
 
-- `getRangesByTier(state)` filters via `isFindingIgnored` + `isNlpRuleMuted` before pushing each Range.
-- `compliance.js getFilteredGroups` — same filter; wrapped in `useMemo` at the `CompliancePanel` call site, keyed on `(complianceState, lintingState.ignored)`.
-- **No engine-layer short-circuit.** All three engines always run and cache their findings in `byBlock`. Filtering is uniform across tiers, exclusively at projection time. This ensures peer-published sidecar payloads reflect the full set of cached findings regardless of dismissal state, and un-mute does not produce stale `byBlock` entries.
+- `getRangesByTier(state)` becomes the single projection authority — it must iterate `(blockId, finding)` pairs (not just Range objects). Returns `{ compliance: Range[], grammar: Range[], nlp: Range[] }`. Pipeline per call:
+  1. **Read cached findings + per-block `blockHash`** from `state.byBlock`.
+  2. **Skip findings whose `f.ignoreKey === null`** (block-hash cache not yet populated — see §6.2). Engine emits a finding before its hash is computed; filtering is a no-op until the next debounce cycle.
+  3. **Apply ignore + mute filters** via `isFindingIgnored(state, f.ignoreKey)` and `isNlpRuleMuted(state, ruleId)`.
+  4. **Run `dedupNlpAgainstCompliance` and `dedupGrammarAgainstFindings` on the post-filter result** — cross-tier dedup moves from the engine layer (`useBlockLinting.js`) into the projection layer. Required for §6.6's "dismiss-static-surfaces-NLP" behavior: if dedup ran upstream in `byBlock`, the suppressed NLP finding would never reach the projection.
+  5. **Push surviving Ranges into per-tier arrays.**
+- `useBlockLinting.js` stops calling `dedupNlpAgainstCompliance` / `dedupGrammarAgainstFindings` before writing `byBlock`. The hook stores all engine output verbatim (plus `blockHash` + per-finding `ignoreKey`); projection alone enforces dedup + dismiss + mute.
+- `compliance.js getFilteredGroups` — same ignore-filter; wrapped in `useMemo` at the `CompliancePanel` call site, keyed on `(complianceState, lintingState.ignored)`.
+- **No engine-layer short-circuit.** All three engines always run and cache their findings in `byBlock`. Filtering AND dedup are uniform across tiers, exclusively at projection time. This ensures peer-published sidecar payloads reflect the full set of cached findings regardless of dismissal state, dedup decisions reflect the post-dismiss view, and un-mute does not produce stale `byBlock` entries.
 
 ### 4.4 New App test seam
 
@@ -184,12 +204,23 @@ User clicks "Dismiss all" on group
 
 ### 5.3 Peer receives dismiss
 
+**Steady-state path (per-key observer):**
 ```
 ydoc.getMap('lintIgnored') observer fires per affected key
   → For each added/updated key: onLintIgnoredReceived(key, entry) callback to App
   → App calls setLintingState(s => linting.applyRemoteIgnored(s, { key, entry }))
   → projection re-runs
   → peer B's squiggle drops
+```
+
+**Initial-sync path (handleSync `initial: true`, fresh client joins existing room):**
+```
+useCollabSession sees meta.initial === true
+  → reads full ydoc.getMap('lintIgnored') and ydoc.getMap('lintMutedNlp')
+  → onLintIgnoredInitial({ ignoredMap, mutedMap }) callback to App
+  → App calls setLintingState(s => linting.mergeRemoteIgnored(s, ignoredMap))
+                          .then(s => linting.mergeRemoteMutedRules(s, mutedMap))
+  → bulk merge preserves local offline-dismissed entries that haven't yet been published; LWW per-key for overlaps
 ```
 
 ### 5.4 Mute NLP rule (InlineTooltip on NLP finding)
@@ -199,19 +230,28 @@ User clicks "Mute NLP-passive"
   → window.confirm("Mute NLP-passive in this document?")  ← matches AI cost precedent
   → on accept: onMuteNlpRule(ruleId)
   → App calls setLintingState(s => linting.muteNlpRule(s, { ruleId, identity: effectiveIdentity(), ts: Date.now() }))
-  → all NLP-passive findings disappear from CSS.highlights immediately
+  → state.ignored.mutedRules updates → React re-render
+  → getRangesByTier re-runs (selector input changed); all NLP findings with this ruleId filtered out
+  → App's CSS.highlights effect (keyed on lintingState) replaces the nlp highlight set
+  → all NLP-passive findings disappear from CSS.highlights immediately (engines themselves remain running — projection-only filter)
   → publish to ydoc.getMap('lintMutedNlp')
   → server flush writes sidecar v2
 ```
+
+**Unmute path is symmetric** — the next debounce cycle's engine output already contains the suppressed findings (engines never stopped), so the very next `getRangesByTier` run (triggered by `state.ignored.mutedRules` tombstone write) re-includes them. No engine restart needed. Pinned by the E2E mute → unmute → flag-reappears assertion (§8.4 case 2).
 
 ### 5.5 Load-time prefill (.SEC import)
 
 ```
 parseSEC → drag-drop reads sibling .lint.json
-  → decodeSidecar(payload) v2-aware
+  → decodeSidecar(payload) v2-aware (loosened version-gate, §3.3)
   → projectDecoded fills byBlock (unchanged from #138)
   → App calls setLintingState(s => linting.prefillFromSidecar(s, projection))  (unchanged)
   → App calls setLintingState(s => linting.prefillIgnored(s, { findings, mutedRules }))
+       ↑ MERGE semantics (LWW-by-timestamp per-key, NOT replace). Local entries absent from
+         the sidecar are preserved — covers the file-mode dismiss-then-reload case where
+         the in-memory state may have entries the sidecar lacks (e.g., entries from a
+         later in-memory dismiss that hasn't yet been flushed).
   → render: getRangesByTier already filters via ignored state
 ```
 
@@ -232,17 +272,32 @@ User opens ⚙ Settings → Ignored findings section
 
 `decodeSidecar` (`src/lib/lint-sidecar.js:195`) treats malformed v2 entries as silent drops, mirrors `comments.normalizeForLoad` (`src/lib/comments.js:318`). Returns empty arrays rather than throwing. v3+ payloads preserve known fields, drop unknowns.
 
-### 6.2 Sync `blockHash` cache
+### 6.2 Sync `blockHash` cache + per-finding `ignoreKey` cache
 
-Add field to `BlockFindings`:
+Two new fields are populated by `useBlockLinting.js`, both async at compute time, both sync at projection-read time:
 
 ```js
+// BlockFindings (new field)
 { compliance, nlp, grammar, grammarText, blockHash: string | null }
+
+// Finding (new field on each f)
+{ range, violation, ignoreKey: string | null }
 ```
 
-Populated on each engine run. The existing `useBlockLinting.js` debounced cycle gains one new step: after the engines emit findings, the hook runs `await fingerprintBlock(blockHtml)` and stores the result alongside `grammarText`. **This is new wiring** — `useBlockLinting.js` does not compute block fingerprints today; the existing fingerprint code lives in `lint-sidecar.js`'s encode path. `getRangesByTier` reads `bf.blockHash` synchronously and composes `computeIgnoreKey` in-process via a sync SHA-256 path that takes the pre-computed `blockHash` as a parameter (no second async hash).
+**Wiring (new in `useBlockLinting.js`):** After the three engines emit findings on each debounce cycle, the hook performs:
 
-Cache invalidates when the block html mutates — the next engine run overwrites both `byBlock` findings and `blockHash`. Stale cache is a 250ms-debounce window; acceptable.
+1. `const blockHash = await fingerprintBlock(blockHtml)` — single SHA-256 per block per debounce cycle.
+2. For each finding, `f.ignoreKey = await computeIgnoreKey(violation.ruleId, blockHash, violation.match)` — one SHA-256 per finding. Computed in parallel via `Promise.all` mirroring `lint-sidecar.js`'s encode-time pattern (`:157-165`).
+3. Write `byBlock[blockId] = { compliance, nlp, grammar, grammarText, blockHash, ...with each finding carrying its ignoreKey }`.
+
+**`useBlockLinting.js` does not compute block fingerprints today;** the existing fingerprint code lives in `lint-sidecar.js`'s encode path. This is new wiring.
+
+**Projection reads are sync.** `getRangesByTier` reads `bf.blockHash` and `f.ignoreKey` directly. It does NOT call `computeIgnoreKey` (Web Crypto is async). Two implications:
+
+- **Null-`ignoreKey` skip.** During the async-hash compute window (typically <5ms after engines emit), findings exist in `byBlock` with `ignoreKey: null` (placeholder). Projection treats `f.ignoreKey === null` as "do not filter" — the finding renders unfiltered for one debounce cycle, then the next cycle's complete output overwrites it. Net effect: a dismissed finding may briefly re-flash for ~5ms after a block edit, before the new hash is computed. Acceptable; pinned by `blockhash-cache.test.js`.
+- **No projection-layer SHA recompute.** `getRangesByTier` is guaranteed not to issue any `await` — `linting-ignored.test.js` includes a structural assertion (return value is not a Promise).
+
+Cache invalidates when the block html mutates — the next engine run overwrites both `byBlock` findings and all `ignoreKey` values. Stale cache is a 250ms-debounce-plus-hash-compute window; acceptable.
 
 ### 6.3 Collab race scenarios
 
@@ -273,7 +328,7 @@ PM serialization is deterministic for byte-identical doc states. Ctrl+Z producin
 
 ### 6.6 Cross-engine dedup interaction
 
-When user dismisses a static finding that was suppressing an NLP overlap, the NLP finding **resurfaces**. Dismissal does not change dedup logic; static is filtered, NLP re-emerges via `dedupNlpAgainstCompliance` (no static finding to overlap with). User can dismiss/mute the new NLP finding independently. No lineage tracking. Simpler model.
+When user dismisses a static finding that was suppressing an NLP overlap, the NLP finding **resurfaces**. Mechanism: cross-tier dedup runs in `getRangesByTier` AFTER ignore-filter (§4.3 pipeline steps 3 then 4). Sequence: (a) static finding filtered out by `isFindingIgnored`; (b) `dedupNlpAgainstCompliance` runs against the remaining (now empty-of-this-static) compliance set; (c) NLP finding has no overlap to lose to and survives. User can dismiss/mute the new NLP finding independently. No lineage tracking. Pinned by unit test in `linting-ignored.test.js` (§8.2).
 
 ### 6.7 Identity rotation (deferred)
 
@@ -344,26 +399,39 @@ Cleanup in `tests/e2e/global-setup.js` so it doesn't persist across runs.
 
 `linting.test.js` (46) and `lint-sidecar.test.js` (25) are already at/near cap. New tests land in new files:
 
-- `src/lib/__tests__/linting-ignored.test.js` (new, ≤15 tests)
-- `src/lib/__tests__/lint-sidecar-ignored.test.js` (new, ≤10)
-- `src/lib/__tests__/collab-lint-ignored.test.js` (new)
-- `src/lib/__tests__/blockhash-cache.test.js` (new)
+- `src/lib/__tests__/linting-ignored.test.js` (new, ≤20 tests)
+- `src/lib/__tests__/lint-sidecar-ignored-encode.test.js` (new, ≤15)
+- `src/lib/__tests__/lint-sidecar-ignored-decode.test.js` (new, ≤15 — includes adversarial / forward-compat / v1-still-decodes)
+- `src/lib/__tests__/collab-lint-ignored.test.js` (new, ≤15)
+- `src/lib/__tests__/blockhash-cache.test.js` (new, ≤10)
 
 ### 8.2 Unit tests
 
 **`linting-ignored.test.js`:**
-- Verbs: add, tombstone, reset, mute, prefill, projection-filter integration.
+- Verbs: add, tombstone, reset, mute, prefill, mergeRemoteIgnored, projection-filter integration.
 - `muteNlpRule` no-ops on non-`NLP-*`.
-- Property tests via hand-rolled `makeRng(seed)` pattern (`linting.test.js:381-390`). 200 randomized verb sequences. Invariants: replaying any event sequence yields same state (commutativity); no duplicate keys; tombstones never resurrect without explicit `ignoreFinding`.
-- Cross-engine dedup pin: dismiss static → NLP resurfaces (pins decision §6.6).
+- `prefillIgnored` merge (NOT replace) semantics: local-only entries preserved when sidecar payload lacks them; sidecar wins per-key when timestamps agree on LWW.
+- `mergeRemoteIgnored` bulk-merge: local offline-dismissed entries survive `initial: true` payload from a room that doesn't know about them.
+- `getRangesByTier` structural assertion: return value is NOT a Promise (covers Fix 8 sync-projection invariant).
+- `getRangesByTier` null-`ignoreKey` skip: findings with `f.ignoreKey === null` are NOT filtered (async cache not yet populated). Pinned per §6.2.
+- Property tests via hand-rolled `makeRng(seed)` pattern (`linting.test.js:381-390`). 200 randomized verb sequences. Invariants: replaying any event sequence yields same state (commutativity); no duplicate keys; tombstones never resurrect without explicit `ignoreFinding`; `mergeRemoteIgnored` is idempotent under repeated application of the same remoteMap.
+- Cross-engine dedup pin: dismiss static finding overlapping NLP → after the next projection, NLP appears in the output (pins decision §6.6; tests the post-filter dedup ordering in `getRangesByTier`).
 
-**`lint-sidecar-ignored.test.js`:**
+**`lint-sidecar-ignored-encode.test.js`:**
 - `computeIgnoreKey` deterministic.
 - Pre-hash JSON string differs for pipe-edge inputs (tests JSON encoding, not SHA-256).
-- `encodeSidecar` v1-shape when ignores empty; v2-shape when non-empty; arrays sorted.
-- `decodeSidecar(v1)` returns empty new fields.
-- `decodeSidecar(v2 with malformed)` filters silently.
-- `decodeSidecar(v3+)` preserves v1+v2 fields it understands.
+- `encodeSidecar` v1-shape when ignores empty (byte-stable round-trip preserved).
+- `encodeSidecar` v2-shape when ignoredFindings or mutedNlpRules non-empty.
+- Arrays sorted for deterministic encoding (byte-stable across runs).
+- Tombstones preserved through encode → decode → encode.
+
+**`lint-sidecar-ignored-decode.test.js`:**
+- `decodeSidecar(v1)` returns empty `ignoredFindings` + `mutedNlpRules`.
+- `decodeSidecar(v2)` round-trips known fields.
+- `decodeSidecar(v3+ future shape)` preserves v1+v2 fields it understands; drops unknown top-level keys. Replaces the existing `lint-sidecar.test.js:170-189` strict-version test.
+- `decodeSidecar(v2 with malformed entry)` filters silently (load-boundary tolerance, §6.1).
+- Adversarial: oversized arrays; nested objects in `match` field; non-string `ruleId`; floats in `ts`.
+- Pipe-edge inputs in `match` field don't collide with other findings (JSON encoding regression test).
 
 **`collab-lint-ignored.test.js`:**
 - Round-trip per-key.
@@ -405,7 +473,13 @@ Drop any throughput timing assertion (CI-flaky, no existing pattern). Replace wi
 
 ### 8.7 Corpus regression pass
 
-`npm run test:corpus -- --with-ignores`: load calibration corpus + fixture of "known FP" ignores; assert post-dismiss FP rate monotonically decreases below the 0.31% calibration baseline. Output appended to `corpus/results/REPORT.md`. Load-bearing measurement for the feature's claim that dismissal reduces noise.
+**New tool work required** — `tools/run-corpus-test.mjs` does not currently support `--with-ignores`. Scoped as part of Phase 8 (PR B), not assumed extant. The flag:
+
+- Loads a fixture of "known FP" `ignoredFindings` entries from `corpus/fixtures/ignored-fixture.json` (new file, hand-curated from calibration corpus FPs).
+- Plumbs the fixture through to the corpus runner so the rule engine output gets filtered by the projection layer before metrics are computed.
+- Outputs comparison against the 0.31% calibration baseline.
+
+Asserts: post-dismiss FP rate monotonically decreases below 0.31%. Output appended to `corpus/results/REPORT.md`. Load-bearing measurement for the feature's claim that dismissal reduces noise.
 
 ### 8.8 Not tested
 
@@ -436,16 +510,19 @@ Mapped from issue [#140](https://github.com/mttvnst-HA/secwriter/issues/140) AC,
 
 ## 10. Implementation phases
 
-The plan is for the writing-plans skill to decompose, but the natural cut-points are:
+The plan is for the writing-plans skill to decompose. Natural cut-points below; PR-grouping reflects that **phases 1-4 produce no user-visible behavior** and are not separately shippable per CLAUDE.md's "PR-shippable phases" discipline. They merge as a single bundle.
 
-1. **Reducer + sidecar v2 + tests.** Pure-code; lands a green build with no UI.
-2. **`blockHash` sync cache + filter integration.** Wires the projection path; existing UI still has no dismiss buttons but the underlying state honors them.
-3. **Yjs substrate (`lintIgnored` / `lintMutedNlp`) + collab tests.** Establishes the peer-sync wire.
+**PR A (internal foundation — merged together):**
+1. **Reducer + sidecar v2 + tests.** Pure-code. Includes the loosened decoder version-gate (§3.3).
+2. **`blockHash` + `ignoreKey` async cache wiring in `useBlockLinting.js` + projection filter integration.** Wires `getRangesByTier` to read cached keys; cross-tier dedup moves from engine to projection.
+3. **Yjs substrate (`lintIgnored` / `lintMutedNlp`) + collab tests.** Per-key observers + bulk `mergeRemoteIgnored` on `initial: true` sync.
 4. **Server-side serializer extraction + storage contract tests.** Closes the persistence loop.
+
+**PR B (first user-visible — only mergeable after PR A):**
 5. **UI: InlineTooltip Dismiss + Mute buttons.**
 6. **UI: CompliancePanel group/item Dismiss + Settings reset section.**
 7. **E2E tests + onboarding.**
-8. **Corpus regression measurement.**
+8. **Corpus regression measurement** — requires new `--with-ignores` flag in `tools/run-corpus-test.mjs` (scoped here as work, not assumed extant; see §8.7).
 
 ## 11. Out of scope
 
