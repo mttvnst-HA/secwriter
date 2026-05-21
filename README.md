@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="src/assets/brand/logo-full-dark.svg">
+    <img alt="SecWriter" src="src/assets/brand/logo-full-light.svg" width="480">
+  </picture>
+</p>
+
 # SecWriter
 
 *A real-time collaborative web editor for UFGS (Unified Facilities Guide Specifications) `.SEC` files — the XML-based format used by SpecsIntact.*
