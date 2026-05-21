@@ -38,7 +38,7 @@ import { Selection, TextSelection } from "prosemirror-state";
 import * as tc from "./lib/track-changes.js";
 import * as Blocks from "./lib/blocks.js";
 import * as linting from "./lib/linting.js";
-import { encodeSidecar, decodeSidecar, projectDecoded } from "./lib/lint-sidecar.js";
+import { encodeSidecar, decodeSidecar, decodeSidecarV2, projectDecoded } from "./lib/lint-sidecar.js";
 import * as comp from "./lib/compliance.js";
 import { findHighlightTargetsInBlock } from "./lib/compliance-ranges.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
@@ -305,6 +305,8 @@ export default function SpecEditor() {
   sectionMetaRef.current = sectionMeta;
   const commentsStateRef = useRef(commentsState);
   commentsStateRef.current = commentsState;
+  const lintingStateRef = useRef(lintingState);
+  useEffect(() => { lintingStateRef.current = lintingState; }, [lintingState]);
   const tree = useMemo(() => buildTree(blocks), [blocks]);
   const numberMap = useMemo(() => computeNumbering(blocks), [blocks]);
   const oliLabels = useMemo(() => computeOliLabels(blocks), [blocks]);
@@ -361,11 +363,21 @@ export default function SpecEditor() {
     let parsedJson;
     try { parsedJson = JSON.parse(rawJson); }
     catch { return; }
-    const decoded = decodeSidecar(parsedJson);
+    const decoded = decodeSidecarV2(parsedJson);
     if (decoded.fingerprints.size === 0) return;
     const projection = await projectDecoded(decoded, freshBlocks);
     if (projection.size === 0) return;
     setLintingState(s => linting.prefillFromSidecar(s, projection));
+    // File-mode only: prefill ignored/muted state from sidecar v2 payload.
+    // In collab mode, yLintIgnored is the authoritative source.
+    if (!inRoomRef.current) {
+      if ((decoded.ignoredFindings?.length ?? 0) > 0 || (decoded.mutedNlpRules?.length ?? 0) > 0) {
+        setLintingState(s => linting.prefillIgnored(s, {
+          findings: decoded.ignoredFindings || [],
+          mutedRules: decoded.mutedNlpRules || [],
+        }));
+      }
+    }
   }, []);
 
   // --- SEC File Import ---
@@ -1027,6 +1039,49 @@ export default function SpecEditor() {
           return true;
         } catch { return false; }
       },
+      // #140 — persistent rule ignores test seam.
+      getIgnoredKeys: () => {
+        const out = [];
+        lintingStateRef.current.ignored.findings.forEach((entry, key) => {
+          if (entry.tombstone !== true) out.push(key);
+        });
+        return out;
+      },
+      getBlockHash: (blockId) => {
+        // Exposes the cached per-block fingerprint so E2E tests (Task 26) can
+        // construct an ignoreKey envelope without round-tripping through the DOM.
+        return lintingStateRef.current.byBlock.get(blockId)?.blockHash || null;
+      },
+      isFindingIgnored: (ruleId, blockHash, match) => {
+        // Async — returns a Promise from test land.
+        return linting.computeIgnoreKey(ruleId, blockHash, match)
+          .then(key => linting.isFindingIgnored(lintingStateRef.current, key));
+      },
+      dispatchLintIgnore: (envelope) => {
+        if (!envelope || typeof envelope !== 'object') return;
+        const ts = typeof envelope.ts === 'number' ? envelope.ts : Date.now();
+        const identity = envelope.identity || effectiveIdentity();
+        switch (envelope.kind) {
+          case 'ignore':
+            linting.computeIgnoreKey(envelope.ruleId, envelope.blockHash, envelope.match)
+              .then(ignoreKey => setLintingState(s => linting.ignoreFinding(s,
+                { ignoreKey, ruleId: envelope.ruleId, blockHash: envelope.blockHash, match: envelope.match, identity, ts })));
+            break;
+          case 'unignore':
+            linting.computeIgnoreKey(envelope.ruleId, envelope.blockHash, envelope.match)
+              .then(ignoreKey => setLintingState(s => linting.unignoreFinding(s, { ignoreKey, ts })));
+            break;
+          case 'mute-nlp':
+            setLintingState(s => linting.muteNlpRule(s, { ruleId: envelope.ruleId, identity, ts }));
+            break;
+          case 'unmute-nlp':
+            setLintingState(s => linting.unmuteNlpRule(s, { ruleId: envelope.ruleId, ts }));
+            break;
+          case 'reset':
+            setLintingState(s => linting.resetIgnored(s, { ts }));
+            break;
+        }
+      },
     };
     return () => { delete window.__simEditorTestUtils; };
   }, [handleBlockUpdateWithSync]);
@@ -1353,6 +1408,21 @@ export default function SpecEditor() {
     setIsDirty(false);
   }, [inRoom, localSubstrate]);
 
+  // Handlers for remote ignored / muted state arriving from peers (#140).
+  const handleLintIgnoredInitial = useCallback((ignoredMap) => {
+    setLintingState(s => linting.mergeRemoteIgnored(s, ignoredMap));
+  }, []);
+  const handleLintIgnoredUpdated = useCallback((ignoredMap) => {
+    // Full snapshot — apply via the same bulk merge.
+    setLintingState(s => linting.mergeRemoteIgnored(s, ignoredMap));
+  }, []);
+  const handleLintMutedNlpInitial = useCallback((mutedMap) => {
+    setLintingState(s => linting.mergeRemoteMutedRules(s, mutedMap));
+  }, []);
+  const handleLintMutedNlpUpdated = useCallback((mutedMap) => {
+    setLintingState(s => linting.mergeRemoteMutedRules(s, mutedMap));
+  }, []);
+
   // ── Collab session ──
   // useCollabSession owns: session creation/teardown, the four publish
   // effects (blocks, meta, TC, comments dispatch), echo/ready/seq guard
@@ -1466,12 +1536,17 @@ export default function SpecEditor() {
     // into the linting reducer so squiggles appear without engines running.
     onLintReceived: useCallback(async (payload) => {
       if (!payload || typeof payload !== 'object') return;
-      const decoded = decodeSidecar(payload);
+      const decoded = decodeSidecarV2(payload);
       if (decoded.fingerprints.size === 0) return;
       const projection = await projectDecoded(decoded, blocksRef.current || []);
       if (projection.size === 0) return;
       setLintingState(s => linting.prefillFromSidecar(s, projection));
     }, []),
+
+    onLintIgnoredInitial: handleLintIgnoredInitial,
+    onLintIgnoredUpdated: handleLintIgnoredUpdated,
+    onLintMutedNlpInitial: handleLintMutedNlpInitial,
+    onLintMutedNlpUpdated: handleLintMutedNlpUpdated,
 
     onPresenceChange: useCallback((states) => setPeers(states), []),
 
