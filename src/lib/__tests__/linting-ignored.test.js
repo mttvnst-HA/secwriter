@@ -202,4 +202,10 @@ describe('linting / applyRemoteMutedRule', () => {
     s = L.applyRemoteMutedRule(s, { ruleId: 'NLP-passive', entry: { authorId: 'a', ts: 10 } });
     expect(s.ignored.mutedRules.get('NLP-passive').authorId).toBe('a');
   });
+
+  it('returns same state ref on invalid input', () => {
+    const s0 = L.createInitial();
+    expect(L.applyRemoteMutedRule(s0, null)).toBe(s0);
+    expect(L.applyRemoteMutedRule(s0, { ruleId: 'NLP-passive', entry: {} })).toBe(s0); // missing entry.ts
+  });
 });

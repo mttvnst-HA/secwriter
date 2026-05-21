@@ -461,7 +461,14 @@ export function applyRemoteMutedRule(state, args) {
   const prev = state.ignored.mutedRules.get(ruleId);
   if (prev) {
     if (prev.ts > entry.ts) return state;
-    if (prev.ts === entry.ts && (prev.authorId || '') <= (entry.authorId || '')) return state;
+    if (prev.ts === entry.ts) {
+      // Lex tiebreak: smaller authorId wins (deterministic on both sides).
+      // Empty-id case (`'' <= ''`) returns local-state on both peers — safe in
+      // practice because in-room peers always carry a real authorId (the name
+      // prompt in `useCollabSession` gates the WebSocketProvider until identity
+      // is set). Out-of-room writes never reach this verb.
+      if ((prev.authorId || '') <= (entry.authorId || '')) return state;
+    }
   }
   const mutedRules = new Map(state.ignored.mutedRules);
   mutedRules.set(ruleId, { ...entry });
