@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="0.5" opacity="0.4"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Soft glow behind logo -->
+  <circle cx="240" cy="280" r="180" fill="#0ea5e9" opacity="0.12"/>
+
+  <!-- App-icon tile -->
+  <g transform="translate(110, 175)">
+    <rect width="220" height="220" rx="44" fill="#0ea5e9"/>
+    <g font-family="ui-monospace, 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-weight="700" fill="#ffffff" text-anchor="middle">
+      <text x="58" y="148" font-size="116">&lt;</text>
+      <text x="110" y="148" font-size="116">/</text>
+      <text x="162" y="148" font-size="116">&gt;</text>
+    </g>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="380" y="270" font-size="92" font-weight="700" fill="#f8fafc" letter-spacing="-0.02em">SecWriter</text>
+
+  <!-- Tagline -->
+  <text x="380" y="330" font-size="28" font-weight="400" fill="#94a3b8" letter-spacing="-0.005em">Real-time collaborative</text>
+  <text x="380" y="368" font-size="28" font-weight="400" fill="#94a3b8" letter-spacing="-0.005em">.SEC editor for UFGS specifications</text>
+
+  <!-- Feature chips -->
+  <g transform="translate(380, 420)" font-family="ui-monospace, 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="16" font-weight="500">
+    <g>
+      <rect x="0" y="0" width="170" height="36" rx="18" fill="#0ea5e9" opacity="0.15" stroke="#0ea5e9" stroke-width="1"/>
+      <text x="85" y="23" fill="#38bdf8" text-anchor="middle">live collaboration</text>
+    </g>
+    <g transform="translate(184, 0)">
+      <rect x="0" y="0" width="150" height="36" rx="18" fill="#0ea5e9" opacity="0.15" stroke="#0ea5e9" stroke-width="1"/>
+      <text x="75" y="23" fill="#38bdf8" text-anchor="middle">track changes</text>
+    </g>
+    <g transform="translate(348, 0)">
+      <rect x="0" y="0" width="180" height="36" rx="18" fill="#0ea5e9" opacity="0.15" stroke="#0ea5e9" stroke-width="1"/>
+      <text x="90" y="23" fill="#38bdf8" text-anchor="middle">UFS 1-300-02 checks</text>
+    </g>
+  </g>
+
+  <!-- Bottom URL strip -->
+  <text x="110" y="585" font-family="ui-monospace, 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="18" fill="#64748b" letter-spacing="0.02em">github.com/mttvnst-HA/secwriter</text>
+
+  <!-- Two collaborator cursor accents in upper right -->
+  <g transform="translate(1020, 80)" opacity="0.9">
+    <rect x="0" y="0" width="2.5" height="36" fill="#0ea5e9"/>
+    <rect x="-8" y="-12" width="32" height="11" rx="2" fill="#0ea5e9"/>
+  </g>
+  <g transform="translate(1070, 130)" opacity="0.9">
+    <rect x="0" y="0" width="2.5" height="36" fill="#f97316"/>
+    <rect x="-6" y="38" width="30" height="11" rx="2" fill="#f97316"/>
+  </g>
+  <g transform="translate(1110, 95)" opacity="0.9">
+    <rect x="0" y="0" width="2.5" height="36" fill="#a855f7"/>
+    <rect x="-7" y="-12" width="30" height="11" rx="2" fill="#a855f7"/>
+  </g>
+</svg>
