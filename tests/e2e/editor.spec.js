@@ -3106,9 +3106,9 @@ test('mute NLP rule: hides all instances; reset reveals them', async ({ page }) 
       ruleId: 'NLP-passive',
     });
   });
-  // mute-nlp is synchronous (no crypto hash) but still needs a React
-  // commit cycle to propagate through setLintingState.
-  await page.waitForTimeout(100);
+  // mute-nlp is synchronous (no crypto hash) but lintingStateRef is updated
+  // in a useEffect which runs after paint — allow 400ms for the commit cycle.
+  await page.waitForTimeout(400);
 
   const afterMute = await page.evaluate(() => window.__simEditorTestUtils.getMutedRuleIds());
   expect(afterMute).toContain('NLP-passive');
@@ -3121,7 +3121,7 @@ test('mute NLP rule: hides all instances; reset reveals them', async ({ page }) 
       ruleId: 'NLP-indicative',
     });
   });
-  await page.waitForTimeout(100);
+  await page.waitForTimeout(400);
 
   const afterTwo = await page.evaluate(() => window.__simEditorTestUtils.getMutedRuleIds());
   expect(afterTwo).toHaveLength(2);
@@ -3133,7 +3133,7 @@ test('mute NLP rule: hides all instances; reset reveals them', async ({ page }) 
   await page.evaluate(() => {
     window.__simEditorTestUtils.dispatchLintIgnore({ kind: 'reset' });
   });
-  await page.waitForTimeout(100);
+  await page.waitForTimeout(400);
 
   const afterReset = await page.evaluate(() => window.__simEditorTestUtils.getMutedRuleIds());
   expect(afterReset).toHaveLength(0);
