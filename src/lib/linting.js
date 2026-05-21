@@ -375,6 +375,9 @@ export function getIgnoredCount(state) {
 export function ignoreFinding(state, { ignoreKey, ruleId, blockHash, match, identity, ts }) {
   if (typeof ignoreKey !== 'string' || typeof ruleId !== 'string') return state;
   if (typeof blockHash !== 'string' || typeof match !== 'string') return state;
+  // Local-gesture verb: writes unconditionally. Collab convergence (LWW + lex
+  // tiebreak on authorId) is enforced by `applyRemoteIgnored` on the receive
+  // side; this verb is for the originating tab's own dispatch.
   const entry = {
     ruleId,
     blockHash,
@@ -414,7 +417,11 @@ export function applyRemoteIgnored(state, args) {
   if (prev) {
     if (prev.ts > entry.ts) return state;
     if (prev.ts === entry.ts) {
-      // Ties: lexicographic by authorId (smaller wins for determinism)
+      // Lex tiebreak: smaller authorId wins (deterministic on both sides).
+      // Empty-id case (`'' <= ''`) returns local-state on both peers — safe in
+      // practice because in-room peers always carry a real authorId (the name
+      // prompt in `useCollabSession` gates the WebSocketProvider until identity
+      // is set). Out-of-room writes never reach this verb.
       if ((prev.authorId || '') <= (entry.authorId || '')) return state;
     }
   }
