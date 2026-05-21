@@ -1,6 +1,6 @@
 # SecWriter Text Analysis Engine — Corpus Test Report
 
-Generated: 2026-05-21T04:24:34.566Z
+Generated: 2026-05-21T05:07:04.343Z
 
 ## 1. Calibration Results (Raw UFGS Master Text)
 

@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "parse": "node tools/parse-sec.js",
     "test": "vitest run",
-    "test:compliance": "node --test src/lib/__tests__/compliance-rules.node-test.mjs",
+    "test:compliance": "node --import ./tools/json-loader.mjs --test src/lib/__tests__/compliance-rules.node-test.mjs src/lib/__tests__/compliance-rules-pos-window.node-test.mjs",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:corpus": "node --import ./tools/json-loader.mjs --test src/lib/__tests__/corpus-calibration.node-test.mjs src/lib/__tests__/corpus-precision.node-test.mjs src/lib/__tests__/corpus-recall.node-test.mjs src/lib/__tests__/corpus-adversarial.node-test.mjs",
