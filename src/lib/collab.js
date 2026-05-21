@@ -576,6 +576,61 @@ function lintEntryEqual(a, b) {
   );
 }
 
+/** Read yLintIgnored into a JS Map<ignoreKey, IgnoreEntry>. */
+export function readLintIgnored(yLintIgnored) {
+  const out = new Map();
+  if (!yLintIgnored || typeof yLintIgnored.forEach !== 'function') return out;
+  yLintIgnored.forEach((val, key) => {
+    if (!val || typeof val !== 'object') return;
+    out.set(key, val);
+  });
+  return out;
+}
+
+/**
+ * Publish a Map<ignoreKey, IgnoreEntry> to yLintIgnored. Diffs against current
+ * state — never deletes (set-only per never-delete tombstone discipline).
+ * Origin 'local-lint-ignored' is caught by handleAfterTx's 'local-' prefix
+ * filter and NOT in UndoManager.trackedOrigins (Ctrl+Z does not un-dismiss).
+ */
+export function publishLintIgnoredToDoc(ydoc, yLintIgnored, entries) {
+  if (!(entries instanceof Map)) return;
+  ydoc.transact(() => {
+    for (const [key, next] of entries) {
+      const cur = yLintIgnored.get(key);
+      if (!ignoredEntryEqual(cur, next)) yLintIgnored.set(key, next);
+    }
+  }, 'local-lint-ignored');
+}
+
+function ignoredEntryEqual(a, b) {
+  if (a === b) return true;
+  if (!a || !b) return false;
+  return JSON.stringify(a) === JSON.stringify(b);
+}
+
+/** Read yLintMutedNlp into a Map<ruleId, MuteEntry>. */
+export function readLintMutedNlp(yLintMutedNlp) {
+  const out = new Map();
+  if (!yLintMutedNlp || typeof yLintMutedNlp.forEach !== 'function') return out;
+  yLintMutedNlp.forEach((val, key) => {
+    if (!val || typeof val !== 'object') return;
+    out.set(key, val);
+  });
+  return out;
+}
+
+/** Publish a Map<ruleId, MuteEntry> to yLintMutedNlp. Same semantics as ignored. */
+export function publishLintMutedNlpToDoc(ydoc, yLintMutedNlp, entries) {
+  if (!(entries instanceof Map)) return;
+  ydoc.transact(() => {
+    for (const [key, next] of entries) {
+      const cur = yLintMutedNlp.get(key);
+      if (!ignoredEntryEqual(cur, next)) yLintMutedNlp.set(key, next);
+    }
+  }, 'local-lint-ignored');
+}
+
 /**
  * Snapshot the current document state as a plain block array by walking
  * the ordering in `yOrder` and resolving each ID against `yStore`.
