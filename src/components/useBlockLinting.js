@@ -8,7 +8,7 @@
  *   - synchronous static-rule + NLP pass
  *   - asynchronous Harper grammar dispatch with stale detection
  *   - lazy-load triggers for Harper + compromise
- *   - dedup pipeline (static-wins-over-NLP, grammar-overlap-50%)
+ *   - undeduped findings stashed in byBlock (dedup runs in getRangesByTier)
  *   - Range creation against the live DOM
  *   - cursor-based tooltip detection (selectionchange + arrow keys)
  *
@@ -32,8 +32,6 @@ import {
   getGrammarText,
   isActive,
   isDeferredRule,
-  dedupNlpAgainstCompliance,
-  dedupGrammarAgainstFindings,
 } from '../lib/linting.js';
 import { runStaticRules, getRules } from '../lib/compliance-rules.js';
 import {
@@ -121,13 +119,12 @@ export function useBlockLinting({
     });
     const complianceViolations = allStatic.filter(v => !isDeferredRule(v));
 
-    // 2. NLP rules — only if compromise is loaded; suppress overlaps with compliance.
+    // 2. NLP rules — only if compromise is loaded; engines stash unfiltered
+    // findings; dedup + ignore-filter runs in getRangesByTier (projection
+    // layer) — see #140 / spec §4.3.
     let nlpViolations = [];
     if (isNlpReady()) {
-      nlpViolations = dedupNlpAgainstCompliance(
-        detectNlpIssues(plainText, blockId, isNoteBlock),
-        complianceViolations,
-      );
+      nlpViolations = detectNlpIssues(plainText, blockId, isNoteBlock);
     } else {
       preloadNlp();
     }
@@ -147,14 +144,7 @@ export function useBlockLinting({
 
     // 3. Grammar — async; merge results on resolve, abort if stale.
     if (grammarReady) {
-      runGrammarPass({
-        el,
-        plainText,
-        blockId,
-        dispatch,
-        complianceViolations,
-        nlpViolations,
-      });
+      runGrammarPass({ el, plainText, blockId, dispatch });
     } else {
       // Once Harper loads, re-lint this block if it's still focused.
       initGrammarChecker().then(() => {
@@ -314,20 +304,19 @@ function toFindings(el, violations) {
 }
 
 /**
- * Run Harper grammar check, then dedup against current static + NLP findings
- * and merge into state. Includes stale-result detection (text changed mid-flight).
+ * Run Harper grammar check and merge results into state. Includes stale-result
+ * detection (text changed mid-flight). Dedup against compliance + NLP runs in
+ * getRangesByTier (projection layer) — see #140 / spec §4.3.
  */
-function runGrammarPass({ el, plainText, blockId, dispatch, complianceViolations, nlpViolations }) {
+function runGrammarPass({ el, plainText, blockId, dispatch }) {
   // Caller has already stashed plainText as grammarText for stale detection.
   checkGrammar(plainText, blockId).then(grammarViolations => {
     dispatch(s => {
       // Stale check: if grammarText changed while we awaited, our results are stale.
       if (getGrammarText(s, blockId) !== plainText) return s;
-      const deduped = dedupGrammarAgainstFindings(
-        grammarViolations,
-        [...complianceViolations, ...nlpViolations],
-      );
-      const grammarFindings = toFindings(el, deduped);
+      // Store grammar verbatim; projection layer dedupes against the
+      // post-filter compliance + nlp set.
+      const grammarFindings = toFindings(el, grammarViolations);
       return setBlockFindings(s, blockId, { grammar: grammarFindings });
     });
   }).catch(() => {});
