@@ -24,12 +24,17 @@ export default function InlineTooltip({
 
   useEffect(() => {
     // Only show on first time a tooltip with a Dismiss button is opened.
+    // The gate must match the Dismiss button's render gate below (`onSuppress`
+    // function AND `blockHash` string) — otherwise the pop-down "Dismiss is
+    // persistent" message appears with no button to click, and the localStorage
+    // flag burns silently so the user never sees the message the next time
+    // when the button actually exists.
     const seen = typeof window !== 'undefined' && localStorage.getItem('sim-dismiss-onboarded') === '1';
-    if (!seen && typeof onSuppress === 'function' && finding) {
+    if (!seen && typeof onSuppress === 'function' && typeof blockHash === 'string' && finding) {
       setShowDismissOnboarding(true);
       localStorage.setItem('sim-dismiss-onboarded', '1');
     }
-  }, [finding, onSuppress]);
+  }, [finding, onSuppress, blockHash]);
 
   // Position the tooltip near the cursor, measuring actual height to avoid off-screen
   useEffect(() => {

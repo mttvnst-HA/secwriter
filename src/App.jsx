@@ -38,7 +38,7 @@ import { Selection, TextSelection } from "prosemirror-state";
 import * as tc from "./lib/track-changes.js";
 import * as Blocks from "./lib/blocks.js";
 import * as linting from "./lib/linting.js";
-import { encodeSidecar, encodeSidecarV2, decodeSidecar, decodeSidecarV2, projectDecoded } from "./lib/lint-sidecar.js";
+import { encodeSidecar, encodeSidecarV2, decodeSidecar, decodeSidecarV2, projectDecoded, fingerprintBlock } from "./lib/lint-sidecar.js";
 import * as comp from "./lib/compliance.js";
 import { findHighlightTargetsInBlock } from "./lib/compliance-ranges.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
@@ -851,6 +851,24 @@ export default function SpecEditor() {
   const effectiveIdentity = useCallback(() => (
     identity || { id: 'local', name: getAuthorName() || 'User', color: '#888' }
   ), [identity]);
+
+  // Resolve a blockHash for dismiss-from-Compliance gestures. Prefers the
+  // cache in `lintingState.byBlock` (populated by useBlockLinting on focus)
+  // but falls back to computing it from the block's html. Used by
+  // CompliancePanel's per-item and group Dismiss handlers — the Compliance
+  // scan can find violations in blocks the user has never focused, so
+  // requiring a cached hash would silently no-op those dismissals.
+  const resolveBlockHashForDismiss = useCallback(async (blockId) => {
+    const cached = lintingState?.byBlock?.get(blockId)?.blockHash;
+    if (cached) return cached;
+    const block = blocksRef.current.find(b => b.id === blockId);
+    if (!block) return null;
+    try {
+      return await fingerprintBlock(block.html || '');
+    } catch {
+      return null;
+    }
+  }, [lintingState]);
 
   const handleCommentCreate = useCallback((blockId, html, commentId, highlightText) => {
     // html is null for ref blocks (their data is in block.ref, not block.html)
@@ -2786,21 +2804,27 @@ export default function SpecEditor() {
             onAcceptFix={handleComplianceAcceptFix}
             onAcceptGroupFix={handleComplianceAcceptGroup}
             unitDisplay={unitDisplay}
-            onItemDismiss={(ruleId, item) => {
-              const blockHash = lintingState.byBlock.get(item.blockId)?.blockHash;
+            onItemDismiss={async (ruleId, item) => {
+              // Lazy blockHash: lintingState.byBlock is populated only on focus
+              // (see useBlockLinting.js), so a Compliance scan finding in a
+              // block the user has never focused has no cached hash. Falling
+              // back to fingerprintBlock(block.html) lets Dismiss work for
+              // any block in the document, not just visited ones.
+              const blockHash = await resolveBlockHashForDismiss(item.blockId);
               if (!blockHash) return;
-              linting.computeIgnoreKey(ruleId, blockHash, item.match).then(ignoreKey => {
-                setLintingState(s => linting.ignoreFinding(s, {
-                  ignoreKey, ruleId, blockHash, match: item.match,
-                  identity: effectiveIdentity(), ts: Date.now(),
-                }));
-              });
+              const ignoreKey = await linting.computeIgnoreKey(ruleId, blockHash, item.match);
+              setLintingState(s => linting.ignoreFinding(s, {
+                ignoreKey, ruleId, blockHash, match: item.match,
+                identity: effectiveIdentity(), ts: Date.now(),
+              }));
             }}
             onGroupDismiss={async (group) => {
-              // Batched single state update via reduce.
+              // Batched single state update via reduce. Same lazy blockHash
+              // behavior as onItemDismiss — group findings can span blocks
+              // the user has never focused.
               const updates = [];
               for (const item of group.instances) {
-                const blockHash = lintingState.byBlock.get(item.blockId)?.blockHash;
+                const blockHash = await resolveBlockHashForDismiss(item.blockId);
                 if (!blockHash) continue;
                 const ignoreKey = await linting.computeIgnoreKey(group.ruleId, blockHash, item.match);
                 updates.push({ ignoreKey, ruleId: group.ruleId, blockHash, match: item.match });
