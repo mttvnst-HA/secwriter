@@ -48,3 +48,4 @@ Each ADR is one Markdown file: `NNNN-short-slug.md`. Use [`0000-template.md`](00
 | [0012](0012-inline-linting-css-highlights.md) | Inline linting via CSS Custom Highlight API + three engines | Accepted |
 | [0013](0013-storage-backends.md) | Pluggable storage backends — local, Azure Blob, S3-compatible | Accepted |
 | [0014](0014-collab-server-yjs-relay.md) | Collab server — Yjs + y-websocket relay, CJS, four non-obvious patterns | Accepted |
+| [0015](0015-linting-stays-block-granular.md) | Linting state stays block-granular, not sentence-granular | Accepted |
