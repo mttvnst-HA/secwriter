@@ -38,7 +38,7 @@ import { Selection, TextSelection } from "prosemirror-state";
 import * as tc from "./lib/track-changes.js";
 import * as Blocks from "./lib/blocks.js";
 import * as linting from "./lib/linting.js";
-import { encodeSidecar, decodeSidecar, decodeSidecarV2, projectDecoded } from "./lib/lint-sidecar.js";
+import { encodeSidecar, encodeSidecarV2, decodeSidecar, decodeSidecarV2, projectDecoded } from "./lib/lint-sidecar.js";
 import * as comp from "./lib/compliance.js";
 import { findHighlightTargetsInBlock } from "./lib/compliance-ranges.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
@@ -598,19 +598,57 @@ export default function SpecEditor() {
   }, [comments, currentFile]);
 
   // Save lint sidecar (.lint.json) — block-granular linting cache, issue #138.
-  // Mirrors saveCommentsSidecar's pattern (FSA handle → picker → download).
-  // No-op when there are no cached findings. The cache exists per-block in
+  // v2 (issue #140) also persists per-finding dismissals + per-rule NLP mutes,
+  // so file-mode round-trip (save → reload) preserves user dismissals just like
+  // collab-mode (via yLintIgnored / yLintMutedNlp). Mirrors saveCommentsSidecar's
+  // pattern (FSA handle → picker → download). The cache exists per-block in
   // lintingState.byBlock; we encode it against the current blocks array so
-  // the fingerprint reflects the just-saved html.
+  // the fingerprint reflects the just-saved html. Falls through to v1 when
+  // both ignored arrays are empty (encodeSidecarV2 handles the fallthrough).
   const saveLintSidecar = useCallback(async (promptNew) => {
-    if (!lintingState || lintingState.byBlock.size === 0) return;
+    const hasByBlock = lintingState && lintingState.byBlock.size > 0;
+    const hasIgnored = lintingState?.ignored?.findings?.size > 0
+      || lintingState?.ignored?.mutedRules?.size > 0;
+    if (!hasByBlock && !hasIgnored) return;
     let payload;
     try {
-      payload = await encodeSidecar(lintingState.byBlock, blocks);
+      // Findings Map keys ARE the ignoreKeys (entry values omit it), so
+      // project via entries() to recover the ignoreKey field expected by
+      // encodeSidecarV2's ignoredFindings entries.
+      const ignoredFindings = lintingState?.ignored?.findings
+        ? Array.from(lintingState.ignored.findings.entries()).map(([ignoreKey, entry]) => ({
+            ignoreKey,
+            ruleId: entry.ruleId,
+            blockHash: entry.blockHash,
+            match: entry.match,
+            ts: entry.ts,
+            authorId: entry.authorId,
+            ...(entry.tombstone === true ? { tombstone: true } : {}),
+          }))
+        : [];
+      // mutedRules Map keys ARE the ruleIds (entry values carry only
+      // { ts, authorId, tombstone? }), so project via entries() to recover
+      // the ruleId field expected by encodeSidecarV2's mutedNlpRules entries.
+      const mutedNlpRules = lintingState?.ignored?.mutedRules
+        ? Array.from(lintingState.ignored.mutedRules.entries()).map(([ruleId, entry]) => ({
+            ruleId,
+            ts: entry.ts,
+            authorId: entry.authorId,
+            ...(entry.tombstone === true ? { tombstone: true } : {}),
+          }))
+        : [];
+      payload = await encodeSidecarV2(lintingState.byBlock, blocks, {
+        ignoredFindings,
+        mutedNlpRules,
+      });
     } catch {
       return; // best effort — sidecar is a cache, not source of truth
     }
-    if (!payload || (!payload.good && Object.keys(payload.bad || {}).length === 0)) return;
+    if (!payload) return;
+    const emptyV1 = !payload.good && Object.keys(payload.bad || {}).length === 0;
+    const emptyV2 = (payload.ignoredFindings || []).length === 0
+      && (payload.mutedNlpRules || []).length === 0;
+    if (emptyV1 && emptyV2) return;
     const json = JSON.stringify(payload);
     const sidecarName = getLintSidecarName(currentFile);
 

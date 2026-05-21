@@ -176,6 +176,63 @@ describe('serializeRoom', () => {
     assert.equal(lintJson, null);
   });
 
+  // Regression: post-review fix — multi-fingerprint `good` strings must
+  // round-trip through the client decoder. Pre-fix used `goodParts.join(',')`
+  // which produced strings the client's fixed-width slicer silently rejected
+  // (good.length % 24 !== 0 with the comma added).
+  it('multiple good fingerprints round-trip through client decodeSidecar', async () => {
+    const Y = await import('yjs');
+    const { decodeSidecar } = await import('../../src/lib/lint-sidecar.js');
+    const ydoc = await buildTestDoc();
+    const yLint = ydoc.getMap('lint');
+    const fpA = 'aaaaaaaaaaaaaaaaaaaaaaaa'; // 24 chars
+    const fpB = 'bbbbbbbbbbbbbbbbbbbbbbbb';
+    const fpC = 'cccccccccccccccccccccccc';
+
+    ydoc.transact(() => {
+      yLint.set(fpA, { kind: 'good' });
+      yLint.set(fpB, { kind: 'good' });
+      yLint.set(fpC, { kind: 'good' });
+    });
+
+    const { lintJson } = await serializeRoom(ydoc);
+    const parsed = JSON.parse(lintJson);
+
+    // No separator — string length must be exactly N × 24.
+    assert.equal(parsed.good.length, 72, 'concatenated without separator');
+
+    // And the client decoder must recover all three.
+    const decoded = decodeSidecar(parsed);
+    assert.equal(decoded.fingerprints.size, 3, 'all three fingerprints decoded');
+    assert.equal(decoded.fingerprints.get(fpA), 'good');
+    assert.equal(decoded.fingerprints.get(fpB), 'good');
+    assert.equal(decoded.fingerprints.get(fpC), 'good');
+  });
+
+  // Regression: post-review fix — bad entries must be projected to { g, n, c }
+  // only, not passed through verbatim with the internal `kind: 'bad'` marker.
+  it('bad fingerprint entries do not leak internal kind marker', async () => {
+    const Y = await import('yjs');
+    const ydoc = await buildTestDoc();
+    const yLint = ydoc.getMap('lint');
+    const fpBad = '0000000000000000000000bb';
+
+    ydoc.transact(() => {
+      yLint.set(fpBad, {
+        kind: 'bad',
+        g: [{ violation: { ruleId: 'GRAM-X' } }],
+        n: [],
+        c: [],
+      });
+    });
+
+    const { lintJson } = await serializeRoom(ydoc);
+    const parsed = JSON.parse(lintJson);
+    assert.ok(parsed.bad[fpBad], 'bad fingerprint present');
+    assert.equal(parsed.bad[fpBad].kind, undefined, 'kind discriminator stripped');
+    assert.equal(parsed.bad[fpBad].g[0].violation.ruleId, 'GRAM-X');
+  });
+
   it('includes comments in commentsJson', async () => {
     const Y = await import('yjs');
     const ydoc = await buildTestDoc();

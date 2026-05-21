@@ -231,6 +231,17 @@ export function useCollabSession({
   onCommentsReceivedRef.current = onCommentsReceived;
   const onLintReceivedRef = useRef(onLintReceived);
   onLintReceivedRef.current = onLintReceived;
+  // Issue #140 ignored/muted-nlp remote callbacks — must ref-mirror like the
+  // other onRemote* callbacks so the lifecycle effect (deps: roomId, identity)
+  // sees fresh callback identities without recreating the session.
+  const onLintIgnoredInitialRef = useRef(onLintIgnoredInitial);
+  onLintIgnoredInitialRef.current = onLintIgnoredInitial;
+  const onLintIgnoredUpdatedRef = useRef(onLintIgnoredUpdated);
+  onLintIgnoredUpdatedRef.current = onLintIgnoredUpdated;
+  const onLintMutedNlpInitialRef = useRef(onLintMutedNlpInitial);
+  onLintMutedNlpInitialRef.current = onLintMutedNlpInitial;
+  const onLintMutedNlpUpdatedRef = useRef(onLintMutedNlpUpdated);
+  onLintMutedNlpUpdatedRef.current = onLintMutedNlpUpdated;
   const onPresenceChangeRef = useRef(onPresenceChange);
   onPresenceChangeRef.current = onPresenceChange;
   const onStatusChangeRef = useRef(onStatusChange);
@@ -330,16 +341,16 @@ export function useCollabSession({
       },
       onRemoteLintIgnored: (ignoredMap, meta) => {
         if (meta?.initial) {
-          onLintIgnoredInitial?.(ignoredMap);
+          onLintIgnoredInitialRef.current?.(ignoredMap);
         } else {
-          onLintIgnoredUpdated?.(ignoredMap);
+          onLintIgnoredUpdatedRef.current?.(ignoredMap);
         }
       },
       onRemoteLintMutedNlp: (mutedMap, meta) => {
         if (meta?.initial) {
-          onLintMutedNlpInitial?.(mutedMap);
+          onLintMutedNlpInitialRef.current?.(mutedMap);
         } else {
-          onLintMutedNlpUpdated?.(mutedMap);
+          onLintMutedNlpUpdatedRef.current?.(mutedMap);
         }
       },
       onPresenceChange: (states) => {

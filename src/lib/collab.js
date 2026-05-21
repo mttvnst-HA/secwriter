@@ -628,7 +628,7 @@ export function publishLintMutedNlpToDoc(ydoc, yLintMutedNlp, entries) {
       const cur = yLintMutedNlp.get(key);
       if (!ignoredEntryEqual(cur, next)) yLintMutedNlp.set(key, next);
     }
-  }, 'local-lint-ignored');
+  }, 'local-lint-muted-nlp');
 }
 
 /**

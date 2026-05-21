@@ -146,6 +146,27 @@ describe('linting / applyRemoteIgnored', () => {
     expect(L.applyRemoteIgnored(s0, null)).toBe(s0);
     expect(L.applyRemoteIgnored(s0, { key: null, entry: {} })).toBe(s0);
   });
+
+  // Convergence regression — two peers each applying both writes in either
+  // order must end up with the same authorId. Pre-fix the tiebreak code was
+  // present but never exercised under symmetry; this test pins the property.
+  it('LWW tiebreak converges across peers on identical ts (symmetry)', () => {
+    const writeA = { key: 'k1', entry: { ruleId: 'R', blockHash: 'bh', match: 'm', authorId: 'alice', ts: 10 } };
+    const writeB = { key: 'k1', entry: { ruleId: 'R', blockHash: 'bh', match: 'm', authorId: 'bob', ts: 10 } };
+
+    // Peer 1: receives writeA, then writeB
+    let p1 = L.createInitial();
+    p1 = L.applyRemoteIgnored(p1, writeA);
+    p1 = L.applyRemoteIgnored(p1, writeB);
+
+    // Peer 2: receives writeB, then writeA
+    let p2 = L.createInitial();
+    p2 = L.applyRemoteIgnored(p2, writeB);
+    p2 = L.applyRemoteIgnored(p2, writeA);
+
+    expect(p1.ignored.findings.get('k1').authorId).toBe(p2.ignored.findings.get('k1').authorId);
+    expect(p1.ignored.findings.get('k1').authorId).toBe('alice'); // 'alice' < 'bob'
+  });
 });
 
 describe('linting / muteNlpRule', () => {

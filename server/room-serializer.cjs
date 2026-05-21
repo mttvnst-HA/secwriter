@@ -121,11 +121,22 @@ function serializeLintSidecar(yLint, yLintIgnored, yLintMutedNlp, _blocksOrder) 
       if (entry.kind === 'good') {
         goodParts.push(fingerprint);
       } else if (entry.kind === 'bad') {
-        bad[fingerprint] = entry;
+        // Project to { g, n, c } only — mirror src/lib/lint-sidecar.js encodeSidecar
+        // (line 175). The raw entry includes the internal `kind: 'bad'` discriminator
+        // which leaks into the sidecar contract if passed through verbatim, and the
+        // client decoder ignores it. Also strip any future per-entry metadata.
+        bad[fingerprint] = {
+          g: entry.g,
+          n: entry.n,
+          c: entry.c,
+        };
       }
     });
   }
-  const v1 = { v: 1, good: goodParts.join(','), bad };
+  // Concatenate fingerprints without a separator — client decoder slices the
+  // string in fixed FINGERPRINT_LEN (24) chunks via `good.length % 24 === 0`.
+  // A comma separator silently breaks decoding for ≥2 good fingerprints.
+  const v1 = { v: 1, good: goodParts.join(''), bad };
 
   // ── v2 extensions ─────────────────────────────────────────────────────
   const ignored = [];
