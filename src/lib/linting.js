@@ -429,3 +429,41 @@ export function applyRemoteIgnored(state, args) {
   findings.set(key, { ...entry });
   return { ...state, ignored: { ...state.ignored, findings } };
 }
+
+/** Adds a NLP-rule mute entry. Silently no-ops on non-NLP rule ids. */
+export function muteNlpRule(state, { ruleId, identity, ts }) {
+  if (typeof ruleId !== 'string' || !ruleId.startsWith('NLP-')) return state;
+  const entry = {
+    ts: typeof ts === 'number' ? ts : Date.now(),
+    authorId: identity?.id || '',
+  };
+  const mutedRules = new Map(state.ignored.mutedRules);
+  mutedRules.set(ruleId, entry);
+  return { ...state, ignored: { ...state.ignored, mutedRules } };
+}
+
+/** Tombstone a mute entry. No-op if rule absent. */
+export function unmuteNlpRule(state, { ruleId, ts }) {
+  if (typeof ruleId !== 'string') return state;
+  const prev = state.ignored.mutedRules.get(ruleId);
+  if (!prev) return state;
+  const mutedRules = new Map(state.ignored.mutedRules);
+  mutedRules.set(ruleId, { ...prev, tombstone: true, ts: typeof ts === 'number' ? ts : Date.now() });
+  return { ...state, ignored: { ...state.ignored, mutedRules } };
+}
+
+/** Per-rule remote update — LWW with authorId tiebreak. */
+export function applyRemoteMutedRule(state, args) {
+  if (!args || typeof args !== 'object') return state;
+  const { ruleId, entry } = args;
+  if (typeof ruleId !== 'string' || !entry || typeof entry !== 'object') return state;
+  if (typeof entry.ts !== 'number') return state;
+  const prev = state.ignored.mutedRules.get(ruleId);
+  if (prev) {
+    if (prev.ts > entry.ts) return state;
+    if (prev.ts === entry.ts && (prev.authorId || '') <= (entry.authorId || '')) return state;
+  }
+  const mutedRules = new Map(state.ignored.mutedRules);
+  mutedRules.set(ruleId, { ...entry });
+  return { ...state, ignored: { ...state.ignored, mutedRules } };
+}

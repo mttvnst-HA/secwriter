@@ -147,3 +147,59 @@ describe('linting / applyRemoteIgnored', () => {
     expect(L.applyRemoteIgnored(s0, { key: null, entry: {} })).toBe(s0);
   });
 });
+
+describe('linting / muteNlpRule', () => {
+  it('adds a MuteEntry for a NLP-* rule id', () => {
+    const s = L.muteNlpRule(L.createInitial(), { ruleId: 'NLP-passive', identity: { id: 'a' }, ts: 1 });
+    expect(s.ignored.mutedRules.get('NLP-passive')).toMatchObject({ ts: 1, authorId: 'a' });
+    expect(L.isNlpRuleMuted(s, 'NLP-passive')).toBe(true);
+  });
+
+  it('silently no-ops on non-NLP rule (e.g. TERM-shall)', () => {
+    const s0 = L.createInitial();
+    expect(L.muteNlpRule(s0, { ruleId: 'TERM-shall', identity: { id: 'a' }, ts: 1 })).toBe(s0);
+  });
+
+  it('silently no-ops on invalid input', () => {
+    const s0 = L.createInitial();
+    expect(L.muteNlpRule(s0, { ruleId: null, identity: { id: 'a' }, ts: 1 })).toBe(s0);
+  });
+});
+
+describe('linting / unmuteNlpRule', () => {
+  it('writes tombstone and selector returns false', () => {
+    let s = L.createInitial();
+    s = L.muteNlpRule(s, { ruleId: 'NLP-passive', identity: { id: 'a' }, ts: 1 });
+    s = L.unmuteNlpRule(s, { ruleId: 'NLP-passive', ts: 2 });
+    expect(s.ignored.mutedRules.get('NLP-passive').tombstone).toBe(true);
+    expect(L.isNlpRuleMuted(s, 'NLP-passive')).toBe(false);
+  });
+
+  it('returns same state ref when rule not present', () => {
+    const s0 = L.createInitial();
+    expect(L.unmuteNlpRule(s0, { ruleId: 'NLP-passive', ts: 1 })).toBe(s0);
+  });
+});
+
+describe('linting / applyRemoteMutedRule', () => {
+  it('LWW per ruleId', () => {
+    let s = L.createInitial();
+    s = L.muteNlpRule(s, { ruleId: 'NLP-passive', identity: { id: 'a' }, ts: 5 });
+    s = L.applyRemoteMutedRule(s, { ruleId: 'NLP-passive', entry: { authorId: 'b', ts: 10 } });
+    expect(s.ignored.mutedRules.get('NLP-passive').authorId).toBe('b');
+  });
+
+  it('preserves local when local ts newer', () => {
+    let s = L.createInitial();
+    s = L.muteNlpRule(s, { ruleId: 'NLP-passive', identity: { id: 'a' }, ts: 10 });
+    s = L.applyRemoteMutedRule(s, { ruleId: 'NLP-passive', entry: { authorId: 'b', ts: 5 } });
+    expect(s.ignored.mutedRules.get('NLP-passive').authorId).toBe('a');
+  });
+
+  it('breaks ts ties by authorId', () => {
+    let s = L.createInitial();
+    s = L.muteNlpRule(s, { ruleId: 'NLP-passive', identity: { id: 'b' }, ts: 10 });
+    s = L.applyRemoteMutedRule(s, { ruleId: 'NLP-passive', entry: { authorId: 'a', ts: 10 } });
+    expect(s.ignored.mutedRules.get('NLP-passive').authorId).toBe('a');
+  });
+});
