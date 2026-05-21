@@ -592,6 +592,38 @@ describe('linting / resetIgnored', () => {
   });
 });
 
+describe('linting / resetIgnoredFindings (partial reset)', () => {
+  it('tombstones findings only; leaves mutedRules intact', () => {
+    let s = L.createInitial();
+    s = L.ignoreFinding(s, { ignoreKey: 'k1', ruleId: 'R', blockHash: 'bh', match: 'm', identity: { id: 'a' }, ts: 1 });
+    s = L.muteNlpRule(s, { ruleId: 'NLP-passive', identity: { id: 'a' }, ts: 1 });
+    s = L.resetIgnoredFindings(s, { ts: 5 });
+    expect(s.ignored.findings.get('k1').tombstone).toBe(true);
+    expect(s.ignored.mutedRules.get('NLP-passive').tombstone).toBeFalsy();
+  });
+
+  it('returns same ref when findings is empty (no allocation)', () => {
+    const s = L.createInitial();
+    expect(L.resetIgnoredFindings(s, { ts: 1 })).toBe(s);
+  });
+});
+
+describe('linting / resetMutedRules (partial reset)', () => {
+  it('tombstones mutedRules only; leaves findings intact', () => {
+    let s = L.createInitial();
+    s = L.ignoreFinding(s, { ignoreKey: 'k1', ruleId: 'R', blockHash: 'bh', match: 'm', identity: { id: 'a' }, ts: 1 });
+    s = L.muteNlpRule(s, { ruleId: 'NLP-passive', identity: { id: 'a' }, ts: 1 });
+    s = L.resetMutedRules(s, { ts: 5 });
+    expect(s.ignored.findings.get('k1').tombstone).toBeFalsy();
+    expect(s.ignored.mutedRules.get('NLP-passive').tombstone).toBe(true);
+  });
+
+  it('returns same ref when mutedRules is empty (no allocation)', () => {
+    const s = L.createInitial();
+    expect(L.resetMutedRules(s, { ts: 1 })).toBe(s);
+  });
+});
+
 describe('linting / mergeRemoteIgnored', () => {
   it('LWW per key for overlapping entries', () => {
     let s = L.createInitial();
@@ -705,6 +737,31 @@ export function resetIgnored(state, { ts } = {}) {
     mutedRules.set(k, { ...v, tombstone: true, ts: stamp });
   }
   return { ...state, ignored: { findings, mutedRules } };
+}
+
+/**
+ * Partial reset: tombstone findings only. Used by the Settings "Reset ignored
+ * findings" button when the UX requires independent reset of the two columns.
+ */
+export function resetIgnoredFindings(state, { ts } = {}) {
+  if (state.ignored.findings.size === 0) return state;
+  const stamp = typeof ts === 'number' ? ts : Date.now();
+  const findings = new Map();
+  for (const [k, v] of state.ignored.findings) {
+    findings.set(k, { ...v, tombstone: true, ts: stamp });
+  }
+  return { ...state, ignored: { ...state.ignored, findings } };
+}
+
+/** Partial reset: tombstone mutedRules only. */
+export function resetMutedRules(state, { ts } = {}) {
+  if (state.ignored.mutedRules.size === 0) return state;
+  const stamp = typeof ts === 'number' ? ts : Date.now();
+  const mutedRules = new Map();
+  for (const [k, v] of state.ignored.mutedRules) {
+    mutedRules.set(k, { ...v, tombstone: true, ts: stamp });
+  }
+  return { ...state, ignored: { ...state.ignored, mutedRules } };
 }
 
 /**
@@ -1518,14 +1575,12 @@ export function getRangesByTier(state) {
   if (!state.byBlock || state.byBlock.size === 0) {
     return { compliance, grammar, nlp };
   }
-  const ignored = state.ignored;
-
   // Per-block: filter, dedup, then push.
   for (const bf of state.byBlock.values()) {
     // 1+2+3: filter each tier by ignored / muted + null-key skip
-    const cFiltered = filterFindings(bf.compliance, ignored, null);
-    const nFiltered = filterFindings(bf.nlp, ignored, null);
-    const gFiltered = filterFindings(bf.grammar, ignored, null);
+    const cFiltered = filterFindings(bf.compliance, state, null);
+    const nFiltered = filterFindings(bf.nlp, state, null);
+    const gFiltered = filterFindings(bf.grammar, state, null);
 
     // 4: cross-tier dedup, post-filter
     const cViolations = cFiltered.map(f => f.violation);
@@ -1551,24 +1606,22 @@ export function getRangesByTier(state) {
 /**
  * Filter findings by ignored.findings + ignored.mutedRules.
  * Null-`ignoreKey` findings pass through unfiltered (hash cache lag — see §6.2).
+ * Delegates to spec §4.2 selectors `isFindingIgnored` / `isNlpRuleMuted` so the
+ * "active" predicate stays in one place.
  */
-function filterFindings(findings, ignored, _kind) {
+function filterFindings(findings, state, _kind) {
   if (!findings || findings.length === 0) return [];
-  if (!ignored) return findings;
+  if (!state || !state.ignored) return findings;
   const out = [];
   for (const f of findings) {
     if (!f) continue;
     const v = f.violation;
     if (!v) continue;
     // Skip filter when ignoreKey not yet computed (async cache placeholder).
-    if (f.ignoreKey != null && ignored.findings.get(f.ignoreKey)?.tombstone !== true && ignored.findings.has(f.ignoreKey)) {
-      continue;
-    }
+    if (f.ignoreKey != null && isFindingIgnored(state, f.ignoreKey)) continue;
     // Mute NLP rules at projection time.
-    if (typeof v.ruleId === 'string' && v.ruleId.startsWith('NLP-')) {
-      const m = ignored.mutedRules.get(v.ruleId);
-      if (m && m.tombstone !== true) continue;
-    }
+    if (typeof v.ruleId === 'string' && v.ruleId.startsWith('NLP-')
+        && isNlpRuleMuted(state, v.ruleId)) continue;
     out.push(f);
   }
   return out;
@@ -1624,6 +1677,18 @@ describe('blockHash + ignoreKey cache (BlockFindings.blockHash field)', () => {
     s = L.setBlockFindings(s, 'b1', { compliance: [f('k1'), f(null)] });
     expect(s.byBlock.get('b1').compliance[0].ignoreKey).toBe('k1');
     expect(s.byBlock.get('b1').compliance[1].ignoreKey).toBe(null);
+  });
+
+  it('wrapper construction does NOT mutate engine-emitted finding objects (spec §6.2)', () => {
+    // Simulates the pipeline in useBlockLinting.js: an engine emits a finding,
+    // the hook builds a NEW wrapper with ignoreKey rather than mutating the
+    // engine's object. If the engine caches its emission, a future cycle must
+    // still see an untouched object.
+    const engineEmission = { range: { __r: true }, violation: { ruleId: 'R', index: 0, match: 'm' } };
+    const wrapped = { ...engineEmission, ignoreKey: 'k1' };
+    expect(engineEmission.ignoreKey).toBeUndefined();
+    expect(wrapped).not.toBe(engineEmission);
+    expect(wrapped.violation).toBe(engineEmission.violation);  // shallow-clone, violation is a shared ref
   });
 });
 ```
@@ -1794,6 +1859,7 @@ Create `src/lib/__tests__/collab-lint-ignored.test.js`:
 ```javascript
 import { describe, it, expect } from 'vitest';
 import * as Y from 'yjs';
+import { ySyncPluginKey } from 'y-prosemirror';
 import {
   readLintIgnored, publishLintIgnoredToDoc,
   readLintMutedNlp, publishLintMutedNlpToDoc,
@@ -1831,6 +1897,20 @@ describe('readLintIgnored / publishLintIgnoredToDoc', () => {
       ['k1', { ruleId: 'R', blockHash: 'bh', match: 'm', ts: 1, authorId: 'a' }],
     ]));
     expect(observedOrigin).toBe('local-lint-ignored');
+  });
+
+  it('write is NOT captured by an UndoManager tracking local-publish + ySyncPluginKey (spec §3.2)', () => {
+    // Mirrors collab.js:1040 — the in-room UndoManager's trackedOrigins.
+    // Ctrl+Z must NOT un-dismiss; ignored writes are not undoable.
+    const { ydoc, yLintIgnored } = makeIgnoredDoc();
+    const um = new Y.UndoManager(yLintIgnored, {
+      trackedOrigins: new Set(['local-publish', ySyncPluginKey]),
+    });
+    publishLintIgnoredToDoc(ydoc, yLintIgnored, new Map([
+      ['k1', { ruleId: 'R', blockHash: 'bh', match: 'm', ts: 1, authorId: 'a' }],
+    ]));
+    expect(um.undoStack.length).toBe(0);
+    um.destroy();
   });
 
   it('skips re-writes for byte-equal entries (diff-only)', () => {
@@ -2134,6 +2214,17 @@ const lastPublishedLintIgnoredRef = useRef(null);
 const lastPublishedLintMutedNlpRef = useRef(null);
 ```
 
+- [ ] **Step 2b: Reset the new refs on session teardown**
+
+Search for the existing destroy cleanup that resets `lastPublishedLintByBlockRef.current = null;` (around line 375). Append two lines so the next room's first dispatch is not silently skipped by the ref-identity bail:
+
+```javascript
+lastPublishedLintByBlockRef.current = null;
+// Add:
+lastPublishedLintIgnoredRef.current = null;
+lastPublishedLintMutedNlpRef.current = null;
+```
+
 - [ ] **Step 3: Run hook tests if any exist**
 
 Run: `npm test -- --run useCollabSession`
@@ -2377,6 +2468,11 @@ getIgnoredKeys: () => {
   });
   return out;
 },
+getBlockHash: (blockId) => {
+  // Exposes the cached per-block fingerprint so E2E tests (Task 26) can
+  // construct an ignoreKey envelope without round-tripping through the DOM.
+  return lintingStateRef.current.byBlock.get(blockId)?.blockHash || null;
+},
 isFindingIgnored: (ruleId, blockHash, match) => {
   // Async — returns a Promise from test land.
   return linting.computeIgnoreKey(ruleId, blockHash, match)
@@ -2513,10 +2609,10 @@ In the file that mounts InlineTooltip (likely `App.jsx`'s render of `<InlineTool
   blockHash={lintingState.byBlock.get(blockId)?.blockHash || null}
   onSuppress={(ruleId, blockHash, match) => {
     if (!blockHash) return;
-    window.__simEditorTestUtils?.dispatchLintIgnore?.({
-      kind: 'ignore', ruleId, blockHash, match,
-    });
-    // Production path: same shape, just inline (the DEV seam routes through it).
+    // Single dispatch path — production AND tests share it. The DEV seam
+    // `__simEditorTestUtils.dispatchLintIgnore` exists in App.jsx Task 16 for
+    // E2E tests that need to inject envelopes WITHOUT a tooltip mounted.
+    // Do NOT call it from here (would double-dispatch in DEV).
     linting.computeIgnoreKey(ruleId, blockHash, match).then(ignoreKey => {
       setLintingState(s => linting.ignoreFinding(s, {
         ignoreKey, ruleId, blockHash, match,
@@ -2848,21 +2944,10 @@ export default function ComplianceSettings({
   ignoredCount={Array.from(lintingState.ignored.findings.values()).filter(e => !e.tombstone).length}
   mutedCount={Array.from(lintingState.ignored.mutedRules.values()).filter(e => !e.tombstone).length}
   onResetIgnored={() => {
-    setLintingState(s => {
-      // Reset findings only — keep mutes.
-      const ts = Date.now();
-      const findings = new Map();
-      for (const [k, v] of s.ignored.findings) findings.set(k, { ...v, tombstone: true, ts });
-      return { ...s, ignored: { ...s.ignored, findings } };
-    });
+    setLintingState(s => linting.resetIgnoredFindings(s, { ts: Date.now() }));
   }}
   onResetMuted={() => {
-    setLintingState(s => {
-      const ts = Date.now();
-      const mutedRules = new Map();
-      for (const [k, v] of s.ignored.mutedRules) mutedRules.set(k, { ...v, tombstone: true, ts });
-      return { ...s, ignored: { ...s.ignored, mutedRules } };
-    });
+    setLintingState(s => linting.resetMutedRules(s, { ts: Date.now() }));
   }}
 />
 ```
