@@ -175,6 +175,36 @@ export function clearAll(state) {
   return { ...state, byBlock: new Map() };
 }
 
+/**
+ * Prefill `byBlock` from a sidecar projection (issue #138). The projection
+ * is a `Map<blockId, BlockFindings>` produced by `lint-sidecar.projectDecoded`
+ * after fingerprinting the current block array against a decoded payload.
+ *
+ * Existing entries for the same blockId are overwritten (the sidecar is the
+ * authoritative cache for the just-loaded file). Blocks not in the projection
+ * are untouched. Returns the same state ref if the projection is empty.
+ *
+ * Opaque to consumers: the App-side wiring dispatches once on .SEC import
+ * after `parseSEC` returns and before the first render that drives the
+ * inline-linting effect. The engines see "this block already has findings"
+ * and skip their work until the html changes — at which point the existing
+ * pipeline overwrites the stale entry naturally.
+ */
+export function prefillFromSidecar(state, projection) {
+  if (!(projection instanceof Map) || projection.size === 0) return state;
+  const byBlock = new Map(state.byBlock);
+  for (const [blockId, bf] of projection) {
+    if (typeof blockId !== 'string' || !bf) continue;
+    byBlock.set(blockId, {
+      compliance: Array.isArray(bf.compliance) ? bf.compliance : [],
+      nlp: Array.isArray(bf.nlp) ? bf.nlp : [],
+      grammar: Array.isArray(bf.grammar) ? bf.grammar : [],
+      grammarText: typeof bf.grammarText === 'string' ? bf.grammarText : null,
+    });
+  }
+  return { ...state, byBlock };
+}
+
 // ── Selectors (pure) ─────────────────────────────────────────────────────────
 
 /** Linting is "active" when enabled and not suspended. */

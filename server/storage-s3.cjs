@@ -31,6 +31,7 @@ const {
   ARTIFACT_KIND_YDOC,
   ARTIFACT_KIND_SEC,
   ARTIFACT_KIND_COMMENTS,
+  ARTIFACT_KIND_LINT,
 } = require('./storage-shared.cjs');
 const { log } = require('./logger.cjs');
 
@@ -38,6 +39,7 @@ const EXT_BY_KIND = {
   [ARTIFACT_KIND_YDOC]: '.ydoc',
   [ARTIFACT_KIND_SEC]: '.SEC',
   [ARTIFACT_KIND_COMMENTS]: '.comments.json',
+  [ARTIFACT_KIND_LINT]: '.lint.json',
 };
 
 function isNotFound(err) {

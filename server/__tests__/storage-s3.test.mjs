@@ -78,7 +78,7 @@ describe('S3StorageBackend', () => {
     assert.deepEqual(writes, ['myroom.ydoc']);
   });
 
-  test('deleteRoom removes all three artifacts', async () => {
+  test('deleteRoom removes all four artifacts', async () => {
     const deleted = [];
     s3Mock.on(DeleteObjectCommand).callsFake(async (input) => {
       deleted.push(input.Key);
@@ -88,7 +88,10 @@ describe('S3StorageBackend', () => {
     const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
     await backend.deleteRoom('myroom');
 
-    assert.deepEqual(deleted.sort(), ['myroom.SEC', 'myroom.comments.json', 'myroom.ydoc']);
+    assert.deepEqual(
+      deleted.sort(),
+      ['myroom.SEC', 'myroom.comments.json', 'myroom.lint.json', 'myroom.ydoc'],
+    );
   });
 
   test('listRooms returns room names from .ydoc objects, excluding quarantine + archive', async () => {

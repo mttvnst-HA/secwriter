@@ -10,6 +10,7 @@
 export const CURRENT_FILE_INITIAL = {
   sec: { handle: null, fallbackName: '31_00_00.SEC' },
   sidecar: { handle: null },
+  lintSidecar: { handle: null },
 };
 
 /**
@@ -25,4 +26,12 @@ export function getDisplayName(currentFile) {
 /** Sidecar (.comments.json) filename derived from the SEC display name. */
 export function getSidecarName(currentFile) {
   return getDisplayName(currentFile).replace(/\.sec$/i, '.comments.json');
+}
+
+/**
+ * Lint sidecar (.lint.json) filename derived from the SEC display name
+ * (issue #138). Block-granular linting cache; mirrors getSidecarName.
+ */
+export function getLintSidecarName(currentFile) {
+  return getDisplayName(currentFile).replace(/\.sec$/i, '.lint.json');
 }

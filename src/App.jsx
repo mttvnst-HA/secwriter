@@ -24,7 +24,7 @@ import CompliancePanel from "./components/CompliancePanel.jsx";
 import { compileRegister, generateRegisterReport } from "./lib/submittal-register.js";
 import { generateExportHtml } from "./lib/doc-export.js";
 import { autoSave, loadAutoSave, clearAutoSave, getAutoSaveTimestamp, supportsFileSystemAccess, saveToFileHandle } from "./lib/auto-save.js";
-import { CURRENT_FILE_INITIAL, getDisplayName, getSidecarName } from "./lib/current-file.js";
+import { CURRENT_FILE_INITIAL, getDisplayName, getSidecarName, getLintSidecarName } from "./lib/current-file.js";
 import { buildTree } from "./lib/tree-builder.js";
 import { generateCommentReport } from "./lib/comment-report.js";
 import { parseSEC } from "./lib/sec-parser.js";
@@ -38,6 +38,7 @@ import { Selection, TextSelection } from "prosemirror-state";
 import * as tc from "./lib/track-changes.js";
 import * as Blocks from "./lib/blocks.js";
 import * as linting from "./lib/linting.js";
+import { encodeSidecar, decodeSidecar, projectDecoded } from "./lib/lint-sidecar.js";
 import * as comp from "./lib/compliance.js";
 import { findHighlightTargetsInBlock } from "./lib/compliance-ranges.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
@@ -294,6 +295,10 @@ export default function SpecEditor() {
 
   const editorRef = useRef(null);
   const fileInputRef = useRef(null);
+  // Lint sidecar payload (.lint.json text) staged for the next loadSECContent
+  // call — populated by the drag-drop handler when a companion file is part
+  // of the drop. Consumed (and cleared) by loadSECContent after parseSEC.
+  const pendingLintSidecarRef = useRef(null);
   const blocksRef = useRef(blocks);
   blocksRef.current = blocks;
   const sectionMetaRef = useRef(sectionMeta);
@@ -347,6 +352,22 @@ export default function SpecEditor() {
     return resolveTaiInHtml(html, tailorProfile, tailorShowAll);
   }, [tailorActive, tailorProfile, tailorShowAll]);
 
+  // Load lint sidecar payload (parsed JSON) into the linting reducer (#138).
+  // Called from the .SEC import path when a `.lint.json` companion is
+  // available (e.g. via the multi-file drag-drop). Async because
+  // fingerprinting goes through Web Crypto.
+  const applyLintSidecarPayload = useCallback(async (rawJson, freshBlocks) => {
+    if (typeof rawJson !== 'string' || rawJson.length === 0) return;
+    let parsedJson;
+    try { parsedJson = JSON.parse(rawJson); }
+    catch { return; }
+    const decoded = decodeSidecar(parsedJson);
+    if (decoded.fingerprints.size === 0) return;
+    const projection = await projectDecoded(decoded, freshBlocks);
+    if (projection.size === 0) return;
+    setLintingState(s => linting.prefillFromSidecar(s, projection));
+  }, []);
+
   // --- SEC File Import ---
   const extractMetadata = useCallback((xmlString) => {
     const meta = { sectionNumber: '00 00 00', sectionTitle: 'UNTITLED', date: '' };
@@ -382,7 +403,11 @@ export default function SpecEditor() {
       // Atomic record swap — drops stale FSA handles in the same update so
       // Ctrl+S cannot silently overwrite the previous file with the newly
       // loaded content.
-      setCurrentFile({ sec: { handle: null, fallbackName: name }, sidecar: { handle: null } });
+      setCurrentFile({
+        sec: { handle: null, fallbackName: name },
+        sidecar: { handle: null },
+        lintSidecar: { handle: null },
+      });
       setSectionMeta(extractMetadata(content));
       setSelectedTreeId(null);
       setFocusedBlockId(null);
@@ -392,10 +417,21 @@ export default function SpecEditor() {
       // Drop any localStorage auto-save from the previous file so a future
       // mount-time restore cannot resurrect it over a freshly-loaded file.
       clearAutoSave();
+      // Reset the in-memory lint cache for the new file. Then, if the
+      // drag-drop handler staged a `.lint.json` companion (#138), feed it
+      // into prefillFromSidecar against the freshly-parsed blocks.
+      setLintingState(s => linting.clearAll(s));
+      const pendingLint = pendingLintSidecarRef.current;
+      pendingLintSidecarRef.current = null;
+      if (pendingLint) {
+        // Fire-and-forget — fingerprinting is async; the next render shows
+        // findings as soon as projection resolves.
+        applyLintSidecarPayload(pendingLint, parsed);
+      }
     } catch (err) {
       alert(`Failed to parse SEC file: ${err.message}`);
     }
-  }, [extractMetadata, clearHistory, inRoom, localSubstrate]);
+  }, [extractMetadata, clearHistory, inRoom, localSubstrate, applyLintSidecarPayload]);
 
   const handleFileImport = useCallback((file) => {
     if (!file) return;
@@ -428,10 +464,25 @@ export default function SpecEditor() {
     e.preventDefault();
     e.stopPropagation();
     setIsDragOver(false);
-    const file = e.dataTransfer.files[0];
-    if (file && (file.name.toLowerCase().endsWith('.sec') || file.name.toLowerCase().endsWith('.xml'))) {
-      handleFileImport(file);
+    // The user may drop just a .SEC, or .SEC + .lint.json companion (#138).
+    // Pick the .SEC for import; collect a sibling .lint.json (if any) and
+    // hand its text to applyLintSidecarPayload after the SEC parse settles.
+    const files = Array.from(e.dataTransfer.files || []);
+    const secFile = files.find(f => f && (f.name.toLowerCase().endsWith('.sec') || f.name.toLowerCase().endsWith('.xml')));
+    if (!secFile) return;
+    const lintFile = files.find(f => f && f.name.toLowerCase().endsWith('.lint.json'));
+    if (lintFile) {
+      // Read lint json in parallel; applied inside loadSECContent after the parse.
+      const lintReader = new FileReader();
+      lintReader.onload = (ev) => {
+        pendingLintSidecarRef.current = typeof ev.target.result === 'string' ? ev.target.result : null;
+      };
+      lintReader.onerror = () => { pendingLintSidecarRef.current = null; };
+      lintReader.readAsText(lintFile);
+    } else {
+      pendingLintSidecarRef.current = null;
     }
+    handleFileImport(secFile);
   }, [handleFileImport]);
 
   const handleFileInputChange = useCallback((e) => {
@@ -534,6 +585,46 @@ export default function SpecEditor() {
     URL.revokeObjectURL(url);
   }, [comments, currentFile]);
 
+  // Save lint sidecar (.lint.json) — block-granular linting cache, issue #138.
+  // Mirrors saveCommentsSidecar's pattern (FSA handle → picker → download).
+  // No-op when there are no cached findings. The cache exists per-block in
+  // lintingState.byBlock; we encode it against the current blocks array so
+  // the fingerprint reflects the just-saved html.
+  const saveLintSidecar = useCallback(async (promptNew) => {
+    if (!lintingState || lintingState.byBlock.size === 0) return;
+    let payload;
+    try {
+      payload = await encodeSidecar(lintingState.byBlock, blocks);
+    } catch {
+      return; // best effort — sidecar is a cache, not source of truth
+    }
+    if (!payload || (!payload.good && Object.keys(payload.bad || {}).length === 0)) return;
+    const json = JSON.stringify(payload);
+    const sidecarName = getLintSidecarName(currentFile);
+
+    // Try existing handle
+    if (!promptNew && currentFile.lintSidecar?.handle) {
+      await saveToFileHandle(currentFile.lintSidecar.handle, new TextEncoder().encode(json));
+      return;
+    }
+
+    // Try File System Access API — but unlike comments, do NOT prompt the
+    // user for the lint cache. Treat it as best-effort: persist when an FSA
+    // handle is already attached, otherwise skip silently. Avoids surprising
+    // the user with an extra Save dialog for a derived cache.
+    if (supportsFileSystemAccess() && promptNew) {
+      try {
+        const handle = await window.showSaveFilePicker({
+          suggestedName: sidecarName,
+          types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+        });
+        setCurrentFile(prev => ({ ...prev, lintSidecar: { ...prev.lintSidecar, handle } }));
+        await saveToFileHandle(handle, new TextEncoder().encode(json));
+      } catch { /* user cancelled */ }
+    }
+  }, [lintingState, blocks, currentFile]);
+
+
   // Save (Ctrl+S) — save to current location, or prompt if first save
   const handleSave = useCallback(async () => {
     if (inRoom && roomId) {
@@ -548,13 +639,14 @@ export default function SpecEditor() {
     const ok = await doFileSave(encoded, false);
     if (ok) {
       await saveCommentsSidecar(false);
+      await saveLintSidecar(false);
       setIsDirty(false);
       setSaveStatus('saved');
       setTimeout(() => setSaveStatus(null), 2000);
     } else {
       setSaveStatus(null);
     }
-  }, [blocks, sectionMeta, doFileSave, saveCommentsSidecar, inRoom, roomId]);
+  }, [blocks, sectionMeta, doFileSave, saveCommentsSidecar, saveLintSidecar, inRoom, roomId]);
 
   // Save As — always prompt for new location
   const handleSaveAs = useCallback(async () => {
@@ -564,13 +656,14 @@ export default function SpecEditor() {
     const ok = await doFileSave(encoded, true);
     if (ok) {
       await saveCommentsSidecar(true);
+      await saveLintSidecar(true);
       setIsDirty(false);
       setSaveStatus('saved');
       setTimeout(() => setSaveStatus(null), 2000);
     } else {
       setSaveStatus(null);
     }
-  }, [blocks, sectionMeta, doFileSave]);
+  }, [blocks, sectionMeta, doFileSave, saveCommentsSidecar, saveLintSidecar]);
 
   // Download .SEC from collab server (in-room only)
   const handleDownloadSec = useCallback(async () => {
@@ -1210,7 +1303,11 @@ export default function SpecEditor() {
     if (saved.sectionMeta) setSectionMeta(saved.sectionMeta);
     // Restored state has no attached file handle — atomic swap forces the
     // next Ctrl+S to prompt so it cannot land on an unrelated file.
-    setCurrentFile({ sec: { handle: null, fallbackName: saved.fileName }, sidecar: { handle: null } });
+    setCurrentFile({
+      sec: { handle: null, fallbackName: saved.fileName },
+      sidecar: { handle: null },
+      lintSidecar: { handle: null },
+    });
     if (saved.comments && Array.isArray(saved.comments)) {
       const obj = {};
       for (const c of saved.comments) obj[c.id] = c;

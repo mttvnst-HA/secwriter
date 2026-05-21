@@ -332,6 +332,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
             ydocBytes,
             secBytes: existing.secBytes,
             commentsJson: existing.commentsJson,
+            lintJson: existing.lintJson,
           });
 
           // Also update live doc in boundDocs if active
