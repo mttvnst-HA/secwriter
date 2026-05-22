@@ -1,30 +1,2291 @@
 {
   "v": 2,
-  "_comment": "Hand-curated ignored entries for corpus FP reduction. ignoredFindings entries suppress specific findings when running 'node tools/run-corpus-test.mjs --with-ignores'. blockHash values are fingerprintBlock(block.text) — SHA-256 of the corpus block's plain-text content, truncated to 24 hex chars. ignoreKey values are computeIgnoreKey(ruleId, blockHash, match) — SHA-256 of JSON.stringify([ruleId, blockHash, match]), truncated to 24 hex chars. These are distinct from live-app blockHash values (which fingerprint block.html). To compute real entries: run the corpus tool, inspect calibration-results.json, pick FP entries, then run tools/build-corpus-fixture.mjs (future task). The current entries are TEMPLATE PLACEHOLDERS — no actual filtering occurs until real ignoreKey values are inserted.",
+  "_comment": "Real ignored-fixture entries generated from calibration corpus FPs. Suppresses 15 hand-picked rule+match pairs — top false-positive patterns in unmodified UFGS text where context routinely justifies the flagged term. Regenerate via 'node tools/build-corpus-fixture.mjs'; measure FP reduction via 'node tools/run-corpus-test.mjs --corpus calibration --with-ignores'. blockHash = fingerprintBlock(block.text) — SHA-256/24 of the corpus block plain-text content (DISTINCT from live-app blockHash which fingerprints block.html). ignoreKey = computeIgnoreKey(ruleId, blockHash, match) — SHA-256/24 of JSON.stringify([ruleId, blockHash, match]).",
   "ignoredFindings": [
     {
-      "_comment": "TEMPLATE: Replace with real values computed by tools/build-corpus-fixture.mjs",
-      "ignoreKey": "placeholder1234567890abcd",
-      "ruleId": "TERM-suitable",
-      "blockHash": "placeholder1234567890abcd",
-      "match": "as suitable",
+      "ignoreKey": "004bf28f7db488f4ccf478d2",
+      "ruleId": "TERM-any",
+      "blockHash": "d0d837eff93c9a800ba8aa4b",
+      "match": "any",
       "ts": 1716326400000,
       "authorId": "corpus-fixture"
     },
     {
-      "_comment": "TEMPLATE: Replace with real values",
-      "ignoreKey": "placeholder2345678901bcde",
+      "ignoreKey": "004bf28f7db488f4ccf478d2",
+      "ruleId": "TERM-any",
+      "blockHash": "d0d837eff93c9a800ba8aa4b",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "01ef816c8e1d4f3d3867cc31",
+      "ruleId": "TERM-per",
+      "blockHash": "f24fbdc34b68486cf341054e",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "0229b2ccfa372449a46adb46",
+      "ruleId": "TERM-per",
+      "blockHash": "e138786a39086e576100e846",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "031bcc2aebfce98b1dec9839",
+      "ruleId": "TERM-any",
+      "blockHash": "8126c7546cac8428f00e0a96",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "031bcc2aebfce98b1dec9839",
+      "ruleId": "TERM-any",
+      "blockHash": "8126c7546cac8428f00e0a96",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "047fca2ee8403abbe440350c",
+      "ruleId": "TERM-per",
+      "blockHash": "affc4496a3911bd2464e8a3b",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "04ecd649b926d9a5b644b21f",
+      "ruleId": "TERM-securely",
+      "blockHash": "d3e278a8c16a3693456ae075",
+      "match": "securely",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "064b567a04a76f1f085ef86f",
+      "ruleId": "TERM-securely",
+      "blockHash": "a4a54df52bc8a99b9ab06e41",
+      "match": "securely",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "068cf74e2baf4819f5eab3c4",
+      "ruleId": "TERM-suitable",
+      "blockHash": "71ef058ecc8809bf64b9363c",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "06ce2f022e757c02558b3193",
+      "ruleId": "TERM-per",
+      "blockHash": "6684f3f634a278fc2162a785",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "06ed40dc6afd3d13f528cac4",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "e035ccb25dc374e84b65f0e3",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "079f2ad649180927642e6138",
+      "ruleId": "TERM-adequate",
+      "blockHash": "c80bba8df19d753381cb1400",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "0b5d4c7167e34ea1864eb664",
+      "ruleId": "TERM-properly",
+      "blockHash": "f0631cd7f7a61da7a319cf8c",
+      "match": "properly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "0c607eca06a28699af6cf3c0",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "80a1668b48c4fda48dfc7e2a",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "0d79adc212264f7ac942e151",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "1e3788c604b908751daf75a6",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "0f1781eada3638520402d76c",
+      "ruleId": "TERM-per",
+      "blockHash": "31c164a58d7a5c6631bbb7b4",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "106bc28c294d025c2bb7ee82",
+      "ruleId": "TERM-thoroughly",
+      "blockHash": "c33a523715b85d3493f109e9",
+      "match": "thoroughly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "10a8beed3c11d021ee53f853",
+      "ruleId": "TERM-securely",
+      "blockHash": "97077f0512bdad36dfaa2ee0",
+      "match": "securely",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "10c921ce7bc5b64f7c2f604d",
+      "ruleId": "TERM-any",
+      "blockHash": "b22cf76c79ce154d0d3c0853",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "11c5d8aaaae598f98d935b57",
+      "ruleId": "TERM-suitable",
+      "blockHash": "47130692d717b2f657d5ffc8",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "12a206a2937a7a05ae6e93ff",
+      "ruleId": "TERM-suitable",
+      "blockHash": "05db75d7c568ba4236c02ce8",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "13aa8e5df916e6d902e79f63",
+      "ruleId": "TERM-to-be",
+      "blockHash": "1980a9610f76054cb065ae60",
+      "match": "are to be",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "146a82eab5a153a6562d32f4",
+      "ruleId": "TERM-securely",
+      "blockHash": "7aa4781790258792a5a1d37f",
+      "match": "securely",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "15495731a8fc270eb83ef22e",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "d410bbb56ad677f6c94107ad",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "15c9487cb17e3066b1223295",
+      "ruleId": "TERM-any",
+      "blockHash": "a926fb0884f83d05911c4925",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "1673f021401da83aa8338905",
+      "ruleId": "TERM-any",
+      "blockHash": "e2a51ef5ae2227daa6bc7fcd",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "1673f021401da83aa8338905",
+      "ruleId": "TERM-any",
+      "blockHash": "e2a51ef5ae2227daa6bc7fcd",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "16840f44ba8bc14e78f191f5",
+      "ruleId": "TERM-suitable",
+      "blockHash": "2c1ed4d125ebfd624b8295f6",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "181a1f3103121834949d85f3",
+      "ruleId": "TERM-any",
+      "blockHash": "f94fc29d25023352cee4e046",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "1962e1414a5e075d8f6e3ff4",
+      "ruleId": "TERM-any",
+      "blockHash": "9a0e1d028fc5407f706332a4",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "196db0e9869713a455f70f6f",
+      "ruleId": "TERM-suitable",
+      "blockHash": "13ad39c509c0a2483a8df82a",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "19c939d15e1ad52083f67417",
       "ruleId": "VAGUE-applicable",
-      "blockHash": "placeholder2345678901bcde",
+      "blockHash": "a31e0322100d722f26904c9d",
       "match": "applicable",
       "ts": 1716326400000,
       "authorId": "corpus-fixture"
     },
     {
-      "_comment": "TEMPLATE: Replace with real values",
-      "ignoreKey": "placeholder3456789012cdef",
+      "ignoreKey": "1b30d4aa3b575b6b5236cca1",
       "ruleId": "TERM-any",
-      "blockHash": "placeholder3456789012cdef",
+      "blockHash": "71e6638376f52fc1da8324cb",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "1b30d4aa3b575b6b5236cca1",
+      "ruleId": "TERM-any",
+      "blockHash": "71e6638376f52fc1da8324cb",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "1b30d4aa3b575b6b5236cca1",
+      "ruleId": "TERM-any",
+      "blockHash": "71e6638376f52fc1da8324cb",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "1be2fa5ef5351233cef76e91",
+      "ruleId": "TERM-per",
+      "blockHash": "dceb8024fe1f050336d83242",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "1f4e2b3cbe48f6371f8fd165",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "e92e394da5d7c993e8429abe",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "1fe661df580f824f4e42562c",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "d6ddc9e436e63ed084423692",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "204ba5a77cc64d2e988f9180",
+      "ruleId": "TERM-to-be",
+      "blockHash": "d7b8635f741ce0ede0b85b35",
+      "match": "is to be",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "207eb685c80c2fb0c5760cf2",
+      "ruleId": "TERM-any",
+      "blockHash": "a4db2bc257ae9ccd1d03daba",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "22ec6e36695a221727ae2b44",
+      "ruleId": "TERM-thoroughly",
+      "blockHash": "74a6d6dea7bbfee5805c4106",
+      "match": "thoroughly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "2623ea67d9fea427ce88aa22",
+      "ruleId": "TERM-to-be",
+      "blockHash": "c0637317d48749dd0b46f151",
+      "match": "are to be",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "27a6d336d586b04af23cf764",
+      "ruleId": "TERM-adequate",
+      "blockHash": "3baeb16435bf28dfeaca0cb4",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "28a4e9889a26d160632f4675",
+      "ruleId": "TERM-as-necessary",
+      "blockHash": "1a9751ef8dc7f46f4eafea14",
+      "match": "as necessary",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "2920d8099f30e0c211086079",
+      "ruleId": "VAGUE-applicable",
+      "blockHash": "625164e2be3677bd9f1a987e",
+      "match": "applicable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "296784669a4b24f92d32e66b",
+      "ruleId": "TERM-adequate",
+      "blockHash": "7f88813769ed4b13baf86ad6",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "2a0fb7dbc3b07713ab33e1b0",
+      "ruleId": "VAGUE-applicable",
+      "blockHash": "36a8b5799a45b39f6cf235a2",
+      "match": "applicable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "2a30e3fe6895f478f595cb75",
+      "ruleId": "TERM-any",
+      "blockHash": "9c84e5b1fba4f5d1a83a63ab",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "2f2aa83f148943c10ec421ab",
+      "ruleId": "TERM-per",
+      "blockHash": "ef5199cfc7675b03e2cca7a5",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "2f2e39e52efa55847766bbcc",
+      "ruleId": "TERM-any",
+      "blockHash": "fea671daef73c6db283c8449",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "2f51bdd20c691120b571a9ef",
+      "ruleId": "TERM-to-be",
+      "blockHash": "f3263b6b05b4d1a703e8d16c",
+      "match": "is to be",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "2f5a446b7aa39038711845dd",
+      "ruleId": "TERM-to-be",
+      "blockHash": "79abf61443602e850499a50e",
+      "match": "are to be",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "2fcc03884dfa7557260a9bc0",
+      "ruleId": "TERM-furnish",
+      "blockHash": "05db75d7c568ba4236c02ce8",
+      "match": "Furnish",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "2fcc03884dfa7557260a9bc0",
+      "ruleId": "TERM-furnish",
+      "blockHash": "05db75d7c568ba4236c02ce8",
+      "match": "Furnish",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "2ffd82a8ef9d460bb98435d5",
+      "ruleId": "TERM-properly",
+      "blockHash": "f94fc29d25023352cee4e046",
+      "match": "properly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "312b9e2eb31cfc4e863f811f",
+      "ruleId": "TERM-securely",
+      "blockHash": "562b37ef00d62ef4742cefc9",
+      "match": "securely",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "31779bd249aa0476b7f91452",
+      "ruleId": "TERM-properly",
+      "blockHash": "fe6d9585dbbcb2aee4ab5eb3",
+      "match": "properly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "3178224dbf557443ffda599f",
+      "ruleId": "TERM-furnish",
+      "blockHash": "fc55dfcd4c397720976df79e",
+      "match": "Furnish",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "33e192bb4df8add64c579b44",
+      "ruleId": "TERM-per",
+      "blockHash": "3a51d1d188803277ff157c69",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "348cfa55e553cb190c1bc02e",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "24a4ca11f7622ea86490e86c",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "35ce9c3a5b5ac1b26ecb6f54",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "a09efffcc7226452c21639e7",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "36a400bfa1937b83df72ca1c",
+      "ruleId": "CAP-Contract",
+      "blockHash": "25a81308c61b88dd326493de",
+      "match": "contract",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "36c4a7a5f0cc9f9e6813d9da",
+      "ruleId": "TERM-any",
+      "blockHash": "b02f72bb2332b14f69a569b8",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "36c4a7a5f0cc9f9e6813d9da",
+      "ruleId": "TERM-any",
+      "blockHash": "b02f72bb2332b14f69a569b8",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "37999f44e083a21b54f24e91",
+      "ruleId": "TERM-thoroughly",
+      "blockHash": "e8c2f26badd3a04fa90485e2",
+      "match": "thoroughly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "39c670bf7f37a9571c062b0b",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "26c93be957aa5e605a7a3444",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "3a0841565f88aecb1d615f1d",
+      "ruleId": "TERM-per",
+      "blockHash": "22f83126ed22d9d20d8b1f42",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "3b1250db03946d98603baf00",
+      "ruleId": "TERM-any",
+      "blockHash": "a9aa0d046c7232981bd216d7",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "3e27589a6dcfdbd0d505f94b",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "8863798d017ec4646ccd2008",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "3eab13fd157cf344a5f85b73",
+      "ruleId": "TERM-adequate",
+      "blockHash": "8579b24ffea37525564081df",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "3fe998aa9325f3dce64a2334",
+      "ruleId": "TERM-furnish",
+      "blockHash": "8126c7546cac8428f00e0a96",
+      "match": "Furnish",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "4358393d34fad034e59f7ec2",
+      "ruleId": "TERM-adequate",
+      "blockHash": "f655ac2cd6a7047cbc474fc5",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "43a090f41d097ec48aa9b13a",
+      "ruleId": "TERM-any",
+      "blockHash": "f06ff099f668bd3cff011db4",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "43a090f41d097ec48aa9b13a",
+      "ruleId": "TERM-any",
+      "blockHash": "f06ff099f668bd3cff011db4",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "4425af950fa7f8c59972a8f9",
+      "ruleId": "TERM-furnish",
+      "blockHash": "a549ac2e73cf943747495160",
+      "match": "Furnish",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "443ebf46f66610a71f6be41a",
+      "ruleId": "TERM-to-be",
+      "blockHash": "250134d6ea5b0663b5f5aed7",
+      "match": "is to be",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "4511d24e2a9196b1d777a47a",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "0cad8f771e9593c4d5d54149",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "4511d24e2a9196b1d777a47a",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "0cad8f771e9593c4d5d54149",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "4526a05475ba1b4ee326cb96",
+      "ruleId": "TERM-per",
+      "blockHash": "15ee8baa40869c4bf355c24c",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "4644ced4128c800f62505f7d",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "10da64a871ea9f7cb8bf192f",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "46a73475b12aed2b834e6f7e",
+      "ruleId": "TERM-per",
+      "blockHash": "68a1e4d939bc8cc57bfc2da3",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "46b74c4682ef7e02c48da6a9",
+      "ruleId": "TERM-carefully",
+      "blockHash": "802b165a0c6fc8b7974a92cd",
+      "match": "carefully",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "47367b0a32f13e178da9be98",
+      "ruleId": "TERM-any",
+      "blockHash": "f416acc9e054d5a20d7d1434",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "4814ddccc009c80a20ab0d01",
+      "ruleId": "TERM-furnish",
+      "blockHash": "30fa515e607da423e05e01a5",
+      "match": "Furnish",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "48f259b16050a8baf41bacc0",
+      "ruleId": "VAGUE-applicable",
+      "blockHash": "09602f18def38e425706ea47",
+      "match": "applicable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "4a74330a76bfc636155128e7",
+      "ruleId": "TERM-any",
+      "blockHash": "840707a392c91877a2924566",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "4a74330a76bfc636155128e7",
+      "ruleId": "TERM-any",
+      "blockHash": "840707a392c91877a2924566",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "4af0542adec6b1e531d5531f",
+      "ruleId": "TERM-any",
+      "blockHash": "69669c9475a8120eed7968db",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "4c7dd1c522c587d9b6220e53",
+      "ruleId": "TERM-to-be",
+      "blockHash": "f991d7602bd43819fc02ea75",
+      "match": "are to be",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "4d92fd5bad0df2923b612a0b",
+      "ruleId": "TERM-any",
+      "blockHash": "edbf5f3c742c12d77aaf11c4",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "4e77a912b973f7cc61fde1a0",
+      "ruleId": "TERM-any",
+      "blockHash": "f3a72b809838417fa7bc6c7e",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "4fb5ea9badb759be8be92577",
+      "ruleId": "TERM-any",
+      "blockHash": "8172308258da225949fac8d8",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "4fe90affc8e1f8e3fa36e3c0",
+      "ruleId": "TERM-suitable",
+      "blockHash": "f95cfe8657196b73b035ec73",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "50fae6490d7f1771511d2b1c",
+      "ruleId": "TERM-properly",
+      "blockHash": "16aa6e5330af1d78d241acc6",
+      "match": "properly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "510906d5ba6138588a12b0b0",
+      "ruleId": "TERM-securely",
+      "blockHash": "8a8be0beeb1162512de6dde6",
+      "match": "securely",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "52b58b4ec9f7971c0def56d7",
+      "ruleId": "TERM-to-be",
+      "blockHash": "8c0d66ad84440d2a8b6628a2",
+      "match": "are to be",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "530c89e8a9c575c959045be1",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "bb69d35ea65a903fa194df15",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "53a7849d5c6ca3c4b12b80c6",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "060da0fba653078f75882eda",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "5403d6264c8a36b9432c7185",
+      "ruleId": "TERM-any",
+      "blockHash": "3ee5add5f23424001f40d923",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "5403d6264c8a36b9432c7185",
+      "ruleId": "TERM-any",
+      "blockHash": "3ee5add5f23424001f40d923",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "5403d6264c8a36b9432c7185",
+      "ruleId": "TERM-any",
+      "blockHash": "3ee5add5f23424001f40d923",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "542f6c252d0aceebae862749",
+      "ruleId": "TERM-to-be",
+      "blockHash": "03ef0108d3613d620cff479b",
+      "match": "are to be",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "543146f248736fcf63858ff4",
+      "ruleId": "TERM-per",
+      "blockHash": "9456a5ce2407013c9f66db7f",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "55a7e8a3f8bd54495d1c4afb",
+      "ruleId": "TERM-any",
+      "blockHash": "7110a0c66d2be92f42d146cf",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "55cce8040eaf23094491a134",
+      "ruleId": "TERM-any",
+      "blockHash": "cd88cd5f48b5c63280ebf054",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "5657cc19e2c0fdd34c19f1c0",
+      "ruleId": "TERM-per",
+      "blockHash": "b0954babd0bc61af419ad714",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "57328a5b1c46a3a3a40aa8f4",
+      "ruleId": "TERM-any",
+      "blockHash": "9f86448fa593fb7c46081600",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "57328a5b1c46a3a3a40aa8f4",
+      "ruleId": "TERM-any",
+      "blockHash": "9f86448fa593fb7c46081600",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "57f28bdc02d8aac29074e011",
+      "ruleId": "TERM-any",
+      "blockHash": "13cd4e0bcbd849361e3d510d",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "5a952bb1783c482d33bc988d",
+      "ruleId": "TERM-suitable",
+      "blockHash": "736217cfa561e3b3b44397a4",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "5b8cb66be777153554fbdb33",
+      "ruleId": "TERM-any",
+      "blockHash": "1f868c17fae98e16cda55711",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "5b9a40a513b5604d8a531104",
+      "ruleId": "TERM-per",
+      "blockHash": "2fb7959e2e2a5beec64cd0d7",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "5da6e595c7fb0184f2da3c79",
+      "ruleId": "TERM-carefully",
+      "blockHash": "f655ac2cd6a7047cbc474fc5",
+      "match": "carefully",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "60a91cb2f86ee8ea6937a890",
+      "ruleId": "TERM-furnish",
+      "blockHash": "31c9c837ebade05ad8274de7",
+      "match": "Furnish",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "622281ff94807748de336e1a",
+      "ruleId": "CAP-Contract",
+      "blockHash": "c6a28f8861b2685c853ca301",
+      "match": "contract",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "64b055c1d4d54039b36e8ab3",
+      "ruleId": "TERM-suitable",
+      "blockHash": "58b241f4f3b45a4affc0e5fe",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "68dd6752e9927d623f0b99e2",
+      "ruleId": "TERM-per",
+      "blockHash": "cc2faf9dea62d2f50a2de760",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "68eb00f97ba0152fbeeb36e7",
+      "ruleId": "CAP-Contract",
+      "blockHash": "c0637317d48749dd0b46f151",
+      "match": "contract",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "69f0b63dcab4d54e06c2af3b",
+      "ruleId": "TERM-per",
+      "blockHash": "ed2c015af666ad201409b21e",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "69f4dbb8937faacaeadf478d",
+      "ruleId": "TERM-furnish",
+      "blockHash": "d0ec7142adfa1baed8d3d8c1",
+      "match": "Furnish",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "6a275e1a7cc404bb162882ea",
+      "ruleId": "TERM-suitable",
+      "blockHash": "724d6f4a6e241e4c4ea11147",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "6a386df22dd38088fc83b61e",
+      "ruleId": "TERM-any",
+      "blockHash": "069b042214bf71b8550c4335",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "6a44cdef65936b09e4aa18ea",
+      "ruleId": "TERM-to-be",
+      "blockHash": "6a66e463087f2191f6d392b8",
+      "match": "are to be",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "6cee7bf8dd532736230cf03f",
+      "ruleId": "TERM-adequate",
+      "blockHash": "2aa42f5cbcdcbbcab7c912d0",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "6ec6d0be984a87963b8f0512",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "0d723aa47b515fa4d88d9989",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "6f2828113aff5120ee6f3b6a",
+      "ruleId": "TERM-properly",
+      "blockHash": "2eef5fdb3c24f3b865d66082",
+      "match": "properly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "7172c651e68972acde72cf6a",
+      "ruleId": "TERM-securely",
+      "blockHash": "e93e84069a13af0a72be3c8e",
+      "match": "securely",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "73e304e761f82b515d3d6b67",
+      "ruleId": "TERM-suitable",
+      "blockHash": "095825874bcda181f1122a64",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "73e863b614dcd8caba071207",
+      "ruleId": "TERM-any",
+      "blockHash": "ab5ead0775c822d20328be08",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "761248cf7a813af1d75dbf5d",
+      "ruleId": "VAGUE-applicable",
+      "blockHash": "ab1ee375f9dac05d1a593ec6",
+      "match": "applicable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "7a4267ae31b694693b0477e7",
+      "ruleId": "TERM-any",
+      "blockHash": "22cb645c0093702eb45b4cda",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "7acb165d5f640880317ab539",
+      "ruleId": "TERM-adequate",
+      "blockHash": "be42da57978580089938bd29",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "7be5e7daeba858d28bd21468",
+      "ruleId": "TERM-adequate",
+      "blockHash": "22cb645c0093702eb45b4cda",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "7c0517acbada5b9e35ef83b7",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "75f6062a2984d7457d3becf0",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "7c878198f35ae2a054e3570c",
+      "ruleId": "TERM-to-be",
+      "blockHash": "64f0609600b73d4bd6876c49",
+      "match": "is to be",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "7d29fe8cef3ce437a26338d9",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "3841f182da13743abf873791",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "7dba512f25e2ad84cb6df228",
+      "ruleId": "TERM-adequate",
+      "blockHash": "f5175c711c2913bcba33f71b",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "7df00583301c0e6a7c2748df",
+      "ruleId": "TERM-any",
+      "blockHash": "f991d7602bd43819fc02ea75",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "7e0985b77e77abb488df4c29",
+      "ruleId": "TERM-any",
+      "blockHash": "77d73406c1b19f12ca4b8b73",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "7eddaf39e88a9b7eb692b511",
+      "ruleId": "TERM-suitable",
+      "blockHash": "6fe0ebbf2e4874e328fdaf20",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "7eddaf39e88a9b7eb692b511",
+      "ruleId": "TERM-suitable",
+      "blockHash": "6fe0ebbf2e4874e328fdaf20",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "807c544a7f540a4f37026b20",
+      "ruleId": "TERM-any",
+      "blockHash": "44c1b2f9a29b832c7e3d7f0a",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "80894078daa966f3d015f1bd",
+      "ruleId": "TERM-adequate",
+      "blockHash": "ff915b36d7efeaa22efd93e9",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "816f497b96e5c5a3ee2252f9",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "3b055e55ceaf6e4a14ea2c9b",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "829a5e791542408a5fc67e70",
+      "ruleId": "TERM-to-be",
+      "blockHash": "64c47910647c09efc82ddaa0",
+      "match": "is to be",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "83414e2e6fe7b30c64813c45",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "b1d089e35c721469056adbf7",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "856b385c1a2ab61ee2107c57",
+      "ruleId": "TERM-any",
+      "blockHash": "08fa945e849c3a9c067ccce5",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "864ac69fe8c57d39850b8da0",
+      "ruleId": "TERM-suitable",
+      "blockHash": "fd14dc4f22149dae682cbdab",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "88568c9143c4c946b08aea96",
+      "ruleId": "TERM-suitable",
+      "blockHash": "84001bb15197b91cb35a37ff",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "88addc127a58d9be7317be5b",
+      "ruleId": "TERM-furnish",
+      "blockHash": "121b377dd8840881ed8abc2f",
+      "match": "Furnish",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "8995ad80e19ef20c73061095",
+      "ruleId": "TERM-suitable",
+      "blockHash": "de85d4bb49de7e2a684a2e84",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "89c90f9515c9d9ef923bacba",
+      "ruleId": "TERM-any",
+      "blockHash": "416282aaeea4c6ce7ce45de0",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "8aa9fdbdc4edf1b9a713e149",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "d18206a1fa2e007d1f192aca",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "8ccb5d30434f160c7ec6073f",
+      "ruleId": "CAP-Contract",
+      "blockHash": "0f238272b1860b85a1a0437b",
+      "match": "contract",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "8d4faf1305c7130de0ab8822",
+      "ruleId": "TERM-furnish",
+      "blockHash": "4365cf85c56356ea53101055",
+      "match": "Furnish",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "8d8a54b5f0da047b3750d07c",
+      "ruleId": "TERM-per",
+      "blockHash": "c0e946d8c3f1455097c16311",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "8eaa2e86de896ff80c7f9a0b",
+      "ruleId": "TERM-per",
+      "blockHash": "64384e94e2ead4c732c7baf7",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "8eb71c3d34281d5354651a64",
+      "ruleId": "TERM-adequate",
+      "blockHash": "d2c843cbee3c6d14dcce76b5",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "8f3f94e5248393a9c4f3ed7b",
+      "ruleId": "TERM-adequate",
+      "blockHash": "351ea8235352d195a056c034",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "9054248d916fed162eb63401",
+      "ruleId": "TERM-any",
+      "blockHash": "2669b16b81bd1cfe4aab8763",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "90a25a789bd43fc555072862",
+      "ruleId": "TERM-any",
+      "blockHash": "2c11b48f982d2a1192f7fbf4",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "9251ae3000faaf39ff84c4e6",
+      "ruleId": "TERM-thoroughly",
+      "blockHash": "7e45d50e02f8ae9532806438",
+      "match": "thoroughly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "9483f0d5cb1836bd23bea328",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "8d1a41bd6a394239600dfd29",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "9483f0d5cb1836bd23bea328",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "8d1a41bd6a394239600dfd29",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "94ffea7b5703f84df5a012f3",
+      "ruleId": "TERM-carefully",
+      "blockHash": "29ffbb2964aecf3634f7f047",
+      "match": "carefully",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "9615d4666e2bac78b234adb6",
+      "ruleId": "TERM-any",
+      "blockHash": "d0ad32a6c464ad95a65fef53",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "96a6df1ed7826356b967262e",
+      "ruleId": "CAP-Contract",
+      "blockHash": "a2f22856ebcb183acd06e72d",
+      "match": "contract",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "96f0368b1fc3135682cb9409",
+      "ruleId": "TERM-properly",
+      "blockHash": "f8802dd6b5a11b84f8fb6726",
+      "match": "properly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "9805afb0b04d9f7a01345617",
+      "ruleId": "TERM-thoroughly",
+      "blockHash": "dd95f46766d423956c2ad183",
+      "match": "thoroughly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "9c49a8d639a1f92c4a2ea0ef",
+      "ruleId": "TERM-securely",
+      "blockHash": "3baeb16435bf28dfeaca0cb4",
+      "match": "securely",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "9d6df7180eadb8223b46e411",
+      "ruleId": "TERM-adequate",
+      "blockHash": "a13adf68f8ede04d75c8684b",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "9d6df7180eadb8223b46e411",
+      "ruleId": "TERM-adequate",
+      "blockHash": "a13adf68f8ede04d75c8684b",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "9ee7501394bf98e831f3a338",
+      "ruleId": "TERM-any",
+      "blockHash": "ce69c095e98c1ce8ea1396e7",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "a12270f8be1c9e03c5e274b5",
+      "ruleId": "TERM-to-be",
+      "blockHash": "6a5644176a36d0c774a467bb",
+      "match": "are to be",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "a1233936463585eb2d0debce",
+      "ruleId": "TERM-suitable",
+      "blockHash": "d68c5cc6f08c6c22e29dca6a",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "a1f22eba7452d4c27219d2e5",
+      "ruleId": "VAGUE-applicable",
+      "blockHash": "b5166f08b089d0dc3ed5c266",
+      "match": "applicable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "a49b375fc446e75fd0be46eb",
+      "ruleId": "TERM-to-be",
+      "blockHash": "ebaf1a5314028495baba3cc0",
+      "match": "are to be",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "a4cdbf158724ce31e08d9d1a",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "9ed1da264aab646567150f9a",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "a7bf9e16f18f845ee60d4885",
+      "ruleId": "VAGUE-applicable",
+      "blockHash": "d0d837eff93c9a800ba8aa4b",
+      "match": "applicable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "aaf58ec21b4ce0bcef21acab",
+      "ruleId": "TERM-per",
+      "blockHash": "1ed07ab108ada335ad459cef",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "ab298528eb243def755d5329",
+      "ruleId": "TERM-any",
+      "blockHash": "cdb693e00fc985356050484c",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "acf4ebebf943c613e590dc3f",
+      "ruleId": "CAP-Contract",
+      "blockHash": "c254cf77c82be53911adaf1e",
+      "match": "contract",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "aeb09fa5b207303a91483310",
+      "ruleId": "TERM-any",
+      "blockHash": "51a5824d2f990ada194ca408",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "af4cc20eeb239cb9bee5cb98",
+      "ruleId": "TERM-suitable",
+      "blockHash": "7c12b81c1872faef500ca47d",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "afd27467d5ec4194a7abd2c7",
+      "ruleId": "TERM-adequate",
+      "blockHash": "ceac4d7827b1062cb8d2157f",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "afe7c81bb05267be9c1a1521",
+      "ruleId": "TERM-per",
+      "blockHash": "23bb337ab4d2b694ef567145",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "b0207fb16337879ad1d39095",
+      "ruleId": "TERM-thoroughly",
+      "blockHash": "fc55dfcd4c397720976df79e",
+      "match": "thoroughly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "b10d97cfa3bcbf8d0c381740",
+      "ruleId": "VAGUE-applicable",
+      "blockHash": "c05b1ae0fb2f66957a37fa1b",
+      "match": "applicable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "b1840e442b9685ee3424b9be",
+      "ruleId": "TERM-to-be",
+      "blockHash": "0e22b66610173b9d757e762e",
+      "match": "are to be",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "b2e01801c5261e91cff88ca7",
+      "ruleId": "TERM-suitable",
+      "blockHash": "1b2a5a3b48f5f323c4ad9145",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "b3b2ba3cccbee609cab980fa",
+      "ruleId": "TERM-any",
+      "blockHash": "7d40019b9595a654b24ca438",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "b73ab48006f0840220f0fa2e",
+      "ruleId": "TERM-properly",
+      "blockHash": "18fb17d628df958e88a17443",
+      "match": "properly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "b814b917728771d4f6792c8f",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "ed2c015af666ad201409b21e",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "b89a886901dfcdc271f54dee",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "ee0cda2643cb99ba8979aa15",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "b8b1b82e271d8fabc46b2cf2",
+      "ruleId": "TERM-suitable",
+      "blockHash": "08db5235b67548370dce3252",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "b93bd3b822118c1820c4d20e",
+      "ruleId": "TERM-securely",
+      "blockHash": "3a8a5bcc0451ef1612c75034",
+      "match": "securely",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "ba8773d8fdc148c956e35390",
+      "ruleId": "TERM-suitable",
+      "blockHash": "24595ccd5550af7094c9e9e3",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "bae9101fbdf25234066be147",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "c63708a6c72cf5faedea1839",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "bb0f19f048889be448d1cfa5",
+      "ruleId": "TERM-any",
+      "blockHash": "8c0ae606421299f0c9969600",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "bb6d7bf68c48c56e51e415a4",
+      "ruleId": "TERM-per",
+      "blockHash": "e9e51bdc45e399b8174ec87b",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "bc07fdfd07d6a4b2b6e80c91",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "7c66d2f320d3f085a4a0bac0",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "bc1d677adef77a6221a64e40",
+      "ruleId": "TERM-securely",
+      "blockHash": "736217cfa561e3b3b44397a4",
+      "match": "securely",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "bcdd5cb1d237a56b68e4fa92",
+      "ruleId": "TERM-thoroughly",
+      "blockHash": "b29b2ac0a11dd1f469beda87",
+      "match": "thoroughly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "be1cf8bad21b41dcb46134a5",
+      "ruleId": "TERM-thoroughly",
+      "blockHash": "8126c7546cac8428f00e0a96",
+      "match": "thoroughly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "be8e701f0be757397d827ad3",
+      "ruleId": "TERM-to-be",
+      "blockHash": "f991d7602bd43819fc02ea75",
+      "match": "is to be",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "bea0a2bd82ae780aa97dd6e9",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "a9204b9a56cff9f163f14f41",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "beced298e1900af2d818ab53",
+      "ruleId": "TERM-suitable",
+      "blockHash": "643a7d50b0445640638102a1",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "bf306d4e033bf811ec75f229",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "ca6ffc0ead41f30f68707a4d",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "bf8ace81257a015de4a8f70d",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "67e9cd5997e36c5640272624",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "c26c89ed25850539c513428e",
+      "ruleId": "TERM-any",
+      "blockHash": "52b23001e2ae2fce09db4902",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "c2cf4dff7ab82422233504de",
+      "ruleId": "TERM-any",
+      "blockHash": "0f238272b1860b85a1a0437b",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "c2cf4dff7ab82422233504de",
+      "ruleId": "TERM-any",
+      "blockHash": "0f238272b1860b85a1a0437b",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "c2e09264bdb56d1958af6546",
+      "ruleId": "TERM-any",
+      "blockHash": "53623ce2993a883e3af79895",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "c4573946049250a65d7d35bb",
+      "ruleId": "TERM-properly",
+      "blockHash": "c6a28f8861b2685c853ca301",
+      "match": "properly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "c4dad7dbc3a44ee0ebf195e3",
+      "ruleId": "TERM-any",
+      "blockHash": "190da27b2b456f8eb87c5776",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "c4e130097693a19fde526f71",
+      "ruleId": "TERM-suitable",
+      "blockHash": "664726c960ecd555d469a68f",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "c53ab826886c23871c83705a",
+      "ruleId": "TERM-any",
+      "blockHash": "1ff3597291fc16e963873628",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "c5e7ed3c115561768edb6607",
+      "ruleId": "TERM-adequate",
+      "blockHash": "724d6f4a6e241e4c4ea11147",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "c7c8a3fbd0777b80b168b121",
+      "ruleId": "TERM-per",
+      "blockHash": "d090670fa01736168259ada5",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "c8e603695caff793df75410a",
+      "ruleId": "TERM-any",
+      "blockHash": "99658213e57414e4a76c803b",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "c8ffaeedb9773dc6f483f603",
+      "ruleId": "TERM-any",
+      "blockHash": "cd6105c198b5f675ff9e15e3",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "ca508dbc6001414e4c13567a",
+      "ruleId": "TERM-any",
+      "blockHash": "8ac16ae7f3a9a22870b16828",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "cb6dcac68078d9d6ca45b41e",
+      "ruleId": "TERM-any",
+      "blockHash": "b10a7d8db3fcbbb6e05ea5e4",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "cb8f212b6fa935aeaa174cb8",
+      "ruleId": "TERM-any",
+      "blockHash": "814e67992e8add3c314977fb",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "cd786f5156fa377d085f12c0",
+      "ruleId": "TERM-securely",
+      "blockHash": "58b241f4f3b45a4affc0e5fe",
+      "match": "securely",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "cd8c6775634548b46cd7b898",
+      "ruleId": "CAP-Contract",
+      "blockHash": "dbafd13cd6e0d64c03d221fc",
+      "match": "contract",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "cee9c4bf6a02a7c4edb0f6a7",
+      "ruleId": "TERM-properly",
+      "blockHash": "8126c7546cac8428f00e0a96",
+      "match": "properly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "cf3e1e2d70ac7080e4ac9248",
+      "ruleId": "TERM-per",
+      "blockHash": "41ceed7f6c5326083921f924",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "d1a1ce1c76216d746efd2218",
+      "ruleId": "TERM-any",
+      "blockHash": "ebaf1a5314028495baba3cc0",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "d1a1ce1c76216d746efd2218",
+      "ruleId": "TERM-any",
+      "blockHash": "ebaf1a5314028495baba3cc0",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "d1a1ce1c76216d746efd2218",
+      "ruleId": "TERM-any",
+      "blockHash": "ebaf1a5314028495baba3cc0",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "d1d2e1fa31db95a8ca47396b",
+      "ruleId": "TERM-suitable",
+      "blockHash": "ff915b36d7efeaa22efd93e9",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "d25b399fa09f12134cccc7df",
+      "ruleId": "TERM-any",
+      "blockHash": "c8f44f3599c0387b4c2453ec",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "d25b399fa09f12134cccc7df",
+      "ruleId": "TERM-any",
+      "blockHash": "c8f44f3599c0387b4c2453ec",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "d2ae76f7deca7b3cbaccd812",
+      "ruleId": "TERM-securely",
+      "blockHash": "0303d07c510dd928d1bac00d",
+      "match": "securely",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "d4d625e0863da4ac7584198a",
+      "ruleId": "TERM-adequate",
+      "blockHash": "56afae1667e1b7b181f5a482",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "d4e2a3b433bd087196ffb00b",
+      "ruleId": "TERM-furnish",
+      "blockHash": "d71735cbf04871e24c4a0aa9",
+      "match": "Furnish",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "d4e7bfbc9179102d7907b89b",
+      "ruleId": "TERM-adequate",
+      "blockHash": "bd46449bb2d826b23a2eaada",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "d60be220555d63c0110bfa6c",
+      "ruleId": "TERM-per",
+      "blockHash": "1dfec343277c404f1d9db647",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "d778d943993eb150ee188887",
+      "ruleId": "TERM-any",
+      "blockHash": "cbbe03a545c6e307d601250b",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "d8a56917a561982de5bc60e5",
+      "ruleId": "TERM-per",
+      "blockHash": "213e059770b30840c2818570",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "da7729aad9fbefdb33591d3a",
+      "ruleId": "TERM-any",
+      "blockHash": "947f203cf64011fe75f33ad7",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "daa309768d737372cb1caf4d",
+      "ruleId": "TERM-per",
+      "blockHash": "0f2851097c4879b74860b8a8",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "dbb34b7d05e305cab609286a",
+      "ruleId": "TERM-any",
+      "blockHash": "b29b2ac0a11dd1f469beda87",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "dc03399a894d0496dfea0c84",
+      "ruleId": "TERM-any",
+      "blockHash": "f4ead5f46f9cb51357b3fafe",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "dc9314383a2c83a1db0890eb",
+      "ruleId": "TERM-suitable",
+      "blockHash": "69669c9475a8120eed7968db",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "ddf6f95e5c9d44e266dcb6b1",
+      "ruleId": "TERM-securely",
+      "blockHash": "de85d4bb49de7e2a684a2e84",
+      "match": "securely",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "de26488dcf4349399241e790",
+      "ruleId": "CAP-Contract",
+      "blockHash": "2f539cc4c63814e66cecb19c",
+      "match": "contract",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "def9c292238077b4495fd680",
+      "ruleId": "TERM-adequate",
+      "blockHash": "840707a392c91877a2924566",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "df7a4961d7ef29b6c867aa8b",
+      "ruleId": "TERM-suitable",
+      "blockHash": "ec179dc28df0707dcd424749",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "dfc9aaaf84319d058bb058c0",
+      "ruleId": "TERM-any",
+      "blockHash": "5c856fc5ae05757c064430be",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "dfcfe90bcebc1a30b5573be3",
+      "ruleId": "VAGUE-applicable",
+      "blockHash": "f43d2ce9c9cd05ea139dca2c",
+      "match": "applicable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "e0c9b2b4a5aa1e781fd11e8f",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "351ea8235352d195a056c034",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "e1bbb12d691a240f0147ca73",
+      "ruleId": "TERM-as-necessary",
+      "blockHash": "e299af6cd9dc6e52cc077964",
+      "match": "as necessary",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "e1f8ba3099b045c0eaee78fa",
+      "ruleId": "TERM-properly",
+      "blockHash": "2df60828c052b758a8c73eb4",
+      "match": "properly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "e2c4bda0432f615e21c8ee09",
+      "ruleId": "TERM-properly",
+      "blockHash": "c3729fc34269e89d2112472e",
+      "match": "properly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "e6aa56fcfc0b4d15e43a2b2b",
+      "ruleId": "VAGUE-applicable",
+      "blockHash": "61d178d94271d2778b5af857",
+      "match": "applicable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "e7816671abde4873838b10a5",
+      "ruleId": "TERM-suitable",
+      "blockHash": "ec8a8c2f178b47f701474f32",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "e7b1d52467c38367d4ce754e",
+      "ruleId": "TERM-adequate",
+      "blockHash": "85b283c22e734fe603bc16cf",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "e7d0402c23a2b75a19c299f7",
+      "ruleId": "TERM-any",
+      "blockHash": "b477412e24df2590923461f9",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "e7d0402c23a2b75a19c299f7",
+      "ruleId": "TERM-any",
+      "blockHash": "b477412e24df2590923461f9",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "e7d28167fce0a6fea78b6bd1",
+      "ruleId": "TERM-to-be",
+      "blockHash": "5985d6cf7701783557cbd3fc",
+      "match": "is to be",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "e844aa898e470d8318df4ad2",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "9fef904c5c33fa243de2ba29",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "ea2145b50146afa485381ac2",
+      "ruleId": "TERM-any",
+      "blockHash": "ef6df52694fe19867c055ad4",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "ea2145b50146afa485381ac2",
+      "ruleId": "TERM-any",
+      "blockHash": "ef6df52694fe19867c055ad4",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "eb6588598288ef7ba32c3a3b",
+      "ruleId": "TERM-adequate",
+      "blockHash": "b1d089e35c721469056adbf7",
+      "match": "adequate",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "ebad92bf9fd79c73e854098d",
+      "ruleId": "TERM-thoroughly",
+      "blockHash": "31893b7646066035cefa9357",
+      "match": "thoroughly",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "ebd86b1ac5b4b73070169ed6",
+      "ruleId": "TERM-any",
+      "blockHash": "f63a8df04ad553752e55b6c9",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "ed840a33142edd8af2f30845",
+      "ruleId": "TERM-suitable",
+      "blockHash": "f15ff5d2868a9328a9993125",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "ee1c7b58e15d6ec6368696a1",
+      "ruleId": "TERM-suitable",
+      "blockHash": "6f3fe79a185e4334972158d5",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "ee1c7b58e15d6ec6368696a1",
+      "ruleId": "TERM-suitable",
+      "blockHash": "6f3fe79a185e4334972158d5",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "efcefe702bc0a0967d736949",
+      "ruleId": "VAGUE-applicable",
+      "blockHash": "23ebe116aa0b1135fdc1cf28",
+      "match": "applicable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "f0a67b626869a49a032a0e63",
+      "ruleId": "TERM-per",
+      "blockHash": "cf086d6595e738f1ebdfbcc6",
+      "match": "per",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "f273cbf12be20df2b4d8c710",
+      "ruleId": "TERM-as-necessary",
+      "blockHash": "644bdc75cb3387dc21f68838",
+      "match": "as necessary",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "f290f449e51e75bd45a22339",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "a9aa0d046c7232981bd216d7",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "f3d8811d389be8ea712ab29e",
+      "ruleId": "TERM-any",
+      "blockHash": "e2f153b57fe2f27e5a51ee46",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "f4ddcd9329f67fdfc0cda725",
+      "ruleId": "VAGUE-applicable",
+      "blockHash": "90e3443e3b5ce43a586b353d",
+      "match": "applicable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "f7708f9302e6fd13a9d4ccd3",
+      "ruleId": "TERM-any",
+      "blockHash": "699ffa854d1374cbcf374d35",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "f80afa8687a3646b577e12b5",
+      "ruleId": "TERM-any",
+      "blockHash": "a643a2b4ac3b5a1af1a56d17",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "f869bf63c9cd8e88bdce2197",
+      "ruleId": "TERM-conforming-to",
+      "blockHash": "67dde240b0cfc9c83dbbecca",
+      "match": "conforming to",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "fad6d5dccd7fea6dafcd3c78",
+      "ruleId": "TERM-suitable",
+      "blockHash": "ebaf1a5314028495baba3cc0",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "fb75ac0512eba2cb9ba83163",
+      "ruleId": "TERM-any",
+      "blockHash": "53a20e854e075d7c1bf36eec",
+      "match": "any",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "fc004d8ec3600f6acdfce9ff",
+      "ruleId": "CAP-Contract",
+      "blockHash": "d42baa6353d206f7af2aea48",
+      "match": "contract",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "fd241cc92cb77c9cf578e8ff",
+      "ruleId": "TERM-suitable",
+      "blockHash": "f655ac2cd6a7047cbc474fc5",
+      "match": "suitable",
+      "ts": 1716326400000,
+      "authorId": "corpus-fixture"
+    },
+    {
+      "ignoreKey": "ffe69bdb0c8ec748977de388",
+      "ruleId": "TERM-any",
+      "blockHash": "9da8411a1ced0b2820e68bc0",
       "match": "any",
       "ts": 1716326400000,
       "authorId": "corpus-fixture"
