@@ -357,10 +357,12 @@ describe('linting / selectors', () => {
 
   it('getRangesByTier groups ranges by tier and skips null ranges', () => {
     let s = L.createInitial();
+    // Use non-overlapping indices across tiers so cross-tier dedup does not suppress
+    // any finding — this test exercises null-range skipping, not dedup behavior.
     s = L.setBlockFindings(s, 'b1', {
       compliance: [f(v('c', 0, 'x'), { id: 'r1' }), f(v('c', 5, 'y'), null)],
-      grammar: [f(v('g', 0, 'z'), { id: 'r2' })],
-      nlp: [f(v('n', 0, 'q'), { id: 'r3' })],
+      grammar: [f(v('g', 20, 'z'), { id: 'r2' })],
+      nlp: [f(v('n', 40, 'q'), { id: 'r3' })],
     });
     const groups = L.getRangesByTier(s);
     expect(groups.compliance).toHaveLength(1);
@@ -398,8 +400,12 @@ describe('linting / property tests', () => {
     return out;
   }
 
-  // Invariant 1: getRangesByTier counts equal sum-of-tier counts across all blocks.
-  it('Invariant: getRangesByTier counts == sum of per-block tier sizes (with non-null ranges)', () => {
+  // Invariant 1: getRangesByTier compliance counts equal per-block sum; NLP/grammar
+  // counts are at most the per-block sum (cross-tier dedup can only reduce them).
+  // Note: randomFindings() produces findings without ignoreKey, so ignore-filter
+  // is skipped (null/undefined ignoreKey passes through). Dedup may suppress NLP
+  // or grammar findings that overlap compliance findings at the same text offset.
+  it('Invariant: getRangesByTier counts <= sum of per-block tier sizes (with non-null ranges)', () => {
     const rng = makeRng(0xdeadbeef);
     const blockIds = ['b1', 'b2', 'b3', 'b4'];
     let s = L.createInitial();
@@ -421,9 +427,11 @@ describe('linting / property tests', () => {
         gExpected += b.grammar.filter(f => f.range).length;
       }
       const groups = L.getRangesByTier(s);
+      // Compliance is never deduped against other tiers — exact count holds.
       expect(groups.compliance.length).toBe(cExpected);
-      expect(groups.nlp.length).toBe(nExpected);
-      expect(groups.grammar.length).toBe(gExpected);
+      // NLP/grammar may be suppressed by cross-tier dedup — at-most holds.
+      expect(groups.nlp.length).toBeLessThanOrEqual(nExpected);
+      expect(groups.grammar.length).toBeLessThanOrEqual(gExpected);
     }
   });
 

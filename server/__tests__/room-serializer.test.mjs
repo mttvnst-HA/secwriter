@@ -13,7 +13,7 @@ import { createRequire } from 'node:module';
 const require_ = createRequire(import.meta.url);
 require_('../dom-polyfill.cjs');
 
-const { serializeRoom, seedRoomFromBlocks } = require_('../room-serializer.cjs');
+const { serializeRoom, seedRoomFromBlocks, serializeLintSidecar } = require_('../room-serializer.cjs');
 
 /** Build a minimal Y.Doc with a title + txt block and optional metadata. */
 async function buildTestDoc() {
@@ -174,6 +174,63 @@ describe('serializeRoom', () => {
     const ydoc = await buildTestDoc();
     const { lintJson } = await serializeRoom(ydoc);
     assert.equal(lintJson, null);
+  });
+
+  // Regression: post-review fix — multi-fingerprint `good` strings must
+  // round-trip through the client decoder. Pre-fix used `goodParts.join(',')`
+  // which produced strings the client's fixed-width slicer silently rejected
+  // (good.length % 24 !== 0 with the comma added).
+  it('multiple good fingerprints round-trip through client decodeSidecar', async () => {
+    const Y = await import('yjs');
+    const { decodeSidecar } = await import('../../src/lib/lint-sidecar.js');
+    const ydoc = await buildTestDoc();
+    const yLint = ydoc.getMap('lint');
+    const fpA = 'aaaaaaaaaaaaaaaaaaaaaaaa'; // 24 chars
+    const fpB = 'bbbbbbbbbbbbbbbbbbbbbbbb';
+    const fpC = 'cccccccccccccccccccccccc';
+
+    ydoc.transact(() => {
+      yLint.set(fpA, { kind: 'good' });
+      yLint.set(fpB, { kind: 'good' });
+      yLint.set(fpC, { kind: 'good' });
+    });
+
+    const { lintJson } = await serializeRoom(ydoc);
+    const parsed = JSON.parse(lintJson);
+
+    // No separator — string length must be exactly N × 24.
+    assert.equal(parsed.good.length, 72, 'concatenated without separator');
+
+    // And the client decoder must recover all three.
+    const decoded = decodeSidecar(parsed);
+    assert.equal(decoded.fingerprints.size, 3, 'all three fingerprints decoded');
+    assert.equal(decoded.fingerprints.get(fpA), 'good');
+    assert.equal(decoded.fingerprints.get(fpB), 'good');
+    assert.equal(decoded.fingerprints.get(fpC), 'good');
+  });
+
+  // Regression: post-review fix — bad entries must be projected to { g, n, c }
+  // only, not passed through verbatim with the internal `kind: 'bad'` marker.
+  it('bad fingerprint entries do not leak internal kind marker', async () => {
+    const Y = await import('yjs');
+    const ydoc = await buildTestDoc();
+    const yLint = ydoc.getMap('lint');
+    const fpBad = '0000000000000000000000bb';
+
+    ydoc.transact(() => {
+      yLint.set(fpBad, {
+        kind: 'bad',
+        g: [{ violation: { ruleId: 'GRAM-X' } }],
+        n: [],
+        c: [],
+      });
+    });
+
+    const { lintJson } = await serializeRoom(ydoc);
+    const parsed = JSON.parse(lintJson);
+    assert.ok(parsed.bad[fpBad], 'bad fingerprint present');
+    assert.equal(parsed.bad[fpBad].kind, undefined, 'kind discriminator stripped');
+    assert.equal(parsed.bad[fpBad].g[0].violation.ruleId, 'GRAM-X');
   });
 
   it('includes comments in commentsJson', async () => {
@@ -380,5 +437,75 @@ describe('seedRoomFromBlocks — broker re-run via cleared sentinels (1d, issue 
     assert.ok(secText.includes('Seeded body text'), 'body content survived');
     assert.ok(!secText.includes('[object Object]'),
       'no coerced-object leakage');
+  });
+});
+
+// Task 15 (#140) — serializeLintSidecar v2: yLintIgnored + yLintMutedNlp
+describe('serializeLintSidecar — v2 ignored', () => {
+  const Y = require_('yjs');
+
+  it('emits v2 when yLintIgnored has entries', () => {
+    const ydoc = new Y.Doc();
+    const yLintIgnored = ydoc.getMap('lintIgnored');
+    yLintIgnored.set('k1', { ruleId: 'R', blockHash: 'bh', match: 'm', ts: 1, authorId: 'a' });
+    const yLintMutedNlp = ydoc.getMap('lintMutedNlp');
+    const payload = serializeLintSidecar(ydoc.getMap('lint'), yLintIgnored, yLintMutedNlp, []);
+    assert.equal(payload.v, 2);
+    assert.equal(payload.ignoredFindings.length, 1);
+  });
+
+  it('emits v1 when yLintIgnored + yLintMutedNlp are empty', () => {
+    const ydoc = new Y.Doc();
+    const payload = serializeLintSidecar(
+      ydoc.getMap('lint'),
+      ydoc.getMap('lintIgnored'),
+      ydoc.getMap('lintMutedNlp'),
+      [],
+    );
+    assert.equal(payload.v, 1);
+  });
+
+  it('preserves tombstones in v2 output', () => {
+    const ydoc = new Y.Doc();
+    const yLintIgnored = ydoc.getMap('lintIgnored');
+    yLintIgnored.set('k1', { ruleId: 'R', blockHash: 'bh', match: 'm', ts: 1, authorId: 'a', tombstone: true });
+    const payload = serializeLintSidecar(
+      ydoc.getMap('lint'),
+      yLintIgnored,
+      ydoc.getMap('lintMutedNlp'),
+      [],
+    );
+    assert.equal(payload.ignoredFindings[0].tombstone, true);
+  });
+
+  it('emits v2 when yLintMutedNlp has entries (ignoredFindings empty)', () => {
+    const ydoc = new Y.Doc();
+    const yLintMutedNlp = ydoc.getMap('lintMutedNlp');
+    yLintMutedNlp.set('NLP-passive', { ts: 1234, authorId: 'u1' });
+    const payload = serializeLintSidecar(
+      ydoc.getMap('lint'),
+      ydoc.getMap('lintIgnored'),
+      yLintMutedNlp,
+      [],
+    );
+    assert.equal(payload.v, 2);
+    assert.equal(payload.ignoredFindings.length, 0);
+    assert.equal(payload.mutedNlpRules.length, 1);
+    assert.equal(payload.mutedNlpRules[0].ruleId, 'NLP-passive');
+  });
+
+  it('sorts ignoredFindings by ignoreKey and mutedNlpRules by ruleId', () => {
+    const ydoc = new Y.Doc();
+    const yLintIgnored = ydoc.getMap('lintIgnored');
+    yLintIgnored.set('z-key', { ruleId: 'R1', blockHash: 'bh', match: 'm', ts: 1, authorId: 'a' });
+    yLintIgnored.set('a-key', { ruleId: 'R2', blockHash: 'bh', match: 'm', ts: 2, authorId: 'b' });
+    const payload = serializeLintSidecar(
+      ydoc.getMap('lint'),
+      yLintIgnored,
+      ydoc.getMap('lintMutedNlp'),
+      [],
+    );
+    assert.equal(payload.ignoredFindings[0].ignoreKey, 'a-key');
+    assert.equal(payload.ignoredFindings[1].ignoreKey, 'z-key');
   });
 });

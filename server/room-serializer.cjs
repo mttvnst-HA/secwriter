@@ -17,7 +17,8 @@ let _encodeWindows1252 = null;
 let _yBlocksToArray = null;
 let _readYMeta = null;
 let _readComments = null;
-let _readLint = null;
+// _readLint was removed in #140 — lint sidecar v1 logic is now inlined in
+// serializeLintSidecar() to remain synchronous and avoid dual-package hazard.
 
 async function loadModules() {
   if (_serializeSEC) return;
@@ -31,7 +32,7 @@ async function loadModules() {
   _yBlocksToArray = collabMod.yBlocksToArray;
   _readYMeta = collabMod.readYMeta;
   _readComments = collabMod.readComments;
-  _readLint = collabMod.readLint;
+  // readLint no longer needed here — serializeLintSidecar is synchronous CJS.
 }
 
 /**
@@ -48,6 +49,8 @@ async function serializeRoom(ydoc) {
   const yMeta = ydoc.getMap('meta');
   const yComments = ydoc.getMap('comments');
   const yLint = ydoc.getMap('lint');
+  const yLintIgnored = ydoc.getMap('lintIgnored');
+  const yLintMutedNlp = ydoc.getMap('lintMutedNlp');
 
   // 1. Binary CRDT snapshot
   const ydocBytes = Y.encodeStateAsUpdate(ydoc);
@@ -71,17 +74,108 @@ async function serializeRoom(ydoc) {
   const commentsArray = Object.values(commentsObj);
   const commentsJson = JSON.stringify({ version: 1, comments: commentsArray });
 
-  // 4. Lint sidecar (#150). yLint stores entries keyed by block-html
-  // fingerprint; _readLint reconstructs the v1 sidecar payload that
-  // mirrors the file-mode `.lint.json` format. Persisted only when the
-  // room has actually had lint findings — empty payload returns null so
-  // planArtifactWrites skips the kind entirely.
-  const lintPayload = _readLint(yLint);
+  // 4. Lint sidecar (#150, #140). yLint stores entries keyed by block-html
+  // fingerprint. yLintIgnored + yLintMutedNlp carry persistent ignore state
+  // (#140). serializeLintSidecar builds v1 when ignore maps are empty, v2
+  // when either has entries. Persisted only when there is non-trivial data —
+  // empty payload returns null so planArtifactWrites skips the kind entirely.
+  const blocksOrder = _yBlocksToArray(yOrder, yStore).map(b => b.id);
+  const lintPayload = serializeLintSidecar(yLint, yLintIgnored, yLintMutedNlp, blocksOrder);
   const hasLint = (lintPayload.good && lintPayload.good.length > 0) ||
-                  (lintPayload.bad && Object.keys(lintPayload.bad).length > 0);
+                  (lintPayload.bad && Object.keys(lintPayload.bad).length > 0) ||
+                  (lintPayload.ignoredFindings && lintPayload.ignoredFindings.length > 0) ||
+                  (lintPayload.mutedNlpRules && lintPayload.mutedNlpRules.length > 0);
   const lintJson = hasLint ? JSON.stringify(lintPayload) : null;
 
   return { ydocBytes, secBytes, commentsJson, lintJson };
+}
+
+// ── Lint sidecar serializer ───────────────────────────────────────────────
+
+/**
+ * Build a lint sidecar payload from the three Yjs lint maps.
+ *
+ * Emits v1 when yLintIgnored and yLintMutedNlp are both empty (backward
+ * compat — existing flush consumers that only expect { v, good, bad }).
+ * Emits v2 when either map has entries, extending v1 with:
+ *   ignoredFindings: sorted array of { ignoreKey, ruleId, blockHash, match, ts, authorId, tombstone? }
+ *   mutedNlpRules:   sorted array of { ruleId, ts, authorId, tombstone? }
+ *
+ * This function is synchronous so it can be called without awaiting
+ * loadModules().  The v1 yLint logic is inlined here (mirrors readLint in
+ * src/lib/collab.js) to avoid the dual-package hazard in CJS context.
+ *
+ * @param {import('yjs').Map} yLint
+ * @param {import('yjs').Map} yLintIgnored
+ * @param {import('yjs').Map} yLintMutedNlp
+ * @param {string[]} _blocksOrder  — reserved for future block-ordering context
+ * @returns {{ v: number, good: string, bad: object, ignoredFindings?: Array, mutedNlpRules?: Array }}
+ */
+function serializeLintSidecar(yLint, yLintIgnored, yLintMutedNlp, _blocksOrder) {
+  // ── v1 base (mirrors readLint in src/lib/collab.js) ───────────────────
+  const goodParts = [];
+  const bad = {};
+  if (yLint && typeof yLint.forEach === 'function') {
+    yLint.forEach((entry, fingerprint) => {
+      if (!entry || typeof entry !== 'object') return;
+      if (entry.kind === 'good') {
+        goodParts.push(fingerprint);
+      } else if (entry.kind === 'bad') {
+        // Project to { g, n, c } only — mirror src/lib/lint-sidecar.js encodeSidecar
+        // (line 175). The raw entry includes the internal `kind: 'bad'` discriminator
+        // which leaks into the sidecar contract if passed through verbatim, and the
+        // client decoder ignores it. Also strip any future per-entry metadata.
+        bad[fingerprint] = {
+          g: entry.g,
+          n: entry.n,
+          c: entry.c,
+        };
+      }
+    });
+  }
+  // Concatenate fingerprints without a separator — client decoder slices the
+  // string in fixed FINGERPRINT_LEN (24) chunks via `good.length % 24 === 0`.
+  // A comma separator silently breaks decoding for ≥2 good fingerprints.
+  const v1 = { v: 1, good: goodParts.join(''), bad };
+
+  // ── v2 extensions ─────────────────────────────────────────────────────
+  const ignored = [];
+  if (yLintIgnored && typeof yLintIgnored.forEach === 'function') {
+    yLintIgnored.forEach((v, k) => {
+      if (!v || typeof v !== 'object') return;
+      if (typeof k !== 'string') return;
+      const entry = {
+        ignoreKey: k,
+        ruleId: v.ruleId,
+        blockHash: v.blockHash,
+        match: v.match,
+        ts: v.ts,
+        authorId: v.authorId || '',
+      };
+      if (v.tombstone === true) entry.tombstone = true;
+      ignored.push(entry);
+    });
+  }
+
+  const muted = [];
+  if (yLintMutedNlp && typeof yLintMutedNlp.forEach === 'function') {
+    yLintMutedNlp.forEach((v, k) => {
+      if (!v || typeof v !== 'object') return;
+      const entry = {
+        ruleId: k,
+        ts: v.ts,
+        authorId: v.authorId || '',
+      };
+      if (v.tombstone === true) entry.tombstone = true;
+      muted.push(entry);
+    });
+  }
+
+  if (ignored.length === 0 && muted.length === 0) return v1;
+
+  ignored.sort((a, b) => a.ignoreKey.localeCompare(b.ignoreKey));
+  muted.sort((a, b) => a.ruleId.localeCompare(b.ruleId));
+  return { ...v1, v: 2, ignoredFindings: ignored, mutedNlpRules: muted };
 }
 
 // ── Server-side block seeding (CJS Yjs) ──────────────────────────────────
@@ -158,4 +252,4 @@ function seedRoomFromBlocks(ydoc, blocks) {
   }, 'seed');
 }
 
-module.exports = { serializeRoom, seedRoomFromBlocks };
+module.exports = { serializeRoom, seedRoomFromBlocks, serializeLintSidecar };

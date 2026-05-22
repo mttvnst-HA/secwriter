@@ -15,6 +15,10 @@
  *     enabled: boolean,                         // user toggle
  *     suspended: boolean,                       // CompliancePanel open → suspend inline
  *     byBlock: Map<blockId, BlockFindings>,
+ *     ignored: {
+ *       findings: Map<ignoreKey, entry>,        // per-finding suppression; entry may carry tombstone: true
+ *       mutedRules: Map<ruleId, entry>,         // per-rule mute; entry may carry tombstone: true
+ *     },
  *   }
  *
  * BlockFindings:
@@ -105,7 +109,7 @@ export function pickHighestSeverityFinding(findings) {
 // ── Reducer state ────────────────────────────────────────────────────────────
 
 function emptyBlockFindings() {
-  return { compliance: [], nlp: [], grammar: [], grammarText: null };
+  return { compliance: [], nlp: [], grammar: [], grammarText: null, blockHash: null };
 }
 
 /** Create initial state. */
@@ -114,6 +118,10 @@ export function createInitial({ enabled = true } = {}) {
     enabled,
     suspended: false,
     byBlock: new Map(),
+    ignored: {
+      findings: new Map(),
+      mutedRules: new Map(),
+    },
   };
 }
 
@@ -143,13 +151,15 @@ export function setBlockFindings(state, blockId, partial) {
     nlp: partial.nlp !== undefined ? partial.nlp : prev.nlp,
     grammar: partial.grammar !== undefined ? partial.grammar : prev.grammar,
     grammarText: partial.grammarText !== undefined ? partial.grammarText : prev.grammarText,
+    blockHash: partial.blockHash !== undefined ? partial.blockHash : prev.blockHash,
   };
   // Bail if nothing actually changed (referential equality)
   if (
     next.compliance === prev.compliance &&
     next.nlp === prev.nlp &&
     next.grammar === prev.grammar &&
-    next.grammarText === prev.grammarText
+    next.grammarText === prev.grammarText &&
+    next.blockHash === prev.blockHash
   ) {
     return state;
   }
@@ -219,6 +229,7 @@ export function prefillFromSidecar(state, projection) {
       nlp: Array.isArray(bf.nlp) ? bf.nlp : [],
       grammar: Array.isArray(bf.grammar) ? bf.grammar : [],
       grammarText: typeof bf.grammarText === 'string' ? bf.grammarText : null,
+      blockHash: null,
     });
   }
   return { ...state, byBlock };
@@ -279,17 +290,351 @@ export function getGrammarText(state, blockId) {
 
 /**
  * Return ranges grouped by tier — the projection that App turns into
- * CSS.highlights groups. Skips findings with null Range (createRangeForMatch
- * may have failed if the matched text was inside a skipped span).
+ * CSS.highlights groups. Pipeline per call:
+ *   1. Read cached findings + blockHash from byBlock.
+ *   2. Skip findings whose f.ignoreKey is null (async hash cache not yet
+ *      populated for this engine cycle).
+ *   3. Apply ignore-filter (isFindingIgnored) and mute-filter (isNlpRuleMuted).
+ *   4. Run cross-tier dedup (dedupNlpAgainstCompliance, dedupGrammarAgainstFindings)
+ *      AFTER ignore-filter so dismissing a static finding surfaces the suppressed
+ *      NLP/grammar overlap.
+ *   5. Collect surviving Ranges into per-tier arrays.
  */
 export function getRangesByTier(state) {
   const compliance = [];
   const grammar = [];
   const nlp = [];
-  for (const b of state.byBlock.values()) {
-    for (const f of b.compliance) if (f.range) compliance.push(f.range);
-    for (const f of b.grammar) if (f.range) grammar.push(f.range);
-    for (const f of b.nlp) if (f.range) nlp.push(f.range);
+  if (!state.byBlock || state.byBlock.size === 0) {
+    return { compliance, grammar, nlp };
+  }
+  // Per-block: filter, dedup, then push.
+  for (const bf of state.byBlock.values()) {
+    // 1+2+3: filter each tier by ignored / muted + null-key skip
+    const cFiltered = filterFindings(bf.compliance, state);
+    const nFiltered = filterFindings(bf.nlp, state);
+    const gFiltered = filterFindings(bf.grammar, state);
+
+    // 4: cross-tier dedup, post-filter
+    const cViolations = cFiltered.map(f => f.violation);
+    const nViolationsDeduped = dedupNlpAgainstCompliance(
+      nFiltered.map(f => f.violation),
+      cViolations,
+    );
+    const gViolationsDeduped = dedupGrammarAgainstFindings(
+      gFiltered.map(f => f.violation),
+      [...cViolations, ...nViolationsDeduped],
+    );
+
+    // 5: map back to findings (matched by violation identity), collect Ranges
+    const nSurvive = new Set(nViolationsDeduped);
+    const gSurvive = new Set(gViolationsDeduped);
+    for (const f of cFiltered) if (f.range) compliance.push(f.range);
+    for (const f of nFiltered) if (f.range && nSurvive.has(f.violation)) nlp.push(f.range);
+    for (const f of gFiltered) if (f.range && gSurvive.has(f.violation)) grammar.push(f.range);
   }
   return { compliance, grammar, nlp };
+}
+
+/**
+ * Filter findings by ignored.findings + ignored.mutedRules.
+ * Null-`ignoreKey` findings pass through unfiltered (hash cache lag — see §6.2).
+ * Delegates to spec §4.2 selectors `isFindingIgnored` / `isNlpRuleMuted` so the
+ * "active" predicate stays in one place.
+ */
+function filterFindings(findings, state) {
+  if (!findings || findings.length === 0) return [];
+  if (!state || !state.ignored) return findings;
+  const out = [];
+  for (const f of findings) {
+    if (!f) continue;
+    const v = f.violation;
+    if (!v) continue;
+    // Skip filter when ignoreKey not yet computed (async cache placeholder).
+    if (f.ignoreKey != null && isFindingIgnored(state, f.ignoreKey)) continue;
+    // Mute NLP rules at projection time.
+    if (typeof v.ruleId === 'string' && v.ruleId.startsWith('NLP-')
+        && isNlpRuleMuted(state, v.ruleId)) continue;
+    out.push(f);
+  }
+  return out;
+}
+
+// ── Persistent dismiss / mute (#140) ────────────────────────────────────────
+
+const IGNORE_KEY_HEX_CHARS = 24;
+
+/**
+ * SHA-256(JSON.stringify([ruleId, blockHash, match])) truncated to 24 hex
+ * chars. JSON.stringify isolates the components so 'a|b' in match cannot
+ * collide with 'block1|' in blockHash (pipe-edge regression — see test).
+ *
+ * Async because Web Crypto's `crypto.subtle.digest` is async. Pre-cached on
+ * each finding via `useBlockLinting.js` — projection layer reads sync.
+ */
+export async function computeIgnoreKey(ruleId, blockHash, match) {
+  const text = JSON.stringify([ruleId, blockHash, match]);
+  const subtle = globalThis.crypto?.subtle;
+  if (!subtle || typeof subtle.digest !== 'function') {
+    return fallbackIgnoreKey(text);
+  }
+  const bytes = new TextEncoder().encode(text);
+  const digest = await subtle.digest('SHA-256', bytes);
+  const view = new Uint8Array(digest);
+  let out = '';
+  for (let i = 0; i < view.length && out.length < IGNORE_KEY_HEX_CHARS; i++) {
+    out += view[i].toString(16).padStart(2, '0');
+  }
+  return out.slice(0, IGNORE_KEY_HEX_CHARS);
+}
+
+function fallbackIgnoreKey(text) {
+  let h1 = 0xcbf29ce4, h2 = 0x84222325;
+  for (let i = 0; i < text.length; i++) {
+    const c = text.charCodeAt(i);
+    h1 = (h1 ^ c) >>> 0;
+    h2 = (h2 ^ c) >>> 0;
+    h1 = Math.imul(h1, 0x01000193) >>> 0;
+    h2 = Math.imul(h2, 0x01000193) >>> 0;
+  }
+  const a = h1.toString(16).padStart(8, '0');
+  const b = h2.toString(16).padStart(8, '0');
+  return (a + b + a).slice(0, IGNORE_KEY_HEX_CHARS);
+}
+
+/** True when state has a non-tombstoned entry for this ignore-key. */
+export function isFindingIgnored(state, ignoreKey) {
+  if (!state.ignored || typeof ignoreKey !== 'string') return false;
+  const entry = state.ignored.findings.get(ignoreKey);
+  return !!entry && entry.tombstone !== true;
+}
+
+/** True when state has a non-tombstoned mute entry for this ruleId. */
+export function isNlpRuleMuted(state, ruleId) {
+  if (!state.ignored || typeof ruleId !== 'string') return false;
+  const entry = state.ignored.mutedRules.get(ruleId);
+  return !!entry && entry.tombstone !== true;
+}
+
+/** Count of active (non-tombstoned) dismissals + mutes. */
+export function getIgnoredCount(state) {
+  if (!state.ignored) return 0;
+  let n = 0;
+  for (const e of state.ignored.findings.values()) if (e && e.tombstone !== true) n++;
+  for (const e of state.ignored.mutedRules.values()) if (e && e.tombstone !== true) n++;
+  return n;
+}
+
+/**
+ * Insert/overwrite a finding-ignore entry. `ignoreKey` is the SHA-prefix
+ * pre-computed by `useBlockLinting.js`. Tombstoned entries are revived as
+ * non-tombstone (a fresh ignoreFinding after an unignore is identity-restore).
+ */
+export function ignoreFinding(state, { ignoreKey, ruleId, blockHash, match, identity, ts }) {
+  if (typeof ignoreKey !== 'string' || typeof ruleId !== 'string') return state;
+  if (typeof blockHash !== 'string' || typeof match !== 'string') return state;
+  // Local-gesture verb: writes unconditionally. Collab convergence (LWW + lex
+  // tiebreak on authorId) is enforced by `applyRemoteIgnored` on the receive
+  // side; this verb is for the originating tab's own dispatch.
+  const entry = {
+    ruleId,
+    blockHash,
+    match,
+    ts: typeof ts === 'number' ? ts : Date.now(),
+    authorId: identity?.id || '',
+  };
+  const findings = new Map(state.ignored.findings);
+  findings.set(ignoreKey, entry);
+  return { ...state, ignored: { ...state.ignored, findings } };
+}
+
+/**
+ * Tombstone an existing finding-ignore entry. Preserves ruleId / blockHash /
+ * match from the original so peers can still inspect the lineage; only sets
+ * `tombstone: true` and bumps `ts`.
+ */
+export function unignoreFinding(state, { ignoreKey, ts }) {
+  if (typeof ignoreKey !== 'string') return state;
+  const prev = state.ignored.findings.get(ignoreKey);
+  if (!prev) return state;
+  const findings = new Map(state.ignored.findings);
+  findings.set(ignoreKey, { ...prev, tombstone: true, ts: typeof ts === 'number' ? ts : Date.now() });
+  return { ...state, ignored: { ...state.ignored, findings } };
+}
+
+/**
+ * Per-key remote update — LWW-by-timestamp, ties broken by authorId
+ * lexicographic order for deterministic convergence.
+ */
+export function applyRemoteIgnored(state, args) {
+  if (!args || typeof args !== 'object') return state;
+  const { key, entry } = args;
+  if (typeof key !== 'string' || !entry || typeof entry !== 'object') return state;
+  if (typeof entry.ts !== 'number') return state;
+  const prev = state.ignored.findings.get(key);
+  if (prev) {
+    if (prev.ts > entry.ts) return state;
+    if (prev.ts === entry.ts) {
+      // Lex tiebreak: smaller authorId wins (deterministic on both sides).
+      // Empty-id case (`'' <= ''`) returns local-state on both peers — safe in
+      // practice because in-room peers always carry a real authorId (the name
+      // prompt in `useCollabSession` gates the WebSocketProvider until identity
+      // is set). Out-of-room writes never reach this verb.
+      if ((prev.authorId || '') <= (entry.authorId || '')) return state;
+    }
+  }
+  const findings = new Map(state.ignored.findings);
+  findings.set(key, { ...entry });
+  return { ...state, ignored: { ...state.ignored, findings } };
+}
+
+/** Adds a NLP-rule mute entry. Silently no-ops on non-NLP rule ids. */
+export function muteNlpRule(state, { ruleId, identity, ts }) {
+  if (typeof ruleId !== 'string' || !ruleId.startsWith('NLP-')) return state;
+  const entry = {
+    ts: typeof ts === 'number' ? ts : Date.now(),
+    authorId: identity?.id || '',
+  };
+  const mutedRules = new Map(state.ignored.mutedRules);
+  mutedRules.set(ruleId, entry);
+  return { ...state, ignored: { ...state.ignored, mutedRules } };
+}
+
+/** Tombstone a mute entry. No-op if rule absent. */
+export function unmuteNlpRule(state, { ruleId, ts }) {
+  if (typeof ruleId !== 'string') return state;
+  const prev = state.ignored.mutedRules.get(ruleId);
+  if (!prev) return state;
+  const mutedRules = new Map(state.ignored.mutedRules);
+  mutedRules.set(ruleId, { ...prev, tombstone: true, ts: typeof ts === 'number' ? ts : Date.now() });
+  return { ...state, ignored: { ...state.ignored, mutedRules } };
+}
+
+/** Per-rule remote update — LWW with authorId tiebreak. */
+export function applyRemoteMutedRule(state, args) {
+  if (!args || typeof args !== 'object') return state;
+  const { ruleId, entry } = args;
+  if (typeof ruleId !== 'string' || !entry || typeof entry !== 'object') return state;
+  if (typeof entry.ts !== 'number') return state;
+  const prev = state.ignored.mutedRules.get(ruleId);
+  if (prev) {
+    if (prev.ts > entry.ts) return state;
+    if (prev.ts === entry.ts) {
+      // Lex tiebreak: smaller authorId wins (deterministic on both sides).
+      // Empty-id case (`'' <= ''`) returns local-state on both peers — safe in
+      // practice because in-room peers always carry a real authorId (the name
+      // prompt in `useCollabSession` gates the WebSocketProvider until identity
+      // is set). Out-of-room writes never reach this verb.
+      if ((prev.authorId || '') <= (entry.authorId || '')) return state;
+    }
+  }
+  const mutedRules = new Map(state.ignored.mutedRules);
+  mutedRules.set(ruleId, { ...entry });
+  return { ...state, ignored: { ...state.ignored, mutedRules } };
+}
+
+/**
+ * Tombstone every dismissal + mute. Preserves keys so peers see explicit
+ * tombstone writes for convergence. Race window: a peer's concurrent dismiss
+ * landing AFTER this transaction is NOT retroactively cleared.
+ */
+export function resetIgnored(state, { ts } = {}) {
+  const stamp = typeof ts === 'number' ? ts : Date.now();
+  if (state.ignored.findings.size === 0 && state.ignored.mutedRules.size === 0) {
+    return state;
+  }
+  const findings = new Map();
+  for (const [k, v] of state.ignored.findings) {
+    findings.set(k, { ...v, tombstone: true, ts: stamp });
+  }
+  const mutedRules = new Map();
+  for (const [k, v] of state.ignored.mutedRules) {
+    mutedRules.set(k, { ...v, tombstone: true, ts: stamp });
+  }
+  return { ...state, ignored: { findings, mutedRules } };
+}
+
+/**
+ * Partial reset: tombstone findings only. Used by the Settings "Reset ignored
+ * findings" button when the UX requires independent reset of the two columns.
+ */
+export function resetIgnoredFindings(state, { ts } = {}) {
+  if (state.ignored.findings.size === 0) return state;
+  const stamp = typeof ts === 'number' ? ts : Date.now();
+  const findings = new Map();
+  for (const [k, v] of state.ignored.findings) {
+    findings.set(k, { ...v, tombstone: true, ts: stamp });
+  }
+  return { ...state, ignored: { ...state.ignored, findings } };
+}
+
+/** Partial reset: tombstone mutedRules only. */
+export function resetMutedRules(state, { ts } = {}) {
+  if (state.ignored.mutedRules.size === 0) return state;
+  const stamp = typeof ts === 'number' ? ts : Date.now();
+  const mutedRules = new Map();
+  for (const [k, v] of state.ignored.mutedRules) {
+    mutedRules.set(k, { ...v, tombstone: true, ts: stamp });
+  }
+  return { ...state, ignored: { ...state.ignored, mutedRules } };
+}
+
+/**
+ * Bulk merge for `initial: true` handleSync payload. LWW per key over
+ * remoteMap ∪ local; local-only entries preserved unconditionally (never
+ * tombstoned by absence — ignores use never-delete tombstones so peer
+ * deletions arrive AS entries with tombstone:true, never as absence).
+ */
+export function mergeRemoteIgnored(state, remoteMap) {
+  if (!(remoteMap instanceof Map)) return state;
+  if (remoteMap.size === 0) return state;
+  let next = state;
+  for (const [key, entry] of remoteMap) {
+    next = applyRemoteIgnored(next, { key, entry });
+  }
+  return next;
+}
+
+/** Same semantics as mergeRemoteIgnored, for mutedRules. */
+export function mergeRemoteMutedRules(state, remoteMap) {
+  if (!(remoteMap instanceof Map)) return state;
+  if (remoteMap.size === 0) return state;
+  let next = state;
+  for (const [ruleId, entry] of remoteMap) {
+    next = applyRemoteMutedRule(next, { ruleId, entry });
+  }
+  return next;
+}
+
+/**
+ * Merge sidecar payload into state. LWW per key; local-only entries preserved.
+ * Caller gates to file-mode (in collab mode the room is authoritative).
+ */
+export function prefillIgnored(state, { findings, mutedRules }) {
+  let next = state;
+  if (Array.isArray(findings)) {
+    for (const f of findings) {
+      if (!f || typeof f.ignoreKey !== 'string') continue;
+      const entry = {
+        ruleId: f.ruleId,
+        blockHash: f.blockHash,
+        match: f.match,
+        authorId: f.authorId || '',
+        ts: typeof f.ts === 'number' ? f.ts : 0,
+      };
+      if (f.tombstone === true) entry.tombstone = true;
+      next = applyRemoteIgnored(next, { key: f.ignoreKey, entry });
+    }
+  }
+  if (Array.isArray(mutedRules)) {
+    for (const r of mutedRules) {
+      if (!r || typeof r.ruleId !== 'string') continue;
+      const entry = {
+        authorId: r.authorId || '',
+        ts: typeof r.ts === 'number' ? r.ts : 0,
+      };
+      if (r.tombstone === true) entry.tombstone = true;
+      next = applyRemoteMutedRule(next, { ruleId: r.ruleId, entry });
+    }
+  }
+  return next;
 }

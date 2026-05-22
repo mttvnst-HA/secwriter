@@ -196,7 +196,11 @@ export function decodeSidecar(payload) {
   const fingerprints = new Map();
   const byFingerprint = new Map();
   if (!payload || typeof payload !== 'object') return { fingerprints, byFingerprint };
-  if (payload.v !== PAYLOAD_VERSION) return { fingerprints, byFingerprint };
+  // Forward-compat: accept any v >= 1 so future v2+ payloads decode their
+  // v1-shared fields. Reject missing or non-numeric v.
+  if (typeof payload.v !== 'number' || payload.v < 1) {
+    return { fingerprints, byFingerprint };
+  }
 
   const good = typeof payload.good === 'string' ? payload.good : '';
   if (good.length % FINGERPRINT_LEN === 0) {
@@ -248,5 +252,126 @@ export async function projectDecoded(decoded, blocks) {
       if (bf) out.set(b.id, bf);
     }
   }
+  return out;
+}
+
+const PAYLOAD_VERSION_V2 = 2;
+
+/**
+ * v2 encoder — wraps `encodeSidecar` and appends `ignoredFindings` +
+ * `mutedNlpRules` if either is non-empty. Falls through to v1 shape if both
+ * are empty (preserves byte-stable round-trip for existing tests). Arrays are
+ * sorted by primary key for deterministic output.
+ *
+ * @param {Map} byBlock — same as encodeSidecar
+ * @param {Array} blocksOrder — same as encodeSidecar
+ * @param {{ ignoredFindings: Array, mutedNlpRules: Array }} ignored
+ */
+export async function encodeSidecarV2(byBlock, blocksOrder, ignored) {
+  const v1 = await encodeSidecar(byBlock, blocksOrder);
+  const ignoredFindings = Array.isArray(ignored?.ignoredFindings) ? ignored.ignoredFindings : [];
+  const mutedNlpRules = Array.isArray(ignored?.mutedNlpRules) ? ignored.mutedNlpRules : [];
+
+  if (ignoredFindings.length === 0 && mutedNlpRules.length === 0) {
+    return v1;
+  }
+
+  const sortedFindings = [...ignoredFindings]
+    .filter(f => f && typeof f.ignoreKey === 'string')
+    .map(f => normalizeIgnoredFindingEntry(f))
+    .sort((a, b) => a.ignoreKey.localeCompare(b.ignoreKey));
+
+  const sortedMutes = [...mutedNlpRules]
+    .filter(r => r && typeof r.ruleId === 'string')
+    .map(r => normalizeMutedRuleEntry(r))
+    .sort((a, b) => a.ruleId.localeCompare(b.ruleId));
+
+  return {
+    ...v1,
+    v: PAYLOAD_VERSION_V2,
+    ignoredFindings: sortedFindings,
+    mutedNlpRules: sortedMutes,
+  };
+}
+
+function normalizeIgnoredFindingEntry(f) {
+  const out = {
+    ignoreKey: f.ignoreKey,
+    ruleId: typeof f.ruleId === 'string' ? f.ruleId : '',
+    blockHash: typeof f.blockHash === 'string' ? f.blockHash : '',
+    match: typeof f.match === 'string' ? f.match : '',
+    ts: typeof f.ts === 'number' ? f.ts : 0,
+    authorId: typeof f.authorId === 'string' ? f.authorId : '',
+  };
+  if (f.tombstone === true) out.tombstone = true;
+  return out;
+}
+
+function normalizeMutedRuleEntry(r) {
+  const out = {
+    ruleId: r.ruleId,
+    ts: typeof r.ts === 'number' ? r.ts : 0,
+    authorId: typeof r.authorId === 'string' ? r.authorId : '',
+  };
+  if (r.tombstone === true) out.tombstone = true;
+  return out;
+}
+
+/**
+ * v2-aware decoder — wraps decodeSidecar and also extracts ignoredFindings +
+ * mutedNlpRules. Silent on malformed entries (load-boundary tolerance, mirrors
+ * comments.normalizeForLoad). Forward-compat: future v3+ payloads still have
+ * their v2 fields decoded.
+ *
+ * @returns {{
+ *   fingerprints: Map, byFingerprint: Map,        // from decodeSidecar
+ *   ignoredFindings: Array<{ ignoreKey, ruleId, blockHash, match, ts, authorId, tombstone? }>,
+ *   mutedNlpRules: Array<{ ruleId, ts, authorId, tombstone? }>,
+ * }}
+ */
+export function decodeSidecarV2(payload) {
+  const base = decodeSidecar(payload);
+  const out = {
+    ...base,
+    ignoredFindings: [],
+    mutedNlpRules: [],
+  };
+  if (!payload || typeof payload !== 'object') return out;
+  if (typeof payload.v !== 'number' || payload.v < 1) return out;
+
+  const ignored = Array.isArray(payload.ignoredFindings) ? payload.ignoredFindings : [];
+  for (const f of ignored) {
+    if (!f || typeof f !== 'object') continue;
+    if (typeof f.ignoreKey !== 'string') continue;
+    if (typeof f.ruleId !== 'string') continue;
+    if (typeof f.blockHash !== 'string') continue;
+    if (typeof f.match !== 'string') continue;
+    if (typeof f.ts !== 'number') continue;
+    const entry = {
+      ignoreKey: f.ignoreKey,
+      ruleId: f.ruleId,
+      blockHash: f.blockHash,
+      match: f.match,
+      ts: f.ts,
+      authorId: typeof f.authorId === 'string' ? f.authorId : '',
+    };
+    if (f.tombstone === true) entry.tombstone = true;
+    out.ignoredFindings.push(entry);
+  }
+
+  const muted = Array.isArray(payload.mutedNlpRules) ? payload.mutedNlpRules : [];
+  for (const r of muted) {
+    if (!r || typeof r !== 'object') continue;
+    if (typeof r.ruleId !== 'string') continue;
+    if (typeof r.ts !== 'number') continue;
+    const entry = {
+      ruleId: r.ruleId,
+      ts: r.ts,
+      authorId: typeof r.authorId === 'string' ? r.authorId : '',
+    };
+    if (r.tombstone === true) entry.tombstone = true;
+    out.mutedNlpRules.push(entry);
+  }
+
   return out;
 }

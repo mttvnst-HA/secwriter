@@ -169,6 +169,10 @@ export function useCollabSession({
   onTcReceived,
   onCommentsReceived,
   onLintReceived,
+  onLintIgnoredInitial,
+  onLintIgnoredUpdated,
+  onLintMutedNlpInitial,
+  onLintMutedNlpUpdated,
   onPresenceChange,
   onStatusChange,
 
@@ -201,6 +205,8 @@ export function useCollabSession({
   // — the encode still runs after a remote receive, but publishLintToDoc
   // diffs the result against yLint and no-ops if nothing actually changed.
   const lastPublishedLintByBlockRef = useRef(null);
+  const lastPublishedLintIgnoredRef = useRef(null);
+  const lastPublishedLintMutedNlpRef = useRef(null);
 
   // Lifecycle / UX state — see src/lib/session-coordination.js. Pure
   // reducer applied to a ref so coord transitions do not invalidate the
@@ -225,6 +231,17 @@ export function useCollabSession({
   onCommentsReceivedRef.current = onCommentsReceived;
   const onLintReceivedRef = useRef(onLintReceived);
   onLintReceivedRef.current = onLintReceived;
+  // Issue #140 ignored/muted-nlp remote callbacks — must ref-mirror like the
+  // other onRemote* callbacks so the lifecycle effect (deps: roomId, identity)
+  // sees fresh callback identities without recreating the session.
+  const onLintIgnoredInitialRef = useRef(onLintIgnoredInitial);
+  onLintIgnoredInitialRef.current = onLintIgnoredInitial;
+  const onLintIgnoredUpdatedRef = useRef(onLintIgnoredUpdated);
+  onLintIgnoredUpdatedRef.current = onLintIgnoredUpdated;
+  const onLintMutedNlpInitialRef = useRef(onLintMutedNlpInitial);
+  onLintMutedNlpInitialRef.current = onLintMutedNlpInitial;
+  const onLintMutedNlpUpdatedRef = useRef(onLintMutedNlpUpdated);
+  onLintMutedNlpUpdatedRef.current = onLintMutedNlpUpdated;
   const onPresenceChangeRef = useRef(onPresenceChange);
   onPresenceChangeRef.current = onPresenceChange;
   const onStatusChangeRef = useRef(onStatusChange);
@@ -322,6 +339,20 @@ export function useCollabSession({
       onRemoteLint: (lintPayload, meta) => {
         onLintReceivedRef.current?.(lintPayload, meta);
       },
+      onRemoteLintIgnored: (ignoredMap, meta) => {
+        if (meta?.initial) {
+          onLintIgnoredInitialRef.current?.(ignoredMap);
+        } else {
+          onLintIgnoredUpdatedRef.current?.(ignoredMap);
+        }
+      },
+      onRemoteLintMutedNlp: (mutedMap, meta) => {
+        if (meta?.initial) {
+          onLintMutedNlpInitialRef.current?.(mutedMap);
+        } else {
+          onLintMutedNlpUpdatedRef.current?.(mutedMap);
+        }
+      },
       onPresenceChange: (states) => {
         onPresenceChangeRef.current?.(states);
       },
@@ -373,6 +404,8 @@ export function useCollabSession({
       lastRemoteBlocksRef.current = null;
       lastPublishedTcSeqRef.current = 0;
       lastPublishedLintByBlockRef.current = null;
+      lastPublishedLintIgnoredRef.current = null;
+      lastPublishedLintMutedNlpRef.current = null;
       coordRef.current = sc.createInitial();
       if (EXPOSE_DEBUG && typeof window !== 'undefined') delete window.__collab;
     };
@@ -505,6 +538,42 @@ export function useCollabSession({
     })();
     return () => { cancelled = true; };
   }, [lintingState, blocks, inRoom]);
+
+  // ── Publish effect: lint ignored findings (#140) ──────────────────────
+  // Publishes state.ignored.findings → yLintIgnored. Diffs against the last
+  // published ref to avoid re-publishing on every render. Shares the
+  // canPublishMeta gate (cache-like data, not a user verb).
+  useEffect(() => {
+    if (!inRoom) return;
+    const session = sessionRef.current;
+    if (!session || typeof session.publishLintIgnored !== 'function') return;
+    if (!sc.canPublishMeta(coordRef.current)) return;
+    if (!lintingState?.ignored) return;
+    if (lintingState.ignored.findings === lastPublishedLintIgnoredRef.current) return;
+    try {
+      session.publishLintIgnored(lintingState.ignored.findings);
+      lastPublishedLintIgnoredRef.current = lintingState.ignored.findings;
+    } catch (err) {
+      console.error('[collab] publishLintIgnored failed:', err);
+    }
+  }, [lintingState, inRoom]);
+
+  // ── Publish effect: lint muted NLP rules (#140) ───────────────────────
+  // Publishes state.ignored.mutedRules → yLintMutedNlp.
+  useEffect(() => {
+    if (!inRoom) return;
+    const session = sessionRef.current;
+    if (!session || typeof session.publishLintMutedNlp !== 'function') return;
+    if (!sc.canPublishMeta(coordRef.current)) return;
+    if (!lintingState?.ignored) return;
+    if (lintingState.ignored.mutedRules === lastPublishedLintMutedNlpRef.current) return;
+    try {
+      session.publishLintMutedNlp(lintingState.ignored.mutedRules);
+      lastPublishedLintMutedNlpRef.current = lintingState.ignored.mutedRules;
+    } catch (err) {
+      console.error('[collab] publishLintMutedNlp failed:', err);
+    }
+  }, [lintingState, inRoom]);
 
   // ── Cursor broadcast ──────────────────────────────────────────────────
   // Listens for selectionchange and broadcasts the caret position so other

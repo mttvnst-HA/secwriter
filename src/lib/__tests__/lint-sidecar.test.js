@@ -170,8 +170,24 @@ describe('decodeSidecar', () => {
   it('returns empty maps for malformed payloads', () => {
     expect(decodeSidecar(null).fingerprints.size).toBe(0);
     expect(decodeSidecar({}).fingerprints.size).toBe(0);
-    expect(decodeSidecar({ v: 999 }).fingerprints.size).toBe(0);
     expect(decodeSidecar('not an object').fingerprints.size).toBe(0);
+  });
+
+  it('decodes known fields from future-version payload (forward-compat)', () => {
+    const future = {
+      v: 999,
+      good: '0123456789abcdef01234567',  // 24 hex chars
+      bad: {},
+      futureUnknownField: { stuff: 'ignored' },
+    };
+    const r = decodeSidecar(future);
+    expect(r.fingerprints.size).toBe(1);
+    expect(r.fingerprints.get('0123456789abcdef01234567')).toBe('good');
+  });
+
+  it('returns empty when payload.v is missing or non-numeric', () => {
+    expect(decodeSidecar({ good: '...' }).fingerprints.size).toBe(0);
+    expect(decodeSidecar({ v: 'banana', good: '...' }).fingerprints.size).toBe(0);
   });
 
   it('rejects malformed good string (length not multiple of 24)', () => {

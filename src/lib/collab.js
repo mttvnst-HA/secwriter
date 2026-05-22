@@ -576,6 +576,61 @@ function lintEntryEqual(a, b) {
   );
 }
 
+/** Read yLintIgnored into a JS Map<ignoreKey, IgnoreEntry>. */
+export function readLintIgnored(yLintIgnored) {
+  const out = new Map();
+  if (!yLintIgnored || typeof yLintIgnored.forEach !== 'function') return out;
+  yLintIgnored.forEach((val, key) => {
+    if (!val || typeof val !== 'object') return;
+    out.set(key, val);
+  });
+  return out;
+}
+
+/**
+ * Publish a Map<ignoreKey, IgnoreEntry> to yLintIgnored. Diffs against current
+ * state — never deletes (set-only per never-delete tombstone discipline).
+ * Origin 'local-lint-ignored' is caught by handleAfterTx's 'local-' prefix
+ * filter and NOT in UndoManager.trackedOrigins (Ctrl+Z does not un-dismiss).
+ */
+export function publishLintIgnoredToDoc(ydoc, yLintIgnored, entries) {
+  if (!(entries instanceof Map)) return;
+  ydoc.transact(() => {
+    for (const [key, next] of entries) {
+      const cur = yLintIgnored.get(key);
+      if (!ignoredEntryEqual(cur, next)) yLintIgnored.set(key, next);
+    }
+  }, 'local-lint-ignored');
+}
+
+function ignoredEntryEqual(a, b) {
+  if (a === b) return true;
+  if (!a || !b) return false;
+  return JSON.stringify(a) === JSON.stringify(b);
+}
+
+/** Read yLintMutedNlp into a Map<ruleId, MuteEntry>. */
+export function readLintMutedNlp(yLintMutedNlp) {
+  const out = new Map();
+  if (!yLintMutedNlp || typeof yLintMutedNlp.forEach !== 'function') return out;
+  yLintMutedNlp.forEach((val, key) => {
+    if (!val || typeof val !== 'object') return;
+    out.set(key, val);
+  });
+  return out;
+}
+
+/** Publish a Map<ruleId, MuteEntry> to yLintMutedNlp. Same semantics as ignored. */
+export function publishLintMutedNlpToDoc(ydoc, yLintMutedNlp, entries) {
+  if (!(entries instanceof Map)) return;
+  ydoc.transact(() => {
+    for (const [key, next] of entries) {
+      const cur = yLintMutedNlp.get(key);
+      if (!ignoredEntryEqual(cur, next)) yLintMutedNlp.set(key, next);
+    }
+  }, 'local-lint-muted-nlp');
+}
+
 /**
  * Snapshot the current document state as a plain block array by walking
  * the ordering in `yOrder` and resolving each ID against `yStore`.
@@ -804,6 +859,8 @@ export function createCollabSession({
   onRemoteTc,
   onRemoteComments,
   onRemoteLint,
+  onRemoteLintIgnored,
+  onRemoteLintMutedNlp,
   onPresenceChange,
   onStatusChange,
 }) {
@@ -816,6 +873,10 @@ export function createCollabSession({
   // Issue #150: block-fingerprint-keyed lint cache. Empty Y.Map — populated
   // on first local lint publish. Not in UndoManager (cache, not user edits).
   const yLint = ydoc.getMap('lint');
+  // Issue #140: persistent rule ignores + NLP mutes. Empty Y.Maps — populated
+  // on first dismiss/mute action. Not in UndoManager (dismissals are not undoable).
+  const yLintIgnored = ydoc.getMap('lintIgnored');
+  const yLintMutedNlp = ydoc.getMap('lintMutedNlp');
 
   // y-websocket builds the URL as `${wsUrl}/${roomName}`.
   // Append token as query param by encoding it into the room name.
@@ -887,6 +948,8 @@ export function createCollabSession({
       onRemoteTc?.(readTc(yTc), { initial: true });
       onRemoteComments?.(readComments(yComments), { initial: true });
       onRemoteLint?.(readLint(yLint), { initial: true });
+      onRemoteLintIgnored?.(readLintIgnored(yLintIgnored), { initial: true });
+      onRemoteLintMutedNlp?.(readLintMutedNlp(yLintMutedNlp), { initial: true });
     }
     // Single source of truth for connection status (see onStatusChange
     // duplication fix — we only fire from the sync handler).
@@ -967,6 +1030,8 @@ export function createCollabSession({
     const tcChanged = cpt.has(yTc) || ch.has(yTc);
     const commentsChanged = cpt.has(yComments) || ch.has(yComments);
     const lintChanged = cpt.has(yLint) || ch.has(yLint);
+    const lintIgnoredChanged = cpt.has(yLintIgnored) || ch.has(yLintIgnored);
+    const lintMutedNlpChanged = cpt.has(yLintMutedNlp) || ch.has(yLintMutedNlp);
 
     if (blocksChanged) {
       onRemoteBlocks?.(yBlocksToArray(yOrder, yStore), { initial: false });
@@ -982,6 +1047,12 @@ export function createCollabSession({
     }
     if (lintChanged) {
       onRemoteLint?.(readLint(yLint), { initial: false });
+    }
+    if (lintIgnoredChanged) {
+      onRemoteLintIgnored?.(readLintIgnored(yLintIgnored), { initial: false });
+    }
+    if (lintMutedNlpChanged) {
+      onRemoteLintMutedNlp?.(readLintMutedNlp(yLintMutedNlp), { initial: false });
     }
   };
   ydoc.on('afterTransaction', handleAfterTx);
@@ -1051,6 +1122,8 @@ export function createCollabSession({
     yTc,
     yComments,
     yLint,
+    yLintIgnored,
+    yLintMutedNlp,
     awareness,
     provider,
     undoManager,
@@ -1094,6 +1167,18 @@ export function createCollabSession({
       // clobber each other. Origin 'local-lint' is filtered by handleAfterTx
       // (startsWith 'local-') so the writer doesn't re-emit to itself.
       publishLintToDoc(ydoc, yLint, payload);
+    },
+    publishLintIgnored(entries) {
+      // Issue #140: publish a Map<ignoreKey, IgnoreEntry> to yLintIgnored.
+      // Origin 'local-lint-ignored' is filtered by handleAfterTx so the
+      // writer doesn't re-emit to itself. Dismissals are not undoable.
+      publishLintIgnoredToDoc(ydoc, yLintIgnored, entries);
+    },
+    publishLintMutedNlp(entries) {
+      // Issue #140: publish a Map<ruleId, MuteEntry> to yLintMutedNlp.
+      // Origin 'local-lint-muted-nlp' is filtered by handleAfterTx so
+      // the writer doesn't re-emit to itself.
+      publishLintMutedNlpToDoc(ydoc, yLintMutedNlp, entries);
     },
     dispatchComment(envelope) {
       // Single entry point for the comments module's PublishEnvelope union.
