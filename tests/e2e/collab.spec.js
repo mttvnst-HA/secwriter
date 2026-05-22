@@ -652,4 +652,150 @@ test.describe('Collab', () => {
     }
   });
 
+  // ── 13. Dismiss sync: peer A dismisses, peer B sees it via yLintIgnored (#140) ─
+  // Exercises the yLintIgnored Yjs sync path end-to-end:
+  //   1. Peer A dispatches dispatchLintIgnore({kind:'ignore',...}) via the DEV seam
+  //      using a synthetic blockHash (same pattern as Tasks 23-25 single-tab tests).
+  //      No linting cycle needed — the ignoreKey is just ruleId + blockHash + match.
+  //   2. The update flows: lintingState.ignored → useCollabSession's publish effect
+  //      → session.publishLintIgnored → publishLintIgnoredToDoc → yLintIgnored Y.Map
+  //      → y-websocket relay → Peer B.
+  //   3. Peer B's handleAfterTx fires (lintIgnoredChanged) → onRemoteLintIgnored
+  //      → mergeRemoteIgnored → lintingState.ignored updated on peer B.
+  //   4. Verify peer B's yLintIgnored.size > 0 (wire-level) and
+  //      getIgnoredKeys().length > 0 (application-level).
+  //   5. Peer A resets via dispatchLintIgnore({kind:'reset'}). The reset writes
+  //      tombstones for every entry — yLintIgnored.size stays the same (never-
+  //      delete discipline) but getIgnoredKeys() on peer B drops to 0 once the
+  //      tombstoned entries propagate.
+  test('collab: peer A dismisses, peer B sees dismissal sync (#140)', { timeout: 60000 }, async ({ browser }) => {
+    const room = uniqueRoom();
+    const ctxA = await browser.newContext();
+    const ctxB = await browser.newContext();
+    try {
+      await createRoom(room);
+
+      // Connect Peer A first — creates the Y.Doc on the server.
+      const pageA = await joinRoom(ctxA, room);
+      await dismissIdentityModal(pageA, 'Peer A');
+      await waitForConnected(pageA);
+
+      // Seed room content server-side so neither client races on localStorage data.
+      await seedRoom(room, MINIMAL_SEC);
+
+      // Wait for Peer A to receive and render seeded content.
+      await waitForEditable(pageA);
+      await pageA.waitForTimeout(2000);
+
+      // Connect Peer B — receives seeded content via Yjs sync.
+      const pageB = await joinRoom(ctxB, room);
+      await dismissIdentityModal(pageB, 'Peer B');
+      await waitForConnected(pageB);
+      await waitForEditable(pageB);
+      await pageB.waitForTimeout(1000);
+
+      // Wait for both peers' test seams to be available (DEV-only hook).
+      await Promise.all([
+        pageA.waitForFunction(
+          () => typeof window.__simEditorTestUtils?.getIgnoredKeys === 'function',
+          { timeout: 10000 },
+        ),
+        pageB.waitForFunction(
+          () => typeof window.__simEditorTestUtils?.getIgnoredKeys === 'function',
+          { timeout: 10000 },
+        ),
+      ]);
+
+      // Verify both peers start with zero ignored keys.
+      const initialA = await pageA.evaluate(() => window.__simEditorTestUtils.getIgnoredKeys().length);
+      const initialB = await pageB.evaluate(() => window.__simEditorTestUtils.getIgnoredKeys().length);
+      expect(initialA).toBe(0);
+      expect(initialB).toBe(0);
+
+      // Peer A: dismiss a synthetic finding. We use a synthetic blockHash
+      // (no linting cycle required) — the same pattern the single-tab E2E
+      // tests (Tasks 23-25) use. The ignoreKey is computed from
+      // ruleId + blockHash + match via SHA-256 (Web Crypto) so the actual
+      // string values don't matter as long as they're consistent.
+      await pageA.evaluate(() => {
+        window.__simEditorTestUtils.dispatchLintIgnore({
+          kind: 'ignore',
+          ruleId: 'TERM-shall',
+          blockHash: 'collab-e2e-test-hash-140',
+          match: 'shall',
+        });
+      });
+
+      // Allow SHA-256 + React setState commit to resolve on Peer A.
+      await pageA.waitForTimeout(400);
+
+      // Verify Peer A sees the ignored key (local dismiss landed).
+      await expect.poll(
+        () => pageA.evaluate(() => window.__simEditorTestUtils?.getIgnoredKeys()?.length ?? 0),
+        { timeout: 5000, intervals: [100, 200] },
+      ).toBeGreaterThan(0);
+
+      // Verify the entry landed in Peer A's yLintIgnored Y.Map (wire-level local).
+      await expect.poll(
+        () => pageA.evaluate(() => window.__collab?.yLintIgnored?.size ?? 0),
+        { timeout: 5000, intervals: [100, 200] },
+      ).toBeGreaterThan(0);
+
+      // ── Wire-level sync assertion ──────────────────────────────────────────
+      // Peer B's yLintIgnored Y.Map must receive the entry via y-websocket relay.
+      // This is the same polling pattern the lint-sidecar test (test 12) uses
+      // for window.__collab.yLint.size.
+      await expect.poll(
+        () => pageB.evaluate(() => window.__collab?.yLintIgnored?.size ?? 0),
+        { timeout: 15000, intervals: [200, 500, 1000] },
+      ).toBeGreaterThan(0);
+
+      // ── Application-level sync assertion ──────────────────────────────────
+      // Peer B's mergeRemoteIgnored must have translated the Y.Map entry into
+      // lintingState.ignored — getIgnoredKeys() reflects only non-tombstoned entries.
+      await expect.poll(
+        () => pageB.evaluate(() => window.__simEditorTestUtils?.getIgnoredKeys()?.length ?? 0),
+        { timeout: 10000, intervals: [200, 500, 1000] },
+      ).toBeGreaterThan(0);
+
+      // ── Reset sync ────────────────────────────────────────────────────────
+      // Peer A resets all ignores. The reset writes tombstones for every entry —
+      // yLintIgnored.size stays the same (never-delete discipline, CRDT invariant),
+      // but getIgnoredKeys() drops to 0 once tombstoned entries propagate to Peer B.
+      const sizeBeforeReset = await pageA.evaluate(
+        () => window.__collab?.yLintIgnored?.size ?? 0,
+      );
+
+      await pageA.evaluate(() => {
+        window.__simEditorTestUtils.dispatchLintIgnore({ kind: 'reset' });
+      });
+
+      // Allow React setState commit to resolve on Peer A.
+      await pageA.waitForTimeout(400);
+
+      // Wire-level: size must stay >= sizeBeforeReset (tombstones are set, not
+      // deleted — the Y.Map never shrinks after entries are written).
+      await expect.poll(
+        () => pageA.evaluate(() => window.__collab?.yLintIgnored?.size ?? 0),
+        { timeout: 5000, intervals: [100, 200] },
+      ).toBeGreaterThanOrEqual(sizeBeforeReset);
+
+      // Application-level: Peer A's active ignored keys drop to 0.
+      await expect.poll(
+        () => pageA.evaluate(() => window.__simEditorTestUtils?.getIgnoredKeys()?.length ?? 0),
+        { timeout: 5000, intervals: [100, 200] },
+      ).toBe(0);
+
+      // Peer B must also see 0 active ignored keys once tombstones propagate.
+      await expect.poll(
+        () => pageB.evaluate(() => window.__simEditorTestUtils?.getIgnoredKeys()?.length ?? 0),
+        { timeout: 15000, intervals: [200, 500, 1000] },
+      ).toBe(0);
+    } finally {
+      await deleteRoom(room);
+      await ctxA.close();
+      await ctxB.close();
+    }
+  });
+
 });

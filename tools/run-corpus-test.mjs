@@ -15,6 +15,7 @@
  *   node tools/run-corpus-test.mjs --corpus dirty           # Run dirty corpus
  *   node tools/run-corpus-test.mjs --no-grammar             # Skip Harper (faster)
  *   node tools/run-corpus-test.mjs --section 03_30_00       # Single section only
+ *   node tools/run-corpus-test.mjs --with-ignores           # Filter findings via corpus/fixtures/ignored-fixture.json
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
@@ -29,12 +30,73 @@ const args = process.argv.slice(2);
 const corpusType = args.includes('--corpus') ? args[args.indexOf('--corpus') + 1] : 'calibration';
 const skipGrammar = args.includes('--no-grammar');
 const singleSection = args.includes('--section') ? args[args.indexOf('--section') + 1] : null;
+const withIgnores = args.includes('--with-ignores');
 
 // Adversarial corpus has a different shape (entries with expected behavior,
 // not blocks to scan). Delegate to the dedicated scorer.
 if (corpusType === 'adversarial') {
   await import('./score-adversarial.mjs');
   process.exit(0);
+}
+
+// --- Load ignored-findings fixture (--with-ignores) ---
+// ignoredKeys: Set<string> of 24-char ignoreKey hex values to suppress.
+// mutedRules:  Set<string> of ruleId values to suppress entirely.
+// Both are empty when --with-ignores is not passed (no filtering).
+//
+// NOTE: blockHash values in the fixture are fingerprintBlock(block.text) —
+// SHA-256 of the corpus block's plain-text content, truncated to 24 hex chars.
+// They are DISTINCT from live-app blockHash values (which fingerprint block.html).
+// computeIgnoreKey is identical in both contexts: SHA-256 of JSON.stringify([ruleId, blockHash, match]).
+let ignoredKeys = new Set();
+let mutedRules = new Set();
+if (withIgnores) {
+  const fixturePath = join(PROJECT_ROOT, 'corpus', 'fixtures', 'ignored-fixture.json');
+  if (existsSync(fixturePath)) {
+    const fixture = JSON.parse(readFileSync(fixturePath, 'utf-8'));
+    for (const entry of (fixture.ignoredFindings || [])) {
+      if (!entry.tombstone && entry.ignoreKey && !entry.ignoreKey.startsWith('placeholder')) {
+        ignoredKeys.add(entry.ignoreKey);
+      }
+    }
+    for (const entry of (fixture.mutedNlpRules || [])) {
+      if (!entry.tombstone && entry.ruleId) {
+        mutedRules.add(entry.ruleId);
+      }
+    }
+    console.log(`--with-ignores: loaded fixture (${ignoredKeys.size} ignored keys, ${mutedRules.size} muted rules)`);
+  } else {
+    console.warn(`--with-ignores: fixture not found at ${fixturePath} — continuing without filtering`);
+  }
+}
+
+// Same ignore-key derivation as linting.computeIgnoreKey (linting.js:374).
+// Duplicated here so the corpus tool has no browser-API dependency.
+async function computeCorpusIgnoreKey(ruleId, blockHash, match) {
+  const text = JSON.stringify([ruleId, blockHash, match]);
+  const bytes = new TextEncoder().encode(text);
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  const view = new Uint8Array(digest);
+  let out = '';
+  for (let i = 0; i < view.length && out.length < 24; i++) {
+    out += view[i].toString(16).padStart(2, '0');
+  }
+  return out.slice(0, 24);
+}
+
+// Same fingerprint derivation as lint-sidecar.fingerprintBlock (lint-sidecar.js:72).
+// In the corpus tool, block.text (plain text) is fingerprinted — not block.html.
+// See fixture _comment for details.
+async function fingerprintCorpusBlock(text) {
+  const str = typeof text === 'string' ? text : '';
+  const bytes = new TextEncoder().encode(str);
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  const view = new Uint8Array(digest);
+  let out = '';
+  for (let i = 0; i < view.length && out.length < 24; i++) {
+    out += view[i].toString(16).padStart(2, '0');
+  }
+  return out.slice(0, 24);
 }
 
 // --- Load engines ---
@@ -263,6 +325,64 @@ for (let i = 0; i < corpus.length; i++) {
 const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
 console.log(`  100% complete in ${elapsed}s\n`);
 
+// --- Apply --with-ignores filter ---
+// Runs as a post-pass so the main loop stays synchronous and easy to read.
+// Findings are matched by: (1) ruleId in mutedRules set, or (2) ignoreKey match.
+// Stats are rebuilt from the filtered set so reported numbers stay consistent.
+if (withIgnores && (ignoredKeys.size > 0 || mutedRules.size > 0)) {
+  console.log(`Applying ignore filter (${ignoredKeys.size} keys, ${mutedRules.size} muted rules)...`);
+  const blockHashCache = new Map(); // block.id → 24-char hash
+
+  const filtered = [];
+  let suppressedCount = 0;
+  for (const f of allFindings) {
+    // Rule-level mute (mutedNlpRules)
+    if (mutedRules.has(f.ruleId)) {
+      suppressedCount++;
+      continue;
+    }
+    // Per-finding ignore key — compute blockHash lazily, cache per block
+    if (ignoredKeys.size > 0) {
+      if (!blockHashCache.has(f.blockId)) {
+        const blockText = corpus.find(b => b.id === f.blockId)?.text || '';
+        blockHashCache.set(f.blockId, await fingerprintCorpusBlock(blockText));
+      }
+      const blockHash = blockHashCache.get(f.blockId);
+      const key = await computeCorpusIgnoreKey(f.ruleId, blockHash, f.match);
+      if (ignoredKeys.has(key)) {
+        suppressedCount++;
+        continue;
+      }
+    }
+    filtered.push(f);
+  }
+
+  console.log(`Suppressed ${suppressedCount} findings (${allFindings.length} → ${filtered.length})\n`);
+
+  // Replace allFindings and rebuild stats from filtered set
+  allFindings.length = 0;
+  allFindings.push(...filtered);
+
+  // Rebuild per-engine / per-rule / per-section counters
+  stats.findingsByEngine = { static: 0, nlp: 0, grammar: 0 };
+  stats.findingsByRule = {};
+  stats.findingsBySection = {};
+  stats.noteBlockFindings = { static: 0, nlp: 0, grammar: 0 };
+  for (const f of allFindings) {
+    const eng = f.engine;
+    if (eng === 'static') stats.findingsByEngine.static++;
+    else if (eng === 'nlp') stats.findingsByEngine.nlp++;
+    else if (eng === 'grammar') stats.findingsByEngine.grammar++;
+    if (f.isNoteBlock) {
+      if (eng === 'static') stats.noteBlockFindings.static++;
+      else if (eng === 'nlp') stats.noteBlockFindings.nlp++;
+      else if (eng === 'grammar') stats.noteBlockFindings.grammar++;
+    }
+    stats.findingsByRule[f.ruleId] = (stats.findingsByRule[f.ruleId] || 0) + 1;
+    stats.findingsBySection[f.section] = (stats.findingsBySection[f.section] || 0) + 1;
+  }
+}
+
 // --- Output results ---
 const resultsDir = join(PROJECT_ROOT, 'corpus', 'results');
 mkdirSync(resultsDir, { recursive: true });
@@ -276,6 +396,9 @@ writeFileSync(outputFile, JSON.stringify({
     timestamp: new Date().toISOString(),
     elapsedSeconds: parseFloat(elapsed),
     grammarEnabled: !!harperLinter,
+    withIgnores,
+    ignoredKeysApplied: ignoredKeys.size,
+    mutedRulesApplied: mutedRules.size,
   },
   stats,
   findings: allFindings,

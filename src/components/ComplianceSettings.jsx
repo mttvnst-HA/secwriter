@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { getApiKey, setApiKey, clearApiKey, testConnection } from "../lib/compliance-ai.js";
 
-export default function ComplianceSettings({ onClose }) {
+export default function ComplianceSettings({ onClose, ignoredCount = 0, mutedCount = 0, onResetIgnored, onResetMuted }) {
   const [key, setKey] = useState(getApiKey() || "");
   const [model, setModel] = useState(
     localStorage.getItem("sim-compliance-model") || "claude-sonnet-4-20250514"
@@ -179,6 +179,66 @@ export default function ComplianceSettings({ onClose }) {
               : `✗ ${testResult.error}`}
           </div>
         )}
+
+        {/* Ignored findings reset */}
+        <div style={{ marginTop: 16, paddingTop: 12, borderTop: '1px solid #e5e7eb' }}>
+          <div style={{ fontSize: 13, fontWeight: 600, color: '#1e293b', marginBottom: 6 }}>
+            Ignored findings
+          </div>
+          <div style={{ fontSize: 12, color: '#64748b', marginBottom: 8 }}>
+            {ignoredCount === 0
+              ? 'No findings dismissed in this document.'
+              : `${ignoredCount} findings dismissed across this document.`}
+          </div>
+          <button
+            onClick={() => {
+              const ok = window.confirm(`Reset all ${ignoredCount} dismissed findings? They will reappear.`);
+              if (ok) onResetIgnored();
+            }}
+            disabled={ignoredCount === 0}
+            style={{
+              padding: '6px 12px',
+              fontSize: 13,
+              backgroundColor: ignoredCount === 0 ? '#f1f5f9' : '#fff',
+              color: ignoredCount === 0 ? '#94a3b8' : '#dc2626',
+              border: `1px solid ${ignoredCount === 0 ? '#e2e8f0' : '#fca5a5'}`,
+              borderRadius: 4,
+              cursor: ignoredCount === 0 ? 'not-allowed' : 'pointer',
+            }}
+          >
+            Reset ignored findings
+          </button>
+        </div>
+
+        {/* Muted rules reset */}
+        <div style={{ marginTop: 12 }}>
+          <div style={{ fontSize: 13, fontWeight: 600, color: '#1e293b', marginBottom: 6 }}>
+            Muted rules
+          </div>
+          <div style={{ fontSize: 12, color: '#64748b', marginBottom: 8 }}>
+            {mutedCount === 0
+              ? 'No rules muted in this document.'
+              : `${mutedCount} rules muted in this document.`}
+          </div>
+          <button
+            onClick={() => {
+              const ok = window.confirm(`Reset all ${mutedCount} muted rules? Their findings will reappear.`);
+              if (ok) onResetMuted();
+            }}
+            disabled={mutedCount === 0}
+            style={{
+              padding: '6px 12px',
+              fontSize: 13,
+              backgroundColor: mutedCount === 0 ? '#f1f5f9' : '#fff',
+              color: mutedCount === 0 ? '#94a3b8' : '#dc2626',
+              border: `1px solid ${mutedCount === 0 ? '#e2e8f0' : '#fca5a5'}`,
+              borderRadius: 4,
+              cursor: mutedCount === 0 ? 'not-allowed' : 'pointer',
+            }}
+          >
+            Reset muted rules
+          </button>
+        </div>
       </div>
     </div>
   );

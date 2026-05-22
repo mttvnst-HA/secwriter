@@ -33,6 +33,12 @@ export default function CompliancePanel({
   onAcceptFix,
   onAcceptGroupFix,
   unitDisplay,
+  onItemDismiss,
+  onGroupDismiss,
+  ignoredCount,
+  mutedCount,
+  onResetIgnored,
+  onResetMuted,
 }) {
   const result = comp.getResult(complianceState);
   const scope = comp.getScope(complianceState);
@@ -581,6 +587,26 @@ export default function CompliancePanel({
                           {isExpanded ? "Collapse" : `View All ${group.instances.length} ▸`}
                         </button>
                       )}
+                      {onGroupDismiss && group.instances.length > 0 && (
+                        <button
+                          onClick={(e) => { e.stopPropagation(); onGroupDismiss(group); }}
+                          onMouseDown={(e) => e.preventDefault()}
+                          title="Dismiss all findings for this rule in the current document. Persistent."
+                          style={{
+                            padding: '3px 10px',
+                            fontSize: 12,
+                            fontWeight: 500,
+                            backgroundColor: '#fff',
+                            color: '#475569',
+                            border: '1px solid #cbd5e1',
+                            borderRadius: 4,
+                            cursor: 'pointer',
+                            marginLeft: 4,
+                          }}
+                        >
+                          Dismiss all
+                        </button>
+                      )}
                       {!hasFix && (
                         <span style={{ fontSize: 10, color: "#6b7280", alignSelf: "center" }}>
                           Needs AI rewrite
@@ -656,6 +682,25 @@ export default function CompliancePanel({
                               >
                                 ✗ Reject
                               </button>
+                              {onItemDismiss && (
+                                <button
+                                  onClick={() => onItemDismiss(group.ruleId, v)}
+                                  onMouseDown={(e) => e.preventDefault()}
+                                  title="Persistent — survives reload"
+                                  style={{
+                                    padding: '2px 8px',
+                                    fontSize: 11,
+                                    fontWeight: 500,
+                                    backgroundColor: '#fff',
+                                    color: '#475569',
+                                    border: '1px solid #cbd5e1',
+                                    borderRadius: 3,
+                                    cursor: 'pointer',
+                                  }}
+                                >
+                                  Dismiss
+                                </button>
+                              )}
                             </div>
                           )}
                         </div>
@@ -761,7 +806,13 @@ export default function CompliancePanel({
 
       {/* Settings Modal */}
       {showSettings && (
-        <ComplianceSettings onClose={() => setShowSettings(false)} />
+        <ComplianceSettings
+          onClose={() => setShowSettings(false)}
+          ignoredCount={ignoredCount}
+          mutedCount={mutedCount}
+          onResetIgnored={onResetIgnored}
+          onResetMuted={onResetMuted}
+        />
       )}
     </div>
   );

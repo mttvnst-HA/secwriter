@@ -13,10 +13,28 @@ import { useState, useEffect, useRef, useCallback } from "react";
  *   onDismiss  - () callback to hide tooltip
  *   blockEl    - the contentEditable DOM element (for computing fix text)
  */
-export default function InlineTooltip({ finding, blockId, onFix, onDismiss, blockEl, onAddToDictionary }) {
+export default function InlineTooltip({
+  finding, blockId, onFix, onDismiss, blockEl,
+  onAddToDictionary, onSuppress, blockHash, onMuteNlpRule,
+}) {
   const [showWhy, setShowWhy] = useState(false);
   const tooltipRef = useRef(null);
   const [pos, setPos] = useState(null);  // { top, left, below }
+  const [showDismissOnboarding, setShowDismissOnboarding] = useState(false);
+
+  useEffect(() => {
+    // Only show on first time a tooltip with a Dismiss button is opened.
+    // The gate must match the Dismiss button's render gate below (`onSuppress`
+    // function AND `blockHash` string) — otherwise the pop-down "Dismiss is
+    // persistent" message appears with no button to click, and the localStorage
+    // flag burns silently so the user never sees the message the next time
+    // when the button actually exists.
+    const seen = typeof window !== 'undefined' && localStorage.getItem('sim-dismiss-onboarded') === '1';
+    if (!seen && typeof onSuppress === 'function' && typeof blockHash === 'string' && finding) {
+      setShowDismissOnboarding(true);
+      localStorage.setItem('sim-dismiss-onboarded', '1');
+    }
+  }, [finding, onSuppress, blockHash]);
 
   // Position the tooltip near the cursor, measuring actual height to avoid off-screen
   useEffect(() => {
@@ -123,6 +141,9 @@ export default function InlineTooltip({ finding, blockId, onFix, onDismiss, bloc
   const isGrammar = typeof violation.ruleId === 'string' && violation.ruleId.startsWith('GRAMMAR-');
   const isSingleWord = isGrammar && /^[A-Za-z][A-Za-z'-]*$/.test(violation.match || '');
   const canAddToDict = isSingleWord && typeof onAddToDictionary === 'function';
+
+  const isNlp = typeof violation.ruleId === 'string' && violation.ruleId.startsWith('NLP-');
+  const canMute = isNlp && typeof onMuteNlpRule === 'function';
 
   const handleAddToDict = () => {
     if (!canAddToDict) return;
@@ -323,7 +344,70 @@ export default function InlineTooltip({ finding, blockId, onFix, onDismiss, bloc
             + Add "{violation.match.length > 20 ? violation.match.slice(0, 17) + '...' : violation.match}" to dictionary
           </button>
         )}
+        {/* Persistent Dismiss — survives reload */}
+        {typeof onSuppress === 'function' && typeof blockHash === 'string' && (
+          <button
+            onClick={() => {
+              onSuppress(violation.ruleId, blockHash, violation.match);
+              onDismiss();
+            }}
+            onMouseDown={(e) => e.preventDefault()}
+            title="Dismiss this specific finding (persists across reload; reset from Settings)"
+            style={{
+              padding: '3px 10px',
+              fontSize: 12,
+              fontWeight: 500,
+              backgroundColor: '#fff',
+              color: '#475569',
+              border: '1px solid #cbd5e1',
+              borderRadius: 4,
+              cursor: 'pointer',
+              fontFamily: 'inherit',
+            }}
+          >
+            Dismiss
+          </button>
+        )}
+        {canMute && (
+          <button
+            onClick={() => {
+              const ok = window.confirm(`Mute ${violation.ruleId} in this document?`);
+              if (ok) {
+                onMuteNlpRule(violation.ruleId);
+                onDismiss();
+              }
+            }}
+            onMouseDown={(e) => e.preventDefault()}
+            title={`Suppress all ${violation.ruleId} findings in this document. Reset from Settings.`}
+            style={{
+              padding: '3px 10px',
+              fontSize: 12,
+              fontWeight: 500,
+              backgroundColor: '#fff',
+              color: '#92400e',
+              border: '1px solid #fde68a',
+              borderRadius: 4,
+              cursor: 'pointer',
+              fontFamily: 'inherit',
+            }}
+          >
+            Mute {violation.ruleId}
+          </button>
+        )}
       </div>
+      {showDismissOnboarding && (
+        <div style={{
+          marginTop: 8,
+          padding: '6px 10px',
+          backgroundColor: 'rgba(59, 130, 246, 0.1)',
+          border: '1px solid #93c5fd',
+          borderRadius: 4,
+          fontSize: 11,
+          color: '#1e3a8a',
+        }}>
+          💡 Dismiss is persistent — survives reload. Reset from ⚙ Settings.
+        </div>
+      )}
     </div>
   );
 }
