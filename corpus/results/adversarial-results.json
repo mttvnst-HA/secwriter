@@ -1,13 +1,13 @@
 {
   "metadata": {
     "corpusFile": "/Users/mveenstra/github/secwriter/corpus/adversarial/adversarial.json",
-    "timestamp": "2026-05-23T06:36:14.934Z",
+    "timestamp": "2026-05-23T06:38:41.866Z",
     "elapsedSeconds": 1.4
   },
   "summary": {
-    "correct": 155,
+    "correct": 156,
     "total": 156,
-    "accuracy": 0.9935897435897436
+    "accuracy": 1
   },
   "byCategory": {
     "false-positive-trap": {
@@ -19,7 +19,7 @@
       "total": 46
     },
     "borderline-compliance": {
-      "correct": 12,
+      "correct": 13,
       "total": 13
     },
     "nlp-ambiguity": {
@@ -31,14 +31,5 @@
       "total": 10
     }
   },
-  "failures": [
-    {
-      "id": "ADV-066",
-      "shouldFlag": true,
-      "ruleId": "TERM-adequate",
-      "text": "Properly aligned as verified by transit survey to within 3 mm tolerance.",
-      "category": "borderline-compliance",
-      "reason": "'properly' — TERM-adequate/VAGUE matches. Even though specific verification method and tolerance are stated, 'properly' itself triggers the rule."
-    }
-  ]
+  "failures": []
 }
