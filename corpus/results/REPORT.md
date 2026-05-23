@@ -1,6 +1,6 @@
 # SecWriter Text Analysis Engine — Corpus Test Report
 
-Generated: 2026-05-21T05:07:04.343Z
+Generated: 2026-05-23T05:21:27.625Z
 
 ## 1. Calibration Results (Raw UFGS Master Text)
 
@@ -132,33 +132,25 @@ mismatches. Recall figures above use corrected IDs.
 ## 4. Adversarial Results
 
 - **Total entries:** 156
-- **Overall accuracy:** 92.9%
+- **Overall accuracy:** 98.1%
 
 ### By Category
 
 | Category | Total | Correct | Accuracy |
 |----------|:-----:|:-------:|:--------:|
-| false-positive-trap | 57 | 52 | 91.2% |
-| true-positive | 46 | 45 | 97.8% |
+| false-positive-trap | 57 | 57 | 100.0% |
+| true-positive | 46 | 46 | 100.0% |
 | borderline-compliance | 13 | 11 | 84.6% |
 | nlp-ambiguity | 30 | 29 | 96.7% |
-| domain-jargon-trap | 10 | 8 | 80.0% |
+| domain-jargon-trap | 10 | 10 | 100.0% |
 
 ### Incorrect Engine Behaviors
 
 | ID | Category | Rule | Issue | Text |
 |----|----------|------|-------|------|
-| ADV-004 | false-positive-trap | SYM-and | Missed (should flag) | Install P & T relief valves on all water heaters.... |
-| ADV-005 | false-positive-trap | SYM-and | Missed (should flag) | The Instrumentation & Control system conforms to A... |
-| ADV-006 | false-positive-trap | COLLOQ-head | Missed (should flag) | Install head pressure gauges at each pump discharg... |
-| ADV-007 | false-positive-trap | COLLOQ-head | Missed (should flag) | Provide shower head assemblies conforming to the f... |
-| ADV-009 | false-positive-trap | COLLOQ-head | Missed (should flag) | Calculate head loss through the piping system per ... |
 | ADV-038 | nlp-ambiguity | NLP-PASSIVE-001 | Missed (should flag) | The laminated beam is manufactured off-site and de... |
 | ADV-065 | borderline-compliance | TERM-suitable | Missed (should flag) | Suitable for the intended application as defined i... |
 | ADV-066 | borderline-compliance | TERM-adequate | Missed (should flag) | Properly aligned as verified by transit survey to ... |
-| ADV-076 | domain-jargon-trap | COLLOQ-head | Missed (should flag) | Provide dead head anchors at each end of the tensi... |
-| ADV-077 | domain-jargon-trap | COLLOQ-head | Missed (should flag) | Maintain minimum static head of 3 meters at the pu... |
-| ADV-122 | true-positive | TERM-per | False positive (should not flag) | Test each interval per the inspection schedule.... |
 
 ## 6. Actionable Engine Improvements
 

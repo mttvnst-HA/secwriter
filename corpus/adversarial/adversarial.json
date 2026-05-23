@@ -1,8 +1,8 @@
 {
   "metadata": {
     "description": "Adversarial corpus for SIM compliance/grammar testing (Phase 3.5)",
-    "version": "2.1.0",
-    "generated": "2026-05-20",
+    "version": "2.2.0",
+    "generated": "2026-05-22",
     "totalEntries": 156,
     "categories": {
       "false-positive-trap": 57,
@@ -50,9 +50,9 @@
       "id": "ADV-004",
       "text": "Install P & T relief valves on all water heaters.",
       "expected": {
-        "shouldFlag": true,
+        "shouldFlag": false,
         "ruleId": "SYM-and",
-        "reason": "SYM-and matches & between words. 'P & T' is a standard abbreviation (Pressure & Temperature) — real FP found 5x in clean corpus."
+        "reason": "SYM-and now excludes & when both sides start with uppercase/digit. 'P & T' (Pressure & Temperature) is correctly skipped."
       },
       "difficulty": "trap",
       "category": "false-positive-trap"
@@ -61,9 +61,9 @@
       "id": "ADV-005",
       "text": "The Instrumentation & Control system conforms to ASHRAE standards.",
       "expected": {
-        "shouldFlag": true,
+        "shouldFlag": false,
         "ruleId": "SYM-and",
-        "reason": "SYM-and has no proper-name exclusion for & in organization names. Real FP from clean corpus."
+        "reason": "SYM-and excludes & when both sides start with an uppercase letter. 'Instrumentation & Control' is correctly skipped."
       },
       "difficulty": "trap",
       "category": "false-positive-trap"
@@ -72,9 +72,9 @@
       "id": "ADV-006",
       "text": "Install head pressure gauges at each pump discharge.",
       "expected": {
-        "shouldFlag": true,
+        "shouldFlag": false,
         "ruleId": "COLLOQ-head",
-        "reason": "COLLOQ-head has NO compound-term exclusion for 'head pressure'. Simple \\bhead\\b matches. Real FP (17 in clean corpus)."
+        "reason": "COLLOQ-head now excludes 'head' when followed by 'pressure' (after-match list in compliance-rules.js). 'head pressure' is correctly skipped."
       },
       "difficulty": "trap",
       "category": "false-positive-trap"
@@ -83,9 +83,9 @@
       "id": "ADV-007",
       "text": "Provide shower head assemblies conforming to the flow rate requirements.",
       "expected": {
-        "shouldFlag": true,
+        "shouldFlag": false,
         "ruleId": "COLLOQ-head",
-        "reason": "COLLOQ-head has no exclusion for 'shower head'. Will flag despite being standard plumbing terminology."
+        "reason": "COLLOQ-head now excludes 'head' when preceded by 'shower' (before-match list in compliance-rules.js). 'shower head' is correctly skipped."
       },
       "difficulty": "trap",
       "category": "false-positive-trap"
@@ -105,9 +105,9 @@
       "id": "ADV-009",
       "text": "Calculate head loss through the piping system per ASHRAE Fundamentals.",
       "expected": {
-        "shouldFlag": true,
+        "shouldFlag": false,
         "ruleId": "COLLOQ-head",
-        "reason": "COLLOQ-head will match 'head' even though 'head loss' is standard hydraulic engineering terminology. No context exclusion exists."
+        "reason": "COLLOQ-head now excludes 'head' when followed by 'loss' (after-match list in compliance-rules.js). 'head loss' is correctly skipped as standard hydraulic engineering terminology."
       },
       "difficulty": "trap",
       "category": "false-positive-trap"
@@ -842,9 +842,9 @@
       "id": "ADV-076",
       "text": "Provide dead head anchors at each end of the tensioning strand.",
       "expected": {
-        "shouldFlag": true,
+        "shouldFlag": false,
         "ruleId": "COLLOQ-head",
-        "reason": "'head' in 'dead head' — COLLOQ-head has no exclusion for this post-tensioning term. Will flag."
+        "reason": "COLLOQ-head now excludes 'head' when preceded by 'dead' (before-match list in compliance-rules.js). 'dead head' (post-tensioning anchor) is correctly skipped."
       },
       "difficulty": "trap",
       "category": "domain-jargon-trap"
@@ -853,9 +853,9 @@
       "id": "ADV-077",
       "text": "Maintain minimum static head of 3 meters at the pump suction.",
       "expected": {
-        "shouldFlag": true,
+        "shouldFlag": false,
         "ruleId": "COLLOQ-head",
-        "reason": "'head' in 'static head' — standard hydraulics term but COLLOQ-head has no exclusion. Will flag."
+        "reason": "COLLOQ-head now excludes 'head' when preceded by 'static' (before-match list in compliance-rules.js). 'static head' (hydraulics) is correctly skipped."
       },
       "difficulty": "trap",
       "category": "domain-jargon-trap"
@@ -1348,9 +1348,9 @@
       "id": "ADV-122",
       "text": "Test each interval per the inspection schedule.",
       "expected": {
-        "shouldFlag": false,
+        "shouldFlag": true,
         "ruleId": "TERM-per",
-        "reason": "'per the' is NOT in the exclusion list — but wait, 'the' is not a unit. This is 'per' meaning 'in accordance with'. Let me check: the exclusion is a lookahead, 'the' is not in it. This WILL flag."
+        "reason": "TERM-per's lookahead excludes units and standard phrases (per cent, per annum, per hour, etc.) but NOT 'per the'. 'per' here means 'in accordance with' and is correctly flagged."
       },
       "difficulty": "standard",
       "category": "true-positive"
