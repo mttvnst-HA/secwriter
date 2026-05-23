@@ -78,6 +78,28 @@ describe('runStaticRules — TERM-should quote suppression', () => {
   });
 });
 
+describe('runStaticRules — TERM-properly (ADV-066 regression)', () => {
+  const rules = getRules();
+  const run = (text) => runStaticRules(text, 'b', rules);
+
+  // `properly` appears in BOTH prohibitedTerms (TERM-properly) and vagueTerms
+  // (VAGUE-properly) in ufs-1-300-02-rules.json. buildRules() dedups by term
+  // so only TERM-properly is built — VAGUE-properly never registers. This
+  // pin protects against silent regressions of either side of that dedup.
+  it('flags ADV-066 "Properly aligned as verified by transit survey..." as TERM-properly', () => {
+    const v = run('Properly aligned as verified by transit survey to within 3 mm tolerance.');
+    const properly = v.find(x => x.ruleId === 'TERM-properly');
+    assert.notStrictEqual(properly, undefined);
+    assert.strictEqual(properly.match, 'Properly');
+  });
+
+  it('does NOT register VAGUE-properly (deduped by buildRules)', () => {
+    const ids = new Set(rules.map(r => r.id));
+    assert.ok(ids.has('TERM-properly'), 'TERM-properly must be present');
+    assert.ok(!ids.has('VAGUE-properly'), 'VAGUE-properly must be deduped');
+  });
+});
+
 describe('runStaticRules — POS-window suppression (compromise required)', () => {
   const rules = getRules();
   const run = (text) => runStaticRules(text, 'b', rules);

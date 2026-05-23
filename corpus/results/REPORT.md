@@ -1,6 +1,6 @@
 # SecWriter Text Analysis Engine — Corpus Test Report
 
-Generated: 2026-05-23T06:36:40.210Z
+Generated: 2026-05-23T06:38:41.915Z
 
 ## 1. Calibration Results (Raw UFGS Master Text)
 
@@ -133,7 +133,7 @@ mismatches. Recall figures above use corrected IDs.
 ## 4. Adversarial Results
 
 - **Total entries:** 156
-- **Overall accuracy:** 99.4%
+- **Overall accuracy:** 100.0%
 
 ### By Category
 
@@ -141,15 +141,9 @@ mismatches. Recall figures above use corrected IDs.
 |----------|:-----:|:-------:|:--------:|
 | false-positive-trap | 57 | 57 | 100.0% |
 | true-positive | 46 | 46 | 100.0% |
-| borderline-compliance | 13 | 12 | 92.3% |
+| borderline-compliance | 13 | 13 | 100.0% |
 | nlp-ambiguity | 30 | 30 | 100.0% |
 | domain-jargon-trap | 10 | 10 | 100.0% |
-
-### Incorrect Engine Behaviors
-
-| ID | Category | Rule | Issue | Text |
-|----|----------|------|-------|------|
-| ADV-066 | borderline-compliance | TERM-adequate | Missed (should flag) | Properly aligned as verified by transit survey to ... |
 
 ## 6. Actionable Engine Improvements
 

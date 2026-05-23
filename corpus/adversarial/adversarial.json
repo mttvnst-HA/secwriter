@@ -1,8 +1,8 @@
 {
   "metadata": {
     "description": "Adversarial corpus for SIM compliance/grammar testing (Phase 3.5)",
-    "version": "2.2.0",
-    "generated": "2026-05-22",
+    "version": "2.2.1",
+    "generated": "2026-05-23",
     "totalEntries": 156,
     "categories": {
       "false-positive-trap": 57,
@@ -733,8 +733,8 @@
       "text": "Properly aligned as verified by transit survey to within 3 mm tolerance.",
       "expected": {
         "shouldFlag": true,
-        "ruleId": "TERM-adequate",
-        "reason": "'properly' — TERM-adequate/VAGUE matches. Even though specific verification method and tolerance are stated, 'properly' itself triggers the rule."
+        "ruleId": "TERM-properly",
+        "reason": "'properly' — TERM-properly matches the leading word. Even though specific verification method and tolerance are stated, 'properly' itself triggers the rule. (VAGUE-properly is deduped by buildRules since 'properly' is already in prohibitedTerms.)"
       },
       "difficulty": "borderline",
       "category": "borderline-compliance"
