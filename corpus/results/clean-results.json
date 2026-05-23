@@ -1,11 +1,14 @@
 {
   "metadata": {
     "corpusType": "clean",
-    "corpusFile": "C:\\github\\secwriter\\corpus\\clean\\all_clean.json",
+    "corpusFile": "/Users/mveenstra/github/secwriter/corpus/clean/all_clean.json",
     "blocksProcessed": 2583,
-    "timestamp": "2026-05-21T04:20:24.308Z",
-    "elapsedSeconds": 52.2,
-    "grammarEnabled": true
+    "timestamp": "2026-05-23T05:50:03.224Z",
+    "elapsedSeconds": 18.7,
+    "grammarEnabled": true,
+    "withIgnores": false,
+    "ignoredKeysApplied": 0,
+    "mutedRulesApplied": 0
   },
   "stats": {
     "blocksProcessed": 2583,
@@ -15,13 +18,13 @@
     },
     "findingsByEngine": {
       "static": 5,
-      "nlp": 331,
+      "nlp": 333,
       "grammar": 260
     },
     "findingsByRule": {
       "GRAMMAR-Style": 90,
       "GRAMMAR-Repetition": 6,
-      "NLP-PASSIVE-001": 331,
+      "NLP-PASSIVE-001": 333,
       "GRAMMAR-Spelling": 93,
       "GRAMMAR-Capitalization": 10,
       "GRAMMAR-WordChoice": 38,
@@ -36,11 +39,11 @@
       "GRAMMAR-Regionalism": 1
     },
     "findingsBySection": {
-      "03 30 00": 149,
+      "03 30 00": 150,
       "22 00 00": 207,
       "26 20 00": 114,
       "32 12 16.16": 32,
-      "33 71 02": 94
+      "33 71 02": 95
     },
     "noteBlockFindings": {
       "static": 0,
@@ -355,6 +358,18 @@
       "ruleId": "NLP-PASSIVE-001",
       "match": "are accredited",
       "index": 121,
+      "severity": "low",
+      "engine": "nlp",
+      "category": "NLP",
+      "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "03_30_00-P1-B156",
+      "section": "03 30 00",
+      "ruleId": "NLP-PASSIVE-001",
+      "match": "were manufactured",
+      "index": 61,
       "severity": "low",
       "engine": "nlp",
       "category": "NLP",
@@ -6811,6 +6826,18 @@
       "ruleId": "NLP-PASSIVE-001",
       "match": "be used",
       "index": 142,
+      "severity": "low",
+      "engine": "nlp",
+      "category": "NLP",
+      "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "33_71_02-P3-B277",
+      "section": "33 71 02",
+      "ruleId": "NLP-PASSIVE-001",
+      "match": "are manufactured.[",
+      "index": 126,
       "severity": "low",
       "engine": "nlp",
       "category": "NLP",

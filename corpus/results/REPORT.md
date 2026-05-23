@@ -1,6 +1,6 @@
 # SecWriter Text Analysis Engine — Corpus Test Report
 
-Generated: 2026-05-23T05:21:27.625Z
+Generated: 2026-05-23T06:18:18.901Z
 
 ## 1. Calibration Results (Raw UFGS Master Text)
 
@@ -66,14 +66,14 @@ Generated: 2026-05-23T05:21:27.625Z
 | Engine | Non-Note FPs | FP Rate | Regression Threshold |
 |--------|:-----------:|:-------:|:--------------------:|
 | Static | 5 | 0.19% | <5% |
-| NLP | 331 | 12.81% | <20% |
+| NLP | 333 | 12.89% | <20% |
 | Grammar | 260 | (informational) | N/A |
 
 ### False Positives by Rule
 
 | Rule | Engine | FPs | Precision |
 |------|--------|:---:|:---------:|
-| NLP-PASSIVE-001 | nlp | 331 | 87.19% |
+| NLP-PASSIVE-001 | nlp | 333 | 87.11% |
 | TERM-adequate | static | 2 | 99.92% |
 | TERM-oicc | static | 1 | 99.96% |
 | TERM-conforming-to | static | 1 | 99.96% |
@@ -132,7 +132,7 @@ mismatches. Recall figures above use corrected IDs.
 ## 4. Adversarial Results
 
 - **Total entries:** 156
-- **Overall accuracy:** 98.1%
+- **Overall accuracy:** 98.7%
 
 ### By Category
 
@@ -141,14 +141,13 @@ mismatches. Recall figures above use corrected IDs.
 | false-positive-trap | 57 | 57 | 100.0% |
 | true-positive | 46 | 46 | 100.0% |
 | borderline-compliance | 13 | 11 | 84.6% |
-| nlp-ambiguity | 30 | 29 | 96.7% |
+| nlp-ambiguity | 30 | 30 | 100.0% |
 | domain-jargon-trap | 10 | 10 | 100.0% |
 
 ### Incorrect Engine Behaviors
 
 | ID | Category | Rule | Issue | Text |
 |----|----------|------|-------|------|
-| ADV-038 | nlp-ambiguity | NLP-PASSIVE-001 | Missed (should flag) | The laminated beam is manufactured off-site and de... |
 | ADV-065 | borderline-compliance | TERM-suitable | Missed (should flag) | Suitable for the intended application as defined i... |
 | ADV-066 | borderline-compliance | TERM-adequate | Missed (should flag) | Properly aligned as verified by transit survey to ... |
 
