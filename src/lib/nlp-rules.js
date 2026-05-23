@@ -102,8 +102,18 @@ export function detectNlpIssues(plainText, blockId, isNoteBlock = false) {
     // Match: (is|are|was|were|be|been|being) + #PastTense
     // This catches: "are placed", "is tested", "was removed", "were installed",
     // "be performed", "been completed", "being constructed"
+    //
+    // The second pattern is a narrow safety net for past participles that
+    // compromise mistags as #Adjective in specific contexts — most often
+    // when a preceding adjective triggers adjective-coordination tagging
+    // (e.g. "The laminated beam is manufactured" — compromise tags
+    // "manufactured" as Adjective because of "laminated"). Adding specific
+    // mistagged participles by name keeps FP cost minimal; broadening to
+    // all #Adjective matches cost ~60 FPs on the clean corpus per
+    // measurement. Corpus regression: ADV-038.
     const patterns = [
       '(is|are|was|were|be|been|being) #PastTense',
+      '(is|are|was|were|be|been|being) (manufactured)',
     ];
 
     // Engineering past participles commonly used as adjectives (not passive voice).

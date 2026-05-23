@@ -144,6 +144,57 @@ describe('nlp-rules', () => {
     });
   });
 
+  describe('past-participle adjective passive detection (ADV-038 regression)', () => {
+    // compromise tags some past-participle action verbs as #Adjective rather than
+    // #PastTense (notably "manufactured", "cured"). The primary pattern
+    // `(is|are|...) #PastTense` misses these. Corpus entry ADV-038 in
+    // corpus/adversarial/adversarial.json pins the canonical example.
+    it('flags "is manufactured" as passive (ADV-038)', () => {
+      const issues = detectNlpIssues(
+        'The laminated beam is manufactured off-site and delivered to the project.',
+        'test-adv-038',
+      );
+      const passive = issues.find(v => v.ruleId === 'NLP-PASSIVE-001');
+      expect(passive).toBeDefined();
+      expect(passive.match.toLowerCase()).toContain('manufactured');
+    });
+
+    it('flags "are manufactured" in plural form', () => {
+      const issues = detectNlpIssues(
+        'All fasteners are manufactured in accordance with ASTM A325.',
+        'test-plural-mfg',
+      );
+      expect(issues.some(v => v.ruleId === 'NLP-PASSIVE-001')).toBe(true);
+    });
+
+    it('does NOT flag ENGINEERING_ADJECTIVES even when compromise mistags as Adjective', () => {
+      // "cured" is in ENGINEERING_ADJECTIVES as a deliberate state-description
+      // exemption ("Concrete is cured" describes a state, not an action being
+      // performed). The new Adjective-branch must honor that suppression.
+      const issues = detectNlpIssues(
+        'Concrete is cured for 28 days before formwork removal.',
+        'test-cured-exempt',
+      );
+      expect(issues.some(v => v.ruleId === 'NLP-PASSIVE-001')).toBe(false);
+    });
+
+    it('does NOT flag pure adjectives like "is complete" or "is ready"', () => {
+      // Broadening the pattern to #Adjective must NOT also catch non-participle
+      // adjectives. The morphological -ed gate is what keeps these clean.
+      const cases = [
+        'The shop drawings are complete and ready for review.',
+        'The site is ready for excavation.',
+        'The valve is available in three sizes.',
+        'The material is suitable for the application.',
+      ];
+      for (const text of cases) {
+        const issues = detectNlpIssues(text, 'test-pure-adj');
+        const passive = issues.find(v => v.ruleId === 'NLP-PASSIVE-001');
+        expect(passive, `expected no passive in: ${text}`).toBeUndefined();
+      }
+    });
+  });
+
   describe('exclusions', () => {
     it('skips note blocks', () => {
       const issues = detectNlpIssues('Materials are placed by the Contractor.', 'test-note', true);
