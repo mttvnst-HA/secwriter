@@ -92,11 +92,35 @@ describe('runStaticRules — POS-window suppression (compromise required)', () =
     assert.notStrictEqual(v.find(x => x.ruleId === 'TERM-suitable'), undefined);
   });
 
-  // ADV-065 is a baseline miss (the pre-existing /for\s+(a|the|type|non-|use )/
-  // exclusion swallows "suitable for the intended …"). The new POS-window
-  // suppression must not WIDEN this miss into adjacent specific-noun phrases.
-  it('does not widen ADV-065-style misses into adjacent specific-noun cases', () => {
+  // Adjacent specific-noun phrase must still flag (POS-window doesn't widen
+  // beyond the three-token adjacency rule).
+  it('flags "suitable for exterior exposure per ASTM D4263" (per ASTM is far)', () => {
     const v = run('Choose a finish suitable for exterior exposure per ASTM D4263.');
+    assert.notStrictEqual(v.find(x => x.ruleId === 'TERM-suitable'), undefined);
+  });
+
+  // ADV-065 regression — the pre-existing exclusion regex used a bare "the "
+  // alternative that swallowed paraphrases like "suitable for the intended
+  // application as defined in ASTM D4263." The exclusion now tightens "the"
+  // to require a numeric/value token (digit or `#`) following, so vague
+  // paraphrases flag while precise-dimension phrases continue to be skipped.
+  it('flags ADV-065 "Suitable for the intended application as defined in ASTM D4263"', () => {
+    const v = run('Suitable for the intended application as defined in ASTM D4263.');
+    assert.notStrictEqual(v.find(x => x.ruleId === 'TERM-suitable'), undefined);
+  });
+
+  it('still suppresses "suitable for the 1-inch pipe" (digit after "the" — precise dimension)', () => {
+    const v = run('Choose a valve suitable for the 1-inch pipe rated at 150 psi.');
+    assert.strictEqual(v.find(x => x.ruleId === 'TERM-suitable'), undefined);
+  });
+
+  it('still suppresses "suitable for the #2 grade aggregate" (# after "the")', () => {
+    const v = run('Use cement suitable for the #2 grade aggregate.');
+    assert.strictEqual(v.find(x => x.ruleId === 'TERM-suitable'), undefined);
+  });
+
+  it('flags "suitable for the project" (vague paraphrase, no value after "the")', () => {
+    const v = run('Select a finish suitable for the project conditions.');
     assert.notStrictEqual(v.find(x => x.ruleId === 'TERM-suitable'), undefined);
   });
 

@@ -3,8 +3,8 @@
     "corpusType": "clean",
     "corpusFile": "/Users/mveenstra/github/secwriter/corpus/clean/all_clean.json",
     "blocksProcessed": 2583,
-    "timestamp": "2026-05-23T05:50:03.224Z",
-    "elapsedSeconds": 18.7,
+    "timestamp": "2026-05-23T06:36:34.424Z",
+    "elapsedSeconds": 18.5,
     "grammarEnabled": true,
     "withIgnores": false,
     "ignoredKeysApplied": 0,
@@ -17,7 +17,7 @@
       "nlp": 0
     },
     "findingsByEngine": {
-      "static": 5,
+      "static": 6,
       "nlp": 333,
       "grammar": 260
     },
@@ -32,6 +32,7 @@
       "TERM-oicc": 1,
       "GRAMMAR-Punctuation": 4,
       "GRAMMAR-Agreement": 11,
+      "TERM-suitable": 1,
       "TERM-conforming-to": 1,
       "TERM-adequate": 2,
       "GRAMMAR-Redundancy": 4,
@@ -40,7 +41,7 @@
     },
     "findingsBySection": {
       "03 30 00": 150,
-      "22 00 00": 207,
+      "22 00 00": 208,
       "26 20 00": 114,
       "32 12 16.16": 32,
       "33 71 02": 95
@@ -2750,6 +2751,18 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "22_00_00-P2-B347",
+      "section": "22 00 00",
+      "ruleId": "TERM-suitable",
+      "match": "suitable",
+      "index": 233,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
       "isNoteBlock": false
     },
     {

@@ -1,6 +1,6 @@
 # SecWriter Text Analysis Engine — Corpus Test Report
 
-Generated: 2026-05-23T06:18:18.901Z
+Generated: 2026-05-23T06:36:40.210Z
 
 ## 1. Calibration Results (Raw UFGS Master Text)
 
@@ -65,7 +65,7 @@ Generated: 2026-05-23T06:18:18.901Z
 
 | Engine | Non-Note FPs | FP Rate | Regression Threshold |
 |--------|:-----------:|:-------:|:--------------------:|
-| Static | 5 | 0.19% | <5% |
+| Static | 6 | 0.23% | <5% |
 | NLP | 333 | 12.89% | <20% |
 | Grammar | 260 | (informational) | N/A |
 
@@ -76,6 +76,7 @@ Generated: 2026-05-23T06:18:18.901Z
 | NLP-PASSIVE-001 | nlp | 333 | 87.11% |
 | TERM-adequate | static | 2 | 99.92% |
 | TERM-oicc | static | 1 | 99.96% |
+| TERM-suitable | static | 1 | 99.96% |
 | TERM-conforming-to | static | 1 | 99.96% |
 | TERM-per | static | 1 | 99.96% |
 
@@ -132,7 +133,7 @@ mismatches. Recall figures above use corrected IDs.
 ## 4. Adversarial Results
 
 - **Total entries:** 156
-- **Overall accuracy:** 98.7%
+- **Overall accuracy:** 99.4%
 
 ### By Category
 
@@ -140,7 +141,7 @@ mismatches. Recall figures above use corrected IDs.
 |----------|:-----:|:-------:|:--------:|
 | false-positive-trap | 57 | 57 | 100.0% |
 | true-positive | 46 | 46 | 100.0% |
-| borderline-compliance | 13 | 11 | 84.6% |
+| borderline-compliance | 13 | 12 | 92.3% |
 | nlp-ambiguity | 30 | 30 | 100.0% |
 | domain-jargon-trap | 10 | 10 | 100.0% |
 
@@ -148,7 +149,6 @@ mismatches. Recall figures above use corrected IDs.
 
 | ID | Category | Rule | Issue | Text |
 |----|----------|------|-------|------|
-| ADV-065 | borderline-compliance | TERM-suitable | Missed (should flag) | Suitable for the intended application as defined i... |
 | ADV-066 | borderline-compliance | TERM-adequate | Missed (should flag) | Properly aligned as verified by transit survey to ... |
 
 ## 6. Actionable Engine Improvements

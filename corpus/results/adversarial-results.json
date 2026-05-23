@@ -1,13 +1,13 @@
 {
   "metadata": {
     "corpusFile": "/Users/mveenstra/github/secwriter/corpus/adversarial/adversarial.json",
-    "timestamp": "2026-05-23T05:49:43.527Z",
-    "elapsedSeconds": 1.3
+    "timestamp": "2026-05-23T06:36:14.934Z",
+    "elapsedSeconds": 1.4
   },
   "summary": {
-    "correct": 154,
+    "correct": 155,
     "total": 156,
-    "accuracy": 0.9871794871794872
+    "accuracy": 0.9935897435897436
   },
   "byCategory": {
     "false-positive-trap": {
@@ -19,7 +19,7 @@
       "total": 46
     },
     "borderline-compliance": {
-      "correct": 11,
+      "correct": 12,
       "total": 13
     },
     "nlp-ambiguity": {
@@ -32,14 +32,6 @@
     }
   },
   "failures": [
-    {
-      "id": "ADV-065",
-      "shouldFlag": true,
-      "ruleId": "TERM-suitable",
-      "text": "Suitable for the intended application as defined in ASTM D4263.",
-      "category": "borderline-compliance",
-      "reason": "'suitable' — TERM-suitable has no context exclusion. Even with a specific ASTM reference making it arguably precise, the engine flags the word itself."
-    },
     {
       "id": "ADV-066",
       "shouldFlag": true,

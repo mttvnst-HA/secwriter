@@ -568,14 +568,16 @@ export function runStaticRules(plainText, blockId, rules, options = {}) {
 
       // Skip "suitable for [specific criteria]" and ALL CAPS "SUITABLE" (nameplate markings).
       // POS-window check additionally suppresses "suitable for #Acronym|#ProperNoun|#Value"
-      // (e.g. "suitable for ASTM D4263") with three-token adjacency. Longer
-      // paraphrases such as "Suitable for the intended application as defined
-      // in ASTM D4263" still flag (cf. corpus/adversarial ADV-065).
+      // (e.g. "suitable for ASTM D4263") with three-token adjacency. The "the"
+      // sub-alternative is gated on a following digit or `#` so precise-
+      // dimension phrases ("suitable for the 1-inch pipe", "for the #2
+      // aggregate") still skip while vague paraphrases ("suitable for the
+      // intended application as defined in ASTM D4263") flag (ADV-065).
       if (rule.id === 'TERM-suitable') {
         if (posSuppress['TERM-suitable'].has(matchStart)) continue;
         const after = plainText.slice(matchEnd, matchEnd + 30).toLowerCase();
-        // "suitable for a 3/4 inch", "suitable for the pressure", "suitable for type of"
-        if (after.match(/^\s*for\s+(a |the |type |non-|use )/)) continue;
+        // "suitable for a 3/4 inch", "suitable for type of", "suitable for the 1-inch pipe"
+        if (after.match(/^\s*for\s+(a |type |non-|use |the\s+[#\d])/)) continue;
         // "UL listed as suitable for" — specific listing context
         const before = plainText.slice(Math.max(0, matchStart - 20), matchStart).toLowerCase();
         if (before.match(/listed as\s*$/)) continue;
