@@ -30,6 +30,7 @@ export default function CompliancePanel({
   focusedBlockId,
   complianceState,
   dispatchCompliance,
+  lintingState,
   onAcceptFix,
   onAcceptGroupFix,
   unitDisplay,
@@ -167,6 +168,7 @@ export default function CompliancePanel({
           model: localStorage.getItem("sim-compliance-model") || "claude-sonnet-4-20250514",
           abortSignal: controller.signal,
           onProgress: (p) => dispatchCompliance((state) => comp.aiProgress(state, p)),
+          lintingState,  // #141: honor user dismissals + mutes (pre-filter, prompt, post-filter)
         }
       );
 
@@ -185,7 +187,7 @@ export default function CompliancePanel({
     } finally {
       abortRef.current = null;
     }
-  }, [result, blocks, onAcceptGroupFix, dispatchCompliance]);
+  }, [result, blocks, onAcceptGroupFix, dispatchCompliance, lintingState]);
 
   const handleAICancel = useCallback(() => {
     if (abortRef.current) abortRef.current.abort();

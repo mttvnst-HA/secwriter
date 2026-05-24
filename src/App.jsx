@@ -2801,6 +2801,7 @@ export default function SpecEditor() {
             focusedBlockId={focusedBlockId}
             complianceState={complianceState}
             dispatchCompliance={setComplianceState}
+            lintingState={lintingState}
             onAcceptFix={handleComplianceAcceptFix}
             onAcceptGroupFix={handleComplianceAcceptGroup}
             unitDisplay={unitDisplay}
