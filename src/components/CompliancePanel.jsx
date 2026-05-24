@@ -152,8 +152,25 @@ export default function CompliancePanel({
 
     const tokens = estimateTokens(blocks, aiViolations);
     const cost = estimateCost(tokens);
+    // #170-review-2: warn the user when their dismissals will shrink the actual
+    // request below this estimate. The pre-filter in requestAIRewrite will drop
+    // dismissed/muted violations before sending — actual cost may be lower than
+    // the headline figure. Counting non-tombstoned entries.
+    let dismissNote = "";
+    const activeFindings = lintingState?.ignored?.findings;
+    const activeMutes = lintingState?.ignored?.mutedRules;
+    let dismissCount = 0;
+    if (activeFindings instanceof Map) {
+      for (const e of activeFindings.values()) if (e && e.tombstone !== true) dismissCount++;
+    }
+    if (activeMutes instanceof Map) {
+      for (const e of activeMutes.values()) if (e && e.tombstone !== true) dismissCount++;
+    }
+    if (dismissCount > 0) {
+      dismissNote = `\n\nNote: ${dismissCount} dismissed finding${dismissCount === 1 ? "" : "s"} / muted rule${dismissCount === 1 ? "" : "s"} will be skipped — actual cost may be lower.`;
+    }
     const proceed = window.confirm(
-      `AI rewrite will process ${aiViolations.length} violations.\nEstimated: ~${tokens.toLocaleString()} tokens (~$${cost.toFixed(4)})\n\nProceed?`
+      `AI rewrite will process up to ${aiViolations.length} violations.\nEstimated: ~${tokens.toLocaleString()} tokens (~$${cost.toFixed(4)})${dismissNote}\n\nProceed?`
     );
     if (!proceed) return;
 

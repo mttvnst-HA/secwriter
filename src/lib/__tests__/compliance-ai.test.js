@@ -285,6 +285,47 @@ describe('filterViolationsForAI', () => {
     expect(r1.kept).toEqual(violations);
     expect(r2.kept).toEqual(violations);
   });
+
+  it('throws AbortError when abortSignal is already aborted (fixes #170-review-1)', async () => {
+    const controller = new AbortController();
+    controller.abort();
+    const hashA = await fingerprintBlock(blockA.html);
+    const ignoreKey = await computeIgnoreKey('TERM-shall', hashA, 'shall');
+    let state = createInitial();
+    state = ignoreFinding(state, { ignoreKey, ruleId: 'TERM-shall', blockHash: hashA, match: 'shall', identity: { id: 'u1' }, ts: 1 });
+
+    await expect(
+      filterViolationsForAI([vShall, vFurnish], [blockA], state, controller.signal)
+    ).rejects.toThrow(/Aborted/);
+  });
+
+  it('tolerates partial lintingState where mutedRules is undefined but findings has entries (fixes #170-review-15)', async () => {
+    // Non-empty findings — so the early-exit at line 159 doesn't fire. Loop reaches
+    // isNlpRuleMuted which would call state.ignored.mutedRules.get(...) — TypeError if
+    // mutedRules isn't normalized to a Map. Realistic shape from a partial sidecar decode.
+    const hashA = await fingerprintBlock(blockA.html);
+    const ignoreKey = await computeIgnoreKey('TERM-shall', hashA, 'shall');
+    const malformed = {
+      ignored: {
+        findings: new Map([[ignoreKey, { ruleId: 'TERM-shall', blockHash: hashA, match: 'shall', ts: 1, authorId: 'a' }]]),
+        mutedRules: undefined,
+      },
+    };
+    const { kept } = await filterViolationsForAI([vShall, vProperly], [blockA, blockB], malformed);
+    expect(kept).toEqual([vProperly]);  // vShall dropped via the findings match; no crash on undefined mutedRules
+  });
+
+  it('tolerates partial lintingState where findings is undefined but mutedRules has entries', async () => {
+    const malformed = {
+      ignored: {
+        findings: undefined,
+        mutedRules: new Map([['NLP-passive', { ts: 1, authorId: 'a' }]]),
+      },
+    };
+    const vNlp = { blockId: 'n1', ruleId: 'NLP-passive', match: 'is furnished', message: 'passive voice' };
+    const { kept } = await filterViolationsForAI([vNlp, vProperly], [blockA, blockB], malformed);
+    expect(kept).toEqual([vProperly]);  // vNlp dropped via mute; no crash on undefined findings
+  });
 });
 
 describe('buildSystemPrompt with ignoredInChunk', () => {
@@ -350,12 +391,22 @@ describe('postFilterRewrites', () => {
     expect(warnSpy.mock.calls[0][0]).toMatch(/n2/);
   });
 
-  it('returns rewrites unchanged when surviving set is empty (no input pre-filtering happened)', () => {
-    // Defensive: if caller passes an empty set it means "all blocks survived" by convention,
-    // OR "no violations existed" — either way we should not drop. Caller must pass a non-empty
-    // set only when at least one block was pre-filtered.
+  it('returns rewrites unchanged when surviving set is null (no pre-filtering ran)', () => {
     const rewrites = [{ blockId: 'n1', original: 'a', proposed: 'b' }];
     const kept = postFilterRewrites(rewrites, null);
     expect(kept).toEqual(rewrites);
+    expect(warnSpy).not.toHaveBeenCalled();
+  });
+
+  it('returns rewrites unchanged when surviving set is an empty Set (no blocks reached the model — fixes #170-review-4)', () => {
+    // An empty Set is semantically "no blocks were sent to the model" — either pre-filter
+    // dropped everything in the chunk, or the chunk was empty. In either case the model
+    // shouldn't have returned anything; if it did, dropping all rewrites silently is the
+    // wrong default. Passthrough + the chunker-already-guards-this invariant keeps the
+    // function fail-open and avoids a contract trap for future callers.
+    const rewrites = [{ blockId: 'n1', original: 'a', proposed: 'b' }];
+    const kept = postFilterRewrites(rewrites, new Set());
+    expect(kept).toEqual(rewrites);
+    expect(warnSpy).not.toHaveBeenCalled();
   });
 });

@@ -513,7 +513,8 @@ export function unmuteNlpRule(state, { ruleId, ts }) {
 export function applyRemoteMutedRule(state, args) {
   if (!args || typeof args !== 'object') return state;
   const { ruleId, entry } = args;
-  if (typeof ruleId !== 'string' || !entry || typeof entry !== 'object') return state;
+  if (typeof ruleId !== 'string' || !ruleId.startsWith('NLP-')) return state;
+  if (!entry || typeof entry !== 'object') return state;
   if (typeof entry.ts !== 'number') return state;
   const prev = state.ignored.mutedRules.get(ruleId);
   if (prev) {

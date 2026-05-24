@@ -152,29 +152,56 @@ export function chunkViolations(blocks, violations) {
  * a previously-dismissed ASCII match is treated as a distinct finding by
  * design (user must dismiss each variant they encounter).
  */
-export async function filterViolationsForAI(violations, blocks, lintingState) {
+export async function filterViolationsForAI(violations, blocks, lintingState, abortSignal = null) {
   const empty = { kept: violations, droppedByBlock: new Map() };
   if (!lintingState?.ignored) return empty;
-  const { findings, mutedRules } = lintingState.ignored;
+
+  // #170-review-15: tolerate partial sidecar shapes where one inner map is
+  // missing or non-Map. The selectors below call .get() on the maps directly
+  // and would TypeError on a non-Map shape mid-loop. Normalize once up front.
+  const ignored = lintingState.ignored;
+  const findings = ignored.findings instanceof Map ? ignored.findings : null;
+  const mutedRules = ignored.mutedRules instanceof Map ? ignored.mutedRules : null;
   if ((!findings || findings.size === 0) && (!mutedRules || mutedRules.size === 0)) {
     return empty;
   }
+  const safeState = {
+    ...lintingState,
+    ignored: { findings: findings || new Map(), mutedRules: mutedRules || new Map() },
+  };
+
+  // #170-review-1: honor cancellation BEFORE the expensive hashing pass.
+  if (abortSignal?.aborted) throw new DOMException('Aborted', 'AbortError');
+
+  // #170-review-8: skip per-block hashing when only mutedRules is populated —
+  // the mute branch short-circuits before any hash is consulted.
+  const needsHashing = !!(findings && findings.size > 0);
 
   const blockById = new Map(blocks.map(b => [b.id, b]));
   const blockIds = [...new Set(violations.map(v => v.blockId))];
+  const hashByBlockId = needsHashing
+    ? new Map(await Promise.all(blockIds.map(async id => {
+        const block = blockById.get(id);
+        if (!block) return [id, null];
+        try { return [id, await fingerprintBlock(block.html || '')]; }
+        catch { return [id, null]; }
+      })))
+    : new Map();
 
-  // Compute blockHashes in parallel — one fingerprint per unique blockId.
-  const hashEntries = await Promise.all(blockIds.map(async id => {
-    const block = blockById.get(id);
-    if (!block) return [id, null];
-    try {
-      const hash = await fingerprintBlock(block.html || '');
-      return [id, hash];
-    } catch {
-      return [id, null];
-    }
-  }));
-  const hashByBlockId = new Map(hashEntries);
+  if (abortSignal?.aborted) throw new DOMException('Aborted', 'AbortError');
+
+  // #170-review-5: parallel ignoreKey computation. The pre-PR loop awaited
+  // computeIgnoreKey sequentially per violation, blocking the main thread for
+  // 2-6s on documents near the MAX_VIOLATIONS cap. Promise.all collapses that
+  // to ~max(N) parallel SHA-256 digests.
+  const ignoreKeys = needsHashing
+    ? await Promise.all(violations.map(v => {
+        const blockHash = hashByBlockId.get(v.blockId);
+        return blockHash ? computeIgnoreKey(v.ruleId, blockHash, v.match) : Promise.resolve(null);
+      }))
+    : new Array(violations.length).fill(null);
+
+  if (abortSignal?.aborted) throw new DOMException('Aborted', 'AbortError');
 
   const kept = [];
   const droppedByBlock = new Map();
@@ -182,15 +209,14 @@ export async function filterViolationsForAI(violations, blocks, lintingState) {
     droppedByBlock.set(v.blockId, (droppedByBlock.get(v.blockId) || 0) + 1);
   };
 
-  for (const v of violations) {
+  for (let i = 0; i < violations.length; i++) {
+    const v = violations[i];
     // Rule-wide mute — cheap, short-circuits the hash lookup.
-    if (isNlpRuleMuted(lintingState, v.ruleId)) { drop(v); continue; }
+    if (isNlpRuleMuted(safeState, v.ruleId)) { drop(v); continue; }
 
-    const blockHash = hashByBlockId.get(v.blockId);
-    if (!blockHash) { kept.push(v); continue; }  // can't hash → can't match → keep
-
-    const ignoreKey = await computeIgnoreKey(v.ruleId, blockHash, v.match);
-    if (isFindingIgnored(lintingState, ignoreKey)) { drop(v); continue; }
+    const ignoreKey = ignoreKeys[i];
+    if (!ignoreKey) { kept.push(v); continue; }  // no findings, or can't hash → keep
+    if (isFindingIgnored(safeState, ignoreKey)) { drop(v); continue; }
 
     kept.push(v);
   }
@@ -230,24 +256,31 @@ export async function ignoredEntriesForChunk(chunkBlocks, lintingState) {
 }
 
 /**
- * Drop rewrites whose `blockId` is not in `survivingBlockIds`. Triggered when
- * the model volunteered a rewrite for a block we deliberately did NOT ask
- * about (e.g. because all its violations were pre-filtered out by the user's
- * dismissals).
+ * Drop rewrites whose `blockId` is not in `survivingBlockIds`. In the current
+ * wiring this can only fire when the model returns a rewrite for a blockId
+ * that wasn't in the chunk we sent (model hallucination — `chunkViolations`
+ * already excludes blocks whose violations were all pre-filtered, so the
+ * "block we deliberately didn't ask about" case never reaches the model).
+ * Defense in depth: catches malformed model output before it lands in the
+ * panel as an accepted rewrite.
  *
- * Caller convention: `survivingBlockIds` is a non-empty `Set<string>` of
- * block IDs that survived the pre-filter for the current chunk. When null
- * (no pre-filtering ran), all rewrites are returned unchanged.
+ * Caller convention:
+ *   - `null` / non-Set → passthrough (no pre-filtering ran).
+ *   - empty Set → passthrough (#170-review-4: the model wasn't sent any
+ *     blocks, so dropping all rewrites would be the wrong default if the
+ *     chunker ever produces an empty chunk).
+ *   - non-empty Set → drop rewrites whose blockId is missing, with a warn.
  */
 export function postFilterRewrites(rewrites, survivingBlockIds) {
   if (!survivingBlockIds || !(survivingBlockIds instanceof Set)) return rewrites;
+  if (survivingBlockIds.size === 0) return rewrites;
   const kept = [];
   for (const r of rewrites) {
     if (survivingBlockIds.has(r.blockId)) {
       kept.push(r);
     } else {
       // eslint-disable-next-line no-console
-      console.warn(`[compliance-ai] dropped unrequested rewrite for block ${r.blockId} (all violations were user-dismissed)`);
+      console.warn(`[compliance-ai] dropped rewrite for block ${r.blockId} — blockId not in the chunk sent to the model`);
     }
   }
   return kept;
@@ -317,9 +350,10 @@ export async function requestAIRewrite(blocks, violations, apiKey, options = {})
 
   // #141 layer 1 — input pre-filter. Drops dismissed/muted violations so the
   // API never sees them. `kept` replaces `violations` for chunking; the
-  // surviving blockId set drives layer 3 (post-filter).
+  // surviving blockId set drives layer 3 (post-filter). abortSignal is honored
+  // inside the filter so Cancel is responsive before the first API call.
   const { kept: filteredViolations } = await filterViolationsForAI(
-    violations, blocks, lintingState);
+    violations, blocks, lintingState, abortSignal);
 
   const chunks = chunkViolations(blocks, filteredViolations);
   const results = [];
@@ -378,9 +412,11 @@ export async function requestAIRewrite(blocks, violations, apiKey, options = {})
 
     const parsed = parseAIResponse(data);
 
-    // #141 layer 3 — output post-filter. Drops rewrites for blocks whose
-    // violations were all pre-filtered (model is volunteering changes we
-    // didn't ask for). Active only when pre-filter actually ran.
+    // #141 layer 3 — output post-filter. Drops rewrites whose blockId is
+    // missing from the chunk (model hallucination — the chunker already
+    // excludes blocks whose violations were all pre-filtered). Active
+    // whenever lintingState was supplied; harmless no-op when the model
+    // behaves and only emits rewrites for chunk blocks.
     const survivingBlockIds = lintingState?.ignored
       ? new Set(chunk.violations.map(v => v.blockId))
       : null;
