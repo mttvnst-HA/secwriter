@@ -192,7 +192,7 @@ That said: **pre-1.0 means no API stability guarantee yet**, and the hosted demo
 
 ## License
 
-MIT — see [`LICENSE`](LICENSE).
+PolyForm Noncommercial License 1.0.0 — see [`LICENSE.md`](LICENSE.md). Free for personal use, noncommercial organizations (charitable, educational, public research, government), and noncommercial purposes generally. Commercial use requires a separate license.
 
 ## Acknowledgments & disclaimer
 
