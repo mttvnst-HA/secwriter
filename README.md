@@ -11,7 +11,7 @@
 
 > SecWriter is an independent project. It is not affiliated with the U.S. Department of Defense, USACE, NAVFAC, NASA, or the authors of UFGS or SpecsIntact. See [Acknowledgments & disclaimer](#acknowledgments--disclaimer) below.
 
-> NOTICE: this is the only human-written sentence in this readme file; ALL of the code for this project is produced by Claude Code.
+> NOTICE: this is the only human-written sentence in this readme file; I am not a software engineer, ALL of the code for this project is produced by Claude Code.
 
 ![SecWriter editor with a UFGS specification loaded](docs/images/editor-hero.png)
 
