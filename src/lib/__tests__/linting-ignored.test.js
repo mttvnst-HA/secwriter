@@ -229,4 +229,11 @@ describe('linting / applyRemoteMutedRule', () => {
     expect(L.applyRemoteMutedRule(s0, null)).toBe(s0);
     expect(L.applyRemoteMutedRule(s0, { ruleId: 'NLP-passive', entry: {} })).toBe(s0); // missing entry.ts
   });
+
+  it('rejects non-NLP ruleId (symmetric with muteNlpRule prefix guard — prevents corrupted/forked-peer payloads from muting compliance rules)', () => {
+    const s0 = L.createInitial();
+    const result = L.applyRemoteMutedRule(s0, { ruleId: 'TERM-shall', entry: { authorId: 'b', ts: 10 } });
+    expect(result).toBe(s0);
+    expect(s0.ignored.mutedRules.has('TERM-shall')).toBe(false);
+  });
 });

@@ -1,5 +1,21 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { buildSystemPrompt, chunkViolations, estimateTokens, estimateCost, parseAIResponse } from '../compliance-ai.js';
+import {
+  buildSystemPrompt,
+  chunkViolations,
+  estimateTokens,
+  estimateCost,
+  parseAIResponse,
+  filterViolationsForAI,
+  postFilterRewrites,
+} from '../compliance-ai.js';
+import {
+  createInitial,
+  ignoreFinding,
+  muteNlpRule,
+  unignoreFinding,
+  computeIgnoreKey,
+} from '../linting.js';
+import { fingerprintBlock } from '../lint-sidecar.js';
 
 describe('buildSystemPrompt', () => {
   it('returns a non-empty string', () => {
@@ -173,5 +189,224 @@ describe('parseAIResponse', () => {
     }));
     const rewrites = parseAIResponse(data);
     expect(rewrites).toEqual([validRewrite]);
+  });
+});
+
+// ── #141: pre-filter, prompt section, post-filter ────────────────────────────
+
+describe('filterViolationsForAI', () => {
+  const blockA = { id: 'n1', html: 'The Contractor shall furnish materials.' };
+  const blockB = { id: 'n2', html: 'Place materials properly.' };
+  const vShall = { blockId: 'n1', ruleId: 'TERM-shall', match: 'shall', message: 'use imperative' };
+  const vFurnish = { blockId: 'n1', ruleId: 'COLLOQ-furnish', match: 'furnish', message: 'use provide' };
+  const vProperly = { blockId: 'n2', ruleId: 'TERM-properly', match: 'properly', message: 'specify how' };
+
+  it('passes all violations through when lintingState has no ignored/muted entries', async () => {
+    const state = createInitial();
+    const { kept, droppedByBlock } = await filterViolationsForAI(
+      [vShall, vFurnish, vProperly], [blockA, blockB], state);
+    expect(kept).toEqual([vShall, vFurnish, vProperly]);
+    expect(droppedByBlock.size).toBe(0);
+  });
+
+  it('drops a violation whose (ruleId, blockHash, match) was previously ignored', async () => {
+    const hashA = await fingerprintBlock(blockA.html);
+    const ignoreKey = await computeIgnoreKey('TERM-shall', hashA, 'shall');
+    let state = createInitial();
+    state = ignoreFinding(state, { ignoreKey, ruleId: 'TERM-shall', blockHash: hashA, match: 'shall', identity: { id: 'u1' }, ts: 1 });
+
+    const { kept, droppedByBlock } = await filterViolationsForAI(
+      [vShall, vFurnish, vProperly], [blockA, blockB], state);
+    expect(kept).toEqual([vFurnish, vProperly]);
+    expect(droppedByBlock.get('n1')).toBe(1);
+  });
+
+  it('drops all violations of a muted ruleId', async () => {
+    // muteNlpRule guards on the 'NLP-' prefix (see linting.js:492). The AI tier
+    // doesn't process NLP findings in practice — but the filter's mute branch
+    // is contract-level defense: if an NLP-prefixed violation ever reaches
+    // here AND its rule is muted, drop it. Use a synthetic NLP-prefixed
+    // ruleId on one of the existing block fixtures to pin the contract.
+    const vNlp = { blockId: 'n1', ruleId: 'NLP-passive', match: 'is furnished', message: 'passive voice' };
+    let state = createInitial();
+    state = muteNlpRule(state, { ruleId: 'NLP-passive', identity: { id: 'u1' }, ts: 1 });
+
+    const { kept, droppedByBlock } = await filterViolationsForAI(
+      [vNlp, vFurnish, vProperly], [blockA, blockB], state);
+    expect(kept).toEqual([vFurnish, vProperly]);
+    expect(droppedByBlock.get('n1')).toBe(1);
+  });
+
+  it('keeps a violation when its ignored entry is tombstoned (un-ignored)', async () => {
+    const hashA = await fingerprintBlock(blockA.html);
+    const ignoreKey = await computeIgnoreKey('TERM-shall', hashA, 'shall');
+    let state = createInitial();
+    state = ignoreFinding(state, { ignoreKey, ruleId: 'TERM-shall', blockHash: hashA, match: 'shall', identity: { id: 'u1' }, ts: 1 });
+    state = unignoreFinding(state, { ignoreKey, ts: 2 });
+
+    const { kept } = await filterViolationsForAI([vShall], [blockA], state);
+    expect(kept).toEqual([vShall]);
+  });
+
+  it('treats curly-quote and ASCII-quote match variants as distinct (no hidden normalization)', async () => {
+    // Dismissed entry uses ASCII apostrophe; incoming violation uses a curly apostrophe.
+    // They must NOT be coerced equal — the static engine emits one or the other; symmetric
+    // comparison means the user has to dismiss each variant they actually encountered.
+    const block = { id: 'n3', html: "It's a test." };
+    const violation = { blockId: 'n3', ruleId: 'R-1', match: "It’s" };  // curly
+    const hash = await fingerprintBlock(block.html);
+    const ignoreKey = await computeIgnoreKey('R-1', hash, "It's");  // ASCII
+    let state = createInitial();
+    state = ignoreFinding(state, { ignoreKey, ruleId: 'R-1', blockHash: hash, match: "It's", identity: { id: 'u1' }, ts: 1 });
+
+    const { kept } = await filterViolationsForAI([violation], [block], state);
+    expect(kept).toEqual([violation]);
+  });
+
+  it('reports per-block drop counts via droppedByBlock', async () => {
+    const hashA = await fingerprintBlock(blockA.html);
+    const keyShall = await computeIgnoreKey('TERM-shall', hashA, 'shall');
+    const keyFurnish = await computeIgnoreKey('COLLOQ-furnish', hashA, 'furnish');
+    let state = createInitial();
+    state = ignoreFinding(state, { ignoreKey: keyShall, ruleId: 'TERM-shall', blockHash: hashA, match: 'shall', identity: { id: 'u1' }, ts: 1 });
+    state = ignoreFinding(state, { ignoreKey: keyFurnish, ruleId: 'COLLOQ-furnish', blockHash: hashA, match: 'furnish', identity: { id: 'u1' }, ts: 2 });
+
+    const { kept, droppedByBlock } = await filterViolationsForAI(
+      [vShall, vFurnish, vProperly], [blockA, blockB], state);
+    expect(kept).toEqual([vProperly]);
+    expect(droppedByBlock.get('n1')).toBe(2);
+    expect(droppedByBlock.has('n2')).toBe(false);
+  });
+
+  it('passes violations through unchanged when lintingState is null/undefined', async () => {
+    const violations = [vShall, vProperly];
+    const r1 = await filterViolationsForAI(violations, [blockA, blockB], null);
+    const r2 = await filterViolationsForAI(violations, [blockA, blockB], undefined);
+    expect(r1.kept).toEqual(violations);
+    expect(r2.kept).toEqual(violations);
+  });
+
+  it('throws AbortError when abortSignal is already aborted (fixes #170-review-1)', async () => {
+    const controller = new AbortController();
+    controller.abort();
+    const hashA = await fingerprintBlock(blockA.html);
+    const ignoreKey = await computeIgnoreKey('TERM-shall', hashA, 'shall');
+    let state = createInitial();
+    state = ignoreFinding(state, { ignoreKey, ruleId: 'TERM-shall', blockHash: hashA, match: 'shall', identity: { id: 'u1' }, ts: 1 });
+
+    await expect(
+      filterViolationsForAI([vShall, vFurnish], [blockA], state, controller.signal)
+    ).rejects.toThrow(/Aborted/);
+  });
+
+  it('tolerates partial lintingState where mutedRules is undefined but findings has entries (fixes #170-review-15)', async () => {
+    // Non-empty findings — so the early-exit at line 159 doesn't fire. Loop reaches
+    // isNlpRuleMuted which would call state.ignored.mutedRules.get(...) — TypeError if
+    // mutedRules isn't normalized to a Map. Realistic shape from a partial sidecar decode.
+    const hashA = await fingerprintBlock(blockA.html);
+    const ignoreKey = await computeIgnoreKey('TERM-shall', hashA, 'shall');
+    const malformed = {
+      ignored: {
+        findings: new Map([[ignoreKey, { ruleId: 'TERM-shall', blockHash: hashA, match: 'shall', ts: 1, authorId: 'a' }]]),
+        mutedRules: undefined,
+      },
+    };
+    const { kept } = await filterViolationsForAI([vShall, vProperly], [blockA, blockB], malformed);
+    expect(kept).toEqual([vProperly]);  // vShall dropped via the findings match; no crash on undefined mutedRules
+  });
+
+  it('tolerates partial lintingState where findings is undefined but mutedRules has entries', async () => {
+    const malformed = {
+      ignored: {
+        findings: undefined,
+        mutedRules: new Map([['NLP-passive', { ts: 1, authorId: 'a' }]]),
+      },
+    };
+    const vNlp = { blockId: 'n1', ruleId: 'NLP-passive', match: 'is furnished', message: 'passive voice' };
+    const { kept } = await filterViolationsForAI([vNlp, vProperly], [blockA, blockB], malformed);
+    expect(kept).toEqual([vProperly]);  // vNlp dropped via mute; no crash on undefined findings
+  });
+});
+
+describe('buildSystemPrompt with ignoredInChunk', () => {
+  it('does not append a negative-constraint section when ignoredInChunk is empty or absent', () => {
+    const baseline = buildSystemPrompt();
+    expect(buildSystemPrompt({ ignoredInChunk: [] })).toBe(baseline);
+    expect(buildSystemPrompt({})).toBe(baseline);
+    expect(buildSystemPrompt()).toBe(baseline);
+    // Sanity: the negative-constraint header is absent.
+    expect(baseline).not.toContain('Do not propose rewrites');
+  });
+
+  it('appends a "Do not propose rewrites" section listing ruleId + match per entry', () => {
+    const prompt = buildSystemPrompt({
+      ignoredInChunk: [
+        { ruleId: 'TERM-shall', match: 'shall' },
+        { ruleId: 'TERM-properly', match: 'properly' },
+      ],
+    });
+    expect(prompt).toContain('Do not propose rewrites');
+    expect(prompt).toContain('TERM-shall');
+    expect(prompt).toContain('"shall"');
+    expect(prompt).toContain('TERM-properly');
+    expect(prompt).toContain('"properly"');
+  });
+
+  it('keeps existing prohibited/vague/JSON-format content intact when section is appended', () => {
+    const prompt = buildSystemPrompt({
+      ignoredInChunk: [{ ruleId: 'TERM-shall', match: 'shall' }],
+    });
+    expect(prompt).toContain('"shall"');           // prohibited terms list still present
+    expect(prompt).toContain('imperative mood');   // rules list still present
+    expect(prompt).toContain('"rewrites"');        // JSON format still present
+  });
+});
+
+describe('postFilterRewrites', () => {
+  let warnSpy;
+  beforeEach(() => { warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {}); });
+  afterEach(() => { warnSpy.mockRestore(); });
+
+  it('keeps rewrites whose blockId has at least one surviving violation', () => {
+    const rewrites = [
+      { blockId: 'n1', original: 'a', proposed: 'b' },
+      { blockId: 'n2', original: 'c', proposed: 'd' },
+    ];
+    const surviving = new Set(['n1', 'n2']);
+    const kept = postFilterRewrites(rewrites, surviving);
+    expect(kept).toEqual(rewrites);
+    expect(warnSpy).not.toHaveBeenCalled();
+  });
+
+  it('drops rewrites for blockIds with no surviving violations and logs once per drop', () => {
+    const rewrites = [
+      { blockId: 'n1', original: 'a', proposed: 'b' },
+      { blockId: 'n2', original: 'c', proposed: 'd' },  // model volunteered — dropped
+      { blockId: 'n3', original: 'e', proposed: 'f' },
+    ];
+    const surviving = new Set(['n1', 'n3']);  // n2 not in surviving set
+    const kept = postFilterRewrites(rewrites, surviving);
+    expect(kept.map(r => r.blockId)).toEqual(['n1', 'n3']);
+    expect(warnSpy).toHaveBeenCalledTimes(1);
+    expect(warnSpy.mock.calls[0][0]).toMatch(/n2/);
+  });
+
+  it('returns rewrites unchanged when surviving set is null (no pre-filtering ran)', () => {
+    const rewrites = [{ blockId: 'n1', original: 'a', proposed: 'b' }];
+    const kept = postFilterRewrites(rewrites, null);
+    expect(kept).toEqual(rewrites);
+    expect(warnSpy).not.toHaveBeenCalled();
+  });
+
+  it('returns rewrites unchanged when surviving set is an empty Set (no blocks reached the model — fixes #170-review-4)', () => {
+    // An empty Set is semantically "no blocks were sent to the model" — either pre-filter
+    // dropped everything in the chunk, or the chunk was empty. In either case the model
+    // shouldn't have returned anything; if it did, dropping all rewrites silently is the
+    // wrong default. Passthrough + the chunker-already-guards-this invariant keeps the
+    // function fail-open and avoids a contract trap for future callers.
+    const rewrites = [{ blockId: 'n1', original: 'a', proposed: 'b' }];
+    const kept = postFilterRewrites(rewrites, new Set());
+    expect(kept).toEqual(rewrites);
+    expect(warnSpy).not.toHaveBeenCalled();
   });
 });
