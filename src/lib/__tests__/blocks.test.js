@@ -275,6 +275,13 @@ describe('convertToTitle', () => {
     expect(r.state[2].depth).toBe(2);
     expect(r.effects.focus).toEqual({ kind: 'imperative', blockId: 'p', atEnd: true });
   });
+
+  it('clears html so the slash-menu trigger does not persist into the heading', () => {
+    const arr = [b('p', 'txt', '/h')];
+    const r = blocks.convertToTitle(arr, 'p');
+    expect(r.state[0].html).toBe('');
+    expect(r.effects.substrateWrites).toEqual([{ blockId: 'p', html: '' }]);
+  });
 });
 
 describe('convertBlock', () => {

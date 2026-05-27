@@ -379,6 +379,13 @@ export function changeOliLevel(blocks, blockId, delta) {
 }
 
 // convertToTitle — type flip + depth inference from surrounding titles.
+// Clears html because the only caller is convertBlock from the slash menu,
+// whose trigger requires the doc to start with "/" (slash-menu.js readLeadingText).
+// The slash + filter is always the entire block content at conversion time, so
+// preserving it would leave the new title showing "/h" until the user manually
+// deletes it. Mirror via substrateWrites so collab peers reading the
+// Y.XmlFragment see the cleared content (updateYMapFromBlock skips html for
+// existing slots, so without this peers would still observe "/h").
 export function convertToTitle(blocks, blockId) {
   const idx = blocks.findIndex(b => b.id === blockId);
   if (idx < 0) return null;
@@ -391,12 +398,12 @@ export function convertToTitle(blocks, blockId) {
     }
   }
   const next = blocks.slice();
-  next[idx] = { ...block, type: 'title', depth, isNew: false };
+  next[idx] = { ...block, type: 'title', depth, html: '', isNew: false };
   return {
     state: next,
     effects: {
       framing: { kind: 'newFrame' },
-      substrateWrites: [],
+      substrateWrites: [{ blockId, html: '' }],
       flush: null,
       focus: { kind: 'imperative', blockId, atEnd: true },
     },
