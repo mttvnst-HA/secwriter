@@ -617,6 +617,17 @@ test.describe('Slash command menu', () => {
     await page.keyboard.press('Escape');
     await expect(page.getByText('Insert block', { exact: true })).not.toBeVisible();
   });
+
+  test('slash trigger does not leak into converted Heading block', async ({ page }) => {
+    await createFreshBlock(page);
+    await page.keyboard.type('/h');
+    await expect(page.getByText('Heading', { exact: true })).toBeVisible({ timeout: 3000 });
+    await page.keyboard.press('Enter');
+
+    const focused = page.locator('[data-block-id]:focus');
+    await expect(focused).toBeVisible({ timeout: 3000 });
+    await expect(focused).toHaveText('');
+  });
 });
 
 // ─── List Continuation & Exit ──────────────────────────────────────────────────
