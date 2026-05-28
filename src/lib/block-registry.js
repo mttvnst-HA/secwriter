@@ -166,6 +166,7 @@ export function getContextAtCoordsById(blockId, coords) {
   try {
     return h.getContextAtCoords(coords) ?? null;
   } catch {
+    /* mid-teardown view — never block the native menu */
     return null;
   }
 }
