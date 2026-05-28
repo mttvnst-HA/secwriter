@@ -54,6 +54,7 @@ import PresenceBar from "./components/PresenceBar.jsx";
 import RemoteCursors from "./components/RemoteCursors.jsx";
 import ConnectionBanner from "./components/ConnectionBanner.jsx";
 import ToastStack, { useToasts } from "./components/Toast.jsx";
+import ConvertBlockPalette from "./components/ConvertBlockPalette.jsx";
 
 const COLLAB_HTTP_URL = DEFAULT_HTTP_URL;
 
@@ -191,6 +192,8 @@ export default function SpecEditor() {
   });
   const [sidebarSearch, setSidebarSearch] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
+  const [convertPalette, setConvertPalette] = useState(null);
+  // { blockId, currentType, anchorRect, savedSelection } | null
   const [bracketOpen, setBracketOpen] = useState(false);
   const [validationOpen, setValidationOpen] = useState(false);
   const [refWizardOpen, setRefWizardOpen] = useState(false);
@@ -301,10 +304,16 @@ export default function SpecEditor() {
   const pendingLintSidecarRef = useRef(null);
   const blocksRef = useRef(blocks);
   blocksRef.current = blocks;
+  const focusedBlockIdRef = useRef(focusedBlockId);
+  focusedBlockIdRef.current = focusedBlockId;
+  const collabReadOnlyRef = useRef(collabReadOnly);
+  collabReadOnlyRef.current = collabReadOnly;
   const sectionMetaRef = useRef(sectionMeta);
   sectionMetaRef.current = sectionMeta;
   const commentsStateRef = useRef(commentsState);
   commentsStateRef.current = commentsState;
+  const tcStateRef = useRef(tcState);
+  tcStateRef.current = tcState;
   const lintingStateRef = useRef(lintingState);
   useEffect(() => { lintingStateRef.current = lintingState; }, [lintingState]);
   const tree = useMemo(() => buildTree(blocks), [blocks]);
@@ -1123,6 +1132,19 @@ export default function SpecEditor() {
         return linting.computeIgnoreKey(ruleId, blockHash, match)
           .then(key => linting.isFindingIgnored(lintingStateRef.current, key));
       },
+      getLintingFindings: (blockId) => {
+        // Returns all findings (compliance + nlp + grammar) for a block, or
+        // null if the block has no byBlock entry yet (not yet linted / cleared).
+        // Used by E2E tests to verify lint-clear-on-conversion without relying
+        // on CSS.highlights (Custom Highlight API is not queryable via DOM selectors).
+        const entry = lintingStateRef.current.byBlock.get(blockId);
+        if (!entry) return null;
+        return {
+          compliance: (entry.compliance || []).map(f => f.violation?.ruleId).filter(Boolean),
+          nlp: (entry.nlp || []).map(f => f.violation?.ruleId).filter(Boolean),
+          grammar: (entry.grammar || []).map(f => f.violation?.ruleId).filter(Boolean),
+        };
+      },
       dispatchLintIgnore: (envelope) => {
         if (!envelope || typeof envelope !== 'object') return;
         const ts = typeof envelope.ts === 'number' ? envelope.ts : Date.now();
@@ -1236,6 +1258,18 @@ export default function SpecEditor() {
     // freshly-converted block is visible immediately.
     if (newType === 'note') setShowNotes(true);
     dispatchBlocks((b) => Blocks.convertBlock(b, blockId, newType, { newId }));
+  }, [dispatchBlocks]);
+
+  // Read tcState via ref to avoid recreating the handler on every TC toggle —
+  // this prop is passed to every PmEditableBlock instance.
+  const handleConvertBlockType = useCallback((blockId, newType) => {
+    dispatchBlocks((b) => Blocks.convertBlockType(b, blockId, newType, { tcState: tcStateRef.current }));
+    setLintingState((s) => linting.clearBlock(s, blockId));
+    setOpenCommentId((id) => {
+      if (!id) return id;
+      const c = commentsStateRef.current?.byId.get(id);
+      return c?.blockId === blockId ? null : id;
+    });
   }, [dispatchBlocks]);
 
   const handlePromote = useCallback((blockId) => {
@@ -1726,6 +1760,23 @@ export default function SpecEditor() {
       } else if ((e.ctrlKey || e.metaKey) && e.key === '0') {
         e.preventDefault();
         zoomReset();
+      } else if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'M') {
+        // With Shift held, e.key is the uppercase 'M' per WHATWG UI Events.
+        e.preventDefault();
+        const blockId = focusedBlockIdRef.current;
+        if (!blockId) return;
+        const focusedBlock = blocksRef.current.find(b => b.id === blockId);
+        if (!focusedBlock) return;
+        if (!Blocks.FAMILY_A.has(focusedBlock.type)) return;
+        if (collabReadOnlyRef.current) return;
+        // Capture the PM selection so we can restore the caret post-dispatch.
+        const view = getBlockView(blockId);
+        const savedSelection = view
+          ? { from: view.state.selection.from, to: view.state.selection.to }
+          : null;
+        const dom = getBlockDom(blockId);
+        const anchorRect = dom ? dom.getBoundingClientRect() : null;
+        setConvertPalette({ blockId, currentType: focusedBlock.type, anchorRect, savedSelection });
       }
     };
     document.addEventListener('keydown', handler);
@@ -2469,6 +2520,50 @@ export default function SpecEditor() {
           />
         )}
 
+        {/* Block Type Conversion Palette (Ctrl+Shift+M) */}
+        {convertPalette && (
+          <ConvertBlockPalette
+            currentType={convertPalette.currentType}
+            anchorRect={convertPalette.anchorRect}
+            onConvert={(newType) => {
+              const { blockId, savedSelection } = convertPalette;
+              handleConvertBlockType(blockId, newType);
+              setConvertPalette(null);
+              // Restore PM caret + focus after dispatch. requestAnimationFrame
+              // gives React time to flush the re-render so the EditorView's
+              // selection state matches the doc.
+              requestAnimationFrame(() => {
+                const view = getBlockView(blockId);
+                if (!view) return;
+                view.focus();
+                if (savedSelection) {
+                  try {
+                    const docSize = view.state.doc.content.size;
+                    const safeFrom = Math.min(savedSelection.from, docSize);
+                    const safeTo = Math.min(savedSelection.to, docSize);
+                    const tr = view.state.tr.setSelection(
+                      TextSelection.create(view.state.doc, safeFrom, safeTo)
+                    );
+                    view.dispatch(tr);
+                  } catch (err) {
+                    if (import.meta.env.DEV) {
+                      console.warn('[ConvertBlockPalette] selection restore failed', err);
+                    }
+                  }
+                }
+              });
+            }}
+            onClose={() => {
+              const { blockId } = convertPalette;
+              setConvertPalette(null);
+              requestAnimationFrame(() => {
+                const view = getBlockView(blockId);
+                if (view) view.focus();
+              });
+            }}
+          />
+        )}
+
         {/* Bracket Replace Panel */}
         {bracketOpen && (
           <BracketReplace
@@ -2673,7 +2768,7 @@ export default function SpecEditor() {
               );
             }
             return (
-              <div key={`${block.id}-${block.type}`}>
+              <div key={block.id}>
                 <PmEditableBlock
                   block={block}
                   yStore={activeYStore}
@@ -2686,6 +2781,7 @@ export default function SpecEditor() {
                   onFocusPrev={handleFocusPrev}
                   onFocusNext={handleFocusNext}
                   onConvertBlock={handleConvertBlock}
+                  onConvertBlockType={handleConvertBlockType}
                   onChangeOliLevel={handleChangeOliLevel}
                   resolveHtml={resolveHtml}
                   tailorKey={tailorKey}

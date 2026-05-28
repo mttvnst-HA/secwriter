@@ -108,6 +108,13 @@ function htmlWrite(blockId, html) {
   return { blockId, html };
 }
 
+function withoutConvertedFrom(block) {
+  if (!('__convertedFrom' in block)) return block;
+  const next = { ...block };
+  delete next.__convertedFrom;
+  return next;
+}
+
 // ── Verbs ───────────────────────────────────────────────────────────────────
 
 // updateBlockHtml — the debounced-typing path. PM-driven keystrokes already
@@ -510,7 +517,7 @@ export function acceptBlockRevision(blocks, blockId) {
   const next = blocks.slice();
   if (typeof block.html === 'string') {
     const html = acceptAllInline(block.html);
-    next[idx] = { ...block, revision: undefined, html };
+    next[idx] = withoutConvertedFrom({ ...block, revision: undefined, html });
     const writes = block.html !== html ? [htmlWrite(blockId, html)] : [];
     return {
       state: next,
@@ -522,7 +529,7 @@ export function acceptBlockRevision(blocks, blockId) {
       },
     };
   }
-  next[idx] = { ...block, revision: undefined };
+  next[idx] = withoutConvertedFrom({ ...block, revision: undefined });
   return withForceFrame(next);
 }
 
@@ -537,7 +544,7 @@ export function rejectBlockRevision(blocks, blockId) {
   const next = blocks.slice();
   if (typeof block.html === 'string') {
     const html = rejectAllInline(block.html);
-    next[idx] = { ...block, revision: undefined, html };
+    next[idx] = withoutConvertedFrom({ ...block, revision: undefined, html });
     const writes = block.html !== html ? [htmlWrite(blockId, html)] : [];
     return {
       state: next,
@@ -549,7 +556,7 @@ export function rejectBlockRevision(blocks, blockId) {
       },
     };
   }
-  next[idx] = { ...block, revision: undefined };
+  next[idx] = withoutConvertedFrom({ ...block, revision: undefined });
   return withForceFrame(next);
 }
 
@@ -634,6 +641,92 @@ export function updateRefScalar(blocks, blockId, data) {
     state: next,
     effects: { framing: null, substrateWrites: [], flush: null, focus: null },
   };
+}
+
+// ── convertBlockType / composeRevision / levelDelta (Family A in-place flip) ─
+
+export const FAMILY_A = new Set(['txt', 'note', 'oli', 'item', 'lst']);
+
+/**
+ * Compose the block-level revision flag for a type-conversion under TC.
+ * Under TC ON: undefined -> 'chg'; existing add/del/chg preserved.
+ * Under TC OFF: unchanged (no block-level revision implication from a
+ * type flip when tracking is disabled).
+ */
+export function composeRevision(prev, tcState) {
+  if (!tcState || !tcState.enabled) return prev;
+  if (prev === 'add' || prev === 'del' || prev === 'chg') return prev;
+  return 'chg';
+}
+
+/**
+ * Compute the level-field delta for an oli-boundary conversion. Returns a
+ * spreadable object (`{}` for no change, `{ level: N }` for set).
+ *
+ *   any -> oli  : restore stashed level if present, else level=1.
+ *   oli -> any  : return {} so the spread preserves block.level as a stash.
+ *   non-oli pair: return {}.
+ *
+ * The "stash" lives on the block itself (block.level remains after leaving
+ * oli). Non-oli renderers ignore the field; .SEC serialization only emits
+ * LEVEL for oli.
+ */
+export function levelDelta(_fromType, toType, currentLevel) {
+  if (toType === 'oli') {
+    if (typeof currentLevel === 'number' && currentLevel >= 1 && currentLevel <= 4) {
+      return { level: currentLevel };
+    }
+    return { level: 1 };
+  }
+  return {};
+}
+
+/**
+ * Family-A in-place block-type conversion. Same id, preserves html. The
+ * mounted PmEditableBlock and its EditorView survive across the flip
+ * because (a) the wrapper key is block.id only (App.jsx — see plan Task 2)
+ * and (b) all Family A types are editable, so PmEditableBlock's mount-effect
+ * `editable` dep doesn't flip.
+ *
+ * Preconditions:
+ *   - blockId must exist
+ *   - both block.type and newType must be Family A
+ *   - newType must differ from block.type
+ * Returns null on any violation.
+ */
+export function convertBlockType(blocks, blockId, newType, { tcState } = {}) {
+  if (!FAMILY_A.has(newType)) return null;
+  const idx = blocks.findIndex(b => b.id === blockId);
+  if (idx < 0) return null;
+  const block = blocks[idx];
+  if (!FAMILY_A.has(block.type)) return null;
+  if (newType === block.type) return null;
+
+  const next = blocks.slice();
+  const composed = composeRevision(block.revision, tcState);
+  const newBlock = {
+    ...block,
+    type: newType,
+    ...levelDelta(block.type, newType, block.level),
+  };
+  if (composed !== block.revision) {
+    newBlock.revision = composed;
+  }
+  // Transient UX hint: surface __convertedFrom ONLY when this conversion
+  // is the one that introduced the 'chg' marker (i.e. the prior revision
+  // was unset). If prev was already 'add' / 'del' / 'chg', the tooltip
+  // gate at the accept/reject button keys on revision === 'chg', and the
+  // pre-existing flag would mask the conversion's contribution anyway —
+  // setting __convertedFrom in those cases would be unreachable.
+  // Local-only; never persisted, never synced (outside SCALAR_KEYS).
+  if (tcState?.enabled && composed === 'chg' && block.revision !== 'chg') {
+    newBlock.__convertedFrom = block.type;
+  }
+  // isNew preserved via spread above (rare in practice — conversion is
+  // on an existing block, so isNew is typically already false).
+  next[idx] = newBlock;
+
+  return withForceFrame(next);
 }
 
 // ── Dispatcher ──────────────────────────────────────────────────────────────

@@ -41,6 +41,7 @@ describe('NO_EXFIL_PROPS is spread on every typing surface', () => {
     ['src/components/RefWizard.jsx', 4],       // org search, ref search, custom RID, custom RTL
     ['src/components/TableBlock.jsx', 1],      // cell editor
     ['src/components/BracketReplace.jsx', 1],  // replacement input
+    ['src/components/ConvertBlockPalette.jsx', 1], // block-type filter input
     ['src/App.jsx', 1],                        // sidebar search
   ];
 
