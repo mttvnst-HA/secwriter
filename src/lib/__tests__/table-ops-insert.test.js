@@ -35,4 +35,15 @@ describe('insertColumnAt', () => {
     expect(r.columns).toBe(3);
     expect(r.rows[0][0].colspan).toBe(3);
   });
+  it('prepends at visual column 0', () => {
+    const r = insertColumnAt(t(), 0);
+    expect(r.columns).toBe(3);
+    expect(r.rows[0].map(c => c.text)).toEqual(['', 'a', 'b']);
+    expect(r.rows[1].map(c => c.text)).toEqual(['', 'c', 'd']);
+  });
+  it('appends when the index is at/past the end', () => {
+    const r = insertColumnAt(t(), 99);
+    expect(r.columns).toBe(3);
+    expect(r.rows[0].map(c => c.text)).toEqual(['a', 'b', '']);
+  });
 });
