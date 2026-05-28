@@ -51,6 +51,19 @@ describe('buildContextMenuItems - tracked changes & comments', () => {
     });
     expect(ids(items)).not.toContain('resolve-comment');
   });
+  it('revision + addCommentRange + unresolved comment -> full ordered id list', () => {
+    const items = buildContextMenuItems({
+      blockId: 'b1', kind: 'pm', pos: 3, selectionEmpty: false, readOnly: false,
+      revision: { kind: 'add', range: { from: 2, to: 6 } },
+      addCommentRange: { from: 1, to: 8 },
+      comment: { commentId: 'c1', range: { from: 1, to: 8 }, resolved: false },
+    });
+    expect(ids(items)).toEqual([
+      'copy', 'cut', 'paste',
+      'accept-change', 'reject-change',
+      'add-comment', 'resolve-comment',
+    ]);
+  });
 });
 
 describe('buildContextMenuItems - table', () => {
@@ -74,6 +87,22 @@ describe('buildContextMenuItems - table', () => {
     });
     expect(ids(items)).toEqual([]);
   });
+  it('table cell with both merge and split available -> both appear, in order, same section', () => {
+    const items = buildContextMenuItems({
+      blockId: 'b1', kind: 'table', row: 0, col: 0, vcol: 0,
+      canMerge: true, canSplit: true, readOnly: false,
+    });
+    const got = ids(items);
+    expect(got).toEqual([
+      'table-insert-row-above', 'table-insert-row-below',
+      'table-insert-col-left', 'table-insert-col-right',
+      'table-delete-row', 'table-delete-col', 'table-merge', 'table-split',
+    ]);
+    // merge + split are in the same section -> no divider between them
+    const mergeIdx = items.findIndex(i => i.id === 'table-merge');
+    const splitIdx = items.findIndex(i => i.id === 'table-split');
+    expect(splitIdx).toBe(mergeIdx + 1);
+  });
 });
 
 describe('buildContextMenuItems - title/ref copy-only', () => {
@@ -82,6 +111,13 @@ describe('buildContextMenuItems - title/ref copy-only', () => {
   });
   it('ref with no selection -> empty', () => {
     expect(ids(buildContextMenuItems({ blockId: 'b1', kind: 'ref', selectionEmpty: true, readOnly: false }))).toEqual([]);
+  });
+});
+
+describe('buildContextMenuItems - guards', () => {
+  it('returns [] for a null/undefined descriptor', () => {
+    expect(buildContextMenuItems(null)).toEqual([]);
+    expect(buildContextMenuItems(undefined)).toEqual([]);
   });
 });
 
