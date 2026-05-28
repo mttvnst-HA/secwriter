@@ -78,7 +78,7 @@ import { restoreSelection as restorePmRelpos } from './pm-relpos.js';
 
 // Order matters — applyInlineRevisionResolveTr tries these in declared
 // rank order. The first MarkType with a range at the cursor wins.
-const REVISION_KINDS_IN_ORDER = Object.freeze(['add', 'del', 'chg']);
+export const REVISION_KINDS_IN_ORDER = Object.freeze(['add', 'del', 'chg']);
 
 /**
  * Walk text nodes in [from, to] and return the first Mark instance whose

@@ -57,4 +57,20 @@ describe('resolvePmContextAt', () => {
     const d = resolvePmContextAt(state, 9, { blockId: 'b1', readOnly: false });
     expect(d.addCommentRange).toBeUndefined();
   });
+
+  it('reports a resolved comment with resolved:true (still detected)', () => {
+    const mark = schema.marks.comment.create({ id: 'c2', resolved: true });
+    const state = stateOf(docOf(txt('hello', mark)), 3);
+    const d = resolvePmContextAt(state, 3, { blockId: 'b1', readOnly: false });
+    expect(d.comment).toEqual({ commentId: 'c2', range: { from: 1, to: 6 }, resolved: true });
+  });
+
+  it('detects both a revision and a comment mark at the same position', () => {
+    const rev = schema.marks.revisionAdd.create({ authorId: 'a', authorColor: '#f00' });
+    const cmt = schema.marks.comment.create({ id: 'c3', resolved: false });
+    const state = stateOf(docOf(txt('hello', rev, cmt)), 3);
+    const d = resolvePmContextAt(state, 3, { blockId: 'b1', readOnly: false });
+    expect(d.revision.kind).toBe('add');
+    expect(d.comment.commentId).toBe('c3');
+  });
 });
