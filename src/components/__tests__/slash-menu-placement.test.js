@@ -52,6 +52,13 @@ describe('computePlacement', () => {
       menuHeight: 390,
       expected: { placement: 'above', maxHeight: 120, top: 8 },
     },
+    {
+      name: 'min maxHeight floor below branch',
+      anchorRect: { top: 20, bottom: 40 },
+      viewportHeight: 100,
+      menuHeight: 390,
+      expected: { placement: 'below', maxHeight: 120, top: 44 },
+    },
   ];
 
   it.each(cases)('$name', ({ anchorRect, viewportHeight, menuHeight, expected }) => {

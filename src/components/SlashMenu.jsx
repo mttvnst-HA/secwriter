@@ -12,25 +12,27 @@ export const SLASH_ITEMS = [
   { type: "pagebreak", label: "Page Break", desc: "Insert a page break for printing", icon: "\u2504" },
 ];
 
+const ANCHOR_GAP = 4; // px between caret bottom/top and menu edge
+
 export function computePlacement({ anchorRect, viewportHeight, menuHeight, margin = 8 }) {
   const spaceBelow = viewportHeight - anchorRect.bottom - margin;
   const spaceAbove = anchorRect.top - margin;
 
   if (menuHeight <= spaceBelow) {
-    return { placement: 'below', maxHeight: null, top: anchorRect.bottom + 4 };
+    return { placement: 'below', maxHeight: null, top: anchorRect.bottom + ANCHOR_GAP };
   }
   if (menuHeight <= spaceAbove) {
     return {
       placement: 'above',
       maxHeight: null,
-      top: anchorRect.top - menuHeight - 4,
+      top: anchorRect.top - menuHeight - ANCHOR_GAP,
     };
   }
   if (spaceBelow >= spaceAbove) {
     return {
       placement: 'below',
       maxHeight: Math.max(spaceBelow, 120),
-      top: anchorRect.bottom + 4,
+      top: anchorRect.bottom + ANCHOR_GAP,
     };
   }
   return {
