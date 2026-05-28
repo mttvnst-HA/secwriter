@@ -917,14 +917,20 @@ function PmEditableBlock({
     return () => document.removeEventListener('mousedown', onDocMouseDown, true);
   }, [slashState.open, block.id]);
 
-  // ── New-block discard: click outside an untouched new block deletes it ────
+  // ── New-block discard: click elsewhere in the document discards it ────────
   // A block created via Enter / slash-convert mounts empty and armed. If the
-  // user clicks anywhere outside this block before typing, discard it (they
+  // user clicks elsewhere in the document before typing, discard it (they
   // abandoned the scratch block). Mousedown (not blur) so keyboard-driven
   // focus moves — e.g. pressing Enter to create a sibling block — never
   // trigger a delete. Capture phase so we run before PM's own click handling.
   // Disarmed automatically once the user types (dispatchTransaction) or via
   // the Escape path; the effect tears down when `discardArmed` flips false.
+  //
+  // "Outside" is scoped to the editor content region (`.editor-scroll`): a
+  // click there but outside this block means the user moved on within the
+  // document. Clicks on app chrome — toolbar (e.g. Track Changes), sidebar,
+  // dialogs — are NOT discards; otherwise interacting with a control right
+  // after creating a block would silently delete it.
   useEffect(() => {
     if (!discardArmed) return undefined;
     function onDocMouseDown(e) {
@@ -934,6 +940,10 @@ function PmEditableBlock({
       // buttons) is not "outside" — leave the block armed but alive.
       const wrapper = containerRef.current?.closest?.('[id^="block-"]') || containerRef.current;
       if (wrapper && wrapper.contains(target)) return;
+      // Only clicks within the editor content region count as moving on in
+      // the document. Toolbar/sidebar/dialog clicks are not discards.
+      const editorRegion = containerRef.current?.closest?.('.editor-scroll');
+      if (editorRegion && !editorRegion.contains(target)) return;
       const view = viewRef.current;
       if (hasEditedRef.current || !isViewEmpty(view)) return;
       setDiscardArmed(false);

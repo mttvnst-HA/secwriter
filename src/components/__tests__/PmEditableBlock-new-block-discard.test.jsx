@@ -47,34 +47,41 @@ afterEach(() => {
 async function renderBlock({ block, yStore, onDelete }) {
   await act(async () => {
     root.render(
-      <PmEditableBlock
-        block={block}
-        yStore={yStore}
-        onUpdate={vi.fn()}
-        identity={{ id: 'u1', name: 'U', color: '#000' }}
-        showTags={false}
-        lintingState={linting.createInitial({ enabled: false })}
-        lintingDispatch={vi.fn()}
-        onEnterKey={vi.fn()}
-        isFocused={false}
-        onFocus={vi.fn()}
-        oliLabel={null}
-        onDelete={onDelete}
-        onFocusPrev={vi.fn()}
-        onFocusNext={vi.fn()}
-        onConvertBlock={vi.fn()}
-        onChangeOliLevel={vi.fn()}
-        resolveHtml={(h) => h}
-        tailorKey={null}
-        trackChanges={false}
-        onAcceptRevision={vi.fn()}
-        onRejectRevision={vi.fn()}
-        onRefreshTcSnapshot={vi.fn()}
-        commentsState={null}
-        onCommentClick={vi.fn()}
-        onInlineFix={vi.fn()}
-        readOnly={false}
-      />
+      <div>
+        {/* App chrome outside the editor content region (toolbar). */}
+        <button id="ext-toolbar" type="button">Track Changes</button>
+        {/* Editor content region — clicks here count as "moving on" in the doc. */}
+        <div className="editor-scroll">
+          <PmEditableBlock
+            block={block}
+            yStore={yStore}
+            onUpdate={vi.fn()}
+            identity={{ id: 'u1', name: 'U', color: '#000' }}
+            showTags={false}
+            lintingState={linting.createInitial({ enabled: false })}
+            lintingDispatch={vi.fn()}
+            onEnterKey={vi.fn()}
+            isFocused={false}
+            onFocus={vi.fn()}
+            oliLabel={null}
+            onDelete={onDelete}
+            onFocusPrev={vi.fn()}
+            onFocusNext={vi.fn()}
+            onConvertBlock={vi.fn()}
+            onChangeOliLevel={vi.fn()}
+            resolveHtml={(h) => h}
+            tailorKey={null}
+            trackChanges={false}
+            onAcceptRevision={vi.fn()}
+            onRejectRevision={vi.fn()}
+            onRefreshTcSnapshot={vi.fn()}
+            commentsState={null}
+            onCommentClick={vi.fn()}
+            onInlineFix={vi.fn()}
+            readOnly={false}
+          />
+        </div>
+      </div>
     );
   });
   // PM EditorView mounts via useSyncExternalStore subscription — wait for it.
@@ -93,9 +100,22 @@ function pressEscape(view) {
   });
 }
 
-function clickOutside() {
+// Click elsewhere within the editor content region (a different spot in the
+// document) — this counts as moving on, so an untouched new block is discarded.
+function clickInEditorRegion() {
   act(() => {
-    document.body.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+    container.querySelector('.editor-scroll').dispatchEvent(
+      new MouseEvent('mousedown', { bubbles: true }),
+    );
+  });
+}
+
+// Click app chrome outside the editor region (toolbar) — NOT a discard.
+function clickToolbar() {
+  act(() => {
+    container.querySelector('#ext-toolbar').dispatchEvent(
+      new MouseEvent('mousedown', { bubbles: true }),
+    );
   });
 }
 
@@ -117,14 +137,24 @@ describe('PmEditableBlock new-block discard', () => {
     expect(onDelete).toHaveBeenCalledWith('b1');
   });
 
-  it('clicking outside discards an untouched new empty block', async () => {
+  it('clicking elsewhere in the document discards an untouched new empty block', async () => {
     const onDelete = vi.fn();
     const { yStore } = setupYStore('b1', '<p></p>');
     await renderBlock({ block: { id: 'b1', type: 'txt', html: '<p></p>', isNew: true }, yStore, onDelete });
     await getView('b1');
 
-    clickOutside();
+    clickInEditorRegion();
     expect(onDelete).toHaveBeenCalledWith('b1');
+  });
+
+  it('clicking app chrome (toolbar) outside the editor region does NOT discard', async () => {
+    const onDelete = vi.fn();
+    const { yStore } = setupYStore('b1', '<p></p>');
+    await renderBlock({ block: { id: 'b1', type: 'txt', html: '<p></p>', isNew: true }, yStore, onDelete });
+    await getView('b1');
+
+    clickToolbar();
+    expect(onDelete).not.toHaveBeenCalled();
   });
 
   it('does NOT discard after the user types content', async () => {
@@ -135,7 +165,7 @@ describe('PmEditableBlock new-block discard', () => {
 
     typeChar(view, 'x');
     pressEscape(view);
-    clickOutside();
+    clickInEditorRegion();
     expect(onDelete).not.toHaveBeenCalled();
   });
 
@@ -146,7 +176,7 @@ describe('PmEditableBlock new-block discard', () => {
     const view = await getView('b1');
 
     pressEscape(view);
-    clickOutside();
+    clickInEditorRegion();
     expect(onDelete).not.toHaveBeenCalled();
   });
 
