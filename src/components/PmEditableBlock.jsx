@@ -38,8 +38,23 @@
  *   4. Tag visibility is a PM plugin emitting widget decorations, not
  *      contentEditable=false DOM injection (Q4). Pseudo-elements don't
  *      create caret positions; widgets do.
- *   5. Slash detection is a PM plugin watching transactions (Q5); the
- *      popup is the existing React `SlashMenu.jsx`.
+ *   5. Slash detection is a PM plugin watching transactions
+ *      (`pm-plugins/slash-menu.js`, Q5). React `SlashMenu.jsx` is the popup,
+ *      portal-mounted at `document.body` with `position: fixed` and anchored
+ *      via `view.coordsAtPos(fromPos)` (the `computeSlashAnchorRect` helper
+ *      handles the fallback to the block's bounding box). PmEditableBlock
+ *      owns the combobox ARIA wiring: the PM editor's contentEditable DOM
+ *      gets `role=combobox` + `aria-controls` + `aria-activedescendant`
+ *      while the menu is open (the listbox itself never receives focus).
+ *      Hover is parent-routed via `onHoverChange` → `selectedIdx` so arrow
+ *      keys advance from the hovered row, not from a stale internal value.
+ *      Three dismiss paths route through `pm-slash-dismiss.js` helpers
+ *      (`closeSlashMenuPlugin` + `isBlockJustSlashTrigger`): Escape and a
+ *      document-level mousedown listener (gated on `slashState.open`) close
+ *      the plugin via a `forceClose` meta — closing React state alone gets
+ *      re-projected back to open on the next keystroke. Escape and outside-
+ *      click delete the block when it contains only the slash trigger;
+ *      inside-click converts to a fresh empty paragraph via `onConvertBlock`.
  *   6. Re-lint trigger is `dispatchTransaction` (Q27) — fires for both
  *      local and remote ops. The legacy `useBlockLinting` hook expects an
  *      'input' event; we synthesize a fake one on doc-changing transactions
@@ -49,6 +64,8 @@
  *   - The legacy `setRef` / ZWS focus glue (Q4). PM owns the cursor model.
  *   - The handleInput debounce (Q22 substrate writes are sync via ySync).
  *   - `syncTagLabels` / `stripTagLabels` DOM mutation (decorations now).
+ *   - Slash-menu dismiss helpers — extracted to `lib/pm-slash-dismiss.js`
+ *     so Vitest can exercise them without mounting React + a PM EditorView.
  */
 
 import {
