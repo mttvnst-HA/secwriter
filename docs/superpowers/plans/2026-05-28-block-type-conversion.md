@@ -55,9 +55,19 @@ If padding-left < 32px, append to this task: "Add CSS variable `--gutter-handle-
 
 - [ ] **Step 5: Capture baseline E2E flake set**
 
-Run: `npm run test:e2e -- --project=chromium tests/e2e/editor.spec.js tests/e2e/collab.spec.js 2>&1 | tee /tmp/baseline-failures.txt`
+Pick a writable output path based on shell. On Git Bash (CLAUDE.md says Windows + Git Bash), `/tmp/baseline-failures.txt` resolves to `C:\Users\<user>\AppData\Local\Temp\baseline-failures.txt` and works. On PowerShell, use `$env:TEMP\baseline-failures.txt`.
 
-Note which tests fail. This is the BASELINE flake set — any test that fails here and after Task 9 is a flake, not a regression introduced by this work. Per CLAUDE.md rule 10.
+Run (Git Bash):
+```
+npm run test:e2e -- --project=chromium tests/e2e/editor.spec.js tests/e2e/collab.spec.js 2>&1 | tee /tmp/baseline-failures.txt
+```
+
+Run (PowerShell):
+```
+npm run test:e2e -- --project=chromium tests/e2e/editor.spec.js tests/e2e/collab.spec.js 2>&1 | Tee-Object -FilePath "$env:TEMP\baseline-failures.txt"
+```
+
+Note which tests fail. This is the BASELINE flake set — any test that fails here and after Task 8 is a flake, not a regression introduced by this work. Per CLAUDE.md rule 10.
 
 ---
 
@@ -200,12 +210,25 @@ describe('convertBlockType', () => {
   });
 
   describe('__convertedFrom transient field', () => {
-    it('sets __convertedFrom when TC ON', () => {
+    it('sets __convertedFrom when TC ON and convert introduces chg', () => {
       const result = convertBlockType([blk({ type: 'txt' })], 'b1', 'note', { tcState: tcOn });
       expect(result.state[0].__convertedFrom).toBe('txt');
     });
     it('does not set __convertedFrom when TC OFF', () => {
       const result = convertBlockType([blk({ type: 'txt' })], 'b1', 'note', { tcState: tcOff });
+      expect(result.state[0]).not.toHaveProperty('__convertedFrom');
+    });
+    it("does not set __convertedFrom when prev revision is 'add' (chg masked)", () => {
+      const result = convertBlockType([blk({ revision: 'add' })], 'b1', 'note', { tcState: tcOn });
+      expect(result.state[0]).not.toHaveProperty('__convertedFrom');
+    });
+    it("does not set __convertedFrom when prev revision is 'del' (chg masked)", () => {
+      const result = convertBlockType([blk({ revision: 'del' })], 'b1', 'note', { tcState: tcOn });
+      expect(result.state[0]).not.toHaveProperty('__convertedFrom');
+    });
+    it("does not set __convertedFrom when prev revision is already 'chg'", () => {
+      // This convert isn't the source of 'chg' — a prior edit was.
+      const result = convertBlockType([blk({ revision: 'chg' })], 'b1', 'note', { tcState: tcOn });
       expect(result.state[0]).not.toHaveProperty('__convertedFrom');
     });
   });
@@ -344,13 +367,18 @@ export function convertBlockType(blocks, blockId, newType, { tcState } = {}) {
   if (composed !== block.revision) {
     newBlock.revision = composed;
   }
-  // Transient UX hint: when TC is on and the convert introduces or carries
-  // a 'chg' marker, surface the original type so accept/reject tooltips can
-  // warn the user that type changes are not rolled back. Local-only; never
-  // persisted, never synced (lives outside Y.Map SCALAR_KEYS).
-  if (tcState?.enabled) {
+  // Transient UX hint: surface __convertedFrom ONLY when this conversion
+  // is the one that introduced the 'chg' marker (i.e. the prior revision
+  // was unset). If prev was already 'add' / 'del' / 'chg', the tooltip
+  // gate at the accept/reject button keys on revision === 'chg', and the
+  // pre-existing flag would mask the conversion's contribution anyway —
+  // setting __convertedFrom in those cases would be unreachable.
+  // Local-only; never persisted, never synced (outside SCALAR_KEYS).
+  if (tcState?.enabled && composed === 'chg' && block.revision !== 'chg') {
     newBlock.__convertedFrom = block.type;
   }
+  // isNew preserved via spread above (rare in practice — conversion is
+  // on an existing block, so isNew is typically already false).
   next[idx] = newBlock;
 
   return {
@@ -527,6 +555,37 @@ describe('PmEditableBlock — convert persistence', () => {
     const handle3 = registry.getBlockHandle('b1');
     expect(Object.is(handle1, handle3)).toBe(true);
   });
+
+  // Wraps the block in App.jsx's actual wrapper-key shape so a regression
+  // that re-introduces `${block.id}-${block.type}` would actually remount.
+  // The two tests above bypass that wrapper; this one pins the App-level
+  // contract.
+  it('App-level: handle survives type flip when wrapper key is block.id only', async () => {
+    const ydoc = new Y.Doc();
+    const yStore = ydoc.getMap('store');
+    seedSlotV2(yStore, ydoc, 'b1', '<p>x</p>', 'txt');
+    const block = { id: 'b1', type: 'txt', html: '<p>x</p>' };
+
+    function Host({ blk }) {
+      // Mimic the App.jsx wrapper-key contract: key={block.id} only.
+      return (
+        <div key={blk.id}>
+          <PmEditableBlock {...defaultProps(blk, yStore)} />
+        </div>
+      );
+    }
+
+    const { rerender } = render(<Host blk={block} />);
+    await act(async () => {});
+    const before = registry.getBlockHandle('b1');
+
+    rerender(<Host blk={{ ...block, type: 'note' }} />);
+    await act(async () => {});
+    const after = registry.getBlockHandle('b1');
+
+    expect(before).not.toBeNull();
+    expect(Object.is(before, after)).toBe(true);
+  });
 });
 ```
 
@@ -603,8 +662,14 @@ const handleConvertBlockType = useCallback((blockId, newType) => {
 ```
 
 Notes for the implementer:
-- `tcStateRef` already exists (verify by `grep -n tcStateRef src/App.jsx`). If a `tcStateRef` is not present but `tcState` is in scope, add `const tcStateRef = useRef(tcState); tcStateRef.current = tcState;` near the `setTcState` declaration at line 151.
-- `commentsStateRef` already exists (line 200: `commentsStateRef.current = commentsState;`).
+- `tcStateRef` does NOT currently exist (verified by grep — zero matches). Add it near the other state-mirroring refs in App.jsx (e.g. near `commentsStateRef` around line 306-307, NOT interleaved into the useState block at line 151):
+
+  ```js
+  const tcStateRef = useRef(tcState);
+  tcStateRef.current = tcState;
+  ```
+
+- `commentsStateRef` exists at App.jsx:306-307 — `commentsStateRef.current = commentsState;`. (Earlier plan draft cited line 200; that was wrong — line 200 is unrelated.)
 - `linting.clearBlock` is the existing pure verb at `src/lib/linting.js:172`.
 - No dep on `commentsState` in the useCallback array — reading via the ref so the callback identity stays stable.
 
@@ -1056,24 +1121,39 @@ import ConvertBlockPalette from './components/ConvertBlockPalette.jsx';
 
 (If imports are grouped by source, add it with other `./components/` imports.)
 
-In the global keydown handler at `src/App.jsx:1677-1727`, add a new branch BEFORE the closing `}`. Pattern: between the Ctrl+0 branch (line 1721) and the closing brace:
+**Use refs to avoid re-registering the document keydown listener on every render.** The existing handler at App.jsx:1677-1727 has stable deps (`[handleSave, zoomIn, zoomOut, zoomReset]`). Adding `blocks`/`focusedBlockId`/`collabReadOnly` directly to the dep array would re-add/remove the listener on every keystroke — measurable churn on a 600-block doc.
+
+Per CLAUDE.md "Blocks Reducer Architecture", `blocksRef.current` is already mutated synchronously inside `dispatchBlocksVerb`. Verify it exists at App.jsx (`grep -n blocksRef src/App.jsx`); if not, add the mirror near other refs:
 
 ```js
-} else if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'M' || e.key === 'm')) {
+const blocksRef = useRef(blocks);
+blocksRef.current = blocks;
+const focusedBlockIdRef = useRef(focusedBlockId);
+focusedBlockIdRef.current = focusedBlockId;
+const collabReadOnlyRef = useRef(collabReadOnly);
+collabReadOnlyRef.current = collabReadOnly;
+```
+
+In the global keydown handler at `src/App.jsx:1677-1727`, add a new branch between the Ctrl+0 branch (line 1721) and the closing brace:
+
+```js
+} else if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'M') {
+  // With Shift held, e.key is the uppercase 'M' per WHATWG UI Events.
   e.preventDefault();
-  if (!focusedBlockId) return;
-  const focusedBlock = blocks.find(b => b.id === focusedBlockId);
+  const blockId = focusedBlockIdRef.current;
+  if (!blockId) return;
+  const focusedBlock = blocksRef.current.find(b => b.id === blockId);
   if (!focusedBlock) return;
   const isFamilyA = ['txt', 'note', 'oli', 'item', 'lst'].includes(focusedBlock.type);
   if (!isFamilyA) return;
-  if (collabReadOnly) return;
+  if (collabReadOnlyRef.current) return;
   // Capture the PM selection so we can restore the caret post-dispatch.
-  const view = getBlockView(focusedBlockId);
+  const view = getBlockView(blockId);
   const savedSelection = view ? { from: view.state.selection.from, to: view.state.selection.to } : null;
-  const dom = document.querySelector(`[data-block-id="${focusedBlockId}"]`)
-    || document.getElementById(`block-${focusedBlockId}`);
+  const dom = document.querySelector(`[data-block-id="${blockId}"]`)
+    || document.getElementById(`block-${blockId}`);
   const anchorRect = dom ? dom.getBoundingClientRect() : null;
-  setConvertPalette({ blockId: focusedBlockId, currentType: focusedBlock.type, anchorRect, savedSelection });
+  setConvertPalette({ blockId, currentType: focusedBlock.type, anchorRect, savedSelection });
 }
 ```
 
@@ -1083,7 +1163,7 @@ Add `getBlockView` to the imports if not already present:
 import { getBlockView } from './lib/block-registry.js';
 ```
 
-Add `blocks, focusedBlockId, collabReadOnly` to the existing useEffect's dep array on the keydown listener (current deps end at line 1733 — locate and append).
+**Do NOT modify the existing handler's dep array** — refs read inside the closure are always current without re-registration.
 
 - [ ] **Step 3: Render the palette + handle convert/close**
 
@@ -1258,27 +1338,33 @@ Apply the same two-site replacement to `rejectBlockRevision` at line 529-554.
 
 (The `revision === 'del'` early-return paths drop the block entirely, so no `__convertedFrom` cleanup is needed there.)
 
-- [ ] **Step 4: Add title attribute to accept/reject buttons in PmEditableBlock**
+- [ ] **Step 4: Add title attribute + data-test attributes to accept/reject buttons in PmEditableBlock**
 
-In `src/components/PmEditableBlock.jsx` around line 854-869, modify the buttons' `title` props:
+In `src/components/PmEditableBlock.jsx` around line 854-869, modify the buttons. Define the hint near the top of the render function (alongside other derived values like `isFamilyA`):
+
+```js
+const convertedFromHint = block.__convertedFrom
+  ? ` (converted from ${block.__convertedFrom}; type change is NOT rolled back by reject — use Ctrl+Z)`
+  : '';
+```
+
+Then modify the JSX:
 
 ```diff
-+  const convertedFromHint = block.__convertedFrom
-+    ? ` (block was converted from ${block.__convertedFrom}; the type change is preserved on accept and NOT rolled back on reject — use Ctrl+Z to undo type changes)`
-+    : '';
-+
        {(block.revision || hasInlineRevisions) && onAcceptRevision && (
          <div style={{
            position: 'absolute', left: -4, top: 4, display: 'flex',
            flexDirection: 'column', gap: 2, zIndex: 10,
          }}>
            <button
++            data-test="accept-block-revision"
              onClick={() => onAcceptRevision(block.id)}
 -            title={block.revision ? `Accept ${block.revision}` : 'Accept inline changes'}
 +            title={(block.revision ? `Accept ${block.revision}` : 'Accept inline changes') + convertedFromHint}
              style={gutterBtn('#008000', '#f0fdf4')}
            >✓</button>
            <button
++            data-test="reject-block-revision"
              onClick={() => onRejectRevision(block.id)}
 -            title={block.revision ? `Reject ${block.revision}` : 'Reject inline changes'}
 +            title={(block.revision ? `Reject ${block.revision}` : 'Reject inline changes') + convertedFromHint}
@@ -1287,6 +1373,10 @@ In `src/components/PmEditableBlock.jsx` around line 854-869, modify the buttons'
          </div>
        )}
 ```
+
+The `data-test` attributes let E2E tests target the gutter accept/reject buttons unambiguously (Task 7 scenario 4). Without them, `button[title*="Accept"]` would also match FloatingToolbar / comment popup / del-popup accept buttons.
+
+Note on tooltip length: shortened to ~80 chars from the spec's verbose version because browser-native `title` does not wrap reliably. If a future spec adds a richer tooltip component, swap this for that.
 
 - [ ] **Step 5: Run tests**
 
@@ -1334,6 +1424,8 @@ Run these checks and note results:
 7. `grep -n "data-test=\"oli-label\"\|data-oli-label" src/` — check if a test-friendly attribute exists on the oli label span. If not, the test at step 2 needs to assert via the label's text content alone.
 
 If any helper is missing, add it as a small (5-20 LOC) addition to `tests/e2e/pm-helpers.js` or the existing helpers file, following the codebase style. Surface the additions to the user as part of this step.
+
+**Gate:** do NOT proceed to step 2 until every helper referenced in the scenarios below is either confirmed to exist or has been stubbed in this step. The test file will fail to compile otherwise, and the failure noise hides whether the conversion code itself is broken.
 
 - [ ] **Step 2: Append the new tests to `tests/e2e/editor.spec.js`**
 
@@ -1422,8 +1514,9 @@ test.describe('block-type conversion (Family A)', () => {
     // Block carries the chg styling.
     await expect(page.locator(`[data-block-id="${blockId}"]`)).toHaveClass(/block-revision-chg/);
 
-    // Accept via the gutter accept button.
-    await page.locator(`[data-block-id="${blockId}"] button[title*="Accept"]`).click();
+    // Accept via the gutter accept button. data-test attribute disambiguates
+    // from FloatingToolbar / comment popup / del-popup accept buttons.
+    await page.locator(`[data-block-id="${blockId}"] [data-test="accept-block-revision"]`).click();
 
     // Type IS preserved (intentional limitation per spec §4.4).
     await expect(page.locator(`[data-block-id="${blockId}"]`)).toHaveAttribute('data-block-type', 'note');
@@ -1497,11 +1590,16 @@ Five scenarios per spec §6.3:
 
 - [ ] **Step 1: Run the full editor + collab E2E suites under chromium**
 
-Run: `npm run test:e2e -- --project=chromium tests/e2e/editor.spec.js tests/e2e/collab.spec.js 2>&1 | tee /tmp/post-impl-failures.txt`
+Use the same output-path convention as Task 0 step 5 (Git Bash `/tmp/...` or PowerShell `$env:TEMP\...`).
+
+Run (Git Bash):
+```
+npm run test:e2e -- --project=chromium tests/e2e/editor.spec.js tests/e2e/collab.spec.js 2>&1 | tee /tmp/post-impl-failures.txt
+```
 
 - [ ] **Step 2: Diff against baseline from Task 0 step 5**
 
-Compare `/tmp/baseline-failures.txt` to `/tmp/post-impl-failures.txt`. Any test that fails in post-impl but NOT in baseline is a candidate regression.
+Compare the baseline and post-impl failure files (whichever paths you used in Task 0 step 5 and Task 8 step 1). Any test that fails in post-impl but NOT in baseline is a candidate regression.
 
 - [ ] **Step 3: For each candidate regression, re-run isolated under chromium**
 
@@ -1512,6 +1610,23 @@ Run: `npx playwright test --project=chromium --grep "T" --repeat-each=5 --worker
 - 5/5 fail: real regression. Debug the test, find the root cause, fix it.
 - 3-4/5 fail: likely a real regression with a flaky component. Investigate.
 - 0-2/5 fail: flake (matches CLAUDE.md rule 10). Add to known-flakes list and proceed.
+
+- [ ] **Step 3b: Rollback escape hatch (only if a regression is not fixable)**
+
+If a real regression surfaces and root-cause fix takes more than 30 minutes of investigation, fall back to the documented escape per spec §4.3:
+
+```bash
+# Revert just the wrapper-key drop (Task 2's App.jsx edit). The
+# convertBlockType verb + UI components ship anyway — conversions still
+# work, they just trigger a PmEditableBlock remount (loses PM EditorView
+# identity across the flip; comments still survive via html preservation).
+git log --oneline | grep "drop vestigial type-suffix"  # find the commit
+git revert <that-commit-sha>
+```
+
+Run the full E2E suite again. If the revert clears the regression, the feature still ships (gutter + palette + reducer + lint clear) — just without the PM-view-persistence optimization. Track the suffix re-introduction as a follow-up issue with the regressing test name attached.
+
+The persistence regression test from Task 2 will fail after the revert — mark it `it.skip(...)` with a comment pointing to the follow-up issue.
 
 - [ ] **Step 4: Run the full unit suite + compliance suite + server suite**
 
