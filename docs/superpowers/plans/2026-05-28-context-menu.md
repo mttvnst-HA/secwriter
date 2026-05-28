@@ -620,7 +620,9 @@ function actionableIndices(items) {
 export default function ContextMenu({ items, anchor, onSelect, onClose }) {
   const menuRef = useRef(null);
   const [resizeTick, setResizeTick] = useState(0);
-  const [placement, setPlacement] = useState({ top: 0, left: 0, maxHeight: null });
+  // null until the layout effect computes a placement — avoids a one-frame
+  // flash at the top-left corner before positioning runs.
+  const [placement, setPlacement] = useState(null);
   // Highlight tracks an index into the FULL items array (dividers skipped by nav).
   const actionable = useMemo(() => actionableIndices(items), [items]);
   const [activeIdx, setActiveIdx] = useState(actionable[0] ?? -1);
@@ -681,10 +683,18 @@ export default function ContextMenu({ items, anchor, onSelect, onClose }) {
     }
   };
 
-  // Focus the menu on mount so it receives the keydowns.
-  useEffect(() => { menuRef.current?.focus?.(); }, []);
+  // Focus the menu once it actually renders (placement !== null) so it
+  // receives the keydowns. A plain []-deps effect would fire on the first
+  // (null-placement) commit when the menu DOM does not exist yet.
+  const hasFocusedRef = useRef(false);
+  useEffect(() => {
+    if (placement && !hasFocusedRef.current) {
+      hasFocusedRef.current = true;
+      menuRef.current?.focus?.();
+    }
+  }, [placement]);
 
-  if (!anchor || items.length === 0) return null;
+  if (!anchor || items.length === 0 || !placement) return null;
 
   const menu = (
     <div
@@ -1017,6 +1027,8 @@ After the existing imports (near line 84), add:
 import { resolvePmContextAt } from '../lib/pm-context.js';
 ```
 
+> `closeSlashMenuPlugin` is ALREADY imported at line 84 (`import { closeSlashMenuPlugin, isBlockJustSlashTrigger } from '../lib/pm-slash-dismiss.js'`) and is used by Step 5 — do NOT re-import it. `setSlashState` (state hook, line 177) and `setDelPopup` (line 181) are the correct setter names used in Step 5.
+
 - [ ] **Step 2: Add a readOnly ref**
 
 After the `onConvertBlockRef` ref assignment (line 215), add:
@@ -1057,6 +1069,8 @@ In the slash-dismiss listener's `onDocMouseDown` (line 896) and the new-block-di
 ```
 
 This prevents a right-click `mousedown` (which precedes `contextmenu`) from converting a scratch block to txt or discarding it.
+
+> Verified complete: these are the ONLY two `mousedown`-capture listeners in PmEditableBlock (their `addEventListener('mousedown', onDocMouseDown, true)` calls are at ~line 916 and ~line 953). The del-popup dismiss listens on `scroll` only (line 662), not `mousedown`, and is force-closed explicitly by `handleContextMenuCapture` (Step 5). No third right-click-sensitive mousedown path exists.
 
 - [ ] **Step 5: Add the contextmenu cleanup handler**
 
@@ -1270,7 +1284,7 @@ import {
 import ContextMenu from "./components/ContextMenu.jsx";
 import { buildContextMenuItems, tableCellCoordsFromTd } from "./lib/context-menu-items.js";
 import {
-  applyInlineRevisionResolveTr, applyCommentMarkTr, dispatchToolbarVerb,
+  applyInlineRevisionResolveTr, dispatchToolbarVerb,
   extractHtml, extractRangeText,
 } from "./lib/pm-toolbar.js";
 import { TC_RESOLVE_META } from "./lib/pm-tc-mark.js";
@@ -1382,7 +1396,16 @@ Add this `useCallback` after `resolveContextDescriptor`. It re-resolves position
         } else {
           text = window.getSelection()?.toString() ?? '';
         }
-        if (text) navigator.clipboard?.writeText(text).catch(() => {});
+        if (!text) break;
+        // v1: Copy serializes PLAIN TEXT only (consistent with the plaintext-
+        // only paste design, #99). Inline data marks (RID/SUB/ENG/MET) are
+        // NOT carried to the system clipboard — documented limitation, see
+        // Self-Review. The menu portal stole focus; re-focus before writing.
+        if (!navigator.clipboard?.writeText) { toastNoop('Clipboard unavailable'); break; }
+        view?.focus();
+        navigator.clipboard.writeText(text).catch((err) => {
+          toastNoop(err?.name === 'NotAllowedError' ? 'Clipboard permission denied' : 'Copy failed');
+        });
         break;
       }
       case 'cut': {
@@ -1391,7 +1414,9 @@ Add this `useCallback` after `resolveContextDescriptor`. It re-resolves position
         const { from, to } = view.state.selection;
         if (from === to) break;
         const text = view.state.doc.textBetween(from, to, '\n', '');
-        if (text) navigator.clipboard?.writeText(text).catch(() => {});
+        if (!navigator.clipboard?.writeText) { toastNoop('Clipboard unavailable'); break; }
+        view.focus();
+        navigator.clipboard.writeText(text).catch(() => {});
         forceFrame();
         view.dispatch(view.state.tr.deleteSelection());
         cancelPendingUpdateById(blockId);
@@ -1399,16 +1424,26 @@ Add this `useCallback` after `resolveContextDescriptor`. It re-resolves position
         break;
       }
       case 'paste': {
-        if (!getBlockView(blockId)) break;
-        navigator.clipboard?.readText?.().then((raw) => {
+        const view = getBlockView(blockId);
+        if (!view) break;
+        if (!navigator.clipboard?.readText) { toastNoop('Clipboard unavailable'); break; }
+        // The menu portal stole focus on mount; clipboard READ requires the
+        // document focused + transient activation. Re-focus before the read
+        // AND inside the async resolve (the menu unmounts between them, and
+        // setContextMenu(null) runs right after this synchronous body).
+        view.focus();
+        navigator.clipboard.readText().then((raw) => {
           const text = sanitizePasteText(raw || '');
           if (!text) return;
           const v = getBlockView(blockId);
           if (!v) return;
+          v.focus();
           forceFrame();
           v.dispatch(v.state.tr.insertText(text));
           flushPendingUpdateById(blockId);
-        }).catch(() => {});
+        }).catch((err) => {
+          toastNoop(err?.name === 'NotAllowedError' ? 'Clipboard permission denied' : 'Paste failed');
+        });
         break;
       }
       case 'accept-change':
@@ -1420,33 +1455,57 @@ Add this `useCallback` after `resolveContextDescriptor`. It re-resolves position
         catch { coords = null; }
         if (!coords) { toastNoop('Change no longer available'); break; }
         const action = id === 'accept-change' ? 'accept' : 'reject';
-        const result = applyInlineRevisionResolveTr(view.state, action, coords.pos);
-        if (!result) { toastNoop('Change no longer available'); break; }
-        forceFrame();
-        // Set TC_RESOLVE_META on every context-menu resolve tr (resolves the
-        // spec open-item): the meta only skips rewriteForTrackChanges, which
-        // is correct for accept/reject of an existing mark and avoids the #96
-        // accept-del no-op. The Yjs op still rides ySyncPlugin.
-        const tr = result.tr;
-        tr.setMeta(TC_RESOLVE_META, true);
-        view.dispatch(tr);
-        cancelPendingUpdateById(blockId);
-        handleBlockUpdatePmSync(blockId, pmFragmentToHtml(view.state.doc));
+        // Pin the resolution to the kind the user saw (kindHint). Two reasons:
+        // (1) it makes resolution deterministic; (2) it lets us decide
+        // TC_RESOLVE_META correctly below. If the mark of that kind drifted
+        // away under a peer edit, the verb returns null -> no-op + toast.
+        const kindHint = menu.ctx.revision?.kind;
+        // Route through dispatchToolbarVerb (caller-owned settlement) so we
+        // reuse the one tested forceFrame -> dispatch -> cancelPendingUpdate
+        // protocol instead of re-implementing it.
+        const result = dispatchToolbarVerb({
+          view,
+          saved: { blockId },
+          onForceFrame: forceFrame,
+          compute: (state) => {
+            const r = applyInlineRevisionResolveTr(state, action, coords.pos, kindHint);
+            // TC_RESOLVE_META ONLY on accept-del. That path dispatches a raw
+            // tr.delete over a revisionDel range, which rewriteForTrackChanges
+            // would otherwise re-mark into a no-op (#96). reject-add ALSO
+            // deletes, but there the rewriter MUST run so a foreign author's
+            // pending addition becomes a mark-for-deletion (preserving the
+            // audit trail) — setting the meta there would hard-delete it.
+            // removeMark paths (accept-add / reject-del / chg) never touch
+            // the rewriter, so the meta is irrelevant for them.
+            if (r && action === 'accept' && kindHint === 'del') {
+              r.tr.setMeta(TC_RESOLVE_META, true);
+            }
+            return r;
+          },
+        });
+        if (!result.dispatched) { toastNoop('Change no longer available'); break; }
+        handleBlockUpdatePmSync(blockId, extractHtml(result.state));
         break;
       }
       case 'add-comment': {
         const view = getBlockView(blockId);
-        if (!view) break;
+        const range = menu.ctx.addCommentRange;
+        if (!view || !range) break;
+        // Build the comment mark DIRECTLY from the captured range. We do NOT
+        // route through dispatchToolbarVerb: it computes from the live
+        // state.selection, but the menu portal stole focus and a right-click
+        // can collapse the DOM selection, so applyCommentMarkTr would see an
+        // empty selection and no-op. The captured range is the user's intent.
+        // Cheap drift guard: the range must still fit the live doc.
+        if (range.to > view.state.doc.content.size) { toastNoop('Selection no longer here'); break; }
+        const markType = view.state.schema.marks.comment;
+        if (!markType) break;
         const commentId = `comment-${Date.now()}`;
-        const result = dispatchToolbarVerb({
-          view,
-          saved: { blockId },
-          compute: (state) => applyCommentMarkTr(state, commentId),
-          onForceFrame: forceFrame,
-        });
-        if (result.dispatched) {
-          handleCommentCreate(blockId, extractHtml(result.state), commentId, extractRangeText(result.state, result.range));
-        }
+        forceFrame();
+        view.dispatch(view.state.tr.addMark(range.from, range.to, markType.create({ id: commentId, resolved: false })));
+        const stateAfter = view.state;
+        flushPendingUpdateById(blockId);
+        handleCommentCreate(blockId, extractHtml(stateAfter), commentId, extractRangeText(stateAfter, range));
         break;
       }
       case 'resolve-comment': {
@@ -1536,6 +1595,8 @@ git commit -m "feat(context-menu): App singleton listener, resolution, and dispa
 - Modify: `tests/e2e/editor.spec.js` (append one `test.describe` block)
 
 > `n24` is the anchor block id the existing suite uses; `injectBlockHtml` / `readBlockHtml` are imported at the top of the spec. Right-click via `locator.click({ button: 'right' })`. The native browser menu is not in the DOM — assert the ABSENCE of `[role="menu"]`.
+
+> **Coverage gaps stated honestly:** these E2E tests assert item PRESENCE + the non-clipboard actions (revision accept, comment add/resolve, table insert). They do NOT execute Copy/Cut/Paste end-to-end — `navigator.clipboard` read/write needs granted permissions + a focused document, which is brittle under headless chromium. Paste-execution and the clipboard error-toast paths are verified by the manual smoke (Task 9 Step 9); the conditional-`TC_RESOLVE_META` accept-del logic is verified by the unit-level del-popup tests it mirrors plus the Task 11 drift contract. If clipboard E2E is later wanted, grant `['clipboard-read','clipboard-write']` via `context.grantPermissions` and seed with `page.evaluate(() => navigator.clipboard.writeText(...))`.
 
 - [ ] **Step 1: Write the E2E tests**
 
@@ -1686,6 +1747,18 @@ describe('context-menu collab-drift guard', () => {
     const result = applyInlineRevisionResolveTr(state, 'accept', 3);
     expect(result).toBeNull();
   });
+
+  it('moved-mark contract: resolves whatever same-kind mark now sits at the position', () => {
+    // Drift hazard the guard does NOT fully close: a peer reflow puts a
+    // DIFFERENT revisionAdd (different author) at the same position. With
+    // coordinate re-resolution + kindHint='add', the verb resolves THAT mark
+    // rather than the original. This pins the known v1 limitation documented
+    // in the plan's Self-Review (full relpos mapping is the follow-up).
+    const mark = schema.marks.revisionAdd.create({ authorId: 'u2', authorColor: '#00a' });
+    const state = stateOf(docOf(txt('other', mark)));
+    const result = applyInlineRevisionResolveTr(state, 'accept', 3, 'add');
+    expect(result).not.toBeNull(); // resolves the now-present mark, by design
+  });
 });
 ```
 
@@ -1719,10 +1792,15 @@ git commit -m "test(context-menu): deterministic collab-drift guard regression"
 - Dismiss + a11y (role=menu/menuitem, arrows/Enter/Escape, outside-mousedown, scroll, resize) — Task 4. ✓
 - Testing section (unit + E2E + collab-drift) — Tasks 1–4, 6, 8, 10, 11. ✓
 
-**Open items from the spec, now resolved:**
-- Clipboard serialization → `doc.textBetween` for Copy/Cut; `navigator.clipboard.readText` + `sanitizePasteText` + `tr.insertText` for Paste (Task 9).
-- TC_RESOLVE_META on reject-add → set unconditionally on every context-menu resolve tr (Task 9, Step 6 comment).
-- Merged-cell start-column mapping → `data-vcol` (visual start) + `colspan` read at dispatch; column insert-right uses `vcol + span` (Tasks 8–9).
+**Open items from the spec — decisions + known limitations:**
+
+- **Clipboard serialization.** Copy/Cut serialize PLAIN TEXT via `doc.textBetween`; Paste is `navigator.clipboard.readText` + `sanitizePasteText` + `tr.insertText` (Task 9). **Documented v1 limitation:** copy does NOT carry inline data marks (RID/SUB/ENG/MET/revision) to the system clipboard. This is deliberate and consistent with the plaintext-only paste design (#99) — an internal copy→paste round-trip is plaintext either way, so marks would not survive a re-paste regardless. Carrying `text/html` via `ClipboardItem` for external targets (Word) is a possible follow-up, out of scope for v1. Clipboard read/write is wrapped in availability + `NotAllowedError` guards with a user toast (focus is restored to the view first, because the menu portal takes focus on open).
+
+- **TC_RESOLVE_META.** Set ONLY on the accept-del path (`action === 'accept' && kindHint === 'del'`), NOT unconditionally. Rationale: only `tr.delete` paths interact with `rewriteForTrackChanges`. accept-del's raw delete over a `revisionDel` range would be re-marked into a no-op without the meta (#96) — so it needs it. reject-add ALSO deletes, but there the rewriter MUST run so a foreign author's pending addition is converted to a mark-for-deletion (audit trail preserved); setting the meta there would hard-delete a peer's change. The removeMark paths (accept-add / reject-del / chg) never touch the rewriter. Resolution is pinned to the kind the user saw via `kindHint`, which also makes the drift guard deterministic.
+
+- **Merged-cell start-column mapping.** `data-vcol` (visual start) + `colspan` read at dispatch; column insert-right uses `vcol + span` (Tasks 8–9).
+
+**Known limitation — collab-drift re-resolution.** Position-sensitive actions (accept/reject, table ops) re-resolve at click time via the stored pointer coordinate (`posAtCoords` / `elementFromPoint`), per the approved spec. The `kindHint` pin narrows mis-targeting to "a different mark of the SAME kind drifted under the same viewport point". The remaining hole: a collab peer edit that reflows content under a fixed viewport point WITHOUT scrolling (scroll dismisses the menu) between open and click can resolve a neighboring same-kind target. Probability is low (transient menu, short window) and the result is undo-recoverable. Full hardening (capture a Y.RelativePosition at open, map forward at click) is a documented follow-up, not v1 scope. Task 11 pins both the mark-absent (no-op) and mark-moved (resolves the now-present mark) contracts so the behavior is explicit rather than accidental.
 
 **Type consistency:** descriptor keys (`blockId`, `kind`, `selectionEmpty`, `readOnly`, `revision.kind`, `revision.range`, `comment.commentId`, `comment.resolved`, `addCommentRange`, table `row`/`col`/`vcol`/`canMerge`/`canSplit`) are identical across Tasks 3, 6, 8, 9. Item ids (`copy`/`cut`/`paste`/`accept-change`/`reject-change`/`add-comment`/`resolve-comment`/`table-*`) match between the builder (Task 3) and the dispatcher (Task 9). ✓
 
