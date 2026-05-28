@@ -305,6 +305,8 @@ export default function SpecEditor() {
   sectionMetaRef.current = sectionMeta;
   const commentsStateRef = useRef(commentsState);
   commentsStateRef.current = commentsState;
+  const tcStateRef = useRef(tcState);
+  tcStateRef.current = tcState;
   const lintingStateRef = useRef(lintingState);
   useEffect(() => { lintingStateRef.current = lintingState; }, [lintingState]);
   const tree = useMemo(() => buildTree(blocks), [blocks]);
@@ -1236,6 +1238,18 @@ export default function SpecEditor() {
     // freshly-converted block is visible immediately.
     if (newType === 'note') setShowNotes(true);
     dispatchBlocks((b) => Blocks.convertBlock(b, blockId, newType, { newId }));
+  }, [dispatchBlocks]);
+
+  // Read tcState via ref to avoid recreating the handler on every TC toggle —
+  // this prop is passed to every PmEditableBlock instance.
+  const handleConvertBlockType = useCallback((blockId, newType) => {
+    dispatchBlocks((b) => Blocks.convertBlockType(b, blockId, newType, { tcState: tcStateRef.current }));
+    setLintingState((s) => linting.clearBlock(s, blockId));
+    setOpenCommentId((id) => {
+      if (!id) return id;
+      const c = commentsStateRef.current?.byId.get(id);
+      return c?.blockId === blockId ? null : id;
+    });
   }, [dispatchBlocks]);
 
   const handlePromote = useCallback((blockId) => {
@@ -2686,6 +2700,7 @@ export default function SpecEditor() {
                   onFocusPrev={handleFocusPrev}
                   onFocusNext={handleFocusNext}
                   onConvertBlock={handleConvertBlock}
+                  onConvertBlockType={handleConvertBlockType}
                   onChangeOliLevel={handleChangeOliLevel}
                   resolveHtml={resolveHtml}
                   tailorKey={tailorKey}

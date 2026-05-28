@@ -10,7 +10,7 @@
  * Props (App→block surface):
  *   - block, yStore, onUpdate, onEnterKey, isFocused, onFocus
  *   - oliLabel, onDelete, onFocusPrev, onFocusNext
- *   - onConvertBlock, onChangeOliLevel
+ *   - onConvertBlock, onConvertBlockType, onChangeOliLevel
  *   - resolveHtml, tailorKey
  *   - trackChanges, identity
  *   - onAcceptRevision, onRejectRevision
@@ -140,6 +140,7 @@ function PmEditableBlock({
   onFocusPrev,
   onFocusNext,
   onConvertBlock,
+  onConvertBlockType,
   onChangeOliLevel,
   resolveHtml,
   tailorKey,
@@ -200,6 +201,8 @@ function PmEditableBlock({
   onUpdateRef.current = onUpdate;
   const onConvertBlockRef = useRef(onConvertBlock);
   onConvertBlockRef.current = onConvertBlock;
+  const onConvertBlockTypeRef = useRef(onConvertBlockType);
+  onConvertBlockTypeRef.current = onConvertBlockType;
   const onCommentClickRef = useRef(onCommentClick);
   onCommentClickRef.current = onCommentClick;
   const onRefreshTcSnapshotRef = useRef(onRefreshTcSnapshot);
