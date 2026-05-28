@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo } from "react";
+import { Pencil, Trash2, Check, X } from "lucide-react";
 import { BLOCK_MARGINS } from "../lib/ini-config.js";
 import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
 import * as cm from "../lib/comments.js";
@@ -164,36 +165,34 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
           <button
             onClick={(e) => { e.stopPropagation(); onAcceptRevision(block.id); }}
             title={`Accept ${block.revision}`}
+            className="gutter-btn-accept"
             style={{
-              width: 18, height: 18,
-              border: "1px solid #00800040", borderRadius: 3,
-              backgroundColor: "#f0fdf4", color: "#008000",
+              width: 18, height: 18, borderRadius: 3,
               fontSize: 11, cursor: "pointer",
               display: "flex", alignItems: "center", justifyContent: "center",
               padding: 0, lineHeight: 1,
             }}
-          >✓</button>
+          ><Check size={12} /></button>
           <button
             onClick={(e) => { e.stopPropagation(); onRejectRevision(block.id); }}
             title={`Reject ${block.revision}`}
+            className="gutter-btn-reject"
             style={{
-              width: 18, height: 18,
-              border: "1px solid #ff444440", borderRadius: 3,
-              backgroundColor: "#fef2f2", color: "#ff4444",
+              width: 18, height: 18, borderRadius: 3,
               fontSize: 11, cursor: "pointer",
               display: "flex", alignItems: "center", justifyContent: "center",
               padding: 0, lineHeight: 1,
             }}
-          >✗</button>
+          ><X size={12} /></button>
         </div>
       )}
 
       <div className="ref-block" style={{
         marginLeft: leftMargin,
         marginBottom: 8,
-        border: isFocused ? "1px solid #cbd5e1" : "1px solid transparent",
+        border: isFocused ? "1px solid var(--sim-border, #cbd5e1)" : "1px solid transparent",
         borderRadius: 4,
-        boxShadow: isFocused ? "0 0 0 2px rgba(99,132,168,0.15)" : "none",
+        boxShadow: isFocused ? "0 0 0 2px var(--sim-focus-halo, rgba(99,132,168,0.15))" : "none",
         transition: "border 0.15s, box-shadow 0.15s",
         padding: "4px 0",
       }}>
@@ -207,26 +206,25 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
               onKeyDown={handleOrgKeyDown}
               onBlur={saveOrg}
               placeholder="Organization name (e.g. ASTM INTERNATIONAL)"
+              className="ref-input"
               {...NO_EXFIL_PROPS}
               style={{
                 width: "100%", fontSize: 14, fontWeight: 700,
-                border: "1px solid #cbd5e1", borderRadius: 3,
-                padding: "4px 8px", outline: "none",
-                color: "#1e293b",
+                borderRadius: 3, padding: "4px 8px", outline: "none",
               }}
             />
           </div>
         ) : (
           <div
-            className="ref-org"
+            className="ref-org ref-org-text"
             style={{
-              fontWeight: 700, fontSize: 14, color: "#1e293b",
+              fontWeight: 700, fontSize: 14,
               padding: "6px 12px", cursor: "pointer",
               display: "flex", alignItems: "center", gap: 8,
             }}
             onDoubleClick={readOnly ? undefined : startEditOrg}
           >
-            <span style={{ flex: 1 }}>{ref.org ? renderWithCommentMarks(ref.org, blockComments, activeCommentId) : <span style={{ color: "#94a3b8", fontStyle: "italic", fontWeight: 400 }}>Double-click to set organization</span>}</span>
+            <span style={{ flex: 1 }}>{ref.org ? renderWithCommentMarks(ref.org, blockComments, activeCommentId) : <span className="ref-org-placeholder" style={{ fontStyle: "italic", fontWeight: 400 }}>Double-click to set organization</span>}</span>
             {!readOnly && <button
               onClick={(e) => { e.stopPropagation(); startEditOrg(); }}
               className="ref-action-btn"
@@ -234,10 +232,11 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
               style={{
                 opacity: 0.3, transition: "opacity 0.15s",
                 border: "none", background: "transparent",
-                cursor: "pointer", fontSize: 16, color: "#64748b",
+                cursor: "pointer",
                 padding: "4px 6px", minWidth: 32, minHeight: 32,
+                display: "flex", alignItems: "center", justifyContent: "center",
               }}
-            >✏️</button>}
+            ><Pencil size={14} /></button>}
           </div>
         )}
 
@@ -254,13 +253,12 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
                 onChange={e => setRidDraft(e.target.value)}
                 onKeyDown={handleEntryKeyDown}
                 placeholder="RID (e.g. ASTM C33)"
+                className="ref-input ref-input-rid"
                 {...NO_EXFIL_PROPS}
                 style={{
                   width: 180, fontSize: 13,
-                  border: "1px solid #cbd5e1", borderRadius: 3,
-                  padding: "3px 6px", outline: "none",
+                  borderRadius: 3, padding: "3px 6px", outline: "none",
                   fontFamily: "'SF Mono', Consolas, monospace",
-                  color: "#86198f",
                 }}
               />
               <input
@@ -269,30 +267,31 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
                 onKeyDown={handleEntryKeyDown}
                 onBlur={saveEntry}
                 placeholder="Title/description"
+                className="ref-input"
                 {...NO_EXFIL_PROPS}
                 style={{
                   flex: 1, fontSize: 13,
-                  border: "1px solid #cbd5e1", borderRadius: 3,
-                  padding: "3px 6px", outline: "none",
-                  color: "#334155",
+                  borderRadius: 3, padding: "3px 6px", outline: "none",
                 }}
               />
               <button
                 onMouseDown={(e) => { e.preventDefault(); saveEntry(); }}
+                className="inline-action-accept"
                 style={{
-                  border: "none", background: "#f0fdf4",
-                  color: "#008000", cursor: "pointer",
+                  border: "none", cursor: "pointer",
                   fontSize: 12, padding: "2px 6px", borderRadius: 3,
+                  display: "flex", alignItems: "center",
                 }}
-              >✓</button>
+              ><Check size={12} /></button>
               <button
                 onMouseDown={(e) => { e.preventDefault(); cancelEntry(); }}
+                className="inline-action-reject"
                 style={{
-                  border: "none", background: "#fef2f2",
-                  color: "#ff4444", cursor: "pointer",
+                  border: "none", cursor: "pointer",
                   fontSize: 12, padding: "2px 6px", borderRadius: 3,
+                  display: "flex", alignItems: "center",
                 }}
-              >✗</button>
+              ><X size={12} /></button>
             </div>
           ) : (
             <div key={idx} className="ref-entry" style={{
@@ -305,7 +304,7 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
                 {entry.rid ? renderWithCommentMarks(entry.rid, blockComments, activeCommentId) : '???'}
               </span>
               <span className="ref-rtl" style={{
-                color: "#334155", fontSize: 14, flex: 1, lineHeight: "1.65",
+                fontSize: 14, flex: 1, lineHeight: "1.65",
               }}>
                 {renderWithCommentMarks(entry.rtl, blockComments, activeCommentId)}
               </span>
@@ -316,21 +315,23 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
                 style={{
                   opacity: 0.3, transition: "opacity 0.15s",
                   border: "none", background: "transparent",
-                  cursor: "pointer", fontSize: 16, color: "#64748b",
+                  cursor: "pointer",
                   padding: "4px 6px", minWidth: 32, minHeight: 32,
+                  display: "flex", alignItems: "center", justifyContent: "center",
                 }}
-              >✏️</button>}
+              ><Pencil size={14} /></button>}
               {!readOnly && <button
                 onClick={(e) => { e.stopPropagation(); deleteEntry(idx); }}
-                className="ref-action-btn"
+                className="ref-action-btn ref-action-danger"
                 title="Delete reference"
                 style={{
                   opacity: 0.3, transition: "opacity 0.15s",
                   border: "none", background: "transparent",
-                  cursor: "pointer", fontSize: 16, color: "#ef4444",
+                  cursor: "pointer",
                   padding: "4px 6px", minWidth: 32, minHeight: 32,
+                  display: "flex", alignItems: "center", justifyContent: "center",
                 }}
-              >🗑</button>}
+              ><Trash2 size={14} /></button>}
             </div>
           )
         ))}
@@ -340,7 +341,7 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
           className="ref-add-btn"
           onClick={addEntry}
           style={{
-            fontSize: 12, color: "#6384a8", cursor: "pointer",
+            fontSize: 12, cursor: "pointer",
             padding: "4px 12px", marginTop: 2,
           }}
         >

@@ -66,8 +66,8 @@ export default function RevisionControls({
       alignItems: "center",
       gap: 12,
       padding: "4px 16px",
-      borderBottom: "1px solid #e2e8f0",
-      backgroundColor: trackChanges ? "#eff6ff" : "#fafafa",
+      borderBottom: "1px solid var(--sim-border, #e2e8f0)",
+      backgroundColor: trackChanges ? "var(--sim-tint-info, #eff6ff)" : "var(--sim-toolbar-bg, #fafafa)",
       fontSize: 11,
       transition: "background 0.2s ease",
     }}>

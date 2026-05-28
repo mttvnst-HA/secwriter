@@ -57,8 +57,8 @@ export default function TailoringProfile({
       alignItems: "center",
       gap: 12,
       padding: "4px 16px",
-      borderBottom: "1px solid #e2e8f0",
-      backgroundColor: active ? "#f0fdf4" : "#fafafa",
+      borderBottom: "1px solid var(--sim-border, #e2e8f0)",
+      backgroundColor: active ? "var(--sim-tint-success, #f0fdf4)" : "var(--sim-toolbar-bg, #fafafa)",
       fontSize: 11,
       transition: "background 0.2s ease",
     }}>

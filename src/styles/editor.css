@@ -342,12 +342,54 @@ del.mark-del[data-author-color] {
 }
 
 .ref-entry:hover {
-  background: #f8fafc;
+  background: var(--sim-row-hover, #f8fafc);
 }
 
 .ref-add-btn:hover {
   color: #3b82f6;
   text-decoration: underline;
+}
+
+/* Reference block semantic classes — token-driven so dark mode flips cleanly.
+   Replaces the prior !important blanket at .dark-mode .ref-block. */
+.ref-org-text { color: var(--sim-text, #1e293b); }
+.ref-rtl { color: var(--sim-text, #334155); }
+.ref-input {
+  border: 1px solid var(--sim-border, #cbd5e1);
+  background: var(--sim-input-bg, #ffffff);
+  color: var(--sim-text, #1e293b);
+}
+.ref-input.ref-input-rid { color: var(--sim-rid-text, #86198f); }
+.ref-add-btn { color: var(--sim-text-secondary, #6384a8); }
+.ref-action-btn { color: var(--sim-text-secondary, #64748b); }
+.ref-action-btn.ref-action-danger { color: var(--sim-danger-text, #ef4444); }
+.ref-org-placeholder { color: var(--sim-text-secondary, #94a3b8); }
+
+/* Gutter & inline accept/reject buttons — same tokens, two visual treatments.
+   .gutter-btn is the bordered pill on the left rail; .inline-action-btn is
+   the borderless variant used inside the edit form. */
+.gutter-btn-accept {
+  background: var(--sim-success-tint, #f0fdf4);
+  color: var(--sim-success-text, #008000);
+  border: 1px solid var(--sim-success-text, #00800040);
+}
+.gutter-btn-reject {
+  background: var(--sim-danger-tint, #fef2f2);
+  color: var(--sim-danger-text, #ff4444);
+  border: 1px solid var(--sim-danger-text, #ff444440);
+}
+.inline-action-accept {
+  background: var(--sim-success-tint, #f0fdf4);
+  color: var(--sim-success-text, #008000);
+}
+.inline-action-reject {
+  background: var(--sim-danger-tint, #fef2f2);
+  color: var(--sim-danger-text, #ff4444);
+}
+.cross-ref-remove-btn {
+  background: var(--sim-danger-tint, #fef2f2);
+  color: var(--sim-danger-text, #dc2626);
+  border: 1px solid var(--sim-danger-text, #dc262640);
 }
 
 [contenteditable]:empty:before {
@@ -390,6 +432,24 @@ del.mark-del[data-author-color] {
   --sim-editor-bg: #f8f7f4;
   --sim-input-bg: #ffffff;
   --sim-hover: #f1f5f9;
+  /* Note block tokens — consumed by PmEditableBlock's inline baseStyle so the
+     theme can swap colors without React knowing about dark mode. */
+  --sim-note-bg: #fffbeb;
+  --sim-note-text: #92400e;
+  --sim-note-border: #f59e0b;
+  /* Toolbar tint variants — used by TailoringProfile (active=success) and
+     RevisionControls (trackChanges=info) to indicate "this row is lit up". */
+  --sim-tint-success: #f0fdf4;
+  --sim-tint-info: #eff6ff;
+  /* Semantic action tokens — RefBlock + CrossRefPanel gutter buttons, trash
+     icons, RID labels. Theme each via class hook so light/dark switch cleanly. */
+  --sim-success-text: #008000;
+  --sim-success-tint: #f0fdf4;
+  --sim-danger-text: #ff4444;
+  --sim-danger-tint: #fef2f2;
+  --sim-rid-text: #86198f;
+  --sim-row-hover: #f8fafc;
+  --sim-focus-halo: rgba(99, 132, 168, 0.15);
 }
 
 /* ─── Inline linting highlights (CSS Custom Highlight API) ─── */
@@ -431,16 +491,38 @@ del.mark-del[data-author-color] {
 
 .dark-mode {
   color-scheme: dark;
-  --sim-bg: #0f172a;
-  --sim-surface: #1e293b;
-  --sim-sidebar-bg: #0f172a;
+  /* Two-tier elevation: canvas < surface. Sidebar sits one step below canvas
+     so it reads as a frame rather than competing with the editor pane. */
+  --sim-bg: #161a22;
+  --sim-surface: #1d222c;
+  --sim-sidebar-bg: #13171f;
   --sim-text: #e2e8f0;
   --sim-text-secondary: #94a3b8;
-  --sim-border: #334155;
-  --sim-toolbar-bg: #1e293b;
-  --sim-editor-bg: #0f172a;
-  --sim-input-bg: #1e293b;
-  --sim-hover: #334155;
+  --sim-border: #2a3140;
+  --sim-toolbar-bg: #1d222c;
+  --sim-editor-bg: #161a22;
+  --sim-input-bg: #1d222c;
+  /* Hover steps one stop above border so bordered buttons keep an edge on hover. */
+  --sim-hover: #323a4a;
+  /* Note block tokens — low-chroma amber-tinted slate replaces the cream/maroon
+     so notes read as advisory, not danger. Amber accent kept on the left border. */
+  --sim-note-bg: #1f1b13;
+  --sim-note-text: #e5e7eb;
+  --sim-note-border: #a16207;
+  /* Toolbar tint variants — very dark green/blue-tinted slate, just enough chroma
+     to signal "this row is lit up" without rendering as a panic-pitched pastel. */
+  --sim-tint-success: #162920;
+  --sim-tint-info: #152030;
+  /* Semantic action tokens — dark counterparts. Trash drops to muted #b45454
+     (closer to comment-resolved amber #a16207) so destructive affordances stop
+     vibrating against the surface. */
+  --sim-success-text: #4ade80;
+  --sim-success-tint: rgba(34, 197, 94, 0.12);
+  --sim-danger-text: #b45454;
+  --sim-danger-tint: rgba(239, 68, 68, 0.10);
+  --sim-rid-text: #d8b4fe;
+  --sim-row-hover: #232a37;
+  --sim-focus-halo: rgba(96, 165, 250, 0.18);
 }
 
 .dark-mode body {
@@ -448,14 +530,16 @@ del.mark-del[data-author-color] {
   color: var(--sim-text);
 }
 
-/* Inline marks in dark mode — preserve hue, darken backgrounds */
-.dark-mode .mark-rid { background: #3b0764; color: #d8b4fe; }
-.dark-mode .mark-srf { background: #4a044e; color: #e879f9; }
-.dark-mode .mark-sub { background: #1e3a5f; color: #93c5fd; }
-.dark-mode .mark-eng { background: #1e3a5f; color: #93c5fd; }
-.dark-mode .mark-met { background: #450a0a; color: #fca5a5; }
-.dark-mode .mark-tai { background: #083344; color: #67e8f9; }
-.dark-mode .mark-tst { background: #450a0a; color: #fca5a5; }
+/* Inline marks in dark mode — surface-tinted overlays, accent-color text.
+   Saturated fills (#3b0764, #4a044e, etc.) read as neon pills against a
+   dark canvas; transparent overlays keep the hue identity without vibration. */
+.dark-mode .mark-rid { background: rgba(168, 85, 247, 0.12); color: #c4b5fd; }
+.dark-mode .mark-srf { background: rgba(217, 70, 239, 0.12); color: #d8b4fe; }
+.dark-mode .mark-sub { background: rgba(59, 130, 246, 0.12); color: #93c5fd; }
+.dark-mode .mark-eng { background: rgba(59, 130, 246, 0.12); color: #93c5fd; }
+.dark-mode .mark-met { background: rgba(239, 68, 68, 0.12); color: #fca5a5; }
+.dark-mode .mark-tai { background: rgba(6, 182, 212, 0.12); color: #67e8f9; }
+.dark-mode .mark-tst { background: rgba(239, 68, 68, 0.12); color: #fca5a5; }
 .dark-mode .mark-att { background: rgba(100, 116, 139, 0.15); color: #cbd5e1; }
 
 /* Revision marks in dark mode */
@@ -483,25 +567,19 @@ del.mark-del[data-author-color] {
 .dark-mode [contenteditable="true"] { color: #e2e8f0; }
 .dark-mode [contenteditable="true"]:focus { background: #1e293b !important; border-color: #475569 !important; }
 
-/* Note blocks in dark mode */
-.dark-mode .block-type-note [contenteditable="true"] {
-  background: #422006 !important;
-  border-left-color: #d97706 !important;
-  color: #fbbf24 !important;
-}
+/* Note block colors are themed via --sim-note-* tokens consumed by
+   PmEditableBlock's inline baseStyle. See :root / .dark-mode declarations above. */
 
 /* Table cells in dark mode */
 .dark-mode table { border-color: #475569; }
 .dark-mode td, .dark-mode th { border-color: #475569 !important; color: #e2e8f0; }
 .dark-mode th { background: #1e293b !important; color: #cbd5e1 !important; }
 
-/* Title blocks and ref block headers in dark mode */
+/* Title blocks in dark mode. Ref blocks self-theme through the .ref-* class
+   tokens above — the prior .ref-block !important blanket masked hardcoded
+   inline colors but also broke deliberate RID magenta and ignored borders. */
 .dark-mode [contenteditable="false"] { color: #e2e8f0; }
 .dark-mode [data-tag="TTL"] [contenteditable] { color: #e2e8f0 !important; }
-.dark-mode .ref-block { color: #e2e8f0 !important; }
-.dark-mode .ref-block span,
-.dark-mode .ref-block div,
-.dark-mode .ref-block input { color: #e2e8f0 !important; }
 
 /* Editor pane and content area in dark mode */
 .dark-mode div[style*="backgroundColor"] {
@@ -525,6 +603,21 @@ del.mark-del[data-author-color] {
 }
 .dark-mode button:hover {
   background-color: #475569 !important;
+}
+
+/* Primary toolbar buttons — opt-in via data-priority="primary".
+   Higher specificity than the universal .dark-mode button rule above so the
+   blue accent survives dark mode. Light-mode styling comes from inline JSX. */
+.dark-mode button[data-priority="primary"] {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #1d4ed8 !important;
+}
+.dark-mode button[data-priority="primary"]:hover {
+  background-color: #1d4ed8 !important;
+}
+button[data-priority="primary"]:hover {
+  background-color: #1d4ed8;
 }
 
 /* Active/special state buttons keep their semantic colors */
@@ -556,8 +649,14 @@ del.mark-del[data-author-color] {
   color: var(--sim-text-secondary) !important;
 }
 
-/* Section heading titles */
-.dark-mode [style*="fontWeight: 700"][style*="fontFamily"] {
+/* Section heading titles. React renders inline styles as kebab-case in the
+   DOM (font-weight, font-family) — the prior camelCase selector never matched,
+   which is why "SECTION 31 00 00" was invisible against the dark canvas.
+   Cover 600/700/800 since TitleBlock, toolbar section name, and the in-document
+   section banner each use a different weight. */
+.dark-mode [style*="font-weight: 600"][style*="font-family"],
+.dark-mode [style*="font-weight: 700"][style*="font-family"],
+.dark-mode [style*="font-weight: 800"][style*="font-family"] {
   color: var(--sim-text) !important;
 }
 
@@ -602,6 +701,26 @@ del.mark-del[data-author-color] {
 /* Scrollbar in dark mode */
 .dark-mode ::-webkit-scrollbar-thumb { background: #475569; }
 .dark-mode ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+/* Tag labels in dark mode — dim from sky-500 to slate-600 so <TXT>/</NTE>
+   markers are scannable without leading the eye horizontally during reading. */
+.dark-mode .tag-label,
+.dark-mode .tags-visible [data-tag]::before,
+.dark-mode .tags-visible [data-tag]::after {
+  color: #475569;
+}
+
+/* CrossRef banner ("N unlinked citations, M orphaned references") in dark mode.
+   Light-mode amber-50 (#fffbeb) clashes against the dark canvas; mute to the
+   same low-chroma amber-tinted slate used by note blocks. Border is the
+   standard divider; text drops from amber-800 to amber-400 for AA contrast. */
+.dark-mode .cross-ref-banner {
+  background-color: #1f1b13 !important;
+  border-bottom-color: var(--sim-border) !important;
+}
+.dark-mode .cross-ref-banner span {
+  color: #fbbf24 !important;
+}
 
 /* Reset */
 * {

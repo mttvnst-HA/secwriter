@@ -26,10 +26,7 @@ export default function CrossRefPanel({ blocks, sectionNumber, onRemoveOrphaned 
   };
 
   const removeBtnStyle = {
-    border: "1px solid #dc262640",
     borderRadius: 3,
-    backgroundColor: "#fef2f2",
-    color: "#dc2626",
     fontSize: 10,
     padding: "1px 6px",
     cursor: "pointer",
@@ -39,7 +36,7 @@ export default function CrossRefPanel({ blocks, sectionNumber, onRemoveOrphaned 
   };
 
   return (
-    <div style={{
+    <div className="cross-ref-banner" style={{
       padding: "4px 16px",
       borderBottom: "1px solid #e2e8f0",
       backgroundColor: "#fffbeb",
@@ -86,6 +83,7 @@ export default function CrossRefPanel({ blocks, sectionNumber, onRemoveOrphaned 
                 <button
                   onClick={(e) => { e.stopPropagation(); handleRemove(rid); }}
                   title={`Remove ${rid} from REFERENCES`}
+                  className="cross-ref-remove-btn"
                   style={removeBtnStyle}
                 >Remove</button>
               )}
@@ -96,6 +94,7 @@ export default function CrossRefPanel({ blocks, sectionNumber, onRemoveOrphaned 
               <button
                 onClick={(e) => { e.stopPropagation(); handleRemoveAll(); }}
                 title="Remove all orphaned references"
+                className="cross-ref-remove-btn"
                 style={{
                   ...removeBtnStyle,
                   marginLeft: 0,

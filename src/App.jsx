@@ -1930,8 +1930,8 @@ export default function SpecEditor() {
           flexWrap: "wrap",
           gap: 8,
           padding: "8px 16px",
-          borderBottom: "1px solid #e2e8f0",
-          backgroundColor: "#ffffff",
+          borderBottom: "1px solid var(--sim-border, #e2e8f0)",
+          backgroundColor: "var(--sim-toolbar-bg, #ffffff)",
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginRight: "auto" }}>
             <span style={{ fontSize: 14, fontWeight: 700, color: "#0f172a", fontFamily: "Georgia, serif" }}>
@@ -1946,18 +1946,19 @@ export default function SpecEditor() {
             <button
               onClick={() => fileInputRef.current?.click()}
               title="Import .SEC file"
+              data-priority="primary"
               style={{
                 display: "flex",
                 alignItems: "center",
                 gap: 4,
                 padding: "4px 10px",
-                backgroundColor: "#f1f5f9",
-                border: "1px solid #e2e8f0",
+                backgroundColor: "#2563eb",
+                border: "1px solid #1d4ed8",
                 borderRadius: 6,
                 cursor: "pointer",
                 fontSize: 13,
                 fontWeight: 600,
-                color: "#475569",
+                color: "#ffffff",
                 minHeight: 32,
               }}
             >
@@ -1966,18 +1967,19 @@ export default function SpecEditor() {
             <button
               onClick={handleSave}
               title="Save (Ctrl+S)"
+              data-priority={saveStatus === null ? "primary" : undefined}
               style={{
                 display: "flex",
                 alignItems: "center",
                 gap: 4,
                 padding: "4px 10px",
-                backgroundColor: saveStatus === 'saved' ? "#d1fae5" : saveStatus === 'saving' ? "#e0f2fe" : "#f1f5f9",
-                border: `1px solid ${saveStatus === 'saved' ? "#10b981" : saveStatus === 'saving' ? "#38bdf8" : "#e2e8f0"}`,
+                backgroundColor: saveStatus === 'saved' ? "#d1fae5" : saveStatus === 'saving' ? "#e0f2fe" : "#2563eb",
+                border: `1px solid ${saveStatus === 'saved' ? "#10b981" : saveStatus === 'saving' ? "#38bdf8" : "#1d4ed8"}`,
                 borderRadius: 6,
                 cursor: "pointer",
                 fontSize: 13,
                 fontWeight: 600,
-                color: saveStatus === 'saved' ? "#047857" : saveStatus === 'saving' ? "#0369a1" : "#475569",
+                color: saveStatus === 'saved' ? "#047857" : saveStatus === 'saving' ? "#0369a1" : "#ffffff",
                 minHeight: 32,
                 transition: "background-color 150ms, border-color 150ms, color 150ms",
               }}
@@ -2923,10 +2925,10 @@ export default function SpecEditor() {
           alignItems: "center",
           justifyContent: "space-between",
           padding: "5px 16px",
-          borderTop: "1px solid #e2e8f0",
-          backgroundColor: "#ffffff",
+          borderTop: "1px solid var(--sim-border, #e2e8f0)",
+          backgroundColor: "var(--sim-toolbar-bg, #ffffff)",
           fontSize: 12,
-          color: "#64748b",
+          color: "var(--sim-text-secondary, #64748b)",
         }}>
           <span>{blocks.length} blocks | {blocks.filter(b => b.type === "title").length} sections | {blocks.filter(b => b.type === "table").length} tables</span>
           <span>Enter: new paragraph | Backspace: delete empty | / : insert block type | Tab/Shift+Tab: heading level | Ctrl+Z: undo | Ctrl+Y: redo</span>
