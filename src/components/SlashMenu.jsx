@@ -145,6 +145,11 @@ export default function SlashMenu({ filter, selectedIdx, onSelect, onClose, anch
         width: MENU_WIDTH,
         maxHeight: placement.maxHeight ?? undefined,
         overflowY: placement.maxHeight ? 'auto' : 'visible',
+        // Sticky header occupies the top of the scroll container. Without
+        // scrollPaddingTop, scrollIntoView({ block: 'nearest' }) places row 0
+        // at scroll position 0 and the sticky header overlaps it. The browser
+        // honors scroll-padding when computing the target scroll position.
+        scrollPaddingTop: HEADER_HEIGHT,
         // Prevent wheel events at the menu's scroll boundary from chaining to the
         // document — without this, scrolling past the menu's top/bottom would
         // trigger a window scroll and immediately close the menu.
