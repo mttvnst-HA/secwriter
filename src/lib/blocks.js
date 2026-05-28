@@ -638,7 +638,7 @@ export function updateRefScalar(blocks, blockId, data) {
 
 // ── convertBlockType / composeRevision / levelDelta (Family A in-place flip) ─
 
-const FAMILY_A = new Set(['txt', 'note', 'oli', 'item', 'lst']);
+export const FAMILY_A = new Set(['txt', 'note', 'oli', 'item', 'lst']);
 
 /**
  * Compose the block-level revision flag for a type-conversion under TC.

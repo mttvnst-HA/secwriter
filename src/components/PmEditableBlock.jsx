@@ -85,7 +85,9 @@ import { closeSlashMenuPlugin, isBlockJustSlashTrigger } from '../lib/pm-slash-d
 import { tagLabelsPlugin, setTagsVisible } from '../lib/pm-plugins/tag-labels.js';
 import { blockKeymap } from '../lib/pm-plugins/keymap.js';
 import { wordBoundaryUndoPlugin } from '../lib/pm-plugins/word-boundary-undo.js';
-import { registerBlock, unregisterBlock } from '../lib/block-registry.js';
+import { registerBlock, unregisterBlock, getBlockHandle } from '../lib/block-registry.js';
+import { FAMILY_A } from '../lib/blocks.js';
+import BlockGutterMenu from './BlockGutterMenu.jsx';
 import { subscribeBlock } from '../lib/block-html-store.js';
 import { dispatchDelAction } from '../lib/pm-del-popup.js';
 import { activeCommentPlugin } from '../lib/pm-plugins/active-comment.js';
@@ -906,6 +908,9 @@ function PmEditableBlock({
     };
   }, [slashState.open, slashState.selectedIdx]);
 
+  // ── Gutter menu hover state ───────────────────────────────────────────────
+  const [hovering, setHovering] = useState(false);
+
   // ── Layout (mirrors EditableBlock.jsx) ───────────────────────────────────
   const isNote = block.type === 'note';
   const isTxt = block.type === 'txt';
@@ -952,6 +957,11 @@ function PmEditableBlock({
   const revisionClass = `${block.revision ? `block-revision-${block.revision}` : ''} ${isNote ? 'block-type-note' : ''}`.trim();
   const sgmlTag = { txt: 'TXT', note: 'NTE', oli: 'OLI', item: 'ITM', lst: 'LST' }[block.type] || 'TXT';
 
+  const isFamilyA = FAMILY_A.has(block.type);
+  // Hide gutter menu when block has a block-level revision (collision rule
+  // per spec §4.5) or when in readOnly mode.
+  const showGutterMenu = isFamilyA && !block.revision && !readOnly;
+
   // 1i-b.1 — user-facing fallback for migrationPartial blocks. The mount
   // effect bails before constructing EditorView for this shape, so the
   // banner is the only thing the user sees for this block until the
@@ -973,8 +983,37 @@ function PmEditableBlock({
     );
   }
 
+  // data-block-type drives E2E selectors (tests/e2e/editor.spec.js
+  // block-type-conversion suite) — see Task 7 of the conversion plan.
   return (
-    <div id={`block-${block.id}`} style={{ position: 'relative' }} className={revisionClass} data-tag={sgmlTag}>
+    <div
+      id={`block-${block.id}`}
+      style={{ position: 'relative' }}
+      className={revisionClass}
+      data-tag={sgmlTag}
+      data-block-type={block.type}
+      onMouseEnter={() => setHovering(true)}
+      onMouseLeave={() => setHovering(false)}
+    >
+      {showGutterMenu && (
+        <BlockGutterMenu
+          currentType={block.type}
+          visible={hovering}
+          onConvert={(newType) => {
+            onConvertBlockTypeRef.current?.(block.id, newType);
+            // Re-focus the EditorView after dispatch. The button's
+            // `onMouseDown preventDefault` keeps PM focused across the
+            // click itself, but the type-flip triggers a React re-render
+            // that PM may re-mount focus on. rAF lets that settle, then we
+            // re-target via block-registry (the handle identity is
+            // preserved across Family A flips per Task 2).
+            requestAnimationFrame(() => {
+              const handle = getBlockHandle(block.id);
+              handle?.focus?.({ atEnd: false });
+            });
+          }}
+        />
+      )}
       {(block.revision || hasInlineRevisions) && onAcceptRevision && (
         <div style={{
           position: 'absolute', left: -4, top: 4, display: 'flex',
