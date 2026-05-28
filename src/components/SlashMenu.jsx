@@ -19,7 +19,7 @@ const ROW_HEIGHT = 50;
 const MENU_WIDTH = 280;
 const VIEWPORT_MARGIN = 8;
 
-export function computePlacement({ anchorRect, viewportHeight, menuHeight, margin = 8 }) {
+export function computePlacement({ anchorRect, viewportHeight, menuHeight, margin }) {
   const spaceBelow = viewportHeight - anchorRect.bottom - margin;
   const spaceAbove = anchorRect.top - margin;
 
@@ -47,7 +47,7 @@ export function computePlacement({ anchorRect, viewportHeight, menuHeight, margi
   };
 }
 
-export function computeLeft({ anchorRect, menuWidth, viewportWidth, margin = 8 }) {
+export function computeLeft({ anchorRect, menuWidth, viewportWidth, margin }) {
   const desired = anchorRect.left;
   return Math.max(margin, Math.min(desired, viewportWidth - menuWidth - margin));
 }

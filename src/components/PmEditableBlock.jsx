@@ -816,7 +816,13 @@ function PmEditableBlock({
       dom.removeAttribute('aria-controls');
       dom.removeAttribute('aria-activedescendant');
     }
-    return undefined;
+    return () => {
+      dom.removeAttribute('role');
+      dom.removeAttribute('aria-haspopup');
+      dom.removeAttribute('aria-expanded');
+      dom.removeAttribute('aria-controls');
+      dom.removeAttribute('aria-activedescendant');
+    };
   }, [slashState.open, slashState.selectedIdx]);
 
   // ── Layout (mirrors EditableBlock.jsx) ───────────────────────────────────
