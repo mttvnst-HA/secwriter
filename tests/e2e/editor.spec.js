@@ -609,13 +609,61 @@ test.describe('Slash command menu', () => {
     await expect(newFocused).toBeVisible({ timeout: 3000 });
   });
 
-  test('Escape closes the slash menu', async ({ page }) => {
+  test('Escape closes the slash menu and deletes the empty newly-created block', async ({ page }) => {
+    // Capture block count BEFORE the fresh block — createFreshBlock adds one,
+    // Escape must remove the same one, so we end where we started.
+    const before = await getBlockCount(page);
     await createFreshBlock(page);
     await page.keyboard.type('/');
     await expect(page.getByText('Insert block', { exact: true })).toBeVisible({ timeout: 3000 });
 
     await page.keyboard.press('Escape');
     await expect(page.getByText('Insert block', { exact: true })).not.toBeVisible();
+    // Block count returns to baseline — the empty new block was deleted.
+    await expect.poll(() => getBlockCount(page), { timeout: 3000 }).toBe(before);
+  });
+
+  test('clicking outside the block closes the menu and deletes the empty new block', async ({ page }) => {
+    // Regression: the slash menu must exit cleanly when the user clicks away
+    // from a freshly-created block. Without this, the menu persists until a
+    // selection is made or the slash character is deleted.
+    const before = await getBlockCount(page);
+    await createFreshBlock(page);
+    await page.keyboard.type('/');
+    await expect(page.getByText('Insert block', { exact: true })).toBeVisible({ timeout: 3000 });
+
+    // Click on the title block — an unambiguous "outside" target.
+    await page.locator('[data-block-id="n23"]').click();
+    await expect(page.getByText('Insert block', { exact: true })).not.toBeVisible({ timeout: 3000 });
+    await expect.poll(() => getBlockCount(page), { timeout: 3000 }).toBe(before);
+  });
+
+  test('clicking inside the block closes the menu and converts to paragraph', async ({ page }) => {
+    // Regression: clicking back inside the block where the slash menu opened
+    // must exit the menu AND drop the slash trigger text so the user can
+    // start typing paragraph content immediately. The block stays in place.
+    const before = await getBlockCount(page);
+    await createFreshBlock(page);
+    await page.keyboard.type('/he');
+    await expect(page.getByText('Insert block', { exact: true })).toBeVisible({ timeout: 3000 });
+
+    // Click on the same block to dismiss + convert.
+    const focused = page.locator('[data-block-id]:focus');
+    const blockId = await focused.getAttribute('data-block-id');
+    await focused.click();
+    await expect(page.getByText('Insert block', { exact: true })).not.toBeVisible({ timeout: 3000 });
+
+    // Block count stayed at "before + 1" — block was kept, not deleted.
+    expect(await getBlockCount(page)).toBe(before + 1);
+
+    // The "/he" trigger text was cleared by the convertBlock id-swap. The new
+    // block is a fresh paragraph with empty content.
+    const newFocused = page.locator('[data-block-id]:focus');
+    await expect(newFocused).toBeVisible({ timeout: 3000 });
+    const newId = await newFocused.getAttribute('data-block-id');
+    expect(newId).not.toBe(blockId); // id swap happened
+    const text = await newFocused.textContent();
+    expect((text || '').replace(/​/g, '').trim()).toBe('');
   });
 
   test('converting to Designer Note force-shows notes (zero-height regression)', async ({ page }) => {
