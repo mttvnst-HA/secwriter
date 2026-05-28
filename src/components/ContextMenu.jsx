@@ -89,6 +89,7 @@ export default function ContextMenu({ items, anchor, onSelect, onClose }) {
       hasFocusedRef.current = true;
       menuRef.current?.focus?.();
     }
+    return () => { hasFocusedRef.current = false; };
   }, [placement]);
 
   if (!anchor || items.length === 0 || !placement) return null;

@@ -53,4 +53,15 @@ describe('ContextMenu', () => {
     fireEvent.mouseDown(document.body);
     expect(onClose).toHaveBeenCalled();
   });
+
+  it('focuses the menu after it renders (keyboard nav works without a click)', () => {
+    setup();
+    const menu = screen.getByRole('menu');
+    expect(document.activeElement).toBe(menu);
+  });
+
+  it('renders nothing when items is empty', () => {
+    render(<ContextMenu items={[]} anchor={{ x: 10, y: 10 }} onSelect={() => {}} onClose={() => {}} />);
+    expect(screen.queryByRole('menu')).toBeNull();
+  });
 });
