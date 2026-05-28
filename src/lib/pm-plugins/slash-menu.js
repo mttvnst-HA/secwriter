@@ -39,6 +39,14 @@ export function slashMenuPlugin() {
     state: {
       init: () => ({ ...initialState }),
       apply: (tr, prev, _oldState, newState) => {
+        // forceClose meta — caller wants the menu closed without mutating the
+        // doc (Escape, outside-click, click-inside-block dismiss paths). Without
+        // this, callers can only "close" by removing the leading "/" character,
+        // which is wrong when we want to preserve the slash-trigger text in the
+        // block but stop showing the popup.
+        if (tr.getMeta(slashMenuPluginKey) === 'forceClose') {
+          return prev.open ? { ...initialState } : prev;
+        }
         // Only reconsider on doc changes — selection moves don't open / close
         // the slash menu. Without this short-circuit, every cursor move would
         // emit a fresh state object and re-fire listeners.

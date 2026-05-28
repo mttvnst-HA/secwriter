@@ -38,8 +38,23 @@
  *   4. Tag visibility is a PM plugin emitting widget decorations, not
  *      contentEditable=false DOM injection (Q4). Pseudo-elements don't
  *      create caret positions; widgets do.
- *   5. Slash detection is a PM plugin watching transactions (Q5); the
- *      popup is the existing React `SlashMenu.jsx`.
+ *   5. Slash detection is a PM plugin watching transactions
+ *      (`pm-plugins/slash-menu.js`, Q5). React `SlashMenu.jsx` is the popup,
+ *      portal-mounted at `document.body` with `position: fixed` and anchored
+ *      via `view.coordsAtPos(fromPos)` (the `computeSlashAnchorRect` helper
+ *      handles the fallback to the block's bounding box). PmEditableBlock
+ *      owns the combobox ARIA wiring: the PM editor's contentEditable DOM
+ *      gets `role=combobox` + `aria-controls` + `aria-activedescendant`
+ *      while the menu is open (the listbox itself never receives focus).
+ *      Hover is parent-routed via `onHoverChange` → `selectedIdx` so arrow
+ *      keys advance from the hovered row, not from a stale internal value.
+ *      Three dismiss paths route through `pm-slash-dismiss.js` helpers
+ *      (`closeSlashMenuPlugin` + `isBlockJustSlashTrigger`): Escape and a
+ *      document-level mousedown listener (gated on `slashState.open`) close
+ *      the plugin via a `forceClose` meta — closing React state alone gets
+ *      re-projected back to open on the next keystroke. Escape and outside-
+ *      click delete the block when it contains only the slash trigger;
+ *      inside-click converts to a fresh empty paragraph via `onConvertBlock`.
  *   6. Re-lint trigger is `dispatchTransaction` (Q27) — fires for both
  *      local and remote ops. The legacy `useBlockLinting` hook expects an
  *      'input' event; we synthesize a fake one on doc-changing transactions
@@ -49,6 +64,8 @@
  *   - The legacy `setRef` / ZWS focus glue (Q4). PM owns the cursor model.
  *   - The handleInput debounce (Q22 substrate writes are sync via ySync).
  *   - `syncTagLabels` / `stripTagLabels` DOM mutation (decorations now).
+ *   - Slash-menu dismiss helpers — extracted to `lib/pm-slash-dismiss.js`
+ *     so Vitest can exercise them without mounting React + a PM EditorView.
  */
 
 import {
@@ -64,6 +81,7 @@ import { schema } from '../lib/pm-schema.js';
 import { pmFragmentToHtml } from '../lib/pmdoc-html.js';
 import { BLOCK_MARGINS } from '../lib/ini-config.js';
 import { slashMenuPlugin, slashMenuPluginKey } from '../lib/pm-plugins/slash-menu.js';
+import { closeSlashMenuPlugin, isBlockJustSlashTrigger } from '../lib/pm-slash-dismiss.js';
 import { tagLabelsPlugin, setTagsVisible } from '../lib/pm-plugins/tag-labels.js';
 import { blockKeymap } from '../lib/pm-plugins/keymap.js';
 import { wordBoundaryUndoPlugin } from '../lib/pm-plugins/word-boundary-undo.js';
@@ -153,7 +171,7 @@ function PmEditableBlock({
   const viewRef = useRef(null);
   const yXmlFragmentRef = useRef(null);
   const onUpdateDebounceRef = useRef(null);
-  const [slashState, setSlashState] = useState({ open: false, filter: '', selectedIdx: 0 });
+  const [slashState, setSlashState] = useState({ open: false, filter: '', selectedIdx: 0, fromPos: null });
   const [hasInlineRevisions, setHasInlineRevisions] = useState(false);
   // 1g.5 (#86): el + rect only — position resolution happens at action time
   // via view.posAtDOM(el, 0); no DOM-index against a serialized HTML string.
@@ -286,7 +304,7 @@ function PmEditableBlock({
     yXmlFragmentRef.current = yXml;
 
     const handleSlashSelect = (type) => {
-      setSlashState({ open: false, filter: '', selectedIdx: 0 });
+      setSlashState({ open: false, filter: '', selectedIdx: 0, fromPos: null });
       onConvertBlockRef.current?.(block.id, type);
     };
 
@@ -300,7 +318,17 @@ function PmEditableBlock({
         return true;
       },
       onSlashEscape: () => {
-        setSlashState({ open: false, filter: '', selectedIdx: 0 });
+        // Two-layer close: dispatch forceClose so the plugin state resets
+        // (otherwise next keystroke re-projects open=true back into React
+        // state), then mirror to React state for instant popup teardown.
+        // If the block contains nothing but the slash trigger, also delete
+        // the block — user requested "Escape exits the menu AND removes
+        // the empty newly-created block".
+        const view = viewRef.current;
+        const shouldDelete = isBlockJustSlashTrigger(view);
+        closeSlashMenuPlugin(view);
+        setSlashState({ open: false, filter: '', selectedIdx: 0, fromPos: null });
+        if (shouldDelete) onDeleteRef.current?.(block.id);
         return true;
       },
       onSlashArrowDown: () => {
@@ -480,10 +508,15 @@ function PmEditableBlock({
 
         // Slash state mirroring: pull from the plugin and project to React.
         const slash = slashMenuPluginKey.getState(newState);
-        if (slash && (slash.open !== slashStateRef.current.open || slash.filter !== slashStateRef.current.filter)) {
+        if (slash && (
+          slash.open !== slashStateRef.current.open ||
+          slash.filter !== slashStateRef.current.filter ||
+          slash.fromPos !== slashStateRef.current.fromPos
+        )) {
           setSlashState((prev) => ({
             open: slash.open,
             filter: slash.filter,
+            fromPos: slash.fromPos,
             selectedIdx: slash.open ? prev.selectedIdx : 0,
           }));
         }
@@ -778,9 +811,97 @@ function PmEditableBlock({
   }, [delPopup, block.id]);
 
   const handleSlashSelectClick = useCallback((type) => {
-    setSlashState({ open: false, filter: '', selectedIdx: 0 });
+    setSlashState({ open: false, filter: '', selectedIdx: 0, fromPos: null });
     onConvertBlockRef.current?.(block.id, type);
   }, [block.id]);
+
+  const handleSlashClose = useCallback(() => {
+    // Window-scroll dismiss path (called by SlashMenu.onClose). Same two-layer
+    // close as Escape: forceClose on the plugin, then React state. Without
+    // forceClose the next keystroke re-projects open=true and the popup
+    // bounces back. No block deletion here — scroll is incidental motion,
+    // not a user-driven exit.
+    closeSlashMenuPlugin(viewRef.current);
+    setSlashState({ open: false, filter: '', selectedIdx: 0, fromPos: null });
+  }, []);
+
+  const slashAnchorRect = useMemo(() => {
+    if (!slashState.open) return null;
+    return computeSlashAnchorRect(viewRef.current, slashState.fromPos, containerRef.current);
+  }, [slashState.open, slashState.fromPos]);
+
+  // ── Slash menu dismiss on mousedown outside the popup ────────────────────
+  // Two exit paths handled here:
+  //
+  //   (a) mousedown lands inside the block's PM editor DOM. User wants to
+  //       resume typing in the block as a paragraph. Close the menu and
+  //       convert the block to txt — onConvertBlock allocates a new id +
+  //       html='' + isNew=true, which remounts the EditorView, clears the
+  //       slash trigger text, and auto-focuses the fresh empty paragraph.
+  //
+  //   (b) mousedown lands anywhere else (other blocks, toolbar, sidebar).
+  //       User abandoned the menu. Close it; if the block is empty modulo
+  //       the slash trigger, delete it (user-requested cleanup of the
+  //       just-created scratch block). Otherwise leave the block alone.
+  //
+  // Skipped when the click lands inside the menu portal itself — the menu's
+  // own onMouseDown handles item selection there. Capture phase so we win
+  // against PM's own click handlers; mousedown (not click) so we exit
+  // before drag-selection or caret placement starts.
+  useEffect(() => {
+    if (!slashState.open) return undefined;
+    function onDocMouseDown(e) {
+      const target = e.target;
+      if (!(target instanceof Node)) return;
+      const listbox = document.getElementById('sim-slash-listbox');
+      if (listbox && listbox.contains(target)) return; // click on the menu
+      const view = viewRef.current;
+      const editorDom = view?.dom;
+      if (editorDom && editorDom.contains(target)) {
+        // (a) Click inside this block — close menu + convert to fresh paragraph.
+        closeSlashMenuPlugin(view);
+        setSlashState({ open: false, filter: '', selectedIdx: 0, fromPos: null });
+        onConvertBlockRef.current?.(block.id, 'txt');
+        return;
+      }
+      // (b) Click outside — close menu, delete block if it's only the trigger.
+      const shouldDelete = isBlockJustSlashTrigger(view);
+      closeSlashMenuPlugin(view);
+      setSlashState({ open: false, filter: '', selectedIdx: 0, fromPos: null });
+      if (shouldDelete) onDeleteRef.current?.(block.id);
+    }
+    document.addEventListener('mousedown', onDocMouseDown, true);
+    return () => document.removeEventListener('mousedown', onDocMouseDown, true);
+  }, [slashState.open, block.id]);
+
+  // ── Combobox ARIA: wire PM editor DOM so screen readers announce active items ──
+  // The listbox (SlashMenu portal) never receives focus; instead the PM editor's
+  // contentEditable DOM gets role=combobox + aria-controls/aria-activedescendant
+  // so AT announces item changes via the combobox pattern.
+  useEffect(() => {
+    const dom = viewRef.current?.dom;
+    if (!dom) return undefined;
+    if (slashState.open) {
+      dom.setAttribute('role', 'combobox');
+      dom.setAttribute('aria-haspopup', 'listbox');
+      dom.setAttribute('aria-expanded', 'true');
+      dom.setAttribute('aria-controls', 'sim-slash-listbox');
+      dom.setAttribute('aria-activedescendant', `sim-slash-item-${slashState.selectedIdx}`);
+    } else {
+      dom.removeAttribute('role');
+      dom.removeAttribute('aria-haspopup');
+      dom.removeAttribute('aria-expanded');
+      dom.removeAttribute('aria-controls');
+      dom.removeAttribute('aria-activedescendant');
+    }
+    return () => {
+      dom.removeAttribute('role');
+      dom.removeAttribute('aria-haspopup');
+      dom.removeAttribute('aria-expanded');
+      dom.removeAttribute('aria-controls');
+      dom.removeAttribute('aria-activedescendant');
+    };
+  }, [slashState.open, slashState.selectedIdx]);
 
   // ── Layout (mirrors EditableBlock.jsx) ───────────────────────────────────
   const isNote = block.type === 'note';
@@ -955,16 +1076,34 @@ function PmEditableBlock({
           onMuteNlpRule={onMuteNlpRule}
         />
       )}
-      {slashState.open && editable && (
+      {slashState.open && editable && slashAnchorRect && (
         <SlashMenu
           filter={slashState.filter}
           selectedIdx={slashState.selectedIdx}
           onSelect={handleSlashSelectClick}
-          position={{ left: leftMargin + 12, top: 32 }}
+          onClose={handleSlashClose}
+          onHoverChange={(idx) => setSlashState((s) => ({ ...s, selectedIdx: idx }))}
+          anchorRect={slashAnchorRect}
         />
       )}
     </div>
   );
+}
+
+function computeSlashAnchorRect(view, fromPos, fallbackEl) {
+  if (view && typeof fromPos === 'number') {
+    try {
+      const coords = view.coordsAtPos(fromPos);
+      return { top: coords.top, bottom: coords.bottom, left: coords.left, right: coords.right };
+    } catch {
+      // PM view may not be in a consistent state — fall through to DOM bounds.
+    }
+  }
+  if (fallbackEl) {
+    const r = fallbackEl.getBoundingClientRect();
+    return { top: r.top, bottom: r.bottom, left: r.left, right: r.right };
+  }
+  return null;
 }
 
 function gutterBtn(color, bg) {

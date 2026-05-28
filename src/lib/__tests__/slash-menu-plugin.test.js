@@ -66,6 +66,33 @@ describe('slash-menu plugin', () => {
     expect(after).toBe(before); // reference equality — same state object reused
   });
 
+  it('forceClose meta resets state to closed without mutating doc', () => {
+    // Regression: closing the menu via React state alone leaves plugin
+    // state at {open:true}; the next docChanged tr re-projects open back
+    // into React. forceClose lets dismiss paths (Escape, outside-click)
+    // close the plugin without removing the leading "/" text.
+    let state = makeState('/heading');
+    expect(getSlashMenuState(state).open).toBe(true);
+    const beforeDoc = state.doc;
+    const tr = state.tr.setMeta(slashMenuPluginKey, 'forceClose');
+    state = state.apply(tr);
+    expect(getSlashMenuState(state).open).toBe(false);
+    expect(getSlashMenuState(state).filter).toBe('');
+    // Doc unchanged — the "/" text remains in the block.
+    expect(state.doc.eq(beforeDoc)).toBe(true);
+  });
+
+  it('forceClose is a no-op when menu already closed', () => {
+    // Identity-stable when already closed so dispatchTransaction's projection
+    // doesn't fire spuriously.
+    let state = makeState('foo');
+    const before = getSlashMenuState(state);
+    const tr = state.tr.setMeta(slashMenuPluginKey, 'forceClose');
+    state = state.apply(tr);
+    const after = getSlashMenuState(state);
+    expect(after).toBe(before); // reference equality
+  });
+
   it('plugin key is named "sim-slash-menu"', () => {
     // Important: a future change to the key invalidates state lookups in
     // PmEditableBlock's dispatchTransaction. PluginKey carries its name on
