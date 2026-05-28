@@ -807,9 +807,9 @@ function PmEditableBlock({
   };
   if (isNote) {
     Object.assign(baseStyle, {
-      borderLeft: '3px solid #f59e0b',
-      backgroundColor: '#fffbeb',
-      color: '#92400e',
+      borderLeft: '3px solid var(--sim-note-border, #f59e0b)',
+      backgroundColor: 'var(--sim-note-bg, #fffbeb)',
+      color: 'var(--sim-note-text, #92400e)',
       fontStyle: 'normal',
       marginBottom: 4,
       marginRight: 85,
@@ -822,7 +822,7 @@ function PmEditableBlock({
   } else if (isOli) {
     Object.assign(baseStyle, { paddingLeft: 28 });
   } else {
-    Object.assign(baseStyle, { backgroundColor: isFocused ? '#fafaf7' : 'transparent' });
+    Object.assign(baseStyle, { backgroundColor: isFocused ? 'var(--sim-surface, #fafaf7)' : 'transparent' });
   }
 
   const revisionClass = `${block.revision ? `block-revision-${block.revision}` : ''} ${isNote ? 'block-type-note' : ''}`.trim();
