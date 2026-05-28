@@ -122,6 +122,13 @@ export default function SlashMenu({ filter, selectedIdx, onSelect, onClose, anch
     activeItemRef.current?.scrollIntoView?.({ block: 'nearest' });
   }, [safeIdx]);
 
+  // Arrow-key nav drops mouse hover. Without this, mouse on row N pins
+  // activeIdx to N and arrow keys silently update selectedIdx underneath
+  // while the highlight stays on N until the user moves the mouse off.
+  useEffect(() => {
+    setHoverIdx(-1);
+  }, [selectedIdx]);
+
   // Conditional render — AFTER all hooks (Rules of Hooks).
   if (readOnly || !anchorRect) return null;
 

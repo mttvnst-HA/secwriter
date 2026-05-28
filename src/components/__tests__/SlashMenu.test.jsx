@@ -114,6 +114,30 @@ describe('SlashMenu', () => {
     expect(onClose).not.toHaveBeenCalled();
   });
 
+  it('keyboard nav (selectedIdx change) drops mouse hover so highlight follows arrows', () => {
+    // Regression: mouse hover used to win over keyboard via activeIdx = hoverIdx >= 0
+    // ? hoverIdx : safeIdx — arrow keys updated selectedIdx but the highlight stayed
+    // pinned to whichever row the mouse was over. Now selectedIdx change clears hover.
+    mount(<SlashMenu filter="" selectedIdx={0} onSelect={() => {}} onClose={() => {}} anchorRect={anchorRect} />);
+    const items = document.querySelectorAll('[role="option"]');
+    // Hover row 3.
+    act(() => {
+      items[3].dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+    });
+    // Parent fires arrow-down -> selectedIdx becomes 1.
+    act(() => {
+      root.render(<SlashMenu filter="" selectedIdx={1} onSelect={() => {}} onClose={() => {}} anchorRect={anchorRect} />);
+    });
+    // Highlight follows keyboard, not stale hover. aria-selected pins safeIdx; visual
+    // highlight uses activeIdx — both must point at row 1 now.
+    const itemsAfter = document.querySelectorAll('[role="option"]');
+    expect(itemsAfter[1].getAttribute('aria-selected')).toBe('true');
+    expect(itemsAfter[3].getAttribute('aria-selected')).toBe('false');
+    // Visual hover-or-keyboard highlight: row 1 has the active background, row 3 does not.
+    expect(itemsAfter[1].style.backgroundColor).toBe('rgb(241, 245, 249)');
+    expect(itemsAfter[3].style.backgroundColor).toBe('transparent');
+  });
+
   it('calls onSelect with the item type on mousedown', () => {
     const onSelect = vi.fn();
     mount(<SlashMenu filter="" selectedIdx={0} onSelect={onSelect} onClose={() => {}} anchorRect={anchorRect} />);
