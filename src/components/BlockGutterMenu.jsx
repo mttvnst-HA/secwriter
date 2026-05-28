@@ -30,6 +30,14 @@ const FAMILY_A_ORDER = [...FAMILY_A];
  * anchorLeft default = -18 because the editor surface's padding-left is
  * 24px (App.jsx). -22 would leave only 2px clearance from the scroll
  * container edge; -18 leaves 6px which is comfortable for hover targets.
+ *
+ * The container width spans |anchorLeft| + 4 so it reaches (and slightly
+ * overlaps) the block's left edge. The button itself sits in the gutter,
+ * away from the block, so without this bridge the pointer would cross a
+ * dead gap between button and block — leaving the parent's hover region
+ * and unmounting the menu before it could be clicked. The +4 overlap lands
+ * in the block's left margin (min 15px for TXT per section.ini), never over
+ * text, so it can't intercept clicks meant for block content.
  */
 export default function BlockGutterMenu({ currentType, visible, onConvert, anchorLeft = -18 }) {
   const [open, setOpen] = useState(false);
@@ -65,7 +73,7 @@ export default function BlockGutterMenu({ currentType, visible, onConvert, ancho
   const targets = FAMILY_A_ORDER.filter(t => t !== currentType);
 
   return (
-    <div ref={ref} style={{ position: 'absolute', left: anchorLeft, top: 4, zIndex: 12 }}>
+    <div ref={ref} style={{ position: 'absolute', left: anchorLeft, top: 4, width: Math.abs(anchorLeft) + 4, zIndex: 12 }}>
       <button
         type="button"
         aria-label="Convert block"
