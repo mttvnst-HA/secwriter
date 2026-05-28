@@ -1004,6 +1004,7 @@ function PmEditableBlock({
           selectedIdx={slashState.selectedIdx}
           onSelect={handleSlashSelectClick}
           onClose={handleSlashClose}
+          onHoverChange={(idx) => setSlashState((s) => ({ ...s, selectedIdx: idx }))}
           anchorRect={slashAnchorRect}
         />
       )}

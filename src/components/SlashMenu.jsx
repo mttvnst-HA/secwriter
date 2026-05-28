@@ -52,14 +52,13 @@ export function computeLeft({ anchorRect, menuWidth, viewportWidth, margin }) {
   return Math.max(margin, Math.min(desired, viewportWidth - menuWidth - margin));
 }
 
-export default function SlashMenu({ filter, selectedIdx, onSelect, onClose, anchorRect, readOnly = false }) {
+export default function SlashMenu({ filter, selectedIdx, onSelect, onClose, onHoverChange, anchorRect, readOnly = false }) {
   // IMPORTANT: All hook calls happen unconditionally. Conditional render moves to
   // the END of the function, after all hooks. The parent gates the component's
   // mount with `slashAnchorRect && ...`, but anchorRect can transiently become null
   // (e.g. PM view tear-down) — moving the guard below the hooks keeps Rules of
   // Hooks happy across those transitions.
 
-  const [hoverIdx, setHoverIdx] = useState(-1);
   const [resizeTick, setResizeTick] = useState(0);
   const [placement, setPlacement] = useState({ top: 0, left: 0, maxHeight: null });
   const menuRef = useRef(null);
@@ -71,8 +70,13 @@ export default function SlashMenu({ filter, selectedIdx, onSelect, onClose, anch
     return item.label.toLowerCase().startsWith(q);
   }), [filter]);
 
+  // Single source of truth for highlight: parent's selectedIdx. Mouse hover
+  // routes through `onHoverChange` so the parent updates selectedIdx — that
+  // way arrow keys increment from the hovered row, not from a stale value.
+  // Without this, hover-on-row-3 + arrow-down used to jump highlight from 3
+  // to (old selectedIdx + 1), which looked erratic to the user.
   const safeIdx = Math.min(selectedIdx, Math.max(filtered.length - 1, 0));
-  const activeIdx = hoverIdx >= 0 ? hoverIdx : safeIdx;
+  const activeIdx = safeIdx;
 
   // Resize listener — bumps tick so the layout effect re-runs.
   useEffect(() => {
@@ -122,13 +126,6 @@ export default function SlashMenu({ filter, selectedIdx, onSelect, onClose, anch
     activeItemRef.current?.scrollIntoView?.({ block: 'nearest' });
   }, [safeIdx]);
 
-  // Arrow-key nav drops mouse hover. Without this, mouse on row N pins
-  // activeIdx to N and arrow keys silently update selectedIdx underneath
-  // while the highlight stays on N until the user moves the mouse off.
-  useEffect(() => {
-    setHoverIdx(-1);
-  }, [selectedIdx]);
-
   // Conditional render — AFTER all hooks (Rules of Hooks).
   if (readOnly || !anchorRect) return null;
 
@@ -161,7 +158,6 @@ export default function SlashMenu({ filter, selectedIdx, onSelect, onClose, anch
         boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08)',
         padding: '4px 0',
       }}
-      onMouseLeave={() => setHoverIdx(-1)}
     >
       <div
         aria-hidden="true"
@@ -202,9 +198,9 @@ export default function SlashMenu({ filter, selectedIdx, onSelect, onClose, anch
               // onMouseMove (not onMouseEnter): when arrow nav triggers a
               // scrollIntoView, rows slide under a stationary cursor and the
               // browser fires mouseenter on each new row — that would steal
-              // activeIdx away from the keyboard. mousemove requires actual
+              // the highlight away from the keyboard. mousemove requires actual
               // cursor motion, so it ignores scroll-induced row changes.
-              onMouseMove={() => { if (hoverIdx !== i) setHoverIdx(i); }}
+              onMouseMove={() => { if (onHoverChange && safeIdx !== i) onHoverChange(i); }}
               style={{
                 display: 'flex',
                 alignItems: 'center',

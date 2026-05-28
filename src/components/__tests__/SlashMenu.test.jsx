@@ -153,6 +153,33 @@ describe('SlashMenu', () => {
     expect(items[5].style.backgroundColor).toBe('transparent');
   });
 
+  it('mousemove on a row fires onHoverChange so parent can sync selectedIdx', () => {
+    // Regression: hover used to set an internal hoverIdx that drove the highlight
+    // independently of selectedIdx. Result: hover row 3, press arrow down — parent
+    // bumps selectedIdx from old value (e.g. 0 -> 1), highlight jumps from 3 to 1,
+    // looking erratic. Fix: hover routes through onHoverChange to update parent's
+    // selectedIdx, so arrow keys then move from the hovered row to its neighbor.
+    const onHoverChange = vi.fn();
+    mount(<SlashMenu filter="" selectedIdx={0} onSelect={() => {}} onClose={() => {}} onHoverChange={onHoverChange} anchorRect={anchorRect} />);
+    const items = document.querySelectorAll('[role="option"]');
+    act(() => {
+      items[3].dispatchEvent(new MouseEvent('mousemove', { bubbles: true }));
+    });
+    expect(onHoverChange).toHaveBeenCalledWith(3);
+  });
+
+  it('mousemove on the already-selected row does NOT fire onHoverChange', () => {
+    // Avoid feedback loop: parent updates selectedIdx -> re-render -> mousemove on
+    // same row would re-fire onHoverChange unnecessarily.
+    const onHoverChange = vi.fn();
+    mount(<SlashMenu filter="" selectedIdx={3} onSelect={() => {}} onClose={() => {}} onHoverChange={onHoverChange} anchorRect={anchorRect} />);
+    const items = document.querySelectorAll('[role="option"]');
+    act(() => {
+      items[3].dispatchEvent(new MouseEvent('mousemove', { bubbles: true }));
+    });
+    expect(onHoverChange).not.toHaveBeenCalled();
+  });
+
   it('calls onSelect with the item type on mousedown', () => {
     const onSelect = vi.fn();
     mount(<SlashMenu filter="" selectedIdx={0} onSelect={onSelect} onClose={() => {}} anchorRect={anchorRect} />);
