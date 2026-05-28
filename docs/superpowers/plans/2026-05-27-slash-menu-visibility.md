@@ -384,7 +384,11 @@ export function computeLeft({ anchorRect, menuWidth, viewportWidth, margin = 8 }
 }
 
 export default function SlashMenu({ filter, selectedIdx, onSelect, onClose, anchorRect, readOnly = false }) {
-  if (readOnly || !anchorRect) return null;
+  // IMPORTANT: All hook calls happen unconditionally. Conditional render moves to
+  // the END of the function, after all hooks. The parent gates the component's
+  // mount with `slashAnchorRect && ...`, but anchorRect can transiently become null
+  // (e.g. PM view tear-down) — moving the guard below the hooks keeps Rules of
+  // Hooks happy across those transitions.
 
   const [hoverIdx, setHoverIdx] = useState(-1);
   const [resizeTick, setResizeTick] = useState(0);
@@ -440,6 +444,9 @@ export default function SlashMenu({ filter, selectedIdx, onSelect, onClose, anch
   useEffect(() => {
     activeItemRef.current?.scrollIntoView({ block: 'nearest' });
   }, [safeIdx]);
+
+  // Conditional render — AFTER all hooks (Rules of Hooks).
+  if (readOnly || !anchorRect) return null;
 
   const menu = (
     <div
@@ -577,7 +584,7 @@ Create `src/components/__tests__/PmEditableBlock-slash-aria.test.jsx`:
 // readers announce active-item changes (the listbox itself never
 // holds focus). When the menu closes, the attributes must be removed.
 
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { act } from 'react';
@@ -585,6 +592,7 @@ import * as Y from 'yjs';
 import { prosemirrorToYXmlFragment } from 'y-prosemirror';
 
 import { htmlToPmFragment } from '../../lib/pmdoc-html.js';
+import * as linting from '../../lib/linting.js';
 import PmEditableBlock from '../PmEditableBlock.jsx';
 
 function setupYStore(blockId, html) {
@@ -614,28 +622,43 @@ afterEach(() => {
   root = null;
 });
 
-function renderBlock({ block, yStore }) {
-  act(() => {
+async function renderBlock({ block, yStore }) {
+  await act(async () => {
     root.render(
       <PmEditableBlock
         block={block}
         yStore={yStore}
-        editable={true}
+        onUpdate={vi.fn()}
+        identity={{ id: 'u1', name: 'U', color: '#000' }}
+        showTags={false}
+        lintingState={linting.createInitial({ enabled: false })}
+        lintingDispatch={vi.fn()}
+        onEnterKey={vi.fn()}
+        isFocused={false}
+        onFocus={vi.fn()}
+        oliLabel={null}
+        onDelete={vi.fn()}
+        onFocusPrev={vi.fn()}
+        onFocusNext={vi.fn()}
+        onConvertBlock={vi.fn()}
+        onChangeOliLevel={vi.fn()}
+        resolveHtml={(h) => h}
+        tailorKey={null}
         trackChanges={false}
-        identity={{ id: 'u1', color: '#000' }}
-        commentsState={{ byId: {}, seenRemoteIds: new Set() }}
-        onUpdate={() => {}}
-        onConvertBlock={() => {}}
-        onEnterKey={() => {}}
-        onDelete={() => {}}
-        onFocusPrev={() => {}}
-        onFocusNext={() => {}}
-        onChangeOliLevel={() => {}}
-        onCommentClick={() => {}}
-        onRefreshTcSnapshot={() => {}}
+        snapshotText={vi.fn(() => '')}
+        onAcceptRevision={vi.fn()}
+        onRejectRevision={vi.fn()}
+        onRevisionAction={vi.fn()}
+        onRefreshTcSnapshot={vi.fn()}
+        commentsState={null}
+        onCommentClick={vi.fn()}
+        onInlineFix={vi.fn()}
+        readOnly={false}
       />
     );
   });
+  // PM EditorView mounts via useSyncExternalStore subscription — wait for it.
+  await new Promise((r) => setTimeout(r, 50));
 }
 
 function getEditorDom() {
@@ -649,9 +672,9 @@ function typeChar(view, ch) {
 }
 
 describe('PmEditableBlock combobox ARIA', () => {
-  it('PM editor has no combobox attributes initially', () => {
+  it('PM editor has no combobox attributes initially', async () => {
     const { yStore } = setupYStore('b1', '<p></p>');
-    renderBlock({ block: { id: 'b1', type: 'txt', html: '<p></p>', isNew: false }, yStore });
+    await renderBlock({ block: { id: 'b1', type: 'txt', html: '<p></p>', isNew: false }, yStore });
     const dom = getEditorDom();
     // The five attributes we manage. (PM may set its own attributes like
     // contenteditable; we only assert on ours.)
@@ -664,7 +687,7 @@ describe('PmEditableBlock combobox ARIA', () => {
 
   it('PM editor gains combobox attributes when slash menu opens', async () => {
     const { yStore } = setupYStore('b1', '<p></p>');
-    renderBlock({ block: { id: 'b1', type: 'txt', html: '<p></p>', isNew: false }, yStore });
+    await renderBlock({ block: { id: 'b1', type: 'txt', html: '<p></p>', isNew: false }, yStore });
     const { getBlockView } = await import('../../lib/block-registry.js');
     const view = getBlockView('b1');
     expect(view).toBeTruthy();
@@ -682,7 +705,7 @@ describe('PmEditableBlock combobox ARIA', () => {
 
   it('combobox attributes are removed when the leading slash is deleted', async () => {
     const { yStore } = setupYStore('b1', '<p></p>');
-    renderBlock({ block: { id: 'b1', type: 'txt', html: '<p></p>', isNew: false }, yStore });
+    await renderBlock({ block: { id: 'b1', type: 'txt', html: '<p></p>', isNew: false }, yStore });
     const { getBlockView } = await import('../../lib/block-registry.js');
     const view = getBlockView('b1');
 
