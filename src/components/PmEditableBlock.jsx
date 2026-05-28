@@ -153,7 +153,7 @@ function PmEditableBlock({
   const viewRef = useRef(null);
   const yXmlFragmentRef = useRef(null);
   const onUpdateDebounceRef = useRef(null);
-  const [slashState, setSlashState] = useState({ open: false, filter: '', selectedIdx: 0 });
+  const [slashState, setSlashState] = useState({ open: false, filter: '', selectedIdx: 0, fromPos: null });
   const [hasInlineRevisions, setHasInlineRevisions] = useState(false);
   // 1g.5 (#86): el + rect only — position resolution happens at action time
   // via view.posAtDOM(el, 0); no DOM-index against a serialized HTML string.
@@ -286,7 +286,7 @@ function PmEditableBlock({
     yXmlFragmentRef.current = yXml;
 
     const handleSlashSelect = (type) => {
-      setSlashState({ open: false, filter: '', selectedIdx: 0 });
+      setSlashState({ open: false, filter: '', selectedIdx: 0, fromPos: null });
       onConvertBlockRef.current?.(block.id, type);
     };
 
@@ -300,7 +300,7 @@ function PmEditableBlock({
         return true;
       },
       onSlashEscape: () => {
-        setSlashState({ open: false, filter: '', selectedIdx: 0 });
+        setSlashState({ open: false, filter: '', selectedIdx: 0, fromPos: null });
         return true;
       },
       onSlashArrowDown: () => {
@@ -480,10 +480,15 @@ function PmEditableBlock({
 
         // Slash state mirroring: pull from the plugin and project to React.
         const slash = slashMenuPluginKey.getState(newState);
-        if (slash && (slash.open !== slashStateRef.current.open || slash.filter !== slashStateRef.current.filter)) {
+        if (slash && (
+          slash.open !== slashStateRef.current.open ||
+          slash.filter !== slashStateRef.current.filter ||
+          slash.fromPos !== slashStateRef.current.fromPos
+        )) {
           setSlashState((prev) => ({
             open: slash.open,
             filter: slash.filter,
+            fromPos: slash.fromPos,
             selectedIdx: slash.open ? prev.selectedIdx : 0,
           }));
         }
@@ -778,9 +783,41 @@ function PmEditableBlock({
   }, [delPopup, block.id]);
 
   const handleSlashSelectClick = useCallback((type) => {
-    setSlashState({ open: false, filter: '', selectedIdx: 0 });
+    setSlashState({ open: false, filter: '', selectedIdx: 0, fromPos: null });
     onConvertBlockRef.current?.(block.id, type);
   }, [block.id]);
+
+  const handleSlashClose = useCallback(() => {
+    setSlashState({ open: false, filter: '', selectedIdx: 0, fromPos: null });
+  }, []);
+
+  const slashAnchorRect = useMemo(() => {
+    if (!slashState.open) return null;
+    return computeSlashAnchorRect(viewRef.current, slashState.fromPos, containerRef.current);
+  }, [slashState.open, slashState.fromPos]);
+
+  // ── Combobox ARIA: wire PM editor DOM so screen readers announce active items ──
+  // The listbox (SlashMenu portal) never receives focus; instead the PM editor's
+  // contentEditable DOM gets role=combobox + aria-controls/aria-activedescendant
+  // so AT announces item changes via the combobox pattern.
+  useEffect(() => {
+    const dom = viewRef.current?.dom;
+    if (!dom) return undefined;
+    if (slashState.open) {
+      dom.setAttribute('role', 'combobox');
+      dom.setAttribute('aria-haspopup', 'listbox');
+      dom.setAttribute('aria-expanded', 'true');
+      dom.setAttribute('aria-controls', 'sim-slash-listbox');
+      dom.setAttribute('aria-activedescendant', `sim-slash-item-${slashState.selectedIdx}`);
+    } else {
+      dom.removeAttribute('role');
+      dom.removeAttribute('aria-haspopup');
+      dom.removeAttribute('aria-expanded');
+      dom.removeAttribute('aria-controls');
+      dom.removeAttribute('aria-activedescendant');
+    }
+    return undefined;
+  }, [slashState.open, slashState.selectedIdx]);
 
   // ── Layout (mirrors EditableBlock.jsx) ───────────────────────────────────
   const isNote = block.type === 'note';
@@ -955,16 +992,33 @@ function PmEditableBlock({
           onMuteNlpRule={onMuteNlpRule}
         />
       )}
-      {slashState.open && editable && (
+      {slashState.open && editable && slashAnchorRect && (
         <SlashMenu
           filter={slashState.filter}
           selectedIdx={slashState.selectedIdx}
           onSelect={handleSlashSelectClick}
-          position={{ left: leftMargin + 12, top: 32 }}
+          onClose={handleSlashClose}
+          anchorRect={slashAnchorRect}
         />
       )}
     </div>
   );
+}
+
+function computeSlashAnchorRect(view, fromPos, fallbackEl) {
+  if (view && typeof fromPos === 'number') {
+    try {
+      const coords = view.coordsAtPos(fromPos);
+      return { top: coords.top, bottom: coords.bottom, left: coords.left, right: coords.right };
+    } catch {
+      // PM view may not be in a consistent state — fall through to DOM bounds.
+    }
+  }
+  if (fallbackEl) {
+    const r = fallbackEl.getBoundingClientRect();
+    return { top: r.top, bottom: r.bottom, left: r.left, right: r.right };
+  }
+  return null;
 }
 
 function gutterBtn(color, bg) {
