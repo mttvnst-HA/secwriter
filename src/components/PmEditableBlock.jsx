@@ -962,6 +962,10 @@ function PmEditableBlock({
   // per spec §4.5) or when in readOnly mode.
   const showGutterMenu = isFamilyA && !block.revision && !readOnly;
 
+  const convertedFromHint = block.__convertedFrom
+    ? ` (converted from ${block.__convertedFrom}; type change is NOT rolled back by reject — use Ctrl+Z)`
+    : '';
+
   // 1i-b.1 — user-facing fallback for migrationPartial blocks. The mount
   // effect bails before constructing EditorView for this shape, so the
   // banner is the only thing the user sees for this block until the
@@ -1020,13 +1024,15 @@ function PmEditableBlock({
           flexDirection: 'column', gap: 2, zIndex: 10,
         }}>
           <button
+            data-test="accept-block-revision"
             onClick={() => onAcceptRevision(block.id)}
-            title={block.revision ? `Accept ${block.revision}` : 'Accept inline changes'}
+            title={(block.revision ? `Accept ${block.revision}` : 'Accept inline changes') + convertedFromHint}
             style={gutterBtn('#008000', '#f0fdf4')}
           >✓</button>
           <button
+            data-test="reject-block-revision"
             onClick={() => onRejectRevision(block.id)}
-            title={block.revision ? `Reject ${block.revision}` : 'Reject inline changes'}
+            title={(block.revision ? `Reject ${block.revision}` : 'Reject inline changes') + convertedFromHint}
             style={gutterBtn('#ff4444', '#fef2f2')}
           >✗</button>
         </div>

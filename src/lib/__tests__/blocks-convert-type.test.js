@@ -25,7 +25,7 @@ vi.mock('../../components/SearchBar.jsx', () => ({
   default: () => null,
 }));
 
-import { convertBlockType, composeRevision, levelDelta } from '../blocks.js';
+import { convertBlockType, composeRevision, levelDelta, acceptBlockRevision, rejectBlockRevision } from '../blocks.js';
 
 const FAMILY_A = ['txt', 'note', 'oli', 'item', 'lst'];
 const tcOff = { enabled: false, publishSeq: 0 };
@@ -199,5 +199,33 @@ describe('levelDelta', () => {
   });
   it('non-oli pair returns {}', () => {
     expect(levelDelta('txt', 'note', undefined)).toEqual({});
+  });
+});
+
+describe('acceptBlockRevision clears __convertedFrom', () => {
+  it("clears __convertedFrom alongside 'chg' revision", () => {
+    const b = blk({ revision: 'chg', __convertedFrom: 'txt', type: 'note' });
+    const result = acceptBlockRevision([b], 'b1');
+    expect(result).not.toBeNull();
+    expect(result.state[0].revision).toBeUndefined();
+    expect(result.state[0]).not.toHaveProperty('__convertedFrom');
+    expect(result.state[0].type).toBe('note'); // type IS preserved (audit limit)
+  });
+
+  it("clears __convertedFrom alongside 'add' revision", () => {
+    const b = blk({ revision: 'add', __convertedFrom: 'txt', type: 'note' });
+    const result = acceptBlockRevision([b], 'b1');
+    expect(result.state[0]).not.toHaveProperty('__convertedFrom');
+  });
+});
+
+describe('rejectBlockRevision clears __convertedFrom', () => {
+  it("clears __convertedFrom alongside 'chg' revision", () => {
+    const b = blk({ revision: 'chg', __convertedFrom: 'txt', type: 'note' });
+    const result = rejectBlockRevision([b], 'b1');
+    expect(result).not.toBeNull();
+    expect(result.state[0].revision).toBeUndefined();
+    expect(result.state[0]).not.toHaveProperty('__convertedFrom');
+    expect(result.state[0].type).toBe('note'); // type IS preserved (audit limit)
   });
 });

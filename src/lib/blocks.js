@@ -108,6 +108,13 @@ function htmlWrite(blockId, html) {
   return { blockId, html };
 }
 
+function withoutConvertedFrom(block) {
+  if (!('__convertedFrom' in block)) return block;
+  const next = { ...block };
+  delete next.__convertedFrom;
+  return next;
+}
+
 // ── Verbs ───────────────────────────────────────────────────────────────────
 
 // updateBlockHtml — the debounced-typing path. PM-driven keystrokes already
@@ -510,7 +517,7 @@ export function acceptBlockRevision(blocks, blockId) {
   const next = blocks.slice();
   if (typeof block.html === 'string') {
     const html = acceptAllInline(block.html);
-    next[idx] = { ...block, revision: undefined, html };
+    next[idx] = withoutConvertedFrom({ ...block, revision: undefined, html });
     const writes = block.html !== html ? [htmlWrite(blockId, html)] : [];
     return {
       state: next,
@@ -522,7 +529,7 @@ export function acceptBlockRevision(blocks, blockId) {
       },
     };
   }
-  next[idx] = { ...block, revision: undefined };
+  next[idx] = withoutConvertedFrom({ ...block, revision: undefined });
   return withForceFrame(next);
 }
 
@@ -537,7 +544,7 @@ export function rejectBlockRevision(blocks, blockId) {
   const next = blocks.slice();
   if (typeof block.html === 'string') {
     const html = rejectAllInline(block.html);
-    next[idx] = { ...block, revision: undefined, html };
+    next[idx] = withoutConvertedFrom({ ...block, revision: undefined, html });
     const writes = block.html !== html ? [htmlWrite(blockId, html)] : [];
     return {
       state: next,
@@ -549,7 +556,7 @@ export function rejectBlockRevision(blocks, blockId) {
       },
     };
   }
-  next[idx] = { ...block, revision: undefined };
+  next[idx] = withoutConvertedFrom({ ...block, revision: undefined });
   return withForceFrame(next);
 }
 
