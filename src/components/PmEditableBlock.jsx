@@ -185,6 +185,16 @@ function PmEditableBlock({
   // so the initial mount effect bails; without this signal, useBlockLinting
   // ran once with a null `getEl()` and never re-bound when the view appeared.
   const [viewMountTick, setViewMountTick] = useState(0);
+  // New-block discard: a block created via Enter / slash-convert mounts empty
+  // and isNew. Until the user types anything into it, Escape or a click
+  // outside the block discards it (user abandoned the just-created scratch
+  // block). `discardArmed` drives the click-outside listener effect;
+  // `hasEditedRef` is the synchronous gate read by the Escape handler and the
+  // listener. Both are cleared the moment the user makes a local content edit.
+  const [discardArmed, setDiscardArmed] = useState(false);
+  const hasEditedRef = useRef(false);
+  const discardArmedRef = useRef(false);
+  discardArmedRef.current = discardArmed;
 
   // App callbacks change every render; mirror into refs so the PM plugins
   // (built once at mount time inside the EditorView's plugin list) read
@@ -313,6 +323,19 @@ function PmEditableBlock({
       onConvertBlockRef.current?.(block.id, type);
     };
 
+    // Discard the block if it's still an untouched, empty just-created block.
+    // Returns true if it deleted the block. Used by Escape (keymap) and the
+    // click-outside listener.
+    const discardIfUntouchedNew = () => {
+      const view = viewRef.current;
+      if (!discardArmedRef.current || hasEditedRef.current || !isViewEmpty(view)) {
+        return false;
+      }
+      setDiscardArmed(false);
+      onDeleteRef.current?.(block.id);
+      return true;
+    };
+
     const slashCallbacks = {
       isSlashOpen: () => slashStateRef.current.open,
       onSlashEnter: () => {
@@ -374,6 +397,7 @@ function PmEditableBlock({
         onDeleteEmpty: () => onDeleteRef.current?.(block.id),
         onFocusPrev: () => onFocusPrevRef.current?.(block.id),
         onFocusNext: () => onFocusNextRef.current?.(block.id),
+        onEscape: () => discardIfUntouchedNew(),
         ...slashCallbacks,
       }),
     ];
@@ -527,6 +551,14 @@ function PmEditableBlock({
         }
 
         if (tr.docChanged) {
+          // New-block discard disarm: the user made a real content edit, so
+          // the block is no longer an untouched scratch block. Remote ops
+          // (peer edits) and comment reconciles don't count as the local
+          // user typing. Gate on the ref so we only flip state once.
+          if (!isRemote && !isReconcile && !hasEditedRef.current) {
+            hasEditedRef.current = true;
+            if (discardArmedRef.current) setDiscardArmed(false);
+          }
           // Q27 re-lint trigger: synthesize an 'input' event so
           // useBlockLinting's debounce fires. PM doesn't dispatch input
           // events natively on transactions. Fire on every doc change
@@ -573,6 +605,12 @@ function PmEditableBlock({
     });
 
     viewRef.current = view;
+    // Arm new-block discard for a block that mounted as a fresh, empty block.
+    // Until the user types, Escape / click-outside will remove it. Reset
+    // hasEditedRef so a re-mount (e.g. 1d migration broker slot swap) starts
+    // from a clean slate.
+    hasEditedRef.current = false;
+    setDiscardArmed(!!block.isNew && isViewEmpty(view));
     setHasInlineRevisions(docHasInlineRevisions(view.state.doc));
     // Notify dependent effects (linting input-listener wiring) that the
     // EditorView's DOM is now available. Without this tick, useBlockLinting's
@@ -878,6 +916,32 @@ function PmEditableBlock({
     document.addEventListener('mousedown', onDocMouseDown, true);
     return () => document.removeEventListener('mousedown', onDocMouseDown, true);
   }, [slashState.open, block.id]);
+
+  // ── New-block discard: click outside an untouched new block deletes it ────
+  // A block created via Enter / slash-convert mounts empty and armed. If the
+  // user clicks anywhere outside this block before typing, discard it (they
+  // abandoned the scratch block). Mousedown (not blur) so keyboard-driven
+  // focus moves — e.g. pressing Enter to create a sibling block — never
+  // trigger a delete. Capture phase so we run before PM's own click handling.
+  // Disarmed automatically once the user types (dispatchTransaction) or via
+  // the Escape path; the effect tears down when `discardArmed` flips false.
+  useEffect(() => {
+    if (!discardArmed) return undefined;
+    function onDocMouseDown(e) {
+      const target = e.target;
+      if (!(target instanceof Node)) return;
+      // Click inside this block's wrapper (PM editor, gutter menu, revision
+      // buttons) is not "outside" — leave the block armed but alive.
+      const wrapper = containerRef.current?.closest?.('[id^="block-"]') || containerRef.current;
+      if (wrapper && wrapper.contains(target)) return;
+      const view = viewRef.current;
+      if (hasEditedRef.current || !isViewEmpty(view)) return;
+      setDiscardArmed(false);
+      onDeleteRef.current?.(block.id);
+    }
+    document.addEventListener('mousedown', onDocMouseDown, true);
+    return () => document.removeEventListener('mousedown', onDocMouseDown, true);
+  }, [discardArmed, block.id]);
 
   // ── Combobox ARIA: wire PM editor DOM so screen readers announce active items ──
   // The listbox (SlashMenu portal) never receives focus; instead the PM editor's
