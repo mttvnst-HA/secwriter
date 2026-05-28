@@ -46,6 +46,8 @@ import { getSlashMenuState } from './slash-menu.js';
  * @param {() => boolean} cb.onSlashArrowUp
  * @param {() => boolean} cb.onSlashEnter
  * @param {() => boolean} cb.onSlashEscape
+ * @param {() => boolean} [cb.onEscape] — Escape with slash menu closed; return
+ *   true if handled (e.g. discarded an untouched new block)
  * @param {() => void} [cb.commitBeforeAction] — flush pending edits
  */
 export function blockKeymap(cb) {
@@ -130,7 +132,10 @@ export function blockKeymap(cb) {
       if (cb.isSlashOpen?.()) {
         return cb.onSlashEscape?.() ?? true;
       }
-      return false;
+      // Discard an untouched, just-created empty block (user pressed Escape
+      // before typing anything). onEscape returns true when it deleted the
+      // block, false to let the key fall through to default handling.
+      return cb.onEscape?.() ?? false;
     },
   });
 }
