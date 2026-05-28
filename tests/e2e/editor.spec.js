@@ -1,5 +1,5 @@
 import { test, expect } from './fixtures.js';
-import { injectBlockHtml, readBlockHtml, createFreshBlock as createFreshBlockHelper, pmSetSelection, pmSetCaret } from './pm-helpers.js';
+import { injectBlockHtml, readBlockHtml, createFreshBlock as createFreshBlockHelper, pmSetSelection, pmSetCaret, pmGetSelection } from './pm-helpers.js';
 import fs from 'fs';
 
 // ─── Helpers ───────────────────────────────────────────────────────────────────
@@ -3302,4 +3302,277 @@ test('reset from Settings clears ignored state and disables the reset button', a
 
   // The reset button should now be disabled (ignoredCount === 0).
   await expect(resetBtn).toBeDisabled({ timeout: 3000 });
+});
+
+// ─── Block-type conversion (Family A) ─────────────────────────────────────────
+//
+// Five scenarios per spec §6.3 (docs/superpowers/specs/2026-05-27-block-type-conversion-design.md):
+//   1. Gutter handle: comment mark spans survive txt → note conversion
+//   2. Keyboard shortcut (Ctrl+Shift+M): PM caret position preserved across txt → oli
+//   3. Stale lint cleared: byBlock entry erased when block is converted
+//   4. TC mode: convert + accept leaves the new type in place (intentional audit-trail limitation)
+//   5. Regression: oli level survives round-trip (oli → txt → oli stays at same level)
+//
+// These tests use the following infrastructure:
+//   - createFreshBlock(page)           — pm-helpers.js (Enter after n24, polls mount)
+//   - injectBlockHtml(page, id, html)  — pm-helpers.js (routes through handleBlockUpdateWithSync)
+//   - pmSetCaret(page, id, pos)        — pm-helpers.js (synchronous PM TextSelection)
+//   - pmGetSelection(page, id)         — pm-helpers.js (reads view.state.selection)
+//   - window.__simEditorTestUtils.getLintingFindings(id) — App.jsx DEV seam added by Task 7
+//   - data-block-type attribute        — PmEditableBlock.jsx outer wrapper
+//   - data-test="accept-block-revision" / "reject-block-revision" — PmEditableBlock.jsx gutter buttons
+//   - data-test="oli-label"            — PmEditableBlock.jsx span (added by Task 7)
+//   - aria-label="Convert block"       — BlockGutterMenu.jsx trigger button
+//   - role="dialog" aria-label="Convert block type" — ConvertBlockPalette.jsx container
+
+test.describe('block-type conversion (Family A)', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+    await waitForApp(page);
+  });
+
+  // ── Scenario 1: gutter handle preserves inline html across txt → note ────────
+  //
+  // Uses injectBlockHtml to set up rich content without going through the
+  // full comment-creation UI (no addCommentOnRange helper exists in E2E).
+  // The comment reconcile path would strip a mark-comment span injected without a
+  // matching commentsState entry, so we inject a <strong> span instead — bold IS
+  // in the PM schema and survives the type flip without reconcile interference.
+  // This tests the spec §5 invariant: html content is preserved across conversions.
+  //
+  // Selector note: `data-block-type` is on the OUTER wrapper (#block-{id}), not
+  // on the inner PM contenteditable ([data-block-id="..."]). Hover and type-check
+  // assertions use #block-{id}. The .mark-bold is a descendant of the PM editor
+  // div which is inside #block-{id}.
+  test('gutter handle preserves inline html across txt -> note', async ({ page }) => {
+    // Create a fresh txt block and inject bold-wrapped content into it.
+    const blockEl = await createFreshBlock(page);
+    const blockId = await blockEl.getAttribute('data-block-id');
+
+    // PM schema parses <strong> but renders bold marks as <b> (toDOM: () => ['b', 0]).
+    await injectBlockHtml(page, blockId, 'before <b>bold span</b> after');
+
+    // Confirm the bold element is present before conversion.
+    await expect(page.locator(`#block-${blockId} b`)).toBeVisible({ timeout: 3000 });
+
+    // Hover the OUTER WRAPPER to reveal the gutter handle, then convert to note.
+    await page.locator(`#block-${blockId}`).hover();
+    await page.locator(`#block-${blockId} [aria-label="Convert block"]`).click();
+    await page.locator('[role="menu"] [role="menuitem"]:has-text("Designer Note")').click();
+
+    // Block type must have changed (assertion is on the outer wrapper).
+    await expect(page.locator(`#block-${blockId}`)).toHaveAttribute('data-block-type', 'note');
+
+    // Bold element must still be present inside the (now-note) block.
+    await expect(page.locator(`#block-${blockId} b`)).toBeVisible({ timeout: 3000 });
+  });
+
+  // ── Scenario 2: Ctrl+Shift+M preserves PM caret offset across txt → oli ────
+  //
+  // Selector note: `data-block-type` is on the outer wrapper (#block-{id}).
+  // The PM contenteditable ([data-block-id="..."]) does NOT carry data-block-type.
+  test('keyboard shortcut preserves caret offset across txt -> oli', async ({ page }) => {
+    const blockEl = await createFreshBlock(page);
+    const blockId = await blockEl.getAttribute('data-block-id');
+
+    // Type content so the block is non-empty. PM positions: 1-based text offsets
+    // (position 1 = before first char). 'hello world' has 11 chars; position 6
+    // is the caret after 'hello'.
+    await page.keyboard.type('hello world');
+
+    // Place caret at PM position 6 (after 'hello', before ' ').
+    await pmSetCaret(page, blockId, 6);
+
+    // Open the palette via keyboard shortcut.
+    await page.keyboard.press('Control+Shift+M');
+    await expect(page.locator('[role="dialog"][aria-label="Convert block type"]')).toBeVisible();
+
+    // Filter to 'Ordered List' and confirm.
+    await page.keyboard.type('o');
+    await page.keyboard.press('Enter');
+
+    // Block type changed — assert on the outer wrapper (#block-{id}).
+    await expect(page.locator(`#block-${blockId}`)).toHaveAttribute('data-block-type', 'oli');
+
+    // Caret position restored (within ±1 for PM normalisation — palette restore
+    // uses requestAnimationFrame so the selection is set after React flushes the
+    // type flip; poll until the caret lands in the expected range rather than
+    // using a fixed delay).
+    await page.waitForFunction(
+      (id) => {
+        const utils = window.__simEditorTestUtils;
+        if (!utils?.getPmSelection) return false;
+        const sel = utils.getPmSelection(id);
+        return sel !== null && sel.from >= 5 && sel.from <= 7;
+      },
+      blockId,
+      { timeout: 5000, polling: 50 },
+    );
+    const sel = await pmGetSelection(page, blockId);
+    expect(sel).not.toBeNull();
+    expect(sel.from).toBeGreaterThanOrEqual(5);
+    expect(sel.from).toBeLessThanOrEqual(7);
+  });
+
+  // ── Scenario 3: stale lint findings cleared when block type changes ──────────
+  //
+  // The CSS Custom Highlight API does not produce queryable DOM nodes, so we
+  // verify via the __simEditorTestUtils.getLintingFindings() seam added in Task 7.
+  // Linting runs asynchronously (debounced) — we type text and wait for
+  // byBlock to populate before converting.
+  test('stale lint cleared in byBlock on conversion txt -> note', async ({ page }) => {
+    const blockEl = await createFreshBlock(page);
+    const blockId = await blockEl.getAttribute('data-block-id');
+
+    // Type text containing "shall" — compliance engine flags TERM-shall on blur.
+    await page.keyboard.type('The contractor shall provide services.');
+
+    // Blur the block by clicking the section title block (n20) — a reliable
+    // focusable target that is always present in the sample spec.  Clicking
+    // `body` at a fixed coordinate is flake-prone because the element is not
+    // focusable and blur propagation is inconsistent across browsers.
+    await page.locator('[data-block-id="n20"]').click();
+
+    // Poll until byBlock has an entry for this block (linting is async).
+    await page.waitForFunction(
+      (id) => {
+        const utils = window.__simEditorTestUtils;
+        if (!utils) return false;
+        const findings = utils.getLintingFindings(id);
+        return findings !== null;
+      },
+      blockId,
+      { timeout: 8000, polling: 200 },
+    );
+
+    // Confirm a compliance finding was recorded.
+    const before = await page.evaluate(
+      (id) => window.__simEditorTestUtils.getLintingFindings(id),
+      blockId,
+    );
+    expect(before).not.toBeNull();
+    expect(before.compliance.length).toBeGreaterThan(0);
+
+    // Re-focus the block so Ctrl+Shift+M fires with a focused block ID.
+    // The inner PM contenteditable has data-block-id; clicking it refocuses the view.
+    await page.locator(`[data-block-id="${blockId}"]`).click();
+
+    // Convert via palette. The "Designer Note" label starts with 'd', not 'n' —
+    // the filter is `label.toLowerCase().startsWith(q)`.
+    await page.keyboard.press('Control+Shift+M');
+    await expect(page.locator('[role="dialog"][aria-label="Convert block type"]')).toBeVisible();
+    await page.keyboard.type('d');
+    await page.keyboard.press('Enter');
+
+    // Outer wrapper carries data-block-type.
+    await expect(page.locator(`#block-${blockId}`)).toHaveAttribute('data-block-type', 'note');
+
+    // byBlock entry is cleared by handleConvertBlockType's clearBlock call.
+    // The block may re-lint immediately (note blocks skip compliance per CLAUDE.md),
+    // so check that no compliance findings remain rather than expecting null.
+    const after = await page.evaluate(
+      (id) => window.__simEditorTestUtils.getLintingFindings(id),
+      blockId,
+    );
+    // Either null (entry fully cleared) or empty compliance (note exemption).
+    const complianceCount = after ? after.compliance.length : 0;
+    expect(complianceCount).toBe(0);
+  });
+
+  // ── Scenario 4: TC mode — convert + accept preserves the new type ──────────
+  //
+  // Intentional limitation per spec §4.4: accepting a block-level 'chg' mark
+  // clears the revision flag but DOES NOT revert the type. The accepted type
+  // survives, which is the correct audit-trail behaviour.
+  //
+  // Setup: the block must be created BEFORE enabling TC (so it has revision=undefined).
+  // Converting an untracked block under TC gives 'chg'. A block created UNDER TC
+  // already has revision='add'; composeRevision('add', tc) preserves 'add', not 'chg'.
+  test('TC mode: convert + accept preserves new type (intentional limitation)', async ({ page }) => {
+    // Create a block BEFORE enabling TC — it has no revision flag.
+    const blockEl = await createFreshBlock(page);
+    const blockId = await blockEl.getAttribute('data-block-id');
+    await page.keyboard.type('untracked content');
+
+    // Now enable Track Changes.
+    const tcBtn = page.locator('button:has-text("Track Changes")');
+    await tcBtn.click();
+    await expect(tcBtn).toHaveAttribute('aria-pressed', 'true');
+
+    // Convert txt → note under TC. The block had no revision, so composeRevision
+    // returns 'chg' → block gets block-revision-chg.
+    // "Designer Note" label starts with 'd' — filter by 'd' to select it.
+    await page.keyboard.press('Control+Shift+M');
+    await expect(page.locator('[role="dialog"][aria-label="Convert block type"]')).toBeVisible();
+    await page.keyboard.type('d');
+    await page.keyboard.press('Enter');
+
+    // Block type changed and 'chg' revision class applied (both on outer wrapper).
+    await expect(page.locator(`#block-${blockId}`)).toHaveAttribute('data-block-type', 'note');
+    await expect(page.locator(`#block-${blockId}`)).toHaveClass(/block-revision-chg/);
+
+    // Accept the block revision via the gutter button.
+    // Hover the outer wrapper so the BlockGutterMenu becomes visible.
+    await page.locator(`#block-${blockId}`).hover();
+    await page.locator(`#block-${blockId} [data-test="accept-block-revision"]`).click();
+
+    // Type is still 'note' (the accepted state) — intentional per spec §4.4.
+    await expect(page.locator(`#block-${blockId}`)).toHaveAttribute('data-block-type', 'note');
+    // Revision class cleared.
+    await expect(page.locator(`#block-${blockId}`)).not.toHaveClass(/block-revision-chg/);
+  });
+
+  // ── Scenario 5: oli level survives txt round-trip (level-stash regression) ──
+  //
+  // Spec §4.2: when an oli block is converted away and back, its level is
+  // restored from the stash (block.level is preserved through type changes
+  // because the reducer keeps it in the spread and only reapplies it on
+  // the oli→* leg via levelDelta).
+  test('oli level survives txt round-trip (regression)', async ({ page }) => {
+    // Create a fresh block and convert it to oli.
+    const blockEl = await createFreshBlock(page);
+    const blockId = await blockEl.getAttribute('data-block-id');
+
+    // Convert txt → oli via palette.
+    await page.keyboard.press('Control+Shift+M');
+    await expect(page.locator('[role="dialog"][aria-label="Convert block type"]')).toBeVisible();
+    await page.keyboard.type('o');
+    await page.keyboard.press('Enter');
+
+    // All type assertions use #block-{id} (outer wrapper carries data-block-type).
+    // The oli-label span and convert button are also inside the outer wrapper.
+    await expect(page.locator(`#block-${blockId}`)).toHaveAttribute('data-block-type', 'oli');
+
+    // Tab twice: level 1 → level 2 → level 3.
+    // Tab is handled by keymap.js onChangeOliLevel when block type is 'oli'.
+    // Focus must be inside the PM editor (the inner contenteditable) for Tab to fire.
+    await page.locator(`[data-block-id="${blockId}"]`).click();
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+
+    // Level 3 label is (a) per UFS Figure A-1.
+    const labelBefore = await page.locator(`#block-${blockId} [data-test="oli-label"]`).textContent();
+    expect(labelBefore).toMatch(/^\(a\)/);
+
+    // Convert oli → txt via palette. Focus is still in the PM editor.
+    await page.keyboard.press('Control+Shift+M');
+    await expect(page.locator('[role="dialog"][aria-label="Convert block type"]')).toBeVisible();
+    await page.keyboard.type('p');
+    await page.keyboard.press('Enter');
+    await expect(page.locator(`#block-${blockId}`)).toHaveAttribute('data-block-type', 'txt');
+
+    // No oli-label span visible for a txt block.
+    await expect(page.locator(`#block-${blockId} [data-test="oli-label"]`)).toHaveCount(0);
+
+    // Convert txt → oli via palette again.
+    await page.keyboard.press('Control+Shift+M');
+    await expect(page.locator('[role="dialog"][aria-label="Convert block type"]')).toBeVisible();
+    await page.keyboard.type('o');
+    await page.keyboard.press('Enter');
+    await expect(page.locator(`#block-${blockId}`)).toHaveAttribute('data-block-type', 'oli');
+
+    // Level restored from stash: still level 3 → label should be (a).
+    const labelAfter = await page.locator(`#block-${blockId} [data-test="oli-label"]`).textContent();
+    expect(labelAfter).toMatch(/^\(a\)/);
+  });
 });

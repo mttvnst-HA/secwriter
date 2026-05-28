@@ -1132,6 +1132,19 @@ export default function SpecEditor() {
         return linting.computeIgnoreKey(ruleId, blockHash, match)
           .then(key => linting.isFindingIgnored(lintingStateRef.current, key));
       },
+      getLintingFindings: (blockId) => {
+        // Returns all findings (compliance + nlp + grammar) for a block, or
+        // null if the block has no byBlock entry yet (not yet linted / cleared).
+        // Used by E2E tests to verify lint-clear-on-conversion without relying
+        // on CSS.highlights (Custom Highlight API is not queryable via DOM selectors).
+        const entry = lintingStateRef.current.byBlock.get(blockId);
+        if (!entry) return null;
+        return {
+          compliance: (entry.compliance || []).map(f => f.violation?.ruleId).filter(Boolean),
+          nlp: (entry.nlp || []).map(f => f.violation?.ruleId).filter(Boolean),
+          grammar: (entry.grammar || []).map(f => f.violation?.ruleId).filter(Boolean),
+        };
+      },
       dispatchLintIgnore: (envelope) => {
         if (!envelope || typeof envelope !== 'object') return;
         const ts = typeof envelope.ts === 'number' ? envelope.ts : Date.now();

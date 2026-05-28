@@ -119,7 +119,7 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
   // Author name prompt
   if (showAuthorInput) {
     return (
-      <div ref={popupRef} style={{ ...cardStyle, padding: 16 }}>
+      <div ref={popupRef} data-test="comment-popup" style={{ ...cardStyle, padding: 16 }}>
         <div style={{ fontWeight: 500, marginBottom: 8, color: "#202124" }}>Enter your name</div>
         <div style={{ fontSize: 11, color: "#5f6368", marginBottom: 8 }}>Used for all your comments.</div>
         <div style={{ display: "flex", gap: 4 }}>
@@ -153,7 +153,7 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
   // New comment — prompt for text
   if (isNewComment) {
     return (
-      <div ref={popupRef} style={{ ...cardStyle, padding: 12 }}>
+      <div ref={popupRef} data-test="comment-popup" style={{ ...cardStyle, padding: 12 }}>
         <textarea
           ref={createInputRef}
           value={createText}
@@ -192,7 +192,7 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
 
   // Existing comment — Google Docs style card
   return (
-    <div ref={popupRef} style={cardStyle}>
+    <div ref={popupRef} data-test="comment-popup" style={cardStyle}>
       {/* Thread entries */}
       <div style={{ padding: "12px 12px 0" }}>
         {comment.entries.map((entry, i) => {

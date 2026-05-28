@@ -1044,12 +1044,14 @@ function PmEditableBlock({
         }}>&#9679;</span>
       )}
       {isOli && oliLabel && (
-        <span style={{
-          position: 'absolute', left: leftMargin - 4, top: 4, height: '1.5em',
-          display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end',
-          color: '#475569', fontSize: 15, lineHeight: 1, fontWeight: 500,
-          userSelect: 'none', width: 28,
-        }}>{oliLabel}</span>
+        <span
+          data-test="oli-label"
+          style={{
+            position: 'absolute', left: leftMargin - 4, top: 4, height: '1.5em',
+            display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end',
+            color: '#475569', fontSize: 15, lineHeight: 1, fontWeight: 500,
+            userSelect: 'none', width: 28,
+          }}>{oliLabel}</span>
       )}
       {lintSeverity && lintingActive && (
         <span
