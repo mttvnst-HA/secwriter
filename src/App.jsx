@@ -54,6 +54,7 @@ import PresenceBar from "./components/PresenceBar.jsx";
 import RemoteCursors from "./components/RemoteCursors.jsx";
 import ConnectionBanner from "./components/ConnectionBanner.jsx";
 import ToastStack, { useToasts } from "./components/Toast.jsx";
+import ConvertBlockPalette from "./components/ConvertBlockPalette.jsx";
 
 const COLLAB_HTTP_URL = DEFAULT_HTTP_URL;
 
@@ -191,6 +192,8 @@ export default function SpecEditor() {
   });
   const [sidebarSearch, setSidebarSearch] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
+  const [convertPalette, setConvertPalette] = useState(null);
+  // { blockId, currentType, anchorRect, savedSelection } | null
   const [bracketOpen, setBracketOpen] = useState(false);
   const [validationOpen, setValidationOpen] = useState(false);
   const [refWizardOpen, setRefWizardOpen] = useState(false);
@@ -301,6 +304,10 @@ export default function SpecEditor() {
   const pendingLintSidecarRef = useRef(null);
   const blocksRef = useRef(blocks);
   blocksRef.current = blocks;
+  const focusedBlockIdRef = useRef(focusedBlockId);
+  focusedBlockIdRef.current = focusedBlockId;
+  const collabReadOnlyRef = useRef(collabReadOnly);
+  collabReadOnlyRef.current = collabReadOnly;
   const sectionMetaRef = useRef(sectionMeta);
   sectionMetaRef.current = sectionMeta;
   const commentsStateRef = useRef(commentsState);
@@ -1740,6 +1747,23 @@ export default function SpecEditor() {
       } else if ((e.ctrlKey || e.metaKey) && e.key === '0') {
         e.preventDefault();
         zoomReset();
+      } else if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'M') {
+        // With Shift held, e.key is the uppercase 'M' per WHATWG UI Events.
+        e.preventDefault();
+        const blockId = focusedBlockIdRef.current;
+        if (!blockId) return;
+        const focusedBlock = blocksRef.current.find(b => b.id === blockId);
+        if (!focusedBlock) return;
+        if (!Blocks.FAMILY_A.has(focusedBlock.type)) return;
+        if (collabReadOnlyRef.current) return;
+        // Capture the PM selection so we can restore the caret post-dispatch.
+        const view = getBlockView(blockId);
+        const savedSelection = view
+          ? { from: view.state.selection.from, to: view.state.selection.to }
+          : null;
+        const dom = getBlockDom(blockId);
+        const anchorRect = dom ? dom.getBoundingClientRect() : null;
+        setConvertPalette({ blockId, currentType: focusedBlock.type, anchorRect, savedSelection });
       }
     };
     document.addEventListener('keydown', handler);
@@ -2479,6 +2503,50 @@ export default function SpecEditor() {
                 parent.removeChild(el);
                 parent.normalize();
               }
+            }}
+          />
+        )}
+
+        {/* Block Type Conversion Palette (Ctrl+Shift+M) */}
+        {convertPalette && (
+          <ConvertBlockPalette
+            currentType={convertPalette.currentType}
+            anchorRect={convertPalette.anchorRect}
+            onConvert={(newType) => {
+              const { blockId, savedSelection } = convertPalette;
+              handleConvertBlockType(blockId, newType);
+              setConvertPalette(null);
+              // Restore PM caret + focus after dispatch. requestAnimationFrame
+              // gives React time to flush the re-render so the EditorView's
+              // selection state matches the doc.
+              requestAnimationFrame(() => {
+                const view = getBlockView(blockId);
+                if (!view) return;
+                view.focus();
+                if (savedSelection) {
+                  try {
+                    const docSize = view.state.doc.content.size;
+                    const safeFrom = Math.min(savedSelection.from, docSize);
+                    const safeTo = Math.min(savedSelection.to, docSize);
+                    const tr = view.state.tr.setSelection(
+                      TextSelection.create(view.state.doc, safeFrom, safeTo)
+                    );
+                    view.dispatch(tr);
+                  } catch (err) {
+                    if (import.meta.env.DEV) {
+                      console.warn('[ConvertBlockPalette] selection restore failed', err);
+                    }
+                  }
+                }
+              });
+            }}
+            onClose={() => {
+              const { blockId } = convertPalette;
+              setConvertPalette(null);
+              requestAnimationFrame(() => {
+                const view = getBlockView(blockId);
+                if (view) view.focus();
+              });
             }}
           />
         )}
