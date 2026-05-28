@@ -132,3 +132,48 @@ export function splitCell(table, rowIdx, cellIdx) {
   row.splice(cellIdx + 1, 0, { text: '', colspan: 1 });
   return t;
 }
+
+/**
+ * Insert an empty row before `rowIdx` (use rowIdx+1 from the caller for
+ * "below"). An out-of-range index appends at the end.
+ */
+export function insertRowAt(table, rowIdx) {
+  const t = cloneTable(table);
+  const newRow = [];
+  for (let i = 0; i < t.columns; i++) newRow.push({ text: '', colspan: 1 });
+  const at = Math.max(0, Math.min(rowIdx, t.rows.length));
+  t.rows.splice(at, 0, newRow);
+  return t;
+}
+
+/**
+ * Insert an empty column at visual column `vcolIdx` (use vcol+1 from the
+ * caller for "right"). If a cell's colspan straddles the insertion point,
+ * that cell's colspan grows instead of a new cell being added. Mirrors the
+ * colspan handling in addColumn/deleteColumn (visual-column indexed).
+ */
+export function insertColumnAt(table, vcolIdx) {
+  const t = cloneTable(table);
+  t.columns += 1;
+  for (const row of t.rows) {
+    let pos = 0;
+    let inserted = false;
+    for (let c = 0; c < row.length; c++) {
+      const span = row[c].colspan || 1;
+      if (vcolIdx > pos && vcolIdx < pos + span) {
+        // Insertion point falls inside this spanning cell — widen it.
+        row[c].colspan = span + 1;
+        inserted = true;
+        break;
+      }
+      if (vcolIdx <= pos) {
+        row.splice(c, 0, { text: '', colspan: 1 });
+        inserted = true;
+        break;
+      }
+      pos += span;
+    }
+    if (!inserted) row.push({ text: '', colspan: 1 });
+  }
+  return t;
+}
