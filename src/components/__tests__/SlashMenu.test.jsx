@@ -120,9 +120,9 @@ describe('SlashMenu', () => {
     // pinned to whichever row the mouse was over. Now selectedIdx change clears hover.
     mount(<SlashMenu filter="" selectedIdx={0} onSelect={() => {}} onClose={() => {}} anchorRect={anchorRect} />);
     const items = document.querySelectorAll('[role="option"]');
-    // Hover row 3.
+    // Hover row 3 — mousemove (actual cursor motion), not mouseenter.
     act(() => {
-      items[3].dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+      items[3].dispatchEvent(new MouseEvent('mousemove', { bubbles: true }));
     });
     // Parent fires arrow-down -> selectedIdx becomes 1.
     act(() => {
@@ -136,6 +136,21 @@ describe('SlashMenu', () => {
     // Visual hover-or-keyboard highlight: row 1 has the active background, row 3 does not.
     expect(itemsAfter[1].style.backgroundColor).toBe('rgb(241, 245, 249)');
     expect(itemsAfter[3].style.backgroundColor).toBe('transparent');
+  });
+
+  it('mouseenter alone does NOT set hover (scroll-induced enter must not steal highlight)', () => {
+    // Regression: arrow nav triggers scrollIntoView, which slides rows under a
+    // stationary cursor and fires mouseenter on each new row. The component must
+    // only update hoverIdx on mousemove (real motion), not mouseenter.
+    mount(<SlashMenu filter="" selectedIdx={2} onSelect={() => {}} onClose={() => {}} anchorRect={anchorRect} />);
+    const items = document.querySelectorAll('[role="option"]');
+    // Mouseenter on row 5 — simulates scroll bringing a new row under the cursor.
+    act(() => {
+      items[5].dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+    });
+    // Keyboard-selected row (2) keeps the highlight; row 5 has no hover applied.
+    expect(items[2].style.backgroundColor).toBe('rgb(241, 245, 249)');
+    expect(items[5].style.backgroundColor).toBe('transparent');
   });
 
   it('calls onSelect with the item type on mousedown', () => {

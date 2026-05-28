@@ -194,7 +194,12 @@ export default function SlashMenu({ filter, selectedIdx, onSelect, onClose, anch
                 e.preventDefault();
                 onSelect(item.type);
               }}
-              onMouseEnter={() => setHoverIdx(i)}
+              // onMouseMove (not onMouseEnter): when arrow nav triggers a
+              // scrollIntoView, rows slide under a stationary cursor and the
+              // browser fires mouseenter on each new row — that would steal
+              // activeIdx away from the keyboard. mousemove requires actual
+              // cursor motion, so it ignores scroll-induced row changes.
+              onMouseMove={() => { if (hoverIdx !== i) setHoverIdx(i); }}
               style={{
                 display: 'flex',
                 alignItems: 'center',
