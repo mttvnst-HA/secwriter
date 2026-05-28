@@ -2673,7 +2673,7 @@ export default function SpecEditor() {
               );
             }
             return (
-              <div key={`${block.id}-${block.type}`}>
+              <div key={block.id}>
                 <PmEditableBlock
                   block={block}
                   yStore={activeYStore}
