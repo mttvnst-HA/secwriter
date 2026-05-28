@@ -109,9 +109,9 @@ const VIEWPORT_MARGIN = 8;
 ```jsx
 <div
   ref={menuRef}
+  id="sim-slash-listbox"
   role="listbox"
   aria-label="Insert block"
-  aria-activedescendant={`sim-slash-item-${safeIdx}`}
   style={{
     position: 'fixed',
     top, left,
@@ -127,11 +127,11 @@ const VIEWPORT_MARGIN = 8;
   }}
   onMouseLeave={() => setHoverIdx(-1)}
 >
-  <div style={{ position: 'sticky', top: 0, backgroundColor: '#fff', /* ... */ }}>
+  <div style={{ position: 'sticky', top: 0, backgroundColor: '#fff', /* ... */ }} aria-hidden="true">
     Insert block
   </div>
   {filtered.length === 0 ? (
-    <div role="option" aria-selected="false" style={{ padding: '12px', color: '#94a3b8', fontStyle: 'italic' }}>
+    <div role="status" aria-live="polite" style={{ padding: '12px', color: '#94a3b8', fontStyle: 'italic' }}>
       No matches
     </div>
   ) : (
@@ -152,6 +152,10 @@ const VIEWPORT_MARGIN = 8;
 </div>
 ```
 
+**ARIA pattern: combobox-with-listbox-popup.** The listbox above never holds focus (PM owns the contentEditable). For `aria-activedescendant` to actually announce changes, it must be set on the FOCUSED element — i.e., the PM contentEditable — not on the listbox itself. This requires adding ARIA attributes to PM's editor DOM in `PmEditableBlock.jsx`. See §3.4 step 3.
+
+The empty-state row uses `role="status"` + `aria-live="polite"` so it announces "No matches" instead of misleadingly being announced as a selectable option (the previous orphan `role="option"` was semantically wrong). The sticky header is `aria-hidden="true"` because it is decorative — the listbox's `aria-label` already conveys the same intent.
+
 **Layout effect** — recompute placement on `anchorRect`, `filtered.length`, and `window` resize:
 
 ```js
@@ -171,7 +175,7 @@ useLayoutEffect(() => {
     margin: VIEWPORT_MARGIN,
   });
   setPlacement({ top, left, maxHeight });
-}, [anchorRect, filtered.length]);
+}, [anchorRect, filtered.length, resizeTick]);
 
 const [resizeTick, setResizeTick] = useState(0);
 useEffect(() => {
@@ -179,8 +183,9 @@ useEffect(() => {
   window.addEventListener('resize', onResize);
   return () => window.removeEventListener('resize', onResize);
 }, []);
-// resizeTick added to the layout-effect deps array above
 ```
+
+(`resizeTick` must be declared above the `useLayoutEffect` for the dep reference to work; the order shown is illustrative — adjust during implementation.)
 
 **Close on scroll**:
 
@@ -205,13 +210,13 @@ useEffect(() => {
 
 ### 3.3 PM plugin — `src/lib/pm-plugins/slash-menu.js`
 
-**No code changes.** The plugin already stores `fromPos` in state (line 56: `return { open: true, filter, fromPos: 0 }`). Today `fromPos` is always `0` because the trigger heuristic only fires when the block text starts with `/`. The spec uses `fromPos` rather than hardcoding `0` so future relaxations of the trigger (e.g., slash after whitespace) work without changes here.
+**No code changes.** The existing exposure path is `slashMenuPluginKey.getState(state)` called from `PmEditableBlock.dispatchTransaction` (lines ~482-489) — not an `addSlashListener` API (the file header comment describes a never-implemented design; the actual `view()` returns `{}`). The plugin's existing state shape `{ open, filter, fromPos }` has `fromPos: null` initially and `fromPos: 0` when open. The spec reads `fromPos` from the existing `getState` payload rather than hardcoding `0`, so future relaxations of the trigger (e.g., slash after whitespace) work without changes here. `fromPos` can be `null` when `open: false` — the React-side state mirror normalizes to `null` for that case (see §3.4).
 
 ### 3.4 PM EditableBlock — `src/components/PmEditableBlock.jsx`
 
-**Two changes**:
+**Three logical changes**: (1) extend the React state shape to include `fromPos` — touches four setState sites; (2) compute and thread `anchorRect` to the new prop — touches the JSX call site and adds a `useMemo` + a `handleSlashClose` callback; (3) sync ARIA combobox attributes to the PM editor DOM when the menu opens or the selected item changes — one new effect.
 
-1. **Surface `fromPos` from the plugin listener** (line ~482-489). Today the mirror projects `{ open, filter, selectedIdx }`; extend to `{ open, filter, selectedIdx, fromPos }`:
+1. **Surface `fromPos` from the plugin mirror** (line ~482-489). Today the mirror projects `{ open, filter, selectedIdx }`; extend to `{ open, filter, selectedIdx, fromPos }`. **All four `setSlashState` call sites must use the new shape** — the mirror at :483, `handleSlashSelect` at :289, `onSlashEscape` at :303, and `handleSlashSelectClick` at :781. The non-mirror sites all set `fromPos: null` (matching the plugin's `initialState.fromPos`). Without this normalization, the mirror's `slash.fromPos !== slashStateRef.current.fromPos` gate would compare `null !== undefined` and trigger a spurious re-render on the next dispatch after each escape/select.
 
    ```js
    const slash = slashMenuPluginKey.getState(newState);
@@ -229,21 +234,26 @@ useEffect(() => {
    }
    ```
 
-2. **Compute `anchorRect` at render time** and pass to `SlashMenu` (lines 958-965):
+2. **Compute `anchorRect` once per menu-open and pass to `SlashMenu`** (lines 958-965). `anchorRect` is memoized via `useMemo` keyed on `slashState.open` + `slashState.fromPos` so it does NOT re-compute on every keystroke (filter chars change `slashState.filter` but the anchor stays put — the menu does not chase the caret as the user types, matching §6 "out of scope: cursor-following placement"):
 
    ```js
-   {slashState.open && editable && (() => {
-     const anchorRect = computeSlashAnchorRect(viewRef.current, slashState.fromPos, containerRef.current);
-     return (
-       <SlashMenu
-         filter={slashState.filter}
-         selectedIdx={slashState.selectedIdx}
-         onSelect={handleSlashSelectClick}
-         onClose={handleSlashClose}
-         anchorRect={anchorRect}
-       />
-     );
-   })()}
+   const anchorRect = useMemo(() => {
+     if (!slashState.open) return null;
+     return computeSlashAnchorRect(viewRef.current, slashState.fromPos, containerRef.current);
+     // viewRef and containerRef are intentionally NOT deps — they are mutable
+     // refs read at memo-recompute time, and re-running the memo when their
+     // identity changes (it does not) would defeat the lock-at-open invariant.
+   }, [slashState.open, slashState.fromPos]);
+
+   {slashState.open && editable && anchorRect && (
+     <SlashMenu
+       filter={slashState.filter}
+       selectedIdx={slashState.selectedIdx}
+       onSelect={handleSlashSelectClick}
+       onClose={handleSlashClose}
+       anchorRect={anchorRect}
+     />
+   )}
    ```
 
    Where `computeSlashAnchorRect` is a small helper:
@@ -273,6 +283,31 @@ useEffect(() => {
    This matches the existing Escape semantic (`onSlashEscape` at PmEditableBlock.jsx:302-305): set React state to closed, leave the `/filter` text in the block. The plugin state remains `open: true` until the doc changes. If the user resumes typing after a scroll-close, the next keystroke triggers a plugin state mirror in `dispatchTransaction` (lines ~482-489) and the menu re-opens with the updated filter — that is the intended behavior. If the user does nothing, the menu stays closed.
 
    (A latent quirk in this scheme: the next keystroke re-opens the menu even if the user wanted it gone for good. This pre-dates the redesign; out of scope.)
+
+3. **Apply ARIA combobox attributes to the PM editor DOM when the menu is open.** The listbox's `aria-activedescendant` must live on the focused element (the PM contentEditable) for screen readers to announce active-item changes. Add a new effect that toggles attributes on `viewRef.current?.dom` whenever `slashState.open` or `slashState.selectedIdx` changes:
+
+   ```js
+   useEffect(() => {
+     const dom = viewRef.current?.dom;
+     if (!dom) return;
+     if (slashState.open) {
+       dom.setAttribute('role', 'combobox');
+       dom.setAttribute('aria-haspopup', 'listbox');
+       dom.setAttribute('aria-expanded', 'true');
+       dom.setAttribute('aria-controls', 'sim-slash-listbox');
+       dom.setAttribute('aria-activedescendant', `sim-slash-item-${slashState.selectedIdx}`);
+     } else {
+       dom.removeAttribute('role');
+       dom.removeAttribute('aria-haspopup');
+       dom.removeAttribute('aria-expanded');
+       dom.removeAttribute('aria-controls');
+       dom.removeAttribute('aria-activedescendant');
+     }
+     // Cleanup on unmount: PM destroys the DOM, no leak.
+   }, [slashState.open, slashState.selectedIdx]);
+   ```
+
+   We manipulate the contentEditable's DOM attributes directly rather than threading them through PM's `EditorProps.attributes` because PM's attribute reconciliation merges static attributes; making them dynamic per-keystroke would force PM to re-reconcile on every state change. Direct DOM mutation is what y-prosemirror and similar plugins do for transient attributes.
 
 ## 4. Out of scope
 
@@ -310,12 +345,28 @@ Plus `computeLeft`:
 
 ### 5.2 New unit test — `src/components/__tests__/SlashMenu.test.jsx`
 
-- Empty filter renders "No matches" with `role="option"`.
-- Non-empty renders item rows with `role="option"` and stable `id` attributes.
-- `aria-activedescendant` on the listbox matches the active item id.
+- Listbox renders with `role="listbox"`, `id="sim-slash-listbox"`, `aria-label="Insert block"`.
+- Listbox does NOT carry `aria-activedescendant` (it belongs on the PM editor DOM, not here).
+- Empty filter renders "No matches" with `role="status"` and `aria-live="polite"` (NOT `role="option"`).
+- Non-empty renders item rows with `role="option"` and stable `id="sim-slash-item-${i}"` attributes.
 - `aria-selected="true"` is set on the keyboard-selected item only (not the hover one).
+- Sticky header is `aria-hidden="true"`.
+- Mounts via portal to `document.body` (assert the menu DOM is not a descendant of the wrapping `<div>` in the test render tree).
 
-### 5.3 Existing tests
+### 5.3 New integration test — `src/components/__tests__/PmEditableBlock-slash-aria.test.jsx`
+
+When `slashState.open` transitions to true, the PM editor's contentEditable DOM gains:
+- `role="combobox"`
+- `aria-haspopup="listbox"`
+- `aria-expanded="true"`
+- `aria-controls="sim-slash-listbox"`
+- `aria-activedescendant="sim-slash-item-${selectedIdx}"`
+
+When `selectedIdx` changes (arrow-key nav), `aria-activedescendant` updates to the new id.
+
+When the menu closes, all five attributes are removed.
+
+### 5.4 Existing tests
 
 - `src/lib/__tests__/slash-menu-plugin.test.js` — unaffected (plugin code unchanged).
 - E2E `tests/e2e/editor.spec.js` slash menu specs — must continue to pass. Validate locally and in CI.
@@ -336,12 +387,14 @@ Per CLAUDE.md rule about "Before claiming 'no E2E regressions,' run the FULL `ed
 - `view.coordsAtPos` is a standard PM API (`prosemirror.net/docs/ref/#view.EditorView.coordsAtPos`). Used here for the first time in SecWriter — flag for any future code that needs caret coords (e.g., FloatingToolbar already uses `view.coordsAtPos` indirectly through DOM measurement; this is an explicit version).
 - Predicted height (`HEADER_HEIGHT + ROW_HEIGHT * N`) is fragile against future CSS changes to the slash menu rows. Comment in the constants ties them to the row styles. Worst case if the constants drift: the menu picks a side slightly wrong, internal scroll still works.
 - ARIA additions are additive and won't break existing keyboard interactions (PM keymap still owns arrow keys + Enter; menu items have `tabIndex={-1}`).
+- Direct DOM attribute mutation on `viewRef.current.dom` (for combobox ARIA) bypasses PM's `EditorProps.attributes` reconciliation. If PM at any point re-renders the editor DOM and wipes our attributes, the next selection-or-open change re-applies them — but verify under PM 1.x behavior during implementation. Mitigation: the effect runs on every `[slashState.open, slashState.selectedIdx]` change, so reapplication is automatic on the very next state transition.
 
 ## 8. Files changed
 
-1. `src/components/SlashMenu.jsx` — main rewrite (props change, portal, placement math, ARIA, sticky header, empty state, active-item scroll-into-view, close-on-scroll listener).
-2. `src/components/PmEditableBlock.jsx` — surface `fromPos` through the slash mirror; compute `anchorRect` via `view.coordsAtPos`; pass new props.
-3. `src/components/__tests__/slash-menu-placement.test.js` — new file, pure-function unit tests.
-4. `src/components/__tests__/SlashMenu.test.jsx` — new file, component-level ARIA + empty-state tests.
+1. `src/components/SlashMenu.jsx` — main rewrite (props change, portal, placement math, ARIA listbox semantics, sticky header, empty state, active-item scroll-into-view, close-on-scroll listener).
+2. `src/components/PmEditableBlock.jsx` — surface `fromPos` through the slash mirror (4 setState sites); compute memoized `anchorRect` via `view.coordsAtPos`; new `handleSlashClose` callback; new effect syncing combobox ARIA attributes to the PM editor DOM; pass new props to `SlashMenu`.
+3. `src/components/__tests__/slash-menu-placement.test.js` — new file, pure-function unit tests for `computePlacement` + `computeLeft`.
+4. `src/components/__tests__/SlashMenu.test.jsx` — new file, component-level ARIA + empty-state + portal tests.
+5. `src/components/__tests__/PmEditableBlock-slash-aria.test.jsx` — new file, integration test for combobox ARIA attributes on the PM editor DOM.
 
 No changes to `src/lib/pm-plugins/slash-menu.js`.
