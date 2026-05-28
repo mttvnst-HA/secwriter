@@ -12,6 +12,39 @@ export const SLASH_ITEMS = [
   { type: "pagebreak", label: "Page Break", desc: "Insert a page break for printing", icon: "\u2504" },
 ];
 
+export function computePlacement({ anchorRect, viewportHeight, menuHeight, margin = 8 }) {
+  const spaceBelow = viewportHeight - anchorRect.bottom - margin;
+  const spaceAbove = anchorRect.top - margin;
+
+  if (menuHeight <= spaceBelow) {
+    return { placement: 'below', maxHeight: null, top: anchorRect.bottom + 4 };
+  }
+  if (menuHeight <= spaceAbove) {
+    return {
+      placement: 'above',
+      maxHeight: null,
+      top: anchorRect.top - menuHeight - 4,
+    };
+  }
+  if (spaceBelow >= spaceAbove) {
+    return {
+      placement: 'below',
+      maxHeight: Math.max(spaceBelow, 120),
+      top: anchorRect.bottom + 4,
+    };
+  }
+  return {
+    placement: 'above',
+    maxHeight: Math.max(spaceAbove, 120),
+    top: margin,
+  };
+}
+
+export function computeLeft({ anchorRect, menuWidth, viewportWidth, margin = 8 }) {
+  const desired = anchorRect.left;
+  return Math.max(margin, Math.min(desired, viewportWidth - menuWidth - margin));
+}
+
 export default function SlashMenu({ filter, selectedIdx, onSelect, position, readOnly = false }) {
   if (readOnly) return null;
   const [hoverIdx, setHoverIdx] = useState(-1);
