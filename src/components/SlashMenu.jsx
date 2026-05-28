@@ -1,5 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { computePlacement, computeLeft } from "../lib/menu-placement.js";
+export { computePlacement, computeLeft };
 
 export const SLASH_ITEMS = [
   { type: "title", label: "Heading", desc: "Section heading (Tab/Shift+Tab to change level)", icon: "H" },
@@ -13,44 +15,10 @@ export const SLASH_ITEMS = [
   { type: "pagebreak", label: "Page Break", desc: "Insert a page break for printing", icon: "┄" },
 ];
 
-const ANCHOR_GAP = 4; // px between caret bottom/top and menu edge
 const HEADER_HEIGHT = 26;
 const ROW_HEIGHT = 50;
 const MENU_WIDTH = 280;
 const VIEWPORT_MARGIN = 8;
-
-export function computePlacement({ anchorRect, viewportHeight, menuHeight, margin }) {
-  const spaceBelow = viewportHeight - anchorRect.bottom - margin;
-  const spaceAbove = anchorRect.top - margin;
-
-  if (menuHeight <= spaceBelow) {
-    return { placement: 'below', maxHeight: null, top: anchorRect.bottom + ANCHOR_GAP };
-  }
-  if (menuHeight <= spaceAbove) {
-    return {
-      placement: 'above',
-      maxHeight: null,
-      top: anchorRect.top - menuHeight - ANCHOR_GAP,
-    };
-  }
-  if (spaceBelow >= spaceAbove) {
-    return {
-      placement: 'below',
-      maxHeight: Math.max(spaceBelow, 120),
-      top: anchorRect.bottom + ANCHOR_GAP,
-    };
-  }
-  return {
-    placement: 'above',
-    maxHeight: Math.max(spaceAbove, 120),
-    top: margin,
-  };
-}
-
-export function computeLeft({ anchorRect, menuWidth, viewportWidth, margin }) {
-  const desired = anchorRect.left;
-  return Math.max(margin, Math.min(desired, viewportWidth - menuWidth - margin));
-}
 
 export default function SlashMenu({ filter, selectedIdx, onSelect, onClose, onHoverChange, anchorRect, readOnly = false }) {
   // IMPORTANT: All hook calls happen unconditionally. Conditional render moves to
