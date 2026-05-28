@@ -81,10 +81,17 @@ export default function SlashMenu({ filter, selectedIdx, onSelect, onClose, anch
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  // Close on any window scroll. Internal menu scroll does not propagate to window.
+  // Close on any scroll OUTSIDE the menu. We listen with capture so scrolls in any
+  // ancestor scroll container (window, the editor scroll wrapper, etc.) reposition
+  // away from the anchor — but a scroll whose target is the menu itself means the
+  // user is mouse-wheeling the menu's own scrollbar, which must NOT close.
   useEffect(() => {
     if (!onClose) return undefined;
-    const onScroll = () => onClose();
+    const onScroll = (e) => {
+      const menu = menuRef.current;
+      if (menu && e.target instanceof Node && menu.contains(e.target)) return;
+      onClose();
+    };
     window.addEventListener('scroll', onScroll, { passive: true, capture: true });
     return () => window.removeEventListener('scroll', onScroll, { capture: true });
   }, [onClose]);
@@ -131,6 +138,10 @@ export default function SlashMenu({ filter, selectedIdx, onSelect, onClose, anch
         width: MENU_WIDTH,
         maxHeight: placement.maxHeight ?? undefined,
         overflowY: placement.maxHeight ? 'auto' : 'visible',
+        // Prevent wheel events at the menu's scroll boundary from chaining to the
+        // document — without this, scrolling past the menu's top/bottom would
+        // trigger a window scroll and immediately close the menu.
+        overscrollBehavior: 'contain',
         zIndex: 1000,
         backgroundColor: '#ffffff',
         border: '1px solid #e2e8f0',

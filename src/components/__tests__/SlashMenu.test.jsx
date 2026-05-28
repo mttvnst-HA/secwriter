@@ -99,6 +99,21 @@ describe('SlashMenu', () => {
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
+  it('does NOT call onClose when scrolling inside the menu itself', () => {
+    // Regression: the capture-phase window scroll listener fires for scroll events
+    // on ANY descendant scroll container, including the menu's own scrollbar. The
+    // handler must check e.target and skip when the scroll originated inside the menu.
+    const onClose = vi.fn();
+    mount(<SlashMenu filter="" selectedIdx={0} onSelect={() => {}} onClose={onClose} anchorRect={anchorRect} />);
+    const listbox = document.querySelector('[role="listbox"]');
+    act(() => {
+      // Scroll events do not bubble, but capture-phase listeners fire regardless of
+      // bubbling — the window listener will see this event during capture.
+      listbox.dispatchEvent(new Event('scroll'));
+    });
+    expect(onClose).not.toHaveBeenCalled();
+  });
+
   it('calls onSelect with the item type on mousedown', () => {
     const onSelect = vi.fn();
     mount(<SlashMenu filter="" selectedIdx={0} onSelect={onSelect} onClose={() => {}} anchorRect={anchorRect} />);
