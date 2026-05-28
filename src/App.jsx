@@ -1230,6 +1230,11 @@ export default function SpecEditor() {
 
   const handleConvertBlock = useCallback((blockId, newType) => {
     const newId = `new-${Date.now()}`;
+    // If the user converts to a Designer Note while notes are hidden,
+    // the new block would render under `.notes-hidden .block-type-note
+    // { display: none }` and look deleted. Force-show notes so the
+    // freshly-converted block is visible immediately.
+    if (newType === 'note') setShowNotes(true);
     dispatchBlocks((b) => Blocks.convertBlock(b, blockId, newType, { newId }));
   }, [dispatchBlocks]);
 

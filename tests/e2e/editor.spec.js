@@ -618,6 +618,29 @@ test.describe('Slash command menu', () => {
     await expect(page.getByText('Insert block', { exact: true })).not.toBeVisible();
   });
 
+  test('converting to Designer Note force-shows notes (zero-height regression)', async ({ page }) => {
+    // Regression: when the user has hidden notes (toggle off) and converts a
+    // block to Designer Note, the new note block falls under the
+    // `.notes-hidden .block-type-note { display: none }` CSS rule and looks
+    // deleted — zero height, no visible content. handleConvertBlock now sets
+    // showNotes(true) when newType==='note' so the freshly-created note is
+    // visible immediately.
+    // Toggle notes OFF first.
+    await page.getByTitle('Hide specification notes').click();
+    await createFreshBlock(page);
+    await page.keyboard.type('/d');
+    await expect(page.getByText('Designer Note', { exact: true })).toBeVisible({ timeout: 3000 });
+    await page.keyboard.press('Enter');
+
+    const focused = page.locator('[data-block-id]:focus');
+    await expect(focused).toBeVisible({ timeout: 3000 });
+    // The new note block must have non-zero height — i.e. the .notes-hidden
+    // rule did NOT collapse it.
+    const box = await focused.boundingBox();
+    expect(box).not.toBeNull();
+    expect(box.height).toBeGreaterThan(0);
+  });
+
   test('slash trigger does not leak into converted Heading block', async ({ page }) => {
     await createFreshBlock(page);
     await page.keyboard.type('/h');
