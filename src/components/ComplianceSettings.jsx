@@ -4,7 +4,7 @@ import { getApiKey, setApiKey, clearApiKey, testConnection } from "../lib/compli
 export default function ComplianceSettings({ onClose, ignoredCount = 0, mutedCount = 0, onResetIgnored, onResetMuted }) {
   const [key, setKey] = useState(getApiKey() || "");
   const [model, setModel] = useState(
-    localStorage.getItem("sim-compliance-model") || "claude-sonnet-4-20250514"
+    localStorage.getItem("sim-compliance-model") || "claude-sonnet-4-6"
   );
   const [testResult, setTestResult] = useState(null); // null | 'testing' | { success, error }
   const [saved, setSaved] = useState(false);
@@ -122,8 +122,8 @@ export default function ComplianceSettings({ onClose, ignoredCount = 0, mutedCou
             color: "var(--color-text, #334155)",
           }}
         >
-          <option value="claude-sonnet-4-20250514">Claude Sonnet 4 (recommended)</option>
-          <option value="claude-haiku-3-5-20241022">Claude Haiku 3.5 (faster/cheaper)</option>
+          <option value="claude-sonnet-4-6">Claude Sonnet 4.6 (recommended)</option>
+          <option value="claude-haiku-4-5-20251001">Claude Haiku 4.5 (faster/cheaper)</option>
         </select>
 
         {/* Action buttons */}

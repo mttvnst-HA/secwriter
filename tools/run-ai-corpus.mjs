@@ -20,7 +20,7 @@
  *   ANTHROPIC_API_KEY=sk-... node tools/run-ai-corpus.mjs --model claude-haiku-4-5 --limit 5
  *
  * Flags:
- *   --model <id>    Model id (default: claude-sonnet-4-20250514)
+ *   --model <id>    Model id (default: claude-sonnet-4-6)
  *   --limit  <n>    Stop after N blocks (default: all blocks with violations)
  *   --out <path>    Output file (default: corpus/results/ai-results.json)
  *
@@ -44,7 +44,7 @@ function flag(name, fallback) {
   if (i === -1) return fallback;
   return args[i + 1];
 }
-const MODEL = flag('model', 'claude-sonnet-4-20250514');
+const MODEL = flag('model', 'claude-sonnet-4-6');
 const LIMIT = Number(flag('limit', 0)) || 0;
 const OUT = flag('out', join(PROJECT_ROOT, 'corpus', 'results', 'ai-results.json'));
 

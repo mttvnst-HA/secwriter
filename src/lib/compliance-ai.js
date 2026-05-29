@@ -342,7 +342,7 @@ export class ComplianceAPIError extends Error {
  */
 export async function requestAIRewrite(blocks, violations, apiKey, options = {}) {
   const {
-    model = 'claude-sonnet-4-20250514',
+    model = 'claude-sonnet-4-6',
     abortSignal = null,
     onProgress = null,
     lintingState = null,
@@ -496,7 +496,7 @@ export async function testConnection(apiKey) {
         'anthropic-dangerous-direct-browser-access': 'true',
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-sonnet-4-6',
         max_tokens: 10,
         messages: [{ role: 'user', content: 'Reply with "ok"' }],
       }),
