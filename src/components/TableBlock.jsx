@@ -149,6 +149,9 @@ function TableBlock({ block, onUpdate, isFocused, onFocus, readOnly, commentsSta
     const canMerge = canEdit && cellIdx < row.length - 1;
     const canSplit = canEdit && (cell.colspan || 1) > 1;
 
+    let vcol = 0;
+    for (let i = 0; i < cellIdx; i++) vcol += (row[i].colspan || 1);
+
     return (
       <Tag
         key={cellIdx}
@@ -157,6 +160,11 @@ function TableBlock({ block, onUpdate, isFocused, onFocus, readOnly, commentsSta
         onDoubleClick={() => canEdit && startEdit(rowIdx, cellIdx, cell.text)}
         onMouseEnter={() => setHoverCell({ row: rowIdx, col: cellIdx })}
         onMouseLeave={() => setHoverCell(null)}
+        data-row={rowIdx}
+        data-col={cellIdx}
+        data-vcol={vcol}
+        data-can-merge={canMerge ? 'true' : 'false'}
+        data-can-split={canSplit ? 'true' : 'false'}
       >
         {isEditing ? (
           <input
