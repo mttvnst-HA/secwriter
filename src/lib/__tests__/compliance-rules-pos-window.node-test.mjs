@@ -146,6 +146,31 @@ describe('runStaticRules — POS-window suppression (compromise required)', () =
     assert.notStrictEqual(v.find(x => x.ruleId === 'TERM-suitable'), undefined);
   });
 
+  // Inline-definition suppression — "suitable" is cured when the same sentence
+  // defines it concretely via "is defined as: …".
+  it('suppresses "suitable ... is defined as: <criteria>" (inline definition)', () => {
+    const v = run('Material suitable for topsoil is defined as: Natural, friable loam, free of subsoil, stumps, and rocks larger than 25 mm.');
+    assert.strictEqual(v.find(x => x.ruleId === 'TERM-suitable'), undefined);
+  });
+
+  it('suppresses "suitable ... means: <criteria>"', () => {
+    const v = run('Suitable backfill means: granular material with less than 5 percent passing the No. 200 sieve.');
+    assert.strictEqual(v.find(x => x.ruleId === 'TERM-suitable'), undefined);
+  });
+
+  // ADV-065 must still flag — "defined in ASTM" is a pointer, not an inline
+  // definition (no "defined as", no colon), so the marker must not match.
+  it('still flags ADV-065 "as defined in ASTM D4263" (pointer, not inline definition)', () => {
+    const v = run('Suitable for the intended application as defined in ASTM D4263.');
+    assert.notStrictEqual(v.find(x => x.ruleId === 'TERM-suitable'), undefined);
+  });
+
+  // A definition in a LATER sentence must not suppress an earlier "suitable".
+  it('flags "suitable" when the definition is in a different sentence', () => {
+    const v = run('Use a suitable finish. The required grade is defined as: ASTM A36.');
+    assert.notStrictEqual(v.find(x => x.ruleId === 'TERM-suitable'), undefined);
+  });
+
   it('suppresses VAGUE-applicable in adverbial "as applicable" clause (clean-corpus pattern)', () => {
     const v = run('Place reinforcement in accordance with ASTM A934/A934M as applicable.');
     assert.strictEqual(v.find(x => x.ruleId === 'VAGUE-applicable'), undefined);
