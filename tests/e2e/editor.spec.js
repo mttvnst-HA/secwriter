@@ -3576,3 +3576,212 @@ test.describe('block-type conversion (Family A)', () => {
     expect(labelAfter).toMatch(/^\(a\)/);
   });
 });
+
+// ─── Right-click context menu ──────────────────────────────────────────────────
+//
+// Tests for the right-click context menu (Tasks 1-9). The menu is built by
+// buildContextMenuItems(ctx) and dispatched via handleContextAction. The
+// listener is registered on editorScrollRef (.editor-scroll) and only fires
+// when the click target is inside an [id^="block-"] host.
+//
+// Helper note: pmSetSelection sets the PM selection programmatically; the
+// right-click coordinates land in the selected range when we click the block
+// element itself, so addCommentRange is populated for add-comment tests.
+
+test.describe('right-click context menu', () => {
+  test('plain text, no selection -> Paste only', async ({ page }) => {
+    await page.goto('/');
+    await waitForApp(page);
+    await injectBlockHtml(page, 'n24', '<p>hello world</p>');
+    // Click the block first to focus it, then right-click without a selection.
+    await page.locator(blockSel('n24')).click();
+    await page.keyboard.press('Escape'); // dismiss any slash menu
+    await page.locator(blockSel('n24')).click({ button: 'right' });
+    const menu = page.locator('[role="menu"]');
+    await expect(menu).toBeVisible();
+    // Menu item text includes the icon emoji — match on label text only.
+    const items = await menu.getByRole('menuitem').allTextContents();
+    expect(items).toHaveLength(1);
+    expect(items[0]).toContain('Paste');
+    await page.keyboard.press('Escape');
+    await expect(menu).toBeHidden();
+  });
+
+  test('with a selection -> Copy, Cut, Paste visible', async ({ page }) => {
+    await page.goto('/');
+    await waitForApp(page);
+    await injectBlockHtml(page, 'n24', '<p>hello world</p>');
+    // Click to focus first (required before pmSetSelection).
+    await page.locator(blockSel('n24')).click();
+    // Select full paragraph so the right-click position is within the selection.
+    await pmSetSelection(page, 'n24', 1, 12); // "hello world" = 11 chars, pos 1..12
+    // Right-click the PM contenteditable (data-pm-editor + data-block-id).
+    await page.locator('[data-pm-editor="true"][data-block-id="n24"]').click({ button: 'right' });
+    const menu = page.locator('[role="menu"]');
+    await expect(menu).toBeVisible({ timeout: 3000 });
+    // Items include icon emoji — check label substrings.
+    const labels = await menu.getByRole('menuitem').allTextContents();
+    expect(labels.some((l) => l.includes('Copy'))).toBe(true);
+    expect(labels.some((l) => l.includes('Cut'))).toBe(true);
+    expect(labels.some((l) => l.includes('Paste'))).toBe(true);
+    await page.keyboard.press('Escape');
+  });
+
+  test('over a revision mark -> Accept/Reject visible', async ({ page }) => {
+    await page.goto('/');
+    await waitForApp(page);
+    await injectBlockHtml(page, 'n24',
+      '<p>keep <ins class="mark-add" data-author-id="u1" style="--author-color:#0a0">added</ins> tail</p>');
+    // Wait for PM to parse the injected html (substrate observe fires async).
+    await page.waitForTimeout(150);
+    const ins = page.locator(`${blockSel('n24')} ins.mark-add`);
+    await ins.scrollIntoViewIfNeeded();
+    await expect(ins).toBeVisible({ timeout: 3000 });
+    // Focus the PM editor and place the caret inside the mark so posAtCoords
+    // maps reliably into the revisionAdd range when the context descriptor
+    // is resolved at right-click time. Use page.mouse.click with explicit
+    // coordinates to align the click with posAtCoords's viewport mapping.
+    await page.locator('[data-pm-editor="true"][data-block-id="n24"]').click();
+    await page.evaluate(() => { window.__simEditorTestUtils?.setPmCaret('n24', 8); });
+    const insBox = await ins.boundingBox();
+    await page.mouse.click(insBox.x + insBox.width / 2, insBox.y + insBox.height / 2, { button: 'right' });
+    const menu = page.locator('[role="menu"]');
+    await expect(menu.getByRole('menuitem', { name: 'Accept change' })).toBeVisible({ timeout: 3000 });
+    await expect(menu.getByRole('menuitem', { name: 'Reject change' })).toBeVisible({ timeout: 3000 });
+    await page.keyboard.press('Escape');
+  });
+
+  test('accept-change strips the revision mark', async ({ page }) => {
+    await page.goto('/');
+    await waitForApp(page);
+    await injectBlockHtml(page, 'n24',
+      '<p>keep <ins class="mark-add" data-author-id="u1" style="--author-color:#0a0">added</ins> tail</p>');
+    // Wait for PM to render the injected html.
+    await page.waitForTimeout(150);
+    const ins = page.locator(`${blockSel('n24')} ins.mark-add`);
+    await ins.scrollIntoViewIfNeeded();
+    await expect(ins).toBeVisible({ timeout: 3000 });
+    // Get the INS bounding box to compute exact click coordinates.
+    const insBox = await ins.boundingBox();
+    // Right-click the center of the INS element via page.mouse so we have
+    // precise control over the coordinates and can pass the same x/y to
+    // posAtCoords later.
+    await page.mouse.click(insBox.x + insBox.width / 2, insBox.y + insBox.height / 2, { button: 'right' });
+    const menu = page.locator('[role="menu"]');
+    await expect(menu.getByRole('menuitem', { name: 'Accept change' })).toBeVisible({ timeout: 3000 });
+    // Dismiss and re-open: use a keyboard-only flow that avoids the posAtCoords
+    // race. Close the menu, set the PM caret inside the mark, then right-click
+    // via page.mouse at the known caret coords so posAtCoords maps reliably.
+    await page.keyboard.press('Escape');
+    await expect(menu).toBeHidden({ timeout: 1000 });
+    // Place the PM caret at position 8 (inside "added") so posAtCoords has a
+    // reliable anchor independent of the INS element's pixel coords.
+    await page.locator('[data-pm-editor="true"][data-block-id="n24"]').click();
+    await page.evaluate(() => { window.__simEditorTestUtils?.setPmCaret('n24', 8); });
+    // Get the coords of the caret from coordsAtPos via the PM selection.
+    // We need fresh pixel coords after the caret move. Re-query the INS box
+    // (it shouldn't have moved since we haven't scrolled or resized).
+    const insBox2 = await ins.boundingBox();
+    const cx = insBox2.x + insBox2.width / 2;
+    const cy = insBox2.y + insBox2.height / 2;
+    // Right-click at the INS center to open the menu at those exact coords.
+    await page.mouse.click(cx, cy, { button: 'right' });
+    await expect(menu.getByRole('menuitem', { name: 'Accept change' })).toBeVisible({ timeout: 3000 });
+    // Click Accept change — the action handler calls posAtCoords with the
+    // same (cx, cy) used to open the menu, which maps inside "added".
+    await menu.getByRole('menuitem', { name: 'Accept change' }).click();
+    // Menu should close after action dispatch.
+    await expect(menu).toBeHidden({ timeout: 3000 });
+    // Accept removes the ins wrapper but keeps the text.
+    await expect(page.locator(`${blockSel('n24')} ins.mark-add`)).toHaveCount(0, { timeout: 5000 });
+    await expect.poll(() => readBlockHtml(page, 'n24'), { timeout: 5000 }).toContain('added');
+  });
+
+  test('add-comment via context menu applies mark-comment span', async ({ page }) => {
+    await page.goto('/');
+    await waitForApp(page);
+    // Set the sim-comment-author to avoid an identity prompt.
+    await page.evaluate(() => { localStorage.setItem('sim-comment-author', 'Test User'); });
+    await injectBlockHtml(page, 'n24', '<p>comment me here</p>');
+    await page.waitForTimeout(150);
+    // Click to focus the block and select all text via programmatic PM selection.
+    // addCommentRange is set in resolvePmContextAt when !empty AND the right-click
+    // pos is within the current selection (pos >= from && pos <= to).
+    const pmEditor = page.locator('[data-pm-editor="true"][data-block-id="n24"]');
+    await pmEditor.click();
+    await pmSetSelection(page, 'n24', 1, 16);
+    // Right-click at the start of the paragraph's text rect. Use the paragraph
+    // element's client rect to find where text actually starts, then click in
+    // the middle of that rect so posAtCoords maps into the selection range.
+    // PM's selectionchange sync is deferred past the contextmenu event, so the
+    // selection remains non-empty at contextmenu dispatch time.
+    const paraRect = await page.evaluate(() => {
+      const p = document.querySelector('[data-pm-editor="true"][data-block-id="n24"] p');
+      if (!p) return null;
+      const range = document.createRange();
+      range.selectNodeContents(p);
+      const rects = range.getClientRects();
+      if (!rects.length) return null;
+      const r = rects[0];
+      return { x: r.x, y: r.y, width: r.width, height: r.height };
+    });
+    const cx = paraRect ? paraRect.x + Math.max(0, paraRect.width / 2) : 0;
+    const cy = paraRect ? paraRect.y + paraRect.height / 2 : 0;
+    await page.mouse.click(cx, cy, { button: 'right' });
+    const menu = page.locator('[role="menu"]');
+    await expect(menu).toBeVisible({ timeout: 3000 });
+    await expect(menu.getByRole('menuitem', { name: 'Add comment' })).toBeVisible({ timeout: 3000 });
+    await menu.getByRole('menuitem', { name: 'Add comment' }).click();
+    // The mark is applied immediately; App also opens a CommentPopup (close it).
+    await expect.poll(() => readBlockHtml(page, 'n24'), { timeout: 5000 }).toContain('mark-comment');
+    // Close the popup (if open) by clicking the top-left corner.
+    await page.mouse.click(10, 10);
+  });
+
+  test('table cell right-click -> insert row below adds a row', async ({ page }) => {
+    await page.goto('/');
+    await waitForApp(page);
+    const cell = page.locator('td[data-row="0"][data-col="0"]').first();
+    await cell.scrollIntoViewIfNeeded();
+    await expect(cell).toBeVisible();
+    const before = await page.locator('td[data-col="0"]').count();
+    await cell.click({ button: 'right' });
+    const menu = page.locator('[role="menu"]');
+    await expect(menu.getByRole('menuitem', { name: 'Insert row below' })).toBeVisible({ timeout: 3000 });
+    await menu.getByRole('menuitem', { name: 'Insert row below' }).click();
+    await expect.poll(() => page.locator('td[data-col="0"]').count(), { timeout: 5000 }).toBe(before + 1);
+  });
+
+  test('section banner (non-block region) -> no custom menu', async ({ page }) => {
+    await page.goto('/');
+    await waitForApp(page);
+    // The section banner div is inside the editor scroll area but NOT inside
+    // [id^="block-"]. resolveContextDescriptor returns null (no block host), so
+    // the native contextmenu is allowed through and [role="menu"] never appears.
+    // Use getByText with exact: true and .first() since the text may appear
+    // in multiple nodes (the banner div and any compliance-panel text).
+    await page.getByText('UNIFIED FACILITIES GUIDE SPECIFICATIONS', { exact: true }).first()
+      .click({ button: 'right' });
+    await expect(page.locator('[role="menu"]')).toHaveCount(0);
+  });
+
+  test('right-click while slash menu open -> slash closes, block survives, context menu opens', async ({ page }) => {
+    await page.goto('/');
+    await waitForApp(page);
+    const fresh = await createFreshBlock(page);
+    const freshId = await fresh.getAttribute('data-block-id');
+    await page.keyboard.type('/');
+    await expect(page.locator('#sim-slash-listbox')).toBeVisible({ timeout: 3000 });
+    // Right-click the block — PmEditableBlock's capture-phase handler closes
+    // the slash menu before App's contextmenu listener fires.
+    await page.locator(blockSel(freshId)).click({ button: 'right' });
+    await expect(page.locator('#sim-slash-listbox')).toBeHidden();
+    // The block is still in the DOM (slash didn't delete it because the content
+    // is '/' plus a letter from createFreshBlock's wait poll — but even if only
+    // '/' was typed, the block only gets deleted on Escape, not right-click).
+    await expect(page.locator(`#block-${freshId}`)).toHaveCount(1);
+    // Context menu opened.
+    await expect(page.locator('[role="menu"]')).toBeVisible();
+    await page.keyboard.press('Escape');
+  });
+});
