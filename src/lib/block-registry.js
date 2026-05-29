@@ -55,6 +55,10 @@ const handles = new Map();
  *   Legacy: no-op. Used by callers that will push their own setBlocks
  *   downstream (e.g. inline TC accept/reject's onRefreshTcSnapshot) and
  *   must not have a late debounce flush re-issue setBlocks with stale html.
+ * @property {((coords: {x:number,y:number}) => object | null)=} getContextAtCoords
+ *   PM handle: resolves a context descriptor (mark/selection state) at the
+ *   given viewport coordinate for the right-click context menu. Other hosts
+ *   omit it (App resolves Title/Ref/Table from the DOM directly).
  */
 
 /** Register a block's imperative handle. Idempotent: re-registering replaces. */
@@ -147,6 +151,24 @@ export function listBlocksInDocumentOrder() {
 export function getBlockView(blockId) {
   const h = handles.get(blockId);
   return h && typeof h.getView === 'function' ? h.getView() : null;
+}
+
+/**
+ * Resolve a context descriptor at viewport coordinates for a PM-mounted
+ * block via its `getContextAtCoords` handle. Returns null for non-PM hosts
+ * (no such handle), unknown ids, or a throwing handle (mid-teardown view).
+ * Never throws — the App-level contextmenu listener relies on a null return
+ * to fall through to the native browser menu.
+ */
+export function getContextAtCoordsById(blockId, coords) {
+  const h = handles.get(blockId);
+  if (!h || typeof h.getContextAtCoords !== 'function') return null;
+  try {
+    return h.getContextAtCoords(coords) ?? null;
+  } catch {
+    /* mid-teardown view — never block the native menu */
+    return null;
+  }
 }
 
 /**

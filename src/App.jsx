@@ -32,7 +32,14 @@ import { serializeSEC } from "./lib/sec-serializer.js";
 import { encodeWindows1252 } from "./lib/encoding.js";
 import * as Y from "yjs";
 import { seedBlockArray, resetBlockArray, setBlockHtmlSilent, getBlockHtml } from "./lib/block-html-store.js";
-import { focusBlockById, getBlockEditable, getBlockDom, getBlockView, listBlocksInDocumentOrder } from "./lib/block-registry.js";
+import { focusBlockById, getBlockEditable, getBlockDom, getBlockView, listBlocksInDocumentOrder, getContextAtCoordsById, cancelPendingUpdateById, flushPendingUpdateById } from "./lib/block-registry.js";
+import ContextMenu from "./components/ContextMenu.jsx";
+import { buildContextMenuItems, tableCellCoordsFromTd } from "./lib/context-menu-items.js";
+import { applyInlineRevisionResolveTr, dispatchToolbarVerb, extractHtml, extractRangeText } from "./lib/pm-toolbar.js";
+import { TC_RESOLVE_META } from "./lib/pm-tc-mark.js";
+import { sanitizePasteText } from "./lib/paste-sanitize.js";
+import { pmFragmentToHtml } from "./lib/pmdoc-html.js";
+import { insertRowAt, insertColumnAt, deleteRow, deleteColumn, mergeCellRight, splitCell } from "./lib/table-ops.js";
 import { setActiveComment } from "./lib/pm-plugins/active-comment.js";
 import { Selection, TextSelection } from "prosemirror-state";
 import * as tc from "./lib/track-changes.js";
@@ -194,6 +201,9 @@ export default function SpecEditor() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [convertPalette, setConvertPalette] = useState(null);
   // { blockId, currentType, anchorRect, savedSelection } | null
+  // Right-click context menu (Task 9). { items, anchor:{x,y}, ctx } | null
+  const [contextMenu, setContextMenu] = useState(null);
+  const editorScrollRef = useRef(null);
   const [bracketOpen, setBracketOpen] = useState(false);
   const [validationOpen, setValidationOpen] = useState(false);
   const [refWizardOpen, setRefWizardOpen] = useState(false);
@@ -1821,6 +1831,193 @@ export default function SpecEditor() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inRoom]);
 
+  // ─── Right-click context menu (Task 9) ────────────────────────────────
+  // Resolve a context descriptor at the event's coordinates. Returns null to
+  // fall through to the native browser menu (unknown host, non-editable kind,
+  // mid-teardown PM view). Reads refs only, so the callback stays stable.
+  const resolveContextDescriptor = useCallback((e) => {
+    const target = e.target;
+    if (!(target instanceof Element)) return null;
+    const hostEl = target.closest('[id^="block-"]');
+    if (!hostEl) return null;
+    const blockId = hostEl.id.slice('block-'.length);
+    const block = blocksRef.current.find((b) => b.id === blockId);
+    if (!block) return null;
+    const readOnly = collabReadOnlyRef.current;
+    if (block.type === 'table') {
+      // Header cells render <th>, body cells <td> — match either via the
+      // data attributes rather than the tag name.
+      const td = target.closest('[data-row][data-col]');
+      const coords = tableCellCoordsFromTd(td);
+      if (!coords) return null;
+      const span = Number(td.getAttribute('colspan')) || 1;
+      return { blockId, kind: 'table', ...coords, span, readOnly };
+    }
+    if (block.type === 'title' || block.type === 'ref') {
+      const sel = window.getSelection();
+      return { blockId, kind: block.type, selectionEmpty: !sel || sel.isCollapsed, readOnly };
+    }
+    if (block.type === 'pagebreak' || block.type === 'tbl') return null;
+    return getContextAtCoordsById(blockId, { x: e.clientX, y: e.clientY });
+  }, []);
+
+  // Dispatch a context-menu action. `menu` is the captured contextMenu state
+  // ({ items, anchor, ctx }) so the action sees the descriptor resolved at
+  // open time. forceFrame closes the UndoManager capture window before each
+  // mutating gesture (matches the FloatingToolbar / inline-TC pattern).
+  const handleContextAction = useCallback((id, menu) => {
+    const forceFrame = inRoom ? collab.forceFrame : localUndo.forceFrame;
+    const blockId = menu.ctx.blockId;
+    const toastInfo = (msg) => toastPushRef.current?.({ kind: 'info', title: msg, ttl: 4000 });
+
+    switch (id) {
+      case 'copy': {
+        const view = getBlockView(blockId);
+        let text = '';
+        if (view) {
+          const { from, to } = view.state.selection;
+          text = view.state.doc.textBetween(from, to, '\n', '');
+        } else {
+          text = window.getSelection()?.toString() ?? '';
+        }
+        if (!text) break;
+        if (!navigator.clipboard?.writeText) { toastInfo('Clipboard unavailable'); break; }
+        view?.focus();
+        navigator.clipboard.writeText(text).catch((err) => {
+          toastInfo(err?.name === 'NotAllowedError' ? 'Clipboard permission denied' : 'Copy failed');
+        });
+        break;
+      }
+      case 'cut': {
+        const view = getBlockView(blockId);
+        if (!view) break;
+        const { from, to } = view.state.selection;
+        if (from === to) break;
+        const text = view.state.doc.textBetween(from, to, '\n', '');
+        if (!navigator.clipboard?.writeText) { toastInfo('Clipboard unavailable'); break; }
+        view.focus();
+        navigator.clipboard.writeText(text).then(() => {
+          const v = getBlockView(blockId);
+          if (!v) return;
+          forceFrame();
+          v.dispatch(v.state.tr.delete(from, to));
+          cancelPendingUpdateById(blockId);
+          handleBlockUpdatePmSync(blockId, pmFragmentToHtml(v.state.doc));
+        }).catch((err) => {
+          toastInfo(err?.name === 'NotAllowedError' ? 'Clipboard permission denied' : 'Cut failed');
+        });
+        break;
+      }
+      case 'paste': {
+        const view = getBlockView(blockId);
+        if (!view) break;
+        if (!navigator.clipboard?.readText) { toastInfo('Clipboard unavailable'); break; }
+        view.focus();
+        navigator.clipboard.readText().then((raw) => {
+          const text = sanitizePasteText(raw || '');
+          if (!text) return;
+          const v = getBlockView(blockId);
+          if (!v) return;
+          v.focus();
+          forceFrame();
+          v.dispatch(v.state.tr.insertText(text));
+          flushPendingUpdateById(blockId);
+        }).catch((err) => {
+          toastInfo(err?.name === 'NotAllowedError' ? 'Clipboard permission denied' : 'Paste failed');
+        });
+        break;
+      }
+      case 'accept-change':
+      case 'reject-change': {
+        const view = getBlockView(blockId);
+        if (!view) { toastInfo('Change no longer available'); break; }
+        let coords;
+        try { coords = view.posAtCoords({ left: menu.anchor.x, top: menu.anchor.y }); }
+        catch { coords = null; }
+        if (!coords) { toastInfo('Change no longer available'); break; }
+        const action = id === 'accept-change' ? 'accept' : 'reject';
+        const kindHint = menu.ctx.revision?.kind;
+        const result = dispatchToolbarVerb({
+          view,
+          saved: { blockId },
+          onForceFrame: forceFrame,
+          compute: (state) => {
+            const r = applyInlineRevisionResolveTr(state, action, coords.pos, kindHint);
+            if (r && action === 'accept' && kindHint === 'del') {
+              r.tr.setMeta(TC_RESOLVE_META, true);
+            }
+            return r;
+          },
+        });
+        if (!result.dispatched) { toastInfo('Change no longer available'); break; }
+        handleBlockUpdatePmSync(blockId, extractHtml(result.state));
+        break;
+      }
+      case 'add-comment': {
+        const view = getBlockView(blockId);
+        const range = menu.ctx.addCommentRange;
+        if (!view || !range) break;
+        if (range.from < 0 || range.to > view.state.doc.content.size) { toastInfo('Selection no longer here'); break; }
+        const markType = view.state.schema.marks.comment;
+        if (!markType) break;
+        const commentId = `comment-${Date.now()}`;
+        forceFrame();
+        view.dispatch(view.state.tr.addMark(range.from, range.to, markType.create({ id: commentId, resolved: false })));
+        const stateAfter = view.state;
+        flushPendingUpdateById(blockId);
+        handleCommentCreate(blockId, extractHtml(stateAfter), commentId, extractRangeText(stateAfter, range));
+        break;
+      }
+      case 'resolve-comment': {
+        const fresh = getContextAtCoordsById(blockId, menu.anchor);
+        const commentId = fresh?.comment?.commentId ?? menu.ctx.comment?.commentId;
+        if (!commentId) { toastInfo('Comment no longer here'); break; }
+        handleCommentResolve(commentId);
+        break;
+      }
+      default: {
+        if (!id.startsWith('table-')) break;
+        const { row, col, vcol, span = 1 } = menu.ctx;
+        // Persist through the SAME path TableBlock's inline editor uses:
+        // onUpdate(id, { table }) → dispatchBlocks(mergeBlockData). The
+        // table-ops helpers are pure and return null when the op is impossible.
+        const apply = (fn) => {
+          const current = blocksRef.current.find((b) => b.id === blockId)?.table;
+          if (!current) return;
+          const nt = fn(current);
+          if (!nt) return;
+          dispatchBlocks((b) => Blocks.mergeBlockData(b, blockId, { table: nt }));
+        };
+        if (id === 'table-insert-row-above') apply((t) => insertRowAt(t, row));
+        else if (id === 'table-insert-row-below') apply((t) => insertRowAt(t, row + 1));
+        else if (id === 'table-insert-col-left') apply((t) => insertColumnAt(t, vcol));
+        else if (id === 'table-insert-col-right') apply((t) => insertColumnAt(t, vcol + span));
+        else if (id === 'table-delete-row') apply((t) => deleteRow(t, row));
+        else if (id === 'table-delete-col') apply((t) => deleteColumn(t, vcol));
+        else if (id === 'table-merge') apply((t) => mergeCellRight(t, row, col));
+        else if (id === 'table-split') apply((t) => splitCell(t, row, col));
+        break;
+      }
+    }
+  }, [inRoom, collab, localUndo, dispatchBlocks, handleBlockUpdatePmSync, handleCommentCreate, handleCommentResolve]);
+
+  // Singleton contextmenu listener on the editor scroll container. Suppresses
+  // the native menu only when at least one non-divider item is buildable.
+  useEffect(() => {
+    const scroller = editorScrollRef.current;
+    if (!scroller) return undefined;
+    const onContextMenu = (e) => {
+      const ctx = resolveContextDescriptor(e);
+      if (!ctx) return;
+      const items = buildContextMenuItems(ctx);
+      if (!items.some((i) => !i.divider)) return;
+      e.preventDefault();
+      setContextMenu({ items, anchor: { x: e.clientX, y: e.clientY }, ctx });
+    };
+    scroller.addEventListener('contextmenu', onContextMenu);
+    return () => scroller.removeEventListener('contextmenu', onContextMenu);
+  }, [resolveContextDescriptor]);
+
   const sectionNumber = sectionMeta.sectionNumber;
   const sectionTitle = sectionMeta.sectionTitle;
   const ufgsDate = sectionMeta.date;
@@ -2564,6 +2761,15 @@ export default function SpecEditor() {
           />
         )}
 
+        {contextMenu && (
+          <ContextMenu
+            items={contextMenu.items}
+            anchor={contextMenu.anchor}
+            onSelect={(actionId) => { handleContextAction(actionId, contextMenu); setContextMenu(null); }}
+            onClose={() => setContextMenu(null)}
+          />
+        )}
+
         {/* Bracket Replace Panel */}
         {bracketOpen && (
           <BracketReplace
@@ -2585,6 +2791,7 @@ export default function SpecEditor() {
         <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
         {/* Editor Scroll Area — full width so scrolling works in white space */}
         <div
+          ref={editorScrollRef}
           className="editor-scroll"
           style={{
             flex: 1,

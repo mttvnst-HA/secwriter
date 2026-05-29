@@ -94,6 +94,7 @@ import { activeCommentPlugin } from '../lib/pm-plugins/active-comment.js';
 import { COMMENT_RECONCILE_META, reconcileCommentMarks } from '../lib/pm-comments.js';
 import { rewriteForTrackChanges, docHasInlineRevisions, TC_RESOLVE_META } from '../lib/pm-tc-mark.js';
 import { sanitizePasteText } from '../lib/paste-sanitize.js';
+import { resolvePmContextAt } from '../lib/pm-context.js';
 import { useBlockLinting } from './useBlockLinting.js';
 
 /**
@@ -238,6 +239,8 @@ function PmEditableBlock({
   const filteredSlashRef = useRef([]);
   const forceFrameRef = useRef(forceFrame);
   forceFrameRef.current = forceFrame;
+  const readOnlyRef = useRef(readOnly);
+  readOnlyRef.current = readOnly;
 
   const editable = useMemo(() => {
     const t = block.type;
@@ -698,6 +701,21 @@ function PmEditableBlock({
         // dataset.init removal is benign.
       },
       getView: () => viewRef.current,
+      getContextAtCoords: ({ x, y }) => {
+        const view = viewRef.current;
+        if (!view) return null;
+        let coords;
+        try {
+          coords = view.posAtCoords({ left: x, top: y });
+        } catch {
+          return null;
+        }
+        if (!coords) return null;
+        return resolvePmContextAt(view.state, coords.pos, {
+          blockId: block.id,
+          readOnly: readOnlyRef.current,
+        });
+      },
       flushPendingUpdate: () => {
         // 1f.9 — close the 400ms debounce window after a toolbar dispatch
         // so App's blocks array reflects the substrate synchronously.
@@ -853,6 +871,16 @@ function PmEditableBlock({
     }
   }, [delPopup, block.id]);
 
+  // On right-click, force-close any open slash menu + del-popup so neither
+  // overlaps the context menu. Capture phase (onContextMenuCapture) so this
+  // runs before App's bubble-phase singleton contextmenu listener. Closing
+  // an already-closed menu is a no-op forceClose.
+  const handleContextMenuCapture = useCallback(() => {
+    closeSlashMenuPlugin(viewRef.current);
+    setSlashState({ open: false, filter: '', selectedIdx: 0, fromPos: null });
+    setDelPopup(null);
+  }, []);
+
   const handleSlashSelectClick = useCallback((type) => {
     setSlashState({ open: false, filter: '', selectedIdx: 0, fromPos: null });
     onConvertBlockRef.current?.(block.id, type);
@@ -894,6 +922,7 @@ function PmEditableBlock({
   useEffect(() => {
     if (!slashState.open) return undefined;
     function onDocMouseDown(e) {
+      if (e.button === 2) return; // right-click: let the contextmenu path own it
       const target = e.target;
       if (!(target instanceof Node)) return;
       const listbox = document.getElementById('sim-slash-listbox');
@@ -934,6 +963,7 @@ function PmEditableBlock({
   useEffect(() => {
     if (!discardArmed) return undefined;
     function onDocMouseDown(e) {
+      if (e.button === 2) return; // right-click: let the contextmenu path own it
       const target = e.target;
       if (!(target instanceof Node)) return;
       // Click inside this block's wrapper (PM editor, gutter menu, revision
@@ -1090,6 +1120,7 @@ function PmEditableBlock({
       data-block-type={block.type}
       onMouseEnter={() => { cancelHoverHide(); setHovering(true); }}
       onMouseLeave={scheduleHoverHide}
+      onContextMenuCapture={handleContextMenuCapture}
     >
       {showGutterMenu && (
         <BlockGutterMenu
