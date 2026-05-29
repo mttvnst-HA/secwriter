@@ -41,4 +41,21 @@ describe('TableBlock data-* cell attributes', () => {
     expect(bc.getAttribute('data-can-merge')).toBe('false');
     expect(bc.getAttribute('data-can-split')).toBe('true');
   });
+
+  it('data-vcol diverges from data-col for a cell after a colspan>1 cell', () => {
+    const spanBlock = {
+      id: 't2', type: 'table',
+      table: {
+        columns: 3,
+        rows: [
+          [{ text: 'x', colspan: 2 }, { text: 'y', colspan: 1 }],
+        ],
+      },
+    };
+    const { container } = render(<TableBlock block={spanBlock} onUpdate={() => {}} readOnly={false} />);
+    const y = container.querySelector('td[data-row="0"][data-col="1"]');
+    expect(y).not.toBeNull();
+    expect(y.getAttribute('data-col')).toBe('1');   // array index
+    expect(y.getAttribute('data-vcol')).toBe('2');  // visual column start (after the colspan-2 'x')
+  });
 });
