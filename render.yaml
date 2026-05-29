@@ -57,6 +57,21 @@ services:
     env: static
     buildCommand: npm run build
     staticPublishPath: dist
+    # Cache policy: Vite emits content-hashed asset filenames (index-<hash>.js),
+    # so /assets/* is safe to cache forever. index.html references the current
+    # hash, so it must revalidate on every navigation — otherwise returning
+    # visitors keep loading a stale index.html pointing at the previous build's
+    # JS bundle until a hard refresh (see issue #188).
+    headers:
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /index.html
+        name: Cache-Control
+        value: no-cache
+      - path: /
+        name: Cache-Control
+        value: no-cache
     routes:
       - type: rewrite
         source: /*
