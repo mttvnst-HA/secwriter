@@ -636,8 +636,13 @@ button[data-priority="primary"]:hover {
   color: inherit;
 }
 
+/* Editor content wrapper — centered text column */
+.editor-content {
+  max-width: 1100px;
+}
+
 /* Editor content wrapper — override hardcoded white */
-.dark-mode [style*="max-width: 800px"] {
+.dark-mode .editor-content {
   color: var(--sim-text);
 }
 

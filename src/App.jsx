@@ -2802,7 +2802,7 @@ export default function SpecEditor() {
         {/* Editor Content — centered with max width, zoomable */}
         <div
           ref={editorRef}
-          className={`${showRevisions ? '' : 'revisions-hidden'} ${showNotes ? '' : 'notes-hidden'} ${showTags ? 'tags-visible' : 'tags-hidden'} ${unitDisplay === 'eng' ? 'units-eng-only' : unitDisplay === 'met' ? 'units-met-only' : ''}`.trim()}
+          className={`editor-content ${showRevisions ? '' : 'revisions-hidden'} ${showNotes ? '' : 'notes-hidden'} ${showTags ? 'tags-visible' : 'tags-hidden'} ${unitDisplay === 'eng' ? 'units-eng-only' : unitDisplay === 'met' ? 'units-met-only' : ''}`.trim()}
           onCopy={(e) => {
             const sel = window.getSelection();
             if (!sel || sel.isCollapsed) return;
@@ -2812,7 +2812,6 @@ export default function SpecEditor() {
           }}
           style={{
             padding: "16px 24px 100px",
-            maxWidth: 800,
             marginLeft: "auto",
             marginRight: showComments ? 0 : "auto",
             width: "100%",

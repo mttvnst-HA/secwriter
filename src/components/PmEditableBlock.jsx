@@ -1013,7 +1013,25 @@ function PmEditableBlock({
   }, [slashState.open, slashState.selectedIdx]);
 
   // ── Gutter menu hover state ───────────────────────────────────────────────
+  // The convert button sits in the left gutter, outside the block box. A bare
+  // mouseleave→hide unmounts it the instant the pointer overshoots past the
+  // button (e.g. exiting the gutter's left edge), so the user can't recover
+  // without re-entering the text. Hide on a short grace timer instead: leaving
+  // the block schedules the hide, and re-entering the block or button (both
+  // route through this element's mouseenter) cancels it.
   const [hovering, setHovering] = useState(false);
+  const hoverHideTimerRef = useRef(null);
+  const cancelHoverHide = () => {
+    if (hoverHideTimerRef.current) {
+      clearTimeout(hoverHideTimerRef.current);
+      hoverHideTimerRef.current = null;
+    }
+  };
+  const scheduleHoverHide = () => {
+    cancelHoverHide();
+    hoverHideTimerRef.current = setTimeout(() => setHovering(false), 1000);
+  };
+  useEffect(() => () => cancelHoverHide(), []);
 
   // ── Layout (mirrors EditableBlock.jsx) ───────────────────────────────────
   const isNote = block.type === 'note';
@@ -1100,8 +1118,8 @@ function PmEditableBlock({
       className={revisionClass}
       data-tag={sgmlTag}
       data-block-type={block.type}
-      onMouseEnter={() => setHovering(true)}
-      onMouseLeave={() => setHovering(false)}
+      onMouseEnter={() => { cancelHoverHide(); setHovering(true); }}
+      onMouseLeave={scheduleHoverHide}
       onContextMenuCapture={handleContextMenuCapture}
     >
       {showGutterMenu && (
