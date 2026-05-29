@@ -75,6 +75,31 @@ function isInsideAnyQuoteRange(ranges, start, end) {
 }
 
 /**
+ * Position of the end of the sentence containing `from`. A terminator is
+ * `.`/`!`/`?` followed by whitespace+capital/open-bracket OR end-of-text.
+ * Spec text is full of non-terminating periods ("No. 200", "5.5", "ASTM
+ * D5268." inside brackets) so the lookahead deliberately excludes them.
+ * Returns text.length when no terminator is found.
+ */
+function findSentenceEndPos(text, from) {
+  const re = /[.!?](?:\s+[A-Z([]|\s*$)/g;
+  re.lastIndex = from;
+  const m = re.exec(text);
+  return m ? m.index : text.length;
+}
+
+/**
+ * Inline-definition marker: a vague word is "cured" when the same sentence
+ * supplies concrete criteria via "is defined as: …", "means: …", or
+ * "defined as the following: …". The trailing colon (within 30 non-period,
+ * non-colon chars of the marker) is the precision guard — it signals a
+ * concrete enumeration follows. This deliberately does NOT match the pointer
+ * form "as defined in ASTM D4263" (ADV-065 — "defined in", no colon), which
+ * remains a flagged vague paraphrase.
+ */
+const INLINE_DEFINITION_MARKER = /\b(?:defined as|means)\b[^.:]{0,30}:/i;
+
+/**
  * Compute a per-keyword suppression set using compromise.js POS tags so the
  * four formerly DEFERRED_TO_PANEL rules can run inline with low FP:
  *
@@ -575,6 +600,12 @@ export function runStaticRules(plainText, blockId, rules, options = {}) {
       // intended application as defined in ASTM D4263") flag (ADV-065).
       if (rule.id === 'TERM-suitable') {
         if (posSuppress['TERM-suitable'].has(matchStart)) continue;
+        // "suitable ... is defined as: <concrete criteria>" — the vagueness is
+        // cured by an inline definition later in the same sentence. Scan
+        // forward only to the sentence end so a definition in a later sentence
+        // can't suppress an unrelated "suitable".
+        const sentEnd = findSentenceEndPos(plainText, matchEnd);
+        if (INLINE_DEFINITION_MARKER.test(plainText.slice(matchEnd, sentEnd))) continue;
         const after = plainText.slice(matchEnd, matchEnd + 30).toLowerCase();
         // "suitable for a 3/4 inch", "suitable for type of", "suitable for the 1-inch pipe"
         if (after.match(/^\s*for\s+(a |type |non-|use |the\s+[#\d])/)) continue;
