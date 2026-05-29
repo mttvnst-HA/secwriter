@@ -974,12 +974,13 @@ test.describe('Export', () => {
     // Enable Track Changes
     await page.locator('button:has-text("Track Changes")').click();
 
-    // Create a new block (gets revision="add")
-    const txt = page.locator(blockSel('n24'));
-    await txt.click();
-    await page.keyboard.press('Enter');
-    const focused = page.locator('[data-block-id]:focus');
-    await expect(focused).toBeVisible({ timeout: 3000 });
+    // Create a new block (gets revision="add") via the PM-mount-aware helper
+    // (#114). The naive `Enter → [data-block-id]:focus → type` pattern resolves
+    // to n24 before the new block's PM EditorView mounts, so "Tracked new
+    // content" leaks into n24 and the export lacks the <ADD>…</ADD> wrapper —
+    // this failed 2/3 even in isolation at baseline (same race as the slash-
+    // menu test, #192).
+    await createFreshBlock(page);
     await page.keyboard.type('Tracked new content');
 
     // Save (remove showSaveFilePicker to force download fallback)
@@ -1086,14 +1087,15 @@ test.describe('Combined keyboard workflow', () => {
   });
 
   test('create, convert via slash menu, then delete', async ({ page }) => {
-    const txt = page.locator(blockSel('n24'));
-    await txt.click();
     const before = await getBlockCount(page);
 
-    // Create new block
-    await page.keyboard.press('Enter');
-    const newBlock = page.locator('[data-block-id]:focus');
-    await expect(newBlock).toBeVisible({ timeout: 3000 });
+    // Create the new block via the PM-mount-aware helper (#114/#192). The
+    // naive `Enter → [data-block-id]:focus → toBeVisible` pattern resolves to
+    // n24 BEFORE the new block's PM EditorView has mounted and auto-focused,
+    // so the `/d` keystrokes below leak into n24 (which is non-empty) and
+    // never open the slash menu. Under parallel load this raced ~1/3 of runs
+    // ("Designer Note" not found).
+    await createFreshBlock(page);
 
     // Convert to note via slash menu
     await page.keyboard.type('/d');
@@ -1762,43 +1764,44 @@ test.describe('Track changes: snapshot staleness regression', () => {
 
     // Blur to trigger diff annotation (all text → ins.mark-add since snapshot was empty)
     await page.locator(blockSel('n24')).click();
-    await page.waitForTimeout(500);
 
-    // Verify ins elements exist
-    const insBefore = await page.locator(blockSel(blockId)).locator('ins.mark-add').count();
-    expect(insBefore).toBeGreaterThan(0);
+    // Verify ins elements exist (web-first, retries instead of a fixed wait +
+    // non-retrying count).
+    await expect(page.locator(blockSel(blockId)).locator('ins.mark-add').first()).toBeVisible({ timeout: 3000 });
 
-    // Click the block to focus it, select all, and use floating toolbar to accept
+    // Focus the block and select all via keyboard so the floating toolbar
+    // arms — the toolbar reads window.getSelection() on shift+arrow keyup, so
+    // this selection must stay keyboard-driven (pmSetSelection would not fire
+    // the event the toolbar listens for).
     await page.locator(blockSel(blockId)).click();
     await page.waitForTimeout(200);
     await page.keyboard.press('Home');
     await page.keyboard.down('Shift');
     await page.keyboard.press('End');
     await page.keyboard.up('Shift');
-    await page.waitForTimeout(300);
 
     // Accept the addition via floating toolbar
     const acceptBtn = page.locator('button[title="Accept addition"]');
     await expect(acceptBtn).toBeVisible({ timeout: 3000 });
     await acceptBtn.dispatchEvent('mousedown');
     await acceptBtn.dispatchEvent('click');
-    await page.waitForTimeout(300);
 
-    // Now re-edit: append " extra" to the block
-    const block = page.locator(blockSel(blockId));
-    await expect(block).toBeVisible({ timeout: 3000 });
-    await block.click();
-    await page.keyboard.press('End');
+    // Re-edit: append " extra". Focus + caret via pmSetCaret('end') (which
+    // calls view.focus()) instead of block.click() + keyboard End — the
+    // re-focus .click() on the re-rendering PM block stalled on actionability
+    // under load (#192) and 'End' is subject to the #116 domObserver race.
+    await pmSetCaret(page, blockId, 'end');
     await page.keyboard.type(' extra');
 
-    // Blur again to trigger diff
+    // Blur again to trigger diff.
     await page.locator(blockSel('n24')).click();
-    await page.waitForTimeout(500);
 
-    // "original text" should NOT be re-created as ins.mark-add
-    // Only "extra" should be an addition (if anything)
-    const html = await page.locator(blockSel(blockId)).evaluate(el => el.innerHTML);
-    // The word "original" should NOT be inside an <ins> tag
+    // Wait for the appended text to land in state, then assert the accepted
+    // "original text" was NOT re-annotated as an addition. Reads via
+    // readBlockHtml (App state) rather than a DOM .evaluate, which can hang on
+    // an unresolved PM block under full-suite load (#192).
+    await expect.poll(() => readBlockHtml(page, blockId)).toContain('extra');
+    const html = await readBlockHtml(page, blockId);
     expect(html).not.toMatch(/<ins[^>]*>.*original.*<\/ins>/);
   });
 
@@ -1822,20 +1825,30 @@ test.describe('Track changes: snapshot staleness regression', () => {
     // No revisions should remain
     await expect(page.locator('button:has-text("Accept All")')).not.toBeVisible({ timeout: 3000 });
 
-    // Re-edit the block: append " more"
-    await page.locator(blockSel(blockId)).click();
-    await page.keyboard.press('End');
+    // Re-edit the block: append " more". Focus + place the caret via
+    // pmSetCaret('end') (which calls view.focus()) instead of
+    // block.click() + keyboard End — the re-focus .click() on the freshly
+    // re-rendering PM block stalled on actionability under parallel load and
+    // hung the test to its 30s budget (#192); 'End' is also subject to the
+    // #116 domObserver race.
+    await pmSetCaret(page, blockId, 'end');
     await page.keyboard.type(' more');
 
-    // Blur to trigger diff
+    // Blur to trigger diff.
     await page.locator(blockSel('n24')).click();
-    await page.waitForTimeout(500);
 
-    // "accepted content" should NOT re-appear as ins.mark-add
-    const html = await page.locator(blockSel(blockId)).evaluate(el => el.innerHTML);
+    // Poll the block html from App state (readBlockHtml) rather than a DOM
+    // .evaluate(el => el.innerHTML): under full-suite parallel load the DOM
+    // locator can fail to resolve a freshly re-rendering PM block and hang the
+    // read to the 30s test budget (#192). readBlockHtml reads the canonical
+    // html (with TC mark spans) from `blocks` state, no DOM dependency. The
+    // newly typed " more" must become an addition, while the already-accepted
+    // "accepted content" must NOT re-appear as one.
+    await expect
+      .poll(() => readBlockHtml(page, blockId))
+      .toMatch(/<ins[^>]*>.*more.*<\/ins>/);
+    const html = await readBlockHtml(page, blockId);
     expect(html).not.toMatch(/<ins[^>]*>.*accepted.*<\/ins>/);
-    // But "more" should be an addition
-    expect(html).toMatch(/<ins[^>]*>.*more.*<\/ins>/);
   });
 });
 
@@ -1848,167 +1861,94 @@ test.describe('Track changes: del element click popup', () => {
   });
 
   test('clicking a del element shows accept/reject popup', async ({ page }) => {
-    // Enable TC
-    await page.locator('button:has-text("Track Changes")').click();
-
-    // Create a block, type text, blur to establish snapshot, then mark as deletion
+    // These three tests exercise the del-popup contract (click → popup →
+    // accept/reject), NOT the floating-toolbar "Mark as Deletion" path (that
+    // is covered by the inline-gutter tests). The old setup —
+    // type → blur → one-shot Accept All → re-focus .click() → keyboard select
+    // → floating toolbar — stalled under parallel load (#192): the re-focus
+    // .click() hung on PM-contentEditable actionability while the page churned,
+    // and the chain of fixed waits pushed the test past its 30s budget.
+    //
+    // `del.mark-del` round-trips into a PM `revisionDel` mark via the schema
+    // parseDOM rule (pm-schema.js), so injecting the mark produces the exact
+    // shape the popup resolves — no floating toolbar, no keyboard selection.
     const focused = await createFreshBlock(page);
     const blockId = await focused.getAttribute('data-block-id');
-    await page.keyboard.type('keep remove keep');
+    await injectBlockHtml(
+      page,
+      blockId,
+      'keep <del class="mark-del" data-author-id="me" style="--author-color:#e11d48">remove</del> keep',
+    );
 
-    // Blur to establish snapshot
-    await page.locator(blockSel('n24')).click();
-    await page.waitForTimeout(500);
-
-    // Accept All to clear initial ins marks
-    const acceptAllBtn = page.locator('button:has-text("Accept All")');
-    if (await acceptAllBtn.isVisible()) {
-      await acceptAllBtn.click();
-      await page.waitForTimeout(500);
-    }
-
-    // Re-focus and select "remove". #116 — pmSetCaret instead of Home.
-    await page.locator(blockSel(blockId)).click();
-    await page.waitForTimeout(200);
-    await pmSetCaret(page, blockId, 'start');
-    for (let i = 0; i < 5; i++) await page.keyboard.press('ArrowRight'); // past "keep "
-    for (let i = 0; i < 6; i++) await page.keyboard.press('Shift+ArrowRight'); // select "remove"
-    await page.waitForTimeout(200);
-
-    // Mark as deletion
-    const delBtn = page.locator('button[title="Mark as Deletion"]');
-    await expect(delBtn).toBeVisible({ timeout: 3000 });
-    await delBtn.dispatchEvent('mousedown');
-    await delBtn.dispatchEvent('click');
-    await page.waitForTimeout(500);
-
-    // Now click on the del element
+    // Click the del element to open the popup.
     const delEl = page.locator(blockSel(blockId)).locator('del.mark-del');
     await expect(delEl).toBeVisible({ timeout: 3000 });
     await delEl.click();
-    await page.waitForTimeout(300);
 
-    // The popup should appear with accept/reject buttons
+    // The popup should appear with accept/reject buttons.
     await expect(page.locator('button[title="Accept deletion (remove text)"]')).toBeVisible({ timeout: 3000 });
     await expect(page.locator('button[title="Reject deletion (restore text)"]')).toBeVisible();
   });
 
   test('accept from del popup removes the deletion mark and content', async ({ page }) => {
-    await page.locator('button:has-text("Track Changes")').click();
-
-    // Create block, type text, and blur to establish a snapshot first
+    // See the note on the previous test — inject the deletion mark instead of
+    // driving the floating-toolbar setup, which stalled under load (#192).
     const focused = await createFreshBlock(page);
     const blockId = await focused.getAttribute('data-block-id');
-    await page.keyboard.type('before deleted after');
+    await injectBlockHtml(
+      page,
+      blockId,
+      'before <del class="mark-del" data-author-id="me" style="--author-color:#e11d48">deleted</del> after',
+    );
 
-    // Blur to establish snapshot
-    await page.locator(blockSel('n24')).click();
-    await page.waitForTimeout(500);
-
-    // Accept All to clear initial ins marks
-    const acceptAllBtn = page.locator('button:has-text("Accept All")');
-    if (await acceptAllBtn.isVisible()) {
-      await acceptAllBtn.click();
-      await page.waitForTimeout(500);
-    }
-
-    // Re-focus and select "deleted". #116 — pmSetCaret instead of Home.
-    await page.locator(blockSel(blockId)).click();
-    await page.waitForTimeout(200);
-    await pmSetCaret(page, blockId, 'start');
-    for (let i = 0; i < 7; i++) await page.keyboard.press('ArrowRight'); // past "before "
-    for (let i = 0; i < 7; i++) await page.keyboard.press('Shift+ArrowRight'); // select "deleted"
-    await page.waitForTimeout(200);
-
-    const delMarkBtn = page.locator('button[title="Mark as Deletion"]');
-    await expect(delMarkBtn).toBeVisible({ timeout: 3000 });
-    await delMarkBtn.dispatchEvent('mousedown');
-    await delMarkBtn.dispatchEvent('click');
-    await page.waitForTimeout(500);
-
-    // Click on del element to show popup
+    // Open the popup and accept the deletion. Popup buttons use
+    // dispatchEvent('click') — they are fixed-positioned above the selection
+    // (top: rect.top - 34) and can sit off the viewport top, where a real
+    // .click() stalls on actionability. This matches the repo's existing
+    // dispatchEvent pattern for the TC floating-toolbar buttons.
     const delEl = page.locator(blockSel(blockId)).locator('del.mark-del');
     await expect(delEl).toBeVisible({ timeout: 3000 });
     await delEl.click();
-    await page.waitForTimeout(300);
-
-    // Accept the deletion
     const acceptBtn = page.locator('button[title="Accept deletion (remove text)"]');
     await expect(acceptBtn).toBeVisible({ timeout: 3000 });
-    await acceptBtn.click();
-    await page.waitForTimeout(500);
+    await acceptBtn.dispatchEvent('click');
 
-    // The del element and its text should be gone
-    const delCount = await page.locator(blockSel(blockId)).locator('del.mark-del').count();
-    expect(delCount).toBe(0);
-
-    // "deleted" should not appear in text
-    const text = await page.locator(blockSel(blockId)).textContent();
-    expect(text).not.toContain('deleted');
-    expect(text).toContain('before');
-    expect(text).toContain('after');
+    // The del element and its text should be gone (web-first; retries instead
+    // of a fixed wait + non-retrying count/textContent read).
+    const block = page.locator(blockSel(blockId));
+    await expect(block.locator('del.mark-del')).toHaveCount(0);
+    await expect(block).not.toContainText('deleted');
+    await expect(block).toContainText('before');
+    await expect(block).toContainText('after');
   });
 
   test('reject from del popup restores the text as normal', async ({ page }) => {
-    await page.locator('button:has-text("Track Changes")').click();
-
-    // Create block, type text, and blur to establish a snapshot first
+    // See the note on the "shows accept/reject popup" test — inject the
+    // deletion mark instead of driving the floating-toolbar setup (#192).
     const focused = await createFreshBlock(page);
     const blockId = await focused.getAttribute('data-block-id');
-    await page.keyboard.type('keep restore keep');
+    await injectBlockHtml(
+      page,
+      blockId,
+      'keep <del class="mark-del" data-author-id="me" style="--author-color:#e11d48">restore</del> keep',
+    );
 
-    // Blur to establish snapshot (so diff-on-blur won't interfere later)
-    await page.locator(blockSel('n24')).click();
-    await page.waitForTimeout(500);
-
-    // Accept All to clear the initial ins marks
-    const acceptAllBtn = page.locator('button:has-text("Accept All")');
-    if (await acceptAllBtn.isVisible()) {
-      await acceptAllBtn.click();
-      await page.waitForTimeout(500);
-    }
-
-    // Re-focus the block and select "restore". #116 — pmSetCaret.
-    await page.locator(blockSel(blockId)).click();
-    await page.waitForTimeout(200);
-    await pmSetCaret(page, blockId, 'start');
-    for (let i = 0; i < 5; i++) await page.keyboard.press('ArrowRight'); // past "keep "
-    for (let i = 0; i < 7; i++) await page.keyboard.press('Shift+ArrowRight'); // select "restore"
-    await page.waitForTimeout(200);
-
-    // Mark as deletion
-    const delMarkBtn = page.locator('button[title="Mark as Deletion"]');
-    await expect(delMarkBtn).toBeVisible({ timeout: 3000 });
-    await delMarkBtn.dispatchEvent('mousedown');
-    await delMarkBtn.dispatchEvent('click');
-    await page.waitForTimeout(500);
-
-    // Verify the del element exists with the correct text
+    // Verify the del element exists with the correct text.
     const delEl = page.locator(blockSel(blockId)).locator('del.mark-del');
     await expect(delEl).toBeVisible({ timeout: 3000 });
-    const delText = await delEl.textContent();
-    expect(delText).toContain('restore');
+    await expect(delEl).toContainText('restore');
 
-    // Click on del element to show popup
+    // Open the popup and reject the deletion (restore text).
     await delEl.click();
-    await page.waitForTimeout(300);
-
-    // Verify popup is visible before clicking
     const rejectBtn = page.locator('button[title="Reject deletion (restore text)"]');
     await expect(rejectBtn).toBeVisible({ timeout: 3000 });
+    await rejectBtn.dispatchEvent('click');
 
-    // Reject the deletion (restore text)
-    await rejectBtn.click();
-    await page.waitForTimeout(500);
-
-    // The del element should be gone
-    const delCount = await page.locator(blockSel(blockId)).locator('del.mark-del').count();
-    expect(delCount).toBe(0);
-
-    // "restore" should still be in the text (as plain text now)
-    const text = await page.locator(blockSel(blockId)).textContent();
-    expect(text).toContain('restore');
-    expect(text).toContain('keep');
+    // The del mark is gone but the text remains as plain text (web-first).
+    const block = page.locator(blockSel(blockId));
+    await expect(block.locator('del.mark-del')).toHaveCount(0);
+    await expect(block).toContainText('restore');
+    await expect(block).toContainText('keep');
   });
 });
 
@@ -2662,20 +2602,16 @@ test.describe('Notes toggle', () => {
     const countBefore = await noteBlocks.count();
     expect(countBefore).toBeGreaterThan(0);
 
-    // Click Notes to hide
+    // Click Notes to hide. Assert with a single web-first count of *visible*
+    // note blocks (`.notes-hidden .block-type-note { display:none }`) instead
+    // of looping `.not.toBeVisible()` over every block. The old loop ran one
+    // assertion per note (111 here), each with a 5s timeout, so under parallel
+    // load the cumulative retries blew the 30s test budget (#192).
     await notesBtn.click();
-    await page.waitForTimeout(300);
+    await expect(page.locator('.block-type-note:visible')).toHaveCount(0);
 
-    // Note blocks should be hidden
-    for (let i = 0; i < countBefore; i++) {
-      await expect(noteBlocks.nth(i)).not.toBeVisible();
-    }
-
-    // Click Notes again to show
+    // Click Notes again to show — note blocks visible again.
     await notesBtn.click();
-    await page.waitForTimeout(300);
-
-    // Note blocks should be visible again
     await expect(noteBlocks.first()).toBeVisible();
   });
 });
@@ -3122,9 +3058,6 @@ test('persistent dismiss: finding state is tracked and survives tombstone round-
       match: 'should',
     });
   });
-  // dispatchLintIgnore is async (SHA-256 via Web Crypto) — give the
-  // microtask + React setState commit time to resolve.
-  await page.waitForTimeout(200);
 
   await page.evaluate(() => {
     window.__simEditorTestUtils.dispatchLintIgnore({
@@ -3134,12 +3067,14 @@ test('persistent dismiss: finding state is tracked and survives tombstone round-
       match: 'furnish',
     });
   });
-  // Allow 400ms for SHA-256 + React setState + commit to propagate.
-  await page.waitForTimeout(400);
 
-  // Both keys should now appear in getIgnoredKeys().
-  const afterTwo = await page.evaluate(() => window.__simEditorTestUtils.getIgnoredKeys());
-  expect(afterTwo).toHaveLength(2);
+  // Both keys should now appear in getIgnoredKeys(). dispatchLintIgnore is
+  // async (SHA-256 via Web Crypto) and commits through a React setState, so
+  // poll instead of a fixed wait — under parallel load the second dispatch
+  // had not committed within the old 400ms window (#192).
+  await expect
+    .poll(() => page.evaluate(() => window.__simEditorTestUtils.getIgnoredKeys().length))
+    .toBe(2);
 
   // Unignore the first finding — it becomes a tombstone, not deleted.
   // getIgnoredKeys() filters tombstones, so count drops to 1.
@@ -3151,11 +3086,11 @@ test('persistent dismiss: finding state is tracked and survives tombstone round-
       match: 'should',
     });
   });
-  // Allow 400ms for SHA-256 + React setState + commit to propagate.
-  await page.waitForTimeout(400);
 
-  const afterUnignore = await page.evaluate(() => window.__simEditorTestUtils.getIgnoredKeys());
-  expect(afterUnignore).toHaveLength(1);
+  // getIgnoredKeys() filters tombstones, so the count drops to 1.
+  await expect
+    .poll(() => page.evaluate(() => window.__simEditorTestUtils.getIgnoredKeys().length))
+    .toBe(1);
   // The surviving key is from the COLLOQ-furnish dismiss.
   // (Exact hash value is opaque; we just verify count is correct.)
 });
@@ -3181,48 +3116,45 @@ test('mute NLP rule: hides all instances; reset reveals them', async ({ page }) 
   const initialMuted = await page.evaluate(() => window.__simEditorTestUtils.getMutedRuleIds());
   expect(initialMuted).toHaveLength(0);
 
-  // Mute the NLP passive-voice rule.
+  // Mute the NLP passive-voice rule. The mute commits through a React
+  // useEffect that runs after paint, so poll the seam instead of a fixed
+  // wait — under parallel load the old 400ms window was not always enough
+  // (the reset assertion below was the one that flaked in #192).
   await page.evaluate(() => {
     window.__simEditorTestUtils.dispatchLintIgnore({
       kind: 'mute-nlp',
       ruleId: 'NLP-passive',
     });
   });
-  // mute-nlp is synchronous (no crypto hash) but lintingStateRef is updated
-  // in a useEffect which runs after paint — allow 400ms for the commit cycle.
-  await page.waitForTimeout(400);
+  await expect
+    .poll(() => page.evaluate(() => window.__simEditorTestUtils.getMutedRuleIds()))
+    .toEqual(['NLP-passive']);
 
-  const afterMute = await page.evaluate(() => window.__simEditorTestUtils.getMutedRuleIds());
-  expect(afterMute).toContain('NLP-passive');
-  expect(afterMute).toHaveLength(1);
-
-  // Mute a second rule to verify independent tracking.
+  // Mute a second rule to verify independent tracking. getMutedRuleIds order
+  // is not contractual, so sort before comparing.
   await page.evaluate(() => {
     window.__simEditorTestUtils.dispatchLintIgnore({
       kind: 'mute-nlp',
       ruleId: 'NLP-indicative',
     });
   });
-  await page.waitForTimeout(400);
+  await expect
+    .poll(() => page.evaluate(() => window.__simEditorTestUtils.getMutedRuleIds().slice().sort()))
+    .toEqual(['NLP-indicative', 'NLP-passive']);
 
-  const afterTwo = await page.evaluate(() => window.__simEditorTestUtils.getMutedRuleIds());
-  expect(afterTwo).toHaveLength(2);
-  expect(afterTwo).toContain('NLP-passive');
-  expect(afterTwo).toContain('NLP-indicative');
-
-  // Reset clears both muted rules (tombstones them). getMutedRuleIds
-  // filters tombstones, so it returns an empty array.
+  // Reset clears both muted rules (tombstones them). getMutedRuleIds filters
+  // tombstones, so it returns an empty array.
   await page.evaluate(() => {
     window.__simEditorTestUtils.dispatchLintIgnore({ kind: 'reset' });
   });
-  await page.waitForTimeout(400);
+  await expect
+    .poll(() => page.evaluate(() => window.__simEditorTestUtils.getMutedRuleIds().length))
+    .toBe(0);
 
-  const afterReset = await page.evaluate(() => window.__simEditorTestUtils.getMutedRuleIds());
-  expect(afterReset).toHaveLength(0);
-
-  // Verify the findings map was also cleared by reset.
-  const afterResetKeys = await page.evaluate(() => window.__simEditorTestUtils.getIgnoredKeys());
-  expect(afterResetKeys).toHaveLength(0);
+  // Reset also clears the findings map.
+  await expect
+    .poll(() => page.evaluate(() => window.__simEditorTestUtils.getIgnoredKeys().length))
+    .toBe(0);
 });
 
 test('reset from Settings clears ignored state and disables the reset button', async ({ page }) => {
