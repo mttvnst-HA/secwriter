@@ -182,7 +182,7 @@ export default function CompliancePanel({
       const { rewrites, tokensUsed } = await requestAIRewrite(
         blocks, aiViolations, apiKey,
         {
-          model: localStorage.getItem("sim-compliance-model") || "claude-sonnet-4-20250514",
+          model: localStorage.getItem("sim-compliance-model") || "claude-sonnet-4-6",
           abortSignal: controller.signal,
           onProgress: (p) => dispatchCompliance((state) => comp.aiProgress(state, p)),
           lintingState,  // #141: honor user dismissals + mutes (pre-filter, prompt, post-filter)
