@@ -3738,6 +3738,79 @@ test.describe('right-click context menu', () => {
     await page.mouse.click(10, 10);
   });
 
+  test('resolve-comment via context menu changes mark to mark-comment-resolved', async ({ page }) => {
+    await page.goto('/');
+    await waitForApp(page);
+    // Set identity so no name prompt blocks the comment creation flow.
+    await page.evaluate(() => { localStorage.setItem('sim-comment-author', 'Test User'); });
+    await injectBlockHtml(page, 'n24', '<p>resolve me here</p>');
+    await page.waitForTimeout(150);
+
+    // ── Step 1: add a comment via the context menu so commentsState has a real entry ──
+    const pmEditor = page.locator('[data-pm-editor="true"][data-block-id="n24"]');
+    await pmEditor.click();
+    await pmSetSelection(page, 'n24', 1, 14); // "resolve me he" (covers most of the text)
+    const paraRect = await page.evaluate(() => {
+      const p = document.querySelector('[data-pm-editor="true"][data-block-id="n24"] p');
+      if (!p) return null;
+      const range = document.createRange();
+      range.selectNodeContents(p);
+      const rects = range.getClientRects();
+      if (!rects.length) return null;
+      const r = rects[0];
+      return { x: r.x, y: r.y, width: r.width, height: r.height };
+    });
+    const addCx = paraRect ? paraRect.x + paraRect.width / 2 : 0;
+    const addCy = paraRect ? paraRect.y + paraRect.height / 2 : 0;
+    await page.mouse.click(addCx, addCy, { button: 'right' });
+    const menu = page.locator('[role="menu"]');
+    await expect(menu.getByRole('menuitem', { name: 'Add comment' })).toBeVisible({ timeout: 3000 });
+    await menu.getByRole('menuitem', { name: 'Add comment' }).click();
+    // Wait for the mark-comment span to appear in the PM DOM.
+    await expect.poll(() => readBlockHtml(page, 'n24'), { timeout: 5000 }).toContain('mark-comment');
+    // Close the CommentPopup (if open) and any active tooltip by clicking the top-left corner.
+    // The CommentPopup opens with a textarea for the new comment.
+    // Submit the comment text so it is finalized (not a draft). If we dismiss
+    // without text the popup's mousedown-outside handler calls onDelete() which
+    // removes the mark. Submitting keeps the comment in commentsState.
+    const popup = page.locator('[data-test="comment-popup"]');
+    await expect(popup).toBeVisible({ timeout: 3000 });
+    await page.keyboard.type('test resolve comment');
+    await page.keyboard.press('Enter');
+    // Wait for the popup to transition from the new-comment form to the
+    // existing-comment view (entries[0].text is now set → isNewComment = false).
+    await expect(popup.locator('textarea')).toHaveCount(0, { timeout: 3000 });
+    // Close the CommentPopup by clicking outside it.
+    await page.mouse.click(10, 10);
+    await page.waitForTimeout(100);
+
+    // ── Step 2: right-click the mark-comment span to get the Resolve comment item ──
+    const commentSpan = page.locator(`${blockSel('n24')} span.mark-comment`).first();
+    await commentSpan.scrollIntoViewIfNeeded();
+    await expect(commentSpan).toBeVisible({ timeout: 3000 });
+    const spanBox = await commentSpan.boundingBox();
+    const resolveCx = spanBox.x + spanBox.width / 2;
+    const resolveCy = spanBox.y + spanBox.height / 2;
+    // Focus the PM editor and set the caret inside the comment span before right-clicking.
+    await pmEditor.click();
+    await page.evaluate(() => { window.__simEditorTestUtils?.setPmCaret('n24', 5); });
+    await page.mouse.click(resolveCx, resolveCy, { button: 'right' });
+    await expect(menu).toBeVisible({ timeout: 3000 });
+    await expect(menu.getByRole('menuitem', { name: 'Resolve comment' })).toBeVisible({ timeout: 3000 });
+
+    // ── Step 3: click Resolve comment and assert resolved state ──
+    await menu.getByRole('menuitem', { name: 'Resolve comment' }).click();
+    await expect(menu).toBeHidden({ timeout: 3000 });
+    // reconcileCommentMarks fires as a useEffect([commentsState]) in PmEditableBlock,
+    // dispatching a tr that sets resolved:true → toDOM renders class="mark-comment-resolved".
+    // The 400ms onUpdate debounce then flushes the serialized html back to blocks state.
+    // Real observable: mark-comment-resolved class in block html (not mark-comment without suffix).
+    await expect.poll(() => readBlockHtml(page, 'n24'), { timeout: 5000 }).toContain('mark-comment-resolved');
+    // The unresolved class should no longer appear as a standalone span.
+    const html = await readBlockHtml(page, 'n24');
+    expect(html).not.toMatch(/class="mark-comment"(?!-resolved)/);
+  });
+
   test('table cell right-click -> insert row below adds a row', async ({ page }) => {
     await page.goto('/');
     await waitForApp(page);
