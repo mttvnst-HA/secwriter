@@ -1850,7 +1850,8 @@ export default function SpecEditor() {
       const td = target.closest('[data-row][data-col]');
       const coords = tableCellCoordsFromTd(td);
       if (!coords) return null;
-      return { blockId, kind: 'table', ...coords, readOnly };
+      const span = Number(td.getAttribute('colspan')) || 1;
+      return { blockId, kind: 'table', ...coords, span, readOnly };
     }
     if (block.type === 'title' || block.type === 'ref') {
       const sel = window.getSelection();
@@ -1867,7 +1868,7 @@ export default function SpecEditor() {
   const handleContextAction = useCallback((id, menu) => {
     const forceFrame = inRoom ? collab.forceFrame : localUndo.forceFrame;
     const blockId = menu.ctx.blockId;
-    const toastNoop = (msg) => toastPushRef.current?.({ kind: 'info', title: msg, ttl: 4000 });
+    const toastInfo = (msg) => toastPushRef.current?.({ kind: 'info', title: msg, ttl: 4000 });
 
     switch (id) {
       case 'copy': {
@@ -1880,10 +1881,10 @@ export default function SpecEditor() {
           text = window.getSelection()?.toString() ?? '';
         }
         if (!text) break;
-        if (!navigator.clipboard?.writeText) { toastNoop('Clipboard unavailable'); break; }
+        if (!navigator.clipboard?.writeText) { toastInfo('Clipboard unavailable'); break; }
         view?.focus();
         navigator.clipboard.writeText(text).catch((err) => {
-          toastNoop(err?.name === 'NotAllowedError' ? 'Clipboard permission denied' : 'Copy failed');
+          toastInfo(err?.name === 'NotAllowedError' ? 'Clipboard permission denied' : 'Copy failed');
         });
         break;
       }
@@ -1893,19 +1894,24 @@ export default function SpecEditor() {
         const { from, to } = view.state.selection;
         if (from === to) break;
         const text = view.state.doc.textBetween(from, to, '\n', '');
-        if (!navigator.clipboard?.writeText) { toastNoop('Clipboard unavailable'); break; }
+        if (!navigator.clipboard?.writeText) { toastInfo('Clipboard unavailable'); break; }
         view.focus();
-        navigator.clipboard.writeText(text).catch(() => {});
-        forceFrame();
-        view.dispatch(view.state.tr.deleteSelection());
-        cancelPendingUpdateById(blockId);
-        handleBlockUpdatePmSync(blockId, pmFragmentToHtml(view.state.doc));
+        navigator.clipboard.writeText(text).then(() => {
+          const v = getBlockView(blockId);
+          if (!v) return;
+          forceFrame();
+          v.dispatch(v.state.tr.delete(from, to));
+          cancelPendingUpdateById(blockId);
+          handleBlockUpdatePmSync(blockId, pmFragmentToHtml(v.state.doc));
+        }).catch((err) => {
+          toastInfo(err?.name === 'NotAllowedError' ? 'Clipboard permission denied' : 'Cut failed');
+        });
         break;
       }
       case 'paste': {
         const view = getBlockView(blockId);
         if (!view) break;
-        if (!navigator.clipboard?.readText) { toastNoop('Clipboard unavailable'); break; }
+        if (!navigator.clipboard?.readText) { toastInfo('Clipboard unavailable'); break; }
         view.focus();
         navigator.clipboard.readText().then((raw) => {
           const text = sanitizePasteText(raw || '');
@@ -1917,18 +1923,18 @@ export default function SpecEditor() {
           v.dispatch(v.state.tr.insertText(text));
           flushPendingUpdateById(blockId);
         }).catch((err) => {
-          toastNoop(err?.name === 'NotAllowedError' ? 'Clipboard permission denied' : 'Paste failed');
+          toastInfo(err?.name === 'NotAllowedError' ? 'Clipboard permission denied' : 'Paste failed');
         });
         break;
       }
       case 'accept-change':
       case 'reject-change': {
         const view = getBlockView(blockId);
-        if (!view) { toastNoop('Change no longer available'); break; }
+        if (!view) { toastInfo('Change no longer available'); break; }
         let coords;
         try { coords = view.posAtCoords({ left: menu.anchor.x, top: menu.anchor.y }); }
         catch { coords = null; }
-        if (!coords) { toastNoop('Change no longer available'); break; }
+        if (!coords) { toastInfo('Change no longer available'); break; }
         const action = id === 'accept-change' ? 'accept' : 'reject';
         const kindHint = menu.ctx.revision?.kind;
         const result = dispatchToolbarVerb({
@@ -1943,7 +1949,7 @@ export default function SpecEditor() {
             return r;
           },
         });
-        if (!result.dispatched) { toastNoop('Change no longer available'); break; }
+        if (!result.dispatched) { toastInfo('Change no longer available'); break; }
         handleBlockUpdatePmSync(blockId, extractHtml(result.state));
         break;
       }
@@ -1951,7 +1957,7 @@ export default function SpecEditor() {
         const view = getBlockView(blockId);
         const range = menu.ctx.addCommentRange;
         if (!view || !range) break;
-        if (range.to > view.state.doc.content.size) { toastNoop('Selection no longer here'); break; }
+        if (range.from < 0 || range.to > view.state.doc.content.size) { toastInfo('Selection no longer here'); break; }
         const markType = view.state.schema.marks.comment;
         if (!markType) break;
         const commentId = `comment-${Date.now()}`;
@@ -1965,21 +1971,13 @@ export default function SpecEditor() {
       case 'resolve-comment': {
         const fresh = getContextAtCoordsById(blockId, menu.anchor);
         const commentId = fresh?.comment?.commentId ?? menu.ctx.comment?.commentId;
-        if (!commentId) { toastNoop('Comment no longer here'); break; }
+        if (!commentId) { toastInfo('Comment no longer here'); break; }
         handleCommentResolve(commentId);
         break;
       }
       default: {
         if (!id.startsWith('table-')) break;
-        // Re-resolve the cell from the live DOM at the menu anchor — the menu
-        // is open over the document, so the originally clicked <td>/<th> is
-        // still under the anchor point.
-        const el = document.elementFromPoint(menu.anchor.x, menu.anchor.y);
-        const td = el?.closest?.('[data-row][data-col]');
-        const coords = tableCellCoordsFromTd(td);
-        if (!coords) { toastNoop('Table cell no longer here'); break; }
-        const { row, col, vcol } = coords;
-        const span = Number(td.getAttribute('colspan')) || 1;
+        const { row, col, vcol, span = 1 } = menu.ctx;
         // Persist through the SAME path TableBlock's inline editor uses:
         // onUpdate(id, { table }) → dispatchBlocks(mergeBlockData). The
         // table-ops helpers are pure and return null when the op is impossible.
