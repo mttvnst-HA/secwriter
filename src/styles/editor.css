@@ -326,6 +326,18 @@ del.mark-del[data-author-color] {
   background: #d2d4d8;
 }
 
+/* Comment-span visibility OFF (issue #195): drop the highlight + click
+   affordance but keep the text. The toggle lives on `.editor-content`. */
+.comment-spans-hidden .mark-comment,
+.comment-spans-hidden .mark-comment[data-active="true"],
+.comment-spans-hidden .mark-comment .mark-comment-active,
+.comment-spans-hidden .mark-comment-resolved,
+.comment-spans-hidden .mark-comment-resolved[data-active="true"],
+.comment-spans-hidden .mark-comment-resolved .mark-comment-active {
+  background: transparent;
+  cursor: text;
+}
+
 /* ─── RefBlock styles ─── */
 
 .ref-entry .ref-rtl,
@@ -556,6 +568,18 @@ del.mark-del[data-author-color] {
 .dark-mode .mark-comment-resolved[data-active="true"],
 .dark-mode .mark-comment-resolved.mark-comment-active,
 .dark-mode .mark-comment-resolved .mark-comment-active { background: #4b5563; }
+
+/* Comment-span visibility OFF in dark mode (issue #195) — declared after the
+   dark-mode highlights so equal-specificity rules resolve to transparent. */
+.dark-mode .comment-spans-hidden .mark-comment,
+.dark-mode .comment-spans-hidden .mark-comment[data-active="true"],
+.dark-mode .comment-spans-hidden .mark-comment .mark-comment-active,
+.dark-mode .comment-spans-hidden .mark-comment-resolved,
+.dark-mode .comment-spans-hidden .mark-comment-resolved[data-active="true"],
+.dark-mode .comment-spans-hidden .mark-comment-resolved .mark-comment-active {
+  background: transparent;
+  cursor: text;
+}
 
 /* Search highlight in dark mode */
 .dark-mode mark.search-highlight { background: #a16207; color: #fef3c7; }

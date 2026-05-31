@@ -3017,6 +3017,91 @@ test.describe('Comment active highlight (1g)', () => {
   // follow-up issue rather than a synthetic rewrite here.
 });
 
+// ─── Comment-span visibility toggle (#195) ────────────────────────────────────
+//
+// A persisted toolbar toggle ([data-test="comment-spans-toggle"]) hides/shows
+// the comment-span HIGHLIGHT (mark-comment / mark-comment-resolved) and the
+// open comment popup, independent of the comments PANEL (showComments).
+// Default ON; creating a comment auto-reveals the layer.
+
+test.describe('Comment-span visibility toggle (#195)', () => {
+  const VISIBLE_BG = 'rgb(252, 232, 149)';   // #fce895 — highlight shown
+  const HIDDEN_BG = 'rgba(0, 0, 0, 0)';      // transparent — highlight dropped
+
+  // Seed a submitted comment in a fresh block; returns the mark-comment span
+  // locator. Mirrors the 1g seedComment helper (author pre-seeded, submit so
+  // isNewComment === false on re-open).
+  async function seedComment(page) {
+    await page.evaluate(() => localStorage.setItem('sim-comment-author', 'Test User'));
+    const focused = await createFreshBlock(page);
+    const blockId = await focused.getAttribute('data-block-id');
+    await page.keyboard.type('highlight text');
+    await page.keyboard.down('Shift');
+    await page.keyboard.press('Home');
+    await page.keyboard.up('Shift');
+    await expect(page.locator('button[title="Add Comment"]')).toBeVisible({ timeout: 3000 });
+    await page.locator('button[title="Add Comment"]').click();
+    const span = page.locator(`[data-block-id="${blockId}"] .mark-comment`).first();
+    await expect(span).toBeVisible({ timeout: 3000 });
+    await page.locator('textarea[placeholder="Add a comment..."]').fill('test comment');
+    await page.locator('textarea[placeholder="Add a comment..."]').press('Enter');
+    await page.mouse.click(10, 10);
+    return { span, blockId };
+  }
+
+  test('defaults ON and persists OFF across reload', async ({ page }) => {
+    await page.goto('/');
+    await waitForApp(page);
+    const toggle = page.locator('[data-test="comment-spans-toggle"]');
+    await expect(toggle).toHaveText(/●/); // ON by default
+
+    await toggle.click();
+    await expect(toggle).toHaveText(/○/);
+    await expect
+      .poll(() => page.evaluate(() => localStorage.getItem('sim-comment-spans')))
+      .toBe('false');
+
+    await page.reload();
+    await waitForApp(page);
+    await expect(page.locator('[data-test="comment-spans-toggle"]')).toHaveText(/○/);
+  });
+
+  test('toggling off drops the highlight and closes the popup; on restores it', async ({ page }) => {
+    await page.goto('/');
+    await waitForApp(page);
+    const { span } = await seedComment(page);
+
+    // Highlight visible, popup opens on click.
+    await expect(span).toHaveCSS('background-color', VISIBLE_BG);
+    await span.click();
+    await expect(page.locator('[data-test="comment-popup"]')).toBeVisible({ timeout: 3000 });
+
+    // Toggle OFF: highlight drops, popup closes.
+    await page.locator('[data-test="comment-spans-toggle"]').click();
+    await expect(span).toHaveCSS('background-color', HIDDEN_BG);
+    await expect(page.locator('[data-test="comment-popup"]')).toBeHidden();
+
+    // Toggle ON: highlight returns.
+    await page.locator('[data-test="comment-spans-toggle"]').click();
+    await expect(span).toHaveCSS('background-color', VISIBLE_BG);
+  });
+
+  test('creating a comment while hidden auto-reveals the layer', async ({ page }) => {
+    await page.goto('/');
+    await waitForApp(page);
+
+    // Hide first (no comments yet — toggle is always present).
+    const toggle = page.locator('[data-test="comment-spans-toggle"]');
+    await toggle.click();
+    await expect(toggle).toHaveText(/○/);
+
+    // Creating a comment must flip visibility back ON and show the highlight.
+    const { span } = await seedComment(page);
+    await expect(page.locator('[data-test="comment-spans-toggle"]')).toHaveText(/●/);
+    await expect(span).toHaveCSS('background-color', VISIBLE_BG);
+  });
+});
+
 // ─── Persistent rule ignores (#140) ──────────────────────────────────────────
 //
 // Tests for Task 23-25 of the persistent-rule-ignores feature.

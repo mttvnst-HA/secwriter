@@ -214,6 +214,11 @@ export default function SpecEditor() {
   const [openCommentId, setOpenCommentId] = useState(null);
   const [commentRect, setCommentRect] = useState(null);
   const [showComments, setShowComments] = useState(false);
+  // Comment-span visibility layer — separate from the comments PANEL
+  // (`showComments`). Persisted, default ON. Mirrors the inline-linting toggle.
+  const [showCommentSpans, setShowCommentSpans] = useState(() => {
+    try { return localStorage.getItem('sim-comment-spans') !== 'false'; } catch { return true; }
+  });
   const [complianceOpen, setComplianceOpen] = useState(false);
   const [complianceState, setComplianceState] = useState(() => comp.createInitial());
   const [collabReachable, setCollabReachable] = useState(false);
@@ -890,6 +895,9 @@ export default function SpecEditor() {
   }, [lintingState]);
 
   const handleCommentCreate = useCallback((blockId, html, commentId, highlightText) => {
+    // Creating a comment auto-reveals the comment-span layer if it was hidden —
+    // creation is never blocked (issue #195).
+    setShowCommentSpans(true);
     // html is null for ref blocks (their data is in block.ref, not block.html)
     if (html !== null) {
       setBlocks(prev => prev.map(b => b.id === blockId ? { ...b, html } : b));
@@ -1321,6 +1329,13 @@ export default function SpecEditor() {
   useEffect(() => {
     try { localStorage.setItem('sim-inline-linting', String(inlineLintingEnabled)); } catch {}
   }, [inlineLintingEnabled]);
+
+  // Persist comment-span visibility preference; closing the layer also closes
+  // any open comment popup so it can't float over hidden spans.
+  useEffect(() => {
+    try { localStorage.setItem('sim-comment-spans', String(showCommentSpans)); } catch {}
+    if (!showCommentSpans) setOpenCommentId(null);
+  }, [showCommentSpans]);
 
   // Suspend inline linting while the compliance panel is open
   // (panel renders its own CSS.highlights('compliance-active') ranges).
@@ -2607,6 +2622,20 @@ export default function SpecEditor() {
                 fontFamily: "'SF Mono', Consolas, monospace",
               }}
             >&lt;/&gt;</button>
+            {/* Comment-span visibility toggle (separate from the comments panel) */}
+            <button
+              onClick={() => setShowCommentSpans(prev => !prev)}
+              title={showCommentSpans ? "Hide comment highlights" : "Show comment highlights"}
+              aria-label="Toggle comment highlights"
+              data-test="comment-spans-toggle"
+              style={{
+                padding: "4px 10px",
+                backgroundColor: showCommentSpans ? "#fef9c3" : "#f1f5f9",
+                border: showCommentSpans ? "1px solid #eab308" : "1px solid #e2e8f0",
+                borderRadius: 6, cursor: "pointer", fontSize: 13, fontWeight: 600,
+                color: showCommentSpans ? "#a16207" : "#94a3b8", minHeight: 32,
+              }}
+            >&#x1F4AC; {showCommentSpans ? "●" : "○"}</button>
             {/* Dark mode toggle */}
             <button
               onClick={() => setDarkMode(prev => !prev)}
@@ -2802,7 +2831,7 @@ export default function SpecEditor() {
         {/* Editor Content — centered with max width, zoomable */}
         <div
           ref={editorRef}
-          className={`editor-content ${showRevisions ? '' : 'revisions-hidden'} ${showNotes ? '' : 'notes-hidden'} ${showTags ? 'tags-visible' : 'tags-hidden'} ${unitDisplay === 'eng' ? 'units-eng-only' : unitDisplay === 'met' ? 'units-met-only' : ''}`.trim()}
+          className={`editor-content ${showRevisions ? '' : 'revisions-hidden'} ${showNotes ? '' : 'notes-hidden'} ${showTags ? 'tags-visible' : 'tags-hidden'} ${showCommentSpans ? '' : 'comment-spans-hidden'} ${unitDisplay === 'eng' ? 'units-eng-only' : unitDisplay === 'met' ? 'units-met-only' : ''}`.trim()}
           onCopy={(e) => {
             const sel = window.getSelection();
             if (!sel || sel.isCollapsed) return;
@@ -2833,8 +2862,8 @@ export default function SpecEditor() {
             <RemoteCursors peers={peers} selfId={identity.id} editorRef={editorRef} />
           )}
 
-          {/* Comment Popup */}
-          {openCommentId && comments.get(openCommentId) && commentRect && (
+          {/* Comment Popup — gated on the comment-span visibility layer */}
+          {showCommentSpans && openCommentId && comments.get(openCommentId) && commentRect && (
             <CommentPopup
               comment={comments.get(openCommentId)}
               rect={commentRect}
