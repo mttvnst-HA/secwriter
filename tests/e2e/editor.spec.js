@@ -3086,6 +3086,30 @@ test.describe('Comment-span visibility toggle (#195)', () => {
     await expect(span).toHaveCSS('background-color', VISIBLE_BG);
   });
 
+  test('popup stays open when the span is de-selected; only the toggle closes it', async ({ page }) => {
+    await page.goto('/');
+    await waitForApp(page);
+    const { span, blockId } = await seedComment(page);
+
+    // Open the popup on the comment span.
+    await span.click();
+    const popup = page.locator('[data-test="comment-popup"]');
+    await expect(popup).toBeVisible({ timeout: 3000 });
+
+    // De-select by clicking blank editor space well away from the popup
+    // (top-left). The submitted-comment popup must persist (#195 follow-up).
+    await page.mouse.click(10, 10);
+    await expect(popup).toBeVisible();
+
+    // Typing elsewhere (another de-select path) also keeps it open.
+    await page.locator(`[data-block-id="${blockId}"]`).click();
+    await expect(popup).toBeVisible();
+
+    // Only the hide-highlights toggle closes it.
+    await page.locator('[data-test="comment-spans-toggle"]').click();
+    await expect(popup).toBeHidden();
+  });
+
   test('creating a comment while hidden auto-reveals the layer', async ({ page }) => {
     await page.goto('/');
     await waitForApp(page);
