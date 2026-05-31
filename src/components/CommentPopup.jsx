@@ -15,6 +15,24 @@ export function setAuthorName(name) {
   localStorage.setItem('sim-comment-author', name);
 }
 
+// Approx. card height reserved when clamping the popup to the viewport.
+const POPUP_CARD_HEIGHT = 300;
+const POPUP_MIN_TOP = 8;
+
+/**
+ * Pure vertical-position calc for the comment popup, given its comment span's
+ * viewport rect (from getBoundingClientRect) and the viewport height.
+ * Returns { top, hidden } — `hidden` true when the span has scrolled out of
+ * the viewport so the caller can detach/hide the card instead of floating it.
+ */
+export function computeCommentPopupPosition(rect, viewportHeight) {
+  if (!rect) return { top: 200, hidden: false };
+  const maxTop = viewportHeight - POPUP_CARD_HEIGHT;
+  const top = Math.min(Math.max(rect.top, POPUP_MIN_TOP), maxTop);
+  const hidden = rect.bottom <= 0 || rect.top >= viewportHeight;
+  return { top, hidden };
+}
+
 /**
  * Generate initials from a name (e.g. "John Smith" → "JS")
  */
@@ -98,12 +116,34 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
 
   const isResolved = comment.status === "resolved";
 
-  // Position: align vertically with the highlighted text, in the right margin
-  const topPos = rect ? rect.top : 200;
+  // Position: track the comment span on scroll/resize so the card stays aligned
+  // with its highlighted text instead of freezing at the open-time viewport top.
+  const [pos, setPos] = useState(() => computeCommentPopupPosition(rect, window.innerHeight));
+  useEffect(() => {
+    let raf = 0;
+    const esc = (typeof CSS !== 'undefined' && CSS.escape) ? CSS.escape : (s) => s;
+    const recompute = () => {
+      raf = 0;
+      const el = document.querySelector(`[data-comment-id="${esc(comment.id)}"]`);
+      const r = el ? el.getBoundingClientRect() : rect;
+      setPos(computeCommentPopupPosition(r, window.innerHeight));
+    };
+    const schedule = () => { if (!raf) raf = requestAnimationFrame(recompute); };
+    recompute();
+    // Capture phase so the editor's inner scroll container is also observed.
+    window.addEventListener('scroll', schedule, true);
+    window.addEventListener('resize', schedule);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', schedule, true);
+      window.removeEventListener('resize', schedule);
+    };
+  }, [comment.id, rect]);
 
   const cardStyle = {
     position: "fixed",
-    top: Math.min(topPos, window.innerHeight - 300),
+    top: pos.top,
+    display: pos.hidden ? "none" : undefined,
     right: 16,
     width: 280,
     background: "white",
