@@ -70,10 +70,15 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
   const createInputRef = useRef(null);
   const popupRef = useRef(null);
 
+  // Submitted comments persist on de-select — only the "hide comment
+  // highlights" toggle closes them (issue #195 follow-up). Only the
+  // unsubmitted draft composer dismisses on outside click, discarding an
+  // empty draft so it never floats with no way to cancel.
   useEffect(() => {
+    if (!isNewComment) return;
     const dismiss = (e) => {
       if (popupRef.current && !popupRef.current.contains(e.target)) {
-        if (isNewComment && !createText.trim()) {
+        if (!createText.trim()) {
           onDelete(comment.id);
         }
         onClose();
