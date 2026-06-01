@@ -3110,6 +3110,28 @@ test.describe('Comment-span visibility toggle (#195)', () => {
     await expect(popup).toBeHidden();
   });
 
+  test('all comment popups stay visible while the layer is on, without clicking a span', async ({ page }) => {
+    await page.goto('/');
+    await waitForApp(page);
+
+    // Two independent comments in two fresh blocks.
+    await seedComment(page);
+    await seedComment(page);
+
+    // Both popups are visible while the layer is ON — no span click needed
+    // (#195 follow-up: all popups persist until the toggle turns the layer off).
+    const popups = page.locator('[data-test="comment-popup"]');
+    await expect(popups).toHaveCount(2, { timeout: 3000 });
+
+    // Toggle the layer OFF: every popup closes.
+    await page.locator('[data-test="comment-spans-toggle"]').click();
+    await expect(popups).toHaveCount(0);
+
+    // Toggle ON again: both popups return, still without any span click.
+    await page.locator('[data-test="comment-spans-toggle"]').click();
+    await expect(popups).toHaveCount(2, { timeout: 3000 });
+  });
+
   test('creating a comment while hidden auto-reveals the layer', async ({ page }) => {
     await page.goto('/');
     await waitForApp(page);
