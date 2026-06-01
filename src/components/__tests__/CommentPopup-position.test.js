@@ -42,4 +42,19 @@ describe('computeCommentPopupPosition', () => {
     expect(computeCommentPopupPosition({ top: 820, bottom: 860 }, PANE_TOP, PANE_BOTTOM))
       .toEqual({ top: 500, hidden: true });
   });
+
+  it('stays aligned with a span near the pane bottom using the measured card height', () => {
+    // A short card (150px) reserves less room → maxTop = 800 - 150 = 650, so a
+    // span at top=620 keeps the card aligned with it instead of jumping up to
+    // the 300px-reservation clamp (500).
+    expect(computeCommentPopupPosition({ top: 620, bottom: 640 }, PANE_TOP, PANE_BOTTOM, 150))
+      .toEqual({ top: 620, hidden: false });
+  });
+
+  it('still clamps a short card so its bottom rests above the pane bottom', () => {
+    // span very low (top=720) with a 150px card → 720 + 150 = 870 > 800 → clamp
+    // to paneBottom - cardHeight = 650 (card bottom at 800, as low as it goes).
+    expect(computeCommentPopupPosition({ top: 720, bottom: 740 }, PANE_TOP, PANE_BOTTOM, 150))
+      .toEqual({ top: 650, hidden: false });
+  });
 });
