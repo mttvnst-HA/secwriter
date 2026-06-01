@@ -28,9 +28,9 @@ const POPUP_MIN_TOP = 8;
  * when the span has scrolled out of the pane so the caller hides the card
  * instead of pinning it to a pane edge.
  */
-export function computeCommentPopupPosition(rect, paneTop, paneBottom) {
+export function computeCommentPopupPosition(rect, paneTop, paneBottom, cardHeight = POPUP_CARD_HEIGHT) {
   const minTop = Math.max(paneTop, POPUP_MIN_TOP);
-  const maxTop = Math.max(paneBottom - POPUP_CARD_HEIGHT, minTop);
+  const maxTop = Math.max(paneBottom - cardHeight, minTop);
   if (!rect) return { top: Math.min(Math.max(200, minTop), maxTop), hidden: false };
   const top = Math.min(Math.max(rect.top, minTop), maxTop);
   const hidden = rect.bottom <= paneTop || rect.top >= paneBottom;
@@ -138,9 +138,13 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
 
   // Position: track the comment span on scroll/resize so the card stays aligned
   // with its highlighted text instead of freezing at the open-time viewport top.
+  // Reserve the card's ACTUAL height (measured below) when clamping, so a short
+  // card stays aligned with its span near the pane bottom instead of jumping up
+  // by the worst-case 300px reservation.
+  const cardHeightRef = useRef(POPUP_CARD_HEIGHT);
   const [pos, setPos] = useState(() => {
     const [pt, pb] = readPaneBounds(paneRef);
-    return computeCommentPopupPosition(rect, pt, pb);
+    return computeCommentPopupPosition(rect, pt, pb, cardHeightRef.current);
   });
   useEffect(() => {
     let raf = 0;
@@ -150,17 +154,27 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
       const el = document.querySelector(`[data-comment-id="${esc(comment.id)}"]`);
       const r = el ? el.getBoundingClientRect() : rect;
       const [pt, pb] = readPaneBounds(paneRef);
-      setPos(computeCommentPopupPosition(r, pt, pb));
+      setPos(computeCommentPopupPosition(r, pt, pb, cardHeightRef.current));
     };
     const schedule = () => { if (!raf) raf = requestAnimationFrame(recompute); };
     recompute();
     // Capture phase so the editor's inner scroll container is also observed.
     window.addEventListener('scroll', schedule, true);
     window.addEventListener('resize', schedule);
+    // Re-clamp whenever the card's own height changes (content/reply box grows).
+    let ro;
+    if (popupRef.current && typeof ResizeObserver !== 'undefined') {
+      ro = new ResizeObserver(() => {
+        const h = popupRef.current?.offsetHeight;
+        if (h && h !== cardHeightRef.current) { cardHeightRef.current = h; schedule(); }
+      });
+      ro.observe(popupRef.current);
+    }
     return () => {
       if (raf) cancelAnimationFrame(raf);
       window.removeEventListener('scroll', schedule, true);
       window.removeEventListener('resize', schedule);
+      if (ro) ro.disconnect();
     };
   }, [comment.id, rect]);
 
