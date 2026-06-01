@@ -21,15 +21,19 @@ const POPUP_MIN_TOP = 8;
 
 /**
  * Pure vertical-position calc for the comment popup, given its comment span's
- * viewport rect (from getBoundingClientRect) and the viewport height.
- * Returns { top, hidden } — `hidden` true when the span has scrolled out of
- * the viewport so the caller can detach/hide the card instead of floating it.
+ * viewport rect (from getBoundingClientRect) and the editor text pane's
+ * viewport bounds (paneTop = ribbon bottom edge, paneBottom = status-bar top
+ * edge). The card is clamped to the pane — it never floats over the toolbar
+ * ribbon or below the bottom bar. Returns { top, hidden }; `hidden` is true
+ * when the span has scrolled out of the pane so the caller hides the card
+ * instead of pinning it to a pane edge.
  */
-export function computeCommentPopupPosition(rect, viewportHeight) {
-  if (!rect) return { top: 200, hidden: false };
-  const maxTop = viewportHeight - POPUP_CARD_HEIGHT;
-  const top = Math.min(Math.max(rect.top, POPUP_MIN_TOP), maxTop);
-  const hidden = rect.bottom <= 0 || rect.top >= viewportHeight;
+export function computeCommentPopupPosition(rect, paneTop, paneBottom) {
+  const minTop = Math.max(paneTop, POPUP_MIN_TOP);
+  const maxTop = Math.max(paneBottom - POPUP_CARD_HEIGHT, minTop);
+  if (!rect) return { top: Math.min(Math.max(200, minTop), maxTop), hidden: false };
+  const top = Math.min(Math.max(rect.top, minTop), maxTop);
+  const hidden = rect.bottom <= paneTop || rect.top >= paneBottom;
   return { top, hidden };
 }
 
@@ -61,7 +65,18 @@ function Avatar({ name, color, size = 28 }) {
   );
 }
 
-export default function CommentPopup({ comment, rect, onReply, onResolve, onReopen, onDelete, onClose, onUpdateCreate, editorRef }) {
+// Read the editor text-pane bounds (the scroll viewport) in viewport coords.
+// Falls back to the full window when the ref isn't wired (e.g. unit tests).
+function readPaneBounds(paneRef) {
+  const el = paneRef?.current;
+  if (el && typeof el.getBoundingClientRect === 'function') {
+    const r = el.getBoundingClientRect();
+    return [r.top, r.bottom];
+  }
+  return [0, typeof window !== 'undefined' ? window.innerHeight : 0];
+}
+
+export default function CommentPopup({ comment, rect, onReply, onResolve, onReopen, onDelete, onClose, onUpdateCreate, editorRef, paneRef }) {
   const isNewComment = comment.entries.length === 1 && comment.entries[0].type === "create" && !comment.entries[0].text;
   const [replyText, setReplyText] = useState("");
   const [createText, setCreateText] = useState("");
@@ -123,7 +138,10 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
 
   // Position: track the comment span on scroll/resize so the card stays aligned
   // with its highlighted text instead of freezing at the open-time viewport top.
-  const [pos, setPos] = useState(() => computeCommentPopupPosition(rect, window.innerHeight));
+  const [pos, setPos] = useState(() => {
+    const [pt, pb] = readPaneBounds(paneRef);
+    return computeCommentPopupPosition(rect, pt, pb);
+  });
   useEffect(() => {
     let raf = 0;
     const esc = (typeof CSS !== 'undefined' && CSS.escape) ? CSS.escape : (s) => s;
@@ -131,7 +149,8 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
       raf = 0;
       const el = document.querySelector(`[data-comment-id="${esc(comment.id)}"]`);
       const r = el ? el.getBoundingClientRect() : rect;
-      setPos(computeCommentPopupPosition(r, window.innerHeight));
+      const [pt, pb] = readPaneBounds(paneRef);
+      setPos(computeCommentPopupPosition(r, pt, pb));
     };
     const schedule = () => { if (!raf) raf = requestAnimationFrame(recompute); };
     recompute();
