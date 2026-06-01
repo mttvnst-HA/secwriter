@@ -53,6 +53,17 @@ export function captureCommentRects(ids, getRect) {
 }
 
 /**
+ * Whether the all-popups layer should render a popup for this comment. Open
+ * comments auto-show; resolved comments stay collapsed (issue #195 follow-up)
+ * UNLESS the comment is the explicitly-focused one (its span was clicked), so a
+ * resolved comment can still be opened to reopen it.
+ */
+export function shouldShowCommentPopup(comment, openCommentId) {
+  if (comment.status !== 'resolved') return true;
+  return comment.id === openCommentId;
+}
+
+/**
  * Generate initials from a name (e.g. "John Smith" → "JS")
  */
 function getInitials(name) {

@@ -3132,6 +3132,28 @@ test.describe('Comment-span visibility toggle (#195)', () => {
     await expect(popups).toHaveCount(2, { timeout: 3000 });
   });
 
+  test('resolved comments stay collapsed; clicking the span reopens the popup', async ({ page }) => {
+    await page.goto('/');
+    await waitForApp(page);
+    const { blockId } = await seedComment(page);
+
+    const popups = page.locator('[data-test="comment-popup"]');
+    await expect(popups).toHaveCount(1, { timeout: 3000 });
+
+    // Resolve it from its popup → the popup collapses.
+    await page.locator('button[title="Resolve"]').click();
+    await expect(popups).toHaveCount(0);
+
+    // Stays collapsed across a layer off/on cycle (resolved == collapsed).
+    await page.locator('[data-test="comment-spans-toggle"]').click();
+    await page.locator('[data-test="comment-spans-toggle"]').click();
+    await expect(popups).toHaveCount(0);
+
+    // Clicking the resolved span reopens its popup so it can be reopened.
+    await page.locator(`[data-block-id="${blockId}"] [data-comment-id]`).first().click();
+    await expect(popups).toHaveCount(1, { timeout: 3000 });
+  });
+
   test('creating a comment while hidden auto-reveals the layer', async ({ page }) => {
     await page.goto('/');
     await waitForApp(page);
