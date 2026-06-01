@@ -1,5 +1,28 @@
 import { describe, it, expect } from 'vitest';
-import { captureCommentRects } from '../CommentPopup.jsx';
+import { captureCommentRects, shouldShowCommentPopup } from '../CommentPopup.jsx';
+
+// The all-popups layer auto-shows a popup for every OPEN comment, but resolved
+// comments stay collapsed (issue #195 follow-up). A resolved comment still
+// opens when it's the explicitly-focused one (clicked span) so it can be
+// reopened.
+describe('shouldShowCommentPopup', () => {
+  const open = { id: 'a', status: 'open' };
+  const resolved = { id: 'b', status: 'resolved' };
+
+  it('shows an open comment regardless of focus', () => {
+    expect(shouldShowCommentPopup(open, null)).toBe(true);
+    expect(shouldShowCommentPopup(open, 'other')).toBe(true);
+  });
+
+  it('collapses a resolved comment that is not focused', () => {
+    expect(shouldShowCommentPopup(resolved, null)).toBe(false);
+    expect(shouldShowCommentPopup(resolved, 'other')).toBe(false);
+  });
+
+  it('shows a resolved comment when it is the focused (clicked) one', () => {
+    expect(shouldShowCommentPopup(resolved, 'b')).toBe(true);
+  });
+});
 
 // When the comment-highlight layer is on, App renders ONE popup per comment
 // (issue #195 follow-up: all popups visible, persisting until the toggle is

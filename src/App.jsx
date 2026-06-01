@@ -19,7 +19,7 @@ import SearchBar from "./components/SearchBar.jsx";
 import BracketReplace from "./components/BracketReplace.jsx";
 import ValidationPanel from "./components/ValidationPanel.jsx";
 import RefWizard from "./components/RefWizard.jsx";
-import CommentPopup, { getAuthorName, captureCommentRects } from "./components/CommentPopup.jsx";
+import CommentPopup, { getAuthorName, captureCommentRects, shouldShowCommentPopup } from "./components/CommentPopup.jsx";
 import CompliancePanel from "./components/CompliancePanel.jsx";
 import { compileRegister, generateRegisterReport } from "./lib/submittal-register.js";
 import { generateExportHtml } from "./lib/doc-export.js";
@@ -946,6 +946,9 @@ export default function SpecEditor() {
     });
     setCommentsState(state);
     dispatchComment(publish);
+    // Collapse the just-resolved comment's popup (it stays collapsed unless
+    // its span is clicked again to reopen it).
+    setOpenCommentId((id) => (id === commentId ? null : id));
   }, [effectiveIdentity, dispatchComment]);
 
   const handleCommentReopen = useCallback((commentId) => {
@@ -2896,6 +2899,8 @@ export default function SpecEditor() {
               clicked comment uses its live commentRect until the capture effect
               seeds commentRects. Each popup self-tracks its span on scroll. */}
           {showCommentSpans && [...comments.values()].map((c) => {
+            // Resolved comments stay collapsed unless explicitly clicked open.
+            if (!shouldShowCommentPopup(c, openCommentId)) return null;
             const rect = commentRects.get(c.id) || (c.id === openCommentId ? commentRect : null);
             if (!rect) return null;
             return (
