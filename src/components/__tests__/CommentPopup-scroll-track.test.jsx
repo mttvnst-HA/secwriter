@@ -14,13 +14,14 @@ const COMMENT = {
 
 const noop = () => {};
 
-function renderPopup(container, rect) {
+function renderPopup(container, rect, paneRef) {
   const root = createRoot(container);
   act(() => {
     root.render(
       <CommentPopup
         comment={COMMENT}
         rect={rect}
+        paneRef={paneRef}
         onReply={noop} onResolve={noop} onReopen={noop}
         onDelete={noop} onClose={noop} onUpdateCreate={noop}
       />
@@ -64,6 +65,28 @@ describe('CommentPopup scroll tracking', () => {
     act(() => { window.dispatchEvent(new Event('scroll')); });
     expect(card.style.top).toBe('120px');
 
+    act(() => root.unmount());
+  });
+
+  it('pins the card to the pane top (below the ribbon), never over it', () => {
+    // Pane = the editor scroll viewport: ribbon bottom at y=200, status bar at y=900.
+    const paneRef = { current: { getBoundingClientRect: () => ({ top: 200, bottom: 900 }) } };
+    // Span scrolled partly under the ribbon (top=40) but still inside the pane.
+    span.getBoundingClientRect = () => ({ top: 40, bottom: 240 });
+    const root = renderPopup(container, { top: 40, bottom: 240 }, paneRef);
+    const card = container.querySelector('[data-test="comment-popup"]');
+    // Card pinned at pane top (200), NOT the window top (8).
+    expect(card.style.top).toBe('200px');
+    expect(card.style.display).toBe('');
+    act(() => root.unmount());
+  });
+
+  it('hides the card when the span scrolls above the pane top (under the ribbon)', () => {
+    const paneRef = { current: { getBoundingClientRect: () => ({ top: 200, bottom: 900 }) } };
+    span.getBoundingClientRect = () => ({ top: 60, bottom: 150 }); // fully above paneTop=200
+    const root = renderPopup(container, { top: 60, bottom: 150 }, paneRef);
+    const card = container.querySelector('[data-test="comment-popup"]');
+    expect(card.style.display).toBe('none');
     act(() => root.unmount());
   });
 

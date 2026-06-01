@@ -2873,6 +2873,7 @@ export default function SpecEditor() {
               onDelete={handleCommentDelete}
               onUpdateCreate={handleCommentUpdateCreate}
               onClose={() => setOpenCommentId(null)}
+              paneRef={editorScrollRef}
             />
           )}
 
