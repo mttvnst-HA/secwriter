@@ -2999,10 +2999,16 @@ test.describe('Comment active highlight (1g)', () => {
     const activeDecoLocator = page.locator(`[data-block-id="${blockId}"] .mark-comment-active`).first();
     await expect(activeDecoLocator).toBeVisible({ timeout: 5000 });
 
-    // Close the popup by clicking outside; setActiveComment(view, null)
-    // fires and the decoration is removed.
+    // Per the #195 follow-up, the submitted popup — and its active highlight,
+    // both driven by openCommentId — PERSIST on de-select. Clicking outside no
+    // longer clears them.
     await page.mouse.click(10, 10);
     await page.waitForTimeout(200);
+    await expect(activeDecoLocator).toBeVisible();
+
+    // The hide-highlights toggle clears openCommentId, firing
+    // setActiveComment(view, null) so the decoration is removed.
+    await page.locator('[data-test="comment-spans-toggle"]').click();
     await expect(activeDecoLocator).not.toBeVisible();
   });
 
