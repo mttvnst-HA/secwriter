@@ -19,7 +19,7 @@ import SearchBar from "./components/SearchBar.jsx";
 import BracketReplace from "./components/BracketReplace.jsx";
 import ValidationPanel from "./components/ValidationPanel.jsx";
 import RefWizard from "./components/RefWizard.jsx";
-import CommentPopup, { getAuthorName } from "./components/CommentPopup.jsx";
+import CommentPopup, { getAuthorName, captureCommentRects } from "./components/CommentPopup.jsx";
 import CompliancePanel from "./components/CompliancePanel.jsx";
 import { compileRegister, generateRegisterReport } from "./lib/submittal-register.js";
 import { generateExportHtml } from "./lib/doc-export.js";
@@ -213,6 +213,11 @@ export default function SpecEditor() {
   const comments = commentsState.byId;
   const [openCommentId, setOpenCommentId] = useState(null);
   const [commentRect, setCommentRect] = useState(null);
+  // Initial id→rect map for the all-popups layer (#195 follow-up). When the
+  // comment-highlight layer is ON, every comment shows its popup and they
+  // persist until the layer is toggled OFF. Each popup self-tracks its span on
+  // scroll/resize after mount; this map only seeds the open-time position.
+  const [commentRects, setCommentRects] = useState(() => new Map());
   const [showComments, setShowComments] = useState(false);
   // Comment-span visibility layer — separate from the comments PANEL
   // (`showComments`). Persisted, default ON. Mirrors the inline-linting toggle.
@@ -1336,6 +1341,30 @@ export default function SpecEditor() {
     try { localStorage.setItem('sim-comment-spans', String(showCommentSpans)); } catch {}
     if (!showCommentSpans) setOpenCommentId(null);
   }, [showCommentSpans]);
+
+  // All-popups layer (#195 follow-up): while the highlight layer is ON, render a
+  // popup for EVERY comment and keep them up until the layer is toggled OFF.
+  // This captures each comment span's open-time rect to seed the popup position;
+  // each popup self-tracks its span on scroll/resize after mount. rAF + a short
+  // fallback let the comment-mark reconcile create the spans (including a
+  // brand-new draft) before getBoundingClientRect is read. Re-runs only when the
+  // layer flips or the set of comment ids changes.
+  const commentIdsKey = [...comments.keys()].sort().join('|');
+  useEffect(() => {
+    if (!showCommentSpans) { setCommentRects(new Map()); return; }
+    const esc = (typeof CSS !== 'undefined' && CSS.escape) ? CSS.escape : (s) => s;
+    const capture = () => {
+      const ids = [...commentsStateRef.current.byId.keys()];
+      setCommentRects(captureCommentRects(ids, (id) => {
+        const el = document.querySelector(`[data-comment-id="${esc(id)}"]`);
+        return el ? el.getBoundingClientRect() : null;
+      }));
+    };
+    const raf = requestAnimationFrame(capture);
+    const t = setTimeout(capture, 80);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showCommentSpans, commentIdsKey]);
 
   // Suspend inline linting while the compliance panel is open
   // (panel renders its own CSS.highlights('compliance-active') ranges).
@@ -2862,20 +2891,28 @@ export default function SpecEditor() {
             <RemoteCursors peers={peers} selfId={identity.id} editorRef={editorRef} />
           )}
 
-          {/* Comment Popup — gated on the comment-span visibility layer */}
-          {showCommentSpans && openCommentId && comments.get(openCommentId) && commentRect && (
-            <CommentPopup
-              comment={comments.get(openCommentId)}
-              rect={commentRect}
-              onReply={handleCommentReply}
-              onResolve={handleCommentResolve}
-              onReopen={handleCommentReopen}
-              onDelete={handleCommentDelete}
-              onUpdateCreate={handleCommentUpdateCreate}
-              onClose={() => setOpenCommentId(null)}
-              paneRef={editorScrollRef}
-            />
-          )}
+          {/* Comment popups — one per comment while the highlight layer is ON
+              (#195 follow-up). They persist until the layer is toggled OFF; the
+              clicked comment uses its live commentRect until the capture effect
+              seeds commentRects. Each popup self-tracks its span on scroll. */}
+          {showCommentSpans && [...comments.values()].map((c) => {
+            const rect = commentRects.get(c.id) || (c.id === openCommentId ? commentRect : null);
+            if (!rect) return null;
+            return (
+              <CommentPopup
+                key={c.id}
+                comment={c}
+                rect={rect}
+                onReply={handleCommentReply}
+                onResolve={handleCommentResolve}
+                onReopen={handleCommentReopen}
+                onDelete={handleCommentDelete}
+                onUpdateCreate={handleCommentUpdateCreate}
+                onClose={() => setOpenCommentId(null)}
+                paneRef={editorScrollRef}
+              />
+            );
+          })}
 
           {/* Section Banner */}
           <div style={{

@@ -38,6 +38,21 @@ export function computeCommentPopupPosition(rect, paneTop, paneBottom, cardHeigh
 }
 
 /**
+ * Build a Map of comment-id → viewport rect for every id whose span is
+ * currently in the DOM. `getRect(id)` returns the span's rect or null. Ids
+ * with no rendered span are omitted so the all-popups layer (issue #195
+ * follow-up) never floats a card over a comment that isn't visible.
+ */
+export function captureCommentRects(ids, getRect) {
+  const map = new Map();
+  for (const id of ids) {
+    const r = getRect(id);
+    if (r) map.set(id, r);
+  }
+  return map;
+}
+
+/**
  * Generate initials from a name (e.g. "John Smith" → "JS")
  */
 function getInitials(name) {
