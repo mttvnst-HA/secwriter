@@ -597,9 +597,8 @@ describe('collab — createCollabSession + URL helpers', () => {
 
     // stripRoomFromUrl removes ?room and preserves other query params.
     expect(stripRoomFromUrl('https://x.test/?room=abc123')).toBe('https://x.test/');
-    expect(stripRoomFromUrl('https://x.test/?room=abc&foo=1')).toContain('foo=1');
-    expect(stripRoomFromUrl('https://x.test/?room=abc&foo=1')).not.toContain('room=');
-    expect(stripRoomFromUrl('https://x.test/?foo=1')).toContain('foo=1'); // no room param: unchanged params
+    expect(stripRoomFromUrl('https://x.test/?room=abc&foo=1')).toBe('https://x.test/?foo=1');
+    expect(stripRoomFromUrl('https://x.test/?foo=1')).toBe('https://x.test/?foo=1'); // no room param: unchanged
   });
 });
 
