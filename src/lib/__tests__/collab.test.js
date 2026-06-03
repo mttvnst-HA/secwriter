@@ -15,6 +15,7 @@ import {
   seedYBlocks,
   generateRoomId,
   buildRoomUrl,
+  stripRoomFromUrl,
   estimatePublishBytes,
   DocSizeLimitError,
   MAX_PUBLISH_BYTES,
@@ -593,6 +594,11 @@ describe('collab — createCollabSession + URL helpers', () => {
     }
     const url = buildRoomUrl('abc123');
     expect(url).toContain('room=abc123');
+
+    // stripRoomFromUrl removes ?room and preserves other query params.
+    expect(stripRoomFromUrl('https://x.test/?room=abc123')).toBe('https://x.test/');
+    expect(stripRoomFromUrl('https://x.test/?room=abc&foo=1')).toBe('https://x.test/?foo=1');
+    expect(stripRoomFromUrl('https://x.test/?foo=1')).toBe('https://x.test/?foo=1'); // no room param: unchanged
   });
 });
 

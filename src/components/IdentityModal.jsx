@@ -6,7 +6,7 @@ import { saveIdentity, colorForName } from '../lib/identity.js';
  * First-load modal that asks the user for a display name when joining a
  * collab room. Prototype stub — replaced by real auth later.
  */
-export default function IdentityModal({ onIdentity, roomId }) {
+export default function IdentityModal({ onIdentity, onCancel, roomId }) {
   const [name, setName] = useState('');
   const trimmed = name.trim();
   const previewColor = trimmed ? colorForName(trimmed) : '#94a3b8';
@@ -24,10 +24,13 @@ export default function IdentityModal({ onIdentity, roomId }) {
       display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999,
       fontFamily: "'Inter', 'Segoe UI', sans-serif",
     }}>
-      <form onSubmit={handleSubmit} style={{
-        background: '#ffffff', borderRadius: 10, padding: '28px 32px', minWidth: 360,
-        boxShadow: '0 20px 40px rgba(15,23,42,0.25)',
-      }}>
+      <form
+        onSubmit={handleSubmit}
+        onKeyDown={(e) => { if (e.key === 'Escape') onCancel?.(); }}
+        style={{
+          background: '#ffffff', borderRadius: 10, padding: '28px 32px', minWidth: 360,
+          boxShadow: '0 20px 40px rgba(15,23,42,0.25)',
+        }}>
         <h2 style={{ margin: '0 0 8px', fontSize: 18, color: '#1e293b' }}>
           Join collaborative room
         </h2>
@@ -65,6 +68,17 @@ export default function IdentityModal({ onIdentity, roomId }) {
           </span>
         </div>
         <div style={{ marginTop: 20, display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
+          <button
+            type="button"
+            onClick={onCancel}
+            style={{
+              padding: '8px 16px', fontSize: 13, fontWeight: 600,
+              background: '#f1f5f9', color: '#475569',
+              border: '1px solid #cbd5e1', borderRadius: 6, cursor: 'pointer',
+            }}
+          >
+            Cancel
+          </button>
           <button
             type="submit"
             disabled={!trimmed}

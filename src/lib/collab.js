@@ -110,6 +110,22 @@ export function buildRoomUrl(roomId) {
 }
 
 /**
+ * Return the current URL with the `room` query param removed. Used by the
+ * IdentityModal Cancel path to drop back into single-user (local) mode — on
+ * the subsequent reload, getRoomFromUrl() returns null so inRoom is false and
+ * the autosave restore-on-mount effect rehydrates the pre-Share document.
+ * Accepts an optional explicit href so it can be unit-tested without touching
+ * window.location.
+ */
+export function stripRoomFromUrl(href) {
+  const base = href || (typeof window !== 'undefined' ? window.location.href : null);
+  if (!base) return '/';
+  const url = new URL(base);
+  url.searchParams.delete('room');
+  return url.toString();
+}
+
+/**
  * Generate a short random room ID.
  *
  * Note: the room ID is NOT a secret. Anyone who can guess an 8-char
