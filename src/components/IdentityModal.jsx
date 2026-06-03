@@ -28,9 +28,9 @@ export default function IdentityModal({ onIdentity, onCancel, roomId }) {
         onSubmit={handleSubmit}
         onKeyDown={(e) => { if (e.key === 'Escape') onCancel?.(); }}
         style={{
-        background: '#ffffff', borderRadius: 10, padding: '28px 32px', minWidth: 360,
-        boxShadow: '0 20px 40px rgba(15,23,42,0.25)',
-      }}>
+          background: '#ffffff', borderRadius: 10, padding: '28px 32px', minWidth: 360,
+          boxShadow: '0 20px 40px rgba(15,23,42,0.25)',
+        }}>
         <h2 style={{ margin: '0 0 8px', fontSize: 18, color: '#1e293b' }}>
           Join collaborative room
         </h2>
