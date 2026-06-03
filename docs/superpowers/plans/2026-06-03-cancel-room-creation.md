@@ -6,7 +6,7 @@
 
 **Architecture:** Three coordinated changes. (1) A pure `stripRoomFromUrl()` URL helper in `collab.js`. (2) `IdentityModal` gains an `onCancel` prop, a `type="button"` Cancel button, and a form-scoped Escape handler. (3) `App.jsx` stops clearing the autosave at Share-time and instead clears it at a mode-independent join seam (`useEffect([inRoom, identity])`), and wires the modal's `onCancel` to navigate to the room-stripped URL — which on reload re-enters local mode and lets the existing restore-on-mount effect rehydrate the document.
 
-**Tech Stack:** React, Vitest (jsdom), Playwright (E2E). Component tests use raw `react-dom/client` `createRoot` + `act` (the project does not use @testing-library/react).
+**Tech Stack:** React, Vitest (jsdom), Playwright (E2E). This plan's component tests use the raw `react-dom/client` `createRoot` + `act` pattern (as in `CommentPopup-dismiss.test.jsx` / `SlashMenu.test.jsx`); `@testing-library/react` is also available in the repo but not used here. Note: `src/lib/__tests__/collab.test.js` runs in the `node` vitest environment (no `window`), so Task 1's test passes an explicit `href` argument rather than relying on `window.location`.
 
 **Spec:** `docs/superpowers/specs/2026-06-03-cancel-room-creation-design.md`
 
