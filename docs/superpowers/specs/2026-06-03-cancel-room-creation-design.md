@@ -135,6 +135,18 @@ in JSX. App's `onCancel` does `window.location.href = stripRoomFromUrl()`.
    sample document — which is what a fresh local load shows anyway. Correct, no
    special handling needed.
 
+4. **Cancel only helps users who SEE the modal.** `identity` initializes from
+   `loadIdentity()` when in a room (`src/App.jsx:263`). A returning stub user who
+   already saved a display name in a prior session has a non-null `identity` on
+   the post-Share reload, so the modal's `!identity` guard suppresses it — they
+   are auto-joined and the `[inRoom, identity]` effect clears the autosave
+   immediately. Such a user therefore never gets a Cancel button. This is NOT a
+   regression (before this feature, Share cleared the autosave and committed
+   immediately for everyone), and it matches the population the spec targets —
+   the user "stuck on a name prompt" is by definition one without a saved
+   identity. Giving returning users a way back would need a different mechanism
+   (e.g. a confirm step on Share) and is out of scope.
+
 ## Testing
 
 1. **`src/components/__tests__/IdentityModal.test.jsx`** (new):
