@@ -49,7 +49,7 @@ import { encodeSidecar, encodeSidecarV2, decodeSidecar, decodeSidecarV2, project
 import * as comp from "./lib/compliance.js";
 import { findHighlightTargetsInBlock } from "./lib/compliance-ranges.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
-import { getRoomFromUrl, buildRoomUrl, generateRoomId, DEFAULT_HTTP_URL, applyBlocksToYDoc, yBlocksToArray } from "./lib/collab.js";
+import { getRoomFromUrl, buildRoomUrl, stripRoomFromUrl, generateRoomId, DEFAULT_HTTP_URL, applyBlocksToYDoc, yBlocksToArray } from "./lib/collab.js";
 import { useCollabSession } from "./hooks/useCollabSession.js";
 import { useLocalSubstrateUndoManager } from "./hooks/useLocalSubstrateUndoManager.js";
 import * as cm from "./lib/comments.js";
@@ -1570,6 +1570,21 @@ export default function SpecEditor() {
     setIsDirty(false);
   }, [inRoom, localSubstrate]);
 
+  // When the user actually joins a room (identity established while in-room),
+  // drop the local autosave so the server-persisted Yjs doc is the sole source
+  // of truth. Mode-independent on purpose: stub auth sets identity via the
+  // IdentityModal; external (JWT) / msal set it via auth-client + the
+  // safety-net effect above. All routes pass through here — without this seam
+  // those non-stub modes would never clear the autosave (it used to be cleared
+  // in handleShare), leaving a stale local document that could later be
+  // restored or written to disk. Until the user joins, the autosave survives so
+  // the IdentityModal Cancel path can restore the pre-Share document.
+  useEffect(() => {
+    if (inRoom && identity) {
+      try { clearAutoSave(); } catch { /* ignore */ }
+    }
+  }, [inRoom, identity]);
+
   // Handlers for remote ignored / muted state arriving from peers (#140).
   const handleLintIgnoredInitial = useCallback((ignoredMap) => {
     setLintingState(s => linting.mergeRemoteIgnored(s, ignoredMap));
@@ -1870,9 +1885,10 @@ export default function SpecEditor() {
     }
     const newRoom = generateRoomId();
     const url = buildRoomUrl(newRoom);
-    // Starting a room clears our localStorage auto-save so the server-persisted
-    // doc becomes the source of truth cleanly.
-    try { clearAutoSave(); } catch { /* ignore */ }
+    // NOTE: the autosave is intentionally NOT cleared here. It is cleared at the
+    // join seam (the [inRoom, identity] effect below) so it survives the
+    // Share -> name-prompt window and the IdentityModal Cancel path can restore
+    // the pre-Share document.
     window.location.href = url;
     // toasts accessed via toastPushRef; intentionally omitted from deps.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -3321,7 +3337,11 @@ export default function SpecEditor() {
 
       {/* Collab identity prompt — appears on first load when ?room=... is present */}
       {inRoom && !identity && getAuthMode() === 'stub' && (
-        <IdentityModal roomId={roomId} onIdentity={setIdentity} />
+        <IdentityModal
+          roomId={roomId}
+          onIdentity={setIdentity}
+          onCancel={() => { window.location.href = stripRoomFromUrl(); }}
+        />
       )}
     </div>
   );
