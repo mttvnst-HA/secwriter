@@ -1886,7 +1886,7 @@ export default function SpecEditor() {
     const newRoom = generateRoomId();
     const url = buildRoomUrl(newRoom);
     // NOTE: the autosave is intentionally NOT cleared here. It is cleared at the
-    // join seam (the [inRoom, identity] effect below) so it survives the
+    // join seam (the [inRoom, identity] effect above) so it survives the
     // Share -> name-prompt window and the IdentityModal Cancel path can restore
     // the pre-Share document.
     window.location.href = url;
