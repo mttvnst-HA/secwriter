@@ -338,6 +338,14 @@ export function buildRules() {
     } else if (term === 'any') {
       // "any" as indefinite — not as standard determiner (any portion, any point, any three, any control)
       pattern = /\bany\b(?!\s*(of the following|of these|one of|other|portion|point|time|three|four|two|\d|control|additional|remaining|existing|adjacent|individual|particular|single|given))/gi;
+    } else if (term === 'properly') {
+      // UFS §2-4.4's vague-word list is illustrative ("such as"); the adjective
+      // "proper" ("proper cement", "proper type") is the same unspecified-standard
+      // vagueness as the listed adverb, so match both forms.
+      // Exclusions from real UFGS master usage: "proper operation" is an accepted
+      // collocation (UFS §3.9.1 itself uses it), and "specified proper" is already
+      // anchored by "specified".
+      pattern = /(?<!\bspecified\s)\bproper(?:ly)?\b(?!\s+operation\b)/gi;
     } else {
       // For terms ending with non-word chars (e.g., "etc."), don't use trailing \b
       const escaped = escapeRegex(term);

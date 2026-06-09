@@ -1,10 +1,10 @@
 {
   "metadata": {
     "corpusType": "dirty",
-    "corpusFile": "/Users/mveenstra/github/secwriter/corpus/dirty/all_dirty.json",
+    "corpusFile": "C:\\github\\secwriter\\.claude\\worktrees\\elated-archimedes-be12be\\corpus\\dirty\\all_dirty.json",
     "blocksProcessed": 644,
-    "timestamp": "2026-05-23T06:36:40.146Z",
-    "elapsedSeconds": 4.6,
+    "timestamp": "2026-06-09T19:59:53.303Z",
+    "elapsedSeconds": 14.9,
     "grammarEnabled": true,
     "withIgnores": false,
     "ignoredKeysApplied": 0,
@@ -17,7 +17,7 @@
       "nlp": 0
     },
     "findingsByEngine": {
-      "static": 480,
+      "static": 493,
       "nlp": 262,
       "grammar": 148
     },
@@ -33,6 +33,7 @@
       "TERM-etc": 25,
       "TERM-suitable": 12,
       "TERM-adequate": 9,
+      "TERM-properly": 15,
       "TERM-as-necessary": 6,
       "TERM-furnish": 20,
       "FMT-002": 39,
@@ -50,7 +51,6 @@
       "SYM-pound": 7,
       "GRAMMAR-Regionalism": 2,
       "TERM-securely": 12,
-      "TERM-properly": 2,
       "TERM-thoroughly": 4,
       "TERM-carefully": 3,
       "CAP-Government": 8,
@@ -58,7 +58,7 @@
       "GRAMMAR-Agreement": 5
     },
     "findingsBySection": {
-      "undefined": 890
+      "undefined": 903
     },
     "noteBlockFindings": {
       "static": 0,
@@ -876,6 +876,16 @@
       "engine": "grammar",
       "category": "WordChoice",
       "blockId": "03_30_00-P2-B198"
+    },
+    {
+      "blockId": "03_30_00-P2-B368",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 116,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses."
     },
     {
       "blockId": "03_30_00-P3-B514",
@@ -2618,6 +2628,16 @@
       "message": "Do not use vague words and phrases or escape clauses."
     },
     {
+      "blockId": "22_00_00-P2-B116",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 22,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses."
+    },
+    {
       "ruleId": "GRAMMAR-Spelling",
       "match": "BCuP",
       "index": 79,
@@ -2626,6 +2646,26 @@
       "engine": "grammar",
       "category": "Spelling",
       "blockId": "22_00_00-P2-B116"
+    },
+    {
+      "blockId": "22_00_00-P2-B173",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 60,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses."
+    },
+    {
+      "blockId": "22_00_00-P3-B503",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 118,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses."
     },
     {
       "blockId": "22_00_00-P3-B503",
@@ -4138,6 +4178,16 @@
       "message": "The use of \"shall\" is prohibited. \"Shall\" imposes an obligation to act but may be confused with prediction of future action."
     },
     {
+      "blockId": "26_20_00-P2-B117",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 17,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses."
+    },
+    {
       "blockId": "26_20_00-P2-B137",
       "ruleId": "TERM-shall",
       "match": "Shall",
@@ -5048,6 +5098,26 @@
       "message": "Do not use vague words and phrases or escape clauses."
     },
     {
+      "blockId": "26_20_00-P2-B325",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 44,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses."
+    },
+    {
+      "blockId": "26_20_00-P2-B441",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 54,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses."
+    },
+    {
       "blockId": "26_20_00-P2-B517",
       "ruleId": "TERM-properly",
       "match": "properly",
@@ -5566,6 +5636,16 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "The use of \"shall\" is prohibited. \"Shall\" imposes an obligation to act but may be confused with prediction of future action."
+    },
+    {
+      "blockId": "26_20_00-P2-B117",
+      "ruleId": "TERM-properly",
+      "match": "Proper",
+      "index": 0,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses."
     },
     {
       "blockId": "26_20_00-P2-B117",
@@ -6689,6 +6769,16 @@
     },
     {
       "blockId": "32_12_16_16-P1-B49",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 146,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses."
+    },
+    {
+      "blockId": "32_12_16_16-P1-B49",
       "ruleId": "NLP-PASSIVE-001",
       "match": "are referred",
       "index": 107,
@@ -6696,6 +6786,16 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
+    },
+    {
+      "blockId": "32_12_16_16-P3-B175",
+      "ruleId": "TERM-properly",
+      "match": "Proper",
+      "index": 0,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses."
     },
     {
       "blockId": "32_12_16_16-P2-B131",
@@ -7998,6 +8098,26 @@
       "message": "Do not use vague words and phrases or escape clauses."
     },
     {
+      "blockId": "33_71_02-P1-B72",
+      "ruleId": "TERM-properly",
+      "match": "Proper",
+      "index": 0,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses."
+    },
+    {
+      "blockId": "33_71_02-P2-B192",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 192,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses."
+    },
+    {
       "blockId": "33_71_02-P2-B192",
       "ruleId": "NLP-PASSIVE-001",
       "match": "be provided",
@@ -8012,6 +8132,16 @@
       "ruleId": "TERM-properly",
       "match": "properly",
       "index": 264,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses."
+    },
+    {
+      "blockId": "33_71_02-P3-B317",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 304,
       "severity": "high",
       "engine": "static",
       "category": "prohibited-term",

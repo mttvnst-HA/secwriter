@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-23T06:38:41.914Z",
+  "generated": "2026-06-09T20:02:06.009Z",
   "corpusSize": {
     "calibration": 2583,
     "clean": 2583,
@@ -33,6 +33,11 @@
       "precision": 0.9996128532713898
     },
     "TERM-per": {
+      "tested": 2583,
+      "falsePositives": 1,
+      "precision": 0.9996128532713898
+    },
+    "TERM-properly": {
       "tested": 2583,
       "falsePositives": 1,
       "precision": 0.9996128532713898
@@ -198,8 +203,8 @@
     "VAGUE-003": {
       "actualId": "TERM-properly",
       "injected": 13,
-      "detected": 2,
-      "recall": 0.15384615384615385
+      "detected": 13,
+      "recall": 1
     }
   },
   "adversarial": {

@@ -1,12 +1,12 @@
 # SecWriter Text Analysis Engine — Corpus Test Report
 
-Generated: 2026-05-23T06:38:41.915Z
+Generated: 2026-06-09T20:02:06.011Z
 
 ## 1. Calibration Results (Raw UFGS Master Text)
 
 - **Blocks processed:** 2583
-- **Total findings:** 1494
-- **Static:** 313 | **NLP:** 902 | **Grammar:** 279
+- **Total findings:** 1530
+- **Static:** 347 | **NLP:** 904 | **Grammar:** 279
 
 ### Note Block Exemption
 
@@ -22,19 +22,19 @@ Generated: 2026-05-23T06:38:41.915Z
 
 | Rule | Total | On Notes |
 |------|:-----:|:--------:|
-| NLP-PASSIVE-001 | 902 | 0 |
+| NLP-PASSIVE-001 | 904 | 0 |
 | GRAMMAR-Spelling | 108 | 55 |
 | GRAMMAR-Style | 92 | 24 |
 | TERM-any | 86 | 0 |
+| TERM-suitable | 40 | 0 |
 | GRAMMAR-WordChoice | 39 | 7 |
+| TERM-properly | 38 | 0 |
 | TERM-conforming-to | 35 | 0 |
-| TERM-suitable | 32 | 0 |
 | TERM-per | 27 | 0 |
 | TERM-adequate | 22 | 0 |
 | TERM-to-be | 17 | 0 |
 | TERM-furnish | 14 | 0 |
 | TERM-securely | 13 | 0 |
-| TERM-properly | 12 | 0 |
 | VAGUE-applicable | 12 | 0 |
 | GRAMMAR-Agreement | 11 | 3 |
 | GRAMMAR-Capitalization | 10 | 3 |
@@ -65,7 +65,7 @@ Generated: 2026-05-23T06:38:41.915Z
 
 | Engine | Non-Note FPs | FP Rate | Regression Threshold |
 |--------|:-----------:|:-------:|:--------------------:|
-| Static | 6 | 0.23% | <5% |
+| Static | 7 | 0.27% | <5% |
 | NLP | 333 | 12.89% | <20% |
 | Grammar | 260 | (informational) | N/A |
 
@@ -79,6 +79,7 @@ Generated: 2026-05-23T06:38:41.915Z
 | TERM-suitable | static | 1 | 99.96% |
 | TERM-conforming-to | static | 1 | 99.96% |
 | TERM-per | static | 1 | 99.96% |
+| TERM-properly | static | 1 | 99.96% |
 
 ## 3. Recall Results (Dirty Corpus)
 
@@ -114,13 +115,13 @@ Generated: 2026-05-23T06:38:41.915Z
 | TERM-032 | TERM-conforming-to | 6 | 3 | 50.0% | 80% | ❌ |
 | VAGUE-001 | TERM-suitable | 12 | 12 | 100.0% | 80% | ✅ |
 | VAGUE-002 | TERM-adequate | 9 | 9 | 100.0% | 80% | ✅ |
-| VAGUE-003 | TERM-properly | 13 | 2 | 15.4% | 80% | ❌ |
+| VAGUE-003 | TERM-properly | 13 | 13 | 100.0% | 80% | ✅ |
 
 ### Engine-Level Recall
 
 | Engine | Detected | Injected | Recall | Target |
 |--------|:--------:|:--------:|:------:|:------:|
-| Static | 352 | 405 | 86.9% | ≥80% |
+| Static | 363 | 405 | 89.6% | ≥80% |
 | NLP | 83 | 123 | 67.5% | ≥60% |
 | Grammar | 82 | 125 | 65.6% | ≥70% |
 
