@@ -36,7 +36,6 @@ import { focusBlockById, getBlockEditable, getBlockDom, getBlockView, listBlocks
 import ContextMenu from "./components/ContextMenu.jsx";
 import { buildContextMenuItems, tableCellCoordsFromTd } from "./lib/context-menu-items.js";
 import { applyInlineRevisionResolveTr, dispatchToolbarVerb, extractHtml, extractRangeText } from "./lib/pm-toolbar.js";
-import { TC_RESOLVE_META } from "./lib/pm-tc-mark.js";
 import { sanitizePasteText } from "./lib/paste-sanitize.js";
 import { pmFragmentToHtml } from "./lib/pmdoc-html.js";
 import { insertRowAt, insertColumnAt, deleteRow, deleteColumn, mergeCellRight, splitCell } from "./lib/table-ops.js";
@@ -2004,13 +2003,9 @@ export default function SpecEditor() {
           view,
           saved: { blockId },
           onForceFrame: forceFrame,
-          compute: (state) => {
-            const r = applyInlineRevisionResolveTr(state, action, coords.pos, kindHint);
-            if (r && action === 'accept' && kindHint === 'del') {
-              r.tr.setMeta(TC_RESOLVE_META, true);
-            }
-            return r;
-          },
+          // applyInlineRevisionResolveTr tags its tr with TC_RESOLVE_META
+          // itself, for every action/kind combination.
+          compute: (state) => applyInlineRevisionResolveTr(state, action, coords.pos, kindHint),
         });
         if (!result.dispatched) { toastInfo('Change no longer available'); break; }
         handleBlockUpdatePmSync(blockId, extractHtml(result.state));

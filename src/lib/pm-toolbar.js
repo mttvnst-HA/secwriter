@@ -69,6 +69,7 @@
  */
 
 import { REVISION_MARK_TYPE_NAMES } from './pm-schema.js';
+import { TC_RESOLVE_META } from './pm-tc-mark.js';
 import { pmFragmentToHtml } from './pmdoc-html.js';
 import {
   flushPendingUpdateById,
@@ -406,6 +407,16 @@ export function applyInlineRevisionResolveTr(state, action, pos, kindHint) {
   } else {
     return null;
   }
+  // Every tr this verb builds resolves an EXISTING revision mark, so tag it
+  // with TC_RESOLVE_META here rather than at each caller. Without the meta,
+  // the delete-range branches (accept-del, reject-add) dispatch a plain
+  // tr.delete over an already-marked range and rewriteForTrackChanges
+  // re-classifies it as a fresh user edit — accept-del no-ops (issue #96)
+  // and reject-add wraps a peer's revisionAdd in revisionDel instead of
+  // deleting it. The mark-stripping branches don't strictly need the gate
+  // (the rewriter ignores non-text-changing trs), but carrying it uniformly
+  // keeps the invariant in the verb.
+  tr.setMeta(TC_RESOLVE_META, true);
   return {
     tr: tr.setStoredMarks([]),
     settlement: 'caller-owned',

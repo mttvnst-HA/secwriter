@@ -32,7 +32,6 @@
  */
 
 import { applyInlineRevisionResolveTr } from './pm-toolbar.js';
-import { TC_RESOLVE_META } from './pm-tc-mark.js';
 
 /**
  * Dispatch a PM transaction resolving the revisionDel mark at `delEl`.
@@ -65,19 +64,16 @@ export function dispatchDelAction(view, delEl, action) {
   // The verb returns `{ tr, settlement: 'caller-owned', range }` post-2026-
   // 05-19 dispatcher refactor; unwrap to the Transaction. We don't go
   // through `dispatchToolbarVerb` here because the del-popup owns its own
-  // dispatch (and tags the tr with TC_RESOLVE_META, which the dispatcher
-  // doesn't know about) — the same in-file dispatch pattern as before.
+  // dispatch — the same in-file dispatch pattern as before.
+  // The verb tags its tr with TC_RESOLVE_META so PmEditableBlock's
+  // dispatchTransaction skips rewriteForTrackChanges (issue #96 — without
+  // the gate, accept-del's tr.delete over a revisionDel-marked range is
+  // re-classified as a fresh user delete and silently no-ops). The meta is
+  // consumed in PmEditableBlock; the corresponding Yjs op still flows
+  // through ySyncPlugin with its normal origin.
   const result = applyInlineRevisionResolveTr(view.state, action, pos, 'del');
   if (!result) return null;
   const tr = result.tr;
-  // Tag as a TC resolution so PmEditableBlock.dispatchTransaction skips
-  // rewriteForTrackChanges. Without this gate, accept-del dispatches a
-  // `tr.delete(from, to)` over a revisionDel-marked range; the rewriter
-  // re-classifies the range as a fresh user delete, re-applies revisionDel,
-  // and produces a no-op (issue #96). The meta is consumed in
-  // PmEditableBlock; the corresponding Yjs op still flows through
-  // ySyncPlugin with its normal origin.
-  tr.setMeta(TC_RESOLVE_META, true);
   view.dispatch(tr);
   return tr;
 }
