@@ -35,6 +35,10 @@ function buildRules() {
       pattern = /\bper\b(?!\s*(cent|annum|capita|diem|se\b|hour|min|second|day|week|month|year|cubic|sq|linear|foot|feet|inch|yard|mile|meter|metre|liter|litre|gal|pound|ton|acre|hectare|km|mph|psf|psi|pcf|plf|ksf|ksi|kcf|klf|mil))/gi;
     } else if (term === 'any') {
       pattern = /\bany\b(?!\s*(of the following|one of|other))/gi;
+    } else if (term === 'properly') {
+      // Mirrors compliance-rules.js: adjective "proper" is the same vagueness
+      // as the listed adverb; exclude "proper operation" and "specified proper".
+      pattern = /(?<!\bspecified\s)\bproper(?:ly)?\b(?!\s+operation\b)/gi;
     } else {
       const escaped = escapeRegex(entry.term);
       const endsWithWord = /\w$/.test(entry.term);
@@ -226,6 +230,26 @@ describe('colloquial', () => {
   });
   it('does not flag "bridge deck"', () => {
     assert.equal(runStaticRules('The bridge deck is thick.', 'b1', rules).find(x => x.ruleId === 'COLLOQ-deck'), undefined);
+  });
+});
+
+describe('TERM-properly adjective form', () => {
+  it('matches "proper" and "properly" with collocation exclusions', () => {
+    // UFS 1-300-02 §2-4.4 prohibits "properly"; the adjective "proper"
+    // ("proper cement") is the same unspecified-standard vagueness.
+    const flagged = (text) =>
+      runStaticRules(text, 'b1', rules).some(x => x.ruleId === 'TERM-properly');
+    // Adjective form — the 11 dirty-corpus misses are all this shape
+    assert.ok(flagged('Use proper cement for the repair.'), 'proper cement');
+    assert.ok(flagged('Provide valves of the proper type.'), 'proper type');
+    assert.ok(flagged('Proper Stockpile Management'), 'capitalized heading form');
+    // Adverb form still detected
+    assert.ok(flagged('Labels must be properly affixed.'), 'properly affixed');
+    // Exclusions — legitimate UFGS master usage (clean-corpus evidence)
+    assert.equal(flagged('Test breakers for proper operation.'), false, 'proper operation collocation');
+    assert.equal(flagged('Set sleeves in the specified proper and permanent location.'), false, 'specified-anchored');
+    // Word-boundary safety
+    assert.equal(flagged('The property owner agrees.'), false, 'property');
   });
 });
 

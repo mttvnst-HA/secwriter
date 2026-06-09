@@ -1,11 +1,14 @@
 {
   "metadata": {
     "corpusType": "calibration",
-    "corpusFile": "C:\\github\\secwriter\\corpus\\calibration\\all_calibration.json",
+    "corpusFile": "C:\\github\\secwriter\\.claude\\worktrees\\elated-archimedes-be12be\\corpus\\calibration\\all_calibration.json",
     "blocksProcessed": 2583,
-    "timestamp": "2026-05-21T04:21:44.462Z",
-    "elapsedSeconds": 53,
-    "grammarEnabled": true
+    "timestamp": "2026-06-09T20:01:10.681Z",
+    "elapsedSeconds": 67.2,
+    "grammarEnabled": true,
+    "withIgnores": false,
+    "ignoredKeysApplied": 0,
+    "mutedRulesApplied": 0
   },
   "stats": {
     "blocksProcessed": 2583,
@@ -14,18 +17,18 @@
       "nlp": 0
     },
     "findingsByEngine": {
-      "static": 313,
-      "nlp": 902,
+      "static": 347,
+      "nlp": 904,
       "grammar": 279
     },
     "findingsByRule": {
       "GRAMMAR-Style": 92,
       "GRAMMAR-Repetition": 6,
-      "NLP-PASSIVE-001": 902,
+      "NLP-PASSIVE-001": 904,
       "TERM-any": 86,
-      "TERM-properly": 12,
+      "TERM-properly": 38,
       "GRAMMAR-Spelling": 108,
-      "TERM-suitable": 32,
+      "TERM-suitable": 40,
       "TERM-adequate": 22,
       "TERM-carefully": 5,
       "TERM-furnish": 14,
@@ -55,11 +58,11 @@
       "TERM-should": 4
     },
     "findingsBySection": {
-      "03 30 00": 258,
-      "22 00 00": 718,
-      "26 20 00": 165,
-      "32 12 16.16": 167,
-      "33 71 02": 186
+      "03 30 00": 266,
+      "22 00 00": 729,
+      "26 20 00": 170,
+      "32 12 16.16": 169,
+      "33 71 02": 196
     },
     "noteBlockFindings": {
       "static": 0,
@@ -453,6 +456,18 @@
       "isNoteBlock": true
     },
     {
+      "blockId": "03_30_00-P1-B118",
+      "section": "03 30 00",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 73,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
       "blockId": "03_30_00-P1-B120",
       "section": "03 30 00",
       "ruleId": "NLP-PASSIVE-001",
@@ -614,6 +629,18 @@
       "ruleId": "NLP-PASSIVE-001",
       "match": "be performed",
       "index": 58,
+      "severity": "low",
+      "engine": "nlp",
+      "category": "NLP",
+      "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "03_30_00-P1-B156",
+      "section": "03 30 00",
+      "ruleId": "NLP-PASSIVE-001",
+      "match": "were manufactured",
+      "index": 61,
       "severity": "low",
       "engine": "nlp",
       "category": "NLP",
@@ -787,6 +814,30 @@
       "blockId": "03_30_00-P2-B224",
       "section": "03 30 00",
       "isNoteBlock": true
+    },
+    {
+      "blockId": "03_30_00-P2-B251",
+      "section": "03 30 00",
+      "ruleId": "TERM-properly",
+      "match": "Proper",
+      "index": 178,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "03_30_00-P2-B251",
+      "section": "03 30 00",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 219,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
     },
     {
       "blockId": "03_30_00-P2-B251",
@@ -1521,6 +1572,18 @@
       "isNoteBlock": false
     },
     {
+      "blockId": "03_30_00-P3-B473",
+      "section": "03 30 00",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 109,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
       "ruleId": "GRAMMAR-Spelling",
       "match": "swale",
       "index": 94,
@@ -1965,6 +2028,18 @@
       "isNoteBlock": false
     },
     {
+      "blockId": "03_30_00-P3-B564",
+      "section": "03 30 00",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 19,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
       "blockId": "03_30_00-P3-B570",
       "section": "03 30 00",
       "ruleId": "NLP-PASSIVE-001",
@@ -2229,6 +2304,18 @@
       "isNoteBlock": false
     },
     {
+      "blockId": "03_30_00-P3-B622",
+      "section": "03 30 00",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 66,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
       "ruleId": "GRAMMAR-Spelling",
       "match": "darbies",
       "index": 33,
@@ -2454,6 +2541,18 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "03_30_00-P3-B675",
+      "section": "03 30 00",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 115,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
       "isNoteBlock": false
     },
     {
@@ -4595,6 +4694,18 @@
     {
       "blockId": "22_00_00-P2-B205",
       "section": "22 00 00",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 1204,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "22_00_00-P2-B205",
+      "section": "22 00 00",
       "ruleId": "NLP-PASSIVE-001",
       "match": "be mounted",
       "index": 495,
@@ -4830,6 +4941,18 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "22_00_00-P2-B241",
+      "section": "22 00 00",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 122,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
       "isNoteBlock": false
     },
     {
@@ -5238,6 +5361,30 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "22_00_00-P2-B274",
+      "section": "22 00 00",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 794,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "22_00_00-P2-B274",
+      "section": "22 00 00",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 886,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
       "isNoteBlock": false
     },
     {
@@ -5961,6 +6108,18 @@
       "isNoteBlock": false
     },
     {
+      "blockId": "22_00_00-P2-B341",
+      "section": "22 00 00",
+      "ruleId": "TERM-suitable",
+      "match": "suitable",
+      "index": 116,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
       "blockId": "22_00_00-P2-B342",
       "section": "22 00 00",
       "ruleId": "NLP-PASSIVE-001",
@@ -6150,6 +6309,18 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "22_00_00-P2-B347",
+      "section": "22 00 00",
+      "ruleId": "TERM-suitable",
+      "match": "suitable",
+      "index": 249,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
       "isNoteBlock": false
     },
     {
@@ -7500,6 +7671,18 @@
       "blockId": "22_00_00-P3-B410",
       "section": "22 00 00",
       "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 319,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "22_00_00-P3-B410",
+      "section": "22 00 00",
+      "ruleId": "TERM-properly",
       "match": "properly",
       "index": 647,
       "severity": "high",
@@ -7962,6 +8145,18 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "22_00_00-P3-B427",
+      "section": "22 00 00",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 48,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
       "isNoteBlock": false
     },
     {
@@ -8687,6 +8882,18 @@
     {
       "blockId": "22_00_00-P3-B465",
       "section": "22 00 00",
+      "ruleId": "TERM-suitable",
+      "match": "suitable",
+      "index": 167,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "22_00_00-P3-B465",
+      "section": "22 00 00",
       "ruleId": "NLP-PASSIVE-001",
       "match": "be provided",
       "index": 94,
@@ -9335,6 +9542,18 @@
     {
       "blockId": "22_00_00-P3-B490",
       "section": "22 00 00",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 417,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "22_00_00-P3-B490",
+      "section": "22 00 00",
       "ruleId": "NLP-PASSIVE-001",
       "match": "be provided",
       "index": 134,
@@ -9426,6 +9645,18 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "22_00_00-P3-B498",
+      "section": "22 00 00",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 373,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
       "isNoteBlock": false
     },
     {
@@ -12009,6 +12240,18 @@
       "isNoteBlock": false
     },
     {
+      "blockId": "26_20_00-P2-B117",
+      "section": "26 20 00",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 11,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
       "blockId": "26_20_00-P2-B118",
       "section": "26 20 00",
       "ruleId": "NLP-PASSIVE-001",
@@ -12314,6 +12557,18 @@
       "ruleId": "TERM-suitable",
       "match": "suitable",
       "index": 319,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "26_20_00-P2-B317",
+      "section": "26 20 00",
+      "ruleId": "TERM-suitable",
+      "match": "suitable",
+      "index": 423,
       "severity": "high",
       "engine": "static",
       "category": "prohibited-term",
@@ -13665,6 +13920,18 @@
       "isNoteBlock": true
     },
     {
+      "blockId": "26_20_00-P3-B722",
+      "section": "26 20 00",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 162,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
       "ruleId": "GRAMMAR-Spelling",
       "match": "out work",
       "index": 4,
@@ -13727,6 +13994,18 @@
     {
       "blockId": "26_20_00-P3-B737",
       "section": "26 20 00",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 226,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "26_20_00-P3-B737",
+      "section": "26 20 00",
       "ruleId": "NLP-PASSIVE-001",
       "match": "be performed",
       "index": 262,
@@ -13758,6 +14037,18 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "26_20_00-P3-B750",
+      "section": "26 20 00",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 38,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
       "isNoteBlock": false
     },
     {
@@ -14603,6 +14894,18 @@
     {
       "blockId": "32_12_16_16-P1-B94",
       "section": "32 12 16.16",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 644,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "32_12_16_16-P1-B94",
+      "section": "32 12 16.16",
       "ruleId": "TERM-conforming-to",
       "match": "conforming to",
       "index": 44,
@@ -15162,6 +15465,18 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\".",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "32_12_16_16-P3-B185",
+      "section": "32 12 16.16",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 276,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
       "isNoteBlock": false
     },
     {
@@ -15801,6 +16116,18 @@
       "isNoteBlock": false
     },
     {
+      "blockId": "33_71_02-P1-B23",
+      "section": "33 71 02",
+      "ruleId": "TERM-suitable",
+      "match": "suitable",
+      "index": 55,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
       "ruleId": "GRAMMAR-Capitalization",
       "match": "Stds",
       "index": 148,
@@ -16271,6 +16598,30 @@
     {
       "blockId": "33_71_02-P2-B158",
       "section": "33 71 02",
+      "ruleId": "TERM-suitable",
+      "match": "suitable",
+      "index": 462,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "33_71_02-P2-B158",
+      "section": "33 71 02",
+      "ruleId": "TERM-suitable",
+      "match": "suitable",
+      "index": 803,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "33_71_02-P2-B158",
+      "section": "33 71 02",
       "ruleId": "NLP-PASSIVE-001",
       "match": "be used",
       "index": 309,
@@ -16386,6 +16737,18 @@
       "category": "Style",
       "blockId": "33_71_02-P2-B168",
       "section": "33 71 02",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "33_71_02-P2-B171",
+      "section": "33 71 02",
+      "ruleId": "TERM-suitable",
+      "match": "suitable",
+      "index": 53,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
       "isNoteBlock": false
     },
     {
@@ -17193,6 +17556,18 @@
       "isNoteBlock": false
     },
     {
+      "blockId": "33_71_02-P3-B277",
+      "section": "33 71 02",
+      "ruleId": "NLP-PASSIVE-001",
+      "match": "are manufactured.[",
+      "index": 126,
+      "severity": "low",
+      "engine": "nlp",
+      "category": "NLP",
+      "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
+      "isNoteBlock": false
+    },
+    {
       "blockId": "33_71_02-P3-B279",
       "section": "33 71 02",
       "ruleId": "NLP-PASSIVE-001",
@@ -17282,6 +17657,18 @@
       "ruleId": "TERM-thoroughly",
       "match": "Thoroughly",
       "index": 418,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "33_71_02-P3-B287",
+      "section": "33 71 02",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 117,
       "severity": "high",
       "engine": "static",
       "category": "prohibited-term",
@@ -17901,6 +18288,42 @@
       "isNoteBlock": false
     },
     {
+      "blockId": "33_71_02-P3-B358",
+      "section": "33 71 02",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 12,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "33_71_02-P3-B360",
+      "section": "33 71 02",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 12,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "33_71_02-P3-B362",
+      "section": "33 71 02",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 12,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
       "blockId": "33_71_02-P3-B364",
       "section": "33 71 02",
       "ruleId": "NLP-PASSIVE-001",
@@ -17934,6 +18357,18 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "33_71_02-P3-B373",
+      "section": "33 71 02",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 12,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
       "isNoteBlock": false
     },
     {

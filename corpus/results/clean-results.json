@@ -1,10 +1,10 @@
 {
   "metadata": {
     "corpusType": "clean",
-    "corpusFile": "/Users/mveenstra/github/secwriter/corpus/clean/all_clean.json",
+    "corpusFile": "C:\\github\\secwriter\\.claude\\worktrees\\elated-archimedes-be12be\\corpus\\clean\\all_clean.json",
     "blocksProcessed": 2583,
-    "timestamp": "2026-05-23T06:36:34.424Z",
-    "elapsedSeconds": 18.5,
+    "timestamp": "2026-06-09T19:59:36.629Z",
+    "elapsedSeconds": 66.9,
     "grammarEnabled": true,
     "withIgnores": false,
     "ignoredKeysApplied": 0,
@@ -17,7 +17,7 @@
       "nlp": 0
     },
     "findingsByEngine": {
-      "static": 6,
+      "static": 7,
       "nlp": 333,
       "grammar": 260
     },
@@ -37,12 +37,13 @@
       "TERM-adequate": 2,
       "GRAMMAR-Redundancy": 4,
       "TERM-per": 1,
+      "TERM-properly": 1,
       "GRAMMAR-Regionalism": 1
     },
     "findingsBySection": {
       "03 30 00": 150,
       "22 00 00": 208,
-      "26 20 00": 114,
+      "26 20 00": 115,
       "32 12 16.16": 32,
       "33 71 02": 95
     },
@@ -4539,6 +4540,18 @@
       "category": "WordChoice",
       "blockId": "26_20_00-P2-B115",
       "section": "26 20 00",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "26_20_00-P2-B117",
+      "section": "26 20 00",
+      "ruleId": "TERM-properly",
+      "match": "proper",
+      "index": 11,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
       "isNoteBlock": false
     },
     {
