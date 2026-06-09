@@ -24,8 +24,11 @@ import { act } from 'react';
 import * as Y from 'yjs';
 import { prosemirrorToYXmlFragment } from 'y-prosemirror';
 
+import { TextSelection } from 'prosemirror-state';
+
 import { htmlToPmFragment } from '../../lib/pmdoc-html.js';
 import { dispatchDelAction } from '../../lib/pm-del-popup.js';
+import { applyInlineRevisionResolveTr } from '../../lib/pm-toolbar.js';
 import { getBlockView } from '../../lib/block-registry.js';
 import * as linting from '../../lib/linting.js';
 import PmEditableBlock from '../PmEditableBlock.jsx';
@@ -112,6 +115,38 @@ describe('PmEditableBlock — TC-resolve dispatchTransaction gate (issue #96)', 
     expect(view.dom.querySelectorAll('del.mark-del').length).toBe(0);
     expect(view.state.doc.textContent).not.toContain('deleted');
     expect(view.state.doc.textContent).toBe('before  after');
+
+    root.unmount();
+  });
+
+  it("toolbar-path reject removes a PEER's insertion when Track Changes is ON", async () => {
+    // FloatingToolbar / context-menu shape: applyInlineRevisionResolveTr with
+    // no pos/kindHint, cursor inside the <ins>. Reject-add builds a plain
+    // tr.delete over revisionAdd-marked text — the same root cause as #96:
+    // without TC_RESOLVE_META, collectDeleteSegments classifies a PEER's
+    // revisionAdd as 'mark' and wraps it in revisionDel instead of deleting.
+    const html = '<p>keep <ins class="mark-add" data-author-id="peer">added</ins> tail</p>';
+    const { yStore } = setupYStore('b3', html);
+    const block = { id: 'b3', type: 'txt', html, isNew: false };
+
+    const root = await renderBlock(container, { block, yStore, trackChanges: true });
+    await new Promise((r) => setTimeout(r, 50));
+
+    const view = getBlockView('b3');
+    expect(view).toBeTruthy();
+    const insEl = view.dom.querySelector('ins.mark-add');
+    expect(insEl).toBeTruthy();
+    const pos = view.posAtDOM(insEl, 0) + 1;
+
+    await act(async () => {
+      view.dispatch(view.state.tr.setSelection(TextSelection.create(view.state.doc, pos)));
+      const result = applyInlineRevisionResolveTr(view.state, 'reject');
+      expect(result).toBeTruthy();
+      view.dispatch(result.tr);
+    });
+
+    expect(view.dom.querySelectorAll('ins.mark-add').length).toBe(0);
+    expect(view.state.doc.textContent).toBe('keep  tail');
 
     root.unmount();
   });

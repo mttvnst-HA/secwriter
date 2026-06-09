@@ -39,6 +39,10 @@ function buildRules() {
       // Mirrors compliance-rules.js: adjective "proper" is the same vagueness
       // as the listed adverb; exclude "proper operation" and "specified proper".
       pattern = /(?<!\bspecified\s)\bproper(?:ly)?\b(?!\s+operation\b)/gi;
+    } else if (term === 'as necessary') {
+      // Mirrors compliance-rules.js: bare clause-final "as required" is the
+      // same escape-clause vagueness; source-anchored uses stay unflagged.
+      pattern = /\bas necessary\b|\bas required\b(?=\s*(?:[.,;:)\]]|$))/gi;
     } else {
       const escaped = escapeRegex(entry.term);
       const endsWithWord = /\w$/.test(entry.term);
@@ -250,6 +254,26 @@ describe('TERM-properly adjective form', () => {
     assert.equal(flagged('Set sleeves in the specified proper and permanent location.'), false, 'specified-anchored');
     // Word-boundary safety
     assert.equal(flagged('The property owner agrees.'), false, 'property');
+  });
+});
+
+describe('TERM-as-necessary bare "as required" form', () => {
+  it('matches clause-final "as required" but not source-anchored uses', () => {
+    // UFS 1-300-02 §2-4.4's vague-phrase list is illustrative ("such as");
+    // bare "as required" is the same escape-clause vagueness as "as necessary"
+    // and the listed "as may be required".
+    const flagged = (text) =>
+      runStaticRules(text, 'b1', rules).some(x => x.ruleId === 'TERM-as-necessary');
+    // Bare clause-final forms — the 10 dirty-corpus misses are all this shape
+    assert.ok(flagged('Install the high water alarm and check valve as required.'), 'sentence-final');
+    assert.ok(flagged('Provide N-G Voltage Protection Rating as required:'), 'colon');
+    assert.ok(flagged('Retain paragraph RECYCLED ASPHALT PAVEMENT as required, if RAP is used.'), 'comma + clause');
+    // "as necessary" still detected
+    assert.ok(flagged('Adjust the mixture as necessary.'), 'as necessary');
+    // Source-anchored uses stay unflagged (clean-corpus evidence)
+    assert.equal(flagged('Repair areas damaged before shipment as required by ASTM A767/A767M.'), false, 'as required by');
+    assert.equal(flagged('Perform additional testing as required to control the process.'), false, 'as required to');
+    assert.equal(flagged('Finish as required in the paragraph titled ALKALI-AGGREGATE REACTION.'), false, 'as required in');
   });
 });
 

@@ -346,6 +346,15 @@ export function buildRules() {
       // collocation (UFS §3.9.1 itself uses it), and "specified proper" is already
       // anchored by "specified".
       pattern = /(?<!\bspecified\s)\bproper(?:ly)?\b(?!\s+operation\b)/gi;
+    } else if (term === 'as necessary') {
+      // UFS §2-4.4's vague-phrase list is illustrative ("such as"); bare
+      // "as required" ending a clause ("Install anchors as required.") is the
+      // same unanchored-requirement vagueness as "as necessary" and the listed
+      // "as may be required". Anchored uses name their source and stay
+      // unflagged ("as required by ASTM C94", "as required to control the
+      // process"), so the "as required" form only matches when followed
+      // directly by punctuation or end of text.
+      pattern = /\bas necessary\b|\bas required\b(?=\s*(?:[.,;:)\]]|$))/gi;
     } else {
       // For terms ending with non-word chars (e.g., "etc."), don't use trailing \b
       const escaped = escapeRegex(term);

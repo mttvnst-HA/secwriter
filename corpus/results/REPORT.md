@@ -1,12 +1,12 @@
 # SecWriter Text Analysis Engine — Corpus Test Report
 
-Generated: 2026-06-09T20:02:06.011Z
+Generated: 2026-06-09T20:56:31.918Z
 
 ## 1. Calibration Results (Raw UFGS Master Text)
 
 - **Blocks processed:** 2583
-- **Total findings:** 1530
-- **Static:** 347 | **NLP:** 904 | **Grammar:** 279
+- **Total findings:** 1537
+- **Static:** 354 | **NLP:** 904 | **Grammar:** 279
 
 ### Note Block Exemption
 
@@ -38,6 +38,7 @@ Generated: 2026-06-09T20:02:06.011Z
 | VAGUE-applicable | 12 | 0 |
 | GRAMMAR-Agreement | 11 | 3 |
 | GRAMMAR-Capitalization | 10 | 3 |
+| TERM-as-necessary | 10 | 0 |
 | TERM-thoroughly | 10 | 0 |
 | CAP-Contract | 9 | 0 |
 | GRAMMAR-Repetition | 6 | 6 |
@@ -46,7 +47,6 @@ Generated: 2026-06-09T20:02:06.011Z
 | GRAMMAR-Punctuation | 4 | 3 |
 | GRAMMAR-Redundancy | 4 | 3 |
 | TERM-should | 4 | 0 |
-| TERM-as-necessary | 3 | 0 |
 | TERM-contractor-must-provide | 3 | 0 |
 | CAP-ContractingOfficer | 2 | 0 |
 | TERM-as-approved-by-co | 2 | 0 |
@@ -65,7 +65,7 @@ Generated: 2026-06-09T20:02:06.011Z
 
 | Engine | Non-Note FPs | FP Rate | Regression Threshold |
 |--------|:-----------:|:-------:|:--------------------:|
-| Static | 7 | 0.27% | <5% |
+| Static | 9 | 0.35% | <5% |
 | NLP | 333 | 12.89% | <20% |
 | Grammar | 260 | (informational) | N/A |
 
@@ -75,6 +75,7 @@ Generated: 2026-06-09T20:02:06.011Z
 |------|--------|:---:|:---------:|
 | NLP-PASSIVE-001 | nlp | 333 | 87.11% |
 | TERM-adequate | static | 2 | 99.92% |
+| TERM-as-necessary | static | 2 | 99.92% |
 | TERM-oicc | static | 1 | 99.96% |
 | TERM-suitable | static | 1 | 99.96% |
 | TERM-conforming-to | static | 1 | 99.96% |
@@ -107,7 +108,7 @@ Generated: 2026-06-09T20:02:06.011Z
 | TERM-006 | TERM-any | 36 | 33 | 91.7% | 80% | ✅ |
 | TERM-010 | TERM-and-or | 38 | 38 | 100.0% | 80% | ✅ |
 | TERM-013 | TERM-to-be | 26 | 21 | 80.8% | 80% | ✅ |
-| TERM-017 | TERM-as-necessary | 16 | 6 | 37.5% | 80% | ❌ |
+| TERM-017 | TERM-as-necessary | 16 | 16 | 100.0% | 80% | ✅ |
 | TERM-023 | TERM-securely | 5 | 5 | 100.0% | 80% | ✅ |
 | TERM-024 | TERM-thoroughly | 4 | 4 | 100.0% | 80% | ✅ |
 | TERM-025 | TERM-carefully | 3 | 3 | 100.0% | 80% | ✅ |
@@ -121,7 +122,7 @@ Generated: 2026-06-09T20:02:06.011Z
 
 | Engine | Detected | Injected | Recall | Target |
 |--------|:--------:|:--------:|:------:|:------:|
-| Static | 363 | 405 | 89.6% | ≥80% |
+| Static | 373 | 405 | 92.1% | ≥80% |
 | NLP | 83 | 123 | 67.5% | ≥60% |
 | Grammar | 82 | 125 | 65.6% | ≥70% |
 
