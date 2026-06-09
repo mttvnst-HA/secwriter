@@ -1,10 +1,10 @@
 {
   "metadata": {
     "corpusType": "clean",
-    "corpusFile": "C:\\github\\secwriter\\.claude\\worktrees\\elated-archimedes-be12be\\corpus\\clean\\all_clean.json",
+    "corpusFile": "C:\\github\\secwriter\\.claude\\worktrees\\amazing-saha-41b214\\corpus\\clean\\all_clean.json",
     "blocksProcessed": 2583,
-    "timestamp": "2026-06-09T19:59:36.629Z",
-    "elapsedSeconds": 66.9,
+    "timestamp": "2026-06-09T20:51:02.964Z",
+    "elapsedSeconds": 28,
     "grammarEnabled": true,
     "withIgnores": false,
     "ignoredKeysApplied": 0,
@@ -17,7 +17,7 @@
       "nlp": 0
     },
     "findingsByEngine": {
-      "static": 7,
+      "static": 9,
       "nlp": 333,
       "grammar": 260
     },
@@ -38,13 +38,14 @@
       "GRAMMAR-Redundancy": 4,
       "TERM-per": 1,
       "TERM-properly": 1,
-      "GRAMMAR-Regionalism": 1
+      "GRAMMAR-Regionalism": 1,
+      "TERM-as-necessary": 2
     },
     "findingsBySection": {
       "03 30 00": 150,
       "22 00 00": 208,
       "26 20 00": 115,
-      "32 12 16.16": 32,
+      "32 12 16.16": 34,
       "33 71 02": 95
     },
     "noteBlockFindings": {
@@ -5959,6 +5960,18 @@
       "isNoteBlock": false
     },
     {
+      "blockId": "32_12_16_16-P2-B116",
+      "section": "32 12 16.16",
+      "ruleId": "TERM-as-necessary",
+      "match": "as required",
+      "index": 295,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
+      "isNoteBlock": false
+    },
+    {
       "ruleId": "GRAMMAR-Punctuation",
       "match": "For example",
       "index": 164,
@@ -6076,6 +6089,18 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1",
+      "isNoteBlock": false
+    },
+    {
+      "blockId": "32_12_16_16-P3-B209",
+      "section": "32 12 16.16",
+      "ruleId": "TERM-as-necessary",
+      "match": "as required",
+      "index": 257,
+      "severity": "high",
+      "engine": "static",
+      "category": "prohibited-term",
+      "message": "Do not use vague words and phrases or escape clauses.",
       "isNoteBlock": false
     },
     {
