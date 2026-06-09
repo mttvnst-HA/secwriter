@@ -232,7 +232,7 @@ For architecture vocabulary (module, interface, depth, seam, adapter, leverage, 
 
 **Dirty corpus** — 644 blocks with 1,438 labeled injected violations. Measures recall.
 
-**Adversarial corpus** — 150 hand-crafted edge cases: false-positive traps, NLP ambiguity, domain jargon. Measures robustness.
+**Adversarial corpus** — 156 hand-crafted edge cases: false-positive traps, NLP ambiguity, domain jargon. Measures robustness.
 
 ---
 

@@ -18,7 +18,7 @@ A historical lesson reinforces this: the now-removed `FMT-001` "multiple spaces 
 
 ## Decision
 
-Compliance rules are **data**. They live in `src/data/ufs-1-300-02-rules.json`, organized by category (`prohibitedTerms`, `prohibitedSymbols`, `vagueTerms`, `requiredCapitalizations`, `colloquial`, `redundant`, `requiredPractice`). `buildRules()` in `src/lib/compliance-rules.js` reads the JSON at startup and generates ~81 rule objects, including regex.
+Compliance rules are **data**. They live in `src/data/ufs-1-300-02-rules.json`, organized by category (`prohibitedTerms`, `prohibitedSymbols`, `vagueTerms`, `requiredCapitalizations`, `colloquial`, `redundant`, `requiredPractice`). `buildRules()` in `src/lib/compliance-rules.js` reads the JSON at startup and generates ~51 rule objects, including regex.
 
 When USACE publishes a new edition, the workflow is:
 
