@@ -209,12 +209,14 @@ if (!existsSync(corpusFile)) {
 console.log(`\nLoading corpus: ${corpusFile}`);
 const rawCorpus = JSON.parse(readFileSync(corpusFile, 'utf-8'));
 
-// Normalize field names: dirty corpus uses 'dirty' field, others use 'text'
+// Normalize field names: dirty corpus uses 'dirty' field, others use 'text'.
+// Dirty blocks also carry the section only in the id prefix ("03_30_00-P1-B17").
 const corpus = rawCorpus.map(block => {
-  if (block.dirty && !block.text) {
-    return { ...block, text: block.dirty };
+  const normalized = block.dirty && !block.text ? { ...block, text: block.dirty } : block;
+  if (!normalized.section && typeof normalized.id === 'string' && normalized.id.includes('-')) {
+    return { ...normalized, section: normalized.id.split('-')[0].replace(/_/g, ' ') };
   }
-  return block;
+  return normalized;
 });
 console.log(`Corpus: ${corpus.length} blocks\n`);
 
