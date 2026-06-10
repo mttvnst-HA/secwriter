@@ -66,7 +66,10 @@ function walkNodeToSgml(node) {
       } else if (tag === 'del') {
         parts.push(`<DEL>${inner}</DEL>`);
       } else if (tag === 'br') {
-        // Skip line breaks
+        // Hard break (Shift+Enter). Emit a space so the two lines don't
+        // silently fuse; children stay empty after the <br/> normalization
+        // in htmlToSgml. See issue #221.
+        parts.push(' ');
       } else {
         parts.push(inner);
       }
@@ -83,7 +86,14 @@ function htmlToSgml(html) {
   if (!html) return '';
 
   // Escape ampersands that aren't already entities for valid XML parsing
-  const safeHtml = html.replace(/&(?!amp;|lt;|gt;|quot;|apos;|#\d+;|#x[\da-fA-F]+;)/g, '&amp;');
+  let safeHtml = html.replace(/&(?!amp;|lt;|gt;|quot;|apos;|#\d+;|#x[\da-fA-F]+;)/g, '&amp;');
+
+  // Normalize hard breaks to self-closing form. A bare <br> is invalid under
+  // strict text/xml: the lenient (linkedom) parser nests following content
+  // inside it (dropping it via walkNodeToSgml's br case), and the strict
+  // (browser DOMParser) parser errors out into the tag-stripping fallback
+  // below — flattening every inline mark. See issue #221.
+  safeHtml = safeHtml.replace(/<br\s*\/?>/gi, '<br/>');
 
   const parser = new DOMParser();
   const doc = parser.parseFromString(`<root>${safeHtml}</root>`, 'text/xml');
