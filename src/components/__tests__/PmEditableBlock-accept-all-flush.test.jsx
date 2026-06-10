@@ -47,6 +47,7 @@ import {
 } from '../../lib/block-registry.js';
 import { setBlockHtml } from '../../lib/block-html-store.js';
 import { acceptAllRevisions } from '../../lib/revisions.js';
+import { serializeSEC } from '../../lib/sec-serializer.js';
 import * as linting from '../../lib/linting.js';
 import PmEditableBlock from '../PmEditableBlock.jsx';
 
@@ -220,5 +221,50 @@ describe('PmEditableBlock — Accept All sub-debounce regression (#109 M4)', () 
     // Sanity: helper must be safe to call even when there are no handles or
     // no pending debounces. handleAcceptAll calls it unconditionally.
     expect(() => flushAllPendingUpdates()).not.toThrow();
+  });
+});
+
+describe('PmEditableBlock — document-wide save reads pending keystrokes (#213)', () => {
+  // handleSave/handleSaveAs/handleExport/auto-save (out-of-room) serialize the
+  // block array. While a block is focused, the most recent keystrokes live in
+  // the PM substrate but have NOT yet synced to React `blocks` (400ms onUpdate
+  // debounce). The fix: flushAllPendingUpdates() before serializing, then read
+  // blocksRef.current (the flush mutates it synchronously per ADR-0008).
+  it('without flush, serializeSEC over stale blocks DROPS the last keystrokes; with flush they survive', async () => {
+    const initial = '<p>Hello world</p>';
+    const { yStore } = setupYStore('b1', initial);
+    // TC off so typed text serializes as raw words, not <ins> marks.
+    let appBlocks = [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: initial }];
+    const onUpdate = vi.fn((id, html) => {
+      appBlocks = appBlocks.map((b) => (b.id === id ? { ...b, html } : b));
+    });
+    const { root } = await renderBlock(container, {
+      trackChanges: false,
+      identity: { id: 'alice', color: '#ff6b6b' },
+      yStore,
+      html: initial,
+      onUpdate,
+    });
+    await new Promise((r) => setTimeout(r, 50));
+    const view = getBlockView('b1');
+
+    const insertPos = view.state.doc.content.size - 1;
+    await act(async () => {
+      view.dispatch(view.state.tr.insertText(' ZZTOP', insertPos));
+    });
+    // Debounce still pending — React blocks are pre-keystroke.
+    expect(onUpdate).not.toHaveBeenCalled();
+
+    // BUG SHAPE: serialize the stale array (what handleSave did before #213).
+    const staleXml = serializeSEC(appBlocks, { sectionNumber: '00 00 00' });
+    expect(staleXml).not.toMatch(/ZZTOP/);
+
+    // FIX: flush first, then serialize the now-current array.
+    flushAllPendingUpdates();
+    expect(onUpdate).toHaveBeenCalledTimes(1);
+    const freshXml = serializeSEC(appBlocks, { sectionNumber: '00 00 00' });
+    expect(freshXml).toMatch(/ZZTOP/);
+
+    root.unmount();
   });
 });
