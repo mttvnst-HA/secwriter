@@ -157,6 +157,7 @@ See [ADR-0008](docs/adr/0008-blocks-reducer-architecture.md). Every `blocks` mut
 .SEC files declare windows-1252 in the XML header:
 - **Import:** `FileReader.readAsArrayBuffer()` + `TextDecoder('windows-1252')` — NOT `readAsText()` (defaults to UTF-8).
 - **Export:** `encodeWindows1252(xml)` from `src/lib/encoding.js` returns `Uint8Array` with byte mapping for characters 0x80–0x9F (curly quotes, em-dash, euro, trademark, bullet).
+- **Server upload:** `server/http-handler.cjs`'s `POST /rooms/:id/upload` decodes the body with `new TextDecoder('windows-1252')` — NOT `body.toString('latin1')`. latin1 is not a superset: bytes 0x80–0x9F are C1 controls in latin1 but printable punctuation in windows-1252, so latin1 silently corrupts smart punctuation to `?` on re-export ([#212](https://github.com/mttvnst-HA/secwriter/issues/212)).
 
 ## Track Changes Architecture
 

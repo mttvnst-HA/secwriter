@@ -129,10 +129,11 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
         if (aborted) return;
         try {
           const body = Buffer.concat(chunks);
-          // latin1 (ISO 8859-1) is a byte-transparent superset of windows-1252
-          // that preserves all 256 byte values — the SEC parser handles the
-          // actual character interpretation.
-          const secContent = body.toString('latin1');
+          // .SEC files are windows-1252. latin1 is NOT a superset: bytes 0x80–0x9F
+          // are C1 controls in latin1 but printable punctuation in windows-1252
+          // (0x97 em-dash, 0x93/0x94 curly quotes, 0x95 bullet, 0x80 euro). Decoding
+          // as latin1 then re-encoding turns each into '?' (issue #212).
+          const secContent = new TextDecoder('windows-1252').decode(body);
 
           const { parseSEC } = await import('../src/lib/sec-parser.js');
           const blocks = parseSEC(secContent);
