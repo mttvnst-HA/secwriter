@@ -409,6 +409,48 @@ describe('HTTP endpoints', () => {
       boundDocs.delete('upload-room');
     }
   });
+
+  it('POST upload preserves windows-1252 smart punctuation through export (issue #212)', async () => {
+    const { serializeSEC } = await import('../../src/lib/sec-serializer.js');
+    const { encodeWindows1252 } = await import('../../src/lib/encoding.js');
+    // em-dash U+2014, curly quotes U+201C/U+201D, bullet U+2022, euro U+20AC
+    const punct = '—“”•€';
+    const blocks = [
+      { id: 'b1', type: 'title', part: 1, depth: 0, html: 'GENERAL' },
+      { id: 'b2', type: 'txt', part: 1, depth: 0, section: 'b1', html: 'Dash' + punct + 'end.' },
+    ];
+    const secXml = serializeSEC(blocks, { sectionNumber: '01 00 00', sectionTitle: 'TEST' });
+    // Upload genuine windows-1252 bytes (em-dash = 0x97, not the latin1 C1 codepoint).
+    const uploadBytes = Buffer.from(encodeWindows1252(secXml));
+
+    const Y = require('yjs');
+    const ydoc = new Y.Doc();
+    ydoc.getArray('order');
+    ydoc.getMap('store');
+    boundDocs.set('punct-room', ydoc);
+
+    try {
+      const up = await httpPost(`${baseUrl}/rooms/punct-room/upload`, uploadBytes);
+      assert.strictEqual(up.status, 200);
+
+      // flushRoom is a no-op in this harness, so serialize the seeded Y.Doc in-test —
+      // the faithful upload-decode → seed → export → bytes path. Corruption at the
+      // upload decode turns each high byte into 0x3F ('?') on re-encode.
+      const { yBlocksToArray } = await import('../../src/lib/collab.js');
+      const seeded = yBlocksToArray(ydoc.getArray('order'), ydoc.getMap('store'));
+      const exportXml = serializeSEC(seeded, { sectionNumber: '01 00 00', sectionTitle: 'TEST' });
+      const out = Buffer.from(encodeWindows1252(exportXml)); // exported windows-1252 bytes
+
+      // 0x3F also appears legitimately in the XML prolog `<?xml ?>`, so assert presence
+      // of the specific high bytes rather than absence of 0x3F.
+      for (const [name, byte] of [['em-dash', 0x97], ['left-quote', 0x93], ['right-quote', 0x94], ['bullet', 0x95], ['euro', 0x80]]) {
+        assert.ok(out.includes(byte), `${name} byte 0x${byte.toString(16)} must survive upload→export (corrupted to 0x3F?)`);
+      }
+    } finally {
+      ydoc.destroy();
+      boundDocs.delete('punct-room');
+    }
+  });
 });
 
 // PR #51 review (issue e) — regression. The migration coordinator caches
