@@ -3,6 +3,7 @@ import { describe, it, expect } from 'vitest';
 import * as Y from 'yjs';
 import { ySyncPluginKey } from 'y-prosemirror';
 import { applyBlocksToYDoc } from '../collab.js';
+import { seedBlockArray } from '../block-html-store.js';
 
 function makeSubstrate(initial) {
   const ydoc = new Y.Doc();
@@ -31,6 +32,49 @@ describe('structural undo via applyBlocksToYDoc origin', () => {
     expect(s.undoManager.undoStack.length).toBe(1);
     s.undoManager.undo();
     expect(s.yStore.get('n1').get('type')).toBe('txt');
+  });
+
+  it('#219: seedBlockArray + first applyBlocksToYDoc produces zero frames; undo-to-bottom keeps scalars', () => {
+    // Mirror App.jsx mount ordering EXACTLY: seed the local substrate via
+    // seedBlockArray (the function App's useState initializer calls), THEN
+    // construct the UndoManager, THEN run the first applyBlocksToYDoc pass
+    // (App's useEffect([blocks]) firing on mount). Pre-fix, seedBlockArray
+    // wrote only the html slot, so that first apply set every scalar under
+    // 'local-publish' and the manager captured a phantom frame — Ctrl+Z
+    // past the first real edit then stripped every block's scalars.
+    const initial = [
+      { id: 'n1', type: 'txt', part: 1, depth: 0, html: 'PART 1' },
+      { id: 'n2', type: 'txt', part: 1, depth: 1, html: 'hello' },
+    ];
+    const ydoc = new Y.Doc();
+    const yOrder = ydoc.getArray('order');
+    const yStore = ydoc.getMap('store');
+    seedBlockArray(ydoc, yOrder, yStore, initial);
+    const undoManager = new Y.UndoManager([yOrder, yStore], {
+      trackedOrigins: new Set(['local-publish', ySyncPluginKey]),
+      captureTimeout: 500,
+      captureTransaction: tr => tr.meta.get('addToHistory') !== false,
+    });
+    // First apply pass on mount — must be a no-op (scalars already seeded).
+    applyBlocksToYDoc(ydoc, yOrder, yStore, initial);
+    expect(undoManager.undoStack.length).toBe(0);
+    expect(yStore.get('n2').get('type')).toBe('txt');
+
+    // One real user edit (a scalar flip — applyBlocksToYDoc skips html for
+    // existing blocks, so html is owned by PM's ySyncPlugin; a type change
+    // is the captured structural edit). Then undo past it to the bottom of
+    // the stack. The scalars must survive — there is no phantom frame to pop.
+    applyBlocksToYDoc(ydoc, yOrder, yStore, [
+      initial[0],
+      { ...initial[1], type: 'note' },
+    ]);
+    expect(undoManager.undoStack.length).toBe(1);
+    expect(yStore.get('n2').get('type')).toBe('note');
+    undoManager.undo();
+    undoManager.undo(); // one past the real edit — pre-fix this nuked scalars
+    expect(yStore.get('n2').get('type')).toBe('txt');
+    expect(yStore.get('n2').get('part')).toBe(1);
+    expect(yStore.get('n1').get('type')).toBe('txt');
   });
 
   it('idempotent applyBlocksToYDoc produces zero undo frames (no spurious capture)', () => {

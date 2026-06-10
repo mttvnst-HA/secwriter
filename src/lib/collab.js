@@ -215,7 +215,7 @@ export function estimatePublishBytes(blocks) {
  * sync` on PR #51 (issue #77, fixed by PR #81 for html only; the table/
  * ref slots were missed and fixed for #83).
  */
-function blockToYMapSkeleton(block) {
+export function blockToYMapSkeleton(block) {
   const yMap = new Y.Map();
   for (const k of SCALAR_KEYS) {
     if (block[k] !== undefined) yMap.set(k, block[k]);
@@ -235,7 +235,7 @@ function blockToYMapSkeleton(block) {
  * is reachable from the doc). Calling on a detached fragment is the
  * warning-flood path documented above.
  */
-function populateBlockHtml(yXml, html) {
+export function populateBlockHtml(yXml, html) {
   const pmNode = htmlToPmFragment(typeof html === 'string' ? html : '');
   prosemirrorToYXmlFragment(pmNode, yXml);
 }
@@ -247,7 +247,7 @@ function populateBlockHtml(yXml, html) {
  * calls iterate the slot's keys, which fires the "Invalid access"
  * warning when the slot is detached (#83).
  */
-function populateBlockTableRef(yMap, block) {
+export function populateBlockTableRef(yMap, block) {
   if (block.table) {
     const yTable = yMap.get('table');
     if (yTable && typeof yTable.get === 'function') {

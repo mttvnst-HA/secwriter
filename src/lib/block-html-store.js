@@ -48,11 +48,11 @@
  * blockToYMap / yMapToBlock; this module owns html only.
  */
 
-import * as Y from 'yjs';
 import { prosemirrorToYXmlFragment } from 'y-prosemirror';
 
 import { applyHtmlToYText, yTextToHtml, seedYTextFromHtml } from './ytext-html.js';
 import { htmlToPmFragment, pmFragmentToHtml } from './pmdoc-html.js';
+import { blockToYMapSkeleton, populateBlockHtml, populateBlockTableRef } from './collab.js';
 
 // Per-html-slot memo. Both Y.XmlFragment and (for migrationPartial fallback)
 // Y.Text are accepted shapes — each gets a single observer that flips
@@ -98,23 +98,23 @@ function getCached(yHtml) {
   return entry.html;
 }
 
-function seedHtmlSlot(yMap, html) {
-  // 1d default: store html as a Y.XmlFragment seeded from the plain HTML
-  // string via the 1c serializer. The fragment must be attached to the
-  // doc-bearing yMap before prosemirrorToYXmlFragment is called so its
-  // internal transact() rides the outer 'seed'/'reset' origin.
-  const yXml = new Y.XmlFragment();
-  yMap.set('html', yXml);
-  const pmNode = htmlToPmFragment(typeof html === 'string' ? html : '');
-  prosemirrorToYXmlFragment(pmNode, yXml);
-}
-
 function seedInside(yOrder, yStore, plainBlocks) {
+  // Seed the FULL block shape — scalar keys (id/type/part/depth/section/
+  // level/revision) + html + table/ref slots — not just html. A html-only
+  // seed leaves the scalars absent, so the first `applyBlocksToYDoc` pass
+  // (App's useEffect([blocks])) sets every scalar under 'local-publish' and
+  // the out-of-room UndoManager captures it as a phantom frame with zero
+  // user edits. Ctrl+Z past the first real edit then pops that frame and
+  // strips every block's scalars, destroying the document (#219). Reusing
+  // collab.js's skeleton-then-populate order keeps the first
+  // applyBlocksToYDoc pass a no-op (the "idempotent apply → zero frames"
+  // invariant), and preserves the #77/#83 attach-before-populate ordering.
   for (const b of plainBlocks) {
-    const yMap = new Y.Map();
+    const yMap = blockToYMapSkeleton(b);
     yStore.set(b.id, yMap);
     yOrder.push([b.id]);
-    seedHtmlSlot(yMap, b.html || '');
+    populateBlockHtml(yMap.get('html'), b.html);
+    populateBlockTableRef(yMap, b);
   }
 }
 
