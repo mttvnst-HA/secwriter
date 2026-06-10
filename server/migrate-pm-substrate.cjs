@@ -46,6 +46,9 @@ const INLINE_MARK_KINDS = new Set([
   'hls', 'hl1', 'hl2', 'hl3', 'hl4',
 ]);
 const REVISION_KINDS = new Set(['add', 'del', 'chg']);
+// Maps a legacy Y.Text `revision` attr value to the per-kind MarkType key the
+// post-#92 reader expects (pmdoc-html.js yDeltaAttrsToAttrs). See #220.
+const REVISION_KEY_BY_KIND = { add: 'revisionAdd', del: 'revisionDel', chg: 'revisionChg' };
 
 // Origin used for migration writes. Distinct from 'local-publish' (which
 // the client-side UndoManager tracks) so a v2 client joining a freshly-
@@ -104,7 +107,7 @@ function needsMigration(ydoc) {
 //   italic: {}
 //   underline: {}
 //   inlineMark: { kind, option }
-//   revision:   { kind, authorId, authorColor }
+//   revisionAdd|revisionDel|revisionChg: { authorId, authorColor }  (#220)
 //   comment:    { id, resolved }
 //
 // Unknown / malformed inputs are dropped with a logger.warn (Q31/E6).
@@ -128,8 +131,12 @@ function mapYTextAttrsToYpmMarks(rawAttrs, log, blockId) {
 
   if (rawAttrs.revision) {
     if (REVISION_KINDS.has(rawAttrs.revision)) {
-      out.revision = {
-        kind: rawAttrs.revision,
+      // 1g.6 (#87/#220) — the reader (pmdoc-html.js yDeltaAttrsToAttrs) keys
+      // revision marks by per-kind MarkType name (revisionAdd/Del/Chg), each
+      // valued { authorId, authorColor }. PR #92 retired the base `revision`
+      // key; emitting it here makes every v2 reader silently drop the mark.
+      const key = REVISION_KEY_BY_KIND[rawAttrs.revision];
+      out[key] = {
         authorId: rawAttrs.revisionAuthor || null,
         authorColor: rawAttrs.revisionAuthorColor || null,
       };

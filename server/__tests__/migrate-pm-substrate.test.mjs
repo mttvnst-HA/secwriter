@@ -153,7 +153,9 @@ describe('mapYTextAttrsToYpmMarks (Q31/E6 fallback)', () => {
     assert.deepStrictEqual(out.italic, {});
     assert.deepStrictEqual(out.underline, {});
     assert.deepStrictEqual(out.inlineMark, { kind: 'rid', option: null });
-    assert.deepStrictEqual(out.revision, { kind: 'add', authorId: 'a1', authorColor: '#f00' });
+    // #220 — per-kind key (revisionAdd), not the retired base `revision` key.
+    assert.deepStrictEqual(out.revisionAdd, { authorId: 'a1', authorColor: '#f00' });
+    assert.strictEqual(out.revision, undefined);
     assert.deepStrictEqual(out.comment, { id: 'c1', resolved: false });
   });
 
@@ -324,6 +326,44 @@ describe('migrateRoom — happy path', () => {
       assert.strictEqual(yMap.get('part'), 1);
       assert.strictEqual(yMap.get('depth'), 0);
     });
+  });
+});
+
+// ── #220: broker output → post-#92 reader (the pipe no prior test covered) ─
+//
+// The broker emits Y.XmlText format attrs; the reader (pmFragmentToHtml /
+// yDeltaAttrsToAttrs in src/lib/pmdoc-html.js) keys revision marks by per-kind
+// MarkType name. Pre-fix the broker emitted the retired base `revision` key,
+// so every migrated TC mark exported as live, un-deleted text with no author.
+describe('migrateRoom → pmFragmentToHtml (#220 revision-key contract)', () => {
+  it('a migrated DEL mark round-trips to <del class="mark-del"> with author attribution', async () => {
+    const ydoc = new Y.Doc();
+    const yOrder = ydoc.getArray('order');
+    const yStore = ydoc.getMap('store');
+    ydoc.transact(() => {
+      const yMap = new Y.Map();
+      yMap.set('id', 'n1');
+      yMap.set('type', 'txt');
+      const yText = new Y.Text();
+      yMap.set('html', yText);
+      yStore.set('n1', yMap);
+      yOrder.push(['n1']);
+      // Attach-then-insert so the attributed delta persists.
+      yText.insert(0, 'kept ');
+      insertWithAttrs(yText, 'DELETED-TEXT', {
+        revision: 'del', revisionAuthor: 'a1', revisionAuthorColor: '#f00',
+      });
+    }, 'seed');
+
+    const result = migrateRoom(ydoc, { log: makeRecorderLog() });
+    assert.strictEqual(result.migrationPartial, false);
+    assert.strictEqual(result.migratedCount, 1);
+
+    const { pmFragmentToHtml } = await import('../../src/lib/pmdoc-html.js');
+    const html = pmFragmentToHtml(yStore.get('n1').get('html'));
+    assert.match(html, /<del class="mark-del"[^>]*data-author-id="a1"/);
+    assert.match(html, /DELETED-TEXT/);
+    assert.match(html, /kept /);
   });
 });
 
