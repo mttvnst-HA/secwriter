@@ -31,6 +31,10 @@ Server lives in `server/`:
 
 4. **`GET /rooms` iteration yields the event loop (PR [#112](https://github.com/mttvnst-HA/secwriter/pull/112), issue [#100](https://github.com/mttvnst-HA/secwriter/issues/100)).** The handler iterates every persisted room and calls `Y.applyUpdate` synchronously to extract section metadata from the `.ydoc` bytes. With the OS file cache warm, the surrounding `await storage.readRoom(id)` resolves without releasing the loop, so listing N rooms freezes the event loop for `N * decode_ms` — observed up to 2.7s with 100 rooms, enough to starve WS handshakes and other HTTP handlers for any concurrent client. Mitigated by `await new Promise(resolve => setImmediate(resolve))` at the top of every iteration in `server/http-handler.cjs`. Looks like a no-op but is load-bearing — the regression test (`server/__tests__/http-list-rooms-event-loop.test.mjs`) installs a 25ms ticker, fires `GET /rooms` against 40 seeded rooms, asserts `maxGap < 200ms`, and fails ~500ms without the yield.
 
+### Room lock enforcement (#215)
+
+The room `locked` flag (`yMeta.locked` + `lockedBy`) is enforced server-side, not just rendered in the UI. `DELETE /rooms/:id`, `POST /rooms/:id/upload`, and `PATCH /rooms/:id` each read the current lock state (live bound doc preferred, else persisted `.ydoc` bytes) and return **423 Locked** when the room is locked and the caller does not own the lock. Caller identity is `req.user.id` under auth, else the `X-Actor-Id` header / `?actorId=` query — the same `identity.id` the client writes to `lockedBy` when locking. Rules: locking an unlocked room is open to anyone; once locked, only the owner can mutate or unlock; a locked room with **no recorded owner blocks everyone**. Under `auth=none` this is a cooperative lock (the data plane is already unauthenticated) but it stops accidental cross-user deletes/overwrites. See `readRoomLock` / `getActorId` / `isLockBlocked` in `server/http-handler.cjs`; the client sends `X-Actor-Id` on DELETE and the lock/rename PATCH calls (`src/App.jsx`).
+
 ### Inspecting / cleaning up production rooms
 
 ```bash
