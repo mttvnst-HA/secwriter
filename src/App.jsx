@@ -32,7 +32,7 @@ import { serializeSEC } from "./lib/sec-serializer.js";
 import { encodeWindows1252 } from "./lib/encoding.js";
 import * as Y from "yjs";
 import { seedBlockArray, resetBlockArray, setBlockHtmlSilent, getBlockHtml } from "./lib/block-html-store.js";
-import { focusBlockById, getBlockEditable, getBlockDom, getBlockView, listBlocksInDocumentOrder, getContextAtCoordsById, cancelPendingUpdateById, flushPendingUpdateById } from "./lib/block-registry.js";
+import { focusBlockById, getBlockEditable, getBlockDom, getBlockView, listBlocksInDocumentOrder, getContextAtCoordsById, cancelPendingUpdateById, flushPendingUpdateById, flushAllPendingUpdates } from "./lib/block-registry.js";
 import ContextMenu from "./components/ContextMenu.jsx";
 import { buildContextMenuItems, tableCellCoordsFromTd } from "./lib/context-menu-items.js";
 import { applyInlineRevisionResolveTr, dispatchToolbarVerb, extractHtml, extractRangeText } from "./lib/pm-toolbar.js";
@@ -532,7 +532,8 @@ export default function SpecEditor() {
 
   // --- SEC File Export ---
   const handleExport = useCallback(() => {
-    const xml = serializeSEC(blocks, sectionMeta);
+    flushAllPendingUpdates(); // #213 — see handleSave
+    const xml = serializeSEC(blocksRef.current, sectionMeta);
     const encoded = encodeWindows1252(xml);
     const blob = new Blob([encoded], { type: 'application/octet-stream' });
     const url = URL.createObjectURL(blob);
@@ -557,7 +558,7 @@ export default function SpecEditor() {
       document.body.removeChild(ca);
       URL.revokeObjectURL(commentsUrl);
     }
-  }, [blocks, sectionMeta, currentFile, comments]);
+  }, [sectionMeta, currentFile, comments]);
 
   // Save helpers
   const doFileSave = useCallback(async (encoded, promptNewLocation) => {
@@ -712,7 +713,12 @@ export default function SpecEditor() {
       return;
     }
     setSaveStatus('saving');
-    const xml = serializeSEC(blocks, sectionMeta);
+    // #213 — drain PM's 400ms onUpdate debounce so the most recent keystrokes
+    // (still focused, not yet synced to React `blocks`) reach the serializer.
+    // The flush mutates blocksRef.current synchronously (ADR-0008); the
+    // closed-over `blocks` would still be stale.
+    flushAllPendingUpdates();
+    const xml = serializeSEC(blocksRef.current, sectionMeta);
     const encoded = encodeWindows1252(xml);
     const ok = await doFileSave(encoded, false);
     if (ok) {
@@ -724,12 +730,13 @@ export default function SpecEditor() {
     } else {
       setSaveStatus(null);
     }
-  }, [blocks, sectionMeta, doFileSave, saveCommentsSidecar, saveLintSidecar, inRoom, roomId]);
+  }, [sectionMeta, doFileSave, saveCommentsSidecar, saveLintSidecar, inRoom, roomId]);
 
   // Save As — always prompt for new location
   const handleSaveAs = useCallback(async () => {
     setSaveStatus('saving');
-    const xml = serializeSEC(blocks, sectionMeta);
+    flushAllPendingUpdates(); // #213 — see handleSave
+    const xml = serializeSEC(blocksRef.current, sectionMeta);
     const encoded = encodeWindows1252(xml);
     const ok = await doFileSave(encoded, true);
     if (ok) {
@@ -741,7 +748,7 @@ export default function SpecEditor() {
     } else {
       setSaveStatus(null);
     }
-  }, [blocks, sectionMeta, doFileSave, saveCommentsSidecar, saveLintSidecar]);
+  }, [sectionMeta, doFileSave, saveCommentsSidecar, saveLintSidecar]);
 
   // Download .SEC from collab server (in-room only)
   const handleDownloadSec = useCallback(async () => {
@@ -1525,9 +1532,12 @@ export default function SpecEditor() {
   useEffect(() => {
     if (inRoom) return;
     const timer = setTimeout(() => {
-      autoSave(blocks, sectionMeta, comments, getDisplayName(currentFile));
+      flushAllPendingUpdates(); // #213 — see handleSave
+      autoSave(blocksRef.current, sectionMeta, comments, getDisplayName(currentFile));
     }, 3000);
     return () => clearTimeout(timer);
+    // `blocks` stays in deps to re-arm the 3s timer on every change even though
+    // the body reads blocksRef.current (#213); dropping it would freeze autosave.
   }, [blocks, sectionMeta, comments, currentFile, inRoom]);
 
   // Track dirty state — any block/comment change marks dirty
@@ -2427,7 +2437,8 @@ export default function SpecEditor() {
             </button>
             <button
               onClick={() => {
-                const html = generateExportHtml(blocks, sectionMeta, { showNotes, unitDisplay });
+                flushAllPendingUpdates(); // #213 — drain pending PM debounce; read blocksRef.current
+                const html = generateExportHtml(blocksRef.current, sectionMeta, { showNotes, unitDisplay });
                 const blob = new Blob([html], { type: 'application/msword' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
@@ -2449,7 +2460,8 @@ export default function SpecEditor() {
             >Word</button>
             <button
               onClick={() => {
-                const html = generateExportHtml(blocks, sectionMeta, { showNotes, unitDisplay });
+                flushAllPendingUpdates(); // #213 — drain pending PM debounce; read blocksRef.current
+                const html = generateExportHtml(blocksRef.current, sectionMeta, { showNotes, unitDisplay });
                 const w = window.open('', '_blank');
                 w.document.write(html);
                 w.document.close();
