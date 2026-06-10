@@ -97,6 +97,7 @@ Test DOM-dependent code in both browser and Node/linkedom environments. linkedom
     - **`injectBlockHtml` can seed inline revision marks directly** — `<del class="mark-del">` round-trips into a PM `revisionDel` mark via the schema `parseDOM` rule (`ins.mark-add` → `revisionAdd` likewise), so a del-popup test can skip the type→blur→AcceptAll→toolbar-mark setup and just inject the mark.
     - Replace fixed `waitForTimeout` + non-retrying `page.evaluate` reducer reads with `expect.poll` (async SHA-256 + React commit isn't guaranteed within a fixed window under load).
 12. **React.StrictMode double-invokes effects in dev AND the full E2E suite — it masks production-only effect-ordering bugs.** `main.jsx` wraps the app in `<React.StrictMode>`, so every effect runs mount→cleanup→mount in dev and under Playwright. This hides bugs that depend on single-invoke production ordering — e.g. an UndoManager constructed in an earlier-declared effect capturing a later-declared effect's first write as a phantom undo frame ([#219](https://github.com/mttvnst-HA/secwriter/issues/219)). Verify undo-stack / effect-declaration-order invariants against a **production build** (`npm run build` + preview), not dev or E2E. A passing E2E run is NOT evidence these invariants hold.
+13. **`server/__tests__/migrate-pm-substrate.test.mjs` is AT the 30-test cap.** Batch new broker assertions into an existing `it()` (or `it.each`) rather than adding test #31.
 
 ## Always Check the .ini Files for Formatting
 
@@ -340,7 +341,7 @@ See [ADR-0014](docs/adr/0014-collab-server-yjs-relay.md) (and [ADR-0001](docs/ad
 
 1. **`extractDocName` strips `/ws/`** — without it, prod deploys at `wss://host/ws/<room>` get parallel HTTP-vs-WS rooms.
 2. **Stale-close eviction guard** — y-websocket v1's `closeConn` deletes by name; the upgrade handler re-installs the preloaded doc after every await window (preload + broker).
-3. **Migration broker invariants** — `archiveRoom` before mutation; `schemaVersion` and `migrationPartial` mutually exclusive; per-block try/catch tracks partial migrations as editable.
+3. **Migration broker invariants** — `archiveRoom` before mutation; `schemaVersion` and `migrationPartial` mutually exclusive; per-block try/catch tracks partial migrations as editable. **Broker output attr keys MUST match the reader's keys** (`mapYTextAttrsToYpmMarks` in `migrate-pm-substrate.cjs` ↔ `yDeltaAttrsToAttrs`/`pmMarksToAttrs` in `pmdoc-html.js`) — a mismatch is SILENT (unknown keys dropped, NO `migrationPartial` banner; "successful" migration drops the mark). Revision marks use per-kind keys `revisionAdd|revisionDel|revisionChg: { authorId, authorColor }`, NOT a base `revision` key ([#220](https://github.com/mttvnst-HA/secwriter/issues/220), drift from PR #92). Any broker-shape change must add a broker→`pmFragmentToHtml` end-to-end test — the per-side unit pins can stay green while the pipe is broken.
 4. **`GET /rooms` `setImmediate` yield** (PR [#112](https://github.com/mttvnst-HA/secwriter/pull/112)) — looks like a no-op but prevents `N * decode_ms` event-loop starvation when listing many rooms. Regression test asserts `maxGap < 200ms`.
 
 Frontend at https://secwriter-frontend.onrender.com (Render auto-deploys on push to main). Production cleanup commands in [ADR-0014](docs/adr/0014-collab-server-yjs-relay.md).
