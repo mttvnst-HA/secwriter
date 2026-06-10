@@ -3276,7 +3276,12 @@ export default function SpecEditor() {
             onDeleteRoom={async (id) => {
               if (!window.confirm(`Delete room "${id}"? This cannot be undone.`)) return;
               try {
-                await fetch(`${COLLAB_HTTP_URL}/rooms/${id}`, { method: 'DELETE', headers: authHeaders });
+                // #215 — identify the actor so the lock owner can delete their own
+                // locked room; non-owners get 423 from the server.
+                const delHeaders = { ...authHeaders };
+                if (identity?.id) delHeaders['X-Actor-Id'] = identity.id;
+                const delRes = await fetch(`${COLLAB_HTTP_URL}/rooms/${id}`, { method: 'DELETE', headers: delHeaders });
+                if (delRes.status === 423) { window.alert('Room is locked — only the user who locked it can delete it.'); return; }
                 setRoomList(prev => prev.filter(r => r.id !== id));
               } catch { /* ignore */ }
             }}
@@ -3285,6 +3290,8 @@ export default function SpecEditor() {
                 const token = sessionStorage.getItem('sim-auth-token');
                 const headers = { 'Content-Type': 'application/json', ...authHeaders };
                 if (token && !headers['Authorization']) headers['Authorization'] = `Bearer ${token}`;
+                // #215 — actor id lets the lock owner unlock; others get 423.
+                if (identity?.id) headers['X-Actor-Id'] = identity.id;
                 await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}`, {
                   method: 'PATCH',
                   headers,
@@ -3299,6 +3306,8 @@ export default function SpecEditor() {
                 const token = sessionStorage.getItem('sim-auth-token');
                 const headers = { 'Content-Type': 'application/json', ...authHeaders };
                 if (token && !headers['Authorization']) headers['Authorization'] = `Bearer ${token}`;
+                // #215 — actor id lets the lock owner rename a locked room; others get 423.
+                if (identity?.id) headers['X-Actor-Id'] = identity.id;
                 const res = await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}`, {
                   method: 'PATCH',
                   headers,

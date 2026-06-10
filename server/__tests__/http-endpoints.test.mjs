@@ -31,15 +31,15 @@ function httpGet(url) {
   });
 }
 
-function httpPost(url, body) {
+function httpPost(url, body, extraHeaders = {}) {
   return new Promise((resolve, reject) => {
     const u = new URL(url);
     const req = http.request({
       hostname: u.hostname,
       port: u.port,
-      path: u.pathname,
+      path: u.pathname + u.search,
       method: 'POST',
-      headers: { 'Content-Type': 'application/octet-stream' },
+      headers: { 'Content-Type': 'application/octet-stream', ...extraHeaders },
     }, (res) => {
       const chunks = [];
       res.on('data', c => chunks.push(c));
@@ -50,16 +50,16 @@ function httpPost(url, body) {
   });
 }
 
-function httpJson(url, method, jsonBody) {
+function httpJson(url, method, jsonBody, extraHeaders = {}) {
   return new Promise((resolve, reject) => {
     const u = new URL(url);
     const payload = jsonBody != null ? JSON.stringify(jsonBody) : '';
     const req = http.request({
       hostname: u.hostname,
       port: u.port,
-      path: u.pathname,
+      path: u.pathname + u.search,
       method,
-      headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(payload) },
+      headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(payload), ...extraHeaders },
     }, (res) => {
       const chunks = [];
       res.on('data', c => chunks.push(c));
@@ -70,14 +70,15 @@ function httpJson(url, method, jsonBody) {
   });
 }
 
-function httpDelete(url) {
+function httpDelete(url, extraHeaders = {}) {
   return new Promise((resolve, reject) => {
     const u = new URL(url);
     const req = http.request({
       hostname: u.hostname,
       port: u.port,
-      path: u.pathname,
+      path: u.pathname + u.search,
       method: 'DELETE',
+      headers: { ...extraHeaders },
     }, (res) => {
       const chunks = [];
       res.on('data', c => chunks.push(c));
@@ -284,6 +285,88 @@ describe('HTTP endpoints', () => {
     assert.strictEqual(resp.status, 404);
     const data = JSON.parse(resp.body.toString());
     assert.ok(data.error.includes('not found'));
+  });
+
+  // --- #215: locked-room enforcement (DELETE / PATCH / upload return 423) ---
+
+  // Persist a room whose yMeta is locked by `owner`.
+  async function seedLockedRoom(id, owner) {
+    const Y = require('yjs');
+    const ydoc = new Y.Doc();
+    const yMeta = ydoc.getMap('meta');
+    ydoc.transact(() => {
+      yMeta.set('locked', true);
+      if (owner) yMeta.set('lockedBy', owner);
+    });
+    const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(ydoc));
+    ydoc.destroy();
+    await storage.writeRoom(id, { ydocBytes, secBytes: null, commentsJson: null });
+  }
+
+  it('DELETE on a locked room: 423 for non-owner (and no-owner lock), 200 for the lock owner', async () => {
+    // Lock with a recorded owner: only the owner may delete.
+    await seedLockedRoom('lock-del', 'userA');
+    const blocked = await httpDelete(`${baseUrl}/rooms/lock-del`);
+    assert.strictEqual(blocked.status, 423);
+    assert.ok(JSON.parse(blocked.body.toString()).error.includes('locked'));
+    assert.ok(await storage.readRoom('lock-del'), 'room must survive a blocked delete');
+
+    const wrong = await httpDelete(`${baseUrl}/rooms/lock-del`, { 'X-Actor-Id': 'someone-else' });
+    assert.strictEqual(wrong.status, 423);
+
+    const owner = await httpDelete(`${baseUrl}/rooms/lock-del`, { 'X-Actor-Id': 'userA' });
+    assert.strictEqual(owner.status, 200);
+    assert.strictEqual(await storage.readRoom('lock-del'), null);
+
+    // Locked with NO recorded owner blocks everyone (matches issue verification).
+    await seedLockedRoom('lock-del-noowner', null);
+    const noOwner = await httpDelete(`${baseUrl}/rooms/lock-del-noowner`);
+    assert.strictEqual(noOwner.status, 423);
+  });
+
+  it('PATCH on a locked room: non-owner cannot unlock, owner can', async () => {
+    await seedLockedRoom('lock-patch', 'userC');
+
+    const blocked = await httpJson(`${baseUrl}/rooms/lock-patch`, 'PATCH', { locked: false });
+    assert.strictEqual(blocked.status, 423);
+
+    const owner = await httpJson(`${baseUrl}/rooms/lock-patch`, 'PATCH', { locked: false }, { 'X-Actor-Id': 'userC' });
+    assert.strictEqual(owner.status, 200);
+
+    const Y = require('yjs');
+    const verify = new Y.Doc();
+    Y.applyUpdate(verify, (await storage.readRoom('lock-patch')).ydocBytes);
+    assert.strictEqual(verify.getMap('meta').get('locked'), false);
+    verify.destroy();
+  });
+
+  it('POST upload on a locked (live) room: 423 for non-owner, proceeds for the lock owner', async () => {
+    const { serializeSEC } = await import('../../src/lib/sec-serializer.js');
+    const secXml = serializeSEC(
+      [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: 'Hello.' }],
+      { sectionNumber: '01 00 00', sectionTitle: 'TEST' },
+    );
+
+    // Lock state lives on the live Y.Doc (upload requires an active session).
+    const Y = require('yjs');
+    const liveDoc = new Y.Doc();
+    liveDoc.transact(() => {
+      const m = liveDoc.getMap('meta');
+      m.set('locked', true);
+      m.set('lockedBy', 'userB');
+    });
+    boundDocs.set('lock-up', liveDoc);
+    try {
+      const blocked = await httpPost(`${baseUrl}/rooms/lock-up/upload`, Buffer.from(secXml));
+      assert.strictEqual(blocked.status, 423);
+
+      const owner = await httpPost(`${baseUrl}/rooms/lock-up/upload`, Buffer.from(secXml), { 'X-Actor-Id': 'userB' });
+      assert.strictEqual(owner.status, 200);
+      assert.strictEqual(JSON.parse(owner.body.toString()).blocks, 1);
+    } finally {
+      boundDocs.delete('lock-up');
+      liveDoc.destroy();
+    }
   });
 
   it('POST /rooms/:roomId/upload returns 409 when room has no active Y.Doc', async () => {
