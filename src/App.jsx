@@ -2437,7 +2437,8 @@ export default function SpecEditor() {
             </button>
             <button
               onClick={() => {
-                const html = generateExportHtml(blocks, sectionMeta, { showNotes, unitDisplay });
+                flushAllPendingUpdates(); // #213 — drain pending PM debounce; read blocksRef.current
+                const html = generateExportHtml(blocksRef.current, sectionMeta, { showNotes, unitDisplay });
                 const blob = new Blob([html], { type: 'application/msword' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
@@ -2459,7 +2460,8 @@ export default function SpecEditor() {
             >Word</button>
             <button
               onClick={() => {
-                const html = generateExportHtml(blocks, sectionMeta, { showNotes, unitDisplay });
+                flushAllPendingUpdates(); // #213 — drain pending PM debounce; read blocksRef.current
+                const html = generateExportHtml(blocksRef.current, sectionMeta, { showNotes, unitDisplay });
                 const w = window.open('', '_blank');
                 w.document.write(html);
                 w.document.close();

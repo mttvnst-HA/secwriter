@@ -48,6 +48,7 @@ import {
 import { setBlockHtml } from '../../lib/block-html-store.js';
 import { acceptAllRevisions } from '../../lib/revisions.js';
 import { serializeSEC } from '../../lib/sec-serializer.js';
+import { generateExportHtml } from '../../lib/doc-export.js';
 import * as linting from '../../lib/linting.js';
 import PmEditableBlock from '../PmEditableBlock.jsx';
 
@@ -264,6 +265,47 @@ describe('PmEditableBlock — document-wide save reads pending keystrokes (#213)
     expect(onUpdate).toHaveBeenCalledTimes(1);
     const freshXml = serializeSEC(appBlocks, { sectionNumber: '00 00 00' });
     expect(freshXml).toMatch(/ZZTOP/);
+
+    root.unmount();
+  });
+
+  it('Word/Print export (generateExportHtml) likewise drops pending keystrokes without flush', async () => {
+    // The Word/Print onClick handlers read the closed-over `blocks`; the JSX
+    // closure holds the pre-keystroke render value even after the click-blur
+    // flush mutates blocksRef.current. Same fix: flushAllPendingUpdates() then
+    // read blocksRef.current.
+    const initial = '<p>Hello world</p>';
+    const { yStore } = setupYStore('b1', initial);
+    let appBlocks = [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: initial }];
+    const onUpdate = vi.fn((id, html) => {
+      appBlocks = appBlocks.map((b) => (b.id === id ? { ...b, html } : b));
+    });
+    const { root } = await renderBlock(container, {
+      trackChanges: false,
+      identity: { id: 'alice', color: '#ff6b6b' },
+      yStore,
+      html: initial,
+      onUpdate,
+    });
+    await new Promise((r) => setTimeout(r, 50));
+    const view = getBlockView('b1');
+
+    const insertPos = view.state.doc.content.size - 1;
+    await act(async () => {
+      view.dispatch(view.state.tr.insertText(' WORDXP', insertPos));
+    });
+    expect(onUpdate).not.toHaveBeenCalled();
+
+    const meta = { sectionNumber: '00 00 00', sectionTitle: 'T', date: '' };
+    // BUG SHAPE: export the stale array.
+    const staleHtml = generateExportHtml(appBlocks, meta, { showNotes: true, unitDisplay: 'both' });
+    expect(staleHtml).not.toMatch(/WORDXP/);
+
+    // FIX: flush first, then export the now-current array.
+    flushAllPendingUpdates();
+    expect(onUpdate).toHaveBeenCalledTimes(1);
+    const freshHtml = generateExportHtml(appBlocks, meta, { showNotes: true, unitDisplay: 'both' });
+    expect(freshHtml).toMatch(/WORDXP/);
 
     root.unmount();
   });
