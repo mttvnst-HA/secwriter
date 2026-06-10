@@ -116,6 +116,29 @@ describe('serializeSEC', () => {
     expect(xml).not.toContain('mark-rid');
   });
 
+  it('preserves content after a hard break (<br>) and keeps inline marks (#221)', () => {
+    const blocks = [
+      { id: '1', type: 'txt', part: 1, depth: 0, html: 'a<br>b <span class="mark-rid">X</span>' },
+    ];
+    const xml = serializeSEC(blocks, META);
+    // Content before AND after the break must survive, marks intact.
+    expect(xml).toContain('a');
+    expect(xml).toContain('b');
+    expect(xml).toContain('<RID>X</RID>');
+    // The two lines must not silently fuse with no separator.
+    expect(xml).not.toContain('ab ');
+  });
+
+  it('handles self-closing <br/> the same as <br> (#221)', () => {
+    const blocks = [
+      { id: '1', type: 'txt', part: 1, depth: 0, html: 'line1<br/>line2' },
+    ];
+    const xml = serializeSEC(blocks, META);
+    expect(xml).toContain('line1');
+    expect(xml).toContain('line2');
+    expect(xml).not.toContain('line1line2');
+  });
+
   it('converts <b> to BLD, <em> to ITA, <u> to UND', () => {
     const blocks = [
       { id: '1', type: 'txt', part: 1, depth: 0, html: '<b>bold</b> <em>italic</em> <u>under</u>' },
