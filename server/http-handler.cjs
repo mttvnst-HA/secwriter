@@ -27,11 +27,66 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
   const HTTP_READ_RATE = Number(process.env.SIM_RATE_LIMIT_HTTP_READ_PER_MIN || 60);
   const HTTP_WRITE_RATE = Number(process.env.SIM_RATE_LIMIT_HTTP_WRITE_PER_MIN || 20);
 
+  // #215 — room lock enforcement. The `locked` flag (yMeta.locked + lockedBy)
+  // was write-only metadata: DELETE/upload/PATCH never consulted it, so a locked
+  // room could still be destroyed or overwritten. These helpers read the lock
+  // state (live doc preferred, else persisted bytes) and decide whether the
+  // caller may mutate. Amends ADR-0014.
+  function readRoomLock(roomId, ydocBytes) {
+    const live = boundDocs && boundDocs.get(roomId);
+    if (live) {
+      try {
+        const m = live.getMap('meta');
+        return { locked: !!m.get('locked'), lockedBy: m.get('lockedBy') || null };
+      } catch { /* fall through to persisted bytes */ }
+    }
+    if (ydocBytes) {
+      const Y = require('yjs');
+      const tmp = new Y.Doc();
+      try {
+        Y.applyUpdate(tmp, ydocBytes);
+        const m = tmp.getMap('meta');
+        return { locked: !!m.get('locked'), lockedBy: m.get('lockedBy') || null };
+      } catch {
+        // Non-Yjs bytes (or decode failure) — treat as unlocked rather than brick.
+        return { locked: false, lockedBy: null };
+      } finally {
+        tmp.destroy();
+      }
+    }
+    return { locked: false, lockedBy: null };
+  }
+
+  // Actor identity: authenticated subject when auth is on, else the client-supplied
+  // X-Actor-Id header / ?actorId= query (the same identity.id the client writes to
+  // lockedBy when locking). Under auth=none this is a cooperative lock — the whole
+  // data plane is already unauthenticated (#215 acknowledges this).
+  function getActorId(req, url) {
+    if (req.user && req.user.id) return String(req.user.id);
+    const q = url.searchParams.get('actorId');
+    if (q) return q;
+    const h = req.headers['x-actor-id'];
+    if (h) return String(h);
+    return null;
+  }
+
+  // Blocked when the room is locked and the actor is not the (non-empty) lock owner.
+  // A locked room with no recorded owner blocks everyone — matches the issue's
+  // verification (PATCH {locked:true} with no lockedBy must still return 423).
+  function isLockBlocked(lock, actor) {
+    return lock.locked && !(lock.lockedBy && actor && actor === lock.lockedBy);
+  }
+
+  function sendLocked(res, lockedBy) {
+    res.writeHead(423, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ error: 'Room is locked', lockedBy: lockedBy || null }));
+  }
+
   return async (req, res) => {
     // CORS — default wildcard for dev; restrict via SIM_COLLAB_ORIGIN in production
     res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Actor-Id');
     if (req.method === 'OPTIONS') { res.writeHead(204); res.end(); return; }
 
     if (rateLimiter) {
@@ -152,6 +207,13 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           if (!ydoc) {
             res.writeHead(409, { 'Content-Type': 'text/plain' });
             res.end(`Room "${roomId}" has no active session — join via WebSocket first`);
+            return;
+          }
+
+          // #215 — refuse to overwrite a locked room unless the caller owns the lock.
+          const lock = readRoomLock(roomId, null);
+          if (isLockBlocked(lock, getActorId(req, url))) {
+            sendLocked(res, lock.lockedBy);
             return;
           }
 
@@ -282,6 +344,12 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           res.end(JSON.stringify({ error: `Room "${roomId}" not found` }));
           return;
         }
+        // #215 — refuse to delete a locked room unless the caller owns the lock.
+        const lock = readRoomLock(roomId, existing.ydocBytes);
+        if (isLockBlocked(lock, getActorId(req, url))) {
+          sendLocked(res, lock.lockedBy);
+          return;
+        }
         await storage.deleteRoom(roomId);
         // Sub-PR 1d (#47, ADR-0006). The migration coordinator caches one
         // promise per docName; a successful migration leaves
@@ -316,6 +384,14 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           if (!existing) {
             res.writeHead(404, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: `Room "${roomId}" not found` }));
+            return;
+          }
+          // #215 — a locked room's settings (including unlock) may only be changed
+          // by the lock owner. Reads CURRENT state: locking an unlocked room is
+          // always allowed; once locked, only lockedBy can mutate or unlock.
+          const lock = readRoomLock(roomId, existing.ydocBytes);
+          if (isLockBlocked(lock, getActorId(req, url))) {
+            sendLocked(res, lock.lockedBy);
             return;
           }
           // Load persisted Y.Doc and update yMeta fields
