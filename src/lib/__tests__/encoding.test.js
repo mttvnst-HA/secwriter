@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { encodeWindows1252 } from '../encoding.js';
+import { encodeWindows1252, decodeWindows1252 } from '../encoding.js';
 
 describe('encodeWindows1252', () => {
   it('encodes ASCII characters unchanged', () => {
@@ -71,5 +71,44 @@ describe('encodeWindows1252', () => {
     expect(result[0]).toBe(0x54); // T
     expect(result[4]).toBe(0x97); // em-dash
     expect(result[5]).toBe(0x76); // v
+  });
+});
+
+describe('decodeWindows1252', () => {
+  // Pure-JS decoder so the server upload path does not depend on Node's ICU build:
+  // Node 20 on the CI runner decodes the 'windows-1252' label like latin1 (byte 0x97
+  // -> U+0097) rather than U+2014, which then re-encodes to '?' (issue #212).
+  it('decodes the 0x80-0x9F punctuation band, NOT as latin1 C1 controls', () => {
+    // [byte, expected codepoint]
+    const cases = [
+      [0x80, 0x20AC], // euro
+      [0x93, 0x201C], // left double quote
+      [0x94, 0x201D], // right double quote
+      [0x95, 0x2022], // bullet
+      [0x96, 0x2013], // en-dash
+      [0x97, 0x2014], // em-dash (the CI-failing byte)
+      [0x99, 0x2122], // trademark
+    ];
+    for (const [byte, cp] of cases) {
+      const got = decodeWindows1252(new Uint8Array([byte])).codePointAt(0);
+      expect(got).toBe(cp);
+      expect(got).not.toBe(byte); // must NOT be the latin1 C1 control
+    }
+  });
+
+  it('decodes ASCII and Latin-1 supplement (0xA0-0xFF) transparently', () => {
+    expect(decodeWindows1252(new Uint8Array([0x41, 0x7A]))).toBe('Az');
+    // 0xA9, 0xB0, 0xF1 map straight through (same as Latin-1)
+    expect([...decodeWindows1252(new Uint8Array([0xA9, 0xB0, 0xF1]))].map(c => c.codePointAt(0)))
+      .toEqual([0xA9, 0xB0, 0xF1]);
+  });
+
+  it('round-trips with encodeWindows1252 for the full smart-punctuation set', () => {
+    const s = 'Dash—quote“” bullet• euro€ tm™';
+    expect(decodeWindows1252(encodeWindows1252(s))).toBe(s);
+  });
+
+  it('handles empty input', () => {
+    expect(decodeWindows1252(new Uint8Array(0))).toBe('');
   });
 });

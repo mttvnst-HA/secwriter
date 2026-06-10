@@ -63,3 +63,33 @@ export function encodeWindows1252(str) {
   }
   return bytes;
 }
+
+// Inverse of WIN1252_EXTRAS: byte (0x80-0x9F) -> Unicode codepoint.
+const WIN1252_EXTRAS_DECODE = Object.fromEntries(
+  Object.entries(WIN1252_EXTRAS).map(([cp, byte]) => [byte, Number(cp)]),
+);
+
+/**
+ * Decode a windows-1252 byte sequence to a JavaScript string.
+ *
+ * Pure-JS so it does NOT depend on Node's ICU build. `TextDecoder('windows-1252')`
+ * is reliable in browsers but on a small-ICU Node build (e.g. the Node 20 CI runner)
+ * it silently decodes the 0x80-0x9F band like latin1 (byte 0x97 -> U+0097 instead of
+ * U+2014), which then re-encodes to '?'. This is the exact inverse of
+ * encodeWindows1252, so upload->export round-trips byte-for-byte (issue #212).
+ */
+export function decodeWindows1252(bytes) {
+  let out = '';
+  for (let i = 0; i < bytes.length; i++) {
+    const b = bytes[i];
+    if (b >= 0x80 && b <= 0x9F) {
+      // windows-1252 punctuation gap (0x81/0x8D/0x8F/0x90/0x9D are undefined —
+      // pass them through as their C1 codepoint, matching the WHATWG decoder).
+      out += String.fromCodePoint(WIN1252_EXTRAS_DECODE[b] ?? b);
+    } else {
+      // ASCII (0x00-0x7F) and Latin-1 supplement (0xA0-0xFF) are identity-mapped.
+      out += String.fromCodePoint(b);
+    }
+  }
+  return out;
+}
