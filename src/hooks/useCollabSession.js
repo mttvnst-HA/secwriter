@@ -54,7 +54,7 @@ import {
   createCollabSession,
   DocSizeLimitError,
 } from '../lib/collab.js';
-import { encodeSidecar } from '../lib/lint-sidecar.js';
+import { encodeSidecar, computeLiveFingerprints } from '../lib/lint-sidecar.js';
 import * as sc from '../lib/session-coordination.js';
 
 /**
@@ -501,9 +501,11 @@ export function useCollabSession({
   // ── Publish effect: lint sidecar (#150) ───────────────────────────────
   // Encodes the linting reducer's byBlock map into a v1 sidecar payload
   // and writes diffs into yLint. Async because fingerprinting goes through
-  // Web Crypto. Phase 1 is set-only (never deletes): a fingerprint that
-  // disappears from one peer's payload may still be valid for another
-  // peer's block. Garbage collection is deferred to a phase 3 ticket.
+  // Web Crypto. GC (#214): we also compute the fingerprints of every CURRENT
+  // live block and pass them to publishLint, which prunes yLint entries that
+  // match no live block in the same transaction — bounding the persisted cache
+  // to live-block size instead of letting it grow per distinct content state
+  // (which trended toward the 8 MB flush cap → silent persistence refusal).
   //
   // Gating: shares the canPublishMeta gate — meta and lint both want to
   // wait for first sync + schema compatibility. canPublishBlocks would
@@ -518,19 +520,23 @@ export function useCollabSession({
     let cancelled = false;
     (async () => {
       let payload;
+      let liveFingerprints;
       try {
         payload = await encodeSidecar(lintingState.byBlock, blocks);
+        liveFingerprints = await computeLiveFingerprints(blocks);
       } catch (err) {
         console.error('[collab] encodeSidecar failed:', err);
         return;
       }
       if (cancelled) return;
-      // Phase-1 set-only: only push when there's something to push.
+      // Only push when there's something to push OR something to GC. The prune
+      // can need to run even on an empty payload (block edited away from a
+      // cached state leaves a dead entry with nothing new to set).
       const hasGood = typeof payload.good === 'string' && payload.good.length > 0;
       const hasBad = payload.bad && Object.keys(payload.bad).length > 0;
-      if (!hasGood && !hasBad) return;
+      if (!hasGood && !hasBad && liveFingerprints.size === 0) return;
       try {
-        session.publishLint(payload);
+        session.publishLint(payload, liveFingerprints);
         lastPublishedLintByBlockRef.current = lintingState.byBlock;
       } catch (err) {
         console.error('[collab] publishLint failed:', err);

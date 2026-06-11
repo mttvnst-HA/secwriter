@@ -88,6 +88,35 @@ export async function fingerprintBlock(html) {
   return out.slice(0, FINGERPRINT_LEN);
 }
 
+/**
+ * Compute the set of html-fingerprints for every CURRENT live block (#214).
+ *
+ * This is the GC anchor for the persisted `yLint` cache. A cache entry is only
+ * ever consulted at load time via `projectDecoded`, which fingerprints the
+ * *current* html of each live block — so any `yLint` fingerprint that does not
+ * match a current live block is provably dead weight and can be pruned.
+ *
+ * The set is derived from the shared block array (the same `blocks` every peer
+ * converges on via the CRDT), NOT from a single peer's locally-linted subset.
+ * That is what makes absence-based pruning race-safe in a way the per-peer
+ * payload could not be (collab.js publishLintToDoc) — a fingerprint absent from
+ * the live set is dead for every peer, not just the pruning one.
+ *
+ * @param {Array<{ html?: string }>} blocks
+ * @returns {Promise<Set<string>>}
+ */
+export async function computeLiveFingerprints(blocks) {
+  const out = new Set();
+  if (!Array.isArray(blocks)) return out;
+  const fps = await Promise.all(
+    blocks.map((b) => (b && typeof b === 'object' ? fingerprintBlock(b.html || '') : null))
+  );
+  for (const fp of fps) {
+    if (typeof fp === 'string' && fp.length === FINGERPRINT_LEN) out.add(fp);
+  }
+  return out;
+}
+
 function fallbackFingerprint(text) {
   // FNV-1a 64-bit-ish, packed into 24 hex chars. Only used when Web Crypto
   // is missing (should not occur in supported targets — kept as a guard).
