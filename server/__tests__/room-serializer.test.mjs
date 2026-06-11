@@ -233,6 +233,23 @@ describe('serializeRoom', () => {
     assert.equal(parsed.bad[fpBad].g[0].violation.ruleId, 'GRAM-X');
   });
 
+  // #217 — serializeRoom must walk the CRDT block array exactly once.
+  // A second walk (the deleted `.map(b => b.id)` line) doubled the
+  // per-block pmFragmentToHtml work for no benefit. yStore.get is hit
+  // once per block per walk, so 2 blocks → 2 calls for a single walk.
+  it('walks the block store exactly once per flush', async () => {
+    const ydoc = await buildTestDoc();
+    const yStore = ydoc.getMap('store');
+    const realGet = yStore.get.bind(yStore);
+    let gets = 0;
+    yStore.get = (key) => { gets += 1; return realGet(key); };
+
+    await serializeRoom(ydoc);
+
+    yStore.get = realGet;
+    assert.equal(gets, 2, 'one walk over 2 blocks; a second walk would be 4');
+  });
+
   it('includes comments in commentsJson', async () => {
     const Y = await import('yjs');
     const ydoc = await buildTestDoc();
