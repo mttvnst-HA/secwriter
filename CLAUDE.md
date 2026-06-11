@@ -323,7 +323,8 @@ See [ADR-0013](docs/adr/0013-storage-backends.md) (and [ADR-0005](docs/adr/0005-
 
 - **Adding a fourth artifact is a one-line catalog edit;** adapters never decide write order.
 - **`SIM_LOCAL_STORAGE_DIR`** (PR [#113](https://github.com/mttvnst-HA/secwriter/pull/113)) overrides the default `server/collab-db/`. Playwright's `webServer.env` points it at `server/collab-db-e2e/`; `tests/e2e/global-setup.js` wipes that dir with a hard guard that refuses any path not ending in `-e2e` — dev rooms in `server/collab-db/` are never touched by an E2E run.
-- **Cross-backend contract** verified by `server/__tests__/storage-contract.test.mjs` (12 assertions × 3 backends = 36 tests). `listArchivedRooms` returns `{ id, archivedAt }` uniformly — both fields required by the collab-server sweep.
+- **Cross-backend contract** verified by `server/__tests__/storage-contract.test.mjs` (19 assertions × 3 backends = 57 tests). `listArchivedRooms` returns `{ id, archivedAt }` uniformly — both fields required by the collab-server sweep.
+- **Composite key + ACL sidecar (#211, [ADR-0017](docs/adr/0017-room-authorization-model.md)).** Adapters key on `(tenant, roomId)`, not a bare id; under auth=none everything lives under the reserved `_public` tenant. A fourth artifact `.acl.json` = `{ ownerId, sharedWith[] }` is catalogued BEFORE `.ydoc` (crash mid-create/delete leaves a reclaimable orphan ACL → 404, never an ownerless ydoc); read via `readAcl(tenant, roomId)` before any doc load, written via `writeAcl`. Legacy flat rooms relocate via `server/migrate-tenant-namespace.cjs` (`SIM_DEFAULT_TENANT` + `SIM_DEFAULT_OWNER`, local backend).
 
 ## Collaboration Server
 
@@ -335,7 +336,10 @@ See [ADR-0014](docs/adr/0014-collab-server-yjs-relay.md) (and [ADR-0001](docs/ad
 - `server/storage-{local,azure,s3}.cjs` — pluggable persistence ([ADR-0013](docs/adr/0013-storage-backends.md)).
 - `server/migrate-pm-substrate.cjs` — sub-PR 1d v1 → v2 substrate broker ([ADR-0006](docs/adr/0006-pm-substrate-migration.md)).
 - `server/auth/auth-provider.cjs` — JWT auth (optional via env).
+- `server/auth/authorize.cjs` — `authorize(user, tenant, roomId, action)` decision module (#211, [ADR-0017](docs/adr/0017-room-authorization-model.md)).
 - `server/__tests__/` — `node --test` integration suite. Run via `npm run test:server`.
+
+**Authorization (#211, [ADR-0017](docs/adr/0017-room-authorization-model.md)).** Under `SIM_AUTH_PROVIDER=jwt`, `authorize()` runs on every `/rooms*` route AND at the WS upgrade (off the cheap `.acl.json` sidecar, before `getYDoc`/preload): read = owner-or-shared; delete/share/lock-admin = owner-only; missing tenant/stable-subject or the reserved `_public` sentinel → 403; not-owner/not-shared/missing-ACL → 404 (no existence leak). Required JWT claims: a tenant (`tenant|org|tid`) and a stable subject (`sub|oid`) — no email/`unknown` owner fallback. Under auth=none authorize early-returns allow and every room is `_public`. Revocation is per-connect (open WS sessions persist until reconnect).
 
 **Four non-obvious patterns** are pinned in [ADR-0014](docs/adr/0014-collab-server-yjs-relay.md) with deterministic regression tests:
 

@@ -38,7 +38,7 @@ Room storage is structured as a base class + thin adapters:
   - Adding a fourth artifact (e.g. `.tailoring.json`) is a one-line edit in `ARTIFACT_CATALOG`.
   - `sanitize()` lives in one file; the apologetic triple-copy is gone.
   - Archive/restore/quarantine semantics live in one place, including the `.ydoc`-LAST ordering for archive copies and the per-call timestamp threading for quarantine suffix-grouping.
-  - A single contract test (`server/__tests__/storage-contract.test.mjs`) runs 12 assertions × 3 backends, so adding a fourth backend would automatically be checked against the same contract.
+  - A single contract test (`server/__tests__/storage-contract.test.mjs`) runs 19 assertions × 3 backends (57 total — grew from 12 with the `.acl.json` round-trip + delete-order checks), so adding a fourth backend would automatically be checked against the same contract.
   - **Two latent production bugs were fixed** as a side effect of unification:
     - S3's `listArchivedRooms` returned `{ name, archivedAt }`, but `server/collab-server.cjs:534` reads `room.id` — the S3 sweep was silently a no-op, leaving archived rooms in R2 indefinitely.
     - Azure stored `archivedat` metadata as `String(Date.now())` (a numeric string), which `new Date(...)` parses as Invalid Date in Node. The Azure sweep's `archivedDays = (now - getTime()) / day` was always `NaN`, so `NaN >= DELETE_DAYS` was always false, and the Azure sweep also never deleted anything.
@@ -50,6 +50,15 @@ Room storage is structured as a base class + thin adapters:
 - **Re-litigation risk:**
   - Without this ADR, a future contributor seeing "Local has rollback but Azure/S3 don't" may try to invent a generic atomicity protocol that fits all three. It can't be done cheaply — R2 has no multi-object transaction. The `.ydoc`-LAST ordering is the strongest contract available.
   - Without this ADR, someone may also try to "uniformize" Azure's lowercase `.sec` blob naming with Local/S3's uppercase `.SEC`. That would change the storage layout and break readback for existing Azure-persisted rooms.
+
+## Amendment (2026-06-11, ADR-0017): `.acl.json` write/delete order
+
+The room-authorization work ([ADR-0017](0017-room-authorization-model.md), [#211](https://github.com/mttvnst-HA/secwriter/issues/211)) adds a fourth artifact, `.acl.json` = `{ ownerId, sharedWith[] }`, positioned in `ARTIFACT_CATALOG` BEFORE `.ydoc`. This extends the `.ydoc`-LAST ordering into a crash-consistency invariant for ownership:
+
+- **Write order: `.acl` before `.ydoc`.** A crash mid-create leaves an orphan ACL with no `.ydoc` — the room reads as absent (`readRoom` returns null → 404) and is reclaimable. It NEVER leaves a `.ydoc` with no ACL (an ownerless, un-shareable, un-deletable room).
+- **Delete order: `.ydoc` before `.acl` (reverse-catalog).** `deleteRoom` iterates `ARTIFACT_CATALOG` in reverse so the source-of-truth `.ydoc` is removed first. A crash mid-delete leaves the same reclaimable orphan-ACL state a crashed create produces — symmetric with the write invariant ("`.ydoc` last in, first out") and recovered by the same owner-DELETE reclaim path.
+
+The delete-order is enforced by the base class (`server/room-storage.cjs` `deleteRoom`) and pinned by a `_deleteKey` ordering spy in the contract suite (asserts `.ydoc` deleted before `.acl` across all three backends).
 
 ## Alternatives considered
 

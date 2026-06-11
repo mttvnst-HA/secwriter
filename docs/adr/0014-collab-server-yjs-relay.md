@@ -35,6 +35,13 @@ Server lives in `server/`:
 
 The room `locked` flag (`yMeta.locked` + `lockedBy`) is enforced server-side, not just rendered in the UI. `DELETE /rooms/:id`, `POST /rooms/:id/upload`, and `PATCH /rooms/:id` each read the current lock state (live bound doc preferred, else persisted `.ydoc` bytes) and return **423 Locked** when the room is locked and the caller does not own the lock. Caller identity is `req.user.id` under auth, else the `X-Actor-Id` header / `?actorId=` query — the same `identity.id` the client writes to `lockedBy` when locking. Rules: locking an unlocked room is open to anyone; once locked, only the owner can mutate or unlock; a locked room with **no recorded owner blocks everyone**. Under `auth=none` this is a cooperative lock (the data plane is already unauthenticated) but it stops accidental cross-user deletes/overwrites. See `readRoomLock` / `getActorId` / `isLockBlocked` in `server/http-handler.cjs`; the client sends `X-Actor-Id` on DELETE and the lock/rename PATCH calls (`src/App.jsx`).
 
+### Room authorization at the WS upgrade (#211, ADR-0017)
+
+[ADR-0017](0017-room-authorization-model.md) makes the relay multi-tenant. Two things change in the server:
+
+- **Composite docName everywhere.** The WS docName is `<tenant>/<roomId>`, derived from the authenticated principal's tenant (never the URL), with `extractDocName` still stripping the `/ws/` prefix first. Every in-memory map keyed by docName (the y-websocket docs Map, the preload cache, the per-room migration lock, the flush-debounce timers, awareness) and `migrationCoordinator.forget(composite)` now key on the composite — a bare `roomId` would collide rooms of the same id across tenants.
+- **Authorize BEFORE `getYDoc`/preload.** The upgrade handler runs `authorize(user, tenant, roomId, 'read')` off the cheap `.acl.json` sidecar (`readAcl`) and rejects unauthorized upgrades before the doc is loaded — so the eviction-guard await windows (patterns #2 and #3 above) are never reached by an unauthorized caller, and an attacker cannot use a denied upgrade to fault-in or migrate a room. Under auth=none the authorize early-returns allow and every connection lands under `_public`. Revocation is per-connect: a removed sharee keeps an already-open session until it reconnects (accepted, see ADR-0017).
+
 ### Inspecting / cleaning up production rooms
 
 ```bash
