@@ -98,7 +98,7 @@ Expected: FAIL — `PUBLIC_TENANT`, `ARTIFACT_KIND_ACL`, `buildCompositeDocName`
 
 - [ ] **Step 3: Implement in `server/storage-shared.cjs`**
 
-Add the constant near the other kind constants (after line 27):
+Add the constant immediately after the existing `ARTIFACT_KIND_*` constants (after `ARTIFACT_KIND_LINT`):
 
 ```javascript
 const ARTIFACT_KIND_ACL = 'acl';
@@ -795,12 +795,57 @@ git commit -m "feat(storage-azure): tenant prefix layout + ACL artifact"
 
 ---
 
+## Task 5b: Split the composite docName inside the migration broker (BLOCKER — Phase A gate)
+
+**Files:**
+- Modify: `server/migrate-pm-substrate.cjs`
+- Modify: `server/__tests__/migrate-pm-substrate.test.mjs` (fake-storage signature only — do NOT add a 31st `it()`; this file is at the 30-cap)
+
+The broker's `runMigration` calls `storage.archiveRoom(docName)` at `migrate-pm-substrate.cjs:373`. After Task 2 the base signature is `archiveRoom(tenant, roomId)`, so passing the composite as a single arg archives to `<tenant>/undefined.ydoc` — the room is NOT archived, the four migration-broker assertions in `storage-contract.test.mjs` (the nested `describe`) fail, and at runtime the pre-migration room is silently lost before the v2 mutation. The broker receives the composite docName from the WS upgrade (Task 14) and must split it before any storage call.
+
+- [ ] **Step 1: Add the import** at the top of `migrate-pm-substrate.cjs`:
+
+```javascript
+const { splitCompositeDocName } = require('./storage-shared.cjs');
+```
+
+- [ ] **Step 2: Split in `runMigration`** (replace the `storage.archiveRoom(docName)` call at line 373):
+
+```javascript
+  async function runMigration(docName, ydoc) {
+    let archived = false;
+    try {
+      const { tenant, roomId } = splitCompositeDocName(docName);
+      await storage.archiveRoom(tenant, roomId);
+      archived = true;
+      log.info('migrate.archived', { roomId: docName });
+    } catch (err) {
+```
+
+(`docName` stays the composite for `inFlight`/`forget`/log keys — only the storage call splits. No other storage call exists in this file.)
+
+- [ ] **Step 3: Update the fake-storage in `migrate-pm-substrate.test.mjs`** so its `archiveRoom` records `(tenant, roomId)` and the existing assertion checks both. Find the fake (search `archiveRoom` / `archiveCalls`) and change the signature to `async archiveRoom(tenant, roomId) { this.archiveCalls.push([tenant, roomId]); }` (or `{ tenant, roomId }`), updating the matching `assert` to expect the split pair (e.g. `['_public', 'room1']` if the test drives the broker with a bare docName, or the composite-split pair the test actually passes). Do NOT add a new `it()` — fold the two-arg assertion into the existing migration test.
+
+- [ ] **Step 4: Run the broker + contract tests**
+
+Run: `node --test server/__tests__/migrate-pm-substrate.test.mjs`
+Expected: PASS. (The contract-test broker `describe` is exercised in Task 6.)
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add server/migrate-pm-substrate.cjs server/__tests__/migrate-pm-substrate.test.mjs
+git commit -m "fix(migrate): split composite docName before storage.archiveRoom in broker"
+```
+
+---
+
 ## Task 6: Rewrite storage-contract test for composite keys + add ACL round-trip
 
 **Files:**
 - Modify: `server/__tests__/storage-contract.test.mjs`
 
-The 18 existing `it()` calls pass a single `roomId`; every storage call must become `(TENANT, roomId)`. Then add ONE new `it()` (18 → 19 × 3 backends) for the ACL sidecar + crash-order. Stay under the 30 cap.
+The existing `it()` calls pass a single `roomId`; every storage call must become `(TENANT, roomId)`. Then add ONE new `it()` for the ACL sidecar + crash-order. **Actual count: 17 `it()` (13 shared-contract + 4 in the nested `migration broker` describe) → 18 × 3 backends after the addition** (the spec's "18→19×3" was a miscount; either way it stays well under the 30 cap).
 
 - [ ] **Step 1: Add a tenant constant** near the top of the shared `describe` body and thread it through every `backend.X(...)` call in the contract suite. Use:
 
@@ -843,10 +888,24 @@ Mechanically update each call: `backend.writeRoom(id, artifacts)` → `backend.w
 Run: `node --test server/__tests__/storage-contract.test.mjs server/__tests__/storage-shared.test.mjs`
 Expected: PASS — 19 × 3 contract assertions + the shared-helper tests. If a backend fails parse/list, re-check Tasks 3–5 against the layout table.
 
-- [ ] **Step 4: Run the FULL server suite** to catch any backend-specific test (`storage-local.test.mjs`, `storage-azure.test.mjs`, `storage-s3.test.mjs`, `migrate-pm-substrate.test.mjs`) that calls storage with the old signature.
+- [ ] **Step 4: Fix every backend-specific test broken by the signature + layout change.** This is NOT purely mechanical — budget for it. Two distinct edit classes across SIX files:
+
+  **(a) Mechanical (add a tenant arg):** every `backend.X(roomId, ...)` → `backend.X(T, roomId, ...)`. Affects all six files below.
+
+  **(b) Layout-coupled (rewrite the expected key/path string):** tests that assert on the *raw storage key or filesystem path* must inject the tenant prefix into the expectation — the active layout moved from flat to tenant-namespaced. These are NOT arg additions.
+
+  Files and the layout-coupled hotspots to expect:
+  - `server/__tests__/storage-local.test.mjs` — flat-path assertions (`path.join(dir, '<id>.ydoc')`, `readdirSync(dir)`, archive-dir `existsSync`, the `.ydoc.tmp`/`.ydoc.corrupt.<ts>` list-exclusion seeds) must move under `<dir>/<T>/` and `<dir>/archive/<T>/`. The exclusion-seed tests in particular pass *vacuously* if left flat (the new `listRooms(T)` never scans the root), so they MUST be moved or they stop testing anything.
+  - `server/__tests__/storage-azure.test.mjs` — ~20 exact blob-key assertions (`'<id>/room.ydoc'`, `'archive/<id>/room.ydoc'`, quarantine keys) → prefix with `<T>/`.
+  - `server/__tests__/storage-s3.test.mjs` — exact-key assertions (`'<id>.ydoc'`, catalog-order delete list, quarantine `'<id>.<reason>.ydoc'`, archive keys, pagination input keys) → prefix with `<T>/`.
+  - `server/__tests__/storage-azure.integration.test.mjs` — ~35 single-arg calls (Azurite-gated; only runs when Azurite is up, but fix the signatures so it compiles).
+  - `server/__tests__/http-endpoints.test.mjs` — seeding `storage.writeRoom(...)` calls (mechanical tenant arg; the auth=none tests seed under `'_public'`).
+  - `server/__tests__/migrate-pm-substrate.test.mjs` — already handled in Task 5b.
+
+  Estimate ~40+ layout-coupled assertion edits plus the mechanical arg additions. Do NOT change behavior — only keys/paths/args. After editing, run `npm run test:server` and iterate until green.
 
 Run: `npm run test:server`
-Expected: failures ONLY in files that still pass single-arg `roomId`. Fix each by threading a tenant (use `'_public'` or any constant) — these are mechanical call-site updates. Do NOT change behavior.
+Expected: PASS once all six files are updated. Any remaining failure is a missed call site or a not-yet-prefixed expected key.
 
 - [ ] **Step 5: Commit**
 
@@ -863,11 +922,13 @@ git commit -m "test(storage): thread tenant through contract suite + ACL round-t
 
 **Files:**
 - Modify: `server/auth/auth-jwt.cjs`
-- Test: `server/auth/__tests__/auth-jwt.test.mjs` (create if absent; else add to it)
+- Test: `server/__tests__/auth-jwt.test.mjs` (EXISTS — 8 `it()`s, already registered in `test:server`; ADD to it, do not create a new file)
+
+> The existing auth-jwt tests all supply `sub`, so the `id: sub||oid||null` change (dropping the `email`/`'unknown'` fallback) does NOT break them. Append the new tests into a fresh `describe` in that file.
 
 - [ ] **Step 1: Write the failing test**
 
-Create `server/auth/__tests__/auth-jwt.test.mjs`:
+Add to the existing `server/__tests__/auth-jwt.test.mjs` (it already has `createRequire` + a `jsonwebtoken` import — reuse them; do not redeclare). New `describe`:
 
 ```javascript
 import { describe, it } from 'node:test';
@@ -903,7 +964,7 @@ describe('auth-jwt tenant + stable subject', () => {
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `node --test server/auth/__tests__/auth-jwt.test.mjs`
+Run: `node --test server/__tests__/auth-jwt.test.mjs`
 Expected: FAIL — current code returns `id: ...|| email || 'unknown'` and has no `tenant`.
 
 - [ ] **Step 3: Implement** — replace the returned identity object in `auth-jwt.cjs` (lines 22–27):
@@ -923,13 +984,13 @@ Expected: FAIL — current code returns `id: ...|| email || 'unknown'` and has n
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `node --test server/auth/__tests__/auth-jwt.test.mjs`
-Expected: PASS (3 tests).
+Run: `node --test server/__tests__/auth-jwt.test.mjs`
+Expected: PASS (8 existing + 3 new).
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add server/auth/auth-jwt.cjs server/auth/__tests__/auth-jwt.test.mjs
+git add server/auth/auth-jwt.cjs server/__tests__/auth-jwt.test.mjs
 git commit -m "feat(auth): extract tenant claim + require stable subject (no email/unknown id fallback)"
 ```
 
@@ -1061,6 +1122,11 @@ async function authorize({ authProvider, storage, user, roomId, action }) {
 
   // Cross-tenant is structural: the ACL is read under the CALLER's own tenant,
   // so a caller can only ever resolve rooms in its own namespace.
+  // NOTE: user.tenant is passed RAW here — every adapter's _keyForArtifact is
+  // the single place sanitize() is applied to tenant, and the WS docName is
+  // built from sanitize(user.tenant) too, so the ACL-read key and the bound
+  // doc agree (sanitize is idempotent). Do NOT move sanitize out of the
+  // adapter, or this read diverges from the docName.
   const acl = await storage.readAcl(user.tenant, roomId);
   if (!acl) return { ok: false, status: 404 };
 
@@ -1115,12 +1181,6 @@ const { sanitize, PUBLIC_TENANT, buildCompositeDocName } = require('./storage-sh
   function resolveTenant(req) {
     if (authProvider?.requiresAuth) return sanitize(req.user.tenant);
     return PUBLIC_TENANT;
-  }
-
-  // Composite docName for the in-memory maps (boundDocs / flushRoom /
-  // migrationCoordinator) — must match what the WS upgrade builds.
-  function compositeFor(req, roomId) {
-    return buildCompositeDocName(resolveTenant(req), roomId);
   }
 
   // Map an authorize()/checkPrincipal() denial to an HTTP response. Returns
@@ -1182,6 +1242,8 @@ Change `storage.readRoom(roomId)` → `storage.readRoom(tenant, roomId)` and the
 
 Change `storage.readRoom(roomId)` → `storage.readRoom(tenant, roomId)`; `readRoomLock(roomId, existing.ydocBytes)` → `readRoomLock(composite, existing.ydocBytes)`; `storage.deleteRoom(roomId)` → `storage.deleteRoom(tenant, roomId)`; `migrationCoordinator.forget(roomId)` → `migrationCoordinator.forget(composite)` (fixes the stale-cache call site noted in the spec).
 
+**Existing-test update (do not skip):** the DELETE-cache regression test in `server/__tests__/http-endpoints.test.mjs` (search `coordCalls` / `forget`) currently asserts `[['forget', 'to-delete']]`. Under auth=none the composite is `_public/to-delete`, so update that assertion to expect `[['forget', '_public/to-delete']]` (or `buildCompositeDocName('_public', 'to-delete')`). This is the one existing auth=none test the composite change is observable in.
+
 - [ ] **Step 4: `PATCH /rooms/:roomId`** — lock fields are LOCK_ADMIN (owner-only); a content/displayName-only PATCH is READ. Gate on the strictest field present. After parsing `body` and before `storage.readRoom`:
 
 ```javascript
@@ -1229,7 +1291,21 @@ git commit -m "feat(http): authorize + composite keys on sec/comments/upload/DEL
           const tenant = resolveTenant(req);
 ```
 
-Change the existence check `storage.readRoom(id)` → `storage.readRoom(tenant, id)`. Replace the final write block (current lines 322–327) with:
+**Existence check must cover the ACL too (ownership-hijack fix).** Because the ACL is written before the `.ydoc`, a crash between the two leaves an orphaned ACL with no `.ydoc`. If the 409-exists check only reads `readRoom` (null in that window), a second same-tenant caller could re-create the id and `writeAcl` a NEW owner over the orphan — an ownership takeover, contradicting the spec's "never hijackable" guarantee. Gate on BOTH. Replace the existence check (`const existing = await storage.readRoom(id); if (existing) {...409...}`) with:
+
+```javascript
+          const existing = await storage.readRoom(tenant, id);
+          const existingAcl = authProvider?.requiresAuth ? await storage.readAcl(tenant, id) : null;
+          if (existing || existingAcl) {
+            res.writeHead(409, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: `Room "${id}" already exists` }));
+            return;
+          }
+```
+
+(The orphaned-ACL owner can still reclaim the id: their token authorizes `DELETE` via the orphan ACL — `authorize(DELETE)` reads the ACL, sees `ownerId === them`, allows it — `deleteRoom` removes the sidecar, then they re-create cleanly.)
+
+Replace the final write block (current lines 322–327) with:
 
 ```javascript
           const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(ydoc));
@@ -1396,8 +1472,12 @@ Currently 25 `it()`; cap is 30. Add ≤5, batching where natural. Build a JWT-au
 
 - [ ] **Step 1: Add a JWT-auth test harness** near the existing helpers. Reuse the file's `createHttpHandler` import and `LocalStorageBackend`:
 
+> **Scope note:** in this file `LocalStorageBackend`, `createHttpHandler`, etc. are `require`d LOCALLY inside each `before`/`it` block, NOT at module scope. The `createRequire`-based `require` IS module-level (top of file). So `makeAuthServer` must pull its own requires via that module-level `require`.
+
 ```javascript
 const { createAuthJwt } = require('../auth/auth-jwt.cjs');
+const { LocalStorageBackend } = require('../storage-local.cjs');
+const { createHttpHandler } = require('../http-handler.cjs');
 const jwt = require('jsonwebtoken');
 const SECRET = 'http-test-secret';
 function bearer(claims) {
@@ -1665,17 +1745,29 @@ Add WS-upgrade authz assertions. Verify the existing eviction-guard / preload te
 
 Run: `grep -n "createCollabServer\|authProvider\|new WebSocket\|WebsocketProvider\|migrationCoordinator" server/__tests__/collab-server.test.mjs`
 
-- [ ] **Step 2: Add a WS-authz `describe`** that boots a server with `authProvider: createAuthJwt({ secret })` and a `LocalStorageBackend` in a temp dir, seeds an ACL via `storage.writeAcl('acme', 'r1', { ownerId: 'owner', sharedWith: [] })` + a `.ydoc` via `storage.writeRoom('acme','r1', { ydocBytes, secBytes:null, commentsJson:null })`, then attempts raw WS upgrades:
+- [ ] **Step 2: Add a WS-authz `describe`** that boots a server with `authProvider: createAuthJwt({ secret })` and a `LocalStorageBackend` in a temp dir, seeds an ACL via `storage.writeAcl('acme', 'r1', { ownerId: 'owner', sharedWith: [] })` + a `.ydoc` via `storage.writeRoom('acme','r1', { ydocBytes, secBytes:null, commentsJson:null })`, then attempts upgrades.
+
+**Use a RAW `ws` client, NOT `WebsocketProvider`.** `WebsocketProvider` swallows the upgrade HTTP status (it just retries on close), so it cannot distinguish 401 vs 404. `ws` is already imported in this file (`const WS = require('ws')` or similar — match the existing import). A raw socket surfaces the rejection status via the `'unexpected-response'` event:
 
 ```javascript
-// Pseudocode shape — adapt to the file's existing connect helper.
-// 1. No token            → upgrade rejected (401).
-// 2. Token tenant=acme, sub=stranger (not owner/shared) → rejected (404).
-// 3. Token tenant=evil,  sub=owner    → rejected (404, cross-tenant structural).
-// 4. Token tenant=acme,  sub=owner    → upgrade succeeds; boundDocs has key 'acme/r1'.
+// Helper: resolve to { status } on a rejected upgrade, or { open: true } on success.
+function tryUpgrade(port, room, token) {
+  const url = `ws://127.0.0.1:${port}/${room}${token ? `?token=${token}` : ''}`;
+  const sock = new WS(url); // WS = the file's existing ws import
+  return new Promise((resolve) => {
+    sock.on('unexpected-response', (_req, res) => { sock.terminate(); resolve({ status: res.statusCode }); });
+    sock.on('open', () => { sock.close(); resolve({ open: true }); });
+    sock.on('error', () => resolve({ status: 'error' })); // some rejections surface as error
+  });
+}
+
+// 1. No token                         → { status: 401 }
+// 2. tenant=acme, sub=stranger        → { status: 404 }
+// 3. tenant=evil,  sub=owner          → { status: 404 } (cross-tenant structural)
+// 4. tenant=acme,  sub=owner          → { open: true }; then assert boundDocs has 'acme/r1'
 ```
 
-Assert rejection by listening for the socket close / non-101 status on the upgrade response, and success by `server.boundDocs.has('acme/r1') === true` after the client syncs. Use the composite `'acme/r1'` as the boundDocs key assertion — this pins the composite-keying invariant.
+For case 4, after `open` give the bind a tick, then assert `server.boundDocs.has('acme/r1') === true` — this pins the composite-keying invariant. Mint tokens with `jwt.sign({ sub, tenant }, secret, { algorithm: 'HS256' })`.
 
 - [ ] **Step 3: Confirm the eviction-guard + preload race tests still pass.** Those tests run with `authProvider` defaulting to auth=none (no token), so `authorize` early-returns allow and the docName is `_public/<id>`. If a test asserts `boundDocs.has('<bareId>')`, update it to the composite `_public/<bareId>` (or `buildCompositeDocName('_public', bareId)`). This is the one place the composite change is observable in existing tests.
 
@@ -1933,13 +2025,21 @@ git commit -m "docs(adr): ADR-0015 room authorization model"
 
 ---
 
-## Task 19: Amend ADR-0005 / ADR-0013 / ADR-0014 + CLAUDE.md
+## Task 19: Register new test files + amend ADR-0005 / ADR-0013 / ADR-0014 + CLAUDE.md
 
 **Files:**
+- Modify: `package.json`
 - Modify: `docs/adr/0005-storage-adapter-atomicity-per-backend.md`
 - Modify: `docs/adr/0013-storage-backends.md`
 - Modify: `docs/adr/0014-collab-server-yjs-relay.md`
 - Modify: `CLAUDE.md`
+
+- [ ] **Step 0: Register the new test files in `test:server` (CRITICAL — `test:server` is an explicit file list, NOT a glob).** Open `package.json`, find the `"test:server"` script (a `node --test --test-force-exit <space-separated file list>`), and append the three NEW test files so CI actually runs them:
+  - `server/__tests__/storage-shared.test.mjs` (Task 1)
+  - `server/auth/__tests__/authorize.test.mjs` (Task 8)
+  - `server/__tests__/migrate-tenant-namespace.test.mjs` (Task 17)
+
+  (`server/__tests__/auth-jwt.test.mjs` is already listed — Task 7 added to it, not a new file. `storage-shared`/`authorize`/`migrate-tenant-namespace` are new and must be added or every `npm run test:server` gate silently skips them.)
 
 - [ ] **Step 1: Amend ADR-0005.** Add a section recording the `.acl.json` write-order (positioned before `.ydoc` in ARTIFACT_CATALOG) and the crash-consistency outcome (partial create = absent, never ownerless). Also reconcile the stale "12 assertions × 3 backends" consequence text with the actual count after this change (19 × 3 — the contract suite gained the ACL round-trip test). Quote the exact line being corrected so the diff is reviewable.
 
@@ -1952,8 +2052,8 @@ git commit -m "docs(adr): ADR-0015 room authorization model"
 - [ ] **Step 5: Commit**
 
 ```bash
-git add docs/adr/0005-storage-adapter-atomicity-per-backend.md docs/adr/0013-storage-backends.md docs/adr/0014-collab-server-yjs-relay.md CLAUDE.md
-git commit -m "docs: amend ADR-0005/0013/0014 + CLAUDE.md for room authorization"
+git add package.json docs/adr/0005-storage-adapter-atomicity-per-backend.md docs/adr/0013-storage-backends.md docs/adr/0014-collab-server-yjs-relay.md CLAUDE.md
+git commit -m "chore: register authz tests + amend ADR-0005/0013/0014 + CLAUDE.md"
 ```
 
 ---
@@ -1961,14 +2061,28 @@ git commit -m "docs: amend ADR-0005/0013/0014 + CLAUDE.md for room authorization
 # Final verification
 
 - [ ] **Run the full server suite:** `npm run test:server` → all green.
-- [ ] **Run the storage + auth unit tests explicitly:** `node --test server/__tests__/storage-shared.test.mjs server/__tests__/storage-contract.test.mjs server/auth/__tests__/auth-jwt.test.mjs server/auth/__tests__/authorize.test.mjs server/__tests__/migrate-tenant-namespace.test.mjs`
+- [ ] **Run the storage + auth unit tests explicitly:** `node --test server/__tests__/storage-shared.test.mjs server/__tests__/storage-contract.test.mjs server/__tests__/auth-jwt.test.mjs server/auth/__tests__/authorize.test.mjs server/__tests__/migrate-tenant-namespace.test.mjs`
 - [ ] **E2E smoke (auth=none must still be fully open):** the E2E suite runs against `SIM_AUTH_PROVIDER=none`. Run the collab E2E to confirm `_public`-namespaced rooms work end-to-end: `npm run test:e2e -- --project=chromium collab.spec.js`. Expect the baseline flake set ([#194](https://github.com/mttvnst-HA/secwriter/issues/194)) only — re-run any failure in isolation to distinguish flake from regression (CLAUDE.md rule #10).
 - [ ] **Manual auth=on smoke (optional but recommended):** start the server with `SIM_AUTH_PROVIDER=jwt SIM_AUTH_JWT_SECRET=dev`, mint two tokens with different `tenant` claims, confirm cross-tenant `GET /rooms/:id/sec` returns 404 and same-owner returns 200.
 
 ---
 
-# Self-review notes (completed during plan authoring)
+# Self-review notes (plan authoring + 3 independent review passes applied)
 
-- **Spec coverage:** keystone composite key (Tasks 1–6, 14), `_public` sentinel + reservation (Tasks 1, 8, 14), ACL sidecar + readAcl/writeAcl + crash-order (Tasks 1, 2, 6, 11), auth-jwt tenant + stable subject (Task 7), authorize() with all six error cases (Task 8), all enforcement points — sec/comments/upload/DELETE/PATCH/share/GET-rooms/WS/health (Tasks 10–13, 14), body-derived-actor fix (Task 10), per-backend tenant-list (Tasks 2–5), migration coordinator forget(composite) (Task 10), sweep across tenants (Task 15), legacy migration (Task 17), all four ADR doc actions (Tasks 18–19). Test-count caps verified: http-endpoints 25→29 (≤30), storage-contract 18→19×3.
-- **Deferred correctly:** graded roles, share-by-email/directory, live-session force-revocation, IdP token issuance — all out of scope per spec, none implemented here.
-- **Known approximation:** the migration script (Task 17) implements the local backend only; S3/Azure relocation is documented as an operator follow-up (spec "Legacy" allows auth-on deploys to start fresh). Flagged in ADR-0015 and the script's error message — not a silent cap.
+- **Spec coverage:** keystone composite key (Tasks 1–6, 14), `_public` sentinel + reservation (Tasks 1, 8, 14), ACL sidecar + readAcl/writeAcl + crash-order (Tasks 1, 2, 6, 11), auth-jwt tenant + stable subject (Task 7), authorize() with all six error cases (Task 8), all enforcement points — sec/comments/upload/DELETE/PATCH/share/GET-rooms/WS/health (Tasks 10–13, 14), body-derived-actor fix (Task 10), per-backend tenant-list (Tasks 2–5), migration broker composite split (Task 5b), migration coordinator forget(composite) (Task 10), sweep across tenants (Task 15), legacy migration (Task 17), test-runner registration + four ADR doc actions (Tasks 18–19). Test-count caps verified: http-endpoints 25→29 (≤30), storage-contract 17→18×3, migrate-pm-substrate untouched (at 30-cap).
+
+- **Review fixes folded in (3 independent passes):**
+  - *Blocker* — migration broker `archiveRoom(docName)` was never split → added **Task 5b** (broker splits the composite before storage; fixes the Phase A gate + a runtime mis-archive).
+  - *Blocker* — `POST /rooms` 409 now checks `readAcl` AND `readRoom`, closing an orphaned-ACL ownership-hijack window (Task 11).
+  - *Major* — new test files registered in `test:server` (Task 19 Step 0); `test:server` is an explicit file list, not a glob.
+  - *Major* — auth-jwt tests append to the EXISTING `server/__tests__/auth-jwt.test.mjs` (Task 7), not a new path.
+  - *Major* — existing DELETE-cache test expectation updated to the composite key (Task 10).
+  - *Major* — Task 16 specifies a raw `ws` client for upgrade-rejection status (WebsocketProvider can't see it).
+  - *Major* — Task 6 Step 4 rewritten: 6 affected backend-test files, ~40 layout-coupled assertion edits (not "mechanical").
+  - *Minors* — dropped dead `compositeFor` helper; `makeAuthServer` requires added; sanitize-locality comment in authorize.cjs; corrected storage-contract count.
+
+- **Deferred correctly:** graded roles (#239), share-by-email/directory, live-session force-revocation, IdP token issuance — all out of scope per spec, none implemented here.
+
+- **Accepted limitations (documented, not bugs):** share-route lost-update under two concurrent owner edits (both writers are the authorized owner — no privilege boundary crossed; last-writer-wins, acceptable for the floor); live-session revocation takes effect on next connect.
+
+- **Known approximation:** the migration script (Task 17) implements the local backend only; S3/Azure relocation is documented as an operator follow-up (spec "Legacy" allows auth-on deploys to start fresh — so the R2 production target starts fresh under the new scheme). Flagged in ADR-0015 and the script's error message — not a silent cap.
