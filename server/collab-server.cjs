@@ -40,6 +40,8 @@ const { log } = require('./logger.cjs');
 const { createRateLimiter } = require('./rate-limiter.cjs');
 const { createHttpHandler } = require('./http-handler.cjs');
 const { createMigrationCoordinator } = require('./migrate-pm-substrate.cjs');
+const { PUBLIC_TENANT, splitCompositeDocName, buildCompositeDocName, sanitize } = require('./storage-shared.cjs');
+const { authorize, ACTION } = require('./auth/authorize.cjs');
 
 // Hard caps. A single spec section is O(100KB) of text; 8 MB gives plenty of
 // headroom for Y.Doc overhead + revision history without letting a runaway
@@ -188,7 +190,8 @@ function createCollabServer(config) {
 
       const serializeRoom = await getSerializeRoom();
       const artifacts = await serializeRoom(ydoc);
-      await storage.writeRoom(docName, artifacts);
+      const { tenant, roomId } = splitCompositeDocName(docName);
+      await storage.writeRoom(tenant, roomId, artifacts);
 
       health.persistFailures = 0;
       health.lastPersistSuccess = Date.now();
@@ -221,14 +224,15 @@ function createCollabServer(config) {
       // empty doc and re-seed.
       const loadPromise = (async () => {
         try {
-          const roomData = await storage.readRoom(docName);
+          const { tenant: ldTenant, roomId: ldRoomId } = splitCompositeDocName(docName);
+          const roomData = await storage.readRoom(ldTenant, ldRoomId);
           if (!roomData || !roomData.ydocBytes) {
             log.info('room.new', { roomId: docName });
             return;
           }
           const bytes = roomData.ydocBytes;
           if (bytes.length > MAX_DOC_BYTES) {
-            await storage.quarantineRoom(docName, 'oversize');
+            await storage.quarantineRoom(ldTenant, ldRoomId, 'oversize');
             log.warn('room.quarantined', { roomId: docName, bytes: bytes.length, reason: 'oversize' });
             log.info('room.new', { roomId: docName });
             return;
@@ -242,7 +246,7 @@ function createCollabServer(config) {
             Y.applyUpdate(scratch, new Uint8Array(bytes));
             restored = true;
           } catch (err) {
-            await storage.quarantineRoom(docName, 'corrupt');
+            await storage.quarantineRoom(ldTenant, ldRoomId, 'corrupt');
             log.warn('room.quarantined', { roomId: docName, reason: 'corrupt', err: err.message });
           }
           if (restored) {
@@ -325,10 +329,23 @@ function createCollabServer(config) {
     // for the same room. Without this strip, a `/ws/<room>` URL produces
     // docName `"ws/<room>"` which sanitizes to a parallel storage key
     // (`ws_<room>.ydoc`) — see issue #17.
-    const docName = extractDocName(req.url);
+    const bareRoomId = extractDocName(req.url);
 
     const tokenMatch = (req.url || '').match(/[?&]token=([^&]*)/);
-    const token = tokenMatch ? decodeURIComponent(tokenMatch[1]) : null;
+    let token = null;
+    if (tokenMatch) {
+      try {
+        token = decodeURIComponent(tokenMatch[1]);
+      } catch {
+        // Malformed percent-encoding (e.g. `?token=%`) throws URIError.
+        // This listener is async, so an uncaught throw here is an
+        // unhandledRejection — Node's default policy kills the process: a
+        // one-request unauthenticated DoS. Reject the handshake instead.
+        socket.write('HTTP/1.1 400 Bad Request\r\n\r\n');
+        socket.destroy();
+        return;
+      }
+    }
 
     let user = null;
     if (authProvider.requiresAuth) {
@@ -338,6 +355,35 @@ function createCollabServer(config) {
     } else if (token) {
       user = await authProvider.validateToken(token);
     }
+
+    // Authorize from the cheap ACL sidecar BEFORE any doc load — an
+    // unauthorized caller never triggers getYDoc/preload, sidestepping the
+    // eviction-guard await windows (ADR-0014 pattern #2). Unconditional: never
+    // skipped because the doc is already resident (live-session revocation).
+    let dec;
+    try {
+      dec = await authorize({ authProvider, storage, user, roomId: bareRoomId, action: ACTION.READ });
+    } catch (err) {
+      // A storage I/O fault inside readAcl (S3/Azure network blip) throws out
+      // of authorize. Fail CLOSED + close the socket — without this catch the
+      // throw is an unhandledRejection AND the half-open socket hangs (no
+      // response was written) until the OS connection timeout. Mirrors the
+      // per-authorize try/catch the HTTP routes already use.
+      log.error('ws.authorize-failed', { roomId: bareRoomId, err: err && err.message });
+      socket.write('HTTP/1.1 500 Internal Server Error\r\n\r\n');
+      socket.destroy();
+      return;
+    }
+    if (!dec.ok) {
+      const line = { 401: '401 Unauthorized', 403: '403 Forbidden', 404: '404 Not Found' }[dec.status] || '403 Forbidden';
+      socket.write(`HTTP/1.1 ${line}\r\n\r\n`);
+      socket.destroy();
+      return;
+    }
+
+    // Composite docName keys ALL in-memory maps + the migration coordinator.
+    const tenant = authProvider.requiresAuth ? sanitize(user.tenant) : PUBLIC_TENANT;
+    const docName = buildCompositeDocName(tenant, bareRoomId);
 
     // Trigger doc creation + bindState (idempotent on repeat calls), then
     // await the load promise BEFORE completing the WS handshake. The
@@ -377,8 +423,9 @@ function createCollabServer(config) {
 
     // Sub-PR 1d migration broker (#47, ADR-0006). After preload + eviction
     // guard, run the v1 → v2 substrate migration before the WebSocket
-    // handshake completes. The coordinator awaits storage.archiveRoom
-    // (Q23/B2) before mutating the doc; per-room async lock (Q22/B1)
+    // handshake completes. The coordinator awaits storage.backupRoom
+    // (Q23/B2, a non-destructive snapshot — the active ACL and `.ydoc`
+    // stay in place) before mutating the doc; per-room async lock (Q22/B1)
     // collapses concurrent v2 clients on a fresh v1 room onto a single
     // migration promise. needsMigration short-circuits on already-v2 rooms
     // and on rooms that already failed migration once (migrationPartial).
@@ -462,56 +509,19 @@ function startFromEnv() {
   // accumulated in shared storage make GET /rooms slow (see issue #100).
   const DATA_DIR = path.resolve(process.cwd(), process.env.SIM_LOCAL_STORAGE_DIR || 'server/collab-db');
 
-  let storage;
-  if (process.env.SIM_STORAGE_BACKEND === 'azure') {
-    const { BlobServiceClient } = require('@azure/storage-blob');
-    const { DefaultAzureCredential } = require('@azure/identity');
-    const connectionString = process.env.SIM_AZURE_STORAGE_CONNECTION_STRING;
-    const containerName = process.env.SIM_AZURE_STORAGE_CONTAINER || 'sim-collab-rooms';
-    let blobServiceClient;
-    if (connectionString) {
-      blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
-    } else {
-      const accountUrl = process.env.SIM_AZURE_STORAGE_ACCOUNT_URL;
-      if (!accountUrl) throw new Error('Azure storage requires SIM_AZURE_STORAGE_CONNECTION_STRING or SIM_AZURE_STORAGE_ACCOUNT_URL');
-      blobServiceClient = new BlobServiceClient(accountUrl, new DefaultAzureCredential());
-    }
-    const { AzureStorageBackend } = require('./storage-azure.cjs');
-    storage = new AzureStorageBackend({ containerClient: blobServiceClient.getContainerClient(containerName) });
-    log.info('storage.backend', { backend: 'azure', container: containerName });
-  } else if (process.env.SIM_STORAGE_BACKEND === 's3') {
-    const { S3Client } = require('@aws-sdk/client-s3');
-    const endpoint = process.env.SIM_S3_ENDPOINT;
-    const region = process.env.SIM_S3_REGION || 'auto';
-    const accessKeyId = process.env.SIM_S3_ACCESS_KEY_ID;
-    const secretAccessKey = process.env.SIM_S3_SECRET_ACCESS_KEY;
-    const bucket = process.env.SIM_S3_BUCKET || 'sim-collab-rooms';
-    if (!endpoint) throw new Error('S3 storage requires SIM_S3_ENDPOINT (e.g. https://<account-id>.r2.cloudflarestorage.com)');
-    if (!accessKeyId || !secretAccessKey) throw new Error('S3 storage requires SIM_S3_ACCESS_KEY_ID and SIM_S3_SECRET_ACCESS_KEY');
-    const client = new S3Client({
-      endpoint,
-      region,
-      credentials: { accessKeyId, secretAccessKey },
-      forcePathStyle: true,
-    });
-    const { S3StorageBackend } = require('./storage-s3.cjs');
-    storage = new S3StorageBackend({ client, bucket });
-    log.info('storage.backend', { backend: 's3', bucket, endpoint });
-  } else {
-    const { LocalStorageBackend } = require('./storage-local.cjs');
-    storage = new LocalStorageBackend(DATA_DIR);
-    log.info('storage.backend', { backend: 'local', dir: DATA_DIR });
-  }
+  const { createStorageFromEnv } = require('./storage-factory.cjs');
+  const { storage, backend, detail } = createStorageFromEnv(process.env);
+  log.info('storage.backend', { backend, ...detail });
 
   if (process.env.SIM_STORAGE_BACKEND !== 'azure' && process.env.SIM_STORAGE_BACKEND !== 's3') {
     fs.mkdirSync(DATA_DIR, { recursive: true });
-    // N4 — orphan .tmp sweep at startup.
+    // N4 — orphan .tmp sweep at startup. Owned by the storage backend: it
+    // knows the layout (writeRoom stages at <dir>/<tenant>/<room>.<ext>.tmp,
+    // so a top-level readdir here would never see a post-tenant orphan).
     try {
-      for (const name of fs.readdirSync(DATA_DIR)) {
-        if (name.endsWith('.tmp')) {
-          try { fs.unlinkSync(path.join(DATA_DIR, name)); }
-          catch (err) { log.warn('startup.orphan-remove-failed', { file: name, err: err.message }); }
-        }
+      if (typeof storage.sweepOrphanTmpFiles === 'function') {
+        const removed = storage.sweepOrphanTmpFiles();
+        if (removed > 0) log.info('startup.tmp-swept', { removed });
       }
     } catch (err) {
       log.warn('startup.tmp-sweep-failed', { err: err.message });
@@ -532,14 +542,43 @@ function startFromEnv() {
   }
 
   const allowedOrigin = process.env.SIM_COLLAB_ORIGIN || '*';
-  const server = createCollabServer({ storage, host: HOST, allowedOrigin });
+  const authProvider = createAuthProvider();
+  const server = createCollabServer({ storage, host: HOST, allowedOrigin, authProvider });
 
   const LISTEN_PORT = Number(process.env.PORT || process.env.COLLAB_PORT || 1234);
-  server.httpServer.listen(LISTEN_PORT, HOST, () => {
-    log.info('server.listening', { transport: 'http+ws', host: HOST, port: LISTEN_PORT });
-    log.info('server.storage', { dir: DATA_DIR });
-    log.info('server.config', { maxDocBytes: MAX_DOC_BYTES });
-  });
+  (async () => {
+    // Legacy flat-room guard: rooms persisted before the composite-key
+    // scheme live at un-namespaced keys that the tenant-prefixed reads can
+    // never resolve — every such room would load as 'room.new' and the first
+    // flush would overwrite it with an empty doc (silent data loss). Under
+    // auth=none, pre-tenant rooms belong in '_public' by definition, so
+    // relocate them automatically BEFORE accepting connections (no ACL —
+    // matching what POST /rooms writes under auth=none). Under auth, the
+    // right tenant/owner is the operator's call — refuse to guess, log
+    // loudly, and point at the migration script.
+    try {
+      if (!authProvider.requiresAuth) {
+        const moved = await storage.migrateLegacyFlatRooms({ tenant: PUBLIC_TENANT });
+        if (moved > 0) log.info('startup.legacy-rooms-migrated', { moved, tenant: PUBLIC_TENANT });
+      } else {
+        const count = await storage.countLegacyFlatRooms();
+        if (count > 0) {
+          log.error('startup.legacy-rooms-detected', {
+            count,
+            hint: 'pre-tenant rooms are unreachable under composite keys — run: SIM_DEFAULT_TENANT=<tenant> SIM_DEFAULT_OWNER=<sub> node server/migrate-tenant-namespace.cjs',
+          });
+        }
+      }
+    } catch (err) {
+      log.warn('startup.legacy-check-failed', { err: err.message });
+    }
+
+    server.httpServer.listen(LISTEN_PORT, HOST, () => {
+      log.info('server.listening', { transport: 'http+ws', host: HOST, port: LISTEN_PORT });
+      log.info('server.storage', { dir: DATA_DIR });
+      log.info('server.config', { maxDocBytes: MAX_DOC_BYTES });
+    });
+  })();
 
   // ── Room TTL/Expiry ────────────────────────────────────────────────
   const ARCHIVE_DAYS = Number(process.env.SIM_ROOM_ARCHIVE_DAYS || 30);
@@ -550,31 +589,31 @@ function startFromEnv() {
     const now = Date.now();
     log.info('sweep.start', {});
     try {
-      const rooms = await storage.listRooms();
-      for (const id of rooms) {
-        if (server.boundDocs.has(id)) continue;
-        const stat = await storage.statRoom(id);
+      const rooms = await storage.listAllRooms(); // [{ tenant, roomId }]
+      for (const { tenant, roomId } of rooms) {
+        const composite = buildCompositeDocName(tenant, roomId);
+        if (server.boundDocs.has(composite)) continue;
+        const stat = await storage.statRoom(tenant, roomId);
         if (!stat || !stat.lastModified) continue;
         const idleMs = now - new Date(stat.lastModified).getTime();
         const idleDays = idleMs / (24 * 60 * 60 * 1000);
         if (idleDays >= ARCHIVE_DAYS) {
-          log.info('sweep.archive', { roomId: id, idleDays: Math.round(idleDays) });
-          await storage.archiveRoom(id);
+          log.info('sweep.archive', { roomId: composite, idleDays: Math.round(idleDays) });
+          await storage.archiveRoom(tenant, roomId);
         }
       }
     } catch (err) {
       log.error('sweep.archive.failed', { err: err.message });
     }
     try {
-      if (typeof storage.listArchivedRooms === 'function') {
-        const archived = await storage.listArchivedRooms();
-        for (const room of archived) {
-          if (!room.archivedAt) continue;
-          const archivedMs = now - new Date(room.archivedAt).getTime();
-          const archivedDays = archivedMs / (24 * 60 * 60 * 1000);
+      if (typeof storage.listAllArchivedRooms === 'function') {
+        const archived = await storage.listAllArchivedRooms(); // [{ tenant, roomId, archivedAt }]
+        for (const { tenant, roomId, archivedAt } of archived) {
+          if (!archivedAt) continue;
+          const archivedDays = (now - new Date(archivedAt).getTime()) / (24 * 60 * 60 * 1000);
           if (archivedDays >= DELETE_DAYS) {
-            log.info('sweep.delete', { roomId: room.id, archivedDays: Math.round(archivedDays) });
-            await storage.deleteArchivedRoom(room.id);
+            log.info('sweep.delete', { roomId: buildCompositeDocName(tenant, roomId), archivedDays: Math.round(archivedDays) });
+            await storage.deleteArchivedRoom(tenant, roomId);
           }
         }
       }

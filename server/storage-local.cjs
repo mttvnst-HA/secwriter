@@ -33,6 +33,7 @@ const {
   ARTIFACT_KIND_SEC,
   ARTIFACT_KIND_COMMENTS,
   ARTIFACT_KIND_LINT,
+  ARTIFACT_KIND_ACL,
   ARTIFACT_CATALOG,
   planArtifactWrites,
 } = require('./storage-shared.cjs');
@@ -42,6 +43,7 @@ const EXT_BY_KIND = {
   [ARTIFACT_KIND_SEC]: '.SEC',
   [ARTIFACT_KIND_COMMENTS]: '.comments.json',
   [ARTIFACT_KIND_LINT]: '.lint.json',
+  [ARTIFACT_KIND_ACL]: '.acl.json',
 };
 
 class LocalStorageBackend extends RoomStorageBase {
@@ -59,9 +61,10 @@ class LocalStorageBackend extends RoomStorageBase {
    * (`.ydoc` LAST). If any rename fails, restore renamed artifacts from
    * in-memory backup and remove .tmp files.
    */
-  async writeRoom(roomId, artifacts) {
+  async writeRoom(tenant, roomId, artifacts) {
     const plan = planArtifactWrites(artifacts).map(({ kind, bytes }) => {
-      const target = this._keyForArtifact(roomId, kind);
+      const target = this._keyForArtifact(tenant, roomId, kind);
+      fs.mkdirSync(path.dirname(target), { recursive: true });
       return {
         target,
         tmp: `${target}.tmp`,
@@ -70,9 +73,7 @@ class LocalStorageBackend extends RoomStorageBase {
       };
     });
 
-    for (const item of plan) {
-      fs.writeFileSync(item.tmp, item.bytes);
-    }
+    for (const item of plan) fs.writeFileSync(item.tmp, item.bytes);
 
     const renamed = [];
     try {
@@ -97,7 +98,19 @@ class LocalStorageBackend extends RoomStorageBase {
   // ── Adapter primitives ──────────────────────────────────────────────────
 
   async _putBytes(key, bytes) {
+    fs.mkdirSync(path.dirname(key), { recursive: true });
     fs.writeFileSync(key, bytes);
+  }
+
+  async _putBytesIfAbsent(key, bytes) {
+    fs.mkdirSync(path.dirname(key), { recursive: true });
+    try {
+      fs.writeFileSync(key, bytes, { flag: 'wx' }); // atomic create-or-fail
+      return true;
+    } catch (err) {
+      if (err.code === 'EEXIST') return false;
+      throw err;
+    }
   }
 
   async _getBytes(key) {
@@ -125,26 +138,32 @@ class LocalStorageBackend extends RoomStorageBase {
   }
 
   async _copyKey(srcKey, dstKey) {
-    fs.renameSync(srcKey, dstKey);
+    // A true COPY (not rename): the base-class contract is copy-then-delete,
+    // and backupRoom relies on the source surviving. A rename here would
+    // silently turn the broker's non-destructive backup into a move.
+    fs.mkdirSync(path.dirname(dstKey), { recursive: true });
+    fs.copyFileSync(srcKey, dstKey);
   }
 
   // ── Naming ──────────────────────────────────────────────────────────────
 
-  _keyForArtifact(roomId, kind, opts = {}) {
+  _keyForArtifact(tenant, roomId, kind, opts = {}) {
+    const t = sanitize(tenant);
     const safe = sanitize(roomId);
     const ext = EXT_BY_KIND[kind];
-    if (opts.archived) {
-      return path.join(this._dir, 'archive', `${safe}${ext}`);
-    }
+    if (opts.archived) return path.join(this._dir, 'archive', t, `${safe}${ext}`);
     if (opts.quarantine) {
       const { reason, ts } = opts.quarantine;
-      return path.join(this._dir, `${safe}${ext}.${reason}.${ts}`);
+      return path.join(this._dir, t, `${safe}${ext}.${reason}.${ts}`);
     }
-    return path.join(this._dir, `${safe}${ext}`);
+    return path.join(this._dir, t, `${safe}${ext}`);
   }
 
-  _listPrefix(archived) {
-    return archived ? path.join(this._dir, 'archive') : this._dir;
+  _listPrefix(archived, tenant) {
+    if (archived) {
+      return tenant ? path.join(this._dir, 'archive', sanitize(tenant)) : path.join(this._dir, 'archive');
+    }
+    return tenant ? path.join(this._dir, sanitize(tenant)) : this._dir;
   }
 
   _parseActiveKey(fullKey, kind) {
@@ -153,47 +172,159 @@ class LocalStorageBackend extends RoomStorageBase {
     // Match "<name>.ydoc" exactly — exclude "<name>.ydoc.tmp",
     // "<name>.ydoc.corrupt.<ts>", "<name>.ydoc.oversize.<ts>".
     if (!name.endsWith('.ydoc') || name.includes('.ydoc.')) return null;
-    const id = name.slice(0, -'.ydoc'.length);
-    return id.length > 0 ? id : null;
+    const roomId = name.slice(0, -'.ydoc'.length);
+    if (!roomId) return null;
+    const tenant = path.basename(path.dirname(fullKey));
+    if (!tenant || tenant === 'archive') return null;
+    return { tenant, roomId };
   }
 
   _parseArchiveKey(fullKey, kind) {
     if (kind !== ARTIFACT_KIND_YDOC) return null;
     const name = path.basename(fullKey);
     if (!name.endsWith('.ydoc') || name.includes('.ydoc.')) return null;
-    const id = name.slice(0, -'.ydoc'.length);
-    return id.length > 0 ? id : null;
+    const roomId = name.slice(0, -'.ydoc'.length);
+    if (!roomId) return null;
+    const tenant = path.basename(path.dirname(fullKey));
+    if (!tenant) return null;
+    return { tenant, roomId };
+  }
+
+  /** Tenant subdirs under the data dir (excludes the shared `archive` dir). */
+  _listTenants() {
+    if (!fs.existsSync(this._dir)) return [];
+    return fs.readdirSync(this._dir, { withFileTypes: true })
+      .filter(d => d.isDirectory() && d.name !== 'archive')
+      .map(d => d.name);
+  }
+
+  /** Tenant subdirs under <dir>/archive. */
+  _listArchivedTenants() {
+    const archiveDir = path.join(this._dir, 'archive');
+    if (!fs.existsSync(archiveDir)) return [];
+    return fs.readdirSync(archiveDir, { withFileTypes: true })
+      .filter(d => d.isDirectory())
+      .map(d => d.name);
+  }
+
+  /** Local readdir is non-recursive — walk tenant subdirs for the cross-tenant list. */
+  async listAllRooms() {
+    const out = [];
+    for (const t of this._listTenants()) {
+      for (const roomId of await this.listRooms(t)) out.push({ tenant: t, roomId });
+    }
+    return out;
+  }
+
+  async listAllArchivedRooms() {
+    const out = [];
+    for (const t of this._listArchivedTenants()) {
+      for (const r of await this.listArchivedRooms(t)) {
+        out.push({ tenant: t, roomId: r.id, archivedAt: r.archivedAt });
+      }
+    }
+    return out;
   }
 
   // ── Archive marker (Local uses a sidecar file) ──────────────────────────
 
-  async _writeArchiveMarker(roomId, archivedAt) {
-    const safe = sanitize(roomId);
-    const archiveDir = path.join(this._dir, 'archive');
-    fs.mkdirSync(archiveDir, { recursive: true });
-    fs.writeFileSync(path.join(archiveDir, `${safe}.archivedAt`), archivedAt, 'utf-8');
+  async _writeArchiveMarker(tenant, roomId, archivedAt) {
+    const dir = path.join(this._dir, 'archive', sanitize(tenant));
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, `${sanitize(roomId)}.archivedAt`), archivedAt, 'utf-8');
   }
 
-  async _readArchiveMarker(roomId) {
-    const safe = sanitize(roomId);
-    const markerPath = path.join(this._dir, 'archive', `${safe}.archivedAt`);
+  async _readArchiveMarker(tenant, roomId) {
+    const markerPath = path.join(this._dir, 'archive', sanitize(tenant), `${sanitize(roomId)}.archivedAt`);
     if (!fs.existsSync(markerPath)) return null;
     try { return fs.readFileSync(markerPath, 'utf-8').trim(); }
     catch { return null; }
   }
 
-  async _deleteArchiveMarker(roomId) {
-    const safe = sanitize(roomId);
-    const markerPath = path.join(this._dir, 'archive', `${safe}.archivedAt`);
+  async _deleteArchiveMarker(tenant, roomId) {
+    const markerPath = path.join(this._dir, 'archive', sanitize(tenant), `${sanitize(roomId)}.archivedAt`);
     try { fs.unlinkSync(markerPath); } catch { /* may not exist */ }
   }
 
-  // ── Override: archiveRoom ensures archive dir exists before copy ────────
+  // ── Legacy flat layout (pre-tenant): <dir>/<safe>.<ext> at the top level ──
 
-  async archiveRoom(roomId) {
+  _legacyFlatKeyForArtifact(roomId, kind) {
+    return path.join(this._dir, `${sanitize(roomId)}${EXT_BY_KIND[kind]}`);
+  }
+
+  async _listLegacyFlatRoomIds() {
+    if (!fs.existsSync(this._dir)) return [];
+    const ids = [];
+    for (const e of fs.readdirSync(this._dir, { withFileTypes: true })) {
+      if (!e.isFile()) continue; // tenant subdirs + 'archive' are dirs — skip
+      // "<id>.ydoc" exactly — excludes ".ydoc.tmp" and legacy quarantine
+      // "<id>.ydoc.<reason>.<ts>".
+      if (e.name.endsWith('.ydoc') && !e.name.includes('.ydoc.')) {
+        ids.push(e.name.slice(0, -'.ydoc'.length));
+      }
+    }
+    return ids;
+  }
+
+  // Legacy flat ARCHIVE layout: <dir>/archive/<safe>.<ext> files directly in
+  // archive/ (+ <safe>.archivedAt marker file). The tenant layout's archived
+  // rooms are SUBDIRS of archive/, so flat files there are unambiguous.
+
+  _legacyFlatArchiveKeyForArtifact(roomId, kind) {
+    return path.join(this._dir, 'archive', `${sanitize(roomId)}${EXT_BY_KIND[kind]}`);
+  }
+
+  async _listLegacyFlatArchivedRoomIds() {
     const archiveDir = path.join(this._dir, 'archive');
-    fs.mkdirSync(archiveDir, { recursive: true });
-    return super.archiveRoom(roomId);
+    if (!fs.existsSync(archiveDir)) return [];
+    const ids = [];
+    for (const e of fs.readdirSync(archiveDir, { withFileTypes: true })) {
+      if (!e.isFile()) continue; // tenant archive subdirs — skip
+      if (e.name.endsWith('.ydoc') && !e.name.includes('.ydoc.')) {
+        ids.push(e.name.slice(0, -'.ydoc'.length));
+      }
+    }
+    return ids;
+  }
+
+  async _readLegacyFlatArchiveMarker(roomId) {
+    const markerPath = path.join(this._dir, 'archive', `${sanitize(roomId)}.archivedAt`);
+    if (!fs.existsSync(markerPath)) return null;
+    try { return fs.readFileSync(markerPath, 'utf-8').trim(); }
+    catch { return null; }
+  }
+
+  async _deleteLegacyFlatArchiveMarker(roomId) {
+    const markerPath = path.join(this._dir, 'archive', `${sanitize(roomId)}.archivedAt`);
+    try { fs.unlinkSync(markerPath); } catch { /* may not exist */ }
+  }
+
+  // ── Orphan .tmp sweep ─────────────────────────────────────────────────────
+
+  /**
+   * Delete orphaned `*.tmp` staging files anywhere under the data dir.
+   * writeRoom stages-then-renames within one call, so any `.tmp` present at
+   * boot is a crash leftover. The walk covers tenant subdirs and the archive
+   * tree — a top-level-only readdir would miss every post-tenant-layout
+   * orphan (writeRoom stages at `<dir>/<tenant>/<room>.<ext>.tmp`).
+   * Returns the number of files removed.
+   */
+  sweepOrphanTmpFiles() {
+    let removed = 0;
+    const walk = (dir) => {
+      let entries;
+      try { entries = fs.readdirSync(dir, { withFileTypes: true }); }
+      catch { return; }
+      for (const e of entries) {
+        const p = path.join(dir, e.name);
+        if (e.isDirectory()) walk(p);
+        else if (e.name.endsWith('.tmp')) {
+          try { fs.unlinkSync(p); removed++; } catch { /* best effort */ }
+        }
+      }
+    };
+    walk(this._dir);
+    return removed;
   }
 }
 

@@ -6,9 +6,9 @@
  * primitives, blob naming, and the `.ydoc` lease wrapping writeRoom for
  * multi-instance safety.
  *
- * Active layout:    <id>/room.{ydoc|sec|comments.json}
- * Quarantine layout: <id>/room.<ext>.<reason>.<ts>
- * Archive layout:   archive/<id>/room.{ydoc|sec|comments.json}
+ * Active layout:    <tenant>/<id>/room.{ydoc|sec|comments.json|acl.json}
+ * Quarantine layout: <tenant>/<id>/room.<ext>.<reason>.<ts>
+ * Archive layout:   archive/<tenant>/<id>/room.{ydoc|sec|comments.json|acl.json}
  *                    + blob metadata `archivedat` (lowercase — Node HTTP
  *                    parser normalizes response header names to lowercase).
  *
@@ -25,6 +25,7 @@ const {
   ARTIFACT_KIND_SEC,
   ARTIFACT_KIND_COMMENTS,
   ARTIFACT_KIND_LINT,
+  ARTIFACT_KIND_ACL,
   planArtifactWrites,
 } = require('./storage-shared.cjs');
 
@@ -35,6 +36,7 @@ const SUFFIX_BY_KIND = {
   [ARTIFACT_KIND_SEC]: 'room.sec',
   [ARTIFACT_KIND_COMMENTS]: 'room.comments.json',
   [ARTIFACT_KIND_LINT]: 'room.lint.json',
+  [ARTIFACT_KIND_ACL]: 'room.acl.json',
 };
 
 class AzureStorageBackend extends RoomStorageBase {
@@ -47,11 +49,11 @@ class AzureStorageBackend extends RoomStorageBase {
 
   // ── Public override: writeRoom with optional .ydoc blob lease ───────────
 
-  async writeRoom(roomId, artifacts) {
+  async writeRoom(tenant, roomId, artifacts) {
     await this._initPromise;
     const plan = planArtifactWrites(artifacts);
 
-    const ydocKey = this._keyForArtifact(roomId, ARTIFACT_KIND_YDOC);
+    const ydocKey = this._keyForArtifact(tenant, roomId, ARTIFACT_KIND_YDOC);
     const ydocBlob = this._container.getBlockBlobClient(ydocKey);
 
     let leaseClient = null;
@@ -69,12 +71,10 @@ class AzureStorageBackend extends RoomStorageBase {
 
     try {
       for (const { kind, bytes } of plan) {
-        const key = this._keyForArtifact(roomId, kind);
+        const key = this._keyForArtifact(tenant, roomId, kind);
         const blob = this._container.getBlockBlobClient(key);
         const opts = { metadata };
-        if (kind === ARTIFACT_KIND_YDOC && leaseId) {
-          opts.conditions = { leaseId };
-        }
+        if (kind === ARTIFACT_KIND_YDOC && leaseId) opts.conditions = { leaseId };
         await blob.upload(bytes, bytes.length, opts);
       }
     } finally {
@@ -92,6 +92,21 @@ class AzureStorageBackend extends RoomStorageBase {
     const uploadOpts = {};
     if (opts.metadata) uploadOpts.metadata = opts.metadata;
     await blob.upload(bytes, bytes.length, uploadOpts);
+  }
+
+  async _putBytesIfAbsent(key, bytes, opts = {}) {
+    await this._initPromise;
+    const blob = this._container.getBlockBlobClient(key);
+    const uploadOpts = { conditions: { ifNoneMatch: '*' } }; // conditional create
+    if (opts.metadata) uploadOpts.metadata = opts.metadata;
+    try {
+      await blob.upload(bytes, bytes.length, uploadOpts);
+      return true;
+    } catch (err) {
+      // 409 BlobAlreadyExists / 412 ConditionNotMet — another writer won.
+      if (err.statusCode === 409 || err.statusCode === 412) return false;
+      throw err;
+    }
   }
 
   async _getBytes(key) {
@@ -147,43 +162,90 @@ class AzureStorageBackend extends RoomStorageBase {
 
   // ── Naming ──────────────────────────────────────────────────────────────
 
-  _keyForArtifact(roomId, kind, opts = {}) {
+  _keyForArtifact(tenant, roomId, kind, opts = {}) {
+    const t = sanitize(tenant);
     const id = sanitize(roomId);
     const suffix = SUFFIX_BY_KIND[kind];
-    if (opts.archived) {
-      return `archive/${id}/${suffix}`;
-    }
+    if (opts.archived) return `archive/${t}/${id}/${suffix}`;
     if (opts.quarantine) {
       const { reason, ts } = opts.quarantine;
-      return `${id}/${suffix}.${reason}.${ts}`;
+      return `${t}/${id}/${suffix}.${reason}.${ts}`;
     }
-    return `${id}/${suffix}`;
+    return `${t}/${id}/${suffix}`;
   }
 
-  _listPrefix(archived) {
-    return archived ? 'archive/' : undefined;
+  _listPrefix(archived, tenant) {
+    if (archived) return tenant ? `archive/${sanitize(tenant)}/` : 'archive/';
+    return tenant ? `${sanitize(tenant)}/` : undefined;
   }
 
   _parseActiveKey(key, kind) {
     if (kind !== ARTIFACT_KIND_YDOC) return null;
     if (key.startsWith('archive/')) return null;
     if (!key.endsWith('/room.ydoc')) return null;
-    const id = key.slice(0, -'/room.ydoc'.length);
-    return id.length > 0 ? id : null;
+    const i = key.indexOf('/');
+    if (i < 0) return null;
+    const tenant = key.slice(0, i);
+    const rest = key.slice(i + 1);                 // <id>/room.ydoc
+    const roomId = rest.slice(0, -'/room.ydoc'.length);
+    if (!tenant || !roomId || roomId.includes('/')) return null;
+    return { tenant, roomId };
   }
 
   _parseArchiveKey(key, kind) {
     if (kind !== ARTIFACT_KIND_YDOC) return null;
     if (!key.startsWith('archive/')) return null;
     if (!key.endsWith('/room.ydoc')) return null;
-    const withoutPrefix = key.slice('archive/'.length);
-    const id = withoutPrefix.slice(0, -'/room.ydoc'.length);
-    return id.length > 0 ? id : null;
+    const rest = key.slice('archive/'.length);     // <tenant>/<id>/room.ydoc
+    const i = rest.indexOf('/');
+    if (i < 0) return null;
+    const tenant = rest.slice(0, i);
+    const roomId = rest.slice(i + 1).slice(0, -'/room.ydoc'.length);
+    if (!tenant || !roomId || roomId.includes('/')) return null;
+    return { tenant, roomId };
+  }
+
+  // ── Legacy flat layout (pre-tenant): <id>/room.<ext> (one path segment) ──
+
+  _legacyFlatKeyForArtifact(roomId, kind) {
+    return `${sanitize(roomId)}/${SUFFIX_BY_KIND[kind]}`;
+  }
+
+  async _listLegacyFlatRoomIds() {
+    const keys = await this._listKeys({});
+    const ids = [];
+    for (const key of keys) {
+      // Exactly ONE path segment before room.ydoc — the tenant layout
+      // (<tenant>/<id>/room.ydoc) and the archive layouts have two.
+      const m = key.match(/^([^/]+)\/room\.ydoc$/);
+      if (m && m[1] !== 'archive') ids.push(m[1]);
+    }
+    return ids;
+  }
+
+  // Legacy flat ARCHIVE layout: archive/<id>/room.<ext> — one segment
+  // between archive/ and room.ydoc (the tenant layout's
+  // archive/<tenant>/<id>/room.ydoc has two). archivedAt lives in blob
+  // metadata; the base default marker hook reads it via _readArchiveMarker's
+  // key parameter.
+
+  _legacyFlatArchiveKeyForArtifact(roomId, kind) {
+    return `archive/${sanitize(roomId)}/${SUFFIX_BY_KIND[kind]}`;
+  }
+
+  async _listLegacyFlatArchivedRoomIds() {
+    const keys = await this._listKeys({ prefix: 'archive/' });
+    const ids = [];
+    for (const key of keys) {
+      const m = key.match(/^archive\/([^/]+)\/room\.ydoc$/);
+      if (m) ids.push(m[1]);
+    }
+    return ids;
   }
 
   // ── Archive marker (Azure uses blob metadata) ───────────────────────────
 
-  async _readArchiveMarker(_roomId, archiveYdocKey) {
+  async _readArchiveMarker(_tenant, _roomId, archiveYdocKey) {
     await this._initPromise;
     try {
       const blob = this._container.getBlockBlobClient(archiveYdocKey);

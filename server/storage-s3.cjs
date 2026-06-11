@@ -32,6 +32,7 @@ const {
   ARTIFACT_KIND_SEC,
   ARTIFACT_KIND_COMMENTS,
   ARTIFACT_KIND_LINT,
+  ARTIFACT_KIND_ACL,
 } = require('./storage-shared.cjs');
 const { log } = require('./logger.cjs');
 
@@ -40,6 +41,7 @@ const EXT_BY_KIND = {
   [ARTIFACT_KIND_SEC]: '.SEC',
   [ARTIFACT_KIND_COMMENTS]: '.comments.json',
   [ARTIFACT_KIND_LINT]: '.lint.json',
+  [ARTIFACT_KIND_ACL]: '.acl.json',
 };
 
 function isNotFound(err) {
@@ -66,6 +68,35 @@ class S3StorageBackend extends RoomStorageBase {
       Body: bytes,
       ContentType: opts.contentType || 'application/octet-stream',
     }));
+  }
+
+  async _putBytesIfAbsent(key, bytes, opts = {}) {
+    try {
+      await this.client.send(new PutObjectCommand({
+        Bucket: this.bucket,
+        Key: key,
+        Body: bytes,
+        ContentType: opts.contentType || 'application/octet-stream',
+        IfNoneMatch: '*', // conditional create (AWS S3, R2, MinIO ≥ 2024-08)
+      }));
+      return true;
+    } catch (err) {
+      const status = err.$metadata?.httpStatusCode;
+      // 412 PreconditionFailed = key exists; 409 ConditionalRequestConflict =
+      // a concurrent conditional write on the same key — either way, lost.
+      if (status === 412 || status === 409 ||
+          err.name === 'PreconditionFailed' || err.name === 'ConditionalRequestConflict') {
+        return false;
+      }
+      // Backend without conditional-write support (older MinIO/gateways):
+      // degrade to the base's non-atomic stat-then-put rather than breaking
+      // every create — but say so, since the create-claim atomicity is gone.
+      if (status === 501 || err.name === 'NotImplemented') {
+        log.warn('putIfAbsent.conditional-unsupported', { key });
+        return super._putBytesIfAbsent(key, bytes, opts);
+      }
+      throw err;
+    }
   }
 
   async _getBytes(key) {
@@ -131,52 +162,91 @@ class S3StorageBackend extends RoomStorageBase {
 
   // ── Naming ──────────────────────────────────────────────────────────────
 
-  _keyForArtifact(roomId, kind, opts = {}) {
+  _keyForArtifact(tenant, roomId, kind, opts = {}) {
+    const t = sanitize(tenant);
     const safe = sanitize(roomId);
     const ext = EXT_BY_KIND[kind];
-    if (opts.archived) {
-      return `archive/${safe}${ext}`;
-    }
+    if (opts.archived) return `archive/${t}/${safe}${ext}`;
     if (opts.quarantine) {
-      // S3 historical: ONLY `.ydoc` is quarantined, suffix goes BEFORE the
-      // extension (not after), and there is no timestamp. Returning null
-      // tells RoomStorageBase to skip this kind.
+      // S3 historical: suffix BEFORE the extension, no timestamp. Only the
+      // `.ydoc` is quarantined; the ACL must stay active (base-class
+      // quarantineRoom skips it — see room-storage.cjs) so the live session
+      // that triggered the quarantine keeps an owned room when its next
+      // flush rewrites the `.ydoc`. Other kinds skip.
       if (kind !== ARTIFACT_KIND_YDOC) return null;
       const { reason } = opts.quarantine;
-      return `${safe}.${reason}.ydoc`;
+      return `${t}/${safe}.${reason}${ext}`;
     }
-    return `${safe}${ext}`;
+    return `${t}/${safe}${ext}`;
   }
 
-  _listPrefix(archived) {
-    return archived ? 'archive/' : undefined;
+  _listPrefix(archived, tenant) {
+    if (archived) return tenant ? `archive/${sanitize(tenant)}/` : 'archive/';
+    return tenant ? `${sanitize(tenant)}/` : undefined;
   }
 
   _parseActiveKey(key, kind) {
     if (kind !== ARTIFACT_KIND_YDOC) return null;
     if (key.startsWith('archive/')) return null;
-    // Match exactly <name>.ydoc — `name` must not contain '.' to exclude
-    // <name>.<reason>.ydoc (quarantined).
-    const m = key.match(/^([^./]+)\.ydoc$/);
+    // <tenant>/<roomId>.ydoc — roomId has no '.' so quarantined
+    // <tenant>/<roomId>.<reason>.ydoc is excluded.
+    const m = key.match(/^([^/]+)\/([^./]+)\.ydoc$/);
     if (!m) return null;
-    // Sanitize-validate parsed names: reject keys whose name contains
-    // chars outside the sanitize charset (couldn't have come from a
-    // normal write through this backend).
-    if (sanitize(m[1]) !== m[1]) return null;
-    return m[1];
+    const [, tenant, roomId] = m;
+    if (sanitize(tenant) !== tenant || sanitize(roomId) !== roomId) return null;
+    return { tenant, roomId };
   }
 
   _parseArchiveKey(key, kind) {
     if (kind !== ARTIFACT_KIND_YDOC) return null;
-    const m = key.match(/^archive\/([^./]+)\.ydoc$/);
+    const m = key.match(/^archive\/([^/]+)\/([^./]+)\.ydoc$/);
     if (!m) return null;
-    if (sanitize(m[1]) !== m[1]) return null;
-    return m[1];
+    const [, tenant, roomId] = m;
+    if (sanitize(tenant) !== tenant || sanitize(roomId) !== roomId) return null;
+    return { tenant, roomId };
+  }
+
+  // ── Legacy flat layout (pre-tenant): <safe>.<ext> at the bucket root ─────
+
+  _legacyFlatKeyForArtifact(roomId, kind) {
+    return `${sanitize(roomId)}${EXT_BY_KIND[kind]}`;
+  }
+
+  async _listLegacyFlatRoomIds() {
+    const keys = await this._listKeys({});
+    const ids = [];
+    for (const key of keys) {
+      // "<id>.ydoc" with no '/' (tenant-prefixed and archive/ keys excluded)
+      // and no '.' in the id (legacy quarantine "<id>.<reason>.ydoc" excluded;
+      // legacy sanitize never emitted dots).
+      const m = key.match(/^([^/.]+)\.ydoc$/);
+      if (m) ids.push(m[1]);
+    }
+    return ids;
+  }
+
+  // Legacy flat ARCHIVE layout: archive/<safe>.<ext> — one segment after
+  // archive/ (the tenant layout's archive/<tenant>/<safe>.<ext> has two).
+  // archivedAt lives in object metadata, which the base default marker hook
+  // reads via _readArchiveMarker's key parameter.
+
+  _legacyFlatArchiveKeyForArtifact(roomId, kind) {
+    return `archive/${sanitize(roomId)}${EXT_BY_KIND[kind]}`;
+  }
+
+  async _listLegacyFlatArchivedRoomIds() {
+    const keys = await this._listKeys({ prefix: 'archive/' });
+    const ids = [];
+    for (const key of keys) {
+      const m = key.match(/^archive\/([^/.]+)\.ydoc$/);
+      if (m) ids.push(m[1]);
+    }
+    return ids;
   }
 
   // ── Archive marker (S3 uses object metadata) ────────────────────────────
 
-  async _readArchiveMarker(_roomId, archiveYdocKey) {
+  async _readArchiveMarker(_tenant, _roomId, archiveYdocKey) {
     try {
       const head = await this.client.send(new HeadObjectCommand({
         Bucket: this.bucket,

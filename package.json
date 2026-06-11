@@ -30,7 +30,7 @@
     "audit:report": "node tools/ui-audit/collect-findings.mjs test-results/findings.json",
     "audit:promote": "node tools/ui-audit/promote-to-github.mjs test-results/findings.json",
     "collab": "node server/collab-server.cjs",
-    "test:server": "node --test --test-force-exit server/__tests__/dom-polyfill.test.mjs server/__tests__/storage-local.test.mjs server/__tests__/storage-azure.test.mjs server/__tests__/storage-s3.test.mjs server/__tests__/storage-contract.test.mjs server/__tests__/room-serializer.test.mjs server/__tests__/migrate-pm-substrate.test.mjs server/__tests__/http-endpoints.test.mjs server/__tests__/auth-jwt.test.mjs server/__tests__/collab-server.test.mjs",
+    "test:server": "node --test --test-force-exit server/__tests__/dom-polyfill.test.mjs server/__tests__/storage-local.test.mjs server/__tests__/storage-azure.test.mjs server/__tests__/storage-s3.test.mjs server/__tests__/storage-contract.test.mjs server/__tests__/storage-shared.test.mjs server/__tests__/room-serializer.test.mjs server/__tests__/migrate-pm-substrate.test.mjs server/__tests__/http-endpoints.test.mjs server/__tests__/http-list-rooms-event-loop.test.mjs server/__tests__/auth-jwt.test.mjs server/auth/__tests__/authorize.test.mjs server/__tests__/migrate-tenant-namespace.test.mjs server/__tests__/collab-server.test.mjs",
     "test:azure:integration": "node --test server/__tests__/storage-azure.integration.test.mjs"
   },
   "dependencies": {

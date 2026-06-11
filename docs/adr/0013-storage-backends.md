@@ -19,7 +19,7 @@ Three storage backends are wired and selectable via `SIM_STORAGE_BACKEND`:
 
 **Inheritance and atomicity:**
 
-All three extend `RoomStorageBase` (`server/room-storage.cjs`). The base owns the public methodset (`writeRoom / readRoom / deleteRoom / listRooms / statRoom / quarantineRoom / archiveRoom / restoreRoom / listArchivedRooms / deleteArchivedRoom`) by composing seven adapter primitives (`_putBytes / _getBytes / _deleteKey / _listKeys / _statKey / _copyKey / _keyForArtifact`) plus three name-parsing hooks. Shared `sanitize()` and the `ARTIFACT_CATALOG` (`.ydoc` LAST = source of truth) live in `server/storage-shared.cjs`. **Adding a fourth artifact is a one-line catalog edit; adapters never decide write order.**
+All three extend `RoomStorageBase` (`server/room-storage.cjs`). The base owns the public methodset (`writeRoom / readRoom / readAcl / writeAcl / writeAclIfAbsent / deleteRoom / listRooms / statRoom / quarantineRoom / archiveRoom / backupRoom / restoreRoom / listArchivedRooms / deleteArchivedRoom / migrateLegacyFlatRooms`) by composing the adapter primitives (`_putBytes / _putBytesIfAbsent / _getBytes / _deleteKey / _listKeys / _statKey / _copyKey / _keyForArtifact`) plus three name-parsing hooks. `_putBytesIfAbsent` is the conditional-create primitive behind `writeAclIfAbsent` (the POST /rooms atomic ownership claim): local `wx` open flag, S3 `If-None-Match: *` (with a logged non-atomic fallback on 501 NotImplemented for older gateways), Azure `ifNoneMatch: '*'`. Shared `sanitize()` and the `ARTIFACT_CATALOG` (`.ydoc` LAST = source of truth) live in `server/storage-shared.cjs`. **Adding a fourth artifact is a one-line catalog edit; adapters never decide write order.**
 
 Local overrides `writeRoom` for stage-rename-rollback atomicity. Azure overrides it for `.ydoc` blob lease. S3 inherits the default sequential `.ydoc`-LAST write.
 
@@ -29,7 +29,7 @@ Local overrides `writeRoom` for stage-rename-rollback atomicity. Azure overrides
 
 **Cross-backend contract:**
 
-Verified by `server/__tests__/storage-contract.test.mjs` (12 assertions × 3 backends = 36 tests). The contract pins shared behavior — `listArchivedRooms` returns `{ id, archivedAt }` uniformly with ISO-8601 timestamps; both fields are required by the collab-server sweep.
+Verified by `server/__tests__/storage-contract.test.mjs` (one shared assertion set × 3 backends, 20 tests each; grew from 12 with the ACL round-trip/claim, delete-order, and legacy-migration checks added around [ADR-0017](0017-room-authorization-model.md)). The contract pins shared behavior — `listArchivedRooms` returns `{ id, archivedAt }` uniformly with ISO-8601 timestamps; both fields are required by the collab-server sweep.
 
 ## Consequences
 
@@ -44,6 +44,16 @@ Verified by `server/__tests__/storage-contract.test.mjs` (12 assertions × 3 bac
 - **Re-litigation risk:**
   - **"Why not one backend (just S3)?"** Render's stock plan ships Azure Blob; switching to S3 means paying an external provider + an egress hop. Local dev needs disk. The cost of three adapters is a one-time write per primitive, not an ongoing tax.
   - **"Why not a single transactional layer in the base class?"** S3/R2 doesn't have one — there's nothing to transact against. See [ADR-0005](0005-storage-adapter-atomicity-per-backend.md).
+
+## Amendment (2026-06-11, ADR-0017): composite key + `.acl.json` artifact
+
+Room authorization ([ADR-0017](0017-room-authorization-model.md), [#211](https://github.com/mttvnst-HA/secwriter/issues/211)) changes the storage key from a bare `roomId` to a composite `(tenant, roomId)` and adds a fourth artifact:
+
+- **Composite key.** Every adapter primitive now takes `(tenant, roomId, kind)`. `_keyForArtifact` namespaces under the tenant — local: `<dir>/<tenant>/<id><ext>`; S3/Azure: `<tenant>/<id>.<ext>` object prefix. Under auth=none everything lives under the reserved `_public` tenant, so there is no flat-vs-prefixed fork.
+- **`.acl.json` artifact** = `{ ownerId, sharedWith[] }`, catalogued BEFORE `.ydoc` (see the [ADR-0005](0005-storage-adapter-atomicity-per-backend.md) amendment for the crash-order rationale). Read cheaply via `readAcl(tenant, roomId)` before any doc load; written by `writeAcl`. Still a one-line catalog edit — adapters never decide order.
+- **Per-backend tenant enumeration (three shapes).** `listRooms(tenant)` lists one tenant; `listAllRooms()` returns `[{ tenant, roomId }]` cross-tenant for the server sweep.
+  - **Local** readdir is non-recursive, so it overrides `listAllRooms` / `listAllArchivedRooms` / `_listTenants` / `_listArchivedTenants` to walk tenant subdirectories.
+  - **S3 / Azure** inherit the base `listAllRooms`, which parses the `<tenant>/<id>.<ext>` flat key space via `_parseActiveKey` — no per-tenant directory walk needed.
 
 ## Alternatives considered
 

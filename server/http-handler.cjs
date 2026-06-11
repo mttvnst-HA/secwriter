@@ -14,6 +14,8 @@
 // against CJS Y.Docs. room-serializer uses the same CJS Yjs as the server.
 const { seedRoomFromBlocks } = require('./room-serializer.cjs');
 const { log } = require('./logger.cjs');
+const { sanitize, PUBLIC_TENANT, buildCompositeDocName } = require('./storage-shared.cjs');
+const { authorize, checkPrincipal, aclAllowsRead, ACTION } = require('./auth/authorize.cjs');
 
 /**
  * @param {Object} deps
@@ -32,8 +34,8 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
   // room could still be destroyed or overwritten. These helpers read the lock
   // state (live doc preferred, else persisted bytes) and decide whether the
   // caller may mutate. Amends ADR-0014.
-  function readRoomLock(roomId, ydocBytes) {
-    const live = boundDocs && boundDocs.get(roomId);
+  function readRoomLock(composite, ydocBytes) {
+    const live = boundDocs && boundDocs.get(composite);
     if (live) {
       try {
         const m = live.getMap('meta');
@@ -68,6 +70,31 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
     const h = req.headers['x-actor-id'];
     if (h) return String(h);
     return null;
+  }
+
+  // Tenant for storage keys: the validated token's tenant under auth, else the
+  // reserved _public sentinel under auth=none. NEVER derived from body/header.
+  // Only valid AFTER checkPrincipal has passed (req.user.tenant present + non-sentinel).
+  function resolveTenant(req) {
+    if (authProvider?.requiresAuth) return sanitize(req.user.tenant);
+    return PUBLIC_TENANT;
+  }
+
+  // Map an authorize()/checkPrincipal() denial to an HTTP response. Returns
+  // true if the request was denied (caller should `return`).
+  function denied(res, decision) {
+    if (decision.ok) return false;
+    const map = { 401: 'Unauthorized', 403: 'Forbidden', 404: 'Not found' };
+    res.writeHead(decision.status, { 'Content-Type': 'text/plain' });
+    res.end(map[decision.status] || 'Error');
+    return true;
+  }
+
+  // Lock actor: the authenticated subject under auth (NEVER the body/header
+  // fallback, which a different user could spoof); the cooperative actorId
+  // under auth=none.
+  function lockActor(req, url) {
+    return authProvider?.requiresAuth ? String(req.user.id) : getActorId(req, url);
   }
 
   // Blocked when the room is locked and the actor is not the (non-empty) lock owner.
@@ -110,20 +137,18 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
     // GET /health — unauthenticated health probe
     if (url.pathname === '/health' && req.method === 'GET') {
       const unhealthyRooms = [];
+      let unhealthyCount = 0;
       if (roomHealth) {
         for (const [name, h] of roomHealth) {
-          if (h.persistFailures >= 3) unhealthyRooms.push(name);
+          if (h.persistFailures >= 3) { unhealthyCount++; unhealthyRooms.push(name); }
         }
       }
-      const status = unhealthyRooms.length === 0 ? 'ok' : 'degraded';
+      const status = unhealthyCount === 0 ? 'ok' : 'degraded';
 
       let activeConnections = 0;
       try {
-        // Sum awareness states across all rooms for total connected clients
         if (getActiveUsers) {
-          for (const id of boundDocs.keys()) {
-            activeConnections += getActiveUsers(id).length;
-          }
+          for (const id of boundDocs.keys()) activeConnections += getActiveUsers(id).length;
         }
       } catch { /* ignore */ }
 
@@ -131,7 +156,8 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
         status,
         uptime: process.uptime(),
         rooms: { active: boundDocs ? boundDocs.size : 0, connections: activeConnections },
-        unhealthyRooms,
+        // Redact room names under auth — they are cross-tenant. Counts only.
+        ...(authProvider?.requiresAuth ? { unhealthyCount } : { unhealthyRooms }),
       });
       res.writeHead(status === 'ok' ? 200 : 503, { 'Content-Type': 'application/json' });
       res.end(body);
@@ -183,6 +209,11 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
       req.on('end', async () => {
         if (aborted) return;
         try {
+          const tenant = resolveTenant(req);
+          const dec = await authorize({ authProvider, storage, user: req.user, roomId, action: ACTION.READ });
+          if (denied(res, dec)) return;
+          const composite = buildCompositeDocName(tenant, roomId);
+
           const body = Buffer.concat(chunks);
           // .SEC files are windows-1252. latin1 is NOT a superset: bytes 0x80–0x9F
           // are C1 controls in latin1 but printable punctuation in windows-1252
@@ -203,7 +234,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
 
           // Room must have a live Y.Doc (at least one client connected via WS).
           // Without an active doc, there's nowhere to apply the parsed blocks.
-          const ydoc = boundDocs.get(roomId);
+          const ydoc = boundDocs.get(composite);
           if (!ydoc) {
             res.writeHead(409, { 'Content-Type': 'text/plain' });
             res.end(`Room "${roomId}" has no active session — join via WebSocket first`);
@@ -211,15 +242,15 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           }
 
           // #215 — refuse to overwrite a locked room unless the caller owns the lock.
-          const lock = readRoomLock(roomId, null);
-          if (isLockBlocked(lock, getActorId(req, url))) {
+          const lock = readRoomLock(composite, null);
+          if (isLockBlocked(lock, lockActor(req, url))) {
             sendLocked(res, lock.lockedBy);
             return;
           }
 
           seedRoomFromBlocks(ydoc, blocks);
           // Await persist so the 200 response guarantees durability.
-          await flushRoom(roomId);
+          await flushRoom(composite);
 
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ ok: true, blocks: blocks.length }));
@@ -237,7 +268,10 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
     if (dlMatch && req.method === 'GET') {
       const [, roomId, artifact] = dlMatch;
       try {
-        const data = await storage.readRoom(roomId);
+        const tenant = resolveTenant(req);
+        const dec = await authorize({ authProvider, storage, user: req.user, roomId, action: ACTION.READ });
+        if (denied(res, dec)) return;
+        const data = await storage.readRoom(tenant, roomId);
         if (!data) {
           res.writeHead(404, { 'Content-Type': 'text/plain' });
           res.end(`Room "${roomId}" not found`);
@@ -252,7 +286,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           }
           // Try to get a meaningful filename from yMeta
           let fileName = `${roomId}.SEC`;
-          const ydoc = boundDocs.get(roomId);
+          const ydoc = boundDocs.get(buildCompositeDocName(tenant, roomId));
           if (ydoc) {
             try {
               const yMeta = ydoc.getMap('meta');
@@ -303,9 +337,16 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
             res.end('Invalid room id after sanitization');
             return;
           }
-          // Check if room already exists
-          const existing = await storage.readRoom(id);
-          if (existing) {
+          const pre = checkPrincipal(authProvider, req.user);
+          if (denied(res, pre)) return;
+          const tenant = resolveTenant(req);
+          // Fast-path existence check. NOT the race guard — that's the
+          // atomic ACL claim below. This also catches a .ydoc with no ACL
+          // (legacy/quarantine-flushed rooms), which the claim alone would
+          // let a creator silently adopt.
+          const existing = await storage.readRoom(tenant, id);
+          const existingAcl = authProvider?.requiresAuth ? await storage.readAcl(tenant, id) : null;
+          if (existing || existingAcl) {
             res.writeHead(409, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: `Room "${id}" already exists` }));
             return;
@@ -322,7 +363,26 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(ydoc));
           ydoc.destroy();
 
-          await storage.writeRoom(id, { ydocBytes, secBytes: null, commentsJson: null });
+          // Crash-order (ADR-0005 amendment): ACL sidecar FIRST, then .ydoc.
+          // A crash between the two leaves the room absent (no .ydoc → 404),
+          // never an ownerless/hijackable room.
+          //
+          // The ACL write is an ATOMIC claim (conditional put): two
+          // concurrent creates of the same id both pass the existence check
+          // above, but exactly one wins the claim — the loser 409s instead
+          // of overwriting the winner's ACL (silent ownership transfer).
+          // Under auth=none there is no ACL to claim; the residual race
+          // (last writeRoom wins) is benign — both writers produce an
+          // identical fresh empty doc in the shared _public namespace.
+          if (authProvider?.requiresAuth) {
+            const claimed = await storage.writeAclIfAbsent(tenant, id, { ownerId: req.user.id, sharedWith: [] });
+            if (!claimed) {
+              res.writeHead(409, { 'Content-Type': 'application/json' });
+              res.end(JSON.stringify({ error: `Room "${id}" already exists` }));
+              return;
+            }
+          }
+          await storage.writeRoom(tenant, id, { ydocBytes, secBytes: null, commentsJson: null });
           res.writeHead(201, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ id, ok: true }));
         } catch (err) {
@@ -338,19 +398,34 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
     if (deleteMatch && req.method === 'DELETE') {
       const roomId = deleteMatch[1];
       try {
-        const existing = await storage.readRoom(roomId);
+        const tenant = resolveTenant(req);
+        const dec = await authorize({ authProvider, storage, user: req.user, roomId, action: ACTION.DELETE });
+        if (denied(res, dec)) return;
+        const composite = buildCompositeDocName(tenant, roomId);
+        const existing = await storage.readRoom(tenant, roomId);
         if (!existing) {
+          // Orphan-ACL recovery: a crash during create can leave an ACL sidecar
+          // with no .ydoc. authorize(DELETE) above already confirmed the caller
+          // owns it, so clear the orphan (and its migration-cache entry) to make
+          // the id reclaimable rather than permanently bricked. Still 404 — the
+          // room proper never finished creating.
+          if (authProvider?.requiresAuth && (await storage.readAcl(tenant, roomId))) {
+            await storage.deleteRoom(tenant, roomId);
+            if (migrationCoordinator && typeof migrationCoordinator.forget === 'function') {
+              migrationCoordinator.forget(composite);
+            }
+          }
           res.writeHead(404, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ error: `Room "${roomId}" not found` }));
           return;
         }
         // #215 — refuse to delete a locked room unless the caller owns the lock.
-        const lock = readRoomLock(roomId, existing.ydocBytes);
-        if (isLockBlocked(lock, getActorId(req, url))) {
+        const lock = readRoomLock(composite, existing.ydocBytes);
+        if (isLockBlocked(lock, lockActor(req, url))) {
           sendLocked(res, lock.lockedBy);
           return;
         }
-        await storage.deleteRoom(roomId);
+        await storage.deleteRoom(tenant, roomId);
         // Sub-PR 1d (#47, ADR-0006). The migration coordinator caches one
         // promise per docName; a successful migration leaves
         // `{ alreadyV2: true }` in the cache so concurrent broker calls
@@ -360,7 +435,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
         // result and skip both archive + migration. Drop the entry here
         // so the broker re-evaluates the new doc.
         if (migrationCoordinator && typeof migrationCoordinator.forget === 'function') {
-          migrationCoordinator.forget(roomId);
+          migrationCoordinator.forget(composite);
         }
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ ok: true }));
@@ -368,6 +443,52 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
         res.writeHead(500, { 'Content-Type': 'text/plain' });
         res.end(`Delete room failed: ${err.message}`);
       }
+      return;
+    }
+
+    // PATCH /rooms/:roomId/share — owner-only; add/remove a sharee subject id.
+    const shareMatch = url.pathname.match(/^\/rooms\/([^/]+)\/share$/);
+    if (shareMatch && req.method === 'PATCH') {
+      const roomId = shareMatch[1];
+      const chunks = [];
+      req.on('data', c => chunks.push(c));
+      req.on('end', async () => {
+        try {
+          const tenant = resolveTenant(req);
+          const dec = await authorize({ authProvider, storage, user: req.user, roomId, action: ACTION.SHARE });
+          if (denied(res, dec)) return;
+
+          const body = JSON.parse(Buffer.concat(chunks).toString('utf-8'));
+          const userId = body && body.userId;
+          const action = body && body.action;
+          if (typeof userId !== 'string' || !userId || (action !== 'add' && action !== 'remove')) {
+            res.writeHead(400, { 'Content-Type': 'text/plain' });
+            res.end('Body must be { userId: string, action: "add" | "remove" }');
+            return;
+          }
+
+          const acl = await storage.readAcl(tenant, roomId);
+          // authorize() confirmed acl existed; a concurrent DELETE could have
+          // removed it since (TOCTOU) — fail closed with 404, not a 500 NPE.
+          if (!acl) {
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
+            res.end('Not found');
+            return;
+          }
+          const set = new Set(Array.isArray(acl.sharedWith) ? acl.sharedWith : []);
+          // Same-tenant is enforced STRUCTURALLY: the room lives under the
+          // owner's tenant, so a cross-tenant userId is inert. Store opaque id as-is.
+          if (action === 'add') set.add(userId); else set.delete(userId);
+          set.delete(acl.ownerId); // never let a sharee entry equal the owner
+          await storage.writeAcl(tenant, roomId, { ownerId: acl.ownerId, sharedWith: [...set] });
+
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ ok: true, sharedWith: [...set] }));
+        } catch (err) {
+          res.writeHead(500, { 'Content-Type': 'text/plain' });
+          res.end(`Share failed: ${err.message}`);
+        }
+      });
       return;
     }
 
@@ -380,7 +501,15 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
       req.on('end', async () => {
         try {
           const body = JSON.parse(Buffer.concat(chunks).toString('utf-8'));
-          const existing = await storage.readRoom(roomId);
+          const tenant = resolveTenant(req);
+          const touchesLock = body.locked !== undefined || body.lockedBy !== undefined || body.lockedByName !== undefined;
+          const dec = await authorize({
+            authProvider, storage, user: req.user, roomId,
+            action: touchesLock ? ACTION.LOCK_ADMIN : ACTION.READ,
+          });
+          if (denied(res, dec)) return;
+          const composite = buildCompositeDocName(tenant, roomId);
+          const existing = await storage.readRoom(tenant, roomId);
           if (!existing) {
             res.writeHead(404, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: `Room "${roomId}" not found` }));
@@ -389,8 +518,8 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           // #215 — a locked room's settings (including unlock) may only be changed
           // by the lock owner. Reads CURRENT state: locking an unlocked room is
           // always allowed; once locked, only lockedBy can mutate or unlock.
-          const lock = readRoomLock(roomId, existing.ydocBytes);
-          if (isLockBlocked(lock, getActorId(req, url))) {
+          const lock = readRoomLock(composite, existing.ydocBytes);
+          if (isLockBlocked(lock, lockActor(req, url))) {
             sendLocked(res, lock.lockedBy);
             return;
           }
@@ -408,7 +537,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(ydoc));
           ydoc.destroy();
 
-          await storage.writeRoom(roomId, {
+          await storage.writeRoom(tenant, roomId, {
             ydocBytes,
             secBytes: existing.secBytes,
             commentsJson: existing.commentsJson,
@@ -416,7 +545,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           });
 
           // Also update live doc in boundDocs if active
-          const liveDoc = boundDocs.get(roomId);
+          const liveDoc = boundDocs.get(composite);
           if (liveDoc) {
             const liveMeta = liveDoc.getMap('meta');
             liveDoc.transact(() => {
@@ -440,7 +569,10 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
     // GET /rooms — list all rooms with metadata
     if (url.pathname === '/rooms' && req.method === 'GET') {
       try {
-        const roomIds = await storage.listRooms();
+        const pre = checkPrincipal(authProvider, req.user);
+        if (denied(res, pre)) return;
+        const tenant = resolveTenant(req);
+        const roomIds = await storage.listRooms(tenant);
         const Y = require('yjs');
         const rooms = [];
 
@@ -453,10 +585,21 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           // for other clients. See issue #100.
           await new Promise(resolve => setImmediate(resolve));
 
+          // Private-by-default: the tenant listing alone would expose every
+          // same-tenant room's title, lock state, and active-user roster to
+          // non-members. Filter to ACL members (owner or sharee) off the
+          // cheap sidecar; rooms with no ACL (legacy/orphan) are hidden —
+          // the same semantics as the per-room routes' 404.
+          if (authProvider?.requiresAuth) {
+            const acl = await storage.readAcl(tenant, id);
+            if (!aclAllowsRead(acl, req.user.id)) continue;
+          }
+
+          const composite = buildCompositeDocName(tenant, id);
           const entry = { id, displayName: id, sectionNumber: null, sectionTitle: null, lastModified: null, activeUsers: [], locked: false, sizeBytes: 0 };
 
           // Try live doc first (has awareness for active users)
-          const liveDoc = boundDocs.get(id);
+          const liveDoc = boundDocs.get(composite);
           if (liveDoc) {
             try {
               const yMeta = liveDoc.getMap('meta');
@@ -465,12 +608,12 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
               entry.locked = !!yMeta.get('locked');
             } catch { /* ignore */ }
             if (typeof getActiveUsers === 'function') {
-              entry.activeUsers = getActiveUsers(id);
+              entry.activeUsers = getActiveUsers(composite);
             }
           } else {
             // Fall back to reading persisted .ydoc to extract yMeta
             try {
-              const data = await storage.readRoom(id);
+              const data = await storage.readRoom(tenant, id);
               if (data && data.ydocBytes) {
                 const tempDoc = new Y.Doc();
                 try {
@@ -495,7 +638,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
 
           // Get filesystem stats
           try {
-            const stat = await storage.statRoom(id);
+            const stat = await storage.statRoom(tenant, id);
             if (stat) {
               entry.lastModified = stat.lastModified;
               entry.sizeBytes = stat.sizeBytes;

@@ -32,6 +32,7 @@ require('../dom-polyfill.cjs');
 const Y = require('yjs');
 const { LocalStorageBackend } = require('../storage-local.cjs');
 const { createHttpHandler } = require('../http-handler.cjs');
+const { PUBLIC_TENANT } = require('../storage-shared.cjs');
 
 function httpGet(url) {
   return new Promise((resolve, reject) => {
@@ -86,8 +87,10 @@ describe('GET /rooms event-loop yield (issue #100)', () => {
 
     // Seed enough persisted rooms to exercise the loop. Each room carries
     // ~30 blocks worth of CRDT state to make Y.applyUpdate non-trivial.
+    // Seeded under _public — the no-auth handler resolves every request's
+    // tenant to PUBLIC_TENANT, so this is the namespace GET /rooms lists.
     for (let i = 0; i < ROOM_COUNT; i++) {
-      await storage.writeRoom(`room-${i.toString().padStart(3, '0')}`, {
+      await storage.writeRoom(PUBLIC_TENANT, `room-${i.toString().padStart(3, '0')}`, {
         ydocBytes: makeRoomBytes(30),
         secBytes: null,
         commentsJson: null,

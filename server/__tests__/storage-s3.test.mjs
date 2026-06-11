@@ -7,6 +7,8 @@ import { S3Client, PutObjectCommand, GetObjectCommand,
 
 const { S3StorageBackend } = await import('../storage-s3.cjs');
 
+const T = 'acme'; // tenant for all tests
+
 const s3Mock = mockClient(S3Client);
 
 describe('S3StorageBackend', () => {
@@ -49,8 +51,8 @@ describe('S3StorageBackend', () => {
     const secBytes = new Uint8Array([5, 6, 7]);
     const commentsJson = '{"comments":[]}';
 
-    await backend.writeRoom('myroom', { ydocBytes, secBytes, commentsJson });
-    const result = await backend.readRoom('myroom');
+    await backend.writeRoom(T, 'myroom', { ydocBytes, secBytes, commentsJson });
+    const result = await backend.readRoom(T, 'myroom');
 
     assert.deepEqual(Array.from(result.ydocBytes), [1, 2, 3, 4]);
     assert.deepEqual(Array.from(result.secBytes), [5, 6, 7]);
@@ -63,7 +65,7 @@ describe('S3StorageBackend', () => {
       throw err;
     });
     const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
-    const result = await backend.readRoom('nope');
+    const result = await backend.readRoom(T, 'nope');
     assert.equal(result, null);
   });
 
@@ -74,11 +76,12 @@ describe('S3StorageBackend', () => {
       return {};
     });
     const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
-    await backend.writeRoom('myroom', { ydocBytes: new Uint8Array([1]), secBytes: null, commentsJson: null });
-    assert.deepEqual(writes, ['myroom.ydoc']);
+    await backend.writeRoom(T, 'myroom', { ydocBytes: new Uint8Array([1]), secBytes: null, commentsJson: null });
+    // Key is now <tenant>/<roomId>.ydoc
+    assert.deepEqual(writes, [`${T}/myroom.ydoc`]);
   });
 
-  test('deleteRoom removes all four artifacts', async () => {
+  test('deleteRoom removes all five artifacts (including ACL)', async () => {
     const deleted = [];
     s3Mock.on(DeleteObjectCommand).callsFake(async (input) => {
       deleted.push(input.Key);
@@ -86,29 +89,36 @@ describe('S3StorageBackend', () => {
     });
 
     const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
-    await backend.deleteRoom('myroom');
+    await backend.deleteRoom(T, 'myroom');
 
+    // Catalog order: sec, comments, lint, acl, ydoc — all prefixed with T/
     assert.deepEqual(
       deleted.sort(),
-      ['myroom.SEC', 'myroom.comments.json', 'myroom.lint.json', 'myroom.ydoc'],
+      [
+        `${T}/myroom.SEC`,
+        `${T}/myroom.acl.json`,
+        `${T}/myroom.comments.json`,
+        `${T}/myroom.lint.json`,
+        `${T}/myroom.ydoc`,
+      ],
     );
   });
 
   test('listRooms returns room names from .ydoc objects, excluding quarantine + archive', async () => {
     s3Mock.on(ListObjectsV2Command).resolves({
       Contents: [
-        { Key: 'room1.ydoc' },
-        { Key: 'room1.SEC' },
-        { Key: 'room2.ydoc' },
-        { Key: 'room2.comments.json' },
-        { Key: 'room3.corrupt.ydoc' },     // quarantined - exclude
-        { Key: 'room4.oversize.ydoc' },    // quarantined - exclude
-        { Key: 'archive/room5.ydoc' },     // archived - exclude
+        { Key: `${T}/room1.ydoc` },
+        { Key: `${T}/room1.SEC` },
+        { Key: `${T}/room2.ydoc` },
+        { Key: `${T}/room2.comments.json` },
+        { Key: `${T}/room3.corrupt.ydoc` },     // quarantined - exclude
+        { Key: `${T}/room4.oversize.ydoc` },    // quarantined - exclude
+        { Key: `archive/${T}/room5.ydoc` },     // archived - exclude
       ],
     });
 
     const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
-    const rooms = await backend.listRooms();
+    const rooms = await backend.listRooms(T);
 
     assert.deepEqual(rooms.sort(), ['room1', 'room2']);
   });
@@ -124,26 +134,59 @@ describe('S3StorageBackend', () => {
       deletes.push(input.Key);
       return {};
     });
-    // Base class checks existence before copying (matches Azure / Local).
+    // Only .ydoc exists — .acl.json absent — stat returns 404 for it.
     s3Mock.on(HeadObjectCommand).callsFake(async (input) => {
-      if (input.Key === 'myroom.ydoc') return { LastModified: new Date(), ContentLength: 1 };
+      if (input.Key === `${T}/myroom.ydoc`) return { LastModified: new Date(), ContentLength: 1 };
       const err = new Error('NotFound'); err.name = 'NotFound'; err.$metadata = { httpStatusCode: 404 };
       throw err;
     });
 
     const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
-    await backend.quarantineRoom('myroom', 'corrupt');
+    await backend.quarantineRoom(T, 'myroom', 'corrupt');
 
+    // Only ydoc is quarantined when acl.json doesn't exist.
     assert.equal(copies.length, 1);
-    assert.equal(copies[0].from, 'test/myroom.ydoc');
-    assert.equal(copies[0].to, 'myroom.corrupt.ydoc');
-    assert.deepEqual(deletes, ['myroom.ydoc']);
+    assert.equal(copies[0].from, `test/${T}/myroom.ydoc`);
+    assert.equal(copies[0].to, `${T}/myroom.corrupt.ydoc`);
+    assert.deepEqual(deletes, [`${T}/myroom.ydoc`]);
+  });
+
+  test('quarantineRoom PRESERVES the .acl.json sidecar even when it exists', async () => {
+    const copies = [];
+    const deletes = [];
+    s3Mock.on(CopyObjectCommand).callsFake(async (input) => {
+      copies.push({ from: input.CopySource, to: input.Key });
+      return {};
+    });
+    s3Mock.on(DeleteObjectCommand).callsFake(async (input) => {
+      deletes.push(input.Key);
+      return {};
+    });
+    // Both .ydoc and .acl.json exist — stat returns ContentLength for both.
+    s3Mock.on(HeadObjectCommand).callsFake(async (input) => {
+      if (input.Key === `${T}/myroom.ydoc`) return { LastModified: new Date(), ContentLength: 10 };
+      if (input.Key === `${T}/myroom.acl.json`) return { LastModified: new Date(), ContentLength: 42 };
+      const err = new Error('NotFound'); err.name = 'NotFound'; err.$metadata = { httpStatusCode: 404 };
+      throw err;
+    });
+
+    const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
+    await backend.quarantineRoom(T, 'myroom', 'corrupt');
+
+    // Only the .ydoc moves. The ACL must stay active: the live session that
+    // triggered the quarantine keeps editing, and its next flush rewrites
+    // .ydoc but never the ACL — quarantining the ACL would leave that
+    // flushed room ownerless (authorize 404s for everyone: bricked).
+    assert.deepEqual(copies.map(c => c.to), [`${T}/myroom.corrupt.ydoc`]);
+    assert.equal(copies[0].from, `test/${T}/myroom.ydoc`);
+    assert.deepEqual(deletes, [`${T}/myroom.ydoc`],
+      '.acl.json must be neither copied nor deleted by quarantine');
   });
 
   test('archive lifecycle: archive → list → restore → archive → delete', async () => {
     const objects = new Map();
-    objects.set('myroom.ydoc', new Uint8Array([1]));
-    objects.set('myroom.SEC', new Uint8Array([2]));
+    objects.set(`${T}/myroom.ydoc`, new Uint8Array([1]));
+    objects.set(`${T}/myroom.SEC`, new Uint8Array([2]));
 
     s3Mock.on(ListObjectsV2Command).callsFake(async (input) => ({
       Contents: [...objects.keys()]
@@ -169,25 +212,24 @@ describe('S3StorageBackend', () => {
 
     const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
 
-    await backend.archiveRoom('myroom');
-    assert.ok(objects.has('archive/myroom.ydoc'));
-    assert.ok(objects.has('archive/myroom.SEC'));
-    assert.ok(!objects.has('myroom.ydoc'));
+    await backend.archiveRoom(T, 'myroom');
+    assert.ok(objects.has(`archive/${T}/myroom.ydoc`));
+    assert.ok(objects.has(`archive/${T}/myroom.SEC`));
+    assert.ok(!objects.has(`${T}/myroom.ydoc`));
 
-    const archived = await backend.listArchivedRooms();
+    const archived = await backend.listArchivedRooms(T);
     assert.equal(archived.length, 1);
-    // Uniform `id` field across all backends — was `name` historically in
-    // S3 only, which broke the collab-server sweep (uses `room.id`).
+    // Uniform `id` field across all backends.
     assert.equal(archived[0].id, 'myroom');
     assert.ok(archived[0].archivedAt);
 
-    await backend.restoreRoom('myroom');
-    assert.ok(objects.has('myroom.ydoc'));
-    assert.ok(!objects.has('archive/myroom.ydoc'));
+    await backend.restoreRoom(T, 'myroom');
+    assert.ok(objects.has(`${T}/myroom.ydoc`));
+    assert.ok(!objects.has(`archive/${T}/myroom.ydoc`));
 
-    await backend.archiveRoom('myroom');
-    await backend.deleteArchivedRoom('myroom');
-    assert.ok(!objects.has('archive/myroom.ydoc'));
+    await backend.archiveRoom(T, 'myroom');
+    await backend.deleteArchivedRoom(T, 'myroom');
+    assert.ok(!objects.has(`archive/${T}/myroom.ydoc`));
   });
 
   test('listRooms paginates via ContinuationToken', async () => {
@@ -196,16 +238,16 @@ describe('S3StorageBackend', () => {
       calls++;
       if (calls === 1) {
         return {
-          Contents: [{ Key: 'page1room.ydoc' }],
+          Contents: [{ Key: `${T}/page1room.ydoc` }],
           NextContinuationToken: 'TOKEN',
         };
       }
       return {
-        Contents: [{ Key: 'page2room.ydoc' }],
+        Contents: [{ Key: `${T}/page2room.ydoc` }],
       };
     });
     const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
-    const rooms = await backend.listRooms();
+    const rooms = await backend.listRooms(T);
     assert.deepEqual(rooms.sort(), ['page1room', 'page2room']);
     assert.equal(calls, 2);
   });
@@ -218,7 +260,7 @@ describe('S3StorageBackend', () => {
       throw err;
     });
     const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
-    await assert.rejects(backend.readRoom('myroom'), /AccessDenied/);
+    await assert.rejects(backend.readRoom(T, 'myroom'), /AccessDenied/);
   });
 
   test('writeRoom serializes commentsJson body to UTF-8 bytes', async () => {
@@ -228,13 +270,11 @@ describe('S3StorageBackend', () => {
       return {};
     });
     const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
-    await backend.writeRoom('myroom', {
+    await backend.writeRoom(T, 'myroom', {
       ydocBytes: new Uint8Array([1]),
       secBytes: null,
       commentsJson: '{"comments":[]}',
     });
-    // Shared planArtifactWrites coerces commentsJson to a Buffer so the
-    // SDK receives the same byte sequence regardless of caller types.
     assert.ok(Buffer.isBuffer(commentsBody) || commentsBody instanceof Uint8Array);
     assert.equal(Buffer.from(commentsBody).toString('utf-8'), '{"comments":[]}');
   });
@@ -246,25 +286,26 @@ describe('S3StorageBackend', () => {
       return {};
     });
     const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
-    await backend.writeRoom('foo.bar baz', { ydocBytes: new Uint8Array([1]), secBytes: null, commentsJson: null });
-    // Sanitize replaces any [^a-zA-Z0-9_-] with '_': "foo.bar baz" → "foo_bar_baz"
+    await backend.writeRoom(T, 'foo.bar baz', { ydocBytes: new Uint8Array([1]), secBytes: null, commentsJson: null });
+    // Sanitize replaces [^a-zA-Z0-9_-] with '_': "foo.bar baz" → "foo_bar_baz"
+    // Key is now <T>/<sanitized>.ydoc
     assert.equal(writes.length, 1);
-    assert.equal(writes[0], 'foo_bar_baz.ydoc');
-    assert.match(writes[0], /^[a-zA-Z0-9_-]+\.ydoc$/);
-    assert.ok(!writes[0].includes('.bar'));  // The '.' was replaced
+    assert.equal(writes[0], `${T}/foo_bar_baz.ydoc`);
+    assert.match(writes[0], /^[a-zA-Z0-9_-]+\/[a-zA-Z0-9_-]+\.ydoc$/);
+    assert.ok(!writes[0].includes('.bar'));
     assert.ok(!writes[0].includes(' '));
   });
 
   test('statRoom returns lastModified or null', async () => {
     s3Mock.on(HeadObjectCommand).callsFake(async (input) => {
-      if (input.Key === 'myroom.ydoc') return { LastModified: new Date('2026-04-29T12:00:00Z') };
+      if (input.Key === `${T}/myroom.ydoc`) return { LastModified: new Date('2026-04-29T12:00:00Z') };
       const err = new Error('NotFound'); err.name = 'NotFound'; err.$metadata = { httpStatusCode: 404 };
       throw err;
     });
     const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
-    const stat = await backend.statRoom('myroom');
+    const stat = await backend.statRoom(T, 'myroom');
     assert.ok(stat.lastModified);
-    const missing = await backend.statRoom('nope');
+    const missing = await backend.statRoom(T, 'nope');
     assert.equal(missing, null);
   });
 });

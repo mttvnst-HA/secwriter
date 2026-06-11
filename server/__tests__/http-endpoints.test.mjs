@@ -98,15 +98,15 @@ describe('HTTP endpoints', () => {
     storage = new LocalStorageBackend(tmpDir);
     boundDocs = new Map();
 
-    // Seed test data
-    await storage.writeRoom('test-room', {
+    // Seed test data under _public tenant (matches PUBLIC_TENANT used by http-handler)
+    await storage.writeRoom('_public', 'test-room', {
       ydocBytes: Buffer.from([1, 2, 3]),
       secBytes: Buffer.from('<?xml version="1.0"?><SEC><TXT>Hello</TXT></SEC>'),
       commentsJson: JSON.stringify({ version: 1, comments: [{ id: 'c1', status: 'open' }] }),
     });
 
     // Seed a room with .ydoc only (no SEC, no comments) — legacy room
-    await storage.writeRoom('legacy-room', {
+    await storage.writeRoom('_public', 'legacy-room', {
       ydocBytes: Buffer.from([4, 5, 6]),
       secBytes: null,
       commentsJson: null,
@@ -196,7 +196,7 @@ describe('HTTP endpoints', () => {
       yMeta.set('sectionTitle', 'EARTHWORK');
     });
     const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(ydoc));
-    await storage.writeRoom('test-meta', { ydocBytes, secBytes: null, commentsJson: null });
+    await storage.writeRoom('_public', 'test-meta', { ydocBytes, secBytes: null, commentsJson: null });
     ydoc.destroy();
 
     const resp = await httpGet(`${baseUrl}/rooms`);
@@ -223,7 +223,7 @@ describe('HTTP endpoints', () => {
     assert.strictEqual(data.id, 'new-room');
     assert.strictEqual(data.ok, true);
     // Verify room exists in storage
-    const stored = await storage.readRoom('new-room');
+    const stored = await storage.readRoom('_public', 'new-room');
     assert.ok(stored, 'room should exist in storage');
     assert.ok(stored.ydocBytes, 'should have ydoc bytes');
   });
@@ -237,7 +237,7 @@ describe('HTTP endpoints', () => {
 
   it('DELETE /rooms/:roomId deletes a room', async () => {
     // Create a room to delete
-    await storage.writeRoom('del-room', {
+    await storage.writeRoom('_public', 'del-room', {
       ydocBytes: Buffer.from([10, 11, 12]),
       secBytes: null,
       commentsJson: null,
@@ -247,7 +247,7 @@ describe('HTTP endpoints', () => {
     const data = JSON.parse(resp.body.toString());
     assert.strictEqual(data.ok, true);
     // Verify room is gone
-    const stored = await storage.readRoom('del-room');
+    const stored = await storage.readRoom('_public', 'del-room');
     assert.strictEqual(stored, null);
   });
 
@@ -264,7 +264,7 @@ describe('HTTP endpoints', () => {
     const ydoc = new Y.Doc();
     const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(ydoc));
     ydoc.destroy();
-    await storage.writeRoom('patch-room', { ydocBytes, secBytes: null, commentsJson: null });
+    await storage.writeRoom('_public', 'patch-room', { ydocBytes, secBytes: null, commentsJson: null });
 
     const resp = await httpJson(`${baseUrl}/rooms/patch-room`, 'PATCH', { locked: true });
     assert.strictEqual(resp.status, 200);
@@ -272,7 +272,7 @@ describe('HTTP endpoints', () => {
     assert.strictEqual(data.ok, true);
 
     // Verify locked was persisted in yMeta
-    const stored = await storage.readRoom('patch-room');
+    const stored = await storage.readRoom('_public', 'patch-room');
     const verifyDoc = new Y.Doc();
     Y.applyUpdate(verifyDoc, stored.ydocBytes);
     const yMeta = verifyDoc.getMap('meta');
@@ -300,7 +300,7 @@ describe('HTTP endpoints', () => {
     });
     const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(ydoc));
     ydoc.destroy();
-    await storage.writeRoom(id, { ydocBytes, secBytes: null, commentsJson: null });
+    await storage.writeRoom('_public', id, { ydocBytes, secBytes: null, commentsJson: null });
   }
 
   it('DELETE on a locked room: 423 for non-owner (and no-owner lock), 200 for the lock owner', async () => {
@@ -309,14 +309,14 @@ describe('HTTP endpoints', () => {
     const blocked = await httpDelete(`${baseUrl}/rooms/lock-del`);
     assert.strictEqual(blocked.status, 423);
     assert.ok(JSON.parse(blocked.body.toString()).error.includes('locked'));
-    assert.ok(await storage.readRoom('lock-del'), 'room must survive a blocked delete');
+    assert.ok(await storage.readRoom('_public', 'lock-del'), 'room must survive a blocked delete');
 
     const wrong = await httpDelete(`${baseUrl}/rooms/lock-del`, { 'X-Actor-Id': 'someone-else' });
     assert.strictEqual(wrong.status, 423);
 
     const owner = await httpDelete(`${baseUrl}/rooms/lock-del`, { 'X-Actor-Id': 'userA' });
     assert.strictEqual(owner.status, 200);
-    assert.strictEqual(await storage.readRoom('lock-del'), null);
+    assert.strictEqual(await storage.readRoom('_public', 'lock-del'), null);
 
     // Locked with NO recorded owner blocks everyone (matches issue verification).
     await seedLockedRoom('lock-del-noowner', null);
@@ -335,7 +335,7 @@ describe('HTTP endpoints', () => {
 
     const Y = require('yjs');
     const verify = new Y.Doc();
-    Y.applyUpdate(verify, (await storage.readRoom('lock-patch')).ydocBytes);
+    Y.applyUpdate(verify, (await storage.readRoom('_public', 'lock-patch')).ydocBytes);
     assert.strictEqual(verify.getMap('meta').get('locked'), false);
     verify.destroy();
   });
@@ -355,7 +355,7 @@ describe('HTTP endpoints', () => {
       m.set('locked', true);
       m.set('lockedBy', 'userB');
     });
-    boundDocs.set('lock-up', liveDoc);
+    boundDocs.set('_public/lock-up', liveDoc);
     try {
       const blocked = await httpPost(`${baseUrl}/rooms/lock-up/upload`, Buffer.from(secXml));
       assert.strictEqual(blocked.status, 423);
@@ -364,7 +364,7 @@ describe('HTTP endpoints', () => {
       assert.strictEqual(owner.status, 200);
       assert.strictEqual(JSON.parse(owner.body.toString()).blocks, 1);
     } finally {
-      boundDocs.delete('lock-up');
+      boundDocs.delete('_public/lock-up');
       liveDoc.destroy();
     }
   });
@@ -464,7 +464,7 @@ describe('HTTP endpoints', () => {
     const ydoc = new Y.Doc();
     ydoc.getArray('order');
     ydoc.getMap('store');
-    boundDocs.set('upload-room', ydoc);
+    boundDocs.set('_public/upload-room', ydoc);
 
     try {
       const resp = await httpPost(`${baseUrl}/rooms/upload-room/upload`, Buffer.from(secXml));
@@ -489,7 +489,7 @@ describe('HTTP endpoints', () => {
         'seed must clear migrationPartial too');
     } finally {
       ydoc.destroy();
-      boundDocs.delete('upload-room');
+      boundDocs.delete('_public/upload-room');
     }
   });
 
@@ -510,7 +510,7 @@ describe('HTTP endpoints', () => {
     const ydoc = new Y.Doc();
     ydoc.getArray('order');
     ydoc.getMap('store');
-    boundDocs.set('punct-room', ydoc);
+    boundDocs.set('_public/punct-room', ydoc);
 
     try {
       const up = await httpPost(`${baseUrl}/rooms/punct-room/upload`, uploadBytes);
@@ -531,7 +531,179 @@ describe('HTTP endpoints', () => {
       }
     } finally {
       ydoc.destroy();
-      boundDocs.delete('punct-room');
+      boundDocs.delete('_public/punct-room');
+    }
+  });
+});
+
+// ── helpers for auth=jwt tests ──────────────────────────────────────────────
+
+const jwt = require('jsonwebtoken');
+const AUTHZ_SECRET = 'http-test-secret';
+function bearer(claims) {
+  return { Authorization: `Bearer ${jwt.sign(claims, AUTHZ_SECRET, { algorithm: 'HS256' })}` };
+}
+function makeAuthServer() {
+  const { createAuthJwt } = require('../auth/auth-jwt.cjs');
+  const { LocalStorageBackend } = require('../storage-local.cjs');
+  const { createHttpHandler } = require('../http-handler.cjs');
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sim-authz-'));
+  const storage = new LocalStorageBackend(dir);
+  const boundDocs = new Map();
+  const handler = createHttpHandler({
+    storage, boundDocs,
+    flushRoom: async () => {},
+    maxDocBytes: 8 * 1024 * 1024,
+    authProvider: createAuthJwt({ secret: AUTHZ_SECRET }),
+    migrationCoordinator: { forget() {} },
+  });
+  const server = http.createServer(handler);
+  return { server, storage, dir, cleanup: () => { try { fs.rmSync(dir, { recursive: true, force: true }); } catch {} } };
+}
+
+describe('room authorization (auth=jwt)', () => {
+  it('create writes owner ACL; owner reads, strangers + cross-tenant get 404', async () => {
+    const h = makeAuthServer();
+    await new Promise(r => h.server.listen(0, r));
+    const base = `http://127.0.0.1:${h.server.address().port}`;
+    try {
+      let res = await httpJson(`${base}/rooms`, 'POST', { id: 'r1' }, bearer({ sub: 'owner', tenant: 'acme' }));
+      assert.equal(res.status, 201);
+      assert.deepEqual(await h.storage.readAcl('acme', 'r1'), { ownerId: 'owner', sharedWith: [] });
+
+      res = await httpJson(`${base}/rooms/r1`, 'DELETE', null, bearer({ sub: 'stranger', tenant: 'acme' }));
+      assert.equal(res.status, 404);
+      res = await httpJson(`${base}/rooms/r1`, 'DELETE', null, bearer({ sub: 'owner', tenant: 'evil' }));
+      assert.equal(res.status, 404);
+      // Upload route is READ-gated by the same authorize plumbing as /comments:
+      // a stranger is denied at authorize (404 before the body matters); the
+      // owner passes authorize and falls through to content processing, which
+      // rejects the bogus SEC body with 400. The 404-vs-400 split proves the
+      // gate runs and that the owner clears it.
+      assert.equal((await httpPost(`${base}/rooms/r1/upload`, Buffer.from('<x/>'), bearer({ sub: 'stranger', tenant: 'acme' }))).status, 404);
+      assert.equal((await httpPost(`${base}/rooms/r1/upload`, Buffer.from('<x/>'), bearer({ sub: 'owner', tenant: 'acme' }))).status, 400);
+
+      res = await httpJson(`${base}/rooms/r1`, 'DELETE', null, bearer({ sub: 'owner', tenant: 'acme' }));
+      assert.equal(res.status, 200);
+
+      // Orphan-ACL recovery (crash between writeAcl and writeRoom):
+      // seed an ACL with NO .ydoc, confirm a different user can't hijack,
+      // the owner's DELETE clears the orphan, and the owner can then re-create.
+      await h.storage.writeAcl('acme', 'orphan', { ownerId: 'owner', sharedWith: [] });
+      assert.equal((await httpJson(`${base}/rooms`, 'POST', { id: 'orphan' }, bearer({ sub: 'attacker', tenant: 'acme' }))).status, 409); // hijack blocked
+      assert.equal((await httpJson(`${base}/rooms/orphan`, 'DELETE', null, bearer({ sub: 'owner', tenant: 'acme' }))).status, 404); // 404 but clears orphan
+      assert.equal(await h.storage.readAcl('acme', 'orphan'), null, 'orphan ACL cleared by owner DELETE');
+      assert.equal((await httpJson(`${base}/rooms`, 'POST', { id: 'orphan' }, bearer({ sub: 'owner', tenant: 'acme' }))).status, 201); // reclaimed
+    } finally { h.server.close(); h.cleanup(); }
+  });
+
+  it('missing tenant → 403, missing stable subject → 403, hostile tenant cannot escape', async () => {
+    const h = makeAuthServer();
+    await new Promise(r => h.server.listen(0, r));
+    const base = `http://127.0.0.1:${h.server.address().port}`;
+    try {
+      assert.equal((await httpJson(`${base}/rooms`, 'GET', null, bearer({ sub: 's' }))).status, 403);
+      assert.equal((await httpJson(`${base}/rooms`, 'GET', null, bearer({ tenant: 'acme' }))).status, 403);
+      assert.equal((await httpJson(`${base}/rooms`, 'GET', null, bearer({ sub: 's', tenant: '_public' }))).status, 403);
+      const r = await httpJson(`${base}/rooms`, 'POST', { id: 'h' }, bearer({ sub: 's', tenant: '../x' }));
+      assert.equal(r.status, 201);
+      assert.equal(await h.storage.readAcl('___x', 'h') !== null, true); // sanitize('../x') === '___x'
+
+      // /health redacts room names under auth — exposes unhealthyCount only,
+      // never the unhealthyRooms name list (which would leak room ids).
+      const health = JSON.parse((await httpGet(`${base}/health`)).body.toString());
+      assert.equal(health.unhealthyCount !== undefined, true, 'auth /health exposes unhealthyCount');
+      assert.equal(health.unhealthyRooms, undefined, 'auth /health redacts room names');
+    } finally { h.server.close(); h.cleanup(); }
+  });
+
+  it('share route: owner adds sharee → sharee reads /comments; non-owner share → 404; shared user cannot DELETE', async () => {
+    const h = makeAuthServer();
+    await new Promise(r => h.server.listen(0, r));
+    const base = `http://127.0.0.1:${h.server.address().port}`;
+    try {
+      await httpJson(`${base}/rooms`, 'POST', { id: 'r1' }, bearer({ sub: 'owner', tenant: 'acme' }));
+      assert.equal((await httpJson(`${base}/rooms/r1/share`, 'PATCH', { userId: 'x', action: 'add' }, bearer({ sub: 'stranger', tenant: 'acme' }))).status, 404);
+      const s = await httpJson(`${base}/rooms/r1/share`, 'PATCH', { userId: 'friend', action: 'add' }, bearer({ sub: 'owner', tenant: 'acme' }));
+      assert.equal(s.status, 200);
+      assert.deepEqual((await h.storage.readAcl('acme', 'r1')).sharedWith, ['friend']);
+      assert.equal((await httpJson(`${base}/rooms/r1/comments`, 'GET', null, bearer({ sub: 'friend', tenant: 'acme' }))).status, 200);
+      assert.equal((await httpJson(`${base}/rooms/r1`, 'DELETE', null, bearer({ sub: 'friend', tenant: 'acme' }))).status, 404);
+
+      // PATCH privilege split: a shared user may change content (READ-gated,
+      // touchesLock=false) but NOT lock settings (LOCK_ADMIN, owner-only → 404).
+      // The owner CAN lock — confirms the gate isn't blanket-denying.
+      assert.equal((await httpJson(`${base}/rooms/r1`, 'PATCH', { displayName: 'New' }, bearer({ sub: 'friend', tenant: 'acme' }))).status, 200);
+      assert.equal((await httpJson(`${base}/rooms/r1`, 'PATCH', { locked: true }, bearer({ sub: 'friend', tenant: 'acme' }))).status, 404);
+      assert.equal((await httpJson(`${base}/rooms/r1`, 'PATCH', { locked: true }, bearer({ sub: 'owner', tenant: 'acme' }))).status, 200);
+    } finally { h.server.close(); h.cleanup(); }
+  });
+
+  it('GET /rooms returns ONLY the caller tenant AND only member rooms', async () => {
+    const h = makeAuthServer();
+    await new Promise(r => h.server.listen(0, r));
+    const base = `http://127.0.0.1:${h.server.address().port}`;
+    const listIds = async (claims) => {
+      const res = await httpJson(`${base}/rooms`, 'GET', null, bearer(claims));
+      return JSON.parse(res.body.toString()).rooms.map(r => r.id).sort();
+    };
+    try {
+      await httpJson(`${base}/rooms`, 'POST', { id: 'a1' }, bearer({ sub: 'o', tenant: 'acme' }));
+      await httpJson(`${base}/rooms`, 'POST', { id: 'b1' }, bearer({ sub: 'o', tenant: 'beta' }));
+      assert.deepEqual(await listIds({ sub: 'o', tenant: 'acme' }), ['a1']);
+
+      // Member filtering (private-by-default): a same-tenant NON-member must
+      // not see the room at all — the unfiltered tenant listing leaked
+      // titles, lock state, and active-user rosters to every org member.
+      assert.deepEqual(await listIds({ sub: 'stranger', tenant: 'acme' }), [],
+        'same-tenant non-member must not see private rooms in the listing');
+      // ...until shared, at which point the sharee sees it.
+      await httpJson(`${base}/rooms/a1/share`, 'PATCH', { userId: 'stranger', action: 'add' }, bearer({ sub: 'o', tenant: 'acme' }));
+      assert.deepEqual(await listIds({ sub: 'stranger', tenant: 'acme' }), ['a1']);
+      // A room with no ACL (legacy/orphan) is hidden — same 404 semantics
+      // as the per-room routes.
+      await h.storage.writeRoom('acme', 'no-acl', { ydocBytes: Buffer.from([1]), secBytes: null, commentsJson: null });
+      assert.deepEqual(await listIds({ sub: 'o', tenant: 'acme' }), ['a1']);
+    } finally { h.server.close(); h.cleanup(); }
+  });
+
+  it('concurrent create of the same id: exactly one 201, the loser 409s, ACL names the winner', async () => {
+    // Deterministic interleave: slow the existence checks so BOTH creates
+    // pass them before either writes — the old check-then-write shape let
+    // both 201 with the LAST writeAcl winning (silent ownership transfer to
+    // a user holding no receipt... and lockout of the user holding the 201).
+    // The atomic writeAclIfAbsent claim decides instead.
+    const { createAuthJwt } = require('../auth/auth-jwt.cjs');
+    const { LocalStorageBackend } = require('../storage-local.cjs');
+    const { createHttpHandler } = require('../http-handler.cjs');
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sim-create-race-'));
+    class SlowCheckStorage extends LocalStorageBackend {
+      async readRoom(t, r) { await new Promise(res => setTimeout(res, 25)); return super.readRoom(t, r); }
+      async readAcl(t, r) { await new Promise(res => setTimeout(res, 25)); return super.readAcl(t, r); }
+    }
+    const storage = new SlowCheckStorage(dir);
+    const handler = createHttpHandler({
+      storage, boundDocs: new Map(),
+      flushRoom: async () => {},
+      maxDocBytes: 8 * 1024 * 1024,
+      authProvider: createAuthJwt({ secret: AUTHZ_SECRET }),
+    });
+    const server = http.createServer(handler);
+    await new Promise(r => server.listen(0, r));
+    const base = `http://127.0.0.1:${server.address().port}`;
+    try {
+      const [ra, rb] = await Promise.all([
+        httpJson(`${base}/rooms`, 'POST', { id: 'contested' }, bearer({ sub: 'userA', tenant: 'acme' })),
+        httpJson(`${base}/rooms`, 'POST', { id: 'contested' }, bearer({ sub: 'userB', tenant: 'acme' })),
+      ]);
+      const statuses = [ra.status, rb.status].sort();
+      assert.deepEqual(statuses, [201, 409], `expected one winner and one conflict, got ${ra.status}/${rb.status}`);
+      const winner = ra.status === 201 ? 'userA' : 'userB';
+      const acl = await storage.readAcl('acme', 'contested');
+      assert.equal(acl.ownerId, winner, 'the ACL must name the caller who got the 201');
+    } finally {
+      server.close();
+      try { fs.rmSync(dir, { recursive: true, force: true }); } catch {}
     }
   });
 });
@@ -548,7 +720,7 @@ describe('HTTP endpoints — DELETE clears migration cache (issue e)', () => {
     tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sim-http-cache-'));
     const { LocalStorageBackend } = require('../storage-local.cjs');
     storage = new LocalStorageBackend(tmpDir);
-    await storage.writeRoom('to-delete', {
+    await storage.writeRoom('_public', 'to-delete', {
       ydocBytes: Buffer.from([1, 2, 3]), secBytes: null, commentsJson: null,
     });
     coordCalls = [];
@@ -573,13 +745,14 @@ describe('HTTP endpoints — DELETE clears migration cache (issue e)', () => {
   it('DELETE /rooms/:id forwards forget(roomId) to the migration coordinator', async () => {
     const resp = await httpDelete(`${baseUrl}/rooms/to-delete`);
     assert.strictEqual(resp.status, 200);
-    assert.deepStrictEqual(coordCalls, [['forget', 'to-delete']]);
+    // Handler passes composite docName (_public/<roomId>) to the coordinator.
+    assert.deepStrictEqual(coordCalls, [['forget', '_public/to-delete']]);
   });
 
   it('omitted migrationCoordinator does not crash the DELETE path', async () => {
     // Fresh handler without the coordinator dep — the guard in the handler
     // (`typeof forget === 'function'`) must keep it from throwing.
-    await storage.writeRoom('to-delete-2', {
+    await storage.writeRoom('_public', 'to-delete-2', {
       ydocBytes: Buffer.from([7, 8]), secBytes: null, commentsJson: null,
     });
     const { createHttpHandler } = require('../http-handler.cjs');

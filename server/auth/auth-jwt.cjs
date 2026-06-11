@@ -20,7 +20,11 @@ function createAuthJwt({ secret, publicKey, issuer, audience } = {}) {
       try {
         const payload = jwt.verify(token, key, verifyOpts);
         return {
-          id: payload.sub || payload.oid || payload.email || 'unknown',
+          // Stable subject ONLY — no email/'unknown' fallback. authorize()
+          // rejects a null id under requiresAuth so distinct users can never
+          // collapse onto one ownerId.
+          id: payload.sub || payload.oid || null,
+          tenant: payload.tenant || payload.org || payload.tid || null,
           name: payload.name || payload.preferred_username || payload.email || 'Unknown',
           email: payload.email || null,
           color: payload.color || null,
