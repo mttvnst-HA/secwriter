@@ -54,6 +54,20 @@ describe('mergeRemote', () => {
     expect(s1.byId.has('c1')).toBe(true);
     const s2 = comments.mergeRemote(s1, {});
     expect(s2.byId.has('c1')).toBe(false);
+
+    // #216: a locally-published comment (never echoed back, so never seen via
+    // mergeRemote) must still tombstone on a later peer deletion. updateCreate
+    // adds the published id to seenRemoteIds; a draft must NOT.
+    const draft = comments.createDraft(comments.createInitial(), {
+      commentId: 'local1', blockId: 'b1', highlightText: 'h', identity: ALICE, ts: 1,
+    }).state;
+    expect(draft.seenRemoteIds.has('local1')).toBe(false); // draft stays out
+    const published = comments.updateCreate(draft, {
+      commentId: 'local1', text: 'hi', identity: ALICE, ts: 2,
+    }).state;
+    expect(published.seenRemoteIds.has('local1')).toBe(true); // publish enters seen
+    const afterPeerDelete = comments.mergeRemote(published, {});
+    expect(afterPeerDelete.byId.has('local1')).toBe(false); // tombstoned, not ghosted
   });
 
   it('seenRemoteIds is monotonically non-shrinking across merges', () => {
