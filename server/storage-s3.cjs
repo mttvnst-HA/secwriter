@@ -70,6 +70,35 @@ class S3StorageBackend extends RoomStorageBase {
     }));
   }
 
+  async _putBytesIfAbsent(key, bytes, opts = {}) {
+    try {
+      await this.client.send(new PutObjectCommand({
+        Bucket: this.bucket,
+        Key: key,
+        Body: bytes,
+        ContentType: opts.contentType || 'application/octet-stream',
+        IfNoneMatch: '*', // conditional create (AWS S3, R2, MinIO ≥ 2024-08)
+      }));
+      return true;
+    } catch (err) {
+      const status = err.$metadata?.httpStatusCode;
+      // 412 PreconditionFailed = key exists; 409 ConditionalRequestConflict =
+      // a concurrent conditional write on the same key — either way, lost.
+      if (status === 412 || status === 409 ||
+          err.name === 'PreconditionFailed' || err.name === 'ConditionalRequestConflict') {
+        return false;
+      }
+      // Backend without conditional-write support (older MinIO/gateways):
+      // degrade to the base's non-atomic stat-then-put rather than breaking
+      // every create — but say so, since the create-claim atomicity is gone.
+      if (status === 501 || err.name === 'NotImplemented') {
+        log.warn('putIfAbsent.conditional-unsupported', { key });
+        return super._putBytesIfAbsent(key, bytes, opts);
+      }
+      throw err;
+    }
+  }
+
   async _getBytes(key) {
     try {
       const res = await this.client.send(new GetObjectCommand({ Bucket: this.bucket, Key: key }));
@@ -191,6 +220,25 @@ class S3StorageBackend extends RoomStorageBase {
       // and no '.' in the id (legacy quarantine "<id>.<reason>.ydoc" excluded;
       // legacy sanitize never emitted dots).
       const m = key.match(/^([^/.]+)\.ydoc$/);
+      if (m) ids.push(m[1]);
+    }
+    return ids;
+  }
+
+  // Legacy flat ARCHIVE layout: archive/<safe>.<ext> — one segment after
+  // archive/ (the tenant layout's archive/<tenant>/<safe>.<ext> has two).
+  // archivedAt lives in object metadata, which the base default marker hook
+  // reads via _readArchiveMarker's key parameter.
+
+  _legacyFlatArchiveKeyForArtifact(roomId, kind) {
+    return `archive/${sanitize(roomId)}${EXT_BY_KIND[kind]}`;
+  }
+
+  async _listLegacyFlatArchivedRoomIds() {
+    const keys = await this._listKeys({ prefix: 'archive/' });
+    const ids = [];
+    for (const key of keys) {
+      const m = key.match(/^archive\/([^/.]+)\.ydoc$/);
       if (m) ids.push(m[1]);
     }
     return ids;

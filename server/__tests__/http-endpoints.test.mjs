@@ -639,17 +639,72 @@ describe('room authorization (auth=jwt)', () => {
     } finally { h.server.close(); h.cleanup(); }
   });
 
-  it('GET /rooms returns ONLY the caller tenant', async () => {
+  it('GET /rooms returns ONLY the caller tenant AND only member rooms', async () => {
     const h = makeAuthServer();
     await new Promise(r => h.server.listen(0, r));
     const base = `http://127.0.0.1:${h.server.address().port}`;
+    const listIds = async (claims) => {
+      const res = await httpJson(`${base}/rooms`, 'GET', null, bearer(claims));
+      return JSON.parse(res.body.toString()).rooms.map(r => r.id).sort();
+    };
     try {
       await httpJson(`${base}/rooms`, 'POST', { id: 'a1' }, bearer({ sub: 'o', tenant: 'acme' }));
       await httpJson(`${base}/rooms`, 'POST', { id: 'b1' }, bearer({ sub: 'o', tenant: 'beta' }));
-      const res = await httpJson(`${base}/rooms`, 'GET', null, bearer({ sub: 'o', tenant: 'acme' }));
-      const ids = JSON.parse(res.body.toString()).rooms.map(r => r.id);
-      assert.deepEqual(ids.sort(), ['a1']);
+      assert.deepEqual(await listIds({ sub: 'o', tenant: 'acme' }), ['a1']);
+
+      // Member filtering (private-by-default): a same-tenant NON-member must
+      // not see the room at all — the unfiltered tenant listing leaked
+      // titles, lock state, and active-user rosters to every org member.
+      assert.deepEqual(await listIds({ sub: 'stranger', tenant: 'acme' }), [],
+        'same-tenant non-member must not see private rooms in the listing');
+      // ...until shared, at which point the sharee sees it.
+      await httpJson(`${base}/rooms/a1/share`, 'PATCH', { userId: 'stranger', action: 'add' }, bearer({ sub: 'o', tenant: 'acme' }));
+      assert.deepEqual(await listIds({ sub: 'stranger', tenant: 'acme' }), ['a1']);
+      // A room with no ACL (legacy/orphan) is hidden — same 404 semantics
+      // as the per-room routes.
+      await h.storage.writeRoom('acme', 'no-acl', { ydocBytes: Buffer.from([1]), secBytes: null, commentsJson: null });
+      assert.deepEqual(await listIds({ sub: 'o', tenant: 'acme' }), ['a1']);
     } finally { h.server.close(); h.cleanup(); }
+  });
+
+  it('concurrent create of the same id: exactly one 201, the loser 409s, ACL names the winner', async () => {
+    // Deterministic interleave: slow the existence checks so BOTH creates
+    // pass them before either writes — the old check-then-write shape let
+    // both 201 with the LAST writeAcl winning (silent ownership transfer to
+    // a user holding no receipt... and lockout of the user holding the 201).
+    // The atomic writeAclIfAbsent claim decides instead.
+    const { createAuthJwt } = require('../auth/auth-jwt.cjs');
+    const { LocalStorageBackend } = require('../storage-local.cjs');
+    const { createHttpHandler } = require('../http-handler.cjs');
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sim-create-race-'));
+    class SlowCheckStorage extends LocalStorageBackend {
+      async readRoom(t, r) { await new Promise(res => setTimeout(res, 25)); return super.readRoom(t, r); }
+      async readAcl(t, r) { await new Promise(res => setTimeout(res, 25)); return super.readAcl(t, r); }
+    }
+    const storage = new SlowCheckStorage(dir);
+    const handler = createHttpHandler({
+      storage, boundDocs: new Map(),
+      flushRoom: async () => {},
+      maxDocBytes: 8 * 1024 * 1024,
+      authProvider: createAuthJwt({ secret: AUTHZ_SECRET }),
+    });
+    const server = http.createServer(handler);
+    await new Promise(r => server.listen(0, r));
+    const base = `http://127.0.0.1:${server.address().port}`;
+    try {
+      const [ra, rb] = await Promise.all([
+        httpJson(`${base}/rooms`, 'POST', { id: 'contested' }, bearer({ sub: 'userA', tenant: 'acme' })),
+        httpJson(`${base}/rooms`, 'POST', { id: 'contested' }, bearer({ sub: 'userB', tenant: 'acme' })),
+      ]);
+      const statuses = [ra.status, rb.status].sort();
+      assert.deepEqual(statuses, [201, 409], `expected one winner and one conflict, got ${ra.status}/${rb.status}`);
+      const winner = ra.status === 201 ? 'userA' : 'userB';
+      const acl = await storage.readAcl('acme', 'contested');
+      assert.equal(acl.ownerId, winner, 'the ACL must name the caller who got the 201');
+    } finally {
+      server.close();
+      try { fs.rmSync(dir, { recursive: true, force: true }); } catch {}
+    }
   });
 });
 

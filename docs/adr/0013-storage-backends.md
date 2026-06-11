@@ -19,7 +19,7 @@ Three storage backends are wired and selectable via `SIM_STORAGE_BACKEND`:
 
 **Inheritance and atomicity:**
 
-All three extend `RoomStorageBase` (`server/room-storage.cjs`). The base owns the public methodset (`writeRoom / readRoom / deleteRoom / listRooms / statRoom / quarantineRoom / archiveRoom / backupRoom / restoreRoom / listArchivedRooms / deleteArchivedRoom / migrateLegacyFlatRooms`) by composing seven adapter primitives (`_putBytes / _getBytes / _deleteKey / _listKeys / _statKey / _copyKey / _keyForArtifact`) plus three name-parsing hooks. Shared `sanitize()` and the `ARTIFACT_CATALOG` (`.ydoc` LAST = source of truth) live in `server/storage-shared.cjs`. **Adding a fourth artifact is a one-line catalog edit; adapters never decide write order.**
+All three extend `RoomStorageBase` (`server/room-storage.cjs`). The base owns the public methodset (`writeRoom / readRoom / readAcl / writeAcl / writeAclIfAbsent / deleteRoom / listRooms / statRoom / quarantineRoom / archiveRoom / backupRoom / restoreRoom / listArchivedRooms / deleteArchivedRoom / migrateLegacyFlatRooms`) by composing the adapter primitives (`_putBytes / _putBytesIfAbsent / _getBytes / _deleteKey / _listKeys / _statKey / _copyKey / _keyForArtifact`) plus three name-parsing hooks. `_putBytesIfAbsent` is the conditional-create primitive behind `writeAclIfAbsent` (the POST /rooms atomic ownership claim): local `wx` open flag, S3 `If-None-Match: *` (with a logged non-atomic fallback on 501 NotImplemented for older gateways), Azure `ifNoneMatch: '*'`. Shared `sanitize()` and the `ARTIFACT_CATALOG` (`.ydoc` LAST = source of truth) live in `server/storage-shared.cjs`. **Adding a fourth artifact is a one-line catalog edit; adapters never decide write order.**
 
 Local overrides `writeRoom` for stage-rename-rollback atomicity. Azure overrides it for `.ydoc` blob lease. S3 inherits the default sequential `.ydoc`-LAST write.
 
@@ -29,7 +29,7 @@ Local overrides `writeRoom` for stage-rename-rollback atomicity. Azure overrides
 
 **Cross-backend contract:**
 
-Verified by `server/__tests__/storage-contract.test.mjs` (19 assertions × 3 backends = 57 tests; grew from 12 with the ACL round-trip + delete-order checks added by [ADR-0017](0017-room-authorization-model.md)). The contract pins shared behavior — `listArchivedRooms` returns `{ id, archivedAt }` uniformly with ISO-8601 timestamps; both fields are required by the collab-server sweep.
+Verified by `server/__tests__/storage-contract.test.mjs` (one shared assertion set × 3 backends, 20 tests each; grew from 12 with the ACL round-trip/claim, delete-order, and legacy-migration checks added around [ADR-0017](0017-room-authorization-model.md)). The contract pins shared behavior — `listArchivedRooms` returns `{ id, archivedAt }` uniformly with ISO-8601 timestamps; both fields are required by the collab-server sweep.
 
 ## Consequences
 

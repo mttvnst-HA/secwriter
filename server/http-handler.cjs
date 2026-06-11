@@ -15,7 +15,7 @@
 const { seedRoomFromBlocks } = require('./room-serializer.cjs');
 const { log } = require('./logger.cjs');
 const { sanitize, PUBLIC_TENANT, buildCompositeDocName } = require('./storage-shared.cjs');
-const { authorize, checkPrincipal, ACTION } = require('./auth/authorize.cjs');
+const { authorize, checkPrincipal, aclAllowsRead, ACTION } = require('./auth/authorize.cjs');
 
 /**
  * @param {Object} deps
@@ -340,7 +340,10 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           const pre = checkPrincipal(authProvider, req.user);
           if (denied(res, pre)) return;
           const tenant = resolveTenant(req);
-          // Check if room already exists (ownership-hijack: also check ACL sidecar)
+          // Fast-path existence check. NOT the race guard — that's the
+          // atomic ACL claim below. This also catches a .ydoc with no ACL
+          // (legacy/quarantine-flushed rooms), which the claim alone would
+          // let a creator silently adopt.
           const existing = await storage.readRoom(tenant, id);
           const existingAcl = authProvider?.requiresAuth ? await storage.readAcl(tenant, id) : null;
           if (existing || existingAcl) {
@@ -363,8 +366,21 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           // Crash-order (ADR-0005 amendment): ACL sidecar FIRST, then .ydoc.
           // A crash between the two leaves the room absent (no .ydoc → 404),
           // never an ownerless/hijackable room.
+          //
+          // The ACL write is an ATOMIC claim (conditional put): two
+          // concurrent creates of the same id both pass the existence check
+          // above, but exactly one wins the claim — the loser 409s instead
+          // of overwriting the winner's ACL (silent ownership transfer).
+          // Under auth=none there is no ACL to claim; the residual race
+          // (last writeRoom wins) is benign — both writers produce an
+          // identical fresh empty doc in the shared _public namespace.
           if (authProvider?.requiresAuth) {
-            await storage.writeAcl(tenant, id, { ownerId: req.user.id, sharedWith: [] });
+            const claimed = await storage.writeAclIfAbsent(tenant, id, { ownerId: req.user.id, sharedWith: [] });
+            if (!claimed) {
+              res.writeHead(409, { 'Content-Type': 'application/json' });
+              res.end(JSON.stringify({ error: `Room "${id}" already exists` }));
+              return;
+            }
           }
           await storage.writeRoom(tenant, id, { ydocBytes, secBytes: null, commentsJson: null });
           res.writeHead(201, { 'Content-Type': 'application/json' });
@@ -568,6 +584,16 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           // N * decode_ms — enough to starve WS handshakes and HTTP handlers
           // for other clients. See issue #100.
           await new Promise(resolve => setImmediate(resolve));
+
+          // Private-by-default: the tenant listing alone would expose every
+          // same-tenant room's title, lock state, and active-user roster to
+          // non-members. Filter to ACL members (owner or sharee) off the
+          // cheap sidecar; rooms with no ACL (legacy/orphan) are hidden —
+          // the same semantics as the per-room routes' 404.
+          if (authProvider?.requiresAuth) {
+            const acl = await storage.readAcl(tenant, id);
+            if (!aclAllowsRead(acl, req.user.id)) continue;
+          }
 
           const composite = buildCompositeDocName(tenant, id);
           const entry = { id, displayName: id, sectionNumber: null, sectionTitle: null, lastModified: null, activeUsers: [], locked: false, sizeBytes: 0 };

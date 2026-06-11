@@ -8,7 +8,7 @@
  */
 'use strict';
 
-const { sanitize, PUBLIC_TENANT } = require('../storage-shared.cjs');
+const { sanitize, PUBLIC_TENANT, ARCHIVE_NAMESPACE } = require('../storage-shared.cjs');
 
 const ACTION = Object.freeze({
   READ: 'read',         // open WS, GET /sec, GET /comments, POST /upload, content PATCH
@@ -27,10 +27,26 @@ function checkPrincipal(authProvider, user) {
   if (!user) return { ok: false, status: 401 };
   if (!user.tenant) return { ok: false, status: 403 };
   if (!user.id) return { ok: false, status: 403 };
-  // Sentinel reservation: a token whose tenant sanitizes to _public would
-  // address the auth=none demo namespace — a cross-tenant leak. Reject it.
-  if (sanitize(user.tenant) === PUBLIC_TENANT) return { ok: false, status: 403 };
+  // Namespace reservations: a token whose tenant sanitizes to _public would
+  // address the auth=none demo namespace (cross-tenant leak); one that
+  // sanitizes to 'archive' would address the adapters' archive prefix —
+  // rooms created there are joinable but invisible to the active listings
+  // and the sweep parsers (orphaned, unswept). Reject both.
+  const t = sanitize(user.tenant);
+  if (t === PUBLIC_TENANT || t === ARCHIVE_NAMESPACE) return { ok: false, status: 403 };
   return { ok: true };
+}
+
+/**
+ * Pure read-permission predicate over an ACL sidecar. Shared by authorize()
+ * and GET /rooms member-filtering so the owner/sharee rule has one home.
+ * A null ACL never permits (legacy/orphan rooms are hidden under auth —
+ * same semantics as the per-room 404).
+ */
+function aclAllowsRead(acl, userId) {
+  if (!acl) return false;
+  return acl.ownerId === userId ||
+    (Array.isArray(acl.sharedWith) && acl.sharedWith.includes(userId));
 }
 
 async function authorize({ authProvider, storage, user, roomId, action }) {
@@ -48,14 +64,11 @@ async function authorize({ authProvider, storage, user, roomId, action }) {
   const acl = await storage.readAcl(user.tenant, roomId);
   if (!acl) return { ok: false, status: 404 };
 
-  const isOwner = acl.ownerId === user.id;
-  const isShared = Array.isArray(acl.sharedWith) && acl.sharedWith.includes(user.id);
-
   if (action === ACTION.READ) {
-    return (isOwner || isShared) ? { ok: true } : { ok: false, status: 404 };
+    return aclAllowsRead(acl, user.id) ? { ok: true } : { ok: false, status: 404 };
   }
   // DELETE / SHARE / LOCK_ADMIN are owner-only.
-  return isOwner ? { ok: true } : { ok: false, status: 404 };
+  return acl.ownerId === user.id ? { ok: true } : { ok: false, status: 404 };
 }
 
-module.exports = { authorize, checkPrincipal, ACTION };
+module.exports = { authorize, checkPrincipal, aclAllowsRead, ACTION };

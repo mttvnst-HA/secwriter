@@ -58,6 +58,11 @@ function azureFactory() {
     getBlockBlobClient(blobName) {
       return {
         async upload(content, byteLength, options) {
+          // Honor conditional create (ifNoneMatch: '*') like real Azure:
+          // 409 BlobAlreadyExists when the blob exists.
+          if (options?.conditions?.ifNoneMatch === '*' && blobs.has(blobName)) {
+            const err = new Error('BlobAlreadyExists'); err.statusCode = 409; throw err;
+          }
           const buf = Buffer.isBuffer(content) ? content : Buffer.from(content);
           blobs.set(blobName, { content: buf, metadata: (options && options.metadata) || {} });
         },
@@ -101,6 +106,14 @@ function s3Factory() {
   s3Mock.reset();
 
   s3Mock.on(PutObjectCommand).callsFake(async (input) => {
+    // Honor conditional create (IfNoneMatch: '*') like real S3/R2/MinIO:
+    // 412 PreconditionFailed when the key exists.
+    if (input.IfNoneMatch === '*' && objects.has(input.Key)) {
+      const err = new Error('PreconditionFailed');
+      err.name = 'PreconditionFailed';
+      err.$metadata = { httpStatusCode: 412 };
+      throw err;
+    }
     const buf = Buffer.isBuffer(input.Body) ? input.Body
       : input.Body instanceof Uint8Array ? Buffer.from(input.Body)
       : Buffer.from(input.Body);
@@ -350,6 +363,17 @@ for (const { name, factory } of BACKENDS) {
       // missing ACL → null
       assert.equal(await backend.readAcl(T, 'no-such'), null);
 
+      // writeAclIfAbsent is an atomic claim: first writer wins, second
+      // returns false WITHOUT touching the winner's ACL. This is the
+      // POST /rooms ownership-claim — without it two concurrent creates
+      // both 201 and the last writeAcl silently transfers ownership.
+      assert.equal(await backend.writeAclIfAbsent(T, 'r-claim', { ownerId: 'first', sharedWith: [] }), true,
+        'first claim must succeed');
+      assert.equal(await backend.writeAclIfAbsent(T, 'r-claim', { ownerId: 'second', sharedWith: [] }), false,
+        'second claim must lose');
+      assert.deepEqual(await backend.readAcl(T, 'r-claim'), { ownerId: 'first', sharedWith: [] },
+        'the losing claim must not overwrite the winner');
+
       // full create: acl THEN ydoc; both readable; deleteRoom removes both
       const doc = new Y.Doc();
       const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(doc));
@@ -452,6 +476,28 @@ for (const { name, factory } of BACKENDS) {
       assert.deepStrictEqual(Buffer.from(r.secBytes), Buffer.from('SEC-CONTENT'));
       assert.deepEqual(await backend.readAcl(T, 'legacy1'), { ownerId: 'admin', sharedWith: [] });
       assert.equal(await backend._statKey(legacyYdoc), null, 'flat .ydoc must be gone');
+
+      // Legacy flat ARCHIVES relocate too. Pre-tenant sweeps archived under
+      // un-namespaced archive keys the tenant-scoped parsers never match —
+      // unrestorable AND invisible to the DELETE_DAYS sweep (never purged).
+      const legacyArchYdoc = backend._legacyFlatArchiveKeyForArtifact('oldarch', 'ydoc');
+      assert.ok(legacyArchYdoc, 'backend must declare its legacy flat archive layout');
+      await backend._putBytes(legacyArchYdoc, Buffer.from([0xCC]));
+      assert.equal(await backend.countLegacyFlatRooms(), 1, 'archived legacy rooms count toward the boot guard');
+      assert.equal((await backend.listArchivedRooms(T)).length, 0, 'invisible before migration');
+
+      assert.equal(await backend.migrateLegacyFlatRooms({ tenant: T, owner: 'admin' }), 1);
+      const archived = await backend.listArchivedRooms(T);
+      assert.equal(archived.length, 1);
+      assert.equal(archived[0].id, 'oldarch');
+      // archivedAt falls back to the ydoc mtime (no legacy marker seeded) —
+      // must be sweep-consumable, i.e. a parseable date, not null.
+      assert.ok(archived[0].archivedAt && !Number.isNaN(new Date(archived[0].archivedAt).getTime()),
+        `relocated archive needs a parseable archivedAt for the sweep (got ${archived[0].archivedAt})`);
+      assert.equal(await backend._statKey(legacyArchYdoc), null, 'flat archive .ydoc must be gone');
+      // restoreRoom now reaches it — the legacy archive is no longer stranded.
+      await backend.restoreRoom(T, 'oldarch');
+      assert.deepStrictEqual(Buffer.from((await backend.readRoom(T, 'oldarch')).ydocBytes), Buffer.from([0xCC]));
 
       // Idempotent: nothing left to migrate; second run is a no-op.
       assert.equal(await backend.countLegacyFlatRooms(), 0);

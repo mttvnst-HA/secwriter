@@ -220,4 +220,21 @@ describe('LocalStorageBackend', () => {
     const tmpFiles = files.filter(f => f.endsWith('.tmp'));
     assert.strictEqual(tmpFiles.length, 0, 'no .tmp files should remain after failed write');
   });
+
+  it('sweepOrphanTmpFiles removes .tmp orphans in tenant + archive subdirs, never room files', async () => {
+    const dir = freshDir();
+    const backend = new LocalStorageBackend(dir);
+    await backend.writeRoom(T, 'live', { ydocBytes: Buffer.from([1]), secBytes: null, commentsJson: null });
+    // Crash leftovers at every layout depth: top level (pre-tenant), inside
+    // a tenant dir (where writeRoom actually stages), and under archive/.
+    fs.writeFileSync(path.join(dir, 'old-flat.ydoc.tmp'), 'x');
+    fs.writeFileSync(path.join(dir, T, 'crashed.SEC.tmp'), 'x');
+    fs.mkdirSync(path.join(dir, 'archive', T), { recursive: true });
+    fs.writeFileSync(path.join(dir, 'archive', T, 'arch.ydoc.tmp'), 'x');
+
+    assert.strictEqual(backend.sweepOrphanTmpFiles(), 3, 'all three orphans removed');
+    assert.ok(!fs.existsSync(path.join(dir, T, 'crashed.SEC.tmp')), 'tenant-dir orphan gone');
+    assert.ok(await backend.readRoom(T, 'live'), 'real room artifacts untouched');
+    assert.strictEqual(backend.sweepOrphanTmpFiles(), 0, 'idempotent');
+  });
 });

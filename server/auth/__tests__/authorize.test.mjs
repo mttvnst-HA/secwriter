@@ -23,6 +23,10 @@ describe('checkPrincipal', () => {
     assert.equal(checkPrincipal(authOn, { id: 'u1', tenant: '_public' }).status, 403); // sentinel
     assert.equal(checkPrincipal(authOn, { id: 'u1', tenant: '.public' }).status, 403, 'sanitizes to _public → rejected');
     assert.equal(checkPrincipal(authOn, { id: 'u1', tenant: ' public' }).status, 403, 'sanitizes to _public → rejected');
+    // 'archive' is the adapters' archive-namespace prefix — a token tenant
+    // landing there would create rooms inside the archive tree: joinable,
+    // but invisible to the active listings and the sweep parsers.
+    assert.equal(checkPrincipal(authOn, { id: 'u1', tenant: 'archive' }).status, 403, 'archive namespace reserved');
     // '../etc' sanitizes to '___etc' (NOT _public), so the principal is OK —
     // it harmlessly addresses its own sanitized namespace.
     assert.deepEqual(checkPrincipal(authOn, { id: 'u1', tenant: '../etc' }), { ok: true });

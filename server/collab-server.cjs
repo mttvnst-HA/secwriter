@@ -515,13 +515,13 @@ function startFromEnv() {
 
   if (process.env.SIM_STORAGE_BACKEND !== 'azure' && process.env.SIM_STORAGE_BACKEND !== 's3') {
     fs.mkdirSync(DATA_DIR, { recursive: true });
-    // N4 — orphan .tmp sweep at startup.
+    // N4 — orphan .tmp sweep at startup. Owned by the storage backend: it
+    // knows the layout (writeRoom stages at <dir>/<tenant>/<room>.<ext>.tmp,
+    // so a top-level readdir here would never see a post-tenant orphan).
     try {
-      for (const name of fs.readdirSync(DATA_DIR)) {
-        if (name.endsWith('.tmp')) {
-          try { fs.unlinkSync(path.join(DATA_DIR, name)); }
-          catch (err) { log.warn('startup.orphan-remove-failed', { file: name, err: err.message }); }
-        }
+      if (typeof storage.sweepOrphanTmpFiles === 'function') {
+        const removed = storage.sweepOrphanTmpFiles();
+        if (removed > 0) log.info('startup.tmp-swept', { removed });
       }
     } catch (err) {
       log.warn('startup.tmp-sweep-failed', { err: err.message });

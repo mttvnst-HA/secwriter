@@ -2,12 +2,14 @@
  * RoomStorageBase — base class for SecWriter room persistence backends.
  *
  * Owns the public methodset (writeRoom / readRoom / readAcl / writeAcl /
- * listRooms / listAllRooms / deleteRoom / statRoom / quarantineRoom /
- * archiveRoom / backupRoom / restoreRoom / listArchivedRooms /
- * listAllArchivedRooms / deleteArchivedRoom / migrateLegacyFlatRooms /
- * countLegacyFlatRooms) by composing seven adapter primitives:
+ * writeAclIfAbsent / listRooms / listAllRooms / deleteRoom / statRoom /
+ * quarantineRoom / archiveRoom / backupRoom / restoreRoom /
+ * listArchivedRooms / listAllArchivedRooms / deleteArchivedRoom /
+ * migrateLegacyFlatRooms / countLegacyFlatRooms) by composing the adapter
+ * primitives:
  *
  *   _putBytes(key, bytes, opts?)
+ *   _putBytesIfAbsent(key, bytes, opts?) → boolean (conditional create)
  *   _getBytes(key)            → Buffer | null
  *   _deleteKey(key)           → void  (idempotent)
  *   _listKeys({ prefix? })    → string[]
@@ -94,11 +96,26 @@ class RoomStorageBase {
     catch { return null; }
   }
 
-  /** Single-artifact ACL write — used by POST /rooms (create) and the share route. */
+  /** Single-artifact ACL write — used by the share route (room already owned). */
   async writeAcl(tenant, roomId, acl) {
     const entry = ARTIFACT_CATALOG.find(c => c.kind === ARTIFACT_KIND_ACL);
     const key = this._keyForArtifact(tenant, roomId, ARTIFACT_KIND_ACL);
     await this._putBytes(key, Buffer.from(JSON.stringify(acl), 'utf-8'), { contentType: entry.contentType });
+  }
+
+  /**
+   * Atomic ownership claim — write the ACL only if no ACL exists yet.
+   * Returns true when this caller claimed the room, false when another
+   * writer got there first. POST /rooms uses this instead of writeAcl so
+   * two concurrent creates of the same id can't both 201 with the LAST
+   * writeAcl silently transferring ownership (check-then-write race).
+   * Atomicity comes from the adapter's _putBytesIfAbsent (local `wx` open,
+   * S3 `If-None-Match: *`, Azure `ifNoneMatch: '*'`).
+   */
+  async writeAclIfAbsent(tenant, roomId, acl) {
+    const entry = ARTIFACT_CATALOG.find(c => c.kind === ARTIFACT_KIND_ACL);
+    const key = this._keyForArtifact(tenant, roomId, ARTIFACT_KIND_ACL);
+    return this._putBytesIfAbsent(key, Buffer.from(JSON.stringify(acl), 'utf-8'), { contentType: entry.contentType });
   }
 
   async deleteRoom(tenant, roomId) {
@@ -316,12 +333,46 @@ class RoomStorageBase {
       }
       moved++;
     }
+
+    // Legacy flat ARCHIVES too: rooms the pre-tenant sweep archived live at
+    // un-namespaced archive keys that the tenant-scoped archive parsers
+    // never match — invisible to listArchivedRooms/restoreRoom AND to the
+    // DELETE_DAYS sweep, i.e. unrestorable and never purged. Relocate them
+    // into the tenant's archive namespace, carrying archivedAt forward
+    // (falling back to the ydoc mtime, else now, so the sweep can age them
+    // out rather than skipping a null archivedAt forever). No ACL: archived
+    // rooms have no active ACL in the new scheme either — restoreRoom
+    // surfaces them as orphan content the owner re-claims via create.
+    const archivedIds = await this._listLegacyFlatArchivedRoomIds();
+    for (const id of archivedIds) {
+      const legacyYdocKey = this._legacyFlatArchiveKeyForArtifact(id, ARTIFACT_KIND_YDOC);
+      const archivedAt = (await this._readLegacyFlatArchiveMarker(id))
+        || (await this._statKey(legacyYdocKey))?.lastModified
+        || new Date().toISOString();
+      for (const { kind } of ARTIFACT_CATALOG) {
+        if (kind === ARTIFACT_KIND_ACL) continue;
+        const srcKey = this._legacyFlatArchiveKeyForArtifact(id, kind);
+        if (srcKey == null) continue;
+        if ((await this._statKey(srcKey)) == null) continue;
+        // Carry the marker as object metadata on the ydoc copy (Azure's
+        // download+upload _copyKey drops metadata unless passed explicitly;
+        // Local ignores opts; S3 REPLACEs with the same value).
+        const opts = kind === ARTIFACT_KIND_YDOC ? { metadata: { archivedat: archivedAt } } : undefined;
+        await this._copyKey(srcKey, this._keyForArtifact(tenant, id, kind, { archived: true }), opts);
+        await this._deleteKey(srcKey);
+      }
+      await this._writeArchiveMarker(tenant, id, archivedAt);
+      await this._deleteLegacyFlatArchiveMarker(id);
+      moved++;
+    }
     return moved;
   }
 
   /** Cheap probe for the boot-time guard: how many legacy flat rooms exist? */
   async countLegacyFlatRooms() {
-    return (await this._listLegacyFlatRoomIds()).length;
+    const active = await this._listLegacyFlatRoomIds();
+    const archived = await this._listLegacyFlatArchivedRoomIds();
+    return active.length + archived.length;
   }
 
   // ── Adapter contract: required ──────────────────────────────────────────
@@ -344,12 +395,40 @@ class RoomStorageBase {
   // ── Adapter contract: optional overrides ────────────────────────────────
 
   /**
+   * Conditional create primitive: write `bytes` at `key` only if the key
+   * does not exist; return true if written, false on conflict. The default
+   * is stat-then-put — NOT atomic across writers — so every shipped adapter
+   * overrides it with a true conditional write (local `wx` open flag, S3
+   * `If-None-Match: *`, Azure `ifNoneMatch: '*'`). A new adapter that keeps
+   * the default trades the POST /rooms ownership-claim atomicity away.
+   */
+  async _putBytesIfAbsent(key, bytes, opts) {
+    if ((await this._statKey(key)) != null) return false;
+    await this._putBytes(key, bytes, opts);
+    return true;
+  }
+
+  /**
    * Legacy flat-layout hooks (pre-tenant keys). Adapters that predate the
-   * composite-key scheme override both so migrateLegacyFlatRooms can find
-   * and relocate their old rooms. Defaults: no legacy rooms.
+   * composite-key scheme override these so migrateLegacyFlatRooms can find
+   * and relocate their old rooms — ACTIVE rooms (first pair) and ARCHIVED
+   * rooms (second set; the pre-tenant sweep archived under un-namespaced
+   * archive keys). Defaults: no legacy rooms.
    */
   async _listLegacyFlatRoomIds() { return []; }
   _legacyFlatKeyForArtifact(_roomId, _kind) { return null; }
+  async _listLegacyFlatArchivedRoomIds() { return []; }
+  _legacyFlatArchiveKeyForArtifact(_roomId, _kind) { return null; }
+  /**
+   * Default reads the `archivedat` object metadata off the legacy archived
+   * ydoc via _readArchiveMarker's key parameter (S3/Azure store the marker
+   * there). Local overrides — its marker is a sidecar file.
+   */
+  async _readLegacyFlatArchiveMarker(roomId) {
+    const key = this._legacyFlatArchiveKeyForArtifact(roomId, ARTIFACT_KIND_YDOC);
+    return key == null ? null : this._readArchiveMarker(null, roomId, key);
+  }
+  async _deleteLegacyFlatArchiveMarker(_roomId) { /* no-op — metadata moves with the copy */ }
 
   /** Default: no-op. Local overrides to write a sidecar marker file. */
   async _writeArchiveMarker(_tenant, _roomId, _archivedAt) { /* no-op */ }

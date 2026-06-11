@@ -102,6 +102,17 @@ class LocalStorageBackend extends RoomStorageBase {
     fs.writeFileSync(key, bytes);
   }
 
+  async _putBytesIfAbsent(key, bytes) {
+    fs.mkdirSync(path.dirname(key), { recursive: true });
+    try {
+      fs.writeFileSync(key, bytes, { flag: 'wx' }); // atomic create-or-fail
+      return true;
+    } catch (err) {
+      if (err.code === 'EEXIST') return false;
+      throw err;
+    }
+  }
+
   async _getBytes(key) {
     if (!fs.existsSync(key)) return null;
     return fs.readFileSync(key);
@@ -253,6 +264,67 @@ class LocalStorageBackend extends RoomStorageBase {
       }
     }
     return ids;
+  }
+
+  // Legacy flat ARCHIVE layout: <dir>/archive/<safe>.<ext> files directly in
+  // archive/ (+ <safe>.archivedAt marker file). The tenant layout's archived
+  // rooms are SUBDIRS of archive/, so flat files there are unambiguous.
+
+  _legacyFlatArchiveKeyForArtifact(roomId, kind) {
+    return path.join(this._dir, 'archive', `${sanitize(roomId)}${EXT_BY_KIND[kind]}`);
+  }
+
+  async _listLegacyFlatArchivedRoomIds() {
+    const archiveDir = path.join(this._dir, 'archive');
+    if (!fs.existsSync(archiveDir)) return [];
+    const ids = [];
+    for (const e of fs.readdirSync(archiveDir, { withFileTypes: true })) {
+      if (!e.isFile()) continue; // tenant archive subdirs — skip
+      if (e.name.endsWith('.ydoc') && !e.name.includes('.ydoc.')) {
+        ids.push(e.name.slice(0, -'.ydoc'.length));
+      }
+    }
+    return ids;
+  }
+
+  async _readLegacyFlatArchiveMarker(roomId) {
+    const markerPath = path.join(this._dir, 'archive', `${sanitize(roomId)}.archivedAt`);
+    if (!fs.existsSync(markerPath)) return null;
+    try { return fs.readFileSync(markerPath, 'utf-8').trim(); }
+    catch { return null; }
+  }
+
+  async _deleteLegacyFlatArchiveMarker(roomId) {
+    const markerPath = path.join(this._dir, 'archive', `${sanitize(roomId)}.archivedAt`);
+    try { fs.unlinkSync(markerPath); } catch { /* may not exist */ }
+  }
+
+  // ── Orphan .tmp sweep ─────────────────────────────────────────────────────
+
+  /**
+   * Delete orphaned `*.tmp` staging files anywhere under the data dir.
+   * writeRoom stages-then-renames within one call, so any `.tmp` present at
+   * boot is a crash leftover. The walk covers tenant subdirs and the archive
+   * tree — a top-level-only readdir would miss every post-tenant-layout
+   * orphan (writeRoom stages at `<dir>/<tenant>/<room>.<ext>.tmp`).
+   * Returns the number of files removed.
+   */
+  sweepOrphanTmpFiles() {
+    let removed = 0;
+    const walk = (dir) => {
+      let entries;
+      try { entries = fs.readdirSync(dir, { withFileTypes: true }); }
+      catch { return; }
+      for (const e of entries) {
+        const p = path.join(dir, e.name);
+        if (e.isDirectory()) walk(p);
+        else if (e.name.endsWith('.tmp')) {
+          try { fs.unlinkSync(p); removed++; } catch { /* best effort */ }
+        }
+      }
+    };
+    walk(this._dir);
+    return removed;
   }
 }
 
