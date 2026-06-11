@@ -14,6 +14,7 @@
 // against CJS Y.Docs. room-serializer uses the same CJS Yjs as the server.
 const { seedRoomFromBlocks } = require('./room-serializer.cjs');
 const { log } = require('./logger.cjs');
+const { PUBLIC_TENANT } = require('./storage-shared.cjs');
 
 /**
  * @param {Object} deps
@@ -237,7 +238,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
     if (dlMatch && req.method === 'GET') {
       const [, roomId, artifact] = dlMatch;
       try {
-        const data = await storage.readRoom(roomId);
+        const data = await storage.readRoom(PUBLIC_TENANT, roomId);
         if (!data) {
           res.writeHead(404, { 'Content-Type': 'text/plain' });
           res.end(`Room "${roomId}" not found`);
@@ -304,7 +305,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
             return;
           }
           // Check if room already exists
-          const existing = await storage.readRoom(id);
+          const existing = await storage.readRoom(PUBLIC_TENANT, id);
           if (existing) {
             res.writeHead(409, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: `Room "${id}" already exists` }));
@@ -322,7 +323,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(ydoc));
           ydoc.destroy();
 
-          await storage.writeRoom(id, { ydocBytes, secBytes: null, commentsJson: null });
+          await storage.writeRoom(PUBLIC_TENANT, id, { ydocBytes, secBytes: null, commentsJson: null });
           res.writeHead(201, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ id, ok: true }));
         } catch (err) {
@@ -338,7 +339,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
     if (deleteMatch && req.method === 'DELETE') {
       const roomId = deleteMatch[1];
       try {
-        const existing = await storage.readRoom(roomId);
+        const existing = await storage.readRoom(PUBLIC_TENANT, roomId);
         if (!existing) {
           res.writeHead(404, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ error: `Room "${roomId}" not found` }));
@@ -350,7 +351,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           sendLocked(res, lock.lockedBy);
           return;
         }
-        await storage.deleteRoom(roomId);
+        await storage.deleteRoom(PUBLIC_TENANT, roomId);
         // Sub-PR 1d (#47, ADR-0006). The migration coordinator caches one
         // promise per docName; a successful migration leaves
         // `{ alreadyV2: true }` in the cache so concurrent broker calls
@@ -360,7 +361,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
         // result and skip both archive + migration. Drop the entry here
         // so the broker re-evaluates the new doc.
         if (migrationCoordinator && typeof migrationCoordinator.forget === 'function') {
-          migrationCoordinator.forget(roomId);
+          migrationCoordinator.forget(`${PUBLIC_TENANT}/${roomId}`);
         }
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ ok: true }));
@@ -380,7 +381,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
       req.on('end', async () => {
         try {
           const body = JSON.parse(Buffer.concat(chunks).toString('utf-8'));
-          const existing = await storage.readRoom(roomId);
+          const existing = await storage.readRoom(PUBLIC_TENANT, roomId);
           if (!existing) {
             res.writeHead(404, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: `Room "${roomId}" not found` }));
@@ -408,7 +409,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(ydoc));
           ydoc.destroy();
 
-          await storage.writeRoom(roomId, {
+          await storage.writeRoom(PUBLIC_TENANT, roomId, {
             ydocBytes,
             secBytes: existing.secBytes,
             commentsJson: existing.commentsJson,
@@ -440,7 +441,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
     // GET /rooms — list all rooms with metadata
     if (url.pathname === '/rooms' && req.method === 'GET') {
       try {
-        const roomIds = await storage.listRooms();
+        const roomIds = await storage.listRooms(PUBLIC_TENANT);
         const Y = require('yjs');
         const rooms = [];
 
@@ -470,7 +471,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           } else {
             // Fall back to reading persisted .ydoc to extract yMeta
             try {
-              const data = await storage.readRoom(id);
+              const data = await storage.readRoom(PUBLIC_TENANT, id);
               if (data && data.ydocBytes) {
                 const tempDoc = new Y.Doc();
                 try {
@@ -495,7 +496,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
 
           // Get filesystem stats
           try {
-            const stat = await storage.statRoom(id);
+            const stat = await storage.statRoom(PUBLIC_TENANT, id);
             if (stat) {
               entry.lastModified = stat.lastModified;
               entry.sizeBytes = stat.sizeBytes;

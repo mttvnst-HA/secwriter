@@ -27,6 +27,8 @@ import { randomUUID } from 'node:crypto';
 const require = createRequire(import.meta.url);
 const { AzureStorageBackend } = require('../storage-azure.cjs');
 
+const T = 'acme'; // tenant for all integration tests
+
 const CONN =
   process.env.AZURE_STORAGE_CONNECTION_STRING ||
   process.env.SIM_AZURE_STORAGE_CONNECTION_STRING;
@@ -86,23 +88,23 @@ describe('AzureStorageBackend (integration — real @azure/storage-blob SDK)', {
   /* ── 404 / missing-blob shape ────────────────────────────────────────── */
 
   it('readRoom returns null when .ydoc does not exist (real RestError 404)', async () => {
-    const result = await backend.readRoom('no-such-room');
+    const result = await backend.readRoom(T, 'no-such-room');
     assert.strictEqual(result, null);
   });
 
   it('statRoom returns null for missing .ydoc (real RestError 404)', async () => {
-    const result = await backend.statRoom('ghost-room');
+    const result = await backend.statRoom(T, 'ghost-room');
     assert.strictEqual(result, null);
   });
 
   it('readRoom tolerates missing sidecars (ydoc exists, sec/comments do not)', async () => {
-    await backend.writeRoom('partial-room', {
+    await backend.writeRoom(T, 'partial-room', {
       ydocBytes: Buffer.from([0x01, 0x02]),
       secBytes: null,
       commentsJson: null,
     });
 
-    const result = await backend.readRoom('partial-room');
+    const result = await backend.readRoom(T, 'partial-room');
     assert.ok(result, 'readRoom should succeed');
     assert.deepStrictEqual(result.ydocBytes, Buffer.from([0x01, 0x02]));
     assert.strictEqual(result.secBytes, null);
@@ -120,7 +122,7 @@ describe('AzureStorageBackend (integration — real @azure/storage-blob SDK)', {
     // populate this header on 404s. The backend only depends on
     // statusCode, so statusCode is the hard assertion; err.code is
     // verified only when present.
-    const missing = container.getBlockBlobClient('does-not-exist/room.ydoc');
+    const missing = container.getBlockBlobClient(`${T}/does-not-exist/room.ydoc`);
     await assert.rejects(
       missing.downloadToBuffer(),
       (err) => {
@@ -140,8 +142,8 @@ describe('AzureStorageBackend (integration — real @azure/storage-blob SDK)', {
     const secBytes = Buffer.from('<?xml version="1.0"?><SEC/>', 'utf-8');
     const commentsJson = JSON.stringify({ c1: { text: 'integration' } });
 
-    await backend.writeRoom('rt-room', { ydocBytes, secBytes, commentsJson });
-    const result = await backend.readRoom('rt-room');
+    await backend.writeRoom(T, 'rt-room', { ydocBytes, secBytes, commentsJson });
+    const result = await backend.readRoom(T, 'rt-room');
 
     assert.ok(result);
     assert.deepStrictEqual(result.ydocBytes, ydocBytes);
@@ -153,14 +155,14 @@ describe('AzureStorageBackend (integration — real @azure/storage-blob SDK)', {
 
   it('blob lease contention: writeRoom against an externally-leased .ydoc rejects with 412', async () => {
     // Seed initial ydoc so a lease can be acquired against it.
-    await backend.writeRoom('lease-room', {
+    await backend.writeRoom(T, 'lease-room', {
       ydocBytes: Buffer.from('v1', 'utf-8'),
       secBytes: null,
       commentsJson: null,
     });
 
     // External party (simulates another server instance) acquires a lease.
-    const ydocBlob = container.getBlockBlobClient('lease-room/room.ydoc');
+    const ydocBlob = container.getBlockBlobClient(`${T}/lease-room/room.ydoc`);
     const externalLease = ydocBlob.getBlobLeaseClient();
     await externalLease.acquireLease(30);
 
@@ -168,7 +170,7 @@ describe('AzureStorageBackend (integration — real @azure/storage-blob SDK)', {
       // Backend's own acquireLease should fail (caught silently), then the
       // unconditional ydoc upload should 412 because another lease is active.
       await assert.rejects(
-        backend.writeRoom('lease-room', {
+        backend.writeRoom(T, 'lease-room', {
           ydocBytes: Buffer.from('v2', 'utf-8'),
           secBytes: null,
           commentsJson: null,
@@ -182,24 +184,24 @@ describe('AzureStorageBackend (integration — real @azure/storage-blob SDK)', {
 
     // Source of truth (.ydoc) still reads as v1 — the failed write did NOT
     // leave partial state ahead of the .ydoc.
-    const result = await backend.readRoom('lease-room');
+    const result = await backend.readRoom(T, 'lease-room');
     assert.deepStrictEqual(result.ydocBytes, Buffer.from('v1', 'utf-8'));
   });
 
   it('blob lease contention: sequential writes release the lease cleanly', async () => {
     // Two back-to-back writes should both succeed — the first releases its
     // lease in the finally block before the second acquires one.
-    await backend.writeRoom('seq-room', {
+    await backend.writeRoom(T, 'seq-room', {
       ydocBytes: Buffer.from('a'),
       secBytes: null,
       commentsJson: null,
     });
-    await backend.writeRoom('seq-room', {
+    await backend.writeRoom(T, 'seq-room', {
       ydocBytes: Buffer.from('b'),
       secBytes: null,
       commentsJson: null,
     });
-    const result = await backend.readRoom('seq-room');
+    const result = await backend.readRoom(T, 'seq-room');
     assert.deepStrictEqual(result.ydocBytes, Buffer.from('b'));
   });
 
@@ -215,37 +217,37 @@ describe('AzureStorageBackend (integration — real @azure/storage-blob SDK)', {
     for (let i = 0; i < count; i++) {
       const id = `page-${String(i).padStart(3, '0')}`;
       expected.push(id);
-      await backend.writeRoom(id, {
+      await backend.writeRoom(T, id, {
         ydocBytes: Buffer.from([i & 0xff]),
         secBytes: null,
         commentsJson: null,
       });
     }
 
-    const rooms = await backend.listRooms();
+    const rooms = await backend.listRooms(T);
     rooms.sort();
     expected.sort();
     assert.deepStrictEqual(rooms, expected);
   });
 
   it('listRooms excludes archive/ prefix entries', async () => {
-    await backend.writeRoom('live-a', {
+    await backend.writeRoom(T, 'live-a', {
       ydocBytes: Buffer.from([1]),
       secBytes: null,
       commentsJson: null,
     });
-    await backend.writeRoom('live-b', {
+    await backend.writeRoom(T, 'live-b', {
       ydocBytes: Buffer.from([2]),
       secBytes: null,
       commentsJson: null,
     });
-    await backend.archiveRoom('live-b');
+    await backend.archiveRoom(T, 'live-b');
 
-    const live = await backend.listRooms();
+    const live = await backend.listRooms(T);
     assert.ok(live.includes('live-a'));
     assert.ok(!live.includes('live-b'), 'archived room should not appear in listRooms');
 
-    const archived = await backend.listArchivedRooms();
+    const archived = await backend.listArchivedRooms(T);
     assert.strictEqual(archived.length, 1);
     assert.strictEqual(archived[0].id, 'live-b');
     assert.ok(archived[0].archivedAt, 'archivedAt metadata round-trips through real SDK');
@@ -258,64 +260,64 @@ describe('AzureStorageBackend (integration — real @azure/storage-blob SDK)', {
     const secBytes = Buffer.from('real-sec-content', 'utf-8');
     const commentsJson = JSON.stringify({ hello: 'archive' });
 
-    await backend.writeRoom('ar-room', { ydocBytes, secBytes, commentsJson });
-    await backend.archiveRoom('ar-room');
+    await backend.writeRoom(T, 'ar-room', { ydocBytes, secBytes, commentsJson });
+    await backend.archiveRoom(T, 'ar-room');
 
     // After archive, listRooms excludes it, readRoom returns null.
-    assert.strictEqual(await backend.readRoom('ar-room'), null);
+    assert.strictEqual(await backend.readRoom(T, 'ar-room'), null);
 
-    const archived = await backend.listArchivedRooms();
+    const archived = await backend.listArchivedRooms(T);
     assert.ok(archived.some((r) => r.id === 'ar-room'));
 
-    await backend.restoreRoom('ar-room');
+    await backend.restoreRoom(T, 'ar-room');
 
-    const result = await backend.readRoom('ar-room');
+    const result = await backend.readRoom(T, 'ar-room');
     assert.ok(result, 'room restored');
     assert.deepStrictEqual(result.ydocBytes, ydocBytes);
     assert.deepStrictEqual(result.secBytes, secBytes);
     assert.strictEqual(result.commentsJson, commentsJson);
 
     // Archive blobs are cleaned up after restore.
-    const stillArchived = await backend.listArchivedRooms();
+    const stillArchived = await backend.listArchivedRooms(T);
     assert.ok(!stillArchived.some((r) => r.id === 'ar-room'));
   });
 
   it('deleteArchivedRoom permanently removes archive blobs', async () => {
-    await backend.writeRoom('del-room', {
+    await backend.writeRoom(T, 'del-room', {
       ydocBytes: Buffer.from([5]),
       secBytes: Buffer.from('s'),
       commentsJson: '{}',
     });
-    await backend.archiveRoom('del-room');
-    await backend.deleteArchivedRoom('del-room');
+    await backend.archiveRoom(T, 'del-room');
+    await backend.deleteArchivedRoom(T, 'del-room');
 
-    const archived = await backend.listArchivedRooms();
+    const archived = await backend.listArchivedRooms(T);
     assert.ok(!archived.some((r) => r.id === 'del-room'));
 
     // Direct blob check — deletions are durable.
-    const ydocBlob = container.getBlockBlobClient('archive/del-room/room.ydoc');
+    const ydocBlob = container.getBlockBlobClient(`archive/${T}/del-room/room.ydoc`);
     assert.strictEqual(await ydocBlob.exists(), false);
   });
 
   /* ── quarantineRoom ──────────────────────────────────────────────────── */
 
   it('quarantineRoom copies artifacts to suffixed names and removes originals', async () => {
-    await backend.writeRoom('sick-room', {
+    await backend.writeRoom(T, 'sick-room', {
       ydocBytes: Buffer.from([0xAB]),
       secBytes: Buffer.from('bad'),
       commentsJson: '{"x":1}',
     });
 
-    await backend.quarantineRoom('sick-room', 'corrupt');
+    await backend.quarantineRoom(T, 'sick-room', 'corrupt');
 
     // Originals gone.
-    assert.strictEqual(await backend.readRoom('sick-room'), null);
-    const origYdoc = container.getBlockBlobClient('sick-room/room.ydoc');
+    assert.strictEqual(await backend.readRoom(T, 'sick-room'), null);
+    const origYdoc = container.getBlockBlobClient(`${T}/sick-room/room.ydoc`);
     assert.strictEqual(await origYdoc.exists(), false);
 
     // Quarantined copies exist with .corrupt.<ts> suffix.
     let quarantinedCount = 0;
-    for await (const item of container.listBlobsFlat({ prefix: 'sick-room/' })) {
+    for await (const item of container.listBlobsFlat({ prefix: `${T}/sick-room/` })) {
       if (item.name.includes('.corrupt.')) quarantinedCount++;
     }
     assert.strictEqual(quarantinedCount, 3, 'all three artifacts quarantined');
@@ -343,12 +345,12 @@ describe('AzureStorageBackend (integration — Managed Identity)', { skip: miSki
       const backend = new AzureStorageBackend({ containerClient: container });
       await backend._initPromise;
 
-      await backend.writeRoom('mi-room', {
+      await backend.writeRoom(T, 'mi-room', {
         ydocBytes: Buffer.from([1, 2, 3]),
         secBytes: null,
         commentsJson: null,
       });
-      const result = await backend.readRoom('mi-room');
+      const result = await backend.readRoom(T, 'mi-room');
       assert.deepStrictEqual(result.ydocBytes, Buffer.from([1, 2, 3]));
     } finally {
       await container.deleteIfExists();

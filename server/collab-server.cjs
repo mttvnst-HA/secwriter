@@ -40,6 +40,7 @@ const { log } = require('./logger.cjs');
 const { createRateLimiter } = require('./rate-limiter.cjs');
 const { createHttpHandler } = require('./http-handler.cjs');
 const { createMigrationCoordinator } = require('./migrate-pm-substrate.cjs');
+const { PUBLIC_TENANT, splitCompositeDocName } = require('./storage-shared.cjs');
 
 // Hard caps. A single spec section is O(100KB) of text; 8 MB gives plenty of
 // headroom for Y.Doc overhead + revision history without letting a runaway
@@ -188,7 +189,7 @@ function createCollabServer(config) {
 
       const serializeRoom = await getSerializeRoom();
       const artifacts = await serializeRoom(ydoc);
-      await storage.writeRoom(docName, artifacts);
+      await storage.writeRoom(PUBLIC_TENANT, docName, artifacts);
 
       health.persistFailures = 0;
       health.lastPersistSuccess = Date.now();
@@ -221,14 +222,14 @@ function createCollabServer(config) {
       // empty doc and re-seed.
       const loadPromise = (async () => {
         try {
-          const roomData = await storage.readRoom(docName);
+          const roomData = await storage.readRoom(PUBLIC_TENANT, docName);
           if (!roomData || !roomData.ydocBytes) {
             log.info('room.new', { roomId: docName });
             return;
           }
           const bytes = roomData.ydocBytes;
           if (bytes.length > MAX_DOC_BYTES) {
-            await storage.quarantineRoom(docName, 'oversize');
+            await storage.quarantineRoom(PUBLIC_TENANT, docName, 'oversize');
             log.warn('room.quarantined', { roomId: docName, bytes: bytes.length, reason: 'oversize' });
             log.info('room.new', { roomId: docName });
             return;
@@ -242,7 +243,7 @@ function createCollabServer(config) {
             Y.applyUpdate(scratch, new Uint8Array(bytes));
             restored = true;
           } catch (err) {
-            await storage.quarantineRoom(docName, 'corrupt');
+            await storage.quarantineRoom(PUBLIC_TENANT, docName, 'corrupt');
             log.warn('room.quarantined', { roomId: docName, reason: 'corrupt', err: err.message });
           }
           if (restored) {
@@ -384,7 +385,7 @@ function createCollabServer(config) {
     // and on rooms that already failed migration once (migrationPartial).
     if (migrationCoordinator) {
       try {
-        await migrationCoordinator.ensureMigrated(docName, doc);
+        await migrationCoordinator.ensureMigrated(`${PUBLIC_TENANT}/${docName}`, doc);
       } catch (err) {
         // ensureMigrated catches its own per-step errors and resolves
         // either with skipped:true or with a per-block partial. A throw
@@ -550,16 +551,16 @@ function startFromEnv() {
     const now = Date.now();
     log.info('sweep.start', {});
     try {
-      const rooms = await storage.listRooms();
+      const rooms = await storage.listRooms(PUBLIC_TENANT);
       for (const id of rooms) {
         if (server.boundDocs.has(id)) continue;
-        const stat = await storage.statRoom(id);
+        const stat = await storage.statRoom(PUBLIC_TENANT, id);
         if (!stat || !stat.lastModified) continue;
         const idleMs = now - new Date(stat.lastModified).getTime();
         const idleDays = idleMs / (24 * 60 * 60 * 1000);
         if (idleDays >= ARCHIVE_DAYS) {
           log.info('sweep.archive', { roomId: id, idleDays: Math.round(idleDays) });
-          await storage.archiveRoom(id);
+          await storage.archiveRoom(PUBLIC_TENANT, id);
         }
       }
     } catch (err) {
@@ -567,14 +568,14 @@ function startFromEnv() {
     }
     try {
       if (typeof storage.listArchivedRooms === 'function') {
-        const archived = await storage.listArchivedRooms();
+        const archived = await storage.listArchivedRooms(PUBLIC_TENANT);
         for (const room of archived) {
           if (!room.archivedAt) continue;
           const archivedMs = now - new Date(room.archivedAt).getTime();
           const archivedDays = archivedMs / (24 * 60 * 60 * 1000);
           if (archivedDays >= DELETE_DAYS) {
             log.info('sweep.delete', { roomId: room.id, archivedDays: Math.round(archivedDays) });
-            await storage.deleteArchivedRoom(room.id);
+            await storage.deleteArchivedRoom(PUBLIC_TENANT, room.id);
           }
         }
       }

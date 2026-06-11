@@ -165,6 +165,7 @@ const BACKENDS = [
 for (const { name, factory } of BACKENDS) {
   describe(`Storage contract: ${name}`, () => {
     let backend, cleanup;
+    const T = 'acme'; // tenant for all contract assertions
     beforeEach(() => { ({ backend, cleanup } = factory()); });
     afterEach(() => { cleanup(); });
 
@@ -173,8 +174,8 @@ for (const { name, factory } of BACKENDS) {
       const secBytes = Buffer.from('<?xml version="1.0"?><SEC/>', 'utf-8');
       const commentsJson = JSON.stringify({ c1: { text: 'hi' } });
 
-      await backend.writeRoom('demo', { ydocBytes, secBytes, commentsJson });
-      const r = await backend.readRoom('demo');
+      await backend.writeRoom(T, 'demo', { ydocBytes, secBytes, commentsJson });
+      const r = await backend.readRoom(T, 'demo');
 
       assert.ok(r);
       assert.deepStrictEqual(Buffer.from(r.ydocBytes), ydocBytes);
@@ -183,16 +184,16 @@ for (const { name, factory } of BACKENDS) {
     });
 
     it('readRoom returns null for a nonexistent room', async () => {
-      assert.strictEqual(await backend.readRoom('no-such'), null);
+      assert.strictEqual(await backend.readRoom(T, 'no-such'), null);
     });
 
     it('writeRoom with only ydocBytes works (sidecars optional)', async () => {
-      await backend.writeRoom('minimal', {
+      await backend.writeRoom(T, 'minimal', {
         ydocBytes: Buffer.from([0x42]),
         secBytes: null,
         commentsJson: null,
       });
-      const r = await backend.readRoom('minimal');
+      const r = await backend.readRoom(T, 'minimal');
       assert.ok(r);
       assert.deepStrictEqual(Buffer.from(r.ydocBytes), Buffer.from([0x42]));
       assert.strictEqual(r.secBytes, null);
@@ -200,42 +201,42 @@ for (const { name, factory } of BACKENDS) {
     });
 
     it('deleteRoom removes all artifacts', async () => {
-      await backend.writeRoom('rm', {
+      await backend.writeRoom(T, 'rm', {
         ydocBytes: Buffer.from([1]),
         secBytes: Buffer.from([2]),
         commentsJson: '{}',
       });
-      await backend.deleteRoom('rm');
-      assert.strictEqual(await backend.readRoom('rm'), null);
+      await backend.deleteRoom(T, 'rm');
+      assert.strictEqual(await backend.readRoom(T, 'rm'), null);
     });
 
     it('listRooms returns written room ids', async () => {
-      await backend.writeRoom('alpha', { ydocBytes: Buffer.from([1]), secBytes: null, commentsJson: null });
-      await backend.writeRoom('bravo', { ydocBytes: Buffer.from([2]), secBytes: null, commentsJson: null });
-      const rooms = (await backend.listRooms()).sort();
+      await backend.writeRoom(T, 'alpha', { ydocBytes: Buffer.from([1]), secBytes: null, commentsJson: null });
+      await backend.writeRoom(T, 'bravo', { ydocBytes: Buffer.from([2]), secBytes: null, commentsJson: null });
+      const rooms = (await backend.listRooms(T)).sort();
       assert.deepStrictEqual(rooms, ['alpha', 'bravo']);
     });
 
     it('statRoom returns null for unknown, object for existing', async () => {
-      assert.strictEqual(await backend.statRoom('ghost'), null);
-      await backend.writeRoom('s1', { ydocBytes: Buffer.from([1]), secBytes: null, commentsJson: null });
-      const stat = await backend.statRoom('s1');
+      assert.strictEqual(await backend.statRoom(T, 'ghost'), null);
+      await backend.writeRoom(T, 's1', { ydocBytes: Buffer.from([1]), secBytes: null, commentsJson: null });
+      const stat = await backend.statRoom(T, 's1');
       assert.ok(stat);
       assert.ok(stat.lastModified);
     });
 
     it('archiveRoom + listArchivedRooms returns { id, archivedAt }', async () => {
-      await backend.writeRoom('a1', {
+      await backend.writeRoom(T, 'a1', {
         ydocBytes: Buffer.from([1]),
         secBytes: Buffer.from('s'),
         commentsJson: '{}',
       });
-      await backend.archiveRoom('a1');
+      await backend.archiveRoom(T, 'a1');
 
-      assert.strictEqual(await backend.readRoom('a1'), null);
-      assert.deepStrictEqual(await backend.listRooms(), []);
+      assert.strictEqual(await backend.readRoom(T, 'a1'), null);
+      assert.deepStrictEqual(await backend.listRooms(T), []);
 
-      const archived = await backend.listArchivedRooms();
+      const archived = await backend.listArchivedRooms(T);
       assert.strictEqual(archived.length, 1);
       assert.strictEqual(archived[0].id, 'a1');
       assert.ok(archived[0].archivedAt, 'archivedAt should be set');
@@ -244,30 +245,30 @@ for (const { name, factory } of BACKENDS) {
     });
 
     it('restoreRoom moves an archived room back', async () => {
-      await backend.writeRoom('r1', {
+      await backend.writeRoom(T, 'r1', {
         ydocBytes: Buffer.from([0xCC]),
         secBytes: null,
         commentsJson: null,
       });
-      await backend.archiveRoom('r1');
-      await backend.restoreRoom('r1');
-      const r = await backend.readRoom('r1');
+      await backend.archiveRoom(T, 'r1');
+      await backend.restoreRoom(T, 'r1');
+      const r = await backend.readRoom(T, 'r1');
       assert.ok(r);
       assert.deepStrictEqual(Buffer.from(r.ydocBytes), Buffer.from([0xCC]));
-      assert.deepStrictEqual(await backend.listArchivedRooms(), []);
+      assert.deepStrictEqual(await backend.listArchivedRooms(T), []);
     });
 
     it('deleteArchivedRoom removes archived artifacts', async () => {
-      await backend.writeRoom('d1', { ydocBytes: Buffer.from([1]), secBytes: null, commentsJson: null });
-      await backend.archiveRoom('d1');
-      await backend.deleteArchivedRoom('d1');
-      assert.deepStrictEqual(await backend.listArchivedRooms(), []);
+      await backend.writeRoom(T, 'd1', { ydocBytes: Buffer.from([1]), secBytes: null, commentsJson: null });
+      await backend.archiveRoom(T, 'd1');
+      await backend.deleteArchivedRoom(T, 'd1');
+      assert.deepStrictEqual(await backend.listArchivedRooms(T), []);
     });
 
     it('quarantineRoom removes the room from listRooms', async () => {
-      await backend.writeRoom('q1', { ydocBytes: Buffer.from([1]), secBytes: null, commentsJson: null });
-      await backend.quarantineRoom('q1', 'corrupt');
-      const rooms = await backend.listRooms();
+      await backend.writeRoom(T, 'q1', { ydocBytes: Buffer.from([1]), secBytes: null, commentsJson: null });
+      await backend.quarantineRoom(T, 'q1', 'corrupt');
+      const rooms = await backend.listRooms(T);
       assert.ok(!rooms.includes('q1'), 'quarantined room should not appear in listRooms');
     });
 
@@ -286,13 +287,13 @@ for (const { name, factory } of BACKENDS) {
         ],
       };
       const lintJson = JSON.stringify(v2Sidecar);
-      await backend.writeRoom('lint-v2', {
+      await backend.writeRoom(T, 'lint-v2', {
         ydocBytes: Buffer.from([0xAB]),
         secBytes: null,
         commentsJson: null,
         lintJson,
       });
-      const r = await backend.readRoom('lint-v2');
+      const r = await backend.readRoom(T, 'lint-v2');
       assert.ok(r, 'room should be readable');
       assert.strictEqual(r.lintJson, lintJson, 'v2 lintJson must survive save+load verbatim');
       const parsed = JSON.parse(r.lintJson);
@@ -302,17 +303,17 @@ for (const { name, factory } of BACKENDS) {
     });
 
     it('writeRoom is idempotent — second write replaces first', async () => {
-      await backend.writeRoom('idem', {
+      await backend.writeRoom(T, 'idem', {
         ydocBytes: Buffer.from([1]),
         secBytes: Buffer.from('first'),
         commentsJson: '{"v":1}',
       });
-      await backend.writeRoom('idem', {
+      await backend.writeRoom(T, 'idem', {
         ydocBytes: Buffer.from([2]),
         secBytes: Buffer.from('second'),
         commentsJson: '{"v":2}',
       });
-      const r = await backend.readRoom('idem');
+      const r = await backend.readRoom(T, 'idem');
       assert.deepStrictEqual(Buffer.from(r.ydocBytes), Buffer.from([2]));
       assert.deepStrictEqual(Buffer.from(r.secBytes), Buffer.from('second'));
       assert.strictEqual(r.commentsJson, '{"v":2}');
@@ -320,16 +321,37 @@ for (const { name, factory } of BACKENDS) {
 
     it('sanitizes special characters in room ids', async () => {
       // path-traversal / spaces / dots should not bleed into storage
-      await backend.writeRoom('../bad name', {
+      await backend.writeRoom(T, '../bad name', {
         ydocBytes: Buffer.from([1]),
         secBytes: null,
         commentsJson: null,
       });
-      const rooms = await backend.listRooms();
+      const rooms = await backend.listRooms(T);
       assert.strictEqual(rooms.length, 1);
       assert.ok(!rooms[0].includes('..'));
       assert.ok(!rooms[0].includes(' '));
       assert.ok(!rooms[0].includes('/'));
+    });
+
+    it('ACL sidecar round-trips via readAcl/writeAcl and is independent of .ydoc', async () => {
+      // writeAcl with NO .ydoc → readRoom is still null (partial create = absent)
+      await backend.writeAcl(T, 'r-acl', { ownerId: 'u1', sharedWith: ['u2'] });
+      assert.equal(await backend.readRoom(T, 'r-acl'), null, 'no .ydoc → room absent (404 semantics)');
+      assert.deepEqual(await backend.readAcl(T, 'r-acl'), { ownerId: 'u1', sharedWith: ['u2'] });
+
+      // missing ACL → null
+      assert.equal(await backend.readAcl(T, 'no-such'), null);
+
+      // full create: acl THEN ydoc; both readable; deleteRoom removes both
+      const doc = new Y.Doc();
+      const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(doc));
+      doc.destroy();
+      await backend.writeRoom(T, 'r-full', { ydocBytes, secBytes: null, commentsJson: null });
+      await backend.writeAcl(T, 'r-full', { ownerId: 'owner', sharedWith: [] });
+      assert.ok(await backend.readRoom(T, 'r-full'));
+      assert.deepEqual(await backend.readAcl(T, 'r-full'), { ownerId: 'owner', sharedWith: [] });
+      await backend.deleteRoom(T, 'r-full');
+      assert.equal(await backend.readAcl(T, 'r-full'), null, 'deleteRoom removes the ACL sidecar');
     });
 
     // Sub-PR 1d (#47, ADR-0006). The broker integration tests live here
@@ -361,7 +383,7 @@ for (const { name, factory } of BACKENDS) {
 
       it('archive-then-migrate happy path: archive lands in archived set, doc bumps to v2', async () => {
         // Pre-seed the room so archiveRoom has something to copy.
-        await backend.writeRoom('mig-happy', {
+        await backend.writeRoom(T, 'mig-happy', {
           ydocBytes: Buffer.from([1, 2, 3]),
           secBytes: Buffer.from('seed'),
           commentsJson: null,
@@ -369,7 +391,9 @@ for (const { name, factory } of BACKENDS) {
 
         const coord = createMigrationCoordinator({ storage: backend });
         const ydoc = buildV1Doc(2);
-        const result = await coord.ensureMigrated('mig-happy', ydoc);
+        // ensureMigrated takes a composite docName so splitCompositeDocName
+        // extracts the right tenant; pass `T/roomId`.
+        const result = await coord.ensureMigrated(`${T}/mig-happy`, ydoc);
 
         assert.strictEqual(result.archived, true);
         assert.strictEqual(result.schemaVersion, SCHEMA_V2);
@@ -377,10 +401,10 @@ for (const { name, factory } of BACKENDS) {
 
         // The active room is gone (archive deletes the source per
         // RoomStorageBase.archiveRoom).
-        assert.strictEqual(await backend.readRoom('mig-happy'), null);
+        assert.strictEqual(await backend.readRoom(T, 'mig-happy'), null);
 
         // The archive set has the room with an archivedAt.
-        const archived = await backend.listArchivedRooms();
+        const archived = await backend.listArchivedRooms(T);
         const found = archived.find(r => r.id === 'mig-happy');
         assert.ok(found, 'migrated room should appear in archive set');
         assert.ok(found.archivedAt);
@@ -397,7 +421,7 @@ for (const { name, factory } of BACKENDS) {
         const coord = createMigrationCoordinator({ storage: failingStorage });
         const ydoc = buildV1Doc(2);
         const beforeBytes = Y.encodeStateAsUpdate(ydoc);
-        const result = await coord.ensureMigrated('mig-archive-fail', ydoc);
+        const result = await coord.ensureMigrated(`${T}/mig-archive-fail`, ydoc);
 
         assert.strictEqual(result.skipped, true);
         assert.strictEqual(result.archived, false);
@@ -416,7 +440,7 @@ for (const { name, factory } of BACKENDS) {
 
       it('partial migration sets migrationPartial sentinel, NOT schemaVersion (mutual exclusion)', async () => {
         // Pre-seed so archive succeeds.
-        await backend.writeRoom('mig-partial', {
+        await backend.writeRoom(T, 'mig-partial', {
           ydocBytes: Buffer.from([1]),
           secBytes: null,
           commentsJson: null,
@@ -429,7 +453,7 @@ for (const { name, factory } of BACKENDS) {
         badSlot.toDelta = () => { throw new Error('synthetic per-block fault'); };
 
         const coord = createMigrationCoordinator({ storage: backend });
-        const result = await coord.ensureMigrated('mig-partial', ydoc);
+        const result = await coord.ensureMigrated(`${T}/mig-partial`, ydoc);
         badSlot.toDelta = orig;
 
         assert.strictEqual(result.archived, true);
@@ -444,7 +468,7 @@ for (const { name, factory } of BACKENDS) {
 
       it('per-room async lock: two concurrent ensureMigrated calls collapse to one archive', async () => {
         // Pre-seed so archive has source bytes.
-        await backend.writeRoom('mig-lock', {
+        await backend.writeRoom(T, 'mig-lock', {
           ydocBytes: Buffer.from([1, 2, 3]),
           secBytes: null,
           commentsJson: null,
@@ -454,17 +478,17 @@ for (const { name, factory } of BACKENDS) {
         // window deterministically.
         let archiveCount = 0;
         const lockingStorage = Object.create(backend);
-        lockingStorage.archiveRoom = async (roomId) => {
+        lockingStorage.archiveRoom = async (tenant, roomId) => {
           archiveCount++;
           await new Promise(r => setTimeout(r, 30));
-          return backend.archiveRoom(roomId);
+          return backend.archiveRoom(tenant, roomId);
         };
 
         const coord = createMigrationCoordinator({ storage: lockingStorage });
         const ydoc = buildV1Doc(2);
         const [r1, r2] = await Promise.all([
-          coord.ensureMigrated('mig-lock', ydoc),
-          coord.ensureMigrated('mig-lock', ydoc),
+          coord.ensureMigrated(`${T}/mig-lock`, ydoc),
+          coord.ensureMigrated(`${T}/mig-lock`, ydoc),
         ]);
 
         // Per-room lock — both callers see the same migration result.

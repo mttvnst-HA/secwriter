@@ -85,9 +85,9 @@ class SlowLocalStorageBackend {
     this.inner = new LocalStorageBackend(dir);
     this.readDelayMs = readDelayMs;
   }
-  async readRoom(name) {
+  async readRoom(tenant, roomId) {
     await new Promise(resolve => setTimeout(resolve, this.readDelayMs));
-    return this.inner.readRoom(name);
+    return this.inner.readRoom(tenant, roomId);
   }
   // Pass-throughs
   writeRoom(...a) { return this.inner.writeRoom(...a); }
@@ -137,9 +137,10 @@ describe('collab-server: bindState race (issue #17)', () => {
     const storage = new SlowLocalStorageBackend(tmpDir, 200);
 
     // Pre-seed the persisted room. extractDocName('/ws/race-test-room')
-    // returns 'race-test-room', so we persist under that key.
+    // returns 'race-test-room'. The collab-server uses PUBLIC_TENANT ('_public'),
+    // so seed under that tenant.
     const ydocBytes = buildSeededDoc(BLOCK_COUNT);
-    await storage.writeRoom(ROOM_NAME, { ydocBytes, secBytes: null, commentsJson: null });
+    await storage.writeRoom('_public', ROOM_NAME, { ydocBytes, secBytes: null, commentsJson: null });
 
     server = createCollabServer({ storage });
     await new Promise(resolve => server.httpServer.listen(0, '127.0.0.1', resolve));

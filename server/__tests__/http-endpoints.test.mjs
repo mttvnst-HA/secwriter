@@ -98,15 +98,15 @@ describe('HTTP endpoints', () => {
     storage = new LocalStorageBackend(tmpDir);
     boundDocs = new Map();
 
-    // Seed test data
-    await storage.writeRoom('test-room', {
+    // Seed test data under _public tenant (matches PUBLIC_TENANT used by http-handler)
+    await storage.writeRoom('_public', 'test-room', {
       ydocBytes: Buffer.from([1, 2, 3]),
       secBytes: Buffer.from('<?xml version="1.0"?><SEC><TXT>Hello</TXT></SEC>'),
       commentsJson: JSON.stringify({ version: 1, comments: [{ id: 'c1', status: 'open' }] }),
     });
 
     // Seed a room with .ydoc only (no SEC, no comments) — legacy room
-    await storage.writeRoom('legacy-room', {
+    await storage.writeRoom('_public', 'legacy-room', {
       ydocBytes: Buffer.from([4, 5, 6]),
       secBytes: null,
       commentsJson: null,
@@ -196,7 +196,7 @@ describe('HTTP endpoints', () => {
       yMeta.set('sectionTitle', 'EARTHWORK');
     });
     const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(ydoc));
-    await storage.writeRoom('test-meta', { ydocBytes, secBytes: null, commentsJson: null });
+    await storage.writeRoom('_public', 'test-meta', { ydocBytes, secBytes: null, commentsJson: null });
     ydoc.destroy();
 
     const resp = await httpGet(`${baseUrl}/rooms`);
@@ -223,7 +223,7 @@ describe('HTTP endpoints', () => {
     assert.strictEqual(data.id, 'new-room');
     assert.strictEqual(data.ok, true);
     // Verify room exists in storage
-    const stored = await storage.readRoom('new-room');
+    const stored = await storage.readRoom('_public', 'new-room');
     assert.ok(stored, 'room should exist in storage');
     assert.ok(stored.ydocBytes, 'should have ydoc bytes');
   });
@@ -237,7 +237,7 @@ describe('HTTP endpoints', () => {
 
   it('DELETE /rooms/:roomId deletes a room', async () => {
     // Create a room to delete
-    await storage.writeRoom('del-room', {
+    await storage.writeRoom('_public', 'del-room', {
       ydocBytes: Buffer.from([10, 11, 12]),
       secBytes: null,
       commentsJson: null,
@@ -247,7 +247,7 @@ describe('HTTP endpoints', () => {
     const data = JSON.parse(resp.body.toString());
     assert.strictEqual(data.ok, true);
     // Verify room is gone
-    const stored = await storage.readRoom('del-room');
+    const stored = await storage.readRoom('_public', 'del-room');
     assert.strictEqual(stored, null);
   });
 
@@ -264,7 +264,7 @@ describe('HTTP endpoints', () => {
     const ydoc = new Y.Doc();
     const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(ydoc));
     ydoc.destroy();
-    await storage.writeRoom('patch-room', { ydocBytes, secBytes: null, commentsJson: null });
+    await storage.writeRoom('_public', 'patch-room', { ydocBytes, secBytes: null, commentsJson: null });
 
     const resp = await httpJson(`${baseUrl}/rooms/patch-room`, 'PATCH', { locked: true });
     assert.strictEqual(resp.status, 200);
@@ -272,7 +272,7 @@ describe('HTTP endpoints', () => {
     assert.strictEqual(data.ok, true);
 
     // Verify locked was persisted in yMeta
-    const stored = await storage.readRoom('patch-room');
+    const stored = await storage.readRoom('_public', 'patch-room');
     const verifyDoc = new Y.Doc();
     Y.applyUpdate(verifyDoc, stored.ydocBytes);
     const yMeta = verifyDoc.getMap('meta');
@@ -300,7 +300,7 @@ describe('HTTP endpoints', () => {
     });
     const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(ydoc));
     ydoc.destroy();
-    await storage.writeRoom(id, { ydocBytes, secBytes: null, commentsJson: null });
+    await storage.writeRoom('_public', id, { ydocBytes, secBytes: null, commentsJson: null });
   }
 
   it('DELETE on a locked room: 423 for non-owner (and no-owner lock), 200 for the lock owner', async () => {
@@ -309,14 +309,14 @@ describe('HTTP endpoints', () => {
     const blocked = await httpDelete(`${baseUrl}/rooms/lock-del`);
     assert.strictEqual(blocked.status, 423);
     assert.ok(JSON.parse(blocked.body.toString()).error.includes('locked'));
-    assert.ok(await storage.readRoom('lock-del'), 'room must survive a blocked delete');
+    assert.ok(await storage.readRoom('_public', 'lock-del'), 'room must survive a blocked delete');
 
     const wrong = await httpDelete(`${baseUrl}/rooms/lock-del`, { 'X-Actor-Id': 'someone-else' });
     assert.strictEqual(wrong.status, 423);
 
     const owner = await httpDelete(`${baseUrl}/rooms/lock-del`, { 'X-Actor-Id': 'userA' });
     assert.strictEqual(owner.status, 200);
-    assert.strictEqual(await storage.readRoom('lock-del'), null);
+    assert.strictEqual(await storage.readRoom('_public', 'lock-del'), null);
 
     // Locked with NO recorded owner blocks everyone (matches issue verification).
     await seedLockedRoom('lock-del-noowner', null);
@@ -335,7 +335,7 @@ describe('HTTP endpoints', () => {
 
     const Y = require('yjs');
     const verify = new Y.Doc();
-    Y.applyUpdate(verify, (await storage.readRoom('lock-patch')).ydocBytes);
+    Y.applyUpdate(verify, (await storage.readRoom('_public', 'lock-patch')).ydocBytes);
     assert.strictEqual(verify.getMap('meta').get('locked'), false);
     verify.destroy();
   });
@@ -548,7 +548,7 @@ describe('HTTP endpoints — DELETE clears migration cache (issue e)', () => {
     tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sim-http-cache-'));
     const { LocalStorageBackend } = require('../storage-local.cjs');
     storage = new LocalStorageBackend(tmpDir);
-    await storage.writeRoom('to-delete', {
+    await storage.writeRoom('_public', 'to-delete', {
       ydocBytes: Buffer.from([1, 2, 3]), secBytes: null, commentsJson: null,
     });
     coordCalls = [];
@@ -573,13 +573,14 @@ describe('HTTP endpoints — DELETE clears migration cache (issue e)', () => {
   it('DELETE /rooms/:id forwards forget(roomId) to the migration coordinator', async () => {
     const resp = await httpDelete(`${baseUrl}/rooms/to-delete`);
     assert.strictEqual(resp.status, 200);
-    assert.deepStrictEqual(coordCalls, [['forget', 'to-delete']]);
+    // Handler passes composite docName (_public/<roomId>) to the coordinator.
+    assert.deepStrictEqual(coordCalls, [['forget', '_public/to-delete']]);
   });
 
   it('omitted migrationCoordinator does not crash the DELETE path', async () => {
     // Fresh handler without the coordinator dep — the guard in the handler
     // (`typeof forget === 'function'`) must keep it from throwing.
-    await storage.writeRoom('to-delete-2', {
+    await storage.writeRoom('_public', 'to-delete-2', {
       ydocBytes: Buffer.from([7, 8]), secBytes: null, commentsJson: null,
     });
     const { createHttpHandler } = require('../http-handler.cjs');
