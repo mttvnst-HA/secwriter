@@ -5,8 +5,8 @@
  * backends (local, azure, s3) don't independently re-derive it:
  *
  *   - sanitize() — single source of truth for room-id normalization
- *   - ARTIFACT_CATALOG — the three artifact kinds and their write-order
- *     contract (.ydoc LAST = source of truth)
+ *   - ARTIFACT_CATALOG — the four optional sidecar artifact kinds plus ydoc,
+ *     in their required write-order contract (.ydoc LAST = source of truth)
  *   - ARTIFACT_KIND_* — kind constants used by the base class and adapters
  *
  * CJS on purpose (see ADR-0001).
@@ -95,9 +95,12 @@ function buildCompositeDocName(tenant, roomId) {
 
 /** Split a composite docName back into { tenant, roomId } on the FIRST slash. */
 function splitCompositeDocName(docName) {
-  const i = String(docName).indexOf('/');
-  if (i < 0) return { tenant: PUBLIC_TENANT, roomId: String(docName) };
-  return { tenant: docName.slice(0, i), roomId: docName.slice(i + 1) };
+  const s = String(docName);
+  const i = s.indexOf('/');
+  // No slash, or an empty leading segment (malformed key) → treat as a bare
+  // _public room. buildCompositeDocName never emits an empty segment.
+  if (i <= 0) return { tenant: PUBLIC_TENANT, roomId: s };
+  return { tenant: s.slice(0, i), roomId: s.slice(i + 1) };
 }
 
 module.exports = {

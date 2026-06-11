@@ -34,5 +34,7 @@ describe('storage-shared composite key helpers', () => {
     assert.deepEqual(splitCompositeDocName('legacyroom'), { tenant: '_public', roomId: 'legacyroom' });
     // roomId may itself contain no slash after sanitize, so only the FIRST slash splits
     assert.deepEqual(splitCompositeDocName('t/a/b'), { tenant: 't', roomId: 'a/b' });
+    // malformed key with empty leading segment → treat as bare _public room
+    assert.deepEqual(splitCompositeDocName('/room1'), { tenant: '_public', roomId: '/room1' });
   });
 });
