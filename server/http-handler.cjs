@@ -14,7 +14,8 @@
 // against CJS Y.Docs. room-serializer uses the same CJS Yjs as the server.
 const { seedRoomFromBlocks } = require('./room-serializer.cjs');
 const { log } = require('./logger.cjs');
-const { PUBLIC_TENANT } = require('./storage-shared.cjs');
+const { sanitize, PUBLIC_TENANT, buildCompositeDocName } = require('./storage-shared.cjs');
+const { authorize, checkPrincipal, ACTION } = require('./auth/authorize.cjs');
 
 /**
  * @param {Object} deps
@@ -69,6 +70,31 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
     const h = req.headers['x-actor-id'];
     if (h) return String(h);
     return null;
+  }
+
+  // Tenant for storage keys: the validated token's tenant under auth, else the
+  // reserved _public sentinel under auth=none. NEVER derived from body/header.
+  // Only valid AFTER checkPrincipal has passed (req.user.tenant present + non-sentinel).
+  function resolveTenant(req) {
+    if (authProvider?.requiresAuth) return sanitize(req.user.tenant);
+    return PUBLIC_TENANT;
+  }
+
+  // Map an authorize()/checkPrincipal() denial to an HTTP response. Returns
+  // true if the request was denied (caller should `return`).
+  function denied(res, decision) {
+    if (decision.ok) return false;
+    const map = { 401: 'Unauthorized', 403: 'Forbidden', 404: 'Not found' };
+    res.writeHead(decision.status, { 'Content-Type': 'text/plain' });
+    res.end(map[decision.status] || 'Error');
+    return true;
+  }
+
+  // Lock actor: the authenticated subject under auth (NEVER the body/header
+  // fallback, which a different user could spoof); the cooperative actorId
+  // under auth=none.
+  function lockActor(req, url) {
+    return authProvider?.requiresAuth ? String(req.user.id) : getActorId(req, url);
   }
 
   // Blocked when the room is locked and the actor is not the (non-empty) lock owner.
