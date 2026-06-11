@@ -338,9 +338,13 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
             res.end('Invalid room id after sanitization');
             return;
           }
-          // Check if room already exists
-          const existing = await storage.readRoom(PUBLIC_TENANT, id);
-          if (existing) {
+          const pre = checkPrincipal(authProvider, req.user);
+          if (denied(res, pre)) return;
+          const tenant = resolveTenant(req);
+          // Check if room already exists (ownership-hijack: also check ACL sidecar)
+          const existing = await storage.readRoom(tenant, id);
+          const existingAcl = authProvider?.requiresAuth ? await storage.readAcl(tenant, id) : null;
+          if (existing || existingAcl) {
             res.writeHead(409, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: `Room "${id}" already exists` }));
             return;
@@ -357,7 +361,13 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(ydoc));
           ydoc.destroy();
 
-          await storage.writeRoom(PUBLIC_TENANT, id, { ydocBytes, secBytes: null, commentsJson: null });
+          // Crash-order (ADR-0005 amendment): ACL sidecar FIRST, then .ydoc.
+          // A crash between the two leaves the room absent (no .ydoc → 404),
+          // never an ownerless/hijackable room.
+          if (authProvider?.requiresAuth) {
+            await storage.writeAcl(tenant, id, { ownerId: req.user.id, sharedWith: [] });
+          }
+          await storage.writeRoom(tenant, id, { ydocBytes, secBytes: null, commentsJson: null });
           res.writeHead(201, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ id, ok: true }));
         } catch (err) {
@@ -487,7 +497,10 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
     // GET /rooms — list all rooms with metadata
     if (url.pathname === '/rooms' && req.method === 'GET') {
       try {
-        const roomIds = await storage.listRooms(PUBLIC_TENANT);
+        const pre = checkPrincipal(authProvider, req.user);
+        if (denied(res, pre)) return;
+        const tenant = resolveTenant(req);
+        const roomIds = await storage.listRooms(tenant);
         const Y = require('yjs');
         const rooms = [];
 
@@ -500,10 +513,11 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           // for other clients. See issue #100.
           await new Promise(resolve => setImmediate(resolve));
 
+          const composite = buildCompositeDocName(tenant, id);
           const entry = { id, displayName: id, sectionNumber: null, sectionTitle: null, lastModified: null, activeUsers: [], locked: false, sizeBytes: 0 };
 
           // Try live doc first (has awareness for active users)
-          const liveDoc = boundDocs.get(id);
+          const liveDoc = boundDocs.get(composite);
           if (liveDoc) {
             try {
               const yMeta = liveDoc.getMap('meta');
@@ -512,12 +526,12 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
               entry.locked = !!yMeta.get('locked');
             } catch { /* ignore */ }
             if (typeof getActiveUsers === 'function') {
-              entry.activeUsers = getActiveUsers(id);
+              entry.activeUsers = getActiveUsers(composite);
             }
           } else {
             // Fall back to reading persisted .ydoc to extract yMeta
             try {
-              const data = await storage.readRoom(PUBLIC_TENANT, id);
+              const data = await storage.readRoom(tenant, id);
               if (data && data.ydocBytes) {
                 const tempDoc = new Y.Doc();
                 try {
@@ -542,7 +556,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
 
           // Get filesystem stats
           try {
-            const stat = await storage.statRoom(PUBLIC_TENANT, id);
+            const stat = await storage.statRoom(tenant, id);
             if (stat) {
               entry.lastModified = stat.lastModified;
               entry.sizeBytes = stat.sizeBytes;
