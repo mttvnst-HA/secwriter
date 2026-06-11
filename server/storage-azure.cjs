@@ -94,6 +94,21 @@ class AzureStorageBackend extends RoomStorageBase {
     await blob.upload(bytes, bytes.length, uploadOpts);
   }
 
+  async _putBytesIfAbsent(key, bytes, opts = {}) {
+    await this._initPromise;
+    const blob = this._container.getBlockBlobClient(key);
+    const uploadOpts = { conditions: { ifNoneMatch: '*' } }; // conditional create
+    if (opts.metadata) uploadOpts.metadata = opts.metadata;
+    try {
+      await blob.upload(bytes, bytes.length, uploadOpts);
+      return true;
+    } catch (err) {
+      // 409 BlobAlreadyExists / 412 ConditionNotMet — another writer won.
+      if (err.statusCode === 409 || err.statusCode === 412) return false;
+      throw err;
+    }
+  }
+
   async _getBytes(key) {
     await this._initPromise;
     try {
@@ -188,6 +203,44 @@ class AzureStorageBackend extends RoomStorageBase {
     const roomId = rest.slice(i + 1).slice(0, -'/room.ydoc'.length);
     if (!tenant || !roomId || roomId.includes('/')) return null;
     return { tenant, roomId };
+  }
+
+  // ── Legacy flat layout (pre-tenant): <id>/room.<ext> (one path segment) ──
+
+  _legacyFlatKeyForArtifact(roomId, kind) {
+    return `${sanitize(roomId)}/${SUFFIX_BY_KIND[kind]}`;
+  }
+
+  async _listLegacyFlatRoomIds() {
+    const keys = await this._listKeys({});
+    const ids = [];
+    for (const key of keys) {
+      // Exactly ONE path segment before room.ydoc — the tenant layout
+      // (<tenant>/<id>/room.ydoc) and the archive layouts have two.
+      const m = key.match(/^([^/]+)\/room\.ydoc$/);
+      if (m && m[1] !== 'archive') ids.push(m[1]);
+    }
+    return ids;
+  }
+
+  // Legacy flat ARCHIVE layout: archive/<id>/room.<ext> — one segment
+  // between archive/ and room.ydoc (the tenant layout's
+  // archive/<tenant>/<id>/room.ydoc has two). archivedAt lives in blob
+  // metadata; the base default marker hook reads it via _readArchiveMarker's
+  // key parameter.
+
+  _legacyFlatArchiveKeyForArtifact(roomId, kind) {
+    return `archive/${sanitize(roomId)}/${SUFFIX_BY_KIND[kind]}`;
+  }
+
+  async _listLegacyFlatArchivedRoomIds() {
+    const keys = await this._listKeys({ prefix: 'archive/' });
+    const ids = [];
+    for (const key of keys) {
+      const m = key.match(/^archive\/([^/]+)\/room\.ydoc$/);
+      if (m) ids.push(m[1]);
+    }
+    return ids;
   }
 
   // ── Archive marker (Azure uses blob metadata) ───────────────────────────

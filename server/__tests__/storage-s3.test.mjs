@@ -151,7 +151,7 @@ describe('S3StorageBackend', () => {
     assert.deepEqual(deletes, [`${T}/myroom.ydoc`]);
   });
 
-  test('quarantineRoom also copies and deletes .acl.json sidecar when it exists', async () => {
+  test('quarantineRoom PRESERVES the .acl.json sidecar even when it exists', async () => {
     const copies = [];
     const deletes = [];
     s3Mock.on(CopyObjectCommand).callsFake(async (input) => {
@@ -173,20 +173,14 @@ describe('S3StorageBackend', () => {
     const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
     await backend.quarantineRoom(T, 'myroom', 'corrupt');
 
-    // Both artifacts must be copied to their quarantine keys.
-    const copyTos = copies.map(c => c.to).sort();
-    assert.deepEqual(copyTos, [
-      `${T}/myroom.corrupt.acl.json`,
-      `${T}/myroom.corrupt.ydoc`,
-    ]);
-    assert.equal(copies.find(c => c.to === `${T}/myroom.corrupt.ydoc`)?.from, `test/${T}/myroom.ydoc`);
-    assert.equal(copies.find(c => c.to === `${T}/myroom.corrupt.acl.json`)?.from, `test/${T}/myroom.acl.json`);
-
-    // Both originals must be deleted.
-    assert.deepEqual(deletes.sort(), [
-      `${T}/myroom.acl.json`,
-      `${T}/myroom.ydoc`,
-    ]);
+    // Only the .ydoc moves. The ACL must stay active: the live session that
+    // triggered the quarantine keeps editing, and its next flush rewrites
+    // .ydoc but never the ACL — quarantining the ACL would leave that
+    // flushed room ownerless (authorize 404s for everyone: bricked).
+    assert.deepEqual(copies.map(c => c.to), [`${T}/myroom.corrupt.ydoc`]);
+    assert.equal(copies[0].from, `test/${T}/myroom.ydoc`);
+    assert.deepEqual(deletes, [`${T}/myroom.ydoc`],
+      '.acl.json must be neither copied nor deleted by quarantine');
   });
 
   test('archive lifecycle: archive → list → restore → archive → delete', async () => {

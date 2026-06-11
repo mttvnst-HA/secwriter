@@ -28,6 +28,12 @@ const ARTIFACT_KIND_COMMENTS = 'comments';
 const ARTIFACT_KIND_LINT = 'lint';
 const ARTIFACT_KIND_ACL = 'acl';
 const PUBLIC_TENANT = '_public';
+// Every adapter's key layout embeds the literal 'archive' as the archive
+// namespace prefix (sibling of the tenant namespaces). A token tenant that
+// sanitizes to this value would address rooms INSIDE the archive tree —
+// creatable and joinable but invisible to the active listings and the
+// sweep parsers. checkPrincipal reserves it alongside PUBLIC_TENANT.
+const ARCHIVE_NAMESPACE = 'archive';
 
 /**
  * The five artifacts persisted per room, in the order they must be written.
@@ -107,6 +113,7 @@ module.exports = {
   sanitize,
   toBuffer,
   PUBLIC_TENANT,
+  ARCHIVE_NAMESPACE,
   ARTIFACT_KIND_YDOC,
   ARTIFACT_KIND_SEC,
   ARTIFACT_KIND_COMMENTS,

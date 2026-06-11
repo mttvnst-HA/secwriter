@@ -453,7 +453,7 @@ describe('createMigrationCoordinator', () => {
     const archiveCalls = [];
     return {
       archiveCalls,
-      async archiveRoom(tenant, roomId) {
+      async backupRoom(tenant, roomId) {
         archiveCalls.push([tenant, roomId]);
         if (archiveDelayMs > 0) await new Promise(r => setTimeout(r, archiveDelayMs));
         if (archiveShouldThrow) throw archiveShouldThrow;
@@ -488,7 +488,7 @@ describe('createMigrationCoordinator', () => {
     assert.strictEqual(ydoc.getMap('meta').get(SCHEMA_VERSION_KEY), SCHEMA_V2);
   });
 
-  it('aborts migration when archiveRoom throws (Q23/B2): doc untouched', async () => {
+  it('aborts migration when backupRoom throws (Q23/B2): doc untouched', async () => {
     const storage = makeFakeStorage({ archiveShouldThrow: new Error('storage offline') });
     const coord = createMigrationCoordinator({ storage });
     const ydoc = buildV1Doc(2);
@@ -516,7 +516,7 @@ describe('createMigrationCoordinator', () => {
     let archiveAttempts = 0;
     let shouldFail = true;
     const storage = {
-      async archiveRoom() {
+      async backupRoom() {
         archiveAttempts++;
         if (shouldFail) throw new Error('storage offline');
       },
@@ -535,7 +535,7 @@ describe('createMigrationCoordinator', () => {
       'inFlight cache should be cleared after archive-failure resolve so a recovered storage can retry');
 
     // Second attempt — also fails (storage still offline). Verifies
-    // ensureMigrated re-ran archiveRoom rather than returning a stale
+    // ensureMigrated re-ran backupRoom rather than returning a stale
     // cached promise.
     const r2 = await coord.ensureMigrated('room1', ydoc);
     assert.strictEqual(r2.archived, false);
@@ -554,7 +554,7 @@ describe('createMigrationCoordinator', () => {
   });
 
   it('successful migration keeps the inFlight cache (concurrent-call lock semantics)', async () => {
-    const storage = { async archiveRoom() {} };
+    const storage = { async backupRoom() {} };
     const coord = createMigrationCoordinator({ storage });
     const ydoc = buildV1Doc(1);
 
@@ -578,7 +578,7 @@ describe('createMigrationCoordinator', () => {
     // Both callers see the same migration result.
     assert.strictEqual(r1, r2);
     assert.strictEqual(r1.schemaVersion, SCHEMA_V2);
-    // archiveRoom called exactly once.
+    // backupRoom called exactly once.
     assert.strictEqual(storage.archiveCalls.length, 1);
   });
 

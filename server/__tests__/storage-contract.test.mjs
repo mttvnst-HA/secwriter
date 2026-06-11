@@ -58,6 +58,11 @@ function azureFactory() {
     getBlockBlobClient(blobName) {
       return {
         async upload(content, byteLength, options) {
+          // Honor conditional create (ifNoneMatch: '*') like real Azure:
+          // 409 BlobAlreadyExists when the blob exists.
+          if (options?.conditions?.ifNoneMatch === '*' && blobs.has(blobName)) {
+            const err = new Error('BlobAlreadyExists'); err.statusCode = 409; throw err;
+          }
           const buf = Buffer.isBuffer(content) ? content : Buffer.from(content);
           blobs.set(blobName, { content: buf, metadata: (options && options.metadata) || {} });
         },
@@ -101,6 +106,14 @@ function s3Factory() {
   s3Mock.reset();
 
   s3Mock.on(PutObjectCommand).callsFake(async (input) => {
+    // Honor conditional create (IfNoneMatch: '*') like real S3/R2/MinIO:
+    // 412 PreconditionFailed when the key exists.
+    if (input.IfNoneMatch === '*' && objects.has(input.Key)) {
+      const err = new Error('PreconditionFailed');
+      err.name = 'PreconditionFailed';
+      err.$metadata = { httpStatusCode: 412 };
+      throw err;
+    }
     const buf = Buffer.isBuffer(input.Body) ? input.Body
       : input.Body instanceof Uint8Array ? Buffer.from(input.Body)
       : Buffer.from(input.Body);
@@ -265,11 +278,19 @@ for (const { name, factory } of BACKENDS) {
       assert.deepStrictEqual(await backend.listArchivedRooms(T), []);
     });
 
-    it('quarantineRoom removes the room from listRooms', async () => {
+    it('quarantineRoom removes the room from listRooms but PRESERVES the ACL', async () => {
       await backend.writeRoom(T, 'q1', { ydocBytes: Buffer.from([1]), secBytes: null, commentsJson: null });
+      await backend.writeAcl(T, 'q1', { ownerId: 'owner', sharedWith: [] });
       await backend.quarantineRoom(T, 'q1', 'corrupt');
       const rooms = await backend.listRooms(T);
       assert.ok(!rooms.includes('q1'), 'quarantined room should not appear in listRooms');
+      // The ACL must stay active: quarantine fires from bindState while the
+      // triggering WS session stays connected to a fresh doc, and its next
+      // flush rewrites .ydoc but never the ACL — moving the ACL aside would
+      // leave that flushed room ownerless (authorize 404s for everyone,
+      // DELETE 404s before orphan recovery, POST /rooms 409s: bricked).
+      assert.deepEqual(await backend.readAcl(T, 'q1'), { ownerId: 'owner', sharedWith: [] },
+        'quarantine must not move the .acl sidecar');
     });
 
     // Task 15 (#140) — v2 lint sidecar (ignoredFindings + mutedNlpRules)
@@ -342,19 +363,36 @@ for (const { name, factory } of BACKENDS) {
       // missing ACL → null
       assert.equal(await backend.readAcl(T, 'no-such'), null);
 
+      // writeAclIfAbsent is an atomic claim: first writer wins, second
+      // returns false WITHOUT touching the winner's ACL. This is the
+      // POST /rooms ownership-claim — without it two concurrent creates
+      // both 201 and the last writeAcl silently transfers ownership.
+      assert.equal(await backend.writeAclIfAbsent(T, 'r-claim', { ownerId: 'first', sharedWith: [] }), true,
+        'first claim must succeed');
+      assert.equal(await backend.writeAclIfAbsent(T, 'r-claim', { ownerId: 'second', sharedWith: [] }), false,
+        'second claim must lose');
+      assert.deepEqual(await backend.readAcl(T, 'r-claim'), { ownerId: 'first', sharedWith: [] },
+        'the losing claim must not overwrite the winner');
+
       // full create: acl THEN ydoc; both readable; deleteRoom removes both
       const doc = new Y.Doc();
       const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(doc));
       doc.destroy();
-      await backend.writeRoom(T, 'r-full', { ydocBytes, secBytes: null, commentsJson: null });
+      await backend.writeRoom(T, 'r-full', { ydocBytes, secBytes: Buffer.from('sec'), commentsJson: '{}' });
       await backend.writeAcl(T, 'r-full', { ownerId: 'owner', sharedWith: [] });
       assert.ok(await backend.readRoom(T, 'r-full'));
       assert.deepEqual(await backend.readAcl(T, 'r-full'), { ownerId: 'owner', sharedWith: [] });
 
-      // Crash-order invariant: deleteRoom must remove .ydoc (source of truth)
-      // BEFORE the .acl sidecar. A crash mid-delete then leaves an orphan ACL
-      // (room absent → 404, reclaimable) — never a ydoc with no ACL (an
-      // ownerless, undeletable room). Spy on the adapter primitive to pin order.
+      // Crash-order invariant, two halves:
+      //   - sidecars (.SEC/.comments) BEFORE .ydoc — while any stale sidecar
+      //     exists the .ydoc does too, so the create route 409s; a crash
+      //     mid-delete can never let a re-created room serve the previous
+      //     owner's .SEC/.comments (writeRoom skips null sidecars).
+      //   - .ydoc BEFORE .acl — a crash between them leaves an orphan ACL
+      //     (room absent → 404, reclaimable), never a ydoc with no ACL (an
+      //     ownerless, undeletable room). Spy on the primitive to pin order.
+      const secKey = backend._keyForArtifact(T, 'r-full', 'sec');
+      const commentsKey = backend._keyForArtifact(T, 'r-full', 'comments');
       const ydocKey = backend._keyForArtifact(T, 'r-full', 'ydoc');
       const aclKey = backend._keyForArtifact(T, 'r-full', 'acl');
       const deletedOrder = [];
@@ -363,8 +401,13 @@ for (const { name, factory } of BACKENDS) {
       await backend.deleteRoom(T, 'r-full');
       backend._deleteKey = realDeleteKey;
       assert.ok(
+        deletedOrder.indexOf(secKey) < deletedOrder.indexOf(ydocKey) &&
+        deletedOrder.indexOf(commentsKey) < deletedOrder.indexOf(ydocKey),
+        '.SEC/.comments sidecars must be deleted before .ydoc (stale-sidecar resurrection guard)',
+      );
+      assert.ok(
         deletedOrder.indexOf(ydocKey) < deletedOrder.indexOf(aclKey),
-        '.ydoc must be deleted before .acl (ydoc-first delete order)',
+        '.ydoc must be deleted before .acl (orphan-ACL, never ownerless-ydoc)',
       );
       assert.equal(await backend.readAcl(T, 'r-full'), null, 'deleteRoom removes the ACL sidecar');
     });
@@ -391,11 +434,82 @@ for (const { name, factory } of BACKENDS) {
       await backend.deleteRoom('beta', 'beta-only');
     });
 
+    it('migrateLegacyFlatRooms relocates pre-tenant flat rooms (idempotent, ACL written, acl-before-ydoc order)', async () => {
+      // Seed a LEGACY flat room via the adapter's own legacy naming + raw
+      // primitive — exactly the keys a pre-tenant deploy left behind.
+      const legacyYdoc = backend._legacyFlatKeyForArtifact('legacy1', 'ydoc');
+      const legacySec = backend._legacyFlatKeyForArtifact('legacy1', 'sec');
+      assert.ok(legacyYdoc, 'backend must declare its legacy flat layout');
+      await backend._putBytes(legacyYdoc, Buffer.from([0xAA, 0xBB]));
+      await backend._putBytes(legacySec, Buffer.from('SEC-CONTENT'));
+
+      assert.equal(await backend.countLegacyFlatRooms(), 1);
+      // Invisible to composite reads before migration — this is the silent
+      // data-loss shape: WS preload would serve 'room.new' and overwrite.
+      assert.equal(await backend.readRoom(T, 'legacy1'), null);
+
+      // Pin the crash-order: the ACL write must land before the flat .ydoc
+      // moves, and the .ydoc must move LAST among the artifacts.
+      const ops = [];
+      const realWriteAcl = backend.writeAcl.bind(backend);
+      const realDeleteKey = backend._deleteKey.bind(backend);
+      backend.writeAcl = async (...a) => { ops.push('acl-write'); return realWriteAcl(...a); };
+      backend._deleteKey = async (key) => {
+        if (key === legacyYdoc) ops.push('ydoc-moved');
+        else if (key === legacySec) ops.push('sec-moved');
+        return realDeleteKey(key);
+      };
+      const moved = await backend.migrateLegacyFlatRooms({ tenant: T, owner: 'admin' });
+      backend.writeAcl = realWriteAcl;
+      backend._deleteKey = realDeleteKey;
+
+      assert.equal(moved, 1);
+      assert.ok(ops.indexOf('acl-write') < ops.indexOf('ydoc-moved'),
+        `.acl must be written before the flat .ydoc moves (saw ${JSON.stringify(ops)})`);
+      assert.ok(ops.indexOf('sec-moved') < ops.indexOf('ydoc-moved'),
+        `the flat .ydoc must move LAST (saw ${JSON.stringify(ops)})`);
+
+      // Relocated + readable under the composite key, flat key gone.
+      const r = await backend.readRoom(T, 'legacy1');
+      assert.ok(r);
+      assert.deepStrictEqual(Buffer.from(r.ydocBytes), Buffer.from([0xAA, 0xBB]));
+      assert.deepStrictEqual(Buffer.from(r.secBytes), Buffer.from('SEC-CONTENT'));
+      assert.deepEqual(await backend.readAcl(T, 'legacy1'), { ownerId: 'admin', sharedWith: [] });
+      assert.equal(await backend._statKey(legacyYdoc), null, 'flat .ydoc must be gone');
+
+      // Legacy flat ARCHIVES relocate too. Pre-tenant sweeps archived under
+      // un-namespaced archive keys the tenant-scoped parsers never match —
+      // unrestorable AND invisible to the DELETE_DAYS sweep (never purged).
+      const legacyArchYdoc = backend._legacyFlatArchiveKeyForArtifact('oldarch', 'ydoc');
+      assert.ok(legacyArchYdoc, 'backend must declare its legacy flat archive layout');
+      await backend._putBytes(legacyArchYdoc, Buffer.from([0xCC]));
+      assert.equal(await backend.countLegacyFlatRooms(), 1, 'archived legacy rooms count toward the boot guard');
+      assert.equal((await backend.listArchivedRooms(T)).length, 0, 'invisible before migration');
+
+      assert.equal(await backend.migrateLegacyFlatRooms({ tenant: T, owner: 'admin' }), 1);
+      const archived = await backend.listArchivedRooms(T);
+      assert.equal(archived.length, 1);
+      assert.equal(archived[0].id, 'oldarch');
+      // archivedAt falls back to the ydoc mtime (no legacy marker seeded) —
+      // must be sweep-consumable, i.e. a parseable date, not null.
+      assert.ok(archived[0].archivedAt && !Number.isNaN(new Date(archived[0].archivedAt).getTime()),
+        `relocated archive needs a parseable archivedAt for the sweep (got ${archived[0].archivedAt})`);
+      assert.equal(await backend._statKey(legacyArchYdoc), null, 'flat archive .ydoc must be gone');
+      // restoreRoom now reaches it — the legacy archive is no longer stranded.
+      await backend.restoreRoom(T, 'oldarch');
+      assert.deepStrictEqual(Buffer.from((await backend.readRoom(T, 'oldarch')).ydocBytes), Buffer.from([0xCC]));
+
+      // Idempotent: nothing left to migrate; second run is a no-op.
+      assert.equal(await backend.countLegacyFlatRooms(), 0);
+      assert.equal(await backend.migrateLegacyFlatRooms({ tenant: T, owner: 'admin' }), 0);
+    });
+
     // Sub-PR 1d (#47, ADR-0006). The broker integration tests live here
     // (not in a new file) so they exercise the same backend instances as
-    // the rest of the contract. The broker calls storage.archiveRoom
-    // before mutating the doc; archive failure must abort migration; the
-    // per-room async lock must collapse concurrent calls.
+    // the rest of the contract. The broker calls storage.backupRoom (a
+    // NON-DESTRUCTIVE snapshot — the active room, including its ACL, stays
+    // in place) before mutating the doc; backup failure must abort
+    // migration; the per-room async lock must collapse concurrent calls.
 
     describe('migration broker — Q22/Q23 contract', () => {
       function buildV1Doc(blockCount = 2) {
@@ -418,13 +532,14 @@ for (const { name, factory } of BACKENDS) {
         return ydoc;
       }
 
-      it('archive-then-migrate happy path: archive lands in archived set, doc bumps to v2', async () => {
-        // Pre-seed the room so archiveRoom has something to copy.
+      it('backup-then-migrate happy path: snapshot lands in archived set, active room + ACL survive, doc bumps to v2', async () => {
+        // Pre-seed the room (with an ACL) so backupRoom has something to copy.
         await backend.writeRoom(T, 'mig-happy', {
           ydocBytes: Buffer.from([1, 2, 3]),
           secBytes: Buffer.from('seed'),
           commentsJson: null,
         });
+        await backend.writeAcl(T, 'mig-happy', { ownerId: 'owner', sharedWith: [] });
 
         const coord = createMigrationCoordinator({ storage: backend });
         const ydoc = buildV1Doc(2);
@@ -436,24 +551,30 @@ for (const { name, factory } of BACKENDS) {
         assert.strictEqual(result.schemaVersion, SCHEMA_V2);
         assert.strictEqual(result.migrationPartial, false);
 
-        // The active room is gone (archive deletes the source per
-        // RoomStorageBase.archiveRoom).
-        assert.strictEqual(await backend.readRoom(T, 'mig-happy'), null);
+        // The active room SURVIVES — backupRoom is a non-destructive copy.
+        // The room keeps being served live after migration; the old
+        // archiveRoom move destroyed the active ACL (never rewritten by any
+        // flush → authorize 404s for everyone: bricked) and lost the active
+        // .ydoc entirely on a crash before the first post-migration flush.
+        assert.ok(await backend.readRoom(T, 'mig-happy'),
+          'active room must survive the pre-migration backup');
+        assert.deepEqual(await backend.readAcl(T, 'mig-happy'), { ownerId: 'owner', sharedWith: [] },
+          'active ACL must survive the pre-migration backup');
 
-        // The archive set has the room with an archivedAt.
+        // The archive set has the snapshot with an archivedAt.
         const archived = await backend.listArchivedRooms(T);
         const found = archived.find(r => r.id === 'mig-happy');
-        assert.ok(found, 'migrated room should appear in archive set');
+        assert.ok(found, 'pre-migration snapshot should appear in archive set');
         assert.ok(found.archivedAt);
 
         // Doc state stamped v2.
         assert.strictEqual(ydoc.getMap('meta').get(SCHEMA_VERSION_KEY), SCHEMA_V2);
       });
 
-      it('archive failure aborts migration: doc stays v1, no schemaVersion stamp', async () => {
-        // Wrap archiveRoom to throw without mutating storage.
+      it('backup failure aborts migration: doc stays v1, no schemaVersion stamp', async () => {
+        // Wrap backupRoom to throw without mutating storage.
         const failingStorage = Object.create(backend);
-        failingStorage.archiveRoom = async () => { throw new Error('storage offline'); };
+        failingStorage.backupRoom = async () => { throw new Error('storage offline'); };
 
         const coord = createMigrationCoordinator({ storage: failingStorage });
         const ydoc = buildV1Doc(2);
@@ -511,14 +632,14 @@ for (const { name, factory } of BACKENDS) {
           commentsJson: null,
         });
 
-        // Wrap archiveRoom with a counter + tiny delay to widen the race
+        // Wrap backupRoom with a counter + tiny delay to widen the race
         // window deterministically.
         let archiveCount = 0;
         const lockingStorage = Object.create(backend);
-        lockingStorage.archiveRoom = async (tenant, roomId) => {
+        lockingStorage.backupRoom = async (tenant, roomId) => {
           archiveCount++;
           await new Promise(r => setTimeout(r, 30));
-          return backend.archiveRoom(tenant, roomId);
+          return backend.backupRoom(tenant, roomId);
         };
 
         const coord = createMigrationCoordinator({ storage: lockingStorage });

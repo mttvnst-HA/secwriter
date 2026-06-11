@@ -349,14 +349,14 @@ function migrateRoom(ydoc, options = {}) {
 /**
  * Build a per-room migration coordinator. Returns an `ensureMigrated`
  * function that the WS upgrade handler awaits: the first caller per room
- * triggers `archiveRoom` + `migrateRoom`; subsequent concurrent callers
- * await the same promise. After settle, the cached promise stays in
- * place — needsMigration returns false on the migrated doc, and a partial-
- * state room is also gated by migrationPartial so we don't retry on every
- * connect.
+ * triggers `backupRoom` (non-destructive pre-mutation snapshot) +
+ * `migrateRoom`; subsequent concurrent callers await the same promise.
+ * After settle, the cached promise stays in place — needsMigration returns
+ * false on the migrated doc, and a partial-state room is also gated by
+ * migrationPartial so we don't retry on every connect.
  *
  * Failure semantics:
- *   - archiveRoom throws → migration is aborted; the cached promise
+ *   - backupRoom throws → migration is aborted; the cached promise
  *     resolves successfully (room stays v1 untouched). No partial state
  *     is written. Subsequent broker calls re-attempt because schemaVersion
  *     and migrationPartial are both still absent.
@@ -372,12 +372,19 @@ function createMigrationCoordinator({ storage, log = NOOP_LOG, migrateImpl = mig
     let archived = false;
     try {
       const { tenant, roomId } = splitCompositeDocName(docName);
-      await storage.archiveRoom(tenant, roomId);
+      // NON-DESTRUCTIVE backup (copy into the archive namespace), NOT
+      // archiveRoom: the room keeps being served live after migration, and
+      // archiveRoom's move semantics would (a) delete the active `.acl.json`
+      // that no flush ever rewrites — bricking the room under auth (readAcl
+      // null → authorize 404 for everyone, owner included) — and (b) leave
+      // no active `.ydoc` at all if the process crashed before the first
+      // post-migration flush.
+      await storage.backupRoom(tenant, roomId);
       archived = true;
       log.info('migrate.archived', { roomId: docName });
     } catch (err) {
       log.warn('migrate.archive-failed', { roomId: docName, err: err.message });
-      // Q23/B2: archive failure aborts migration. Do NOT touch the doc.
+      // Q23/B2: backup failure aborts migration. Do NOT touch the doc.
       return { skipped: true, archived: false, err: err.message };
     }
 
@@ -402,7 +409,7 @@ function createMigrationCoordinator({ storage, log = NOOP_LOG, migrateImpl = mig
     let p = inFlight.get(docName);
     if (!p) {
       // Wrap the migration promise so we can drop the cache entry on
-      // archive failure. Without this, an archiveRoom outage would
+      // archive failure. Without this, a backupRoom outage would
       // permanently pin a `{ skipped: true, archived: false }` result for
       // the room: every subsequent WS upgrade would see the cached promise
       // and never retry, even after storage recovers — operator would
@@ -429,7 +436,7 @@ function createMigrationCoordinator({ storage, log = NOOP_LOG, migrateImpl = mig
    * the same docName (e.g. operator deletes a corrupt room and re-uploads
    * a SEC under the same id), `ensureMigrated` returns the cached
    * post-migration result and the new doc is never re-evaluated. The
-   * cached `{ alreadyV2: true }` short-circuits both `archiveRoom` AND
+   * cached `{ alreadyV2: true }` short-circuits both `backupRoom` AND
    * `migrateRoom`, so a freshly-uploaded v1 doc would silently skip
    * migration and present a mixed-substrate room to clients.
    *

@@ -23,12 +23,12 @@ The architecture-review entry framed this as "three near-identical 80-line atomi
 Room storage is structured as a base class + thin adapters:
 
 - **`server/storage-shared.cjs`** owns `sanitize()`, the `ARTIFACT_CATALOG` (with kind, optional flag, content type, and write order), and the `planArtifactWrites()` normalizer that turns the public `{ ydocBytes, secBytes, commentsJson }` argument into a catalog-ordered `[{ kind, bytes }]` plan.
-- **`server/room-storage.cjs`** exports `RoomStorageBase`, which implements the entire public methodset (`writeRoom / readRoom / deleteRoom / listRooms / statRoom / quarantineRoom / archiveRoom / restoreRoom / listArchivedRooms / deleteArchivedRoom`) by composing seven adapter primitives plus a few naming hooks. The base class is the single source of truth for ordering, sidecar optionality, archive marker timing, and partial-failure handling.
+- **`server/room-storage.cjs`** exports `RoomStorageBase`, which implements the entire public methodset (`writeRoom / readRoom / readAcl / writeAcl / writeAclIfAbsent / deleteRoom / listRooms / statRoom / quarantineRoom / archiveRoom / backupRoom / restoreRoom / listArchivedRooms / deleteArchivedRoom / migrateLegacyFlatRooms`) by composing the adapter primitives plus a few naming hooks. The base class is the single source of truth for ordering, sidecar optionality, archive marker timing, and partial-failure handling.
 - **`server/storage-{local,azure,s3}.cjs`** each extend `RoomStorageBase` and implement `_putBytes / _getBytes / _deleteKey / _listKeys / _statKey / _copyKey / _keyForArtifact` plus `_parseActiveKey / _parseArchiveKey`. They override the optional archive-marker hooks (Local writes a sidecar file; Azure/S3 use blob/object metadata).
 
 **Atomicity is a per-backend concern, not unified at the base class.** The base class writes artifacts sequentially with `.ydoc` LAST. That sequential-with-`.ydoc`-LAST ordering is the honest cross-backend contract: if a sidecar write fails, `.ydoc` is left at the older consistent state rather than ahead of stale sidecars.
 
-- **Local** overrides `writeRoom` to wrap the writes in a stage-rename-rollback loop. Filesystem rename is atomic per file; the wrapping rollback gives true multi-file atomicity.
+- **Local** overrides `writeRoom` to wrap the writes in a stage-rename-rollback loop. Filesystem rename is atomic per file; the wrapping rollback gives true multi-file atomicity. The boot-time orphan-`.tmp` sweep is also Local's (`sweepOrphanTmpFiles`, a recursive walk) — staging paths live at `<dir>/<tenant>/<room>.<ext>.tmp` under the composite layout, so the old top-level `readdir` in `startFromEnv` could never see a post-tenant crash leftover.
 - **Azure** overrides `writeRoom` to acquire a `.ydoc` blob lease for multi-instance safety, then issues sequential uploads.
 - **S3** inherits the base class's plain sequential write — Cloudflare R2 has no transaction primitives, and the `.ydoc`-LAST ordering is the strongest cross-object guarantee available.
 
@@ -38,7 +38,7 @@ Room storage is structured as a base class + thin adapters:
   - Adding a fourth artifact (e.g. `.tailoring.json`) is a one-line edit in `ARTIFACT_CATALOG`.
   - `sanitize()` lives in one file; the apologetic triple-copy is gone.
   - Archive/restore/quarantine semantics live in one place, including the `.ydoc`-LAST ordering for archive copies and the per-call timestamp threading for quarantine suffix-grouping.
-  - A single contract test (`server/__tests__/storage-contract.test.mjs`) runs 19 assertions × 3 backends (57 total — grew from 12 with the `.acl.json` round-trip + delete-order checks), so adding a fourth backend would automatically be checked against the same contract.
+  - A single contract test (`server/__tests__/storage-contract.test.mjs`) runs one shared assertion set against all 3 backends (20 tests × 3 — grew from 12 with the `.acl.json` round-trip/claim, delete-order, and legacy-migration checks), so adding a fourth backend would automatically be checked against the same contract.
   - **Two latent production bugs were fixed** as a side effect of unification:
     - S3's `listArchivedRooms` returned `{ name, archivedAt }`, but `server/collab-server.cjs:534` reads `room.id` — the S3 sweep was silently a no-op, leaving archived rooms in R2 indefinitely.
     - Azure stored `archivedat` metadata as `String(Date.now())` (a numeric string), which `new Date(...)` parses as Invalid Date in Node. The Azure sweep's `archivedDays = (now - getTime()) / day` was always `NaN`, so `NaN >= DELETE_DAYS` was always false, and the Azure sweep also never deleted anything.
@@ -56,9 +56,9 @@ Room storage is structured as a base class + thin adapters:
 The room-authorization work ([ADR-0017](0017-room-authorization-model.md), [#211](https://github.com/mttvnst-HA/secwriter/issues/211)) adds a fourth artifact, `.acl.json` = `{ ownerId, sharedWith[] }`, positioned in `ARTIFACT_CATALOG` BEFORE `.ydoc`. This extends the `.ydoc`-LAST ordering into a crash-consistency invariant for ownership:
 
 - **Write order: `.acl` before `.ydoc`.** A crash mid-create leaves an orphan ACL with no `.ydoc` — the room reads as absent (`readRoom` returns null → 404) and is reclaimable. It NEVER leaves a `.ydoc` with no ACL (an ownerless, un-shareable, un-deletable room).
-- **Delete order: `.ydoc` before `.acl` (reverse-catalog).** `deleteRoom` iterates `ARTIFACT_CATALOG` in reverse so the source-of-truth `.ydoc` is removed first. A crash mid-delete leaves the same reclaimable orphan-ACL state a crashed create produces — symmetric with the write invariant ("`.ydoc` last in, first out") and recovered by the same owner-DELETE reclaim path.
+- **Delete order: sidecars, then `.ydoc`, then `.acl` LAST.** `deleteRoom` removes the optional sidecars first (while any stale `.SEC`/`.comments` exists the `.ydoc` does too, so the create route 409s — a crash mid-delete can never let a re-created room serve the previous owner's sidecars), then the source-of-truth `.ydoc`, then the ACL. A crash between `.ydoc` and `.acl` leaves the same reclaimable orphan-ACL state a crashed create produces, recovered by the same owner-DELETE reclaim path.
 
-The delete-order is enforced by the base class (`server/room-storage.cjs` `deleteRoom`) and pinned by a `_deleteKey` ordering spy in the contract suite (asserts `.ydoc` deleted before `.acl` across all three backends).
+The delete-order is enforced by the base class (`server/room-storage.cjs` `deleteRoom`) and pinned by a `_deleteKey` ordering spy in the contract suite (asserts sidecars before `.ydoc` and `.ydoc` before `.acl` across all three backends).
 
 ## Alternatives considered
 
