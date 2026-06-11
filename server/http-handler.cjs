@@ -388,6 +388,17 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
         const composite = buildCompositeDocName(tenant, roomId);
         const existing = await storage.readRoom(tenant, roomId);
         if (!existing) {
+          // Orphan-ACL recovery: a crash during create can leave an ACL sidecar
+          // with no .ydoc. authorize(DELETE) above already confirmed the caller
+          // owns it, so clear the orphan (and its migration-cache entry) to make
+          // the id reclaimable rather than permanently bricked. Still 404 — the
+          // room proper never finished creating.
+          if (authProvider?.requiresAuth && (await storage.readAcl(tenant, roomId))) {
+            await storage.deleteRoom(tenant, roomId);
+            if (migrationCoordinator && typeof migrationCoordinator.forget === 'function') {
+              migrationCoordinator.forget(composite);
+            }
+          }
           res.writeHead(404, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ error: `Room "${roomId}" not found` }));
           return;
@@ -441,7 +452,13 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           }
 
           const acl = await storage.readAcl(tenant, roomId);
-          // authorize() already confirmed acl exists + caller is owner.
+          // authorize() confirmed acl existed; a concurrent DELETE could have
+          // removed it since (TOCTOU) — fail closed with 404, not a 500 NPE.
+          if (!acl) {
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
+            res.end('Not found');
+            return;
+          }
           const set = new Set(Array.isArray(acl.sharedWith) ? acl.sharedWith : []);
           // Same-tenant is enforced STRUCTURALLY: the room lives under the
           // owner's tenant, so a cross-tenant userId is inert. Store opaque id as-is.

@@ -577,6 +577,15 @@ describe('room authorization (auth=jwt)', () => {
       assert.equal(res.status, 404);
       res = await httpJson(`${base}/rooms/r1`, 'DELETE', null, bearer({ sub: 'owner', tenant: 'acme' }));
       assert.equal(res.status, 200);
+
+      // Orphan-ACL recovery (crash between writeAcl and writeRoom):
+      // seed an ACL with NO .ydoc, confirm a different user can't hijack,
+      // the owner's DELETE clears the orphan, and the owner can then re-create.
+      await h.storage.writeAcl('acme', 'orphan', { ownerId: 'owner', sharedWith: [] });
+      assert.equal((await httpJson(`${base}/rooms`, 'POST', { id: 'orphan' }, bearer({ sub: 'attacker', tenant: 'acme' }))).status, 409); // hijack blocked
+      assert.equal((await httpJson(`${base}/rooms/orphan`, 'DELETE', null, bearer({ sub: 'owner', tenant: 'acme' }))).status, 404); // 404 but clears orphan
+      assert.equal(await h.storage.readAcl('acme', 'orphan'), null, 'orphan ACL cleared by owner DELETE');
+      assert.equal((await httpJson(`${base}/rooms`, 'POST', { id: 'orphan' }, bearer({ sub: 'owner', tenant: 'acme' }))).status, 201); // reclaimed
     } finally { h.server.close(); h.cleanup(); }
   });
 
