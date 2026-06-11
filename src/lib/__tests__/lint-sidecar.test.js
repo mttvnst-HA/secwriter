@@ -4,6 +4,7 @@ import {
   encodeSidecar,
   decodeSidecar,
   projectDecoded,
+  computeLiveFingerprints,
 } from '../lint-sidecar.js';
 import * as linting from '../linting.js';
 
@@ -57,6 +58,23 @@ describe('fingerprintBlock', () => {
     const a = await fingerprintBlock('foo');
     const b = await fingerprintBlock('fop');
     expect(a).not.toBe(b);
+  });
+});
+
+// ── computeLiveFingerprints (#214) ───────────────────────────────────────────
+
+describe('computeLiveFingerprints', () => {
+  it('returns the fingerprint set of all live blocks, matching fingerprintBlock', async () => {
+    const live = await computeLiveFingerprints(SAMPLE_BLOCKS);
+    expect(live instanceof Set).toBe(true);
+    // n2 and n4 ('' ) each map to a fingerprint that equals fingerprintBlock.
+    expect(live.has(await fingerprintBlock('Contractor shall provide widgets.'))).toBe(true);
+    expect(live.has(await fingerprintBlock(''))).toBe(true);
+    // A content state NOT among the live blocks is absent → prunable.
+    expect(live.has(await fingerprintBlock('some stale earlier text'))).toBe(false);
+    // Non-array / empty inputs are tolerated.
+    expect((await computeLiveFingerprints(null)).size).toBe(0);
+    expect((await computeLiveFingerprints([])).size).toBe(0);
   });
 });
 

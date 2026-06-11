@@ -539,8 +539,22 @@ export function readLint(yLint) {
  * clear-and-replace would race). The 'local-lint' origin is not in either
  * UndoManager's trackedOrigins, so peer-driven cache updates stay off the
  * undo stack.
+ *
+ * GC (#214): pass `liveFingerprints` — a Set<fp> of every CURRENT live block's
+ * html fingerprint (from `computeLiveFingerprints(blocks)`) — to prune dead
+ * entries in the same transaction. An entry is dead when its fingerprint
+ * matches no live block: `projectDecoded` only ever consults fingerprints of
+ * current blocks, so a non-live fingerprint can never be hit again. Without
+ * GC, every distinct content state a block passes through leaves a permanent
+ * entry, and the persisted `.ydoc` trends toward the 8 MB flush cap → silent
+ * persistence refusal. Pruning to the *shared* live set (not a single peer's
+ * payload) is race-safe: a fingerprint absent from the live document is dead
+ * for every peer. A cross-peer lag (a block whose html the pruning peer hasn't
+ * synced yet) costs at most a benign cache miss — the engines re-run on load,
+ * exactly as for any un-cached block — never edit loss. When `liveFingerprints`
+ * is omitted (undefined), behavior is the legacy phase-1 set-only path.
  */
-export function publishLintToDoc(ydoc, yLint, payload) {
+export function publishLintToDoc(ydoc, yLint, payload, liveFingerprints) {
   if (!payload || typeof payload !== 'object') return;
   if (payload.v !== 1) return;
   const goodStr = typeof payload.good === 'string' ? payload.good : '';
@@ -565,16 +579,24 @@ export function publishLintToDoc(ydoc, yLint, payload) {
     });
   }
 
-  // Phase 1 deletion semantics: never delete. Each peer encodes from its own
-  // `byBlock` (keyed by blockId for blocks it has locally), so a fingerprint
-  // absent from one peer's payload may still be valid for another peer's
-  // block. Set-only avoids racing the union away. Phase 3 (future ticket)
-  // can add a deletion protocol (e.g., tombstone with author + ts) once
-  // multi-peer GC semantics are needed.
+  // GC: an entry survives iff its fingerprint is live — present in the shared
+  // live-block set OR in this publish's own target (a just-linted block is
+  // always live even if a stale `blocks` snapshot lagged it). Skip the prune
+  // entirely when no live set is supplied (legacy set-only callers + direct
+  // unit tests). `keep === null` means "never delete".
+  const hasLiveSet = liveFingerprints instanceof Set;
+  const keep = hasLiveSet ? new Set(liveFingerprints) : null;
+  if (keep) for (const fp of target.keys()) keep.add(fp);
+
   ydoc.transact(() => {
     for (const [fp, next] of target) {
       const cur = yLint.get(fp);
       if (!lintEntryEqual(cur, next)) yLint.set(fp, next);
+    }
+    if (keep) {
+      for (const fp of [...yLint.keys()]) {
+        if (!keep.has(fp)) yLint.delete(fp);
+      }
     }
   }, 'local-lint');
 }
@@ -1177,12 +1199,14 @@ export function createCollabSession({
       // is cleared in the same transaction as the flag flip.
       publishTcToDoc(ydoc, yTc, tc);
     },
-    publishLint(payload) {
+    publishLint(payload, liveFingerprints) {
       // Issue #150: publish a v1 lint-sidecar payload to yLint. Diffs
       // against current state so two peers linting different blocks don't
       // clobber each other. Origin 'local-lint' is filtered by handleAfterTx
       // (startsWith 'local-') so the writer doesn't re-emit to itself.
-      publishLintToDoc(ydoc, yLint, payload);
+      // Issue #214: `liveFingerprints` (Set<fp> of current live blocks) drives
+      // GC of dead cache entries in the same transaction.
+      publishLintToDoc(ydoc, yLint, payload, liveFingerprints);
     },
     publishLintIgnored(entries) {
       // Issue #140: publish a Map<ignoreKey, IgnoreEntry> to yLintIgnored.

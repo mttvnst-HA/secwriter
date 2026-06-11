@@ -168,3 +168,69 @@ describe('publishLintToDoc', () => {
     expect(observedOrigin).toBe('local-lint');
   });
 });
+
+describe('publishLintToDoc GC (#214)', () => {
+  it('prunes entries whose fingerprint is not in the live set', () => {
+    const { ydoc, yLint } = makeDoc();
+    // Seed three entries, two of which are now-dead (no live block).
+    publishLintToDoc(ydoc, yLint, { v: 1, good: fp(0) + fp(1) + fp(2), bad: {} });
+    expect(yLint.size).toBe(3);
+    // Live set covers only fp(2); republish fp(2) with the live set → prune 0,1.
+    publishLintToDoc(ydoc, yLint, { v: 1, good: fp(2), bad: {} }, new Set([fp(2)]));
+    expect(yLint.size).toBe(1);
+    expect(yLint.has(fp(2))).toBe(true);
+  });
+
+  it('always keeps just-published target entries even if absent from live set', () => {
+    const { ydoc, yLint } = makeDoc();
+    // A stale `blocks` snapshot might omit the just-linted block from the live
+    // set; the target fingerprint must still survive.
+    publishLintToDoc(ydoc, yLint, { v: 1, good: fp(5), bad: {} }, new Set([fp(9)]));
+    expect(yLint.has(fp(5))).toBe(true);
+    expect(yLint.has(fp(9))).toBe(false); // fp(9) was never set, just in live set
+  });
+
+  it('keeps other live blocks linted by peers (no cross-peer clobber)', () => {
+    const { ydoc, yLint } = makeDoc();
+    // Peer B linted fp(1); peer A republishes fp(0) but the shared live set
+    // covers both blocks → B's entry survives.
+    publishLintToDoc(ydoc, yLint, { v: 1, good: fp(1), bad: {} });
+    publishLintToDoc(ydoc, yLint, { v: 1, good: fp(0), bad: {} }, new Set([fp(0), fp(1)]));
+    expect(yLint.size).toBe(2);
+    expect(yLint.has(fp(0))).toBe(true);
+    expect(yLint.has(fp(1))).toBe(true);
+  });
+
+  it('verification: one block through N states stays bounded to live-block count', () => {
+    const { ydoc, yLint } = makeDoc();
+    // Simulate one block edited through 10 distinct html states. Each publish
+    // carries that state's fingerprint as both the payload and the (single)
+    // live block. yLint must never grow past the live-block count of 1.
+    for (let i = 0; i < 10; i++) {
+      publishLintToDoc(ydoc, yLint, { v: 1, good: fp(i), bad: {} }, new Set([fp(i)]));
+      expect(yLint.size).toBe(1);
+    }
+    expect(yLint.has(fp(9))).toBe(true);
+  });
+
+  it('omitting the live set preserves legacy set-only (never-delete) behavior', () => {
+    const { ydoc, yLint } = makeDoc();
+    publishLintToDoc(ydoc, yLint, { v: 1, good: fp(0) + fp(1), bad: {} });
+    publishLintToDoc(ydoc, yLint, { v: 1, good: fp(2), bad: {} });
+    expect(yLint.size).toBe(3); // no prune without a live set
+  });
+
+  it('prune deletes carry origin "local-lint" (off the undo stack)', () => {
+    const { ydoc, yLint } = makeDoc();
+    publishLintToDoc(ydoc, yLint, { v: 1, good: fp(0) + fp(1), bad: {} });
+    let observedOrigin = null;
+    ydoc.on('afterTransaction', (tr) => {
+      if (tr.changed.has(yLint) || tr.changedParentTypes.has(yLint)) {
+        observedOrigin = tr.origin;
+      }
+    });
+    publishLintToDoc(ydoc, yLint, { v: 1, good: fp(0), bad: {} }, new Set([fp(0)]));
+    expect(yLint.size).toBe(1);
+    expect(observedOrigin).toBe('local-lint');
+  });
+});

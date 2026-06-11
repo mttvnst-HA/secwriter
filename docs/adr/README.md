@@ -49,3 +49,4 @@ Each ADR is one Markdown file: `NNNN-short-slug.md`. Use [`0000-template.md`](00
 | [0013](0013-storage-backends.md) | Pluggable storage backends — local, Azure Blob, S3-compatible | Accepted |
 | [0014](0014-collab-server-yjs-relay.md) | Collab server — Yjs + y-websocket relay, CJS, four non-obvious patterns | Accepted |
 | [0015](0015-linting-stays-block-granular.md) | Linting state stays block-granular, not sentence-granular | Accepted |
+| [0016](0016-lint-cache-gc-live-fingerprint.md) | Persisted lint cache is GC'd against the live-block fingerprint set | Accepted |
