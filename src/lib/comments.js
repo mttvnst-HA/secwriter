@@ -87,7 +87,15 @@ export function updateCreate(state, { commentId, text, identity, ts }) {
       initialText: text,
     },
   };
-  return { state: withById(state, byId), publish };
+  // #216: our own create is filtered by the 'local-*' origin guard in
+  // handleAfterTx, so it never echoes back through onRemoteComments and never
+  // enters seenRemoteIds. Add it here at publish time so a later peer deletion
+  // is correctly tombstoned by mergeRemote instead of being preserved as a
+  // "local draft" ghost. Amends ADR-0010 item 4 (M2.5). Only published comments
+  // reach this verb — drafts stay out of seenRemoteIds via createDraft.
+  const seenRemoteIds = new Set(state.seenRemoteIds);
+  seenRemoteIds.add(commentId);
+  return { state: { byId, seenRemoteIds }, publish };
 }
 
 export function reply(state, { commentId, text, identity, ts }) {
