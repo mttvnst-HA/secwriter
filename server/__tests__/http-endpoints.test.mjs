@@ -536,6 +536,93 @@ describe('HTTP endpoints', () => {
   });
 });
 
+// ── helpers for auth=jwt tests ──────────────────────────────────────────────
+
+const jwt = require('jsonwebtoken');
+const AUTHZ_SECRET = 'http-test-secret';
+function bearer(claims) {
+  return { Authorization: `Bearer ${jwt.sign(claims, AUTHZ_SECRET, { algorithm: 'HS256' })}` };
+}
+function makeAuthServer() {
+  const { createAuthJwt } = require('../auth/auth-jwt.cjs');
+  const { LocalStorageBackend } = require('../storage-local.cjs');
+  const { createHttpHandler } = require('../http-handler.cjs');
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sim-authz-'));
+  const storage = new LocalStorageBackend(dir);
+  const boundDocs = new Map();
+  const handler = createHttpHandler({
+    storage, boundDocs,
+    flushRoom: async () => {},
+    maxDocBytes: 8 * 1024 * 1024,
+    authProvider: createAuthJwt({ secret: AUTHZ_SECRET }),
+    migrationCoordinator: { forget() {} },
+  });
+  const server = http.createServer(handler);
+  return { server, storage, dir, cleanup: () => { try { fs.rmSync(dir, { recursive: true, force: true }); } catch {} } };
+}
+
+describe('room authorization (auth=jwt)', () => {
+  it('create writes owner ACL; owner reads, strangers + cross-tenant get 404', async () => {
+    const h = makeAuthServer();
+    await new Promise(r => h.server.listen(0, r));
+    const base = `http://127.0.0.1:${h.server.address().port}`;
+    try {
+      let res = await httpJson(`${base}/rooms`, 'POST', { id: 'r1' }, bearer({ sub: 'owner', tenant: 'acme' }));
+      assert.equal(res.status, 201);
+      assert.deepEqual(await h.storage.readAcl('acme', 'r1'), { ownerId: 'owner', sharedWith: [] });
+
+      res = await httpJson(`${base}/rooms/r1`, 'DELETE', null, bearer({ sub: 'stranger', tenant: 'acme' }));
+      assert.equal(res.status, 404);
+      res = await httpJson(`${base}/rooms/r1`, 'DELETE', null, bearer({ sub: 'owner', tenant: 'evil' }));
+      assert.equal(res.status, 404);
+      res = await httpJson(`${base}/rooms/r1`, 'DELETE', null, bearer({ sub: 'owner', tenant: 'acme' }));
+      assert.equal(res.status, 200);
+    } finally { h.server.close(); h.cleanup(); }
+  });
+
+  it('missing tenant → 403, missing stable subject → 403, hostile tenant cannot escape', async () => {
+    const h = makeAuthServer();
+    await new Promise(r => h.server.listen(0, r));
+    const base = `http://127.0.0.1:${h.server.address().port}`;
+    try {
+      assert.equal((await httpJson(`${base}/rooms`, 'GET', null, bearer({ sub: 's' }))).status, 403);
+      assert.equal((await httpJson(`${base}/rooms`, 'GET', null, bearer({ tenant: 'acme' }))).status, 403);
+      assert.equal((await httpJson(`${base}/rooms`, 'GET', null, bearer({ sub: 's', tenant: '_public' }))).status, 403);
+      const r = await httpJson(`${base}/rooms`, 'POST', { id: 'h' }, bearer({ sub: 's', tenant: '../x' }));
+      assert.equal(r.status, 201);
+      assert.equal(await h.storage.readAcl('___x', 'h') !== null, true); // sanitize('../x') === '___x'
+    } finally { h.server.close(); h.cleanup(); }
+  });
+
+  it('share route: owner adds sharee → sharee reads /comments; non-owner share → 404; shared user cannot DELETE', async () => {
+    const h = makeAuthServer();
+    await new Promise(r => h.server.listen(0, r));
+    const base = `http://127.0.0.1:${h.server.address().port}`;
+    try {
+      await httpJson(`${base}/rooms`, 'POST', { id: 'r1' }, bearer({ sub: 'owner', tenant: 'acme' }));
+      assert.equal((await httpJson(`${base}/rooms/r1/share`, 'PATCH', { userId: 'x', action: 'add' }, bearer({ sub: 'stranger', tenant: 'acme' }))).status, 404);
+      const s = await httpJson(`${base}/rooms/r1/share`, 'PATCH', { userId: 'friend', action: 'add' }, bearer({ sub: 'owner', tenant: 'acme' }));
+      assert.equal(s.status, 200);
+      assert.deepEqual((await h.storage.readAcl('acme', 'r1')).sharedWith, ['friend']);
+      assert.equal((await httpJson(`${base}/rooms/r1/comments`, 'GET', null, bearer({ sub: 'friend', tenant: 'acme' }))).status, 200);
+      assert.equal((await httpJson(`${base}/rooms/r1`, 'DELETE', null, bearer({ sub: 'friend', tenant: 'acme' }))).status, 404);
+    } finally { h.server.close(); h.cleanup(); }
+  });
+
+  it('GET /rooms returns ONLY the caller tenant', async () => {
+    const h = makeAuthServer();
+    await new Promise(r => h.server.listen(0, r));
+    const base = `http://127.0.0.1:${h.server.address().port}`;
+    try {
+      await httpJson(`${base}/rooms`, 'POST', { id: 'a1' }, bearer({ sub: 'o', tenant: 'acme' }));
+      await httpJson(`${base}/rooms`, 'POST', { id: 'b1' }, bearer({ sub: 'o', tenant: 'beta' }));
+      const res = await httpJson(`${base}/rooms`, 'GET', null, bearer({ sub: 'o', tenant: 'acme' }));
+      const ids = JSON.parse(res.body.toString()).rooms.map(r => r.id);
+      assert.deepEqual(ids.sort(), ['a1']);
+    } finally { h.server.close(); h.cleanup(); }
+  });
+});
+
 // PR #51 review (issue e) — regression. The migration coordinator caches
 // `{ alreadyV2: true }` per docName. After DELETE /rooms/:id, a fresh
 // room created with the same id (or a v1 SEC re-uploaded under it) would
