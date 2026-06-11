@@ -34,6 +34,7 @@
 'use strict';
 
 const Y = require('yjs');
+const { splitCompositeDocName } = require('./storage-shared.cjs');
 
 // ── Schema enums (mirror src/lib/pm-schema.js) ───────────────────────────
 // Copy-pasted so the broker doesn't dynamic-import the ESM schema module
@@ -370,7 +371,8 @@ function createMigrationCoordinator({ storage, log = NOOP_LOG, migrateImpl = mig
   async function runMigration(docName, ydoc) {
     let archived = false;
     try {
-      await storage.archiveRoom(docName);
+      const { tenant, roomId } = splitCompositeDocName(docName);
+      await storage.archiveRoom(tenant, roomId);
       archived = true;
       log.info('migrate.archived', { roomId: docName });
     } catch (err) {

@@ -453,8 +453,8 @@ describe('createMigrationCoordinator', () => {
     const archiveCalls = [];
     return {
       archiveCalls,
-      async archiveRoom(roomId) {
-        archiveCalls.push(roomId);
+      async archiveRoom(tenant, roomId) {
+        archiveCalls.push([tenant, roomId]);
         if (archiveDelayMs > 0) await new Promise(r => setTimeout(r, archiveDelayMs));
         if (archiveShouldThrow) throw archiveShouldThrow;
       },
@@ -484,7 +484,7 @@ describe('createMigrationCoordinator', () => {
     assert.strictEqual(result.schemaVersion, SCHEMA_V2);
     assert.strictEqual(result.migrationPartial, false);
 
-    assert.deepStrictEqual(storage.archiveCalls, ['room1']);
+    assert.deepStrictEqual(storage.archiveCalls, [['_public', 'room1']]);
     assert.strictEqual(ydoc.getMap('meta').get(SCHEMA_VERSION_KEY), SCHEMA_V2);
   });
 
@@ -594,7 +594,7 @@ describe('createMigrationCoordinator', () => {
     ]);
     assert.strictEqual(rA.schemaVersion, SCHEMA_V2);
     assert.strictEqual(rB.schemaVersion, SCHEMA_V2);
-    assert.deepStrictEqual([...storage.archiveCalls].sort(), ['roomA', 'roomB']);
+    assert.deepStrictEqual([...storage.archiveCalls].sort(), [['_public', 'roomA'], ['_public', 'roomB']]);
   });
 
   it('migrationPartial result preserves the sentinel through the coordinator', async () => {
