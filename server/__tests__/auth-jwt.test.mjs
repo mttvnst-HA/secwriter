@@ -69,3 +69,26 @@ describe('auth-jwt', () => {
     assert.strictEqual(user.name, 'test@example.com');
   });
 });
+
+const SECRET2 = 'test-secret';
+const providerT = createAuthJwt({ secret: SECRET2 });
+const signT = (claims) => jwt.sign(claims, SECRET2, { algorithm: 'HS256' });
+
+describe('auth-jwt tenant + stable subject', () => {
+  it('extracts tenant from tenant/org/tid and id from sub/oid', async () => {
+    assert.equal((await providerT.validateToken(signT({ sub: 's1', tenant: 'acme' }))).tenant, 'acme');
+    assert.equal((await providerT.validateToken(signT({ sub: 's1', org: 'beta' }))).tenant, 'beta');
+    assert.equal((await providerT.validateToken(signT({ oid: 'o1', tid: 'azure-t' }))).id, 'o1');
+    assert.equal((await providerT.validateToken(signT({ oid: 'o1', tid: 'azure-t' }))).tenant, 'azure-t');
+  });
+
+  it('does NOT fall back to email/unknown for id (distinct users must not collapse)', async () => {
+    const u = await providerT.validateToken(signT({ email: 'a@b.com', tenant: 'acme' })); // no sub/oid
+    assert.equal(u.id, null, 'id is null without sub/oid');
+    assert.equal(u.email, 'a@b.com', 'email still populates display identity');
+  });
+
+  it('tenant is null when no tenant/org/tid claim present', async () => {
+    assert.equal((await providerT.validateToken(signT({ sub: 's1' }))).tenant, null);
+  });
+});
