@@ -34,8 +34,8 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
   // room could still be destroyed or overwritten. These helpers read the lock
   // state (live doc preferred, else persisted bytes) and decide whether the
   // caller may mutate. Amends ADR-0014.
-  function readRoomLock(roomId, ydocBytes) {
-    const live = boundDocs && boundDocs.get(roomId);
+  function readRoomLock(composite, ydocBytes) {
+    const live = boundDocs && boundDocs.get(composite);
     if (live) {
       try {
         const m = live.getMap('meta');
@@ -137,20 +137,18 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
     // GET /health — unauthenticated health probe
     if (url.pathname === '/health' && req.method === 'GET') {
       const unhealthyRooms = [];
+      let unhealthyCount = 0;
       if (roomHealth) {
         for (const [name, h] of roomHealth) {
-          if (h.persistFailures >= 3) unhealthyRooms.push(name);
+          if (h.persistFailures >= 3) { unhealthyCount++; unhealthyRooms.push(name); }
         }
       }
-      const status = unhealthyRooms.length === 0 ? 'ok' : 'degraded';
+      const status = unhealthyCount === 0 ? 'ok' : 'degraded';
 
       let activeConnections = 0;
       try {
-        // Sum awareness states across all rooms for total connected clients
         if (getActiveUsers) {
-          for (const id of boundDocs.keys()) {
-            activeConnections += getActiveUsers(id).length;
-          }
+          for (const id of boundDocs.keys()) activeConnections += getActiveUsers(id).length;
         }
       } catch { /* ignore */ }
 
@@ -158,7 +156,8 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
         status,
         uptime: process.uptime(),
         rooms: { active: boundDocs ? boundDocs.size : 0, connections: activeConnections },
-        unhealthyRooms,
+        // Redact room names under auth — they are cross-tenant. Counts only.
+        ...(authProvider?.requiresAuth ? { unhealthyCount } : { unhealthyRooms }),
       });
       res.writeHead(status === 'ok' ? 200 : 503, { 'Content-Type': 'application/json' });
       res.end(body);
@@ -417,6 +416,46 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
         res.writeHead(500, { 'Content-Type': 'text/plain' });
         res.end(`Delete room failed: ${err.message}`);
       }
+      return;
+    }
+
+    // PATCH /rooms/:roomId/share — owner-only; add/remove a sharee subject id.
+    const shareMatch = url.pathname.match(/^\/rooms\/([^/]+)\/share$/);
+    if (shareMatch && req.method === 'PATCH') {
+      const roomId = shareMatch[1];
+      const chunks = [];
+      req.on('data', c => chunks.push(c));
+      req.on('end', async () => {
+        try {
+          const tenant = resolveTenant(req);
+          const dec = await authorize({ authProvider, storage, user: req.user, roomId, action: ACTION.SHARE });
+          if (denied(res, dec)) return;
+
+          const body = JSON.parse(Buffer.concat(chunks).toString('utf-8'));
+          const userId = body && body.userId;
+          const action = body && body.action;
+          if (typeof userId !== 'string' || !userId || (action !== 'add' && action !== 'remove')) {
+            res.writeHead(400, { 'Content-Type': 'text/plain' });
+            res.end('Body must be { userId: string, action: "add" | "remove" }');
+            return;
+          }
+
+          const acl = await storage.readAcl(tenant, roomId);
+          // authorize() already confirmed acl exists + caller is owner.
+          const set = new Set(Array.isArray(acl.sharedWith) ? acl.sharedWith : []);
+          // Same-tenant is enforced STRUCTURALLY: the room lives under the
+          // owner's tenant, so a cross-tenant userId is inert. Store opaque id as-is.
+          if (action === 'add') set.add(userId); else set.delete(userId);
+          set.delete(acl.ownerId); // never let a sharee entry equal the owner
+          await storage.writeAcl(tenant, roomId, { ownerId: acl.ownerId, sharedWith: [...set] });
+
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ ok: true, sharedWith: [...set] }));
+        } catch (err) {
+          res.writeHead(500, { 'Content-Type': 'text/plain' });
+          res.end(`Share failed: ${err.message}`);
+        }
+      });
       return;
     }
 
