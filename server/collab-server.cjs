@@ -40,7 +40,8 @@ const { log } = require('./logger.cjs');
 const { createRateLimiter } = require('./rate-limiter.cjs');
 const { createHttpHandler } = require('./http-handler.cjs');
 const { createMigrationCoordinator } = require('./migrate-pm-substrate.cjs');
-const { PUBLIC_TENANT, splitCompositeDocName } = require('./storage-shared.cjs');
+const { PUBLIC_TENANT, splitCompositeDocName, buildCompositeDocName, sanitize } = require('./storage-shared.cjs');
+const { authorize, ACTION } = require('./auth/authorize.cjs');
 
 // Hard caps. A single spec section is O(100KB) of text; 8 MB gives plenty of
 // headroom for Y.Doc overhead + revision history without letting a runaway
@@ -189,7 +190,8 @@ function createCollabServer(config) {
 
       const serializeRoom = await getSerializeRoom();
       const artifacts = await serializeRoom(ydoc);
-      await storage.writeRoom(PUBLIC_TENANT, docName, artifacts);
+      const { tenant, roomId } = splitCompositeDocName(docName);
+      await storage.writeRoom(tenant, roomId, artifacts);
 
       health.persistFailures = 0;
       health.lastPersistSuccess = Date.now();
@@ -222,14 +224,15 @@ function createCollabServer(config) {
       // empty doc and re-seed.
       const loadPromise = (async () => {
         try {
-          const roomData = await storage.readRoom(PUBLIC_TENANT, docName);
+          const { tenant: ldTenant, roomId: ldRoomId } = splitCompositeDocName(docName);
+          const roomData = await storage.readRoom(ldTenant, ldRoomId);
           if (!roomData || !roomData.ydocBytes) {
             log.info('room.new', { roomId: docName });
             return;
           }
           const bytes = roomData.ydocBytes;
           if (bytes.length > MAX_DOC_BYTES) {
-            await storage.quarantineRoom(PUBLIC_TENANT, docName, 'oversize');
+            await storage.quarantineRoom(ldTenant, ldRoomId, 'oversize');
             log.warn('room.quarantined', { roomId: docName, bytes: bytes.length, reason: 'oversize' });
             log.info('room.new', { roomId: docName });
             return;
@@ -243,7 +246,7 @@ function createCollabServer(config) {
             Y.applyUpdate(scratch, new Uint8Array(bytes));
             restored = true;
           } catch (err) {
-            await storage.quarantineRoom(PUBLIC_TENANT, docName, 'corrupt');
+            await storage.quarantineRoom(ldTenant, ldRoomId, 'corrupt');
             log.warn('room.quarantined', { roomId: docName, reason: 'corrupt', err: err.message });
           }
           if (restored) {
@@ -326,7 +329,7 @@ function createCollabServer(config) {
     // for the same room. Without this strip, a `/ws/<room>` URL produces
     // docName `"ws/<room>"` which sanitizes to a parallel storage key
     // (`ws_<room>.ydoc`) — see issue #17.
-    const docName = extractDocName(req.url);
+    const bareRoomId = extractDocName(req.url);
 
     const tokenMatch = (req.url || '').match(/[?&]token=([^&]*)/);
     const token = tokenMatch ? decodeURIComponent(tokenMatch[1]) : null;
@@ -339,6 +342,22 @@ function createCollabServer(config) {
     } else if (token) {
       user = await authProvider.validateToken(token);
     }
+
+    // Authorize from the cheap ACL sidecar BEFORE any doc load — an
+    // unauthorized caller never triggers getYDoc/preload, sidestepping the
+    // eviction-guard await windows (ADR-0014 pattern #2). Unconditional: never
+    // skipped because the doc is already resident (live-session revocation).
+    const dec = await authorize({ authProvider, storage, user, roomId: bareRoomId, action: ACTION.READ });
+    if (!dec.ok) {
+      const line = { 401: '401 Unauthorized', 403: '403 Forbidden', 404: '404 Not Found' }[dec.status] || '403 Forbidden';
+      socket.write(`HTTP/1.1 ${line}\r\n\r\n`);
+      socket.destroy();
+      return;
+    }
+
+    // Composite docName keys ALL in-memory maps + the migration coordinator.
+    const tenant = authProvider.requiresAuth ? sanitize(user.tenant) : PUBLIC_TENANT;
+    const docName = buildCompositeDocName(tenant, bareRoomId);
 
     // Trigger doc creation + bindState (idempotent on repeat calls), then
     // await the load promise BEFORE completing the WS handshake. The
@@ -385,7 +404,7 @@ function createCollabServer(config) {
     // and on rooms that already failed migration once (migrationPartial).
     if (migrationCoordinator) {
       try {
-        await migrationCoordinator.ensureMigrated(`${PUBLIC_TENANT}/${docName}`, doc);
+        await migrationCoordinator.ensureMigrated(docName, doc);
       } catch (err) {
         // ensureMigrated catches its own per-step errors and resolves
         // either with skipped:true or with a per-block partial. A throw
