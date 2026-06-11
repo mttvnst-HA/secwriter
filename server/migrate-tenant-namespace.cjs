@@ -1,75 +1,31 @@
 #!/usr/bin/env node
 /**
  * One-time migration: relocate pre-tenant FLAT room artifacts under a tenant
- * namespace + write an ACL sidecar. See ADR-0015 and the design spec.
+ * namespace + write an ACL sidecar. See ADR-0017 and the design spec.
  *
- * Run once when turning auth ON for a deploy that has pre-existing rooms, OR
- * for an auth=none demo whose rooms predate the composite-key scheme (use
- * SIM_DEFAULT_TENANT=_public). Idempotent: a room already under a tenant
- * prefix is skipped.
+ * Run once when turning auth ON for a deploy that has pre-existing rooms.
+ * (An auth=none deploy doesn't need this script — the server boot path
+ * relocates flat rooms into '_public' automatically; see startFromEnv.)
+ * Idempotent: a room already under a tenant prefix is skipped.
+ *
+ * Supports every configured backend — the storage adapter is built from env
+ * exactly like the server's own (storage-factory.cjs), and the relocation
+ * itself is RoomStorageBase.migrateLegacyFlatRooms, which honors the
+ * acl-before-ydoc crash-order invariant (ADR-0005 / ADR-0017): the ACL
+ * sidecar is written first and the flat `.ydoc` is moved LAST, so a crash
+ * mid-room leaves the flat `.ydoc` in place (re-migratable on re-run) and at
+ * worst an orphan ACL (reclaimable) — never an ownerless relocated `.ydoc`.
  *
  *   SIM_DEFAULT_TENANT=<tenant> SIM_DEFAULT_OWNER=<sub> \
+ *     [SIM_STORAGE_BACKEND=local|s3|azure + backend env vars] \
  *     node server/migrate-tenant-namespace.cjs
  *
  * CJS on purpose (see ADR-0001).
  */
 'use strict';
 
-const fs = require('node:fs');
-const path = require('node:path');
-const { sanitize } = require('./storage-shared.cjs');
-
-// Flat-layout extensions (pre-tenant local naming). '.acl.json' is NOT a
-// legacy artifact — skip it if somehow present. `.ydoc` is LAST so it is the
-// final filesystem op for a room (mirrors ARTIFACT_CATALOG) — see the
-// acl-before-ydoc crash-order note on the rename loop below.
-const FLAT_EXTS = ['.SEC', '.comments.json', '.lint.json', '.ydoc'];
-
-/**
- * Move every flat `<dir>/<id><ext>` to `<dir>/<tenant>/<id><ext>` and write
- * `<dir>/<tenant>/<id>.acl.json`. Returns the count of distinct rooms moved.
- */
-async function migrateLocalFlatToTenant({ dir, tenant, owner }) {
-  const t = sanitize(tenant);
-  if (!fs.existsSync(dir)) return 0;
-  const tenantDir = path.join(dir, t);
-
-  // Distinct room ids that have a flat .ydoc at the top level.
-  const entries = fs.readdirSync(dir, { withFileTypes: true });
-  const roomIds = new Set();
-  for (const e of entries) {
-    if (!e.isFile()) continue;            // tenant subdirs + 'archive' are dirs — skip
-    if (e.name.endsWith('.ydoc') && !e.name.includes('.ydoc.')) {
-      roomIds.add(e.name.slice(0, -'.ydoc'.length));
-    }
-  }
-  if (roomIds.size === 0) return 0;
-
-  fs.mkdirSync(tenantDir, { recursive: true });
-  let moved = 0;
-  for (const id of roomIds) {
-    const safe = sanitize(id);
-    // Write the ACL sidecar BEFORE relocating the `.ydoc`, honoring the
-    // acl-before-ydoc crash-order invariant (ADR-0005 / ADR-0017). A crash
-    // mid-room then leaves an orphan ACL with the `.ydoc` still at its flat
-    // location (composite key reads absent → 404, reclaimable) — NEVER an
-    // ownerless `.ydoc` (un-readable via authorize, un-deletable, and
-    // un-recreatable because the create route 409s on the surviving ydoc).
-    // FLAT_EXTS renames `.ydoc` LAST for the same reason.
-    fs.writeFileSync(
-      path.join(tenantDir, `${safe}.acl.json`),
-      JSON.stringify({ ownerId: owner, sharedWith: [] }),
-      'utf-8',
-    );
-    for (const ext of FLAT_EXTS) {
-      const src = path.join(dir, `${id}${ext}`);
-      if (!fs.existsSync(src)) continue;
-      fs.renameSync(src, path.join(tenantDir, `${safe}${ext}`));
-    }
-    moved++;
-  }
-  return moved;
-}
+const { sanitize, PUBLIC_TENANT } = require('./storage-shared.cjs');
+const { createStorageFromEnv } = require('./storage-factory.cjs');
 
 async function runFromEnv() {
   const tenant = process.env.SIM_DEFAULT_TENANT;
@@ -77,20 +33,16 @@ async function runFromEnv() {
   if (!tenant || !owner) {
     throw new Error('migrate-tenant-namespace requires SIM_DEFAULT_TENANT and SIM_DEFAULT_OWNER');
   }
-  const backend = (process.env.SIM_STORAGE_BACKEND || 'local').toLowerCase();
-  if (backend !== 'local') {
-    // S3/Azure relocation follows the same shape (list flat keys, copy under
-    // <tenant>/ prefix, put .acl.json, delete originals) but is left as an
-    // operator-run follow-up; local is the documented default + demo backend.
-    throw new Error(`migrate-tenant-namespace: backend '${backend}' not yet supported by this script — see ADR-0015`);
-  }
-  const dir = path.resolve(process.cwd(), process.env.SIM_LOCAL_STORAGE_DIR || 'server/collab-db');
-  const moved = await migrateLocalFlatToTenant({ dir, tenant, owner });
+  const { storage, backend, dataDir } = createStorageFromEnv(process.env);
+  // Under '_public' no ACL is meaningful (authorize early-allows when auth is
+  // off, and the sentinel tenant is rejected under auth) — skip the owner.
+  const effectiveOwner = sanitize(tenant) === PUBLIC_TENANT ? null : owner;
+  const moved = await storage.migrateLegacyFlatRooms({ tenant, owner: effectiveOwner });
   // eslint-disable-next-line no-console
-  console.log(JSON.stringify({ migrated: moved, tenant: sanitize(tenant), dir }));
+  console.log(JSON.stringify({ migrated: moved, tenant: sanitize(tenant), backend, dir: dataDir }));
 }
 
-module.exports = { migrateLocalFlatToTenant, runFromEnv };
+module.exports = { runFromEnv };
 
 if (require.main === module) {
   runFromEnv().catch(err => { console.error(err.message); process.exit(1); });

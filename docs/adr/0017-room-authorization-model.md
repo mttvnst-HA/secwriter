@@ -29,7 +29,9 @@ multi-MB Y.Doc decode just to read an owner id.
    NOT stored in yMeta (avoids the `yMeta.size === 0` seed-gate break and a
    per-request multi-MB decode). Read cheaply before any doc load.
 4. **Crash-order: `.acl.json` BEFORE `.ydoc`** in `ARTIFACT_CATALOG` (write
-   order), and `.ydoc` BEFORE `.acl.json` on delete (reverse-catalog). A crash
+   order); on delete, sidecars first, then `.ydoc`, then `.acl.json` LAST
+   (sidecars-before-ydoc prevents a half-deleted room from being re-created
+   over stale `.SEC`/`.comments` that would be served to the new owner). A crash
    mid-create or mid-delete leaves the room absent (404, reclaimable), never
    ownerless/hijackable. See ADR-0005.
 5. **`authorize(user, tenant, roomId, action)`.** read = owner OR shared;
@@ -62,7 +64,11 @@ multi-MB Y.Doc decode just to read an owner id.
   the sharee's subject id. Share-by-email is a follow-up.
 - **Legacy:** auth-on deploys with pre-existing rooms either start fresh or run
   `server/migrate-tenant-namespace.cjs` (`SIM_DEFAULT_TENANT` + `SIM_DEFAULT_OWNER`).
-  The script supports the local backend; S3/Azure relocation follows the same
+  The script supports all three backends via `storage-factory.cjs` +
+  `RoomStorageBase.migrateLegacyFlatRooms`; under auth=none the server boot
+  path relocates flat rooms into `_public` automatically (startFromEnv), and
+  under auth it refuses to guess and logs `startup.legacy-rooms-detected`.
+  S3/Azure relocation follows the same
   shape as an operator-run follow-up.
 - **Demo unchanged:** auth=none runs under `_public`, authorize is inert.
 

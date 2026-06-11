@@ -19,7 +19,7 @@ Three storage backends are wired and selectable via `SIM_STORAGE_BACKEND`:
 
 **Inheritance and atomicity:**
 
-All three extend `RoomStorageBase` (`server/room-storage.cjs`). The base owns the public methodset (`writeRoom / readRoom / deleteRoom / listRooms / statRoom / quarantineRoom / archiveRoom / restoreRoom / listArchivedRooms / deleteArchivedRoom`) by composing seven adapter primitives (`_putBytes / _getBytes / _deleteKey / _listKeys / _statKey / _copyKey / _keyForArtifact`) plus three name-parsing hooks. Shared `sanitize()` and the `ARTIFACT_CATALOG` (`.ydoc` LAST = source of truth) live in `server/storage-shared.cjs`. **Adding a fourth artifact is a one-line catalog edit; adapters never decide write order.**
+All three extend `RoomStorageBase` (`server/room-storage.cjs`). The base owns the public methodset (`writeRoom / readRoom / deleteRoom / listRooms / statRoom / quarantineRoom / archiveRoom / backupRoom / restoreRoom / listArchivedRooms / deleteArchivedRoom / migrateLegacyFlatRooms`) by composing seven adapter primitives (`_putBytes / _getBytes / _deleteKey / _listKeys / _statKey / _copyKey / _keyForArtifact`) plus three name-parsing hooks. Shared `sanitize()` and the `ARTIFACT_CATALOG` (`.ydoc` LAST = source of truth) live in `server/storage-shared.cjs`. **Adding a fourth artifact is a one-line catalog edit; adapters never decide write order.**
 
 Local overrides `writeRoom` for stage-rename-rollback atomicity. Azure overrides it for `.ydoc` blob lease. S3 inherits the default sequential `.ydoc`-LAST write.
 

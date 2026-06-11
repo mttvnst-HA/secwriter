@@ -139,10 +139,12 @@ class S3StorageBackend extends RoomStorageBase {
     const ext = EXT_BY_KIND[kind];
     if (opts.archived) return `archive/${t}/${safe}${ext}`;
     if (opts.quarantine) {
-      // S3 historical: suffix BEFORE the extension, no timestamp. Quarantine
-      // .ydoc AND .acl.json (the sidecar must travel with a quarantined room
-      // so authorize() can't resolve a half-deleted room). Other kinds skip.
-      if (kind !== ARTIFACT_KIND_YDOC && kind !== ARTIFACT_KIND_ACL) return null;
+      // S3 historical: suffix BEFORE the extension, no timestamp. Only the
+      // `.ydoc` is quarantined; the ACL must stay active (base-class
+      // quarantineRoom skips it — see room-storage.cjs) so the live session
+      // that triggered the quarantine keeps an owned room when its next
+      // flush rewrites the `.ydoc`. Other kinds skip.
+      if (kind !== ARTIFACT_KIND_YDOC) return null;
       const { reason } = opts.quarantine;
       return `${t}/${safe}.${reason}${ext}`;
     }
@@ -173,6 +175,25 @@ class S3StorageBackend extends RoomStorageBase {
     const [, tenant, roomId] = m;
     if (sanitize(tenant) !== tenant || sanitize(roomId) !== roomId) return null;
     return { tenant, roomId };
+  }
+
+  // ── Legacy flat layout (pre-tenant): <safe>.<ext> at the bucket root ─────
+
+  _legacyFlatKeyForArtifact(roomId, kind) {
+    return `${sanitize(roomId)}${EXT_BY_KIND[kind]}`;
+  }
+
+  async _listLegacyFlatRoomIds() {
+    const keys = await this._listKeys({});
+    const ids = [];
+    for (const key of keys) {
+      // "<id>.ydoc" with no '/' (tenant-prefixed and archive/ keys excluded)
+      // and no '.' in the id (legacy quarantine "<id>.<reason>.ydoc" excluded;
+      // legacy sanitize never emitted dots).
+      const m = key.match(/^([^/.]+)\.ydoc$/);
+      if (m) ids.push(m[1]);
+    }
+    return ids;
   }
 
   // ── Archive marker (S3 uses object metadata) ────────────────────────────

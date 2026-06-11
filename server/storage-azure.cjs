@@ -190,6 +190,24 @@ class AzureStorageBackend extends RoomStorageBase {
     return { tenant, roomId };
   }
 
+  // ── Legacy flat layout (pre-tenant): <id>/room.<ext> (one path segment) ──
+
+  _legacyFlatKeyForArtifact(roomId, kind) {
+    return `${sanitize(roomId)}/${SUFFIX_BY_KIND[kind]}`;
+  }
+
+  async _listLegacyFlatRoomIds() {
+    const keys = await this._listKeys({});
+    const ids = [];
+    for (const key of keys) {
+      // Exactly ONE path segment before room.ydoc — the tenant layout
+      // (<tenant>/<id>/room.ydoc) and the archive layouts have two.
+      const m = key.match(/^([^/]+)\/room\.ydoc$/);
+      if (m && m[1] !== 'archive') ids.push(m[1]);
+    }
+    return ids;
+  }
+
   // ── Archive marker (Azure uses blob metadata) ───────────────────────────
 
   async _readArchiveMarker(_tenant, _roomId, archiveYdocKey) {

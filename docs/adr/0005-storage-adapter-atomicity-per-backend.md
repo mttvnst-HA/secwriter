@@ -23,7 +23,7 @@ The architecture-review entry framed this as "three near-identical 80-line atomi
 Room storage is structured as a base class + thin adapters:
 
 - **`server/storage-shared.cjs`** owns `sanitize()`, the `ARTIFACT_CATALOG` (with kind, optional flag, content type, and write order), and the `planArtifactWrites()` normalizer that turns the public `{ ydocBytes, secBytes, commentsJson }` argument into a catalog-ordered `[{ kind, bytes }]` plan.
-- **`server/room-storage.cjs`** exports `RoomStorageBase`, which implements the entire public methodset (`writeRoom / readRoom / deleteRoom / listRooms / statRoom / quarantineRoom / archiveRoom / restoreRoom / listArchivedRooms / deleteArchivedRoom`) by composing seven adapter primitives plus a few naming hooks. The base class is the single source of truth for ordering, sidecar optionality, archive marker timing, and partial-failure handling.
+- **`server/room-storage.cjs`** exports `RoomStorageBase`, which implements the entire public methodset (`writeRoom / readRoom / deleteRoom / listRooms / statRoom / quarantineRoom / archiveRoom / backupRoom / restoreRoom / listArchivedRooms / deleteArchivedRoom / migrateLegacyFlatRooms`) by composing seven adapter primitives plus a few naming hooks. The base class is the single source of truth for ordering, sidecar optionality, archive marker timing, and partial-failure handling.
 - **`server/storage-{local,azure,s3}.cjs`** each extend `RoomStorageBase` and implement `_putBytes / _getBytes / _deleteKey / _listKeys / _statKey / _copyKey / _keyForArtifact` plus `_parseActiveKey / _parseArchiveKey`. They override the optional archive-marker hooks (Local writes a sidecar file; Azure/S3 use blob/object metadata).
 
 **Atomicity is a per-backend concern, not unified at the base class.** The base class writes artifacts sequentially with `.ydoc` LAST. That sequential-with-`.ydoc`-LAST ordering is the honest cross-backend contract: if a sidecar write fails, `.ydoc` is left at the older consistent state rather than ahead of stale sidecars.
@@ -56,9 +56,9 @@ Room storage is structured as a base class + thin adapters:
 The room-authorization work ([ADR-0017](0017-room-authorization-model.md), [#211](https://github.com/mttvnst-HA/secwriter/issues/211)) adds a fourth artifact, `.acl.json` = `{ ownerId, sharedWith[] }`, positioned in `ARTIFACT_CATALOG` BEFORE `.ydoc`. This extends the `.ydoc`-LAST ordering into a crash-consistency invariant for ownership:
 
 - **Write order: `.acl` before `.ydoc`.** A crash mid-create leaves an orphan ACL with no `.ydoc` — the room reads as absent (`readRoom` returns null → 404) and is reclaimable. It NEVER leaves a `.ydoc` with no ACL (an ownerless, un-shareable, un-deletable room).
-- **Delete order: `.ydoc` before `.acl` (reverse-catalog).** `deleteRoom` iterates `ARTIFACT_CATALOG` in reverse so the source-of-truth `.ydoc` is removed first. A crash mid-delete leaves the same reclaimable orphan-ACL state a crashed create produces — symmetric with the write invariant ("`.ydoc` last in, first out") and recovered by the same owner-DELETE reclaim path.
+- **Delete order: sidecars, then `.ydoc`, then `.acl` LAST.** `deleteRoom` removes the optional sidecars first (while any stale `.SEC`/`.comments` exists the `.ydoc` does too, so the create route 409s — a crash mid-delete can never let a re-created room serve the previous owner's sidecars), then the source-of-truth `.ydoc`, then the ACL. A crash between `.ydoc` and `.acl` leaves the same reclaimable orphan-ACL state a crashed create produces, recovered by the same owner-DELETE reclaim path.
 
-The delete-order is enforced by the base class (`server/room-storage.cjs` `deleteRoom`) and pinned by a `_deleteKey` ordering spy in the contract suite (asserts `.ydoc` deleted before `.acl` across all three backends).
+The delete-order is enforced by the base class (`server/room-storage.cjs` `deleteRoom`) and pinned by a `_deleteKey` ordering spy in the contract suite (asserts sidecars before `.ydoc` and `.ydoc` before `.acl` across all three backends).
 
 ## Alternatives considered
 

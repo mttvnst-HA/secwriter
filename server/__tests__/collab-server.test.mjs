@@ -99,6 +99,7 @@ class SlowLocalStorageBackend {
   statRoom(...a) { return this.inner.statRoom(...a); }
   quarantineRoom(...a) { return this.inner.quarantineRoom(...a); }
   archiveRoom(...a) { return this.inner.archiveRoom(...a); }
+  backupRoom(...a) { return this.inner.backupRoom(...a); }
   listArchivedRooms(...a) { return this.inner.listArchivedRooms?.(...a); }
   deleteArchivedRoom(...a) { return this.inner.deleteArchivedRoom?.(...a); }
 }
@@ -467,6 +468,24 @@ describe('collab-server: WS-upgrade authorization', () => {
   it('rejects with 401 when no token is provided', async () => {
     const result = await tryUpgrade(port, ROOM, null);
     assert.strictEqual(result.status, 401);
+  });
+
+  it('rejects malformed percent-encoding in ?token= with 400 instead of crashing the process', async () => {
+    // `?token=%` makes decodeURIComponent throw URIError. The upgrade
+    // listener is async, so an uncaught throw is an unhandledRejection —
+    // Node's default policy kills the process: a one-request
+    // unauthenticated DoS. Build the URL raw (tryUpgrade would encode it).
+    const sock = new NodeWebSocket(`ws://127.0.0.1:${port}/${ROOM}?token=%`);
+    const result = await new Promise((resolve) => {
+      sock.on('unexpected-response', (_req, res) => { sock.terminate(); resolve({ status: res.statusCode }); });
+      sock.on('open', () => { sock.close(); resolve({ open: true }); });
+      sock.on('error', () => resolve({ status: 'error' }));
+    });
+    assert.strictEqual(result.status, 400);
+
+    // The server must still be alive and serving upgrades afterwards.
+    const after = await tryUpgrade(port, ROOM, null);
+    assert.strictEqual(after.status, 401);
   });
 
   it('rejects with 404 when token has valid JWT but user is not in ACL (stranger)', async () => {

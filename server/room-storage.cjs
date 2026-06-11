@@ -3,8 +3,9 @@
  *
  * Owns the public methodset (writeRoom / readRoom / readAcl / writeAcl /
  * listRooms / listAllRooms / deleteRoom / statRoom / quarantineRoom /
- * archiveRoom / restoreRoom / listArchivedRooms / listAllArchivedRooms /
- * deleteArchivedRoom) by composing seven adapter primitives:
+ * archiveRoom / backupRoom / restoreRoom / listArchivedRooms /
+ * listAllArchivedRooms / deleteArchivedRoom / migrateLegacyFlatRooms /
+ * countLegacyFlatRooms) by composing seven adapter primitives:
  *
  *   _putBytes(key, bytes, opts?)
  *   _getBytes(key)            → Buffer | null
@@ -101,14 +102,24 @@ class RoomStorageBase {
   }
 
   async deleteRoom(tenant, roomId) {
-    // Delete in REVERSE catalog order — `.ydoc` (source of truth, written
-    // LAST) is removed FIRST, so a crash mid-delete leaves an orphan ACL
-    // (room absent → 404) rather than a ydoc with no ACL (an ownerless,
-    // undeletable, un-recreatable room). The orphan-ACL state is the same
-    // one a crash mid-CREATE produces and the owner-DELETE recovery path
-    // already reclaims. Mirrors the write invariant: ydoc last in, first out.
-    for (let i = ARTIFACT_CATALOG.length - 1; i >= 0; i--) {
-      await this._deleteKey(this._keyForArtifact(tenant, roomId, ARTIFACT_CATALOG[i].kind));
+    // Delete order: optional sidecars first, then `.ydoc`, then `.acl.json`
+    // LAST. Two crash invariants:
+    //   - sidecars before `.ydoc`: while any stale `.SEC`/`.comments.json`
+    //     still exists the `.ydoc` does too, so the create route 409s — a
+    //     half-deleted room can never be re-created over stale sidecars
+    //     that GET /sec and GET /comments would then serve to the new
+    //     owner (writeRoom skips null sidecars rather than deleting them).
+    //   - `.ydoc` before `.acl`: a crash between them leaves an orphan ACL
+    //     (room absent → 404, reclaimable via the owner-DELETE recovery
+    //     path — the same state a crash mid-CREATE produces) — never a
+    //     ydoc with no ACL (an ownerless, undeletable, un-recreatable room).
+    const order = [
+      ...ARTIFACT_CATALOG.filter(c => c.kind !== ARTIFACT_KIND_YDOC && c.kind !== ARTIFACT_KIND_ACL),
+      ...ARTIFACT_CATALOG.filter(c => c.kind === ARTIFACT_KIND_YDOC),
+      ...ARTIFACT_CATALOG.filter(c => c.kind === ARTIFACT_KIND_ACL),
+    ];
+    for (const { kind } of order) {
+      await this._deleteKey(this._keyForArtifact(tenant, roomId, kind));
     }
   }
 
@@ -147,6 +158,14 @@ class RoomStorageBase {
   async quarantineRoom(tenant, roomId, reason) {
     const ts = Date.now();
     for (const { kind } of ARTIFACT_CATALOG) {
+      // The ACL is never quarantined: only the room CONTENT is corrupt or
+      // oversize, and the live WS session that triggered the quarantine
+      // stays connected to a fresh doc whose next flush rewrites `.ydoc`
+      // but never the ACL (planArtifactWrites has no acl kind). Moving the
+      // ACL aside would leave that flushed room ownerless — authorize()
+      // 404s for everyone, DELETE 404s before its orphan-recovery branch,
+      // and POST /rooms 409s on the new `.ydoc`: permanently bricked.
+      if (kind === ARTIFACT_KIND_ACL) continue;
       const srcKey = this._keyForArtifact(tenant, roomId, kind);
       const dstKey = this._keyForArtifact(tenant, roomId, kind, { quarantine: { reason, ts } });
       if (dstKey == null) continue;
@@ -164,6 +183,23 @@ class RoomStorageBase {
   }
 
   async archiveRoom(tenant, roomId) {
+    return this._copyRoomToArchive(tenant, roomId, { deleteSource: true, op: 'archive' });
+  }
+
+  /**
+   * Non-destructive snapshot: copy every artifact into the archive namespace
+   * but leave the ACTIVE room (including its ACL) fully intact. Used by the
+   * v1→v2 substrate-migration broker (ADR-0006), which needs a pre-mutation
+   * BACKUP of a room that keeps being served live — archiveRoom's move
+   * semantics would destroy the active ACL (the post-migration flush never
+   * rewrites it) and lose the active `.ydoc` entirely if the process crashed
+   * before the first post-migration flush.
+   */
+  async backupRoom(tenant, roomId) {
+    return this._copyRoomToArchive(tenant, roomId, { deleteSource: false, op: 'backup' });
+  }
+
+  async _copyRoomToArchive(tenant, roomId, { deleteSource, op }) {
     const archivedAt = new Date().toISOString();
     let copied = false;
     for (const { kind } of ARTIFACT_CATALOG) {
@@ -175,11 +211,12 @@ class RoomStorageBase {
         await this._copyKey(srcKey, dstKey, { metadata: { archivedat: archivedAt } });
         copied = true;
       } catch (err) {
-        this._onPartialOp('archive', { roomId, kind, err });
+        this._onPartialOp(op, { roomId, kind, err });
         continue;
       }
+      if (!deleteSource) continue;
       try { await this._deleteKey(srcKey); }
-      catch (err) { this._onPartialOp('archive', { roomId, kind, err }); }
+      catch (err) { this._onPartialOp(op, { roomId, kind, err }); }
     }
     if (copied) await this._writeArchiveMarker(tenant, roomId, archivedAt);
   }
@@ -238,6 +275,55 @@ class RoomStorageBase {
     await this._deleteArchiveMarker(tenant, roomId);
   }
 
+  // ── Legacy flat-layout migration (pre-tenant keys) ───────────────────────
+
+  /**
+   * One-time relocation of pre-tenant FLAT rooms (legacy un-namespaced keys
+   * at the storage root) into the composite `<tenant>/` namespace, writing
+   * an ACL sidecar per room when `owner` is given. Without it, every
+   * pre-existing room is invisible to the composite-key reads: the WS
+   * preload logs 'room.new', serves an empty doc, and the first flush
+   * persists the empty doc under the new key — silent data loss.
+   *
+   * Idempotent: relocated rooms no longer match the legacy listing, and a
+   * re-run after a mid-room crash re-copies the surviving flat artifacts.
+   *
+   * Crash-order per room: ACL first (when `owner` is given), then sidecars
+   * in catalog order with the flat `.ydoc` moved LAST — a crash mid-room
+   * leaves the flat `.ydoc` in place (still listed, re-migratable) and at
+   * worst an orphan ACL under the new key (reclaimable), never a relocated
+   * room missing its source of truth.
+   *
+   * Returns the count of rooms moved. Callers: the collab-server boot path
+   * (auth=none → tenant '_public', no owner/ACL, matching POST /rooms under
+   * auth=none) and server/migrate-tenant-namespace.cjs (auth deploys).
+   */
+  async migrateLegacyFlatRooms({ tenant, owner = null } = {}) {
+    if (!tenant) throw new Error('migrateLegacyFlatRooms: tenant is required');
+    const ids = await this._listLegacyFlatRoomIds();
+    let moved = 0;
+    for (const id of ids) {
+      if (owner != null) {
+        await this.writeAcl(tenant, id, { ownerId: owner, sharedWith: [] });
+      }
+      for (const { kind } of ARTIFACT_CATALOG) {
+        if (kind === ARTIFACT_KIND_ACL) continue; // no legacy ACLs existed
+        const srcKey = this._legacyFlatKeyForArtifact(id, kind);
+        if (srcKey == null) continue;
+        if ((await this._statKey(srcKey)) == null) continue;
+        await this._copyKey(srcKey, this._keyForArtifact(tenant, id, kind));
+        await this._deleteKey(srcKey);
+      }
+      moved++;
+    }
+    return moved;
+  }
+
+  /** Cheap probe for the boot-time guard: how many legacy flat rooms exist? */
+  async countLegacyFlatRooms() {
+    return (await this._listLegacyFlatRoomIds()).length;
+  }
+
   // ── Adapter contract: required ──────────────────────────────────────────
 
   // Subclasses MUST implement:
@@ -256,6 +342,14 @@ class RoomStorageBase {
   //     Local overrides them for its directory layout.
 
   // ── Adapter contract: optional overrides ────────────────────────────────
+
+  /**
+   * Legacy flat-layout hooks (pre-tenant keys). Adapters that predate the
+   * composite-key scheme override both so migrateLegacyFlatRooms can find
+   * and relocate their old rooms. Defaults: no legacy rooms.
+   */
+  async _listLegacyFlatRoomIds() { return []; }
+  _legacyFlatKeyForArtifact(_roomId, _kind) { return null; }
 
   /** Default: no-op. Local overrides to write a sidecar marker file. */
   async _writeArchiveMarker(_tenant, _roomId, _archivedAt) { /* no-op */ }

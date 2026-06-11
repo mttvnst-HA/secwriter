@@ -127,7 +127,11 @@ class LocalStorageBackend extends RoomStorageBase {
   }
 
   async _copyKey(srcKey, dstKey) {
-    fs.renameSync(srcKey, dstKey);
+    // A true COPY (not rename): the base-class contract is copy-then-delete,
+    // and backupRoom relies on the source surviving. A rename here would
+    // silently turn the broker's non-destructive backup into a move.
+    fs.mkdirSync(path.dirname(dstKey), { recursive: true });
+    fs.copyFileSync(srcKey, dstKey);
   }
 
   // ── Naming ──────────────────────────────────────────────────────────────
@@ -231,11 +235,24 @@ class LocalStorageBackend extends RoomStorageBase {
     try { fs.unlinkSync(markerPath); } catch { /* may not exist */ }
   }
 
-  // ── Override: archiveRoom ensures tenant archive dir exists before copy ──
+  // ── Legacy flat layout (pre-tenant): <dir>/<safe>.<ext> at the top level ──
 
-  async archiveRoom(tenant, roomId) {
-    fs.mkdirSync(path.join(this._dir, 'archive', sanitize(tenant)), { recursive: true });
-    return super.archiveRoom(tenant, roomId);
+  _legacyFlatKeyForArtifact(roomId, kind) {
+    return path.join(this._dir, `${sanitize(roomId)}${EXT_BY_KIND[kind]}`);
+  }
+
+  async _listLegacyFlatRoomIds() {
+    if (!fs.existsSync(this._dir)) return [];
+    const ids = [];
+    for (const e of fs.readdirSync(this._dir, { withFileTypes: true })) {
+      if (!e.isFile()) continue; // tenant subdirs + 'archive' are dirs — skip
+      // "<id>.ydoc" exactly — excludes ".ydoc.tmp" and legacy quarantine
+      // "<id>.ydoc.<reason>.<ts>".
+      if (e.name.endsWith('.ydoc') && !e.name.includes('.ydoc.')) {
+        ids.push(e.name.slice(0, -'.ydoc'.length));
+      }
+    }
+    return ids;
   }
 }
 
