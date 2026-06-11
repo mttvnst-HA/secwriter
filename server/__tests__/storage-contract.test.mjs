@@ -354,6 +354,28 @@ for (const { name, factory } of BACKENDS) {
       assert.equal(await backend.readAcl(T, 'r-full'), null, 'deleteRoom removes the ACL sidecar');
     });
 
+    it('rooms are isolated per tenant — listRooms + readRoom never cross tenants', async () => {
+      const doc = new Y.Doc();
+      const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(doc));
+      doc.destroy();
+      await backend.writeRoom('acme', 'shared-name', { ydocBytes, secBytes: null, commentsJson: null });
+      await backend.writeAcl('acme', 'shared-name', { ownerId: 'a', sharedWith: [] });
+      await backend.writeRoom('beta', 'beta-only', { ydocBytes, secBytes: null, commentsJson: null });
+
+      // listRooms is tenant-scoped
+      assert.deepEqual(await backend.listRooms('acme'), ['shared-name']);
+      assert.deepEqual(await backend.listRooms('beta'), ['beta-only']);
+
+      // a room under acme is invisible under beta (and vice-versa)
+      assert.equal(await backend.readRoom('beta', 'shared-name'), null);
+      assert.equal(await backend.readAcl('beta', 'shared-name'), null);
+      assert.ok(await backend.readRoom('acme', 'shared-name'));
+
+      // cleanup
+      await backend.deleteRoom('acme', 'shared-name');
+      await backend.deleteRoom('beta', 'beta-only');
+    });
+
     // Sub-PR 1d (#47, ADR-0006). The broker integration tests live here
     // (not in a new file) so they exercise the same backend instances as
     // the rest of the contract. The broker calls storage.archiveRoom

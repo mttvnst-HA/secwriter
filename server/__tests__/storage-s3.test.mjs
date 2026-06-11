@@ -134,7 +134,7 @@ describe('S3StorageBackend', () => {
       deletes.push(input.Key);
       return {};
     });
-    // Base class checks existence before copying.
+    // Only .ydoc exists — .acl.json absent — stat returns 404 for it.
     s3Mock.on(HeadObjectCommand).callsFake(async (input) => {
       if (input.Key === `${T}/myroom.ydoc`) return { LastModified: new Date(), ContentLength: 1 };
       const err = new Error('NotFound'); err.name = 'NotFound'; err.$metadata = { httpStatusCode: 404 };
@@ -144,12 +144,49 @@ describe('S3StorageBackend', () => {
     const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
     await backend.quarantineRoom(T, 'myroom', 'corrupt');
 
-    // Only ydoc is quarantined (acl.json is also covered by S3 quarantine logic,
-    // but it doesn't exist in this test so the stat check skips it).
+    // Only ydoc is quarantined when acl.json doesn't exist.
     assert.equal(copies.length, 1);
     assert.equal(copies[0].from, `test/${T}/myroom.ydoc`);
     assert.equal(copies[0].to, `${T}/myroom.corrupt.ydoc`);
     assert.deepEqual(deletes, [`${T}/myroom.ydoc`]);
+  });
+
+  test('quarantineRoom also copies and deletes .acl.json sidecar when it exists', async () => {
+    const copies = [];
+    const deletes = [];
+    s3Mock.on(CopyObjectCommand).callsFake(async (input) => {
+      copies.push({ from: input.CopySource, to: input.Key });
+      return {};
+    });
+    s3Mock.on(DeleteObjectCommand).callsFake(async (input) => {
+      deletes.push(input.Key);
+      return {};
+    });
+    // Both .ydoc and .acl.json exist — stat returns ContentLength for both.
+    s3Mock.on(HeadObjectCommand).callsFake(async (input) => {
+      if (input.Key === `${T}/myroom.ydoc`) return { LastModified: new Date(), ContentLength: 10 };
+      if (input.Key === `${T}/myroom.acl.json`) return { LastModified: new Date(), ContentLength: 42 };
+      const err = new Error('NotFound'); err.name = 'NotFound'; err.$metadata = { httpStatusCode: 404 };
+      throw err;
+    });
+
+    const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
+    await backend.quarantineRoom(T, 'myroom', 'corrupt');
+
+    // Both artifacts must be copied to their quarantine keys.
+    const copyTos = copies.map(c => c.to).sort();
+    assert.deepEqual(copyTos, [
+      `${T}/myroom.corrupt.acl.json`,
+      `${T}/myroom.corrupt.ydoc`,
+    ]);
+    assert.equal(copies.find(c => c.to === `${T}/myroom.corrupt.ydoc`)?.from, `test/${T}/myroom.ydoc`);
+    assert.equal(copies.find(c => c.to === `${T}/myroom.corrupt.acl.json`)?.from, `test/${T}/myroom.acl.json`);
+
+    // Both originals must be deleted.
+    assert.deepEqual(deletes.sort(), [
+      `${T}/myroom.acl.json`,
+      `${T}/myroom.ydoc`,
+    ]);
   });
 
   test('archive lifecycle: archive → list → restore → archive → delete', async () => {
