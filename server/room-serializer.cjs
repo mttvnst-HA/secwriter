@@ -79,8 +79,7 @@ async function serializeRoom(ydoc) {
   // (#140). serializeLintSidecar builds v1 when ignore maps are empty, v2
   // when either has entries. Persisted only when there is non-trivial data —
   // empty payload returns null so planArtifactWrites skips the kind entirely.
-  const blocksOrder = _yBlocksToArray(yOrder, yStore).map(b => b.id);
-  const lintPayload = serializeLintSidecar(yLint, yLintIgnored, yLintMutedNlp, blocksOrder);
+  const lintPayload = serializeLintSidecar(yLint, yLintIgnored, yLintMutedNlp);
   const hasLint = (lintPayload.good && lintPayload.good.length > 0) ||
                   (lintPayload.bad && Object.keys(lintPayload.bad).length > 0) ||
                   (lintPayload.ignoredFindings && lintPayload.ignoredFindings.length > 0) ||
@@ -108,10 +107,9 @@ async function serializeRoom(ydoc) {
  * @param {import('yjs').Map} yLint
  * @param {import('yjs').Map} yLintIgnored
  * @param {import('yjs').Map} yLintMutedNlp
- * @param {string[]} _blocksOrder  — reserved for future block-ordering context
  * @returns {{ v: number, good: string, bad: object, ignoredFindings?: Array, mutedNlpRules?: Array }}
  */
-function serializeLintSidecar(yLint, yLintIgnored, yLintMutedNlp, _blocksOrder) {
+function serializeLintSidecar(yLint, yLintIgnored, yLintMutedNlp) {
   // ── v1 base (mirrors readLint in src/lib/collab.js) ───────────────────
   const goodParts = [];
   const bad = {};
