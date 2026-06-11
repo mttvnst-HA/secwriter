@@ -32,6 +32,7 @@ const {
   ARTIFACT_KIND_SEC,
   ARTIFACT_KIND_COMMENTS,
   ARTIFACT_KIND_LINT,
+  ARTIFACT_KIND_ACL,
 } = require('./storage-shared.cjs');
 const { log } = require('./logger.cjs');
 
@@ -40,6 +41,7 @@ const EXT_BY_KIND = {
   [ARTIFACT_KIND_SEC]: '.SEC',
   [ARTIFACT_KIND_COMMENTS]: '.comments.json',
   [ARTIFACT_KIND_LINT]: '.lint.json',
+  [ARTIFACT_KIND_ACL]: '.acl.json',
 };
 
 function isNotFound(err) {
@@ -131,52 +133,51 @@ class S3StorageBackend extends RoomStorageBase {
 
   // ── Naming ──────────────────────────────────────────────────────────────
 
-  _keyForArtifact(roomId, kind, opts = {}) {
+  _keyForArtifact(tenant, roomId, kind, opts = {}) {
+    const t = sanitize(tenant);
     const safe = sanitize(roomId);
     const ext = EXT_BY_KIND[kind];
-    if (opts.archived) {
-      return `archive/${safe}${ext}`;
-    }
+    if (opts.archived) return `archive/${t}/${safe}${ext}`;
     if (opts.quarantine) {
-      // S3 historical: ONLY `.ydoc` is quarantined, suffix goes BEFORE the
-      // extension (not after), and there is no timestamp. Returning null
-      // tells RoomStorageBase to skip this kind.
-      if (kind !== ARTIFACT_KIND_YDOC) return null;
+      // S3 historical: suffix BEFORE the extension, no timestamp. Quarantine
+      // .ydoc AND .acl.json (the sidecar must travel with a quarantined room
+      // so authorize() can't resolve a half-deleted room). Other kinds skip.
+      if (kind !== ARTIFACT_KIND_YDOC && kind !== ARTIFACT_KIND_ACL) return null;
       const { reason } = opts.quarantine;
-      return `${safe}.${reason}.ydoc`;
+      return `${t}/${safe}.${reason}${ext}`;
     }
-    return `${safe}${ext}`;
+    return `${t}/${safe}${ext}`;
   }
 
-  _listPrefix(archived) {
-    return archived ? 'archive/' : undefined;
+  _listPrefix(archived, tenant) {
+    if (archived) return tenant ? `archive/${sanitize(tenant)}/` : 'archive/';
+    return tenant ? `${sanitize(tenant)}/` : undefined;
   }
 
   _parseActiveKey(key, kind) {
     if (kind !== ARTIFACT_KIND_YDOC) return null;
     if (key.startsWith('archive/')) return null;
-    // Match exactly <name>.ydoc — `name` must not contain '.' to exclude
-    // <name>.<reason>.ydoc (quarantined).
-    const m = key.match(/^([^./]+)\.ydoc$/);
+    // <tenant>/<roomId>.ydoc — roomId has no '.' so quarantined
+    // <tenant>/<roomId>.<reason>.ydoc is excluded.
+    const m = key.match(/^([^/]+)\/([^./]+)\.ydoc$/);
     if (!m) return null;
-    // Sanitize-validate parsed names: reject keys whose name contains
-    // chars outside the sanitize charset (couldn't have come from a
-    // normal write through this backend).
-    if (sanitize(m[1]) !== m[1]) return null;
-    return m[1];
+    const [, tenant, roomId] = m;
+    if (sanitize(tenant) !== tenant || sanitize(roomId) !== roomId) return null;
+    return { tenant, roomId };
   }
 
   _parseArchiveKey(key, kind) {
     if (kind !== ARTIFACT_KIND_YDOC) return null;
-    const m = key.match(/^archive\/([^./]+)\.ydoc$/);
+    const m = key.match(/^archive\/([^/]+)\/([^./]+)\.ydoc$/);
     if (!m) return null;
-    if (sanitize(m[1]) !== m[1]) return null;
-    return m[1];
+    const [, tenant, roomId] = m;
+    if (sanitize(tenant) !== tenant || sanitize(roomId) !== roomId) return null;
+    return { tenant, roomId };
   }
 
   // ── Archive marker (S3 uses object metadata) ────────────────────────────
 
-  async _readArchiveMarker(_roomId, archiveYdocKey) {
+  async _readArchiveMarker(_tenant, _roomId, archiveYdocKey) {
     try {
       const head = await this.client.send(new HeadObjectCommand({
         Bucket: this.bucket,
