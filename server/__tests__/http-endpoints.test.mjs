@@ -575,6 +575,14 @@ describe('room authorization (auth=jwt)', () => {
       assert.equal(res.status, 404);
       res = await httpJson(`${base}/rooms/r1`, 'DELETE', null, bearer({ sub: 'owner', tenant: 'evil' }));
       assert.equal(res.status, 404);
+      // Upload route is READ-gated by the same authorize plumbing as /comments:
+      // a stranger is denied at authorize (404 before the body matters); the
+      // owner passes authorize and falls through to content processing, which
+      // rejects the bogus SEC body with 400. The 404-vs-400 split proves the
+      // gate runs and that the owner clears it.
+      assert.equal((await httpPost(`${base}/rooms/r1/upload`, Buffer.from('<x/>'), bearer({ sub: 'stranger', tenant: 'acme' }))).status, 404);
+      assert.equal((await httpPost(`${base}/rooms/r1/upload`, Buffer.from('<x/>'), bearer({ sub: 'owner', tenant: 'acme' }))).status, 400);
+
       res = await httpJson(`${base}/rooms/r1`, 'DELETE', null, bearer({ sub: 'owner', tenant: 'acme' }));
       assert.equal(res.status, 200);
 
@@ -600,6 +608,12 @@ describe('room authorization (auth=jwt)', () => {
       const r = await httpJson(`${base}/rooms`, 'POST', { id: 'h' }, bearer({ sub: 's', tenant: '../x' }));
       assert.equal(r.status, 201);
       assert.equal(await h.storage.readAcl('___x', 'h') !== null, true); // sanitize('../x') === '___x'
+
+      // /health redacts room names under auth — exposes unhealthyCount only,
+      // never the unhealthyRooms name list (which would leak room ids).
+      const health = JSON.parse((await httpGet(`${base}/health`)).body.toString());
+      assert.equal(health.unhealthyCount !== undefined, true, 'auth /health exposes unhealthyCount');
+      assert.equal(health.unhealthyRooms, undefined, 'auth /health redacts room names');
     } finally { h.server.close(); h.cleanup(); }
   });
 
@@ -615,6 +629,13 @@ describe('room authorization (auth=jwt)', () => {
       assert.deepEqual((await h.storage.readAcl('acme', 'r1')).sharedWith, ['friend']);
       assert.equal((await httpJson(`${base}/rooms/r1/comments`, 'GET', null, bearer({ sub: 'friend', tenant: 'acme' }))).status, 200);
       assert.equal((await httpJson(`${base}/rooms/r1`, 'DELETE', null, bearer({ sub: 'friend', tenant: 'acme' }))).status, 404);
+
+      // PATCH privilege split: a shared user may change content (READ-gated,
+      // touchesLock=false) but NOT lock settings (LOCK_ADMIN, owner-only → 404).
+      // The owner CAN lock — confirms the gate isn't blanket-denying.
+      assert.equal((await httpJson(`${base}/rooms/r1`, 'PATCH', { displayName: 'New' }, bearer({ sub: 'friend', tenant: 'acme' }))).status, 200);
+      assert.equal((await httpJson(`${base}/rooms/r1`, 'PATCH', { locked: true }, bearer({ sub: 'friend', tenant: 'acme' }))).status, 404);
+      assert.equal((await httpJson(`${base}/rooms/r1`, 'PATCH', { locked: true }, bearer({ sub: 'owner', tenant: 'acme' }))).status, 200);
     } finally { h.server.close(); h.cleanup(); }
   });
 

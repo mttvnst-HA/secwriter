@@ -101,8 +101,14 @@ class RoomStorageBase {
   }
 
   async deleteRoom(tenant, roomId) {
-    for (const { kind } of ARTIFACT_CATALOG) {
-      await this._deleteKey(this._keyForArtifact(tenant, roomId, kind));
+    // Delete in REVERSE catalog order — `.ydoc` (source of truth, written
+    // LAST) is removed FIRST, so a crash mid-delete leaves an orphan ACL
+    // (room absent → 404) rather than a ydoc with no ACL (an ownerless,
+    // undeletable, un-recreatable room). The orphan-ACL state is the same
+    // one a crash mid-CREATE produces and the owner-DELETE recovery path
+    // already reclaims. Mirrors the write invariant: ydoc last in, first out.
+    for (let i = ARTIFACT_CATALOG.length - 1; i >= 0; i--) {
+      await this._deleteKey(this._keyForArtifact(tenant, roomId, ARTIFACT_CATALOG[i].kind));
     }
   }
 

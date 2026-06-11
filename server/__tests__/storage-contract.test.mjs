@@ -350,7 +350,22 @@ for (const { name, factory } of BACKENDS) {
       await backend.writeAcl(T, 'r-full', { ownerId: 'owner', sharedWith: [] });
       assert.ok(await backend.readRoom(T, 'r-full'));
       assert.deepEqual(await backend.readAcl(T, 'r-full'), { ownerId: 'owner', sharedWith: [] });
+
+      // Crash-order invariant: deleteRoom must remove .ydoc (source of truth)
+      // BEFORE the .acl sidecar. A crash mid-delete then leaves an orphan ACL
+      // (room absent → 404, reclaimable) — never a ydoc with no ACL (an
+      // ownerless, undeletable room). Spy on the adapter primitive to pin order.
+      const ydocKey = backend._keyForArtifact(T, 'r-full', 'ydoc');
+      const aclKey = backend._keyForArtifact(T, 'r-full', 'acl');
+      const deletedOrder = [];
+      const realDeleteKey = backend._deleteKey.bind(backend);
+      backend._deleteKey = async (key) => { deletedOrder.push(key); return realDeleteKey(key); };
       await backend.deleteRoom(T, 'r-full');
+      backend._deleteKey = realDeleteKey;
+      assert.ok(
+        deletedOrder.indexOf(ydocKey) < deletedOrder.indexOf(aclKey),
+        '.ydoc must be deleted before .acl (ydoc-first delete order)',
+      );
       assert.equal(await backend.readAcl(T, 'r-full'), null, 'deleteRoom removes the ACL sidecar');
     });
 
