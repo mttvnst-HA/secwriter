@@ -29,6 +29,9 @@ const { docs: ywsDocs } = require('y-websocket/bin/utils');
 
 const { createCollabServer, extractDocName } = require('../collab-server.cjs');
 const { LocalStorageBackend } = require('../storage-local.cjs');
+const { buildCompositeDocName, PUBLIC_TENANT } = require('../storage-shared.cjs');
+const { createAuthJwt } = require('../auth/auth-jwt.cjs');
+const jwt = require('jsonwebtoken');
 
 // ──────────────────────────────────────────────────────────────────────────
 // Pure unit: extractDocName
@@ -130,6 +133,7 @@ describe('collab-server: bindState race (issue #17)', () => {
   let server;
   let baseUrl;
   const ROOM_NAME = 'race-test-room';
+  const COMPOSITE_ROOM_KEY = buildCompositeDocName(PUBLIC_TENANT, ROOM_NAME);
   const BLOCK_COUNT = 50;
 
   before(async () => {
@@ -296,7 +300,7 @@ describe('collab-server: bindState race (issue #17)', () => {
     // Storage delay is 200 ms; eviction at 50 ms lands inside the preload
     // await window. After this, ywsDocs has no entry for the room — exactly
     // the state a stale closeConn would leave behind.
-    setTimeout(() => { ywsDocs.delete(ROOM_NAME); }, 50);
+    setTimeout(() => { ywsDocs.delete(COMPOSITE_ROOM_KEY); }, 50);
 
     await new Promise((resolve, reject) => {
       const timer = setTimeout(() => reject(new Error('sync timeout')), 5000);
@@ -366,7 +370,7 @@ describe('collab-server: bindState race (issue #17)', () => {
     // a fresh window for stale-close eviction. Schedule the eviction at
     // 250 ms — well past the 200 ms preload await but still inside the
     // migration window.
-    setTimeout(() => { ywsDocs.delete(ROOM_NAME); }, 250);
+    setTimeout(() => { ywsDocs.delete(COMPOSITE_ROOM_KEY); }, 250);
 
     await new Promise((resolve, reject) => {
       const timer = setTimeout(() => reject(new Error('sync timeout')), 5000);
@@ -402,5 +406,89 @@ describe('collab-server: bindState race (issue #17)', () => {
     provider.destroy();
     ydoc.destroy();
     await server.flushAllRooms();
+  });
+});
+
+// ──────────────────────────────────────────────────────────────────────────
+// WS-upgrade authorization + composite-key invariants
+//
+// Uses raw ws sockets (not WebsocketProvider) so the HTTP upgrade rejection
+// status code is observable via 'unexpected-response'. WebsocketProvider
+// swallows upgrade errors and retries on close — it can't distinguish 401/404.
+// ──────────────────────────────────────────────────────────────────────────
+
+describe('collab-server: WS-upgrade authorization', () => {
+  let tmpDir;
+  let server;
+  let port;
+  const SECRET = 'test-jwt-secret-for-ws-authz';
+  const ROOM = 'r1';
+
+  /** Open a raw WS connection; resolve with { open: true } on success
+   * or { status: <code> } on HTTP rejection. */
+  function tryUpgrade(p, room, token) {
+    const url = `ws://127.0.0.1:${p}/${room}${token ? `?token=${encodeURIComponent(token)}` : ''}`;
+    const sock = new NodeWebSocket(url);
+    return new Promise((resolve) => {
+      sock.on('unexpected-response', (_req, res) => { sock.terminate(); resolve({ status: res.statusCode }); });
+      sock.on('open', () => { sock.close(); resolve({ open: true }); });
+      sock.on('error', () => resolve({ status: 'error' }));
+    });
+  }
+
+  before(async () => {
+    tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sim-collab-authz-'));
+    const storage = new LocalStorageBackend(tmpDir);
+    const authProvider = createAuthJwt({ secret: SECRET });
+
+    // Seed ACL + a minimal ydoc for tenant 'acme', room 'r1'.
+    await storage.writeAcl('acme', ROOM, { ownerId: 'owner', sharedWith: [] });
+    const doc = new Y.Doc();
+    const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(doc));
+    doc.destroy();
+    await storage.writeRoom('acme', ROOM, { ydocBytes, secBytes: null, commentsJson: null });
+
+    server = createCollabServer({ storage, authProvider, migrationCoordinator: null });
+    await new Promise(resolve => server.httpServer.listen(0, '127.0.0.1', resolve));
+    port = server.httpServer.address().port;
+  });
+
+  after(async () => {
+    server.cleanup();
+    ywsDocs.clear();
+    try { server.wss.close(); } catch { /* ignore */ }
+    await new Promise(resolve => {
+      const t = setTimeout(resolve, 1000);
+      server.httpServer.close(() => { clearTimeout(t); resolve(); });
+    });
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  });
+
+  it('rejects with 401 when no token is provided', async () => {
+    const result = await tryUpgrade(port, ROOM, null);
+    assert.strictEqual(result.status, 401);
+  });
+
+  it('rejects with 404 when token has valid JWT but user is not in ACL (stranger)', async () => {
+    const token = jwt.sign({ sub: 'stranger', tenant: 'acme' }, SECRET, { algorithm: 'HS256' });
+    const result = await tryUpgrade(port, ROOM, token);
+    assert.strictEqual(result.status, 404);
+  });
+
+  it('rejects with 404 when owner uses wrong tenant (cross-tenant structural block)', async () => {
+    const token = jwt.sign({ sub: 'owner', tenant: 'evil' }, SECRET, { algorithm: 'HS256' });
+    const result = await tryUpgrade(port, ROOM, token);
+    assert.strictEqual(result.status, 404);
+  });
+
+  it('allows owner with correct token and keys boundDocs under composite name', async () => {
+    const token = jwt.sign({ sub: 'owner', tenant: 'acme' }, SECRET, { algorithm: 'HS256' });
+    const result = await tryUpgrade(port, ROOM, token);
+    assert.deepEqual(result, { open: true });
+    // Brief tick to let the sync-open handler run and register the doc.
+    await new Promise(resolve => setTimeout(resolve, 50));
+    const compositeKey = buildCompositeDocName('acme', ROOM);
+    assert.strictEqual(server.boundDocs.has(compositeKey), true,
+      `boundDocs should be keyed by composite '${compositeKey}' after a successful upgrade`);
   });
 });
