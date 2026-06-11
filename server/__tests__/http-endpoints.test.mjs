@@ -355,7 +355,7 @@ describe('HTTP endpoints', () => {
       m.set('locked', true);
       m.set('lockedBy', 'userB');
     });
-    boundDocs.set('lock-up', liveDoc);
+    boundDocs.set('_public/lock-up', liveDoc);
     try {
       const blocked = await httpPost(`${baseUrl}/rooms/lock-up/upload`, Buffer.from(secXml));
       assert.strictEqual(blocked.status, 423);
@@ -364,7 +364,7 @@ describe('HTTP endpoints', () => {
       assert.strictEqual(owner.status, 200);
       assert.strictEqual(JSON.parse(owner.body.toString()).blocks, 1);
     } finally {
-      boundDocs.delete('lock-up');
+      boundDocs.delete('_public/lock-up');
       liveDoc.destroy();
     }
   });
@@ -464,7 +464,7 @@ describe('HTTP endpoints', () => {
     const ydoc = new Y.Doc();
     ydoc.getArray('order');
     ydoc.getMap('store');
-    boundDocs.set('upload-room', ydoc);
+    boundDocs.set('_public/upload-room', ydoc);
 
     try {
       const resp = await httpPost(`${baseUrl}/rooms/upload-room/upload`, Buffer.from(secXml));
@@ -489,7 +489,7 @@ describe('HTTP endpoints', () => {
         'seed must clear migrationPartial too');
     } finally {
       ydoc.destroy();
-      boundDocs.delete('upload-room');
+      boundDocs.delete('_public/upload-room');
     }
   });
 
@@ -510,7 +510,7 @@ describe('HTTP endpoints', () => {
     const ydoc = new Y.Doc();
     ydoc.getArray('order');
     ydoc.getMap('store');
-    boundDocs.set('punct-room', ydoc);
+    boundDocs.set('_public/punct-room', ydoc);
 
     try {
       const up = await httpPost(`${baseUrl}/rooms/punct-room/upload`, uploadBytes);
@@ -531,7 +531,7 @@ describe('HTTP endpoints', () => {
       }
     } finally {
       ydoc.destroy();
-      boundDocs.delete('punct-room');
+      boundDocs.delete('_public/punct-room');
     }
   });
 });
