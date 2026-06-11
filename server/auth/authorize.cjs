@@ -1,5 +1,5 @@
 /**
- * Room authorization decision function. See ADR-0015 + the design spec
+ * Room authorization decision function. See ADR-0017 + the design spec
  * (docs/superpowers/specs/2026-06-11-room-authorization-design.md).
  *
  * Returns { ok: true } or { ok: false, status } where status is one of

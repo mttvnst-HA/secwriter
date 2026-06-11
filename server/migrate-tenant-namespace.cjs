@@ -20,8 +20,10 @@ const path = require('node:path');
 const { sanitize } = require('./storage-shared.cjs');
 
 // Flat-layout extensions (pre-tenant local naming). '.acl.json' is NOT a
-// legacy artifact — skip it if somehow present.
-const FLAT_EXTS = ['.ydoc', '.SEC', '.comments.json', '.lint.json'];
+// legacy artifact — skip it if somehow present. `.ydoc` is LAST so it is the
+// final filesystem op for a room (mirrors ARTIFACT_CATALOG) — see the
+// acl-before-ydoc crash-order note on the rename loop below.
+const FLAT_EXTS = ['.SEC', '.comments.json', '.lint.json', '.ydoc'];
 
 /**
  * Move every flat `<dir>/<id><ext>` to `<dir>/<tenant>/<id><ext>` and write
@@ -47,18 +49,23 @@ async function migrateLocalFlatToTenant({ dir, tenant, owner }) {
   let moved = 0;
   for (const id of roomIds) {
     const safe = sanitize(id);
-    for (const ext of FLAT_EXTS) {
-      const src = path.join(dir, `${id}${ext}`);
-      if (!fs.existsSync(src)) continue;
-      fs.renameSync(src, path.join(tenantDir, `${safe}${ext}`));
-    }
-    // ACL sidecar (acl-before-ydoc invariant is irrelevant here — the .ydoc
-    // already exists from the rename above).
+    // Write the ACL sidecar BEFORE relocating the `.ydoc`, honoring the
+    // acl-before-ydoc crash-order invariant (ADR-0005 / ADR-0017). A crash
+    // mid-room then leaves an orphan ACL with the `.ydoc` still at its flat
+    // location (composite key reads absent → 404, reclaimable) — NEVER an
+    // ownerless `.ydoc` (un-readable via authorize, un-deletable, and
+    // un-recreatable because the create route 409s on the surviving ydoc).
+    // FLAT_EXTS renames `.ydoc` LAST for the same reason.
     fs.writeFileSync(
       path.join(tenantDir, `${safe}.acl.json`),
       JSON.stringify({ ownerId: owner, sharedWith: [] }),
       'utf-8',
     );
+    for (const ext of FLAT_EXTS) {
+      const src = path.join(dir, `${id}${ext}`);
+      if (!fs.existsSync(src)) continue;
+      fs.renameSync(src, path.join(tenantDir, `${safe}${ext}`));
+    }
     moved++;
   }
   return moved;

@@ -30,4 +30,40 @@ describe('tenant-namespace migration (local)', () => {
 
     fs.rmSync(dir, { recursive: true, force: true });
   });
+
+  it('writes the ACL sidecar BEFORE renaming the .ydoc (crash-order invariant)', async () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sim-migrate-order-'));
+    const doc = new Y.Doc();
+    fs.writeFileSync(path.join(dir, 'legacy1.ydoc'), Buffer.from(Y.encodeStateAsUpdate(doc)));
+    doc.destroy();
+
+    // Record the order of the relevant filesystem ops. The script shares this
+    // cached fs module, so patching here observes its calls.
+    const ops = [];
+    const realWrite = fs.writeFileSync;
+    const realRename = fs.renameSync;
+    fs.writeFileSync = (file, ...rest) => {
+      if (String(file).endsWith('.acl.json')) ops.push('acl-write');
+      return realWrite(file, ...rest);
+    };
+    fs.renameSync = (src, dst, ...rest) => {
+      if (String(dst).endsWith('.ydoc')) ops.push('ydoc-rename');
+      return realRename(src, dst, ...rest);
+    };
+    try {
+      await migrateLocalFlatToTenant({ dir, tenant: '_public', owner: 'admin' });
+    } finally {
+      fs.writeFileSync = realWrite;
+      fs.renameSync = realRename;
+    }
+
+    // A crash between these two ops must leave a reclaimable orphan ACL, never
+    // an ownerless .ydoc — so the ACL write must come first.
+    assert.ok(
+      ops.indexOf('acl-write') < ops.indexOf('ydoc-rename'),
+      `.acl.json must be written before .ydoc is renamed (saw ${JSON.stringify(ops)})`,
+    );
+
+    fs.rmSync(dir, { recursive: true, force: true });
+  });
 });

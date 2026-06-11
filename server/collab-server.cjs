@@ -347,7 +347,20 @@ function createCollabServer(config) {
     // unauthorized caller never triggers getYDoc/preload, sidestepping the
     // eviction-guard await windows (ADR-0014 pattern #2). Unconditional: never
     // skipped because the doc is already resident (live-session revocation).
-    const dec = await authorize({ authProvider, storage, user, roomId: bareRoomId, action: ACTION.READ });
+    let dec;
+    try {
+      dec = await authorize({ authProvider, storage, user, roomId: bareRoomId, action: ACTION.READ });
+    } catch (err) {
+      // A storage I/O fault inside readAcl (S3/Azure network blip) throws out
+      // of authorize. Fail CLOSED + close the socket — without this catch the
+      // throw is an unhandledRejection AND the half-open socket hangs (no
+      // response was written) until the OS connection timeout. Mirrors the
+      // per-authorize try/catch the HTTP routes already use.
+      log.error('ws.authorize-failed', { roomId: bareRoomId, err: err && err.message });
+      socket.write('HTTP/1.1 500 Internal Server Error\r\n\r\n');
+      socket.destroy();
+      return;
+    }
     if (!dec.ok) {
       const line = { 401: '401 Unauthorized', 403: '403 Forbidden', 404: '404 Not Found' }[dec.status] || '403 Forbidden';
       socket.write(`HTTP/1.1 ${line}\r\n\r\n`);
