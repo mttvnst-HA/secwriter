@@ -50,53 +50,15 @@
 
 import { prosemirrorToYXmlFragment } from 'y-prosemirror';
 
-import { applyHtmlToYText, yTextToHtml, seedYTextFromHtml } from './ytext-html.js';
-import { htmlToPmFragment, pmFragmentToHtml } from './pmdoc-html.js';
+import { applyHtmlToYText, seedYTextFromHtml } from './ytext-html.js';
+import { htmlToPmFragment } from './pmdoc-html.js';
 import { blockToYMapSkeleton, populateBlockHtml, populateBlockTableRef } from './collab.js';
+import { getCachedHtml, invalidateHtmlCache } from './pm-fragment-cache.js';
 
-// Per-html-slot memo. Both Y.XmlFragment and (for migrationPartial fallback)
-// Y.Text are accepted shapes — each gets a single observer that flips
-// `dirty` when the underlying CRDT mutates. WeakMap so entries die with
-// the shared-type instance.
-const cache = new WeakMap();
-
-function deriveHtml(yHtml) {
-  if (typeof yHtml.toArray === 'function' && typeof yHtml.nodeName !== 'string') {
-    // Y.XmlFragment — duck-type matches the pmdoc-html.js serializer's
-    // expectations (toArray + no nodeName, since YXmlElement has both).
-    return pmFragmentToHtml(yHtml);
-  }
-  if (typeof yHtml.toDelta === 'function') {
-    // Y.Text fallback (migrationPartial blocks; pre-1d rooms during the
-    // broker's pre-archive read window).
-    return yTextToHtml(yHtml);
-  }
-  return '';
-}
-
-function getCached(yHtml) {
-  let entry = cache.get(yHtml);
-  if (!entry) {
-    entry = { html: '', dirty: true };
-    cache.set(yHtml, entry);
-    if (typeof yHtml.observeDeep === 'function') {
-      yHtml.observeDeep(() => {
-        const e = cache.get(yHtml);
-        if (e) e.dirty = true;
-      });
-    } else if (typeof yHtml.observe === 'function') {
-      yHtml.observe(() => {
-        const e = cache.get(yHtml);
-        if (e) e.dirty = true;
-      });
-    }
-  }
-  if (entry.dirty) {
-    entry.html = deriveHtml(yHtml);
-    entry.dirty = false;
-  }
-  return entry.html;
-}
+// Per-html-slot derivation memo now lives in pm-fragment-cache.js so
+// collab.js's yMapToBlock shares the SAME WeakMap (#222): an in-room
+// keystroke re-derives only the mutated slot, not all N blocks.
+const getCached = getCachedHtml;
 
 function seedInside(yOrder, yStore, plainBlocks) {
   // Seed the FULL block shape — scalar keys (id/type/part/depth/section/
@@ -226,10 +188,7 @@ export function subscribeBlock(yStore, blockId, listener) {
   // and read a stale cached html. Calling listener after marking dirty
   // ensures useSyncExternalStore's getSnapshot returns the new value.
   const onHtml = () => {
-    if (yHtml) {
-      const entry = cache.get(yHtml);
-      if (entry) entry.dirty = true;
-    }
+    if (yHtml) invalidateHtmlCache(yHtml);
     listener();
   };
 

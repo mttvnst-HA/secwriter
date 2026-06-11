@@ -70,8 +70,9 @@
 import * as Y from 'yjs';
 import { WebsocketProvider } from 'y-websocket';
 import { prosemirrorToYXmlFragment, ySyncPluginKey } from 'y-prosemirror';
-import { applyHtmlToYText, yTextToHtml, htmlToAttrList, seedYTextFromHtml } from './ytext-html.js';
-import { htmlToPmFragment, pmFragmentToHtml } from './pmdoc-html.js';
+import { applyHtmlToYText, htmlToAttrList, seedYTextFromHtml } from './ytext-html.js';
+import { htmlToPmFragment } from './pmdoc-html.js';
+import { getCachedHtml } from './pm-fragment-cache.js';
 import { tableToYStructure, yStructureToTable, diffTableForPublish, applyTableCellEdits } from './ytable-crdt.js';
 import { refToYStructure, yStructureToRef, applyRefEdits } from './yref-crdt.js';
 import { makeUndoHelpers } from './undo-helpers.js';
@@ -272,18 +273,21 @@ function yMapToBlock(yMap) {
   const yHtml = yMap.get('html');
   // Sub-PR 1d (#47, ADR-0006): the html slot can be either Y.XmlFragment
   // (post-broker-migration, post-1d) or Y.Text (legacy v1, or migrationPartial
-  // leftover when per-block conversion threw during the broker run). Branch
-  // on duck-type so .SEC flush handles both shapes — without this, the
-  // serializer would coerce String(yXmlFragment) into the export and produce
-  // the literal "[object Object]" string in every migrated block (Q24/B3).
-  if (yHtml && typeof yHtml.toArray === 'function' && typeof yHtml.nodeName !== 'string') {
-    // Y.XmlFragment — fragment has toArray + lacks nodeName. (YXmlElement
-    // has both, so the negative on nodeName disambiguates.)
-    block.html = pmFragmentToHtml(yHtml);
-  } else if (yHtml && typeof yHtml.toDelta === 'function') {
-    // Y.Text — duck-type check instead of instanceof handles CJS/ESM
-    // dual-package hazard.
-    block.html = yTextToHtml(yHtml);
+  // leftover when per-block conversion threw during the broker run).
+  // `getCachedHtml` branches on the same duck-type as the legacy inline code
+  // (Y.XmlFragment → pmFragmentToHtml, Y.Text → yTextToHtml) so .SEC flush
+  // still handles both shapes — without it, the serializer would coerce
+  // String(yXmlFragment) into the export and produce "[object Object]" in
+  // every migrated block (Q24/B3).
+  //
+  // #222: route through the SHARED per-slot cache (pm-fragment-cache.js, the
+  // same WeakMap block-html-store reads). `yBlocksToArray` is called per
+  // keystroke by handleAfterTx for ySyncPluginKey-origin transactions; the
+  // cache makes every UNCHANGED block a hit, so a single keystroke re-derives
+  // only the one mutated slot instead of all N (was 18.8 ms at 1200 blocks).
+  if (yHtml && typeof yHtml === 'object'
+      && (typeof yHtml.toArray === 'function' || typeof yHtml.toDelta === 'function')) {
+    block.html = getCachedHtml(yHtml);
   } else {
     block.html = (typeof yHtml === 'string') ? yHtml : '';
   }
