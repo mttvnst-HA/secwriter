@@ -570,31 +570,31 @@ function startFromEnv() {
     const now = Date.now();
     log.info('sweep.start', {});
     try {
-      const rooms = await storage.listRooms(PUBLIC_TENANT);
-      for (const id of rooms) {
-        if (server.boundDocs.has(id)) continue;
-        const stat = await storage.statRoom(PUBLIC_TENANT, id);
+      const rooms = await storage.listAllRooms(); // [{ tenant, roomId }]
+      for (const { tenant, roomId } of rooms) {
+        const composite = buildCompositeDocName(tenant, roomId);
+        if (server.boundDocs.has(composite)) continue;
+        const stat = await storage.statRoom(tenant, roomId);
         if (!stat || !stat.lastModified) continue;
         const idleMs = now - new Date(stat.lastModified).getTime();
         const idleDays = idleMs / (24 * 60 * 60 * 1000);
         if (idleDays >= ARCHIVE_DAYS) {
-          log.info('sweep.archive', { roomId: id, idleDays: Math.round(idleDays) });
-          await storage.archiveRoom(PUBLIC_TENANT, id);
+          log.info('sweep.archive', { roomId: composite, idleDays: Math.round(idleDays) });
+          await storage.archiveRoom(tenant, roomId);
         }
       }
     } catch (err) {
       log.error('sweep.archive.failed', { err: err.message });
     }
     try {
-      if (typeof storage.listArchivedRooms === 'function') {
-        const archived = await storage.listArchivedRooms(PUBLIC_TENANT);
-        for (const room of archived) {
-          if (!room.archivedAt) continue;
-          const archivedMs = now - new Date(room.archivedAt).getTime();
-          const archivedDays = archivedMs / (24 * 60 * 60 * 1000);
+      if (typeof storage.listAllArchivedRooms === 'function') {
+        const archived = await storage.listAllArchivedRooms(); // [{ tenant, roomId, archivedAt }]
+        for (const { tenant, roomId, archivedAt } of archived) {
+          if (!archivedAt) continue;
+          const archivedDays = (now - new Date(archivedAt).getTime()) / (24 * 60 * 60 * 1000);
           if (archivedDays >= DELETE_DAYS) {
-            log.info('sweep.delete', { roomId: room.id, archivedDays: Math.round(archivedDays) });
-            await storage.deleteArchivedRoom(PUBLIC_TENANT, room.id);
+            log.info('sweep.delete', { roomId: buildCompositeDocName(tenant, roomId), archivedDays: Math.round(archivedDays) });
+            await storage.deleteArchivedRoom(tenant, roomId);
           }
         }
       }
