@@ -21,6 +21,8 @@ describe('checkPrincipal', () => {
     assert.equal(checkPrincipal(authOn, { id: 'u1' }).status, 403);            // no tenant
     assert.equal(checkPrincipal(authOn, { tenant: 'acme' }).status, 403);      // no id
     assert.equal(checkPrincipal(authOn, { id: 'u1', tenant: '_public' }).status, 403); // sentinel
+    assert.equal(checkPrincipal(authOn, { id: 'u1', tenant: '.public' }).status, 403, 'sanitizes to _public → rejected');
+    assert.equal(checkPrincipal(authOn, { id: 'u1', tenant: ' public' }).status, 403, 'sanitizes to _public → rejected');
     // '../etc' sanitizes to '___etc' (NOT _public), so the principal is OK —
     // it harmlessly addresses its own sanitized namespace.
     assert.deepEqual(checkPrincipal(authOn, { id: 'u1', tenant: '../etc' }), { ok: true });
