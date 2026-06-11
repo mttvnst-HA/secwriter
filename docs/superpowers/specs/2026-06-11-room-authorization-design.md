@@ -34,13 +34,20 @@ This composite is the single key used by **every** subsystem that currently keys
 - **Internal docName:** `<tenant>/<roomId>` (a structural `/` joining two already-sanitized halves). `extractDocName` builds this at WS upgrade from the stripped flat id plus the token tenant.
 - **Storage key:** adapters take `(tenant, roomId, kind)` as first-class arguments. The structural `/` is a real path separator on local (`<dir>/<tenant>/<roomId>.<kind>`) and a virtual prefix on S3/Azure (`<tenant>/<roomId>/...`). Each half is sanitized independently with the existing `sanitize()`; the join is structural, so no `/` ever enters a sanitized half.
 - **Sanitization of tenant:** `sanitize(tenant)` is applied at the boundary where tenant enters any key (Major 7 fix) — a hostile claim like `../` or `a/b` collapses to `_`-safe characters and cannot traverse or escape its namespace.
+- **Sentinel reservation (3rd-review MUST-fix):** `sanitize('_public')` returns `_public` unchanged, so a real `tenant` claim of `_public` (or anything that sanitizes to it) would address the `auth=none` demo namespace — a cross-tenant leak. Under `requiresAuth`, a tenant claim whose sanitized form equals the sentinel `_public` is **rejected → 403**. The sentinel is therefore reachable only via the `auth=none` path, never via a token.
 
 ### Required code changes (this is the core of the work, not a "touch point")
 
 - `server/storage-shared.cjs`: `sanitize()` unchanged (still strips `/`); key builders gain a tenant argument.
-- `server/storage-local.cjs`, `storage-s3.cjs`, `storage-azure.cjs`: `_keyForArtifact(tenant, roomId, kind)`; `_parseActiveKey` returns `{ tenant, roomId }`; `_listKeys`/list gains a tenant-scoped primitive — **note the local backend's `_listKeys({prefix})` is `readdirSync` (a directory), not a string prefix** (Blocker 2), so the tenant-list primitive must be implemented per backend, not assumed uniform.
+- `server/storage-local.cjs`, `storage-s3.cjs`, `storage-azure.cjs`: `_keyForArtifact(tenant, roomId, kind)`; `_parseActiveKey` returns `{ tenant, roomId }`; `_listKeys`/list gains a tenant-scoped primitive — **the tenant-list primitive must be implemented per backend, not assumed uniform**, and there are three distinct shapes: (a) local `_listKeys({prefix})` is `readdirSync` (a directory), not a string prefix; (b) S3 uses a real `ListObjectsV2 Prefix`; (c) Azure keys **already embed a structural `/`** (`<id>/room.ydoc`, `storage-azure.cjs:160,171`), so the composite becomes `<tenant>/<roomId>/room.ydoc` and the parser must split on the **first** `/` (tenant) and the **last** `/room.<kind>` segment, not reuse the existing single-slice.
+
+#### ACL sidecar storage primitive (3rd-review MUST-fix)
+
+Adding `.acl.json` to `ARTIFACT_CATALOG` only makes the **bundled** `writeRoom`/`readRoom`/`deleteRoom`/archive iterate it. But `planArtifactWrites` (`storage-shared.cjs:58-61`) **throws if `ydocBytes == null`**, so `writeRoom` cannot mutate the ACL alone, and `authorize()` must read the ACL **without** a full `readRoom` Y.Doc fetch. The base + all three adapters therefore add a standalone sidecar pair:
+- `readAcl(tenant, roomId)` → `{ ownerId, sharedWith } | null` — cheap single-artifact read, used by `authorize()` before any doc load.
+- `writeAcl(tenant, roomId, acl)` — single-artifact write, used by `POST /rooms` (initial) and the share route (mutation). Must preserve the acl-before-`.ydoc` invariant on create (the create path writes the sidecar via `writeAcl` before the bundled `writeRoom` seeds the `.ydoc`).
 - `room-storage.cjs`: `readRoom`/`writeRoom`/`deleteRoom`/`listRooms`/`flushRoom`/`bindState` thread `(tenant, roomId)`; `listRooms` returns bare `roomId` (tenant stripped) and is filtered to the caller's tenant.
-- `server/collab-server.cjs`: `extractDocName` produces the composite; all five in-memory maps + the migration coordinator key on the composite; the WS upgrade derives tenant from the token before any keying.
+- `server/collab-server.cjs`: `extractDocName` produces the composite; all five in-memory maps + the migration coordinator key on the composite; the WS upgrade derives tenant from the token before any keying. **Enumerate the `migrationCoordinator.forget(roomId)` call site at `http-handler.cjs:362` — it currently passes the bare `roomId` and must pass the composite, or the cache-drop misses.**
 - `server/migrate-tenant-namespace.cjs`: one-time relocation of legacy flat artifacts under `<SIM_DEFAULT_TENANT>/<id>` + ACL sidecar (see Legacy).
 
 ## Decided architecture
@@ -77,6 +84,7 @@ Runs after authentication on every `/rooms*` route, and at WS upgrade.
 
 - `POST /rooms` (`http-handler.cjs:287`): under `requiresAuth`, key the room under `(req.user.tenant, roomId)` and write the ACL sidecar `{ ownerId: req.user.id, sharedWith: [] }` **before** the `.ydoc` (crash-order above). The Y.Doc / `yMeta` create path is otherwise unchanged (tenant is NOT written into `yMeta`). The existing `409 already exists` check is now per-tenant, so it no longer leaks cross-tenant existence.
 - **Share route (floor, in scope):** `PATCH /rooms/:id/share`, body `{ userId, action: 'add' | 'remove' }`, **owner-only**. Mutates `sharedWith` in the sidecar.
+  - The route mutates the sidecar via `writeAcl` (not the bundled `writeRoom`, which requires a `.ydoc`).
   - **Same-tenant is enforced structurally, not by the route (Major 9 resolution):** the room lives under the owner's tenant namespace; a sharee can only reach it if their own token's tenant matches, so a cross-tenant `userId` is inert — it can never resolve the room. The route therefore stores the opaque `userId` as-is and does not attempt a tenant check it cannot perform.
   - **Discovery limitation (documented):** there is no user-directory endpoint, so an owner must already know the sharee's subject id. Share-by-email and an email→subject directory are **out of scope** for the floor and noted as a follow-up. This makes the floor's sharing usable only with known subject ids — acceptable for the security fix, flagged in ADR-0015.
 
@@ -92,7 +100,7 @@ Runs after authentication on every `/rooms*` route, and at WS upgrade.
 
 - Unauthenticated → 401 (resource exists, you need a token).
 - Authenticated but unauthorized (cross-tenant by construction, not-shared, missing ACL) → 404 (no existence leak).
-- Missing tenant claim or missing stable subject under `requiresAuth` → 403.
+- Missing tenant claim, missing stable subject, or a tenant claim that sanitizes to the reserved `_public` sentinel, under `requiresAuth` → 403.
 - Lock conflict → existing 423.
 
 ### 7. Legacy / migration
@@ -102,17 +110,17 @@ Runs after authentication on every `/rooms*` route, and at WS upgrade.
 
 ## Testing
 
-Verified current counts: `http-endpoints.test.mjs` is at **25** `it()` (cap 30 — 5 slots, but batch where natural); `storage-contract.test.mjs` is **17 `it()` × 3 backends**.
+Verified current counts: `http-endpoints.test.mjs` is at **25** `it()` (cap 30 — 5 slots, but batch where natural); `storage-contract.test.mjs` is **18 `it()` × 3 backends** (14 shared-contract + 4 in the nested `migration broker` describe).
 
 - `http-endpoints.test.mjs`: cross-tenant `GET/DELETE/PATCH` → 404; owner `DELETE` → 200; non-owner same-tenant `DELETE` → 404; `GET /rooms` returns only the caller's tenant (storage + live-doc); missing-tenant-claim → 403; missing-stable-subject → 403; hostile tenant claim (`../`) is sanitized and cannot escape; share route owner-only; shared user can read+write but not delete.
 - `collab-server.test.mjs`: WS upgrade rejects cross-tenant / unshared before doc load; missing-claim → 403; composite docName keys all in-memory maps; eviction guard still holds with the new pre-load authz read.
-- `storage-contract.test.mjs` (17 → +1 × 3): the `.acl.json` artifact round-trips; composite `(tenant, roomId)` keys list/read/write/delete uniformly; `listRooms` strips tenant and returns bare ids; crash-order (acl-before-ydoc) leaves a partial create as absent.
+- `storage-contract.test.mjs` (18 → +1 × 3 = 19×3): the `.acl.json` artifact round-trips via `readAcl`/`writeAcl`; composite `(tenant, roomId)` keys list/read/write/delete uniformly; `listRooms` strips tenant and returns bare ids; crash-order (acl-before-ydoc) leaves a partial create as absent.
 - Demo regression: with `auth=none`, all routes stay open under `_public`.
 
 ## Docs
 
 - New **ADR-0015 — Room authorization model**: composite always-namespaced key + `_public` sentinel, ACL sidecar substrate (and why not `yMeta`), private-by-default, 404-not-403 existence semantics, structural cross-tenant isolation, live-session revocation limitation, required JWT claims (tenant + stable subject), share-discovery limitation, demo `auth=none` intentionally open, deferred graded-roles boundary.
-- Amend **ADR-0005** (per-backend atomicity): `.acl.json` write-order (before `.ydoc`) and the crash-consistency outcome — this is the "sidecar becomes a source of truth that must agree with `.ydoc`" revisit-trigger ADR-0005 names.
+- Amend **ADR-0005** (per-backend atomicity): `.acl.json` write-order (before `.ydoc`) and the crash-consistency outcome — this is the "sidecar becomes a source of truth that must agree with `.ydoc`" revisit-trigger ADR-0005 names. Also reconcile ADR-0005's stale "12 assertions × 3 backends" consequence text (ADR-0005:41) with the actual 18→19×3.
 - Amend **ADR-0013** (storage backends): the `.acl.json` artifact and the composite `(tenant, roomId)` key scheme + per-backend tenant-list primitive.
 - Amend **ADR-0014** (collab relay): composite docName across the in-memory maps + coordinator; WS-upgrade authz ordering relative to the eviction guard.
 - `csp.test.js` (`:37-42`) gates the frontend origin allowlist, not server authz — no change; do not conflate.
