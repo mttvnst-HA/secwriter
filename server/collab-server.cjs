@@ -321,9 +321,40 @@ function createCollabServer(config) {
   function buildHocuspocus() {
     const onAuthenticate = buildOnAuthenticate({ authProvider, storage });
     const database = new SecWriterDatabase({ storage, roomHealth, maxDocBytes: MAX_DOC_BYTES, log });
+
+    const onLoadDocument = async ({ documentName, document }) => {
+      // documentName is the validated canonical key — onAuthenticate already
+      // rejected any non-canonical/cross-tenant name BEFORE this runs (§3/§6).
+      if (!migrationCoordinator) return document;
+      try {
+        const result = await migrationCoordinator.ensureMigrated(documentName, document);
+        // The broker mutates `document` here, INSIDE onLoadDocument — but Hocuspocus
+        // attaches the store-triggering document.onUpdate handler only AFTER this
+        // hook returns (hocuspocus-server.cjs:1399 vs the onLoadDocument call at
+        // :1389). So a freshly-migrated room would NOT auto-persist its v2 substrate;
+        // it would reload as v1 and re-run backupRoom every connect. Persist the
+        // migrated doc explicitly. Gate on a real migration (skipped:false) so we
+        // don't re-write an already-v2 room or one whose backup failed (skipped:true).
+        // backupRoom already completed inside ensureMigrated before any mutation, so
+        // the .ydoc we write here is always backed up first (§6 ordering).
+        if (result && result.skipped === false) {
+          await database.store({ documentName, document });
+        }
+      } catch (err) {
+        // §6: an onLoadDocument THROW has different Hocuspocus semantics (the load is
+        // aborted, connection closed — :1393-1397). The broker is designed to "log
+        // and continue, room stays editable + shows the migration-partial banner",
+        // so CATCH here and return the document. This is the backstop; ensureMigrated
+        // already catches its own per-step errors.
+        log.warn('migrate.coordinator-failed', { documentName, err: err && err.message });
+      }
+      return document;
+    };
+
     const hocuspocus = new Hocuspocus({
       name: 'secwriter',
       quiet: true,
+      onLoadDocument,
       async onAuthenticate(data) {
         try {
           return await onAuthenticate(data);
