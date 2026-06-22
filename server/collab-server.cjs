@@ -329,20 +329,24 @@ function createCollabServer(config) {
       try {
         const result = await migrationCoordinator.ensureMigrated(documentName, document);
         // The broker mutates `document` here, INSIDE onLoadDocument — but Hocuspocus
-        // attaches the store-triggering document.onUpdate handler only AFTER this
-        // hook returns (hocuspocus-server.cjs:1399 vs the onLoadDocument call at
-        // :1389). So a freshly-migrated room would NOT auto-persist its v2 substrate;
-        // it would reload as v1 and re-run backupRoom every connect. Persist the
-        // migrated doc explicitly. Gate on a real migration (skipped:false) so we
-        // don't re-write an already-v2 room or one whose backup failed (skipped:true).
-        // backupRoom already completed inside ensureMigrated before any mutation, so
-        // the .ydoc we write here is always backed up first (§6 ordering).
+        // attaches the store-triggering document.onUpdate handler only AFTER this hook
+        // returns (verified in @hocuspocus/server@4.3.0 loadDocument: the onUpdate
+        // bind runs after the awaited onLoadDocument hook). So a freshly-migrated room
+        // would NOT auto-persist its v2 substrate; it would reload as v1 and re-run
+        // backupRoom every connect. Persist the migrated doc explicitly. Gate on a real
+        // migration (skipped:false) so we don't re-write an already-v2 room or one whose
+        // backup failed (skipped:true). A partial migration also returns skipped:false —
+        // persisting it is intentional: the migrationPartial flag the broker wrote into
+        // yMeta must reach disk so the next connect short-circuits via needsMigration
+        // instead of re-attempting on a half-migrated doc. backupRoom already completed
+        // inside ensureMigrated before any mutation, so the .ydoc we write here is always
+        // backed up first (§6 ordering).
         if (result && result.skipped === false) {
           await database.store({ documentName, document });
         }
       } catch (err) {
         // §6: an onLoadDocument THROW has different Hocuspocus semantics (the load is
-        // aborted, connection closed — :1393-1397). The broker is designed to "log
+        // aborted and the connection closed). The broker is designed to "log
         // and continue, room stays editable + shows the migration-partial banner",
         // so CATCH here and return the document. This is the backstop; ensureMigrated
         // already catches its own per-step errors.
