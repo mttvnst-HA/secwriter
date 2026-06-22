@@ -44,6 +44,7 @@ const { PUBLIC_TENANT, splitCompositeDocName, buildCompositeDocName, sanitize } 
 const { authorize, ACTION } = require('./auth/authorize.cjs');
 const { Hocuspocus } = require('@hocuspocus/server');
 const { buildOnAuthenticate, AuthReject } = require('./hocuspocus-auth.cjs');
+const { SecWriterDatabase } = require('./secwriter-database.cjs');
 // `ws` is already imported for the y-websocket path; reuse that WebSocketServer.
 
 // Hard caps. A single spec section is O(100KB) of text; 8 MB gives plenty of
@@ -53,6 +54,11 @@ const { buildOnAuthenticate, AuthReject } = require('./hocuspocus-auth.cjs');
 const MAX_DOC_BYTES = 8 * 1024 * 1024;
 
 const DEBOUNCE_MS = 500;
+
+// Starvation ceiling on the debounce: a room under continuous edits would
+// otherwise keep deferring its store indefinitely. Forces a flush after this
+// long regardless. Tune per §8 measurement (Phase 5.2).
+const MAX_DEBOUNCE_MS = 10000;
 
 /**
  * Extract the docName from a WebSocket request URL.
@@ -314,7 +320,6 @@ function createCollabServer(config) {
   // one listener handles the upgrade.
   function buildHocuspocus() {
     const onAuthenticate = buildOnAuthenticate({ authProvider, storage });
-    const { SecWriterDatabase } = require('./secwriter-database.cjs');
     const database = new SecWriterDatabase({ storage, roomHealth, maxDocBytes: MAX_DOC_BYTES, log });
     const hocuspocus = new Hocuspocus({
       name: 'secwriter',
@@ -345,7 +350,7 @@ function createCollabServer(config) {
       // active room. Measure serialize+write cost in Phase 5.2 and RAISE this if a
       // realistic room saturates I/O; do not keep 500 by inertia.
       debounce: DEBOUNCE_MS,
-      maxDebounce: 10000,
+      maxDebounce: MAX_DEBOUNCE_MS,
       // gc pinned true to match the v2 substrate's production gc and the
       // cross-stack rollback gate (Phase 9).
       yDocOptions: { gc: true },
@@ -385,6 +390,10 @@ function createCollabServer(config) {
         });
       });
     });
+    // `database` is returned for Phase 5: the shutdown path drains its per-key
+    // store chains (the bare Hocuspocus class has no awaitable destroy()). The
+    // current call site only pulls `hocuspocus`; Task 5.1 threads `database`
+    // onto the factory return.
     return { hocuspocus, hwss, database };
   }
 
