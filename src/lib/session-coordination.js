@@ -54,6 +54,7 @@ export function createInitial() {
     schemaIncompatible: false,
     migrationPartial: false,
     publishOvercap: false,
+    statusIncompatible: false,
   };
 }
 
@@ -109,6 +110,18 @@ export function onPublishSucceeded(state) {
   return { ...state, publishOvercap: false };
 }
 
+// Trips the statusIncompatible latch. Idempotent. Called by the hook's
+// onStatusChange trampoline when an 'incompatible' status arrives (e.g.
+// from onAuthenticationFailed in collab.js). Terminal-sticky like
+// schemaIncompatible — once tripped, every subsequent status collapses to
+// 'incompatible' so a trailing HocuspocusProvider reconnect cycle cannot
+// clobber the banner. Session-scoped: coordRef is rebuilt (createInitial)
+// in the session lifecycle cleanup so a room-switch or remount starts clean.
+export function onStatusIncompatible(state) {
+  if (state.statusIncompatible) return state;
+  return { ...state, statusIncompatible: true };
+}
+
 // ── Selectors ────────────────────────────────────────────────────────────
 
 export function canPublishBlocks(state) {
@@ -143,7 +156,7 @@ export function canBroadcastCursor(state) {
 //
 // Returns the effective status string the consumer should observe.
 export function effectiveStatus(state, rawStatus) {
-  if (state.schemaIncompatible) return 'incompatible';
+  if (state.schemaIncompatible || state.statusIncompatible) return 'incompatible';
   if (state.migrationPartial && rawStatus === 'connected') {
     return 'migration-partial';
   }
