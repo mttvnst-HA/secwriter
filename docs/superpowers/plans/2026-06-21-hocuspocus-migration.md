@@ -241,7 +241,20 @@ Define a `buildHocuspocus()` helper inside `createCollabServer`. It references `
       hwss.handleUpgrade(req, socket, head, (conn) => {
         // documentName + token travel in-band (provider `name`/`token`); auth
         // runs in onAuthenticate. The 3rd arg is the defaultContext.
-        hocuspocus.handleConnection(conn, req, { remoteAddress: ip });
+        // CRITICAL (verified against @hocuspocus/server@4.3.0 source): v4
+        // `handleConnection` only CONSTRUCTS the ClientConnection — it attaches
+        // NO socket listeners. The integration MUST pump messages in, exactly
+        // as the bundled Server's open/message/close hooks do
+        // (hocuspocus-server.cjs ~5600). Without this the relay accepts the
+        // upgrade but never syncs (onAuthenticate/onLoadDocument never fire).
+        const clientConnection = hocuspocus.handleConnection(conn, req, { remoteAddress: ip });
+        conn.on('message', (data) => {
+          const bytes = Array.isArray(data) ? Buffer.concat(data) : data;
+          clientConnection.handleMessage(new Uint8Array(bytes));
+        });
+        conn.on('close', (code, reason) => {
+          clientConnection.handleClose({ code, reason: reason ? reason.toString() : '' });
+        });
       });
     });
     return { hocuspocus, hwss };
@@ -413,6 +426,8 @@ describe('Gate A1: HocuspocusProvider remote-update origin', () => {
 
 Run: `npm test -- src/lib/__tests__/hocuspocus-undo-origin.test.js`
 Expected (PASS): positive control captured 1 frame; peer edit added 0; remote origin is non-null and non-`local-`. **GATE A1 GREEN.**
+
+> **RESULT (2026-06-21, this branch): GATE A1 GREEN.** Confirmed: the observed remote origin is the **`HocuspocusProvider` instance itself** (an object, `constructor.name === 'HocuspocusProvider'`) — exactly the prediction at the §309 note. It is not in `trackedOrigins`, not `null`, and not a `'local-'` string, so peer edits stay off the undo stack and the `handleAfterTx` re-emit path still fires. The verbatim test passed once the Task 1.3 skeleton's missing message-pump was added (commit `ccb4712`). No `trackedOrigins` rework, no UndoManager allowlist change, no `@vitest-environment` directive, and no yjs alias were needed — the client (ESM yjs) and server (CJS yjs) sync over the wire, so the dual-load warning is benign for this test.
 If the positive control FAILS (`length !== 1`): the test harness is wrong (scope/manager), fix that before reading the peer-edit result — a green peer-edit assertion under a dead manager is meaningless.
 If the peer-edit assertion FAILS (stack grew, or origin is `null`/`local-`): HocuspocusProvider applies remote updates with an origin that IS tracked (or `null`, which the default manager captures). **STOP.** Record the actual `remoteOrigin` value and revisit spec §7: the `trackedOrigins` set and/or `handleAfterTx`'s `origin.startsWith('local-')` echo filter must be reworked (e.g. switch the UndoManager to an allowlist anchored on the provider instance, and update `handleAfterTx` to treat the provider-instance origin as remote) before any client work proceeds.
 
