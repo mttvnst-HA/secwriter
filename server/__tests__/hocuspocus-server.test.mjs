@@ -322,3 +322,89 @@ describe('SecWriterDatabase gc round-trip (#128 Task 4.3)', () => {
     assert.strictEqual(pmFragmentToHtml(reSlot), htmlBefore);
   });
 });
+
+// ── Test 6.2 — Broker under onLoadDocument: v1 → v2 + persist + client sync ──
+
+describe('Broker under onLoadDocument (#128 Task 6.2)', () => {
+  it('v1 room loaded by server is migrated, persisted, and client syncs v2 substrate', { timeout: 30000 }, async () => {
+    // CJS require_ so instanceof checks use the same Y class as the CJS server
+    // modules (single hoisted yjs copy — Gate A1 finding, mirroring Task 4.3).
+    const Yc = require_('yjs');
+    const { seedRoomFromBlocks } = require_('../room-serializer.cjs');
+    const { pmFragmentToHtml } = await import('../../src/lib/pmdoc-html.js');
+
+    // 1. Build v1 bytes to seed storage (legacy Y.Text slot, no schemaVersion).
+    const v1 = new Yc.Doc();
+    seedRoomFromBlocks(v1, [{ id: 'a', type: 'txt', part: 1, depth: 0, html: 'UNIQUEMARKER text' }]);
+    const v1Bytes = Yc.encodeStateAsUpdate(v1);
+    v1.destroy();
+
+    // 2. Storage stub. backupRoom is REQUIRED — ensureMigrated awaits it before
+    // any mutation; without it, migration silently skips (skipped:true) and
+    // the test would produce a false-positive pass (M2 trap).
+    const persisted = {};
+    const storage = {
+      readRoom: async (t, r) => (t === '_public' && r === 'mig1') ? { ydocBytes: v1Bytes } : null,
+      writeRoom: async (t, r, a) => { persisted.bytes = a.ydocBytes; },
+      readAcl: async () => ({ ownerId: '_public', sharedWith: [] }),
+      backupRoom: async () => {}, // REQUIRED — else ensureMigrated skips (M2 trap)
+    };
+
+    // 3. Boot the server and connect a client to _public/mig1.
+    const { srv, url } = await boot({
+      storage,
+      useHocuspocus: true,
+      authProvider: { requiresAuth: false, validateToken: async () => null },
+      wsRatePerMin: 10000, // avoid default 10/min rate limit for this test
+    });
+
+    const clientDoc = new Yc.Doc();
+    const prov = new HocuspocusProvider({
+      url,
+      name: '_public/mig1',
+      document: clientDoc,
+      WebSocketPolyfill: WS,
+    });
+    await waitFor(() => prov.synced, 10000);
+
+    // 4a. Client must have received a migrated Y.XmlFragment slot (not legacy Y.Text).
+    // Use clientDoc.getMap etc. via the ESM Y class path (HocuspocusProvider applies
+    // the sync update using the ESM yjs import, so types in clientDoc are instances of
+    // the ESM Y classes, not the CJS Yc classes — dual-yjs-package hazard documented
+    // in CLAUDE.md / ADR-0006. Test 4.3 avoids this by applying bytes via Yc.applyUpdate
+    // directly; here we gate on the constructor name to stay class-path-agnostic.)
+    const slot = clientDoc.getMap('store').get('a').get('html');
+    assert.ok(
+      slot && slot.constructor && slot.constructor.name === 'YXmlFragment',
+      `client must receive a migrated Y.XmlFragment slot, not legacy Y.Text (got: ${slot && slot.constructor && slot.constructor.name})`
+    );
+    assert.ok(
+      pmFragmentToHtml(slot).includes('UNIQUEMARKER'),
+      'migrated block text must survive to the client'
+    );
+
+    // 4b. Migration must have been persisted by onLoadDocument's explicit-persist
+    // gate (skipped===false → database.store). Without the explicit persist, the
+    // onUpdate bind runs AFTER onLoadDocument returns, so the freshly-migrated
+    // doc would never be written and every connect would re-run backupRoom.
+    assert.ok(persisted.bytes, 'onLoadDocument must persist the migrated v2 doc');
+    const re = new Yc.Doc();
+    Yc.applyUpdate(re, persisted.bytes);
+    assert.ok(
+      re.getMap('store').get('a').get('html') instanceof Yc.XmlFragment,
+      'persisted .ydoc must be the v2 substrate (Y.XmlFragment slot)'
+    );
+    // SCHEMA_VERSION_KEY = 'schemaVersion', SCHEMA_V2 = 2 (confirmed from migrate-pm-substrate.cjs:60-61).
+    assert.strictEqual(
+      re.getMap('meta').get('schemaVersion'),
+      2,
+      'persisted .ydoc must carry schemaVersion=2 in yMeta'
+    );
+    re.destroy();
+
+    // 5. Cleanup.
+    prov.destroy();
+    clientDoc.destroy();
+    try { srv.httpServer.close(); } catch {}
+  });
+});
