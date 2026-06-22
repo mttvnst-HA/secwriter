@@ -954,8 +954,8 @@ The `Database` base-class shape is CONFIRMED (Task 1.2): `constructor(Partial<{ 
  * owned by ARTIFACT_CATALOG/planArtifactWrites in the storage layer.
  *
  * Carries over from the old flushRoom: the 8 MB MAX_DOC_BYTES pre-serialize
- * refusal, roomHealth.persistFailures tracking, the deferred ESM serializer
- * import (first store pays the latency), and per-key store re-entrancy safety
+ * refusal, roomHealth.persistFailures tracking, the deferred CJS serializer
+ * require (first store pays the latency), and per-key store re-entrancy safety
  * (§2/§8 — no two overlapping stores race the same .ydoc into S3/Azure).
  *
  * CJS on purpose (ADR-0001).
@@ -1046,9 +1046,12 @@ class SecWriterDatabase extends Database {
    * returns void, so this is how we know every store actually completed.
    */
   async drain() {
-    // Snapshot then await; a store() may chain a new promise as we drain, so
-    // loop until the map is quiescent (bounded — stores don't self-trigger).
-    for (let i = 0; i < 5 && this._storeChains.size > 0; i++) {
+    // Loop until quiescent; a store() landing mid-drain extends/adds a chain the
+    // snapshot missed. Termination relies on the shutdown invariant (stores never
+    // self-trigger; Phase 5 calls flushPendingStores() first so no NEW input
+    // arrives). The cap is only a backstop against a future invariant violation —
+    // never the normal exit. (Review S8 follow-up; was a bare i<5.)
+    for (let i = 0; i < 1000 && this._storeChains.size > 0; i++) {
       await Promise.allSettled([...this._storeChains.values()]);
     }
   }

@@ -114,6 +114,26 @@ test('store increments roomHealth.persistFailures on writeRoom error', async () 
   seedRoomFromBlocks(ydoc, [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: 'x' }]);
   await db.store({ documentName: 'tenantA/room1', document: ydoc, state: Y.encodeStateAsUpdate(ydoc) });
   assert.equal(roomHealth.get('tenantA/room1').persistFailures, 1);
+  // A subsequent successful store resets the counter to 0 (recovery path).
+  storage.writeRoom = async () => {};
+  await db.store({ documentName: 'tenantA/room1', document: ydoc, state: Y.encodeStateAsUpdate(ydoc) });
+  assert.equal(roomHealth.get('tenantA/room1').persistFailures, 0);
+});
+
+test('drain awaits in-flight per-key store chains before resolving', async () => {
+  const storage = makeStorage();
+  let finished = false;
+  storage.writeRoom = async () => {
+    await new Promise(res => setTimeout(res, 30));
+    finished = true;
+  };
+  const db = new SecWriterDatabase({ storage, roomHealth: new Map(), maxDocBytes: 8 * 1024 * 1024, log: { warn() {}, error() {} } });
+  const ydoc = new Y.Doc();
+  seedRoomFromBlocks(ydoc, [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: 'x' }]);
+  // Kick off a store but do NOT await it directly — drain() must await it.
+  db.store({ documentName: 'tenantA/room1', document: ydoc });
+  await db.drain();
+  assert.equal(finished, true, 'drain must not resolve until the in-flight store completes');
 });
 
 test('store is re-entrancy-safe per key: overlapping stores serialize, last write is the latest doc', async () => {

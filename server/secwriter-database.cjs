@@ -7,8 +7,8 @@
  * owned by ARTIFACT_CATALOG/planArtifactWrites in the storage layer.
  *
  * Carries over from the old flushRoom: the 8 MB MAX_DOC_BYTES pre-serialize
- * refusal, roomHealth.persistFailures tracking, the deferred ESM serializer
- * import (first store pays the latency), and per-key store re-entrancy safety
+ * refusal, roomHealth.persistFailures tracking, the deferred CJS serializer
+ * require (first store pays the latency), and per-key store re-entrancy safety
  * (§2/§8 — no two overlapping stores race the same .ydoc into S3/Azure).
  *
  * CJS on purpose (ADR-0001).
@@ -39,6 +39,9 @@ class SecWriterDatabase extends Database {
     return h;
   }
 
+  // Deferred CJS require — the room-serializer pulls in heavy ESM-bridged deps,
+  // so the first store (not server boot) pays the load. Synchronous require, so
+  // no await is needed; kept async only so the call site reads uniformly.
   async _getSerializeRoom() {
     if (!this._serializeRoom) {
       this._serializeRoom = require('./room-serializer.cjs').serializeRoom;
@@ -57,6 +60,9 @@ class SecWriterDatabase extends Database {
 
   async store({ documentName, document }) {
     const prev = this._storeChains.get(documentName) || Promise.resolve();
+    // The .catch keeps the per-key chain alive — _doStore swallows + counts its
+    // own failures, so a rejection here would only mean a defect above the try;
+    // either way the next queued store must still run.
     const next = prev.then(() => this._doStore(documentName, document)).catch(() => {});
     this._storeChains.set(documentName, next);
     await next;
@@ -91,7 +97,14 @@ class SecWriterDatabase extends Database {
    * void, so this is how we know every store actually completed.
    */
   async drain() {
-    for (let i = 0; i < 5 && this._storeChains.size > 0; i++) {
+    // Loop until quiescent. A store() that lands while we await extends an
+    // existing chain or adds a new key the snapshot missed, so re-snapshot
+    // until the map is empty. Termination relies on the shutdown invariant:
+    // stores never self-trigger and Phase 5 calls flushPendingStores() first,
+    // so no NEW input arrives during drain. The iteration cap is only a
+    // defensive backstop against a future bug that violates that invariant —
+    // it must never be the normal exit condition.
+    for (let i = 0; i < 1000 && this._storeChains.size > 0; i++) {
       await Promise.allSettled([...this._storeChains.values()]);
     }
   }
