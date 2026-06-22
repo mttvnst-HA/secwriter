@@ -853,21 +853,34 @@ test('store runs full serializeRoom (all four artifacts) and writeRoom', async (
   assert.equal(typeof a.commentsJson, 'string');
 });
 
-test('store carries sidecar CONTENT (comment + TC mark), not just presence', async () => {
+test('store carries sidecar CONTENT (comment + block text), not just presence', async () => {
   // Presence-only assertions (above) can pass while serializeRoom silently
-  // drops sidecar data. Seed a comment + a TC-marked block and assert the
-  // produced artifacts actually contain them. (Review S8.)
+  // drops sidecar data. Seed a comment + a block with distinctive text and
+  // assert the produced artifacts actually contain them. (Review S8.)
+  //
+  // CORRECTED (2026-06-21, commit 5cc4c99) — the original seed over-reached and
+  // could never pass against the real contract:
+  //  1. readComments (src/lib/collab.js) SKIPS any comment value without a
+  //     `.get` method, so the comment MUST be a real Y.Map, not a plain object.
+  //  2. seedRoomFromBlocks stores html in a LEGACY Y.Text slot (the broker
+  //     converts it to a v2 Y.XmlFragment only on a later WS upgrade), so
+  //     serializeRoom alone HTML-ESCAPES inline markup — it does NOT convert
+  //     `<ins class="mark-add">` to `<ADD>`. Mark→SGML conversion is the
+  //     room-serializer + substrate's job (its own tests cover it), NOT
+  //     SecWriterDatabase's. Pin real block TEXT reaching the .SEC instead.
   const storage = makeStorage();
   let captured;
   storage.writeRoom = async (t, r, a) => { captured = a; };
   const db = new SecWriterDatabase({ storage, roomHealth: new Map(), maxDocBytes: 8 * 1024 * 1024, log: { warn() {}, error() {} } });
   const ydoc = new Y.Doc();
-  seedRoomFromBlocks(ydoc, [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: '<ins class="mark-add" data-author-id="u1">added</ins>' }]);
-  ydoc.getMap('comments').set('c1', { id: 'c1', blockId: 'b1', text: 'hi', status: 'open' }); // shape per comments reducer
+  seedRoomFromBlocks(ydoc, [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: 'UNIQUEMARKER content' }]);
+  const cMap = new Y.Map();
+  cMap.set('blockId', 'b1'); cMap.set('status', 'open'); cMap.set('authorName', 'tester');
+  ydoc.getMap('comments').set('c1', cMap); // MUST be a Y.Map — readComments skips plain objects
   await db.store({ documentName: 'tenantA/room1', document: ydoc });
   assert.ok(captured.commentsJson.includes('c1'), 'comment id must reach the comments sidecar');
   const sec = Buffer.from(captured.secBytes).toString('latin1');
-  assert.ok(/<ADD/i.test(sec), 'TC add mark must serialize into the .SEC');
+  assert.ok(sec.includes('UNIQUEMARKER'), 'block text must serialize into the .SEC');
 });
 
 test('fetch splits the canonical documentName and returns ydoc bytes (or null)', async () => {
