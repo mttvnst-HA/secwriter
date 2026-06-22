@@ -169,6 +169,112 @@ describe('Hocuspocus readOnly lever (#239-readiness)', () => {
   });
 });
 
+// ── Test 5 — GATE: shutdown drain flushes ALL dirty rooms (#128 Task 5.2) ────
+
+describe('Shutdown drain — GATE (#128 Task 5.2)', () => {
+  // Test A — flush-all: ≥3 rooms ALL persist, not just the first.
+  it('shutdown drain flushes ALL dirty rooms, not just the first', async () => {
+    const persisted = new Map();
+    const storage = {
+      readRoom: async () => null,
+      writeRoom: async (t, r, a) => { persisted.set(`${t}/${r}`, a.ydocBytes); },
+      readAcl: async () => ({ ownerId: '_public', sharedWith: [] }),
+    };
+    const { srv, url } = await boot({
+      storage, useHocuspocus: true,
+      authProvider: { requiresAuth: false, validateToken: async () => null },
+      wsRatePerMin: 10000, // 3+ WS connections exceed the default 10/min limit
+    });
+
+    const providers = [];
+    for (const id of ['r1', 'r2', 'r3']) {
+      const doc = new Y.Doc();
+      const prov = new HocuspocusProvider({ url, name: `_public/${id}`, document: doc, WebSocketPolyfill: WS });
+      await waitFor(() => prov.synced, 6000);
+      doc.transact(() => { doc.getArray('order').push([id]); }, 'local-publish');
+      // Wait until the edit has propagated to the SERVER-side doc before draining.
+      // flushPendingStores() only flushes what the server already holds — draining
+      // without this wait is a race (edit may still be in-flight over the WS).
+      await waitFor(() => {
+        const d = srv.hocuspocus.documents.get(`_public/${id}`);
+        return d && d.getArray('order').length >= 1;
+      }, 6000);
+      providers.push({ prov, doc, id });
+    }
+
+    srv.hocuspocus.closeConnections();
+    srv.hocuspocus.flushPendingStores();
+    await srv.database.drain();
+
+    for (const id of ['r1', 'r2', 'r3']) {
+      assert.ok(persisted.has(`_public/${id}`), `room ${id} must be persisted by drain`);
+    }
+
+    for (const { prov, doc } of providers) { prov.destroy(); doc.destroy(); }
+    try { srv.httpServer.close(); } catch {}
+  });
+
+  // Test B — within-grace at scale.
+  // N=50 pessimistic rooms (free-plan demo, no prod p99 yet).
+  // TODO(#128): re-confirm N against prod /health p99 post-launch.
+  // BLOCKS=200 (midpoint of a real UFGS section: 100-300).
+  // WRITE_LATENCY_MS=200 simulated S3/Azure PUT worst-case.
+  // Grace assertion: elapsed < 20000ms (Render SIGTERM ~25s, 5s safety margin).
+  it('shutdown drain completes within Render SIGTERM grace at N=50 rooms × 200 blocks', { timeout: 120000 }, async () => {
+    const N = 50;
+    const BLOCKS = 200;
+    const WRITE_LATENCY_MS = 200;
+
+    const storage = {
+      readRoom: async () => null,
+      writeRoom: async () => { await new Promise(r => setTimeout(r, WRITE_LATENCY_MS)); },
+      readAcl: async () => ({ ownerId: '_public', sharedWith: [] }),
+    };
+    const { srv, url } = await boot({
+      storage, useHocuspocus: true,
+      authProvider: { requiresAuth: false, validateToken: async () => null },
+      wsRatePerMin: 10000, // N=50 WS connections far exceed the default 10/min limit
+    });
+
+    // Build a list of BLOCKS block ids to push into each room's order array.
+    const blockIds = Array.from({ length: BLOCKS }, (_, i) => `block-${i}`);
+
+    const providers = [];
+    for (let i = 0; i < N; i++) {
+      const id = `gate-room-${i}`;
+      const doc = new Y.Doc();
+      const prov = new HocuspocusProvider({ url, name: `_public/${id}`, document: doc, WebSocketPolyfill: WS });
+      await waitFor(() => prov.synced, 10000);
+      doc.transact(() => { doc.getArray('order').push(blockIds); }, 'local-publish');
+      // Wait for the server-side doc to reflect the full block list before
+      // proceeding — skipping this makes drain operate on a partially-populated
+      // server doc (not a real race test).
+      await waitFor(() => {
+        const d = srv.hocuspocus.documents.get(`_public/${id}`);
+        return d && d.getArray('order').length >= BLOCKS;
+      }, 10000);
+      providers.push({ prov, doc });
+    }
+
+    const t0 = Date.now();
+    srv.hocuspocus.closeConnections();
+    srv.hocuspocus.flushPendingStores();
+    await srv.database.drain();
+    const elapsed = Date.now() - t0;
+
+    // Print for the commit-message record (stderr so it appears in test output).
+    console.error('[gate] drain elapsed ms:', elapsed);
+
+    assert.ok(
+      elapsed < 20000,
+      `drain must finish within 20s Render grace; took ${elapsed}ms (N=${N}, BLOCKS=${BLOCKS}, WRITE_LATENCY_MS=${WRITE_LATENCY_MS})`
+    );
+
+    for (const { prov, doc } of providers) { prov.destroy(); doc.destroy(); }
+    try { srv.httpServer.close(); } catch {}
+  });
+});
+
 // ── Test 4 — Y.XmlFragment substrate gc round-trip (#128 Task 4.3) ──────────
 
 describe('SecWriterDatabase gc round-trip (#128 Task 4.3)', () => {

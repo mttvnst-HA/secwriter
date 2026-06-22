@@ -97,6 +97,14 @@ class SecWriterDatabase extends Database {
    * void, so this is how we know every store actually completed.
    */
   async drain() {
+    // Yield to the event loop before checking _storeChains. flushPendingStores()
+    // fires async work (debouncer.executeNow → saveMutex.runExclusive → hooks →
+    // database.onStoreDocument → this.store) that populates _storeChains across
+    // multiple microtask boundaries. Without this yield, drain() races: it checks
+    // _storeChains.size === 0 before any store() call has run and exits immediately.
+    // setImmediate drains all pending microtasks (Promise resolutions) before firing,
+    // which is enough to let the full async chain reach store() and set _storeChains.
+    await new Promise((r) => setImmediate(r));
     // Loop until quiescent. A store() that lands while we await extends an
     // existing chain or adds a new key the snapshot missed, so re-snapshot
     // until the map is empty. Termination relies on the shutdown invariant:
