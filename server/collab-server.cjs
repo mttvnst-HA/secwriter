@@ -333,7 +333,19 @@ function createCollabServer(config) {
       hwss.handleUpgrade(req, socket, head, (conn) => {
         // documentName + token travel in-band (provider `name`/`token`); auth
         // runs in onAuthenticate. The 3rd arg is the defaultContext.
-        hocuspocus.handleConnection(conn, req, { remoteAddress: ip });
+        // v4 `handleConnection` only CONSTRUCTS the ClientConnection — it does
+        // NOT attach socket listeners. The integration must pump messages in
+        // (the bundled Server does exactly this; see hocuspocus-server.cjs
+        // open/message/close hooks). Without the pump the connection never
+        // syncs (onAuthenticate/onLoadDocument never fire).
+        const clientConnection = hocuspocus.handleConnection(conn, req, { remoteAddress: ip });
+        conn.on('message', (data) => {
+          const bytes = Array.isArray(data) ? Buffer.concat(data) : data;
+          clientConnection.handleMessage(new Uint8Array(bytes));
+        });
+        conn.on('close', (code, reason) => {
+          clientConnection.handleClose({ code, reason: reason ? reason.toString() : '' });
+        });
       });
     });
     return { hocuspocus, hwss };
