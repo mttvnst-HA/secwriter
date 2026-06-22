@@ -745,24 +745,36 @@ function startFromEnv() {
       signal,
       rooms: server.hocuspocus ? server.hocuspocus.getDocumentsCount() : server.boundDocs.size,
     });
-    if (server.hocuspocus) {
-      // The bare Hocuspocus class has NO destroy() (Task 1.2). Drain in 3 steps:
-      //   1. closeConnections()   — stop accepting new edits.
-      //   2. flushPendingStores() — kick the debounced onStoreDocument for every
-      //      dirty room. Returns void; does NOT await.
-      //   3. await database.drain() — await our own per-key store-chain promises
-      //      (SecWriterDatabase._storeChains). This is how we KNOW every store
-      //      completed, and it inherits the per-key re-entrancy guard so no two
-      //      overlapping stores race the same .ydoc into storage (§2/§8).
-      server.hocuspocus.closeConnections();
-      server.hocuspocus.flushPendingStores();
-      if (server.database) await server.database.drain();
-    } else {
-      await server.flushAllRooms();
+    // The whole drain is wrapped so shutdown is ALWAYS terminal: a drain that
+    // rejects must still close the listeners + exit, or the process hangs until
+    // Render force-kills it (SIGKILL) — defeating the graceful flush. (A drain
+    // that HANGS rather than rejects is still bounded by Render's SIGKILL grace;
+    // drain wall-time within that grace is the Task 5.2 gate.)
+    try {
+      if (server.hocuspocus) {
+        // The bare Hocuspocus class has NO destroy() (Task 1.2). Drain in 3 steps:
+        //   1. closeConnections()   — stop accepting new edits.
+        //   2. flushPendingStores() — kick the debounced onStoreDocument for every
+        //      dirty room. Returns void; does NOT await.
+        //   3. await database.drain() — await our own per-key store-chain promises
+        //      (SecWriterDatabase._storeChains). This is how we KNOW every store
+        //      completed, and it inherits the per-key re-entrancy guard so no two
+        //      overlapping stores race the same .ydoc into storage (§2/§8).
+        server.hocuspocus.closeConnections();
+        server.hocuspocus.flushPendingStores();
+        // database is set in lockstep with hocuspocus (useHocuspocus block); the
+        // guard is defensive against a future subclass passing a null database.
+        if (server.database) await server.database.drain();
+      } else {
+        await server.flushAllRooms();
+      }
+    } catch (err) {
+      log.error('server.shutdown-drain-failed', { signal, err: err && err.message });
+    } finally {
+      try { server.wss.close(); } catch { /* ignore */ }
+      try { server.httpServer.close(); } catch { /* ignore */ }
+      setTimeout(() => process.exit(0), 50);
     }
-    try { server.wss.close(); } catch { /* ignore */ }
-    try { server.httpServer.close(); } catch { /* ignore */ }
-    setTimeout(() => process.exit(0), 50);
   }
   process.on('SIGINT', () => shutdown('SIGINT'));
   process.on('SIGTERM', () => shutdown('SIGTERM'));
