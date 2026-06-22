@@ -20,6 +20,7 @@ import { HocuspocusProvider } from '@hocuspocus/provider';
 import WS from 'ws';
 
 const require_ = createRequire(import.meta.url);
+require_('../dom-polyfill.cjs'); // serializeRoom (Test 4 round-trip) needs the DOM polyfill
 const { createCollabServer } = require_('../collab-server.cjs');
 
 // ── Shared helpers ─────────────────────────────────────────────────────────
@@ -172,8 +173,9 @@ describe('Hocuspocus readOnly lever (#239-readiness)', () => {
 
 describe('SecWriterDatabase gc round-trip (#128 Task 4.3)', () => {
   it('Y.XmlFragment substrate survives store -> fetch -> reload under gc', async () => {
+    // CJS require_ so instanceof checks use the same Y class as the CJS server
+    // modules (single hoisted yjs copy — Gate A1 finding).
     const Yc = require_('yjs');
-    require_('../dom-polyfill.cjs');
     const { seedRoomFromBlocks } = require_('../room-serializer.cjs');
     const { migrateRoom } = require_('../migrate-pm-substrate.cjs');
     const { SecWriterDatabase } = require_('../secwriter-database.cjs');
@@ -188,11 +190,13 @@ describe('SecWriterDatabase gc round-trip (#128 Task 4.3)', () => {
     const slot = doc.getMap('store').get('a').get('html');
     assert.ok(slot instanceof Yc.XmlFragment, 'broker must produce Y.XmlFragment, not Y.Text');
     const htmlBefore = pmFragmentToHtml(slot);
+    assert.ok(htmlBefore, 'pre-store html must be non-empty (else the final equality is vacuous)');
 
     // 2. Store via the database, fetch the bytes back into a FRESH gc doc.
     const captured = {};
     const db = new SecWriterDatabase({
       storage: {
+        // Capture only ydocBytes; the sec/comments/lint sidecars are not under test here.
         writeRoom: async (t, r, a) => { captured.bytes = a.ydocBytes; },
         readRoom: async () => ({ ydocBytes: captured.bytes }),
       },
