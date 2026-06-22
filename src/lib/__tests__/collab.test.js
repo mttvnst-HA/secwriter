@@ -621,6 +621,22 @@ describe('collab — createCollabSession + URL helpers', () => {
     expect(docName).not.toContain('secret-token');
     expect(docName).not.toContain('/ws/');
     session.destroy();
+
+    // A BARE room id (the real App path — getRoomFromUrl strips '/', so the URL
+    // ?room= id is always a single sanitized segment) MUST be prefixed with the
+    // tenant to form the canonical name, or onAuthenticate rejects it (no slash =
+    // malformed) AND the in-memory doc key mismatches the composite the HTTP
+    // upload / getActiveUsers routes look up. Under auth=none the tenant is
+    // '_public'. (Regression: the Phase 8.1 cutover initially sent the bare name.)
+    const bareSession = createCollabSession({
+      room: 'e2eroom42',
+      wsUrl: 'ws://127.0.0.1:9',
+      identity: { id: 'u', name: 'U', color: '#000' },
+      initialBlocks: [],
+      onRemoteBlocks: () => {},
+    });
+    expect(bareSession.provider.configuration.name).toBe('_public/e2eroom42');
+    bareSession.destroy();
   });
 });
 

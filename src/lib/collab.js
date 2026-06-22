@@ -902,6 +902,8 @@ export function createCollabSession({
   token = null,
   getTokenFn = null,  // async () => string|null — called on reconnect for fresh token
   wsPolyfill = undefined,  // optional WebSocket impl for Node unit tests (browser passes nothing)
+  tenant = '_public',  // tenant half of the canonical documentName; '_public' under auth=none
+
   identity,
   initialBlocks,
   initialMeta,
@@ -1037,11 +1039,20 @@ export function createCollabSession({
     }
   };
 
-  // documentName on the wire is the BARE canonical composite room id (no /ws/
-  // prefix, no token in the URL). `room` is already the canonical
-  // <tenant>/<roomId>. The token travels in an AuthenticationMessage, not the
-  // URL — so it never lands in server access / reverse-proxy logs (the
-  // y-websocket v1 limitation that forced the token-in-room-name hack is gone).
+  // documentName on the wire is the canonical composite room id `<tenant>/<roomId>`
+  // (no /ws/ prefix, no token in the URL). The server's onAuthenticate REJECTS any
+  // non-canonical name (no slash → malformed) and keys its in-memory documents Map,
+  // the SecWriterDatabase fetch/store, and the ACL read on this exact string — so a
+  // bare room id would auth-fail AND mismatch the composite key the HTTP upload /
+  // getActiveUsers routes look up. Callers pass a bare `room` (the URL `?room=` id,
+  // sanitized free of slashes); we prefix the tenant here. Under auth=none that is
+  // '_public'; auth=jwt must pass the token's tenant (future — the client has no
+  // tenant plumbing yet). An already-composite `room` (a test passing
+  // '<tenant>/<roomId>') passes through unchanged.
+  const documentName = room.includes('/') ? room : `${tenant}/${room}`;
+  // The token travels in an AuthenticationMessage, not the URL — so it never lands
+  // in server access / reverse-proxy logs (the y-websocket v1 limitation that
+  // forced the token-in-room-name hack is gone).
   //
   // token: an async callback when getTokenFn is supplied so HocuspocusProvider
   // re-fetches a fresh token on every reconnect (issue #566 — the provider
@@ -1049,7 +1060,7 @@ export function createCollabSession({
   // last known currentToken if the callback yields nothing.
   const provider = new HocuspocusProvider({
     url: wsUrl,
-    name: room,
+    name: documentName,
     document: ydoc,
     token: getTokenFn
       ? (async () => {
