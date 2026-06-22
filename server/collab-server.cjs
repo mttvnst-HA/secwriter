@@ -398,8 +398,11 @@ function createCollabServer(config) {
   }
 
   let hocuspocusInstance = null;
+  let hocuspocusDatabase = null;
   if (useHocuspocus) {
-    ({ hocuspocus: hocuspocusInstance } = buildHocuspocus());
+    const built = buildHocuspocus();
+    hocuspocusInstance = built.hocuspocus;
+    hocuspocusDatabase = built.database;
   }
 
   // Issue #17: use noServer + manual upgrade so the WebSocket handshake
@@ -591,6 +594,7 @@ function createCollabServer(config) {
     httpServer,
     wss,
     hocuspocus: hocuspocusInstance,
+    database: hocuspocusDatabase,
     boundDocs,
     docLoadPromises,
     roomHealth,
@@ -737,8 +741,25 @@ function startFromEnv() {
   async function shutdown(signal) {
     if (shuttingDown) return;
     shuttingDown = true;
-    log.info('server.shutdown', { signal, rooms: server.boundDocs.size });
-    await server.flushAllRooms();
+    log.info('server.shutdown', {
+      signal,
+      rooms: server.hocuspocus ? server.hocuspocus.getDocumentsCount() : server.boundDocs.size,
+    });
+    if (server.hocuspocus) {
+      // The bare Hocuspocus class has NO destroy() (Task 1.2). Drain in 3 steps:
+      //   1. closeConnections()   — stop accepting new edits.
+      //   2. flushPendingStores() — kick the debounced onStoreDocument for every
+      //      dirty room. Returns void; does NOT await.
+      //   3. await database.drain() — await our own per-key store-chain promises
+      //      (SecWriterDatabase._storeChains). This is how we KNOW every store
+      //      completed, and it inherits the per-key re-entrancy guard so no two
+      //      overlapping stores race the same .ydoc into storage (§2/§8).
+      server.hocuspocus.closeConnections();
+      server.hocuspocus.flushPendingStores();
+      if (server.database) await server.database.drain();
+    } else {
+      await server.flushAllRooms();
+    }
     try { server.wss.close(); } catch { /* ignore */ }
     try { server.httpServer.close(); } catch { /* ignore */ }
     setTimeout(() => process.exit(0), 50);
