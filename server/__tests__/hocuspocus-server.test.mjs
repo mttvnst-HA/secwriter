@@ -323,6 +323,94 @@ describe('SecWriterDatabase gc round-trip (#128 Task 4.3)', () => {
   });
 });
 
+// ── GATE A2 — seed-safety server properties (#128 Task 7.2) ──────────────────
+
+describe('GATE A2 — seed-safety server properties (#128 Task 7.2)', () => {
+  // Step 1 — load-ordering: synced fires only AFTER onLoadDocument state is applied.
+  // readRoom is deliberately SLOW (800ms) to widen the race window.
+  // If lenAtSynced !== 5: STOP — Hocuspocus's synced does NOT wait for onLoadDocument,
+  // which breaks the entire option-A seed premise.
+  it('synced fires only AFTER onLoadDocument state is applied', { timeout: 30000 }, async () => {
+    const { seedRoomFromBlocks } = require_('../room-serializer.cjs');
+    // Use CJS Y for seedRoomFromBlocks (same class as room-serializer.cjs uses).
+    const Yc = require_('yjs');
+    const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+    const persisted = new Yc.Doc();
+    seedRoomFromBlocks(persisted, [0,1,2,3,4].map(i => ({ id: `b${i}`, type: 'txt', part: 1, depth: 0, html: `B${i}` })));
+    const bytes = Yc.encodeStateAsUpdate(persisted);
+    const storage = {
+      readRoom: async (t, r) => { await sleep(800); return r === 'existing' ? { ydocBytes: bytes } : null; },
+      writeRoom: async () => {},
+      readAcl: async () => ({ ownerId: '_public', sharedWith: [] }),
+    };
+    const { srv, url } = await boot({ storage, useHocuspocus: true, authProvider: { requiresAuth: false, validateToken: async () => null } });
+    const dExist = new Y.Doc();
+    let lenAtSynced = -1;
+    const pExist = new HocuspocusProvider({ url, name: '_public/existing', document: dExist, WebSocketPolyfill: WS, onSynced: () => { lenAtSynced = dExist.getArray('order').length; } });
+    await waitFor(() => pExist.synced, 10000);
+    assert.strictEqual(lenAtSynced, 5, 'server state must be applied to the client doc BEFORE synced fires');
+    const dNew = new Y.Doc();
+    let newLenAtSynced = -1;
+    const pNew = new HocuspocusProvider({ url, name: '_public/newroom', document: dNew, WebSocketPolyfill: WS, onSynced: () => { newLenAtSynced = dNew.getArray('order').length; } });
+    await waitFor(() => pNew.synced, 10000);
+    assert.strictEqual(newLenAtSynced, 0, 'a genuinely-new room is empty at synced');
+    pExist.destroy(); pNew.destroy(); dExist.destroy(); dNew.destroy(); srv.cleanup?.(); srv.httpServer.close();
+  });
+
+  // Step 2 — load-once-from-memory (kills two-client doubling).
+  // A second client to a room syncs the first's content from the shared in-memory doc
+  // WITHOUT a second readRoom call.
+  it('second concurrent client loads from memory (one readRoom, sees content)', { timeout: 30000 }, async () => {
+    const { seedRoomFromBlocks } = require_('../room-serializer.cjs');
+    // Use CJS Y for seedRoomFromBlocks (same class as room-serializer.cjs uses).
+    const Yc = require_('yjs');
+    let reads = 0;
+    const persisted = new Yc.Doc();
+    seedRoomFromBlocks(persisted, [{ id: 'a', type: 'txt', part: 1, depth: 0, html: 'A' }]);
+    const bytes = Yc.encodeStateAsUpdate(persisted);
+    const storage = {
+      readRoom: async () => { reads++; return { ydocBytes: bytes }; },
+      writeRoom: async () => {},
+      readAcl: async () => ({ ownerId: '_public', sharedWith: [] }),
+    };
+    const { srv, url } = await boot({ storage, useHocuspocus: true, authProvider: { requiresAuth: false, validateToken: async () => null } });
+    const dA = new Y.Doc();
+    const pA = new HocuspocusProvider({ url, name: '_public/shared', document: dA, WebSocketPolyfill: WS });
+    await waitFor(() => pA.synced, 10000);
+    const dB = new Y.Doc();
+    const pB = new HocuspocusProvider({ url, name: '_public/shared', document: dB, WebSocketPolyfill: WS });
+    await waitFor(() => pB.synced, 10000);
+    assert.strictEqual(dB.getArray('order').length, 1, 'second client must see the first client content');
+    assert.strictEqual(reads, 1, 'load-once: the second client must NOT re-read storage');
+    pA.destroy(); pB.destroy(); dA.destroy(); dB.destroy(); srv.cleanup?.(); srv.httpServer.close();
+  });
+
+  // Step 3 — warm-doc-across-reconnect (prevents re-seed AND seed loss).
+  // With unloadImmediately: false (already configured in buildHocuspocus, Task 4.2),
+  // a remount within the warm window re-syncs from MEMORY even though storage returns null.
+  // If this fails (length === 0): report DONE_WITH_CONCERNS — unloadImmediately:false may
+  // not keep the doc warm long enough, meaning the client seededRooms guard becomes the
+  // sole re-seed defense.
+  it('reconnect within the warm window syncs from memory (no false-empty)', { timeout: 30000 }, async () => {
+    const storage = {
+      readRoom: async () => null,
+      writeRoom: async () => {},
+      readAcl: async () => ({ ownerId: '_public', sharedWith: [] }),
+    };
+    const { srv, url } = await boot({ storage, useHocuspocus: true, authProvider: { requiresAuth: false, validateToken: async () => null } });
+    const d1 = new Y.Doc();
+    const p1 = new HocuspocusProvider({ url, name: '_public/warm', document: d1, WebSocketPolyfill: WS });
+    await waitFor(() => p1.synced, 10000);
+    d1.transact(() => { d1.getArray('order').push(['seeded']); }, 'local-publish');
+    p1.destroy();
+    const d2 = new Y.Doc();
+    const p2 = new HocuspocusProvider({ url, name: '_public/warm', document: d2, WebSocketPolyfill: WS });
+    await waitFor(() => p2.synced, 10000);
+    assert.strictEqual(d2.getArray('order').length, 1, 'warm memory must retain the seed across an immediate remount');
+    p2.destroy(); d1.destroy(); d2.destroy(); srv.cleanup?.(); srv.httpServer.close();
+  });
+});
+
 // ── Test 6.2 — Broker under onLoadDocument: v1 → v2 + persist + client sync ──
 
 describe('Broker under onLoadDocument (#128 Task 6.2)', () => {
