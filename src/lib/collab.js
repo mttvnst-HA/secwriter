@@ -177,6 +177,14 @@ export class DocSizeLimitError extends Error {
   }
 }
 
+// #17 / option A: a room is seeded at most once per browser session, keyed by
+// canonical room id. Guards the reconnect/StrictMode re-seed window — a provider
+// remount that observes the room empty (because the seed was evicted before its
+// store flushed) must NOT seed a second time. Module scope persists across
+// provider remounts within the session; a different room id is a different key,
+// so entering a DIFFERENT room still seeds correctly.
+const seededRooms = new Set();
+
 /**
  * Estimate the byte footprint of a block array. Uses UTF-8 byte counts of
  * id, type, html, and the serialized table/ref JSON — an overestimate vs
@@ -951,8 +959,16 @@ export function createCollabSession({
       // transport (e.g. WebTransport, multiple connections) breaks that
       // ordering assumption, move the empty check inside the transact
       // block and have seedYBlocks itself re-check before mutating.
+      // The empty-check becomes RELIABLE once the provider is HocuspocusProvider
+      // (Phase 8): its onSynced fires only AFTER onLoadDocument's state is applied
+      // (proven, Gate A2), so an empty observation is a genuinely-new room, not a
+      // pre-sync timing artifact. The per-room guard additionally stops a
+      // reconnect/StrictMode remount from re-seeding a room whose seed was evicted
+      // before it flushed (server warm-doc, unloadImmediately:false, prevents the
+      // loss; this guard prevents the doubling).
       const empty = yOrder.length === 0 && yStore.size === 0;
-      if (empty && Array.isArray(initialBlocks) && initialBlocks.length > 0) {
+      if (empty && !seededRooms.has(room) && Array.isArray(initialBlocks) && initialBlocks.length > 0) {
+        seededRooms.add(room);
         seedYBlocks(ydoc, yOrder, yStore, initialBlocks);
       }
       // M3 — seed meta only if the room's yMeta is empty AND we have a
