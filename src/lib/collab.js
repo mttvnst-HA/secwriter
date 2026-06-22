@@ -68,7 +68,7 @@
  */
 
 import * as Y from 'yjs';
-import { WebsocketProvider } from 'y-websocket';
+import { HocuspocusProvider } from '@hocuspocus/provider';
 import { prosemirrorToYXmlFragment, ySyncPluginKey } from 'y-prosemirror';
 import { applyHtmlToYText, htmlToAttrList, seedYTextFromHtml } from './ytext-html.js';
 import { htmlToPmFragment } from './pmdoc-html.js';
@@ -901,6 +901,7 @@ export function createCollabSession({
   wsUrl = DEFAULT_WS_URL,
   token = null,
   getTokenFn = null,  // async () => string|null — called on reconnect for fresh token
+  wsPolyfill = undefined,  // optional WebSocket impl for Node unit tests (browser passes nothing)
   identity,
   initialBlocks,
   initialMeta,
@@ -928,19 +929,7 @@ export function createCollabSession({
   const yLintIgnored = ydoc.getMap('lintIgnored');
   const yLintMutedNlp = ydoc.getMap('lintMutedNlp');
 
-  // y-websocket builds the URL as `${wsUrl}/${roomName}`.
-  // Append token as query param by encoding it into the room name.
-  // DEPLOYMENT NOTE: Tokens appear in server access logs and reverse proxy logs.
-  // This is a y-websocket v1 limitation (no custom header support). Production
-  // deployments behind reverse proxies must sanitize access logs to strip tokens.
-  let currentToken = token;  // mutable — updated on reconnect via getTokenFn
-  const effectiveRoom = currentToken ? `${room}?token=${encodeURIComponent(currentToken)}` : room;
-  const provider = new WebsocketProvider(wsUrl, effectiveRoom, ydoc);
-  const awareness = provider.awareness;
-
-  // Publish our identity + empty cursor
-  awareness.setLocalStateField('user', identity);
-  awareness.setLocalStateField('cursor', null);
+  let currentToken = token;  // mutable — last known token (fallback for the token callback)
 
   let seeded = false;
 
@@ -1009,48 +998,78 @@ export function createCollabSession({
       onRemoteLintIgnored?.(readLintIgnored(yLintIgnored), { initial: true });
       onRemoteLintMutedNlp?.(readLintMutedNlp(yLintMutedNlp), { initial: true });
     }
-    // Single source of truth for connection status (see onStatusChange
-    // duplication fix — we only fire from the sync handler).
+    // Single source of truth for the 'connected' status. handleSync is now
+    // invoked ONLY via HocuspocusProvider's onSynced callback, which always
+    // fires with state===true (the first server handshake completed), so this
+    // tail always resolves to 'connected'. The connecting / syncing /
+    // disconnected transitions come from handleStatus (onStatus) below.
     onStatusChange?.(isSynced ? 'connected' : 'syncing', { reconnectIn: 0 });
   };
 
-  // Map y-websocket status events to SecWriter's four-state model.
-  // y-websocket fires 'status' with { status: 'connecting'|'disconnected'|'connected' }
-  // on WebSocket lifecycle events. We deliberately ignore 'connected' here because
-  // it fires when the WebSocket opens (before Yjs sync completes); the 'sync'
-  // handler above already transitions to 'connected'/'syncing' after the handshake.
+  // Map HocuspocusProvider status events to SecWriter's four-state model.
+  // HocuspocusProvider re-emits its websocket's 'status' with
+  // { status: 'connecting'|'connected'|'disconnected' } (WebSocketStatus enum).
+  // We deliberately map a raw 'connected' (WebSocket open, PRE-sync) to 'syncing'
+  // and NEVER surface 'connected' here — onSynced (handleSync above) owns the
+  // 'connected' transition, which fires only after the Yjs sync handshake.
   //
-  // Reconnect delay mirrors y-websocket's actual formula:
-  //   Math.pow(2, wsUnsuccessfulReconnects) * 100  (ms, capped at maxBackoffTime)
-  const computeReconnectIn = () => {
-    const attempts = provider.wsUnsuccessfulReconnects || 0;
-    if (attempts === 0) return 0;
-    const maxMs = provider.maxBackoffTime || 2500;
-    return Math.ceil(Math.min(Math.pow(2, attempts) * 100, maxMs) / 1000);
-  };
-
+  // HocuspocusProvider does not expose a y-websocket-style unsuccessful-reconnect
+  // counter (no wsUnsuccessfulReconnects / maxBackoffTime). Its websocket layer
+  // owns the @lifeomic/attempt backoff internally and surfaces no public attempt
+  // count, so the reconnect countdown drops to a generic 'reconnecting' state
+  // (reconnectIn: 0).
+  //
+  // Token rotation is handled by the async token callback passed to the provider
+  // (see construction below): HocuspocusProvider re-invokes getToken() inside
+  // sendToken() on every WebSocket open (onOpen → sendToken → getToken,
+  // hocuspocus-provider.cjs:826/772/832), so a fresh token is sent on every
+  // reconnect. No provider.url mutation is needed (the token travels in an
+  // AuthenticationMessage, not the URL).
   const handleStatus = ({ status }) => {
-    // Token refresh on reconnect. Note: this updates provider.url for the NEXT
-    // reconnect attempt — the current attempt already opened a WebSocket with the
-    // old URL. If the stale token is rejected, the server closes with 4401 and
-    // y-websocket retries with the now-updated URL. One-attempt lag is acceptable.
-    if (status === 'connecting' && getTokenFn) {
-      getTokenFn().then(freshToken => {
-        if (freshToken && freshToken !== currentToken) {
-          currentToken = freshToken;
-          provider.url = `${wsUrl}/${room}?token=${encodeURIComponent(freshToken)}`;
-        }
-      }).catch(() => { /* token refresh failed — reconnect with existing token */ });
-    }
     if (status === 'connecting') {
-      onStatusChange?.('connecting', { reconnectIn: computeReconnectIn() });
+      onStatusChange?.('connecting', { reconnectIn: 0 });
+    } else if (status === 'connected') {
+      // WebSocket open but Yjs sync not yet complete — surface as 'syncing'.
+      // onSynced will transition to 'connected'.
+      onStatusChange?.('syncing', { reconnectIn: 0 });
     } else if (status === 'disconnected') {
-      onStatusChange?.('disconnected', { reconnectIn: computeReconnectIn() });
+      onStatusChange?.('disconnected', { reconnectIn: 0 });
     }
   };
 
-  provider.on('sync', handleSync);
-  provider.on('status', handleStatus);
+  // documentName on the wire is the BARE canonical composite room id (no /ws/
+  // prefix, no token in the URL). `room` is already the canonical
+  // <tenant>/<roomId>. The token travels in an AuthenticationMessage, not the
+  // URL — so it never lands in server access / reverse-proxy logs (the
+  // y-websocket v1 limitation that forced the token-in-room-name hack is gone).
+  //
+  // token: an async callback when getTokenFn is supplied so HocuspocusProvider
+  // re-fetches a fresh token on every reconnect (issue #566 — the provider
+  // re-invokes getToken() per WebSocket open via sendToken()); falls back to the
+  // last known currentToken if the callback yields nothing.
+  const provider = new HocuspocusProvider({
+    url: wsUrl,
+    name: room,
+    document: ydoc,
+    token: getTokenFn
+      ? (async () => {
+          try {
+            const fresh = await getTokenFn();
+            if (fresh) currentToken = fresh;
+          } catch { /* token refresh failed — fall back to last known token */ }
+          return currentToken;
+        })
+      : currentToken,
+    onSynced: () => handleSync(true),
+    onStatus: ({ status }) => handleStatus({ status }),
+    onAuthenticationFailed: () => onStatusChange?.('incompatible', { reconnectIn: 0 }),
+    ...(wsPolyfill ? { WebSocketPolyfill: wsPolyfill } : {}),
+  });
+  const awareness = provider.awareness;
+
+  // Publish our identity + empty cursor
+  awareness.setLocalStateField('user', identity);
+  awareness.setLocalStateField('cursor', null);
 
   // Observe ydoc-level afterTransaction so we get one notification per
   // transaction regardless of whether yOrder, yStore, or a nested Y.Text
@@ -1144,9 +1163,12 @@ export function createCollabSession({
   //                       by the word-boundary-undo plugin's forceFrame
   //                       call (split frames at space/punctuation/Enter).
   //                       Remote ops do NOT enter this stack because the
-  //                       WebsocketProvider applies remote updates with
+  //                       HocuspocusProvider applies remote updates with
   //                       the provider INSTANCE as the Yjs origin (not
-  //                       ySyncPluginKey); the trackedOrigins filter
+  //                       ySyncPluginKey nor 'local-publish') — proven by the
+  //                       Gate A1 pin test
+  //                       src/lib/__tests__/hocuspocus-undo-origin.test.js;
+  //                       the trackedOrigins filter
   //                       rejects them. y-prosemirror's sync plugin also
   //                       guards its remote→PM update path against
   //                       re-emitting a ySyncPluginKey-tagged write,
@@ -1291,8 +1313,12 @@ export function createCollabSession({
     destroy() {
       ydoc.off('afterTransaction', handleAfterTx);
       awareness.off('change', handleAwareness);
-      provider.off('sync', handleSync);
-      provider.off('status', handleStatus);
+      // HocuspocusProvider's status/sync handlers are constructor callbacks,
+      // not .on() subscriptions — provider.destroy() detaches them. destroy()
+      // is a clean teardown with NO zombie reconnect (#803): it calls the
+      // websocket layer's destroy() → disconnect() sets shouldConnect=false
+      // BEFORE the socket close fires, and onClose only schedules a reconnect
+      // when shouldConnect is still true (hocuspocus-provider.cjs:445/397/441).
       try { provider.destroy(); } catch { /* ignore */ }
       try { ydoc.destroy(); } catch { /* ignore */ }
     },
