@@ -1,0 +1,114 @@
+/**
+ * Tests for server/secwriter-database.cjs
+ *
+ * Uses Node's built-in test runner.
+ * Run: node --test server/__tests__/secwriter-database.test.mjs
+ */
+
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+
+const { test } = require('node:test');
+const assert = require('node:assert');
+const Y = require('yjs');
+require('../dom-polyfill.cjs');
+const { SecWriterDatabase } = require('../secwriter-database.cjs');
+const { seedRoomFromBlocks } = require('../room-serializer.cjs');
+
+function makeStorage() {
+  const rooms = new Map();
+  return {
+    written: [],
+    readRoom: async (t, r) => rooms.get(`${t}/${r}`) || null,
+    writeRoom: async (t, r, artifacts) => {
+      rooms.set(`${t}/${r}`, { ydocBytes: artifacts.ydocBytes });
+      return artifacts;
+    },
+  };
+}
+
+test('store runs full serializeRoom (all four artifacts) and writeRoom', async () => {
+  const storage = makeStorage();
+  const captured = [];
+  storage.writeRoom = async (t, r, a) => { captured.push({ t, r, a }); };
+  const roomHealth = new Map();
+  const db = new SecWriterDatabase({ storage, roomHealth, maxDocBytes: 8 * 1024 * 1024, log: { warn() {}, error() {} } });
+
+  const ydoc = new Y.Doc();
+  seedRoomFromBlocks(ydoc, [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: 'Hello' }]);
+
+  await db.store({ documentName: 'tenantA/room1', document: ydoc, state: Y.encodeStateAsUpdate(ydoc) });
+
+  assert.equal(captured.length, 1);
+  assert.equal(captured[0].t, 'tenantA');
+  assert.equal(captured[0].r, 'room1');
+  const a = captured[0].a;
+  assert.ok(a.ydocBytes instanceof Uint8Array);
+  assert.ok(a.secBytes instanceof Uint8Array);
+  assert.equal(typeof a.commentsJson, 'string');
+});
+
+test('store carries sidecar CONTENT (comment + TC mark), not just presence', async () => {
+  const storage = makeStorage();
+  let captured;
+  storage.writeRoom = async (t, r, a) => { captured = a; };
+  const db = new SecWriterDatabase({ storage, roomHealth: new Map(), maxDocBytes: 8 * 1024 * 1024, log: { warn() {}, error() {} } });
+  const ydoc = new Y.Doc();
+  seedRoomFromBlocks(ydoc, [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: '<ins class="mark-add" data-author-id="u1">added</ins>' }]);
+  ydoc.getMap('comments').set('c1', { id: 'c1', blockId: 'b1', text: 'hi', status: 'open' });
+  await db.store({ documentName: 'tenantA/room1', document: ydoc });
+  assert.ok(captured.commentsJson.includes('c1'), 'comment id must reach the comments sidecar');
+  const sec = Buffer.from(captured.secBytes).toString('latin1');
+  assert.ok(/<ADD/i.test(sec), 'TC add mark must serialize into the .SEC');
+});
+
+test('fetch splits the canonical documentName and returns ydoc bytes (or null)', async () => {
+  const storage = makeStorage();
+  storage.readRoom = async (t, r) => (t === 'tenantA' && r === 'room1') ? { ydocBytes: new Uint8Array([1, 2, 3]) } : null;
+  const db = new SecWriterDatabase({ storage, roomHealth: new Map(), maxDocBytes: 8 * 1024 * 1024, log: { warn() {}, error() {} } });
+  const bytes = await db.fetch({ documentName: 'tenantA/room1' });
+  assert.deepEqual([...bytes], [1, 2, 3]);
+  const none = await db.fetch({ documentName: 'tenantA/missing' });
+  assert.equal(none, null);
+});
+
+test('store refuses an over-8MB doc and does NOT call writeRoom', async () => {
+  const storage = makeStorage();
+  let wrote = false;
+  storage.writeRoom = async () => { wrote = true; };
+  const roomHealth = new Map();
+  const db = new SecWriterDatabase({ storage, roomHealth, maxDocBytes: 8, log: { warn() {}, error() {} } });
+  const ydoc = new Y.Doc();
+  seedRoomFromBlocks(ydoc, [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: 'Hello world this exceeds eight bytes' }]);
+  await db.store({ documentName: 'tenantA/big', document: ydoc, state: Y.encodeStateAsUpdate(ydoc) });
+  assert.equal(wrote, false);
+});
+
+test('store increments roomHealth.persistFailures on writeRoom error', async () => {
+  const storage = makeStorage();
+  storage.writeRoom = async () => { throw new Error('S3 down'); };
+  const roomHealth = new Map();
+  const db = new SecWriterDatabase({ storage, roomHealth, maxDocBytes: 8 * 1024 * 1024, log: { warn() {}, error() {} } });
+  const ydoc = new Y.Doc();
+  seedRoomFromBlocks(ydoc, [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: 'x' }]);
+  await db.store({ documentName: 'tenantA/room1', document: ydoc, state: Y.encodeStateAsUpdate(ydoc) });
+  assert.equal(roomHealth.get('tenantA/room1').persistFailures, 1);
+});
+
+test('store is re-entrancy-safe per key: overlapping stores serialize, last write is the latest doc', async () => {
+  const storage = makeStorage();
+  const order = [];
+  storage.writeRoom = async (t, r, a) => {
+    order.push('start');
+    await new Promise(res => setTimeout(res, 30));
+    order.push('end');
+  };
+  const db = new SecWriterDatabase({ storage, roomHealth: new Map(), maxDocBytes: 8 * 1024 * 1024, log: { warn() {}, error() {} } });
+  const ydoc = new Y.Doc();
+  seedRoomFromBlocks(ydoc, [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: 'x' }]);
+  const p1 = db.store({ documentName: 'tenantA/room1', document: ydoc, state: Y.encodeStateAsUpdate(ydoc) });
+  const p2 = db.store({ documentName: 'tenantA/room1', document: ydoc, state: Y.encodeStateAsUpdate(ydoc) });
+  await Promise.all([p1, p2]);
+  assert.deepEqual(order, ['start', 'end', 'start', 'end']);
+});
