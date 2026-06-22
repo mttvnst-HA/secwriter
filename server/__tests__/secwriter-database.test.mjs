@@ -38,8 +38,9 @@ test('store runs full serializeRoom (all four artifacts) and writeRoom', async (
   const ydoc = new Y.Doc();
   seedRoomFromBlocks(ydoc, [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: 'Hello' }]);
 
-  await db.store({ documentName: 'tenantA/room1', document: ydoc, state: Y.encodeStateAsUpdate(ydoc) });
+  const ok = await db.store({ documentName: 'tenantA/room1', document: ydoc, state: Y.encodeStateAsUpdate(ydoc) });
 
+  assert.equal(ok, true, 'a durable write must report success (#249)');
   assert.equal(captured.length, 1);
   assert.equal(captured[0].t, 'tenantA');
   assert.equal(captured[0].r, 'room1');
@@ -101,8 +102,10 @@ test('store refuses an over-8MB doc and does NOT call writeRoom', async () => {
   const db = new SecWriterDatabase({ storage, roomHealth, maxDocBytes: 8, log: { warn() {}, error() {} } });
   const ydoc = new Y.Doc();
   seedRoomFromBlocks(ydoc, [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: 'Hello world this exceeds eight bytes' }]);
-  await db.store({ documentName: 'tenantA/big', document: ydoc, state: Y.encodeStateAsUpdate(ydoc) });
+  const ok = await db.store({ documentName: 'tenantA/big', document: ydoc, state: Y.encodeStateAsUpdate(ydoc) });
   assert.equal(wrote, false);
+  // A refused store must report failure so the upload route returns a 5xx (#249).
+  assert.equal(ok, false);
 });
 
 test('store increments roomHealth.persistFailures on writeRoom error', async () => {
@@ -112,12 +115,17 @@ test('store increments roomHealth.persistFailures on writeRoom error', async () 
   const db = new SecWriterDatabase({ storage, roomHealth, maxDocBytes: 8 * 1024 * 1024, log: { warn() {}, error() {} } });
   const ydoc = new Y.Doc();
   seedRoomFromBlocks(ydoc, [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: 'x' }]);
-  await db.store({ documentName: 'tenantA/room1', document: ydoc, state: Y.encodeStateAsUpdate(ydoc) });
+  const failed = await db.store({ documentName: 'tenantA/room1', document: ydoc, state: Y.encodeStateAsUpdate(ydoc) });
   assert.equal(roomHealth.get('tenantA/room1').persistFailures, 1);
-  // A subsequent successful store resets the counter to 0 (recovery path).
+  // A failed store must resolve false (not throw, not swallow-as-success) so the
+  // upload route and the migration explicit-persist can surface it (#249).
+  assert.equal(failed, false);
+  // A subsequent successful store resets the counter to 0 (recovery path) and
+  // reports success.
   storage.writeRoom = async () => {};
-  await db.store({ documentName: 'tenantA/room1', document: ydoc, state: Y.encodeStateAsUpdate(ydoc) });
+  const ok = await db.store({ documentName: 'tenantA/room1', document: ydoc, state: Y.encodeStateAsUpdate(ydoc) });
   assert.equal(roomHealth.get('tenantA/room1').persistFailures, 0);
+  assert.equal(ok, true);
 });
 
 test('drain awaits in-flight per-key store chains before resolving', async () => {

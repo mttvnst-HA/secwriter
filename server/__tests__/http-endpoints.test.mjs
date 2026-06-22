@@ -117,7 +117,7 @@ describe('HTTP endpoints', () => {
     const handler = createHttpHandler({
       storage,
       boundDocs,
-      flushRoom: async () => {},  // no-op for download/list tests
+      flushRoom: async () => true,  // simulates a durable persist (returns true; #249)
       maxDocBytes: 8 * 1024 * 1024,
     });
     server = http.createServer(handler);
@@ -490,6 +490,39 @@ describe('HTTP endpoints', () => {
     } finally {
       ydoc.destroy();
       boundDocs.delete('_public/upload-room');
+    }
+  });
+
+  it('POST upload returns 500 (not a false 200) when the persist fails (#249)', async () => {
+    // flushRoom routes through SecWriterDatabase.store, which swallows + counts
+    // its own storage failures and resolves false. The upload route must surface
+    // that as a 5xx rather than confirming a write that never landed.
+    const { serializeSEC } = await import('../../src/lib/sec-serializer.js');
+    const blocks = [{ id: 'b1', type: 'title', part: 1, depth: 0, html: 'GENERAL' }];
+    const secXml = serializeSEC(blocks, { sectionNumber: '01 00 00', sectionTitle: 'TEST' });
+
+    const Y = require('yjs');
+    const ydoc = new Y.Doc();
+    ydoc.getArray('order');
+    ydoc.getMap('store');
+    const failDocs = new Map([['_public/persist-fail', ydoc]]);
+
+    const { createHttpHandler } = require('../http-handler.cjs');
+    const handler = createHttpHandler({
+      storage, boundDocs: failDocs,
+      flushRoom: async () => false,  // store reported a failed/refused write
+      maxDocBytes: 8 * 1024 * 1024,
+    });
+    const srv = http.createServer(handler);
+    await new Promise(r => srv.listen(0, '127.0.0.1', r));
+    const port = srv.address().port;
+    try {
+      const resp = await httpPost(`http://127.0.0.1:${port}/rooms/persist-fail/upload`, Buffer.from(secXml));
+      assert.strictEqual(resp.status, 500);
+      assert.ok(resp.body.toString().includes('failed to persist'));
+    } finally {
+      ydoc.destroy();
+      await new Promise(r => srv.close(r));
     }
   });
 

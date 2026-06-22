@@ -58,15 +58,21 @@ class SecWriterDatabase extends Database {
       : new Uint8Array(roomData.ydocBytes);
   }
 
+  // Resolves to true iff the room was durably written, false if the store was
+  // refused (over cap) or failed (storage fault — _doStore counts it). Callers
+  // that gate a durability promise on the write (the upload route, the migration
+  // explicit-persist) MUST check the result; the debounced auto-store path may
+  // ignore it. #249 review.
   async store({ documentName, document }) {
     const prev = this._storeChains.get(documentName) || Promise.resolve();
-    // The .catch keeps the per-key chain alive — _doStore swallows + counts its
-    // own failures, so a rejection here would only mean a defect above the try;
-    // either way the next queued store must still run.
-    const next = prev.then(() => this._doStore(documentName, document)).catch(() => {});
+    // _doStore never throws (it counts its own failures and returns false), so
+    // the .catch is a backstop against an unexpected throw ABOVE its try — it
+    // also keeps the per-key chain alive so the next queued store still runs.
+    const next = prev.then(() => this._doStore(documentName, document)).catch(() => false);
     this._storeChains.set(documentName, next);
-    await next;
+    const ok = await next;
     if (this._storeChains.get(documentName) === next) this._storeChains.delete(documentName);
+    return ok;
   }
 
   async _doStore(documentName, document) {
@@ -75,7 +81,7 @@ class SecWriterDatabase extends Database {
       const snapshot = Y.encodeStateAsUpdate(document);
       if (snapshot.byteLength > this.maxDocBytes) {
         this.log.warn('flush.refused', { roomId: documentName, bytes: snapshot.byteLength, cap: this.maxDocBytes });
-        return;
+        return false;
       }
       const serializeRoom = await this._getSerializeRoom();
       const artifacts = await serializeRoom(document);
@@ -83,10 +89,12 @@ class SecWriterDatabase extends Database {
       await this.storage.writeRoom(tenant, roomId, artifacts);
       health.persistFailures = 0;
       health.lastPersistSuccess = Date.now();
+      return true;
     } catch (err) {
       health.persistFailures = (health.persistFailures || 0) + 1;
       this.log.warn('persist.failed', { roomId: documentName, failures: health.persistFailures, err: err.message });
       if (health.persistFailures >= 3) this.log.error('persist.alert', { roomId: documentName, failures: health.persistFailures });
+      return false;
     }
   }
 

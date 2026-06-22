@@ -140,13 +140,15 @@ function createCollabServer(config) {
 
   // `flushRoom(docName)`: force-persist a resident room now. Routes through the
   // SecWriterDatabase store (per-key re-entrancy + size cap + roomHealth), so
-  // the http-handler upload route can `await` durability before its 200. No-op
-  // when the room isn't resident (nothing to persist that isn't already on disk).
+  // the http-handler upload route can `await` durability before its 200.
+  // Returns true iff the write actually landed; false when the room isn't
+  // resident or the store was refused/failed, so the caller can surface a 5xx
+  // instead of confirming a write that did not happen (#249 review).
   async function flushRoom(docName) {
-    if (!hocuspocusInstance || !hocuspocusDatabase) return;
+    if (!hocuspocusInstance || !hocuspocusDatabase) return false;
     const document = hocuspocusInstance.documents.get(docName);
-    if (!document) return;
-    await hocuspocusDatabase.store({ documentName: docName, document });
+    if (!document) return false;
+    return hocuspocusDatabase.store({ documentName: docName, document });
   }
 
   // ── HTTP + WebSocket on a single port ────────────────────────────────────
@@ -195,7 +197,17 @@ function createCollabServer(config) {
         // inside ensureMigrated before any mutation, so the .ydoc we write here is always
         // backed up first (§6 ordering).
         if (result && result.skipped === false) {
-          await database.store({ documentName, document });
+          const persisted = await database.store({ documentName, document });
+          if (!persisted) {
+            // The migrated v2 substrate did NOT reach storage (transient backend
+            // fault — store() counts it in roomHealth.persistFailures and returns
+            // false rather than throwing). Hocuspocus binds document.onUpdate only
+            // AFTER this hook, so nothing re-persists until the next edit or
+            // reconnect; until then every connect reloads the v1 bytes and re-runs
+            // the broker, and the migration-partial banner sticks. Log at error so
+            // the stuck state is visible instead of silently degrading. #249 review.
+            log.error('migrate.persist-failed', { documentName });
+          }
         }
       } catch (err) {
         // §6: an onLoadDocument THROW has different Hocuspocus semantics (the load is
@@ -252,6 +264,14 @@ function createCollabServer(config) {
       unloadImmediately: false,
     });
     const hwss = new WebSocketServer({ noServer: true });
+    // An unhandled 'error' on a ws WebSocketServer (or a per-connection socket,
+    // below) is an EventEmitter throw → uncaught exception → process crash. The
+    // bundled Hocuspocus `Server` wires these internally; this manual noServer
+    // pump does not get that for free, so wire them ourselves (matches the
+    // pre-#128 y-websocket `wss.on('error')` posture). #249 review.
+    hwss.on('error', (err) => {
+      log.error('server.ws-error', { err: err && err.message });
+    });
     httpServer.on('upgrade', (req, socket, head) => {
       // Pre-auth DoS seam (§1): per-IP WS rate-limit BEFORE handleConnection.
       const ip = socket.remoteAddress || 'unknown';
@@ -277,6 +297,13 @@ function createCollabServer(config) {
         });
         conn.on('close', (code, reason) => {
           clientConnection.handleClose({ code, reason: reason ? reason.toString() : '' });
+        });
+        // A socket-level error (malformed frame, ECONNRESET, TLS fault) emits
+        // 'error' on the ws connection; with no listener Node rethrows it as an
+        // uncaught exception and the whole relay dies. ws fires 'close' after
+        // 'error', so handleClose still runs — just log and let it close. #249.
+        conn.on('error', (err) => {
+          log.warn('ws.socket-error', { ip, err: err && err.message });
         });
       });
     });

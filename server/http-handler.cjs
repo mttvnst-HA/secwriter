@@ -249,8 +249,17 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           }
 
           seedRoomFromBlocks(ydoc, blocks);
-          // Await persist so the 200 response guarantees durability.
-          await flushRoom(composite);
+          // Await persist so the 200 only follows a durable write. flushRoom
+          // routes through SecWriterDatabase.store, which swallows + counts its
+          // own storage failures and resolves to false rather than throwing —
+          // so check the result and return a 5xx, else the client trusts a false
+          // 200 for a write that never landed (#249 review).
+          const persisted = await flushRoom(composite);
+          if (!persisted) {
+            res.writeHead(500, { 'Content-Type': 'text/plain' });
+            res.end('Upload parsed but failed to persist — please retry');
+            return;
+          }
 
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ ok: true, blocks: blocks.length }));
