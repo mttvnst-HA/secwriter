@@ -167,3 +167,48 @@ describe('Hocuspocus readOnly lever (#239-readiness)', () => {
     httpServer.close();
   });
 });
+
+// ── Test 4 — Y.XmlFragment substrate gc round-trip (#128 Task 4.3) ──────────
+
+describe('SecWriterDatabase gc round-trip (#128 Task 4.3)', () => {
+  it('Y.XmlFragment substrate survives store -> fetch -> reload under gc', async () => {
+    const Yc = require_('yjs');
+    require_('../dom-polyfill.cjs');
+    const { seedRoomFromBlocks } = require_('../room-serializer.cjs');
+    const { migrateRoom } = require_('../migrate-pm-substrate.cjs');
+    const { SecWriterDatabase } = require_('../secwriter-database.cjs');
+    const { pmFragmentToHtml } = await import('../../src/lib/pmdoc-html.js');
+
+    // 1. Seed a legacy Y.Text slot, then drive the broker to a real Y.XmlFragment.
+    const doc = new Yc.Doc({ gc: true });
+    seedRoomFromBlocks(doc, [{ id: 'a', type: 'txt', part: 1, depth: 0, html: '<b>bold</b> text' }]);
+    const result = migrateRoom(doc, { log: { info() {}, warn() {}, error() {} } });
+    assert.strictEqual(result.migrationPartial, false);
+    assert.strictEqual(result.migratedCount, 1);
+    const slot = doc.getMap('store').get('a').get('html');
+    assert.ok(slot instanceof Yc.XmlFragment, 'broker must produce Y.XmlFragment, not Y.Text');
+    const htmlBefore = pmFragmentToHtml(slot);
+
+    // 2. Store via the database, fetch the bytes back into a FRESH gc doc.
+    const captured = {};
+    const db = new SecWriterDatabase({
+      storage: {
+        writeRoom: async (t, r, a) => { captured.bytes = a.ydocBytes; },
+        readRoom: async () => ({ ydocBytes: captured.bytes }),
+      },
+      roomHealth: new Map(),
+      maxDocBytes: 8 * 1024 * 1024,
+      log: { warn() {}, error() {} },
+    });
+    await db.store({ documentName: 'tenantA/room1', document: doc });
+    const bytes = await db.fetch({ documentName: 'tenantA/room1' });
+    assert.ok(bytes, 'fetch must return the stored bytes');
+    const reloaded = new Yc.Doc({ gc: true });
+    Yc.applyUpdate(reloaded, bytes);
+
+    // 3. Reloaded slot is STILL a Y.XmlFragment and reads back identical HTML.
+    const reSlot = reloaded.getMap('store').get('a').get('html');
+    assert.ok(reSlot instanceof Yc.XmlFragment, 'reloaded slot must remain Y.XmlFragment (gc must not collapse it)');
+    assert.strictEqual(pmFragmentToHtml(reSlot), htmlBefore);
+  });
+});
