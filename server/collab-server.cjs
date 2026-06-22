@@ -340,11 +340,8 @@ function createCollabServer(config) {
   }
 
   let hocuspocusInstance = null;
-  let hocuspocusWss = null;
   if (useHocuspocus) {
-    const built = buildHocuspocus();
-    hocuspocusInstance = built.hocuspocus;
-    hocuspocusWss = built.hwss;
+    ({ hocuspocus: hocuspocusInstance } = buildHocuspocus());
   }
 
   // Issue #17: use noServer + manual upgrade so the WebSocket handshake
