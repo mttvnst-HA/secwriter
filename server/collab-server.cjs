@@ -43,6 +43,7 @@ const { createMigrationCoordinator } = require('./migrate-pm-substrate.cjs');
 const { PUBLIC_TENANT, splitCompositeDocName, buildCompositeDocName, sanitize } = require('./storage-shared.cjs');
 const { authorize, ACTION } = require('./auth/authorize.cjs');
 const { Hocuspocus } = require('@hocuspocus/server');
+const { buildOnAuthenticate, AuthReject } = require('./hocuspocus-auth.cjs');
 // `ws` is already imported for the y-websocket path; reuse that WebSocketServer.
 
 // Hard caps. A single spec section is O(100KB) of text; 8 MB gives plenty of
@@ -312,12 +313,27 @@ function createCollabServer(config) {
   // upgrade handler below is guarded off when this path is active so only
   // one listener handles the upgrade.
   function buildHocuspocus() {
+    const onAuthenticate = buildOnAuthenticate({ authProvider, storage });
     const hocuspocus = new Hocuspocus({
       name: 'secwriter',
       quiet: true,
-      // Phase 1: no auth, no persistence. Filled in Phase 3 (onAuthenticate)
-      // and Phase 4 (SecWriterDatabase extension).
-      async onAuthenticate() { return {}; },
+      async onAuthenticate(data) {
+        try {
+          return await onAuthenticate(data);
+        } catch (err) {
+          if (err instanceof AuthReject) {
+            log.warn('ws.auth-reject', { status: err.status, reason: err.reason });
+            // Throw a plain Error so Hocuspocus closes the connection with the
+            // SAME opaque close for every rejection (no tenant-mismatch vs
+            // can't-see-room signal).
+            throw new Error('Unauthorized');
+          }
+          // Storage I/O fault in readAcl: fail CLOSED.
+          log.error('ws.authorize-failed', { err: err && err.message });
+          throw new Error('Unauthorized');
+        }
+      },
+      // onLoadDocument + extensions filled in Phase 4/6.
     });
     const hwss = new WebSocketServer({ noServer: true });
     httpServer.on('upgrade', (req, socket, head) => {
