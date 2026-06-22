@@ -97,22 +97,28 @@ class SecWriterDatabase extends Database {
    * void, so this is how we know every store actually completed.
    */
   async drain() {
-    // Yield to the event loop before checking _storeChains. flushPendingStores()
-    // fires async work (debouncer.executeNow → saveMutex.runExclusive → hooks →
-    // database.onStoreDocument → this.store) that populates _storeChains across
-    // multiple microtask boundaries. Without this yield, drain() races: it checks
-    // _storeChains.size === 0 before any store() call has run and exits immediately.
-    // setImmediate drains all pending microtasks (Promise resolutions) before firing,
-    // which is enough to let the full async chain reach store() and set _storeChains.
-    await new Promise((r) => setImmediate(r));
-    // Loop until quiescent. A store() that lands while we await extends an
-    // existing chain or adds a new key the snapshot missed, so re-snapshot
-    // until the map is empty. Termination relies on the shutdown invariant:
-    // stores never self-trigger and Phase 5 calls flushPendingStores() first,
-    // so no NEW input arrives during drain. The iteration cap is only a
-    // defensive backstop against a future bug that violates that invariant —
-    // it must never be the normal exit condition.
-    for (let i = 0; i < 1000 && this._storeChains.size > 0; i++) {
+    // Loop until quiescent. flushPendingStores() does NOT call our store()
+    // directly — it kicks an async chain (debouncer.executeNow →
+    // saveMutex.runExclusive → hooks → database.onStoreDocument → this.store)
+    // that registers each room's _storeChains entry across several event-loop
+    // turns. store()'s FIRST synchronous statement is _storeChains.set, so drain
+    // is correct iff every dirty room's store() is REACHED before we observe an
+    // empty map.
+    //
+    // The setImmediate runs at the TOP of EVERY iteration, not just once. A
+    // single leading yield covers the common case (a purely-debounced room
+    // reaches store() via microtasks only). But a room with an in-flight store
+    // at shutdown re-flushes BEHIND that store's writeRoom IO (a macrotask): its
+    // chain entry is deleted when the in-flight store settles and only re-set a
+    // macrotask later. Yielding a full macrotask turn before each emptiness
+    // check gives that re-flush a window to re-register, closing the lost-write
+    // gap. Terminates because closeConnections() ran first (no new external
+    // edits) and each room re-flushes at most once → the map strictly drains.
+    // The iteration cap is a backstop against a future invariant violation, not
+    // the normal exit.
+    for (let i = 0; i < 1000; i++) {
+      await new Promise((r) => setImmediate(r));
+      if (this._storeChains.size === 0) break;
       await Promise.allSettled([...this._storeChains.values()]);
     }
   }

@@ -1046,12 +1046,21 @@ class SecWriterDatabase extends Database {
    * returns void, so this is how we know every store actually completed.
    */
   async drain() {
-    // Loop until quiescent; a store() landing mid-drain extends/adds a chain the
-    // snapshot missed. Termination relies on the shutdown invariant (stores never
-    // self-trigger; Phase 5 calls flushPendingStores() first so no NEW input
-    // arrives). The cap is only a backstop against a future invariant violation —
-    // never the normal exit. (Review S8 follow-up; was a bare i<5.)
-    for (let i = 0; i < 1000 && this._storeChains.size > 0; i++) {
+    // flushPendingStores() does NOT call store() directly — it kicks an async
+    // chain (executeNow → saveMutex.runExclusive → hooks → onStoreDocument →
+    // store) that registers each room's _storeChains entry across several
+    // event-loop turns. setImmediate runs at the TOP of EVERY iteration: a
+    // single leading yield covers a purely-debounced room (reaches store via
+    // microtasks), but a room with an in-flight store at shutdown re-flushes
+    // BEHIND that store's writeRoom IO (a macrotask) — its entry is deleted when
+    // the in-flight store settles and re-set a macrotask later. Yielding a full
+    // turn before each emptiness check gives that re-flush a window to
+    // re-register, closing the lost-write gap. Terminates because
+    // closeConnections() ran first and each room re-flushes at most once. (Phase
+    // 5.2 gate review HARDEN follow-up; the cap is a backstop, never normal exit.)
+    for (let i = 0; i < 1000; i++) {
+      await new Promise((r) => setImmediate(r));
+      if (this._storeChains.size === 0) break;
       await Promise.allSettled([...this._storeChains.values()]);
     }
   }
