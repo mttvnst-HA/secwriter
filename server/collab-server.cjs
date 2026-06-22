@@ -314,6 +314,8 @@ function createCollabServer(config) {
   // one listener handles the upgrade.
   function buildHocuspocus() {
     const onAuthenticate = buildOnAuthenticate({ authProvider, storage });
+    const { SecWriterDatabase } = require('./secwriter-database.cjs');
+    const database = new SecWriterDatabase({ storage, roomHealth, maxDocBytes: MAX_DOC_BYTES, log });
     const hocuspocus = new Hocuspocus({
       name: 'secwriter',
       quiet: true,
@@ -333,7 +335,26 @@ function createCollabServer(config) {
           throw new Error('Unauthorized');
         }
       },
-      // onLoadDocument + extensions filled in Phase 4/6.
+      extensions: [database],
+      // Flush cadence is a DIFFERENT mechanism (§2): debounce replaces the
+      // hand-rolled 500ms ydoc.on('update') timer; maxDebounce adds a starvation
+      // ceiling the old timer lacked.
+      // CAUTION: the Hocuspocus DEFAULT debounce is 2000ms, NOT 500. We set 500 to
+      // match the old timer, but store() runs the FULL serializeRoom over every
+      // block + an S3/Azure write — at 500ms that can fire up to twice a second per
+      // active room. Measure serialize+write cost in Phase 5.2 and RAISE this if a
+      // realistic room saturates I/O; do not keep 500 by inertia.
+      debounce: DEBOUNCE_MS,
+      maxDebounce: 10000,
+      // gc pinned true to match the v2 substrate's production gc and the
+      // cross-stack rollback gate (Phase 9).
+      yDocOptions: { gc: true },
+      // SEED DURABILITY (Phase 7 / option A companion): keep a room's doc warm
+      // briefly after the last client disconnects instead of unloading immediately,
+      // so a provider remount re-syncs seeded content from MEMORY (never observes
+      // false-empty → never re-seeds) and the seed's debounced store completes
+      // before unload.
+      unloadImmediately: false,
     });
     const hwss = new WebSocketServer({ noServer: true });
     httpServer.on('upgrade', (req, socket, head) => {
@@ -364,7 +385,7 @@ function createCollabServer(config) {
         });
       });
     });
-    return { hocuspocus, hwss };
+    return { hocuspocus, hwss, database };
   }
 
   let hocuspocusInstance = null;
