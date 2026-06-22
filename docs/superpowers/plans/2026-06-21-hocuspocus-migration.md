@@ -785,6 +785,8 @@ it('a read-only connection cannot write: its frame is dropped server-side', asyn
 ```
 
 > If the recorded `connectionConfig.readOnly` does not gate writes as expected, STOP and read `Connection`/`ClientConnection` in the type defs — do not hand-roll a write filter; the whole point of the migration is that Hocuspocus owns this. Record the working field in ADR-0018.
+>
+> **RESOLVED (2026-06-21, verified against @hocuspocus/server@4.3.0 source + index.d.ts; test passing, commit `50efcb7`):** the working lever is to **MUTATE `data.connectionConfig.readOnly = true` inside `onAuthenticate`** — NOT to return `{ readOnly: true }`. The hook's return value merges only into `context` (hocuspocus-server.cjs ~843-847), which is a different object from `connectionConfig`; the write-gate reads `connection.readOnly`, constructed from `connectionConfig.readOnly` (lines 851, 971). With `readOnly` true the server drops incoming `messageYjsUpdate`/syncStep2 frames and replies `writeSyncStatus(false)` (lines 297, 316) — confirmed end-to-end: a read-only writer's push never reaches an observer (observer array length 0). `onAuthenticatePayload` has NO `connection` field (only `connectionConfig`); the `connection` field exists only on `connectedPayload`. ADR-0018 must record `data.connectionConfig.readOnly = true` (mutation) as the #239 viewer lever.
 
 - [ ] **Step 4: Add the new file to `test:server`, run, commit**
 
