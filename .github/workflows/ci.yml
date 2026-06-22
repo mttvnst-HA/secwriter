@@ -18,6 +18,14 @@ jobs:
           cache: npm
       - run: npm ci
 
+      # Hocuspocus (@hocuspocus/server, #128) declares yjs/y-protocols as peer
+      # deps so the server shares ONE hoisted yjs copy with the other CJS
+      # modules — instanceof checks (and the broker's Y.XmlFragment branch) break
+      # if a second non-deduped yjs slips in via a future Hocuspocus bump. Fail
+      # CI if that happens. (ADR-0001 / ADR-0018.)
+      - name: Assert single Yjs instance (Hocuspocus peer-dep pin)
+        run: node -e "const {execSync}=require('child_process'); const out=execSync('npm ls yjs --all',{encoding:'utf8'}); const n=(out.match(/yjs@/g)||[]).length; const deduped=(out.match(/deduped/g)||[]).length; if (n - deduped > 1) { console.error(out); console.error('FAIL: '+n+' yjs refs, '+deduped+' deduped -> '+(n-deduped)+' real copies'); process.exit(1);} console.log('single yjs OK ('+n+' refs, '+deduped+' deduped)');"
+
       - name: Vitest unit tests (630 tests)
         run: npm test
 
