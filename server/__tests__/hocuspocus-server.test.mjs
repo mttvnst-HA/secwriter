@@ -340,8 +340,10 @@ describe('Broker under onLoadDocument (#128 Task 6.2)', () => {
     v1.destroy();
 
     // 2. Storage stub. backupRoom is REQUIRED — ensureMigrated awaits it before
-    // any mutation; without it, migration silently skips (skipped:true) and
-    // the test would produce a false-positive pass (M2 trap).
+    // any mutation; without it, migration silently skips (skipped:true), the
+    // client receives the un-migrated v1 Y.Text and persisted.bytes stays unset,
+    // so BOTH assertions below fail loudly (M2 trap — a hard failure, not a
+    // false-positive pass).
     const persisted = {};
     const storage = {
       readRoom: async (t, r) => (t === '_public' && r === 'mig1') ? { ydocBytes: v1Bytes } : null,
@@ -378,6 +380,13 @@ describe('Broker under onLoadDocument (#128 Task 6.2)', () => {
       slot && slot.constructor && slot.constructor.name === 'YXmlFragment',
       `client must receive a migrated Y.XmlFragment slot, not legacy Y.Text (got: ${slot && slot.constructor && slot.constructor.name})`
     );
+    // Duck-type defense: constructor.name alone would pass vacuously if a minifier
+    // mangled the class name. Assert the slot quacks like a Y.XmlFragment (has
+    // toArray, lacks Y.Text's toDelta) — the same shape pmFragmentToHtml keys on.
+    assert.ok(
+      typeof slot.toArray === 'function' && typeof slot.toDelta !== 'function',
+      'client slot must duck-type as Y.XmlFragment (toArray present, no Y.Text toDelta)'
+    );
     assert.ok(
       pmFragmentToHtml(slot).includes('UNIQUEMARKER'),
       'migrated block text must survive to the client'
@@ -402,9 +411,11 @@ describe('Broker under onLoadDocument (#128 Task 6.2)', () => {
     );
     re.destroy();
 
-    // 5. Cleanup.
+    // 5. Cleanup (match the rest of the file: cleanup() tears down the relay
+    // before closing the HTTP server).
     prov.destroy();
     clientDoc.destroy();
+    srv.cleanup?.();
     try { srv.httpServer.close(); } catch {}
   });
 });
