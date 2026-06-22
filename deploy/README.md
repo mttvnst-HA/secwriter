@@ -9,13 +9,15 @@ Reference configs for deploying SecWriter with TLS termination.
   Browser ──── HTTPS ────►│  Reverse Proxy       │
   (wss://)                │  (nginx or Caddy)    │
                           │                      │
-                          │  /ws/*  ──► :1234    │  WebSocket (Yjs CRDT)
+                          │  /ws/*  ──► :1234    │  WebSocket (Yjs CRDT via Hocuspocus)
                           │  /api/* ──► :1235    │  HTTP REST API
                           │  /*    ──► dist/     │  Static frontend
                           └─────────────────────┘
 ```
 
 Both collab server ports bind to `127.0.0.1` — the reverse proxy is the only external entry point.
+
+**#128 note (WS path):** With Hocuspocus (ADR-0018), `HocuspocusProvider` connects to the bare `VITE_COLLAB_WS_URL` and sends the room name in-band — there is no `/ws/<room>` suffix appended by the client. The `/ws/*` proxy location works correctly when `VITE_COLLAB_WS_URL=wss://collab.example.com/ws` because the provider connects to `wss://collab.example.com/ws` (the URL itself, not `wss://collab.example.com/ws/<room>`). If you change `VITE_COLLAB_WS_URL` to the bare `wss://collab.example.com`, update the WS location block accordingly.
 
 ## Quick Start
 
@@ -76,7 +78,7 @@ Set these before `npm run build`. Vite inlines them into the JS bundle.
 
 ## Log Sanitization
 
-y-websocket v1 passes JWT tokens as `?token=<JWT>` in WebSocket URLs (see `server/collab-server.cjs` line 267). Without log sanitization, tokens appear in reverse proxy access logs.
+**#128 note:** Since the Hocuspocus migration (ADR-0018), `HocuspocusProvider` sends the auth token in-band (not as a `?token=<JWT>` query parameter in the WebSocket URL). The `?token=` log filter in both configs is retained as a defensive measure for any legacy client connecting during a rollout window; it can be removed once all clients are on the Hocuspocus build.
 
 - **nginx**: A `map` directive rewrites `?token=...` to `?token=[REDACTED]` in a custom `log_format`.
 - **Caddy**: The `log` directive uses a field filter to delete the `token` query parameter.

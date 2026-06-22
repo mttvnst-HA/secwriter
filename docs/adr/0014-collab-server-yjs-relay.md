@@ -1,13 +1,15 @@
 # ADR-0014: Collab server — Yjs + y-websocket relay, CJS, four non-obvious patterns
 
-**Status:** Accepted
+**Status:** Accepted — amended by [ADR-0018](0018-collab-relay-hocuspocus.md) (2026-06-22)
 **Date:** 2026-05-20
+
+> **#128 amendment (ADR-0018):** The relay is now **Hocuspocus v4** (`buildHocuspocus()` in `server/collab-server.cjs`), not y-websocket. The y-websocket-specific details in the Decision section below are historical. The four non-obvious patterns are individually amended inline; Pattern #4 (`GET /rooms` `setImmediate` yield) is unchanged.
 
 ## Context
 
 SecWriter's real-time multi-user editing rides Yjs + y-websocket. The server is a thin relay — it terminates WebSocket connections, hosts the per-room `Y.Doc`, persists via a pluggable storage backend ([ADR-0013](0013-storage-backends.md)), and exposes a small HTTP surface for non-WS operations (room listing, .SEC export/upload, comments).
 
-Two foundational decisions sit upstream — [ADR-0001](0001-server-uses-commonjs.md) (server stays CommonJS to keep yjs single-instance) and [ADR-0002](0002-pin-y-websocket-v1.md) (y-websocket pinned at v1). This ADR documents the server's structure and the four non-obvious runtime patterns that have bitten the project enough times to need an authoritative writedown.
+Two foundational decisions sit upstream — [ADR-0001](0001-server-uses-commonjs.md) (server stays CommonJS to keep yjs single-instance) and [ADR-0002](0002-pin-y-websocket-v1.md) (y-websocket pinned at v1 — superseded by ADR-0018). This ADR documents the server's structure and the four non-obvious runtime patterns that have bitten the project enough times to need an authoritative writedown.
 
 ## Decision
 
@@ -25,11 +27,19 @@ Server lives in `server/`:
 
 1. **`extractDocName` strips a leading `/ws/`.** `VITE_COLLAB_WS_URL` in production deploys is `wss://host/ws`; WebsocketProvider then connects to `wss://host/ws/<room>`. y-websocket's default extraction (`req.url.slice(1).split('?')[0]`) yields `"ws/<room>"` — sanitized to `ws_<room>.ydoc` in storage. Without `extractDocName`, you get parallel rooms (one HTTP-managed, one WS-managed). See `server/collab-server.cjs:67`.
 
+   **#128 amendment:** N/A — `extractDocName` is deleted. `documentName` is now **client-supplied in-band** via the `HocuspocusProvider` `name` property (the bare canonical `<tenant>/<roomId>`); no `/ws/` URL prefix to strip. See ADR-0018.
+
 2. **Stale-close eviction guard.** y-websocket's `closeConn` (`node_modules/y-websocket/bin/utils.js:208`) does `docs.delete(doc.name)` keyed by name when a doc's last conn drops. If a previous WS connection's TCP close drains during a new connection's preload `await`, the stale close evicts our just-loaded doc and `setupWSConnection` creates a fresh empty replacement that bypasses preload — sync step 1 fires with empty state, the client seeds, persisted state CRDT-unions on top, yOrder doubles. Mitigated by re-installing the preloaded doc into `ywsDocs` after the await but before `handleUpgrade`. See `server/collab-server.cjs` (~line 360, the preload re-install block in the upgrade handler) and the deterministic regression test in `server/__tests__/collab-server.test.mjs`. The guard is re-installed a SECOND time after the broker await (1d) for the same reason.
+
+   **#128 amendment:** Superseded. Hocuspocus uses a single authoritative `onLoadDocument` hook (called exactly once per room, subsequent connects re-sync from the in-memory doc), `unloadImmediately: false` warm-doc (keeps the doc in memory across provider remounts), and the client-side `seededRooms` module-level guard (prevents re-seeding on reconnect or React.StrictMode double-mount). These three defenses together close the yOrder-doubles race without the upgrade-handler re-install dance. The `ywsDocs`, `setupWSConnection`, and eviction-guard re-install code are deleted. See ADR-0018 Gate A2.
 
 3. **Migration broker invariants (1d).** The broker between preload and `handleUpgrade` adds another await window — same eviction risk, same re-install pattern. Three things are load-bearing: (a) `yMeta.schemaVersion` and `yMeta.migrationPartial` are mutually exclusive — broker code must never write both in the same migration; (b) `backupRoom` (non-destructive — moving the artifacts via `archiveRoom` would destroy the active ACL no flush ever rewrites, bricking the room under auth) MUST happen before any mutation, backup failure aborts (room stays v1); (c) per-block conversion catches every throw and tracks it as `migrationPartial` rather than rolling back the whole migration — half-converted rooms remain editable for both v1 and v2 clients. See [ADR-0006](0006-pm-substrate-migration.md).
 
+   **#128 amendment:** The broker rehomes from the upgrade handler into Hocuspocus's `onLoadDocument` hook. The three load-bearing invariants (a)–(c) are unchanged. Two new details: the broker CATCHES its own errors and RETURNS the document (an `onLoadDocument` throw would abort the load entirely, losing the editable-room + migration-partial-banner failure mode); and a migrated document is **persisted explicitly** via `database.store` when `result.skipped === false`, because Hocuspocus attaches the `onStoreDocument` trigger only AFTER `onLoadDocument` returns — without the explicit persist, a migrated-but-unedited room would re-migrate and re-`backupRoom` on every connect. `backupRoom` still runs before any mutation (backup-before-mutate ordering preserved). See ADR-0018.
+
 4. **`GET /rooms` iteration yields the event loop (PR [#112](https://github.com/mttvnst-HA/secwriter/pull/112), issue [#100](https://github.com/mttvnst-HA/secwriter/issues/100)).** The handler iterates every persisted room and calls `Y.applyUpdate` synchronously to extract section metadata from the `.ydoc` bytes. With the OS file cache warm, the surrounding `await storage.readRoom(id)` resolves without releasing the loop, so listing N rooms freezes the event loop for `N * decode_ms` — observed up to 2.7s with 100 rooms, enough to starve WS handshakes and other HTTP handlers for any concurrent client. Mitigated by `await new Promise(resolve => setImmediate(resolve))` at the top of every iteration in `server/http-handler.cjs`. Looks like a no-op but is load-bearing — the regression test (`server/__tests__/http-list-rooms-event-loop.test.mjs`) installs a 25ms ticker, fires `GET /rooms` against 40 seeded rooms, asserts `maxGap < 200ms`, and fails ~500ms without the yield.
+
+   **#128 amendment:** UNCHANGED — still applies under Hocuspocus.
 
 ### Room lock enforcement (#215)
 

@@ -1,7 +1,9 @@
 # ADR-0002: Pin y-websocket at v1
 
-**Status:** Accepted
+**Status:** Superseded by [ADR-0018](0018-collab-relay-hocuspocus.md) (2026-06-22)
 **Date:** 2026-05-01
+
+> **Superseded.** The y-websocket v1 pin's gating migration happened in [#128](https://github.com/mttvnst-HA/secwriter/issues/128) (ADR-0018). The eviction race (yOrder doubles after stale-close) is no longer handled by the upgrade-handler re-install guard described below; instead it is closed by: the client seed being re-gated on `onSynced` (so an empty-at-synced observation is genuinely new — a load-ordering contract Hocuspocus `onSynced` guarantees after `onLoadDocument` has applied), the module-level `seededRooms` per-room guard against reconnect/StrictMode re-seeds, and `unloadImmediately: false` warm-doc (a provider remount re-syncs from memory rather than reloading an empty doc before the seed flushed). The original body below is retained as the historical record.
 
 ## Context
 

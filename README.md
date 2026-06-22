@@ -44,7 +44,7 @@ SecWriter replaces **SIEditor** — the section editor inside SpecsIntact — fo
 
 1. **The editing experience of Word, the format fidelity of SpecsIntact.** Slash commands for block types, threaded comments, and track changes — all operating directly on `.SEC` files. No Word-to-SpecsIntact round-trip; no learning curve for tag-based editing.
    ![Slash menu for inserting block types](docs/images/slash-menu.png)
-2. **Real-time multi-user editing on `.SEC` files.** The capability no other `.SEC` editor offers. Built on Yjs CRDTs (with `y-websocket` and `y-prosemirror`), so multiple engineers work on the same section simultaneously — live cursors, presence awareness, threaded comments visible to all participants, and track-change marks attributed per author. Edits merge without conflicts and reconcile cleanly after a client drops and reconnects. Works across the public internet through the included collab server, or fully on a private network if you self-host.
+2. **Real-time multi-user editing on `.SEC` files.** The capability no other `.SEC` editor offers. Built on Yjs CRDTs (with Hocuspocus and `y-prosemirror`), so multiple engineers work on the same section simultaneously — live cursors, presence awareness, threaded comments visible to all participants, and track-change marks attributed per author. Edits merge without conflicts and reconcile cleanly after a client drops and reconnects. Works across the public internet through the included collab server, or fully on a private network if you self-host.
 3. **UFS 1-300-02 compliance checking** with grouped findings and one-click auto-fixes for the rules that have deterministic corrections. Rules are data-driven (`src/data/ufs-1-300-02-rules.json`) and traceable to specific sections of the UFS 1-300-02 standard.
    ![Compliance panel showing grouped findings](docs/images/compliance-panel.png)
 4. **Tag-aware editing without tags.** A slash menu picks block types (paragraphs, items, lists, notes, tables, references). The SGML structure is inferred from context, not selected from a toolbar. A `</>` button toggles tag visibility for when you do want to see the underlying structure.
@@ -157,8 +157,8 @@ This project does not currently ship a hardened production deployment recipe. Pr
 <details>
 <summary><strong>Troubleshooting</strong></summary>
 
-- **"Connecting to room..." forever.** No identity is set in `localStorage`. Fill the name prompt; the WebSocket provider only starts once an identity exists.
-- **"WebSocket is closed before the connection is established" warning in dev.** Benign React.StrictMode artifact — effects mount, unmount, and re-mount in development to expose effect bugs. Production builds don't emit it. Verify with `window.__collab.provider.wsconnected === true`.
+- **"Connecting to room..." forever.** No identity is set in `localStorage`. Fill the name prompt; the `HocuspocusProvider` only starts once an identity exists.
+- **"WebSocket is closed before the connection is established" warning in dev.** Benign React.StrictMode artifact — effects mount, unmount, and re-mount in development to expose effect bugs. Production builds don't emit it. Verify with `window.__collab.provider.status === 'connected'`.
 - **Storage backend not picking up env vars.** Restart the collab server after editing `.env.local`; environment variables are read once at startup.
 - **Playwright tests fail with browser errors.** Run `npx playwright install` to fetch the matching browser binaries.
 
@@ -176,7 +176,7 @@ That said: **pre-1.0 means no API stability guarantee yet**, and the hosted demo
 
 - React 19 + Vite (frontend)
 - ProseMirror (editor substrate, per-block `EditorView`)
-- Yjs + y-websocket + y-prosemirror (CRDT collaboration)
+- Yjs + Hocuspocus + y-prosemirror (CRDT collaboration)
 - Node.js CJS collab server
 - Pluggable storage: local disk, Azure Blob, S3-compatible (Cloudflare R2, AWS S3, MinIO)
 - Harper.js (grammar) + compromise.js (NLP) for inline linting
@@ -198,4 +198,4 @@ PolyForm Noncommercial License 1.0.0 — see [`LICENSE.md`](LICENSE.md). Free fo
 
 **UFGS** (Unified Facilities Guide Specifications) and **SpecsIntact** are products of U.S. government agencies and their contractors. SecWriter is an independent project and is **not affiliated with, endorsed by, or sponsored by** the U.S. Department of Defense, the U.S. Army Corps of Engineers, the Naval Facilities Engineering Systems Command, NASA, or any other agency or vendor associated with UFGS or SpecsIntact. UFGS and SpecsIntact are referenced by name solely to identify the file format and editing workflow this project addresses. No trademark claim is made.
 
-SecWriter is built on excellent open-source work — notably ProseMirror, Yjs (with y-websocket and y-prosemirror), Harper.js, compromise.js, and React. See [`package.json`](package.json) for the full dependency list and respective licenses.
+SecWriter is built on excellent open-source work — notably ProseMirror, Yjs (with Hocuspocus and y-prosemirror), Harper.js, compromise.js, and React. See [`package.json`](package.json) for the full dependency list and respective licenses.
