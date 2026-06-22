@@ -42,6 +42,8 @@ const { createHttpHandler } = require('./http-handler.cjs');
 const { createMigrationCoordinator } = require('./migrate-pm-substrate.cjs');
 const { PUBLIC_TENANT, splitCompositeDocName, buildCompositeDocName, sanitize } = require('./storage-shared.cjs');
 const { authorize, ACTION } = require('./auth/authorize.cjs');
+const { Hocuspocus } = require('@hocuspocus/server');
+// `ws` is already imported for the y-websocket path; reuse that WebSocketServer.
 
 // Hard caps. A single spec section is O(100KB) of text; 8 MB gives plenty of
 // headroom for Y.Doc overhead + revision history without letting a runaway
@@ -111,6 +113,12 @@ function createCollabServer(config) {
     // (or disable migration by passing `migrationCoordinator: null`).
     migrationCoordinator = createMigrationCoordinator({ storage, log }),
   } = config;
+
+  // Migration scaffolding (#128): when useHocuspocus is set, the relay is a
+  // Hocuspocus instance instead of the y-websocket setupWSConnection path.
+  // Phase 1 wires a minimal instance (no auth, in-memory) so Gate A1 can run;
+  // Phase 3/4 fill in onAuthenticate + SecWriterDatabase.
+  const useHocuspocus = config.useHocuspocus === true;
 
   // Debounced per-room persistence: one set of artifacts per room, rewritten
   // at most once every DEBOUNCE_MS after any update.
@@ -213,7 +221,7 @@ function createCollabServer(config) {
   // in place; the test harness serializes them. (We could namespace per
   // server instance via a custom getYDoc, but that would mean copying more
   // of y-websocket's internals than is healthy.)
-  setPersistence({
+  if (!useHocuspocus) setPersistence({
     bindState: (docName, ydoc) => {
       boundDocs.set(docName, ydoc);
 
@@ -298,6 +306,47 @@ function createCollabServer(config) {
     })
   );
 
+  // Migration scaffolding (#128): Phase 1 stands up a minimal Hocuspocus
+  // relay behind the useHocuspocus flag. No auth, no persistence — just
+  // enough for Gate A1 to boot a two-provider loopback. The y-websocket
+  // upgrade handler below is guarded off when this path is active so only
+  // one listener handles the upgrade.
+  function buildHocuspocus() {
+    const hocuspocus = new Hocuspocus({
+      name: 'secwriter',
+      quiet: true,
+      // Phase 1: no auth, no persistence. Filled in Phase 3 (onAuthenticate)
+      // and Phase 4 (SecWriterDatabase extension).
+      async onAuthenticate() { return {}; },
+    });
+    const hwss = new WebSocketServer({ noServer: true });
+    httpServer.on('upgrade', (req, socket, head) => {
+      // Pre-auth DoS seam (§1): per-IP WS rate-limit BEFORE handleConnection.
+      const ip = socket.remoteAddress || 'unknown';
+      const wsCheck = rateLimiter.checkLimit(ip, 'ws', wsRatePerMin);
+      if (!wsCheck.allowed) {
+        log.warn('ws.rate-limited', { ip, retryAfter: wsCheck.retryAfter });
+        socket.write('HTTP/1.1 429 Too Many Requests\r\n\r\n');
+        socket.destroy();
+        return;
+      }
+      hwss.handleUpgrade(req, socket, head, (conn) => {
+        // documentName + token travel in-band (provider `name`/`token`); auth
+        // runs in onAuthenticate. The 3rd arg is the defaultContext.
+        hocuspocus.handleConnection(conn, req, { remoteAddress: ip });
+      });
+    });
+    return { hocuspocus, hwss };
+  }
+
+  let hocuspocusInstance = null;
+  let hocuspocusWss = null;
+  if (useHocuspocus) {
+    const built = buildHocuspocus();
+    hocuspocusInstance = built.hocuspocus;
+    hocuspocusWss = built.hwss;
+  }
+
   // Issue #17: use noServer + manual upgrade so the WebSocket handshake
   // itself is gated on bindState completion. Without this, y-websocket's
   // bindState runs async-and-not-awaited; setupWSConnection sends sync
@@ -314,7 +363,7 @@ function createCollabServer(config) {
   // *before* any WS frame can be received.
   const wss = new WebSocketServer({ noServer: true });
 
-  httpServer.on('upgrade', async (req, socket, head) => {
+  if (!useHocuspocus) httpServer.on('upgrade', async (req, socket, head) => {
     const ip = socket.remoteAddress || 'unknown';
     const wsCheck = rateLimiter.checkLimit(ip, 'ws', wsRatePerMin);
     if (!wsCheck.allowed) {
@@ -486,6 +535,7 @@ function createCollabServer(config) {
   return {
     httpServer,
     wss,
+    hocuspocus: hocuspocusInstance,
     boundDocs,
     docLoadPromises,
     roomHealth,
