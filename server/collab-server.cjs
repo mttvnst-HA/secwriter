@@ -119,6 +119,12 @@ function createCollabServer(config) {
     // completes. Tests inject a custom coordinator via `migrationCoordinator`
     // (or disable migration by passing `migrationCoordinator: null`).
     migrationCoordinator = createMigrationCoordinator({ storage, log }),
+    // Hocuspocus flush cadence (ms). Defaults to DEBOUNCE_MS. Injectable because
+    // it also sets the warm-doc window: with unloadImmediately:false a room stays
+    // in memory until its debounced store fires after the last disconnect, so a
+    // test exercising warm-doc-across-reconnect can widen this past WS connect
+    // latency to stay deterministic under parallel load.
+    hocuspocusDebounceMs = DEBOUNCE_MS,
   } = config;
 
   // Migration scaffolding (#128): when useHocuspocus is set, the relay is a
@@ -383,8 +389,10 @@ function createCollabServer(config) {
       // match the old timer, but store() runs the FULL serializeRoom over every
       // block + an S3/Azure write — at 500ms that can fire up to twice a second per
       // active room. Measure serialize+write cost in Phase 5.2 and RAISE this if a
-      // realistic room saturates I/O; do not keep 500 by inertia.
-      debounce: DEBOUNCE_MS,
+      // realistic room saturates I/O; do not keep 500 by inertia. Sourced from the
+      // injectable hocuspocusDebounceMs (defaults to DEBOUNCE_MS) — it also widens
+      // the warm-doc window for the Task 7.2 reconnect test.
+      debounce: hocuspocusDebounceMs,
       maxDebounce: MAX_DEBOUNCE_MS,
       // gc pinned true to match the v2 substrate's production gc and the
       // cross-stack rollback gate (Phase 9).

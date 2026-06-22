@@ -397,7 +397,14 @@ describe('GATE A2 — seed-safety server properties (#128 Task 7.2)', () => {
       writeRoom: async () => {},
       readAcl: async () => ({ ownerId: '_public', sharedWith: [] }),
     };
-    const { srv, url } = await boot({ storage, useHocuspocus: true, authProvider: { requiresAuth: false, validateToken: async () => null } });
+    // Widen the warm-doc window well past WS connect latency. The window equals
+    // the Hocuspocus debounce (a dirty room with unloadImmediately:false stays in
+    // memory until its debounced store fires after the last disconnect). The
+    // production default is DEBOUNCE_MS=500ms — too tight to survive the p2
+    // connect under full-suite parallel load (a RAFT flake, CLAUDE.md #11). 10s
+    // keeps it deterministic without changing what is tested (we never assert the
+    // store fires here).
+    const { srv, url } = await boot({ storage, useHocuspocus: true, authProvider: { requiresAuth: false, validateToken: async () => null }, hocuspocusDebounceMs: 10000 });
     const d1 = new Y.Doc();
     const p1 = new HocuspocusProvider({ url, name: '_public/warm', document: d1, WebSocketPolyfill: WS });
     await waitFor(() => p1.synced, 10000);
