@@ -3,6 +3,7 @@ import * as Y from 'yjs';
 import { HocuspocusProvider } from '@hocuspocus/provider';
 import WS from 'ws';
 import { createCollabServer } from '../../../server/collab-server.cjs';
+import { createCollabSession } from '../collab.js';
 import { ySyncPluginKey } from 'y-prosemirror';
 
 // Minimal storage stub: no persistence, ACL always allows (auth=none path).
@@ -90,4 +91,102 @@ describe('Gate A1: HocuspocusProvider remote-update origin', () => {
 
     provA.destroy(); provB.destroy(); docA.destroy(); docB.destroy();
   });
+});
+
+describe('Gate A2: client re-seed guard holds across two mounts', () => {
+  // Exercises createCollabSession's module-level seededRooms guard (collab.js
+  // line 186). A new room seeded by session 1 must NOT have its blocks doubled
+  // when session 2 mounts for the same room id (the StrictMode/reconnect
+  // remount shape). Both the client-side seededRooms guard AND the server-side
+  // empty-check inside handleSync participate; the test pins that EXACTLY N
+  // blocks survive in the server doc regardless of which guard fires first.
+
+  let srv2;
+  afterEach(() => { try { srv2?.cleanup?.(); srv2?.httpServer?.close(); } catch {} });
+
+  it('room seeded once has exactly N blocks after a second session mounts for the same room', async () => {
+    srv2 = createCollabServer({
+      storage: stubStorage,
+      authProvider: { requiresAuth: false, validateToken: async () => null },
+      migrationCoordinator: null,
+      wsRatePerMin: 10000,
+    });
+    await new Promise(r => srv2.httpServer.listen(0, '127.0.0.1', r));
+    const wsUrl = `ws://127.0.0.1:${srv2.httpServer.address().port}`;
+    const room = '_public/reseed1';
+
+    const initialBlocks = [
+      { id: 'b1', type: 'txt', part: 1, depth: 0, html: 'Block one' },
+      { id: 'b2', type: 'txt', part: 1, depth: 0, html: 'Block two' },
+      { id: 'b3', type: 'txt', part: 1, depth: 0, html: 'Block three' },
+    ];
+    const N = initialBlocks.length;
+
+    // ── Session 1: seed the room ────────────────────────────────────────────
+    let initialBlocksReceived1 = null;
+    const session1 = createCollabSession({
+      room,
+      wsUrl,
+      wsPolyfill: WS,
+      identity: { id: 'u1', name: 'U1', color: '#f00' },
+      initialBlocks,
+      onRemoteBlocks: (blocks, meta) => {
+        if (meta?.initial) initialBlocksReceived1 = blocks;
+      },
+      onRemoteMeta: () => {},
+      onRemoteTc: () => {},
+      onRemoteComments: () => {},
+      onRemoteLint: () => {},
+      onRemoteLintIgnored: () => {},
+      onRemoteLintMutedNlp: () => {},
+      onPresenceChange: () => {},
+      onStatusChange: () => {},
+    });
+
+    // Wait until session 1 is synced AND the server doc has exactly N blocks.
+    await waitFor(() => {
+      const doc = srv2.hocuspocus.documents.get(room);
+      return doc != null && doc.getArray('order').length === N;
+    });
+
+    session1.destroy();
+
+    // ── Session 2: remount for the same room with the same initialBlocks ────
+    // The seededRooms guard (module-level Set) and the server's non-empty room
+    // both prevent a second seed. We verify the count stays at exactly N.
+    let initialBlocksReceived2 = null;
+    const session2 = createCollabSession({
+      room,
+      wsUrl,
+      wsPolyfill: WS,
+      identity: { id: 'u2', name: 'U2', color: '#00f' },
+      initialBlocks,  // same blocks — would double if guard were absent
+      onRemoteBlocks: (blocks, meta) => {
+        if (meta?.initial) initialBlocksReceived2 = blocks;
+      },
+      onRemoteMeta: () => {},
+      onRemoteTc: () => {},
+      onRemoteComments: () => {},
+      onRemoteLint: () => {},
+      onRemoteLintIgnored: () => {},
+      onRemoteLintMutedNlp: () => {},
+      onPresenceChange: () => {},
+      onStatusChange: () => {},
+    });
+
+    // Wait for session 2's onRemoteBlocks({ initial: true }) to fire.
+    await waitFor(() => initialBlocksReceived2 !== null);
+
+    // ── Assertions ─────────────────────────────────────────────────────────
+    // Server doc is the authoritative count — it is the shared state both
+    // sessions observe; the client-callback count follows from it.
+    const serverDoc = srv2.hocuspocus.documents.get(room);
+    expect(serverDoc.getArray('order').length).toBe(N);
+
+    // The blocks the second session received on its initial emit must also
+    // be exactly N (not 2N) — the seed did not run twice.
+    expect(initialBlocksReceived2.length).toBe(N);
+
+    session2.destroy();
+  }, 15000);
 });
