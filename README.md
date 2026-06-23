@@ -166,7 +166,7 @@ This project does not currently ship a hardened production deployment recipe. Pr
 
 ## Project status
 
-Version 0.1, actively developed. The project ships substantial test coverage — approximately 750 tests across Vitest unit, Node-runner compliance and corpus, and server integration suites, plus a 152-test Playwright end-to-end suite — and `.SEC` file format compatibility is regression-tested against all 690 UFGS master specifications.
+Version 0.1, actively developed. The project ships substantial test coverage — approximately 1,800 tests across Vitest unit, Node-runner compliance and corpus, and server integration suites, plus a 183-test Playwright end-to-end suite — and `.SEC` file format compatibility is regression-tested against all 690 UFGS master specifications.
 
 That said: **pre-1.0 means no API stability guarantee yet**, and the hosted demo is a free-tier deployment with no SLA. **Export your work**; do not trust the demo with anything you cannot afford to lose. The `.SEC` file format compatibility itself is the load-bearing contract and is the part most actively defended by tests.
 
