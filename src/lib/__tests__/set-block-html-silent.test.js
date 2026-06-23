@@ -2,7 +2,19 @@
 import { describe, it, expect } from 'vitest';
 import * as Y from 'yjs';
 import { ySyncPluginKey } from 'y-prosemirror';
-import { seedBlockArray, setBlockHtml, setBlockHtmlSilent, getBlockHtml } from '../block-html-store.js';
+import { seedBlockArray, setBlockHtml, setBlockHtmlSilent, getBlockHtml, seedYTextFromHtml } from '../block-html-store.js';
+
+/** Build a yMap with a legacy Y.Text html slot (migrationPartial fallback fixture). */
+function seedLegacyYTextBlock(ydoc, yOrder, yStore, blockId, html) {
+  ydoc.transact(() => {
+    const yMap = new Y.Map();
+    const yText = new Y.Text();
+    seedYTextFromHtml(yText, html);
+    yMap.set('html', yText);
+    yStore.set(blockId, yMap);
+    yOrder.push([blockId]);
+  }, 'seed');
+}
 
 describe('setBlockHtmlSilent', () => {
   it('writes the same content as setBlockHtml', () => {
@@ -54,5 +66,27 @@ describe('setBlockHtmlSilent', () => {
     setBlockHtmlSilent(storeA, 'n1', '<p>silent</p>');
     Y.applyUpdate(docB, Y.encodeStateAsUpdate(docA));
     expect(getBlockHtml(storeB, 'n1')).toContain('silent');
+  });
+
+  it('routes through applyHtmlToYText on a legacy Y.Text slot, off the UndoManager', () => {
+    // Closes the silent + Y.Text origin-pairing gap: setBlockHtml's legacy
+    // tests pin Y.Text + local-publish; this pins Y.Text + local-reconcile.
+    // Together they prove the shared applyHtmlToSlot helper's Y.Text branch
+    // (the migrationPartial deletion target) under BOTH origins.
+    const ydoc = new Y.Doc();
+    const yOrder = ydoc.getArray('order');
+    const yStore = ydoc.getMap('store');
+    seedLegacyYTextBlock(ydoc, yOrder, yStore, 'legacy', 'a');
+    const um = new Y.UndoManager([yOrder, yStore], {
+      trackedOrigins: new Set(['local-publish', ySyncPluginKey]),
+    });
+    const before = um.undoStack.length;
+    setBlockHtmlSilent(yStore, 'legacy', 'b');
+    // Content roundtrips, slot stays Y.Text (no auto-upgrade), origin non-tracked.
+    expect(getBlockHtml(yStore, 'legacy')).toBe('b');
+    const slot = yStore.get('legacy').get('html');
+    expect(typeof slot.toDelta).toBe('function');
+    expect(typeof slot.toArray).toBe('undefined');
+    expect(um.undoStack.length).toBe(before);
   });
 });
