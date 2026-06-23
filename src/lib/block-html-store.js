@@ -111,7 +111,23 @@ export function getBlockHtml(yStore, blockId) {
   return getCached(yHtml);
 }
 
-export function setBlockHtml(yStore, blockId, html) {
+/**
+ * Shared write dispatch for a block's html slot. Resolves the slot, coerces
+ * the input, picks the shape-appropriate serializer, and wraps the mutation
+ * in a single `ydoc.transact(origin)`. The ONLY axis the two public writers
+ * (setBlockHtml / setBlockHtmlSilent) vary is `origin`, so they reduce to
+ * one-line wrappers over this. Private — not exported; the slot shape never
+ * needs to escape this module on the write side.
+ *
+ * Shape rules (mirror pm-fragment-cache.deriveHtml on the read side):
+ *   - Y.XmlFragment (post-1d default): htmlToPmFragment + prosemirrorToYXmlFragment.
+ *   - Y.Text (migrationPartial leftover; pre-broker doc): applyHtmlToYText so
+ *     v1 peers still see character-shape ops. This is the branch that gets
+ *     deleted when migrationPartial rooms are gone — now in ONE place.
+ *   - Unknown shape (missing slot, bare string): silently drop rather than
+ *     corrupt the doc.
+ */
+function applyHtmlToSlot(yStore, blockId, html, origin) {
   const yMap = yStore.get(blockId);
   if (!yMap) return;
   const yHtml = yMap.get('html');
@@ -120,24 +136,25 @@ export function setBlockHtml(yStore, blockId, html) {
   if (!ydoc) return;
   const next = typeof html === 'string' ? html : '';
 
-  // Y.XmlFragment (post-1d, post-broker-migrated) — write via PM serializer.
   if (typeof yHtml.toArray === 'function' && typeof yHtml.nodeName !== 'string') {
     ydoc.transact(() => {
       const pmNode = htmlToPmFragment(next);
       prosemirrorToYXmlFragment(pmNode, yHtml);
-    }, 'local-publish');
+    }, origin);
     return;
   }
 
-  // Y.Text legacy (migrationPartial leftover; pre-broker doc) — keep writing
-  // via the snapshot-diff path so v1 peers still see character-shape ops.
   if (typeof yHtml.toDelta === 'function') {
     ydoc.transact(() => {
       applyHtmlToYText(yHtml, next);
-    }, 'local-publish');
+    }, origin);
     return;
   }
   // Unknown shape — silently drop the write rather than corrupt the doc.
+}
+
+export function setBlockHtml(yStore, blockId, html) {
+  applyHtmlToSlot(yStore, blockId, html, 'local-publish');
 }
 
 /**
@@ -154,28 +171,7 @@ export function setBlockHtml(yStore, blockId, html) {
  * transaction origin differs.
  */
 export function setBlockHtmlSilent(yStore, blockId, html) {
-  const yMap = yStore.get(blockId);
-  if (!yMap) return;
-  const yHtml = yMap.get('html');
-  if (!yHtml) return;
-  const ydoc = yStore.doc;
-  if (!ydoc) return;
-  const next = typeof html === 'string' ? html : '';
-
-  if (typeof yHtml.toArray === 'function' && typeof yHtml.nodeName !== 'string') {
-    ydoc.transact(() => {
-      const pmNode = htmlToPmFragment(next);
-      prosemirrorToYXmlFragment(pmNode, yHtml);
-    }, 'local-reconcile');
-    return;
-  }
-
-  if (typeof yHtml.toDelta === 'function') {
-    ydoc.transact(() => {
-      applyHtmlToYText(yHtml, next);
-    }, 'local-reconcile');
-    return;
-  }
+  applyHtmlToSlot(yStore, blockId, html, 'local-reconcile');
 }
 
 export function subscribeBlock(yStore, blockId, listener) {
