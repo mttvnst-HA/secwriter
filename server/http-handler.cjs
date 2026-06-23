@@ -13,6 +13,7 @@
 // creates Y.Map/Y.Text from the ESM Yjs copy, which fails instanceof checks
 // against CJS Y.Docs. room-serializer uses the same CJS Yjs as the server.
 const { seedRoomFromBlocks } = require('./room-serializer.cjs');
+const { migrateRoom } = require('./migrate-pm-substrate.cjs');
 const { log } = require('./logger.cjs');
 const { sanitize, PUBLIC_TENANT, buildCompositeDocName } = require('./storage-shared.cjs');
 const { authorize, checkPrincipal, aclAllowsRead, ACTION } = require('./auth/authorize.cjs');
@@ -249,6 +250,18 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           }
 
           seedRoomFromBlocks(ydoc, blocks);
+          // #248 — seedRoomFromBlocks writes legacy Y.Text html slots and clears
+          // the migration sentinels, relying on the v1→v2 broker re-running on the
+          // "next WS upgrade". Under Hocuspocus the broker only runs once per room
+          // load (onLoadDocument, warm doc), so an in-memory upload never re-fires
+          // it — the seeded Y.Text slots stay unbound by PmEditableBlock's
+          // ySyncPlugin (which binds Y.XmlFragment) and live edits don't sync to
+          // peers. Call the pure broker directly here (NOT migrationCoordinator,
+          // whose per-docName cache short-circuits as alreadyV2 after the empty
+          // first load) to promote Y.Text → Y.XmlFragment on the live doc. The
+          // migrate-v2 ops broadcast to connected clients, which re-bind via the
+          // already-handled broker-swap path.
+          migrateRoom(ydoc, { log });
           // Await persist so the 200 only follows a durable write. flushRoom
           // routes through SecWriterDatabase.store, which swallows + counts its
           // own storage failures and resolves to false rather than throwing —
