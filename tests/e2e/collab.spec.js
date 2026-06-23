@@ -167,18 +167,13 @@ test.describe('Collab', () => {
   // Server-seeded room content prevents the initial-sync race where both tabs
   // load sample data from localStorage and overwrite each other's edits.
   //
-  // QUARANTINED (#248): fails deterministically (3/3 isolated). A live edit
-  // typed into an UPLOAD-SEEDED block never propagates to peer B. The upload
-  // route (POST /rooms/:id/upload) injects legacy Y.Text html slots into an
-  // already-loaded doc, but the v1→v2 substrate broker only runs in
-  // onLoadDocument (at connect, when the room was still empty), so those slots
-  // are never migrated to the Y.XmlFragment that PmEditableBlock's ySyncPlugin
-  // binds — per-keystroke edits produce no syncing ops. Pre-existing
-  // (broker predates the #128 relay cutover); surfaced by the #128 E2E gate.
-  // Unquarantine when #248 lands. Repro:
-  //   npx playwright test collab.spec.js --project=chromium --workers=1 \
-  //     --grep "two-tab text sync" --repeat-each=3
-  test.fixme('two-tab text sync: text typed by user A is visible to user B', { timeout: 60000 }, async ({ browser }) => {
+  // #248 FIX: the upload route (POST /rooms/:id/upload) injects legacy Y.Text
+  // html slots into an already-loaded doc. The v1→v2 substrate broker only runs
+  // in onLoadDocument (at connect, when the room was still empty), so the upload
+  // route now calls migrateRoom() inline to promote those slots to the
+  // Y.XmlFragment that PmEditableBlock's ySyncPlugin binds — without it,
+  // per-keystroke edits produced no syncing ops and never reached peer B.
+  test('two-tab text sync: text typed by user A is visible to user B', { timeout: 60000 }, async ({ browser }) => {
     const room = uniqueRoom();
     const ctxA = await browser.newContext();
     const ctxB = await browser.newContext();

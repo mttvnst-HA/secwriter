@@ -477,16 +477,28 @@ describe('HTTP endpoints', () => {
       const yOrder = ydoc.getArray('order');
       assert.ok(yOrder.length >= 2, `yOrder should have ≥2 entries, got ${yOrder.length}`);
 
-      // PR #51 review (issue d). Seed clears the migration sentinels so
-      // the broker re-runs on the next WS upgrade and promotes the
-      // seeded Y.Text slots to Y.XmlFragment. The HTTP path itself is
-      // CJS-only (the broker runs in the WS upgrade handler, which is
-      // exercised by collab-server tests).
+      // #248. seedRoomFromBlocks writes legacy Y.Text html slots; the upload
+      // route then calls migrateRoom() inline to promote them to Y.XmlFragment
+      // on the live doc. Under Hocuspocus the broker only runs once per room
+      // load (onLoadDocument), so it never re-fires after an in-memory upload —
+      // the inline migrate is what makes upload-seeded blocks bindable by
+      // PmEditableBlock's ySyncPlugin (which binds Y.XmlFragment) and syncable
+      // to peers.
       const yMeta = ydoc.getMap('meta');
-      assert.strictEqual(yMeta.get('schemaVersion'), undefined,
-        'seed must clear schemaVersion so the broker re-runs on upgrade');
+      assert.strictEqual(yMeta.get('schemaVersion'), 2,
+        'inline migrateRoom must set schemaVersion=2 after a clean upload migration');
       assert.strictEqual(yMeta.get('migrationPartial'), undefined,
-        'seed must clear migrationPartial too');
+        'a clean migration must not set migrationPartial');
+
+      // Every seeded html slot is now a Y.XmlFragment (duck-typed: has toArray,
+      // no string nodeName), not the legacy Y.Text the seed wrote.
+      const yStore = ydoc.getMap('store');
+      for (const blockId of yStore.keys()) {
+        const yHtml = yStore.get(blockId).get('html');
+        if (!yHtml) continue;
+        assert.ok(typeof yHtml.toArray === 'function' && typeof yHtml.nodeName !== 'string',
+          `block ${blockId} html slot must be a Y.XmlFragment after upload migration`);
+      }
     } finally {
       ydoc.destroy();
       boundDocs.delete('_public/upload-room');
