@@ -5,12 +5,26 @@
 # upgrade headers automatically.
 #
 # Usage: caddy run --config Caddyfile
+#
+# ── PROXY WS-ROUTE REVIEW REQUIRED (#128) ───────────────────────────────
+# Prior to #128 (Hocuspocus migration, ADR-0018), the client connected to
+# wss://host/ws/<room> and the proxy stripped the /ws/ prefix before
+# forwarding to the backend. With Hocuspocus the client connects to the
+# bare wsUrl and sends the room name in-band; there is NO /ws/<room> path.
+#
+# If VITE_COLLAB_WS_URL is wss://collab.example.com/ws the handle_path /ws/*
+# block below still routes correctly. If you change it to the bare
+# wss://collab.example.com, update the WS handle_path block accordingly.
+# Review your VITE_COLLAB_WS_URL against the handle_path blocks before
+# deploying #128.
 
 collab.example.com {    # <-- change to your domain
 
     # ── Log sanitization ────────────────────────────────────────────────
-    # y-websocket v1 passes JWT tokens as ?token=<JWT> in WebSocket URLs.
-    # The filter below strips the token query parameter from logged URIs.
+    # NOTE (#128): HocuspocusProvider sends the auth token in-band (not as
+    # a ?token= query parameter). The token log filter below is retained as
+    # a defensive measure for any legacy client connecting during a rollout
+    # window, and for future auth changes.
     log {
         output file /var/log/caddy/collab.log
         format filter {
@@ -26,6 +40,7 @@ collab.example.com {    # <-- change to your domain
     # ── WebSocket (Yjs CRDT sync) ───────────────────────────────────────
     # Client connects to: wss://collab.example.com/ws/<roomName>
     # handle_path strips /ws prefix → backend sees /<roomName>
+    # See proxy WS-route review note above if changing VITE_COLLAB_WS_URL.
     handle_path /ws/* {
         reverse_proxy 127.0.0.1:1234
     }

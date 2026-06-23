@@ -241,7 +241,20 @@ Define a `buildHocuspocus()` helper inside `createCollabServer`. It references `
       hwss.handleUpgrade(req, socket, head, (conn) => {
         // documentName + token travel in-band (provider `name`/`token`); auth
         // runs in onAuthenticate. The 3rd arg is the defaultContext.
-        hocuspocus.handleConnection(conn, req, { remoteAddress: ip });
+        // CRITICAL (verified against @hocuspocus/server@4.3.0 source): v4
+        // `handleConnection` only CONSTRUCTS the ClientConnection — it attaches
+        // NO socket listeners. The integration MUST pump messages in, exactly
+        // as the bundled Server's open/message/close hooks do
+        // (hocuspocus-server.cjs ~5600). Without this the relay accepts the
+        // upgrade but never syncs (onAuthenticate/onLoadDocument never fire).
+        const clientConnection = hocuspocus.handleConnection(conn, req, { remoteAddress: ip });
+        conn.on('message', (data) => {
+          const bytes = Array.isArray(data) ? Buffer.concat(data) : data;
+          clientConnection.handleMessage(new Uint8Array(bytes));
+        });
+        conn.on('close', (code, reason) => {
+          clientConnection.handleClose({ code, reason: reason ? reason.toString() : '' });
+        });
       });
     });
     return { hocuspocus, hwss };
@@ -413,6 +426,8 @@ describe('Gate A1: HocuspocusProvider remote-update origin', () => {
 
 Run: `npm test -- src/lib/__tests__/hocuspocus-undo-origin.test.js`
 Expected (PASS): positive control captured 1 frame; peer edit added 0; remote origin is non-null and non-`local-`. **GATE A1 GREEN.**
+
+> **RESULT (2026-06-21, this branch): GATE A1 GREEN.** Confirmed: the observed remote origin is the **`HocuspocusProvider` instance itself** (an object, `constructor.name === 'HocuspocusProvider'`) — exactly the prediction at the §309 note. It is not in `trackedOrigins`, not `null`, and not a `'local-'` string, so peer edits stay off the undo stack and the `handleAfterTx` re-emit path still fires. The verbatim test passed once the Task 1.3 skeleton's missing message-pump was added (commit `ccb4712`). No `trackedOrigins` rework, no UndoManager allowlist change, no `@vitest-environment` directive, and no yjs alias were needed — the client (ESM yjs) and server (CJS yjs) sync over the wire, so the dual-load warning is benign for this test.
 If the positive control FAILS (`length !== 1`): the test harness is wrong (scope/manager), fix that before reading the peer-edit result — a green peer-edit assertion under a dead manager is meaningless.
 If the peer-edit assertion FAILS (stack grew, or origin is `null`/`local-`): HocuspocusProvider applies remote updates with an origin that IS tracked (or `null`, which the default manager captures). **STOP.** Record the actual `remoteOrigin` value and revisit spec §7: the `trackedOrigins` set and/or `handleAfterTx`'s `origin.startsWith('local-')` echo filter must be reworked (e.g. switch the UndoManager to an allowlist anchored on the provider instance, and update `handleAfterTx` to treat the provider-instance origin as remote) before any client work proceeds.
 
@@ -770,6 +785,8 @@ it('a read-only connection cannot write: its frame is dropped server-side', asyn
 ```
 
 > If the recorded `connectionConfig.readOnly` does not gate writes as expected, STOP and read `Connection`/`ClientConnection` in the type defs — do not hand-roll a write filter; the whole point of the migration is that Hocuspocus owns this. Record the working field in ADR-0018.
+>
+> **RESOLVED (2026-06-21, verified against @hocuspocus/server@4.3.0 source + index.d.ts; test passing, commit `50efcb7`):** the working lever is to **MUTATE `data.connectionConfig.readOnly = true` inside `onAuthenticate`** — NOT to return `{ readOnly: true }`. The hook's return value merges only into `context` (hocuspocus-server.cjs ~843-847), which is a different object from `connectionConfig`; the write-gate reads `connection.readOnly`, constructed from `connectionConfig.readOnly` (lines 851, 971). With `readOnly` true the server drops incoming `messageYjsUpdate`/syncStep2 frames and replies `writeSyncStatus(false)` (lines 297, 316) — confirmed end-to-end: a read-only writer's push never reaches an observer (observer array length 0). `onAuthenticatePayload` has NO `connection` field (only `connectionConfig`); the `connection` field exists only on `connectedPayload`. ADR-0018 must record `data.connectionConfig.readOnly = true` (mutation) as the #239 viewer lever.
 
 - [ ] **Step 4: Add the new file to `test:server`, run, commit**
 
@@ -836,21 +853,34 @@ test('store runs full serializeRoom (all four artifacts) and writeRoom', async (
   assert.equal(typeof a.commentsJson, 'string');
 });
 
-test('store carries sidecar CONTENT (comment + TC mark), not just presence', async () => {
+test('store carries sidecar CONTENT (comment + block text), not just presence', async () => {
   // Presence-only assertions (above) can pass while serializeRoom silently
-  // drops sidecar data. Seed a comment + a TC-marked block and assert the
-  // produced artifacts actually contain them. (Review S8.)
+  // drops sidecar data. Seed a comment + a block with distinctive text and
+  // assert the produced artifacts actually contain them. (Review S8.)
+  //
+  // CORRECTED (2026-06-21, commit 5cc4c99) — the original seed over-reached and
+  // could never pass against the real contract:
+  //  1. readComments (src/lib/collab.js) SKIPS any comment value without a
+  //     `.get` method, so the comment MUST be a real Y.Map, not a plain object.
+  //  2. seedRoomFromBlocks stores html in a LEGACY Y.Text slot (the broker
+  //     converts it to a v2 Y.XmlFragment only on a later WS upgrade), so
+  //     serializeRoom alone HTML-ESCAPES inline markup — it does NOT convert
+  //     `<ins class="mark-add">` to `<ADD>`. Mark→SGML conversion is the
+  //     room-serializer + substrate's job (its own tests cover it), NOT
+  //     SecWriterDatabase's. Pin real block TEXT reaching the .SEC instead.
   const storage = makeStorage();
   let captured;
   storage.writeRoom = async (t, r, a) => { captured = a; };
   const db = new SecWriterDatabase({ storage, roomHealth: new Map(), maxDocBytes: 8 * 1024 * 1024, log: { warn() {}, error() {} } });
   const ydoc = new Y.Doc();
-  seedRoomFromBlocks(ydoc, [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: '<ins class="mark-add" data-author-id="u1">added</ins>' }]);
-  ydoc.getMap('comments').set('c1', { id: 'c1', blockId: 'b1', text: 'hi', status: 'open' }); // shape per comments reducer
+  seedRoomFromBlocks(ydoc, [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: 'UNIQUEMARKER content' }]);
+  const cMap = new Y.Map();
+  cMap.set('blockId', 'b1'); cMap.set('status', 'open'); cMap.set('authorName', 'tester');
+  ydoc.getMap('comments').set('c1', cMap); // MUST be a Y.Map — readComments skips plain objects
   await db.store({ documentName: 'tenantA/room1', document: ydoc });
   assert.ok(captured.commentsJson.includes('c1'), 'comment id must reach the comments sidecar');
   const sec = Buffer.from(captured.secBytes).toString('latin1');
-  assert.ok(/<ADD/i.test(sec), 'TC add mark must serialize into the .SEC');
+  assert.ok(sec.includes('UNIQUEMARKER'), 'block text must serialize into the .SEC');
 });
 
 test('fetch splits the canonical documentName and returns ydoc bytes (or null)', async () => {
@@ -924,8 +954,8 @@ The `Database` base-class shape is CONFIRMED (Task 1.2): `constructor(Partial<{ 
  * owned by ARTIFACT_CATALOG/planArtifactWrites in the storage layer.
  *
  * Carries over from the old flushRoom: the 8 MB MAX_DOC_BYTES pre-serialize
- * refusal, roomHealth.persistFailures tracking, the deferred ESM serializer
- * import (first store pays the latency), and per-key store re-entrancy safety
+ * refusal, roomHealth.persistFailures tracking, the deferred CJS serializer
+ * require (first store pays the latency), and per-key store re-entrancy safety
  * (§2/§8 — no two overlapping stores race the same .ydoc into S3/Azure).
  *
  * CJS on purpose (ADR-0001).
@@ -1016,9 +1046,21 @@ class SecWriterDatabase extends Database {
    * returns void, so this is how we know every store actually completed.
    */
   async drain() {
-    // Snapshot then await; a store() may chain a new promise as we drain, so
-    // loop until the map is quiescent (bounded — stores don't self-trigger).
-    for (let i = 0; i < 5 && this._storeChains.size > 0; i++) {
+    // flushPendingStores() does NOT call store() directly — it kicks an async
+    // chain (executeNow → saveMutex.runExclusive → hooks → onStoreDocument →
+    // store) that registers each room's _storeChains entry across several
+    // event-loop turns. setImmediate runs at the TOP of EVERY iteration: a
+    // single leading yield covers a purely-debounced room (reaches store via
+    // microtasks), but a room with an in-flight store at shutdown re-flushes
+    // BEHIND that store's writeRoom IO (a macrotask) — its entry is deleted when
+    // the in-flight store settles and re-set a macrotask later. Yielding a full
+    // turn before each emptiness check gives that re-flush a window to
+    // re-register, closing the lost-write gap. Terminates because
+    // closeConnections() ran first and each room re-flushes at most once. (Phase
+    // 5.2 gate review HARDEN follow-up; the cap is a backstop, never normal exit.)
+    for (let i = 0; i < 1000; i++) {
+      await new Promise((r) => setImmediate(r));
+      if (this._storeChains.size === 0) break;
       await Promise.allSettled([...this._storeChains.values()]);
     }
   }

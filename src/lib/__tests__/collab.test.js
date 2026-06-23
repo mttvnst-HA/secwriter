@@ -585,7 +585,7 @@ describe('collab — createCollabSession + URL helpers', () => {
     session2.destroy();
   });
 
-  it('URL helpers: generateRoomId + buildRoomUrl', () => {
+  it('URL helpers + provider.name is bare canonical (no /ws/, no token — spec §7, #128)', () => {
     for (let i = 0; i < 10; i++) {
       const id = generateRoomId();
       expect(id).toMatch(/^[a-z0-9]+$/);
@@ -599,6 +599,44 @@ describe('collab — createCollabSession + URL helpers', () => {
     expect(stripRoomFromUrl('https://x.test/?room=abc123')).toBe('https://x.test/');
     expect(stripRoomFromUrl('https://x.test/?room=abc&foo=1')).toBe('https://x.test/?foo=1');
     expect(stripRoomFromUrl('https://x.test/?foo=1')).toBe('https://x.test/?foo=1'); // no room param: unchanged
+
+    // #128 Hocuspocus cutover: the documentName travels in-band via the
+    // provider `name` (exposed at provider.configuration.name) and must be
+    // EXACTLY the canonical <tenant>/<roomId>. The relay's onAuthenticate
+    // rejects any non-canonical name; the token rides an AuthenticationMessage,
+    // never the URL/name. Constructing the session reads the name synchronously
+    // — no live server needed (the provider does not block on connect).
+    const session = createCollabSession({
+      room: 'tenantA/room1',
+      wsUrl: 'ws://127.0.0.1:9',
+      token: 'secret-token',
+      identity: { id: 'u', name: 'U', color: '#000' },
+      initialBlocks: [],
+      onRemoteBlocks: () => {},
+    });
+    const docName = session.provider.configuration.name;
+    expect(docName).toBe('tenantA/room1');
+    // Defense: the token must not leak into the doc name, and no /ws/ prefix
+    // may sneak in (the y-websocket URL-suffix hack is gone).
+    expect(docName).not.toContain('secret-token');
+    expect(docName).not.toContain('/ws/');
+    session.destroy();
+
+    // A BARE room id (the real App path — getRoomFromUrl strips '/', so the URL
+    // ?room= id is always a single sanitized segment) MUST be prefixed with the
+    // tenant to form the canonical name, or onAuthenticate rejects it (no slash =
+    // malformed) AND the in-memory doc key mismatches the composite the HTTP
+    // upload / getActiveUsers routes look up. Under auth=none the tenant is
+    // '_public'. (Regression: the Phase 8.1 cutover initially sent the bare name.)
+    const bareSession = createCollabSession({
+      room: 'e2eroom42',
+      wsUrl: 'ws://127.0.0.1:9',
+      identity: { id: 'u', name: 'U', color: '#000' },
+      initialBlocks: [],
+      onRemoteBlocks: () => {},
+    });
+    expect(bareSession.provider.configuration.name).toBe('_public/e2eroom42');
+    bareSession.destroy();
   });
 });
 

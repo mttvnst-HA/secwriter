@@ -2,13 +2,13 @@
 /**
  * SecWriter collaborative editing relay.
  *
- * A thin y-websocket server for the multi-user prototype. Persists each Yjs
- * doc to disk as a binary state snapshot so reconnecting clients recover
- * previous work.
+ * A Hocuspocus relay for multi-user editing. Persists each Yjs doc via the
+ * pluggable storage backend so reconnecting clients recover previous work.
  *
- * CJS on purpose: y-websocket v1.5.4 ships its server utils as CJS and imports
- * yjs via `require`. Mixing ESM and CJS loads two copies of Yjs, which breaks
- * instanceof checks (see https://github.com/yjs/yjs/issues/438).
+ * CJS on purpose (ADR-0001): Hocuspocus + yjs are required, not imported, so
+ * the server shares a single hoisted copy of Yjs with the other CJS server
+ * modules — mixing ESM and CJS loads two copies, breaking instanceof checks
+ * (see https://github.com/yjs/yjs/issues/438).
  *
  * Auth (JWT), rate limiting, structured logging, and room TTL are available
  * via env vars. TLS must be terminated upstream (reverse proxy). See CLAUDE.md
@@ -21,16 +21,17 @@
  * binding a port. The CLI entry-point at the bottom (guarded by
  * `require.main === module`) wires the factory to env-driven config and
  * listens on the configured port.
+ *
+ * #128 (ADR-0006 / ADR-0002 superseded): the relay was a y-websocket
+ * setupWSConnection server until the Hocuspocus cutover. The documentName now
+ * travels in-band via the provider `name` (no `/ws/` URL parsing); the token
+ * travels in an AuthenticationMessage (no `?token=` in the URL).
  */
 
 require('./dom-polyfill.cjs');
 const WS = require('ws');
-// y-websocket v1.5.4 pins ws@6, which exports the server as `Server` (not
-// `WebSocketServer`). Support both so a future ws upgrade doesn't break us.
 const WebSocketServer = WS.WebSocketServer || WS.Server;
 const Y = require('yjs');
-const ywsUtils = require('y-websocket/bin/utils');
-const { setupWSConnection, setPersistence, getYDoc, docs: ywsDocs } = ywsUtils;
 const fs = require('node:fs');
 const path = require('node:path');
 const http = require('node:http');
@@ -40,8 +41,10 @@ const { log } = require('./logger.cjs');
 const { createRateLimiter } = require('./rate-limiter.cjs');
 const { createHttpHandler } = require('./http-handler.cjs');
 const { createMigrationCoordinator } = require('./migrate-pm-substrate.cjs');
-const { PUBLIC_TENANT, splitCompositeDocName, buildCompositeDocName, sanitize } = require('./storage-shared.cjs');
-const { authorize, ACTION } = require('./auth/authorize.cjs');
+const { PUBLIC_TENANT, splitCompositeDocName, buildCompositeDocName } = require('./storage-shared.cjs');
+const { Hocuspocus } = require('@hocuspocus/server');
+const { buildOnAuthenticate, AuthReject } = require('./hocuspocus-auth.cjs');
+const { SecWriterDatabase } = require('./secwriter-database.cjs');
 
 // Hard caps. A single spec section is O(100KB) of text; 8 MB gives plenty of
 // headroom for Y.Doc overhead + revision history without letting a runaway
@@ -51,29 +54,10 @@ const MAX_DOC_BYTES = 8 * 1024 * 1024;
 
 const DEBOUNCE_MS = 500;
 
-/**
- * Extract the docName from a WebSocket request URL.
- *
- * y-websocket's built-in extraction (`req.url.slice(1).split('?')[0]`) treats
- * the entire path-tail as the docName. When the frontend's
- * `VITE_COLLAB_WS_URL` includes a path suffix (e.g. Render's
- * `wss://host/ws`), the WebsocketProvider builds connection URLs as
- * `wss://host/ws/<room>`. The default extraction then yields `"ws/<room>"`,
- * which is a different docName from what the HTTP API uses for the same
- * room. After sanitization (`/` → `_` in storage keys), the room ends up
- * split across two persisted slots — `<room>.ydoc` (HTTP-managed) and
- * `ws_<room>.ydoc` (WS-managed). See issue #17.
- *
- * Strip a leading `/ws/` so the docName matches the HTTP API regardless of
- * what path suffix the frontend's WS URL carries.
- */
-function extractDocName(reqUrl) {
-  if (typeof reqUrl !== 'string') return '';
-  const noQuery = reqUrl.split('?')[0];
-  let pathname = noQuery.startsWith('/') ? noQuery.slice(1) : noQuery;
-  if (pathname.startsWith('ws/')) pathname = pathname.slice(3);
-  return pathname;
-}
+// Starvation ceiling on the debounce: a room under continuous edits would
+// otherwise keep deferring its store indefinitely. Forces a flush after this
+// long regardless. Tune per §8 measurement (Phase 5.2).
+const MAX_DEBOUNCE_MS = 10000;
 
 /**
  * Build a collab server in-process. The CLI entry-point at the bottom of
@@ -82,16 +66,11 @@ function extractDocName(reqUrl) {
  *
  * Returns:
  *   - httpServer:        the http.Server (caller calls .listen() / .close())
- *   - wss:               the WebSocketServer attached to httpServer
- *   - boundDocs:         Map<docName, Y.Doc>
- *   - docLoadPromises:   Map<docName, Promise<void>> — resolves when the
- *                        room's persisted state has finished loading. The
- *                        WS connection handler awaits this before sync
- *                        starts so a fresh client never seeds an empty doc
- *                        that's actually in mid-load (see issue #17).
+ *   - hocuspocus:        the Hocuspocus relay instance.
+ *   - database:          the SecWriterDatabase persistence extension (shutdown
+ *                        drains its per-key store chains).
  *   - roomHealth:        Map<docName, { persistFailures, lastPersistSuccess }>
- *   - flushRoom:         (docName) => Promise — write artifacts now
- *   - flushAllRooms:     () => Promise — write every bound room (shutdown)
+ *   - getActiveUsers:    (docName) => [{ id, name, color }] — awareness roster.
  */
 function createCollabServer(config) {
   if (!config || !config.storage) {
@@ -105,44 +84,40 @@ function createCollabServer(config) {
     allowedOrigin = '*',
     wsRatePerMin = Number(process.env.SIM_RATE_LIMIT_WS_PER_MIN || 10),
     // Sub-PR 1d (#47, ADR-0006): server-side broker that converts v1 rooms
-    // (Y.Text-backed html slots) to v2 (Y.XmlFragment) inside the WS upgrade
-    // handler, after preload + the eviction guard but before the upgrade
-    // completes. Tests inject a custom coordinator via `migrationCoordinator`
-    // (or disable migration by passing `migrationCoordinator: null`).
+    // (Y.Text-backed html slots) to v2 (Y.XmlFragment) inside onLoadDocument,
+    // before the migrated doc is handed to the client. Tests inject a custom
+    // coordinator via `migrationCoordinator` (or disable migration by passing
+    // `migrationCoordinator: null`).
     migrationCoordinator = createMigrationCoordinator({ storage, log }),
+    // Hocuspocus flush cadence (ms). Defaults to DEBOUNCE_MS. Injectable because
+    // it also sets the warm-doc window: with unloadImmediately:false a room stays
+    // in memory until its debounced store fires after the last disconnect, so a
+    // test exercising warm-doc-across-reconnect can widen this past WS connect
+    // latency to stay deterministic under parallel load.
+    hocuspocusDebounceMs = DEBOUNCE_MS,
   } = config;
 
-  // Debounced per-room persistence: one set of artifacts per room, rewritten
-  // at most once every DEBOUNCE_MS after any update.
-  const writeTimers = new Map();
-  // Track the per-room Y.Doc so the shutdown handler can flush every room
-  // even if its timer hasn't fired.
-  const boundDocs = new Map();
-  // M-2: per-room persist health tracking.
+  // #128 (Task 8.3): Hocuspocus is the relay, unconditionally. The legacy
+  // y-websocket setupWSConnection path is gone. The historic `useHocuspocus`
+  // config flag is now a no-op — callers (incl. existing tests) may still pass
+  // it harmlessly, but there is no longer an alternative relay behind it.
+
+  // M-2: per-room persist health tracking. Shared with SecWriterDatabase so the
+  // persistFailures/lastPersistSuccess counters survive across stores.
   const roomHealth = new Map();
-  // Issue #17: per-room load promises. Resolved when bindState's persisted
-  // state has been applied; the WS connection handler awaits these so the
-  // first sync to a fresh client never carries an empty state vector for a
-  // room that's currently loading.
-  const docLoadPromises = new Map();
 
-  function getHealth(docName) {
-    let h = roomHealth.get(docName);
-    if (!h) {
-      h = { persistFailures: 0, lastPersistSuccess: null };
-      roomHealth.set(docName, h);
-    }
-    return h;
-  }
-
+  // The live in-memory docs live in `hocuspocusInstance.documents` (a
+  // Map<docName, Document>; Document extends Y.Doc). `getActiveUsers` and the
+  // http-handler's `boundDocs` view both read it lazily — the instance is
+  // assigned below, after this closure is defined, so they must not capture it
+  // at definition time.
   function getActiveUsers(docName) {
-    const ydoc = boundDocs.get(docName);
-    if (!ydoc) return [];
+    if (!hocuspocusInstance) return [];
     try {
-      const wsDoc = ywsUtils.docs.get(docName);
-      if (!wsDoc || !wsDoc.awareness) return [];
+      const hpDoc = hocuspocusInstance.documents.get(docName);
+      if (!hpDoc || !hpDoc.awareness) return [];
       const users = [];
-      wsDoc.awareness.getStates().forEach((state) => {
+      hpDoc.awareness.getStates().forEach((state) => {
         if (state.user && state.user.id && state.user.name) {
           users.push({ id: state.user.id, name: state.user.name, color: state.user.color || '#888' });
         }
@@ -153,132 +128,28 @@ function createCollabServer(config) {
     }
   }
 
-  // Deferred room serializer — the CJS require is synchronous but the heavy
-  // ESM modules (sec-parser, sec-serializer) inside it are loaded via dynamic
-  // import() on first use, not at require-time.
-  let _serializeRoom = null;
-  async function getSerializeRoom() {
-    if (!_serializeRoom) {
-      const mod = require('./room-serializer.cjs');
-      _serializeRoom = mod.serializeRoom;
-    }
-    return _serializeRoom;
-  }
+  // `boundDocs` view for the http-handler: the set of currently-resident docs,
+  // keyed by composite docName, exposing the Y.Doc subset the handler reads
+  // (.get / .keys / .size / .getMap / .transact). Backed live by
+  // hocuspocusInstance.documents. Empty Map before the instance is built.
+  const boundDocsView = {
+    get: (k) => (hocuspocusInstance ? hocuspocusInstance.documents.get(k) : undefined),
+    keys: () => (hocuspocusInstance ? hocuspocusInstance.documents.keys() : [][Symbol.iterator]()),
+    get size() { return hocuspocusInstance ? hocuspocusInstance.documents.size : 0; },
+  };
 
-  /** Flush a single room: .ydoc + .SEC + .comments.json via storage backend. */
+  // `flushRoom(docName)`: force-persist a resident room now. Routes through the
+  // SecWriterDatabase store (per-key re-entrancy + size cap + roomHealth), so
+  // the http-handler upload route can `await` durability before its 200.
+  // Returns true iff the write actually landed; false when the room isn't
+  // resident or the store was refused/failed, so the caller can surface a 5xx
+  // instead of confirming a write that did not happen (#249 review).
   async function flushRoom(docName) {
-    const timer = writeTimers.get(docName);
-    if (timer) {
-      clearTimeout(timer);
-      writeTimers.delete(docName);
-    }
-    const ydoc = boundDocs.get(docName);
-    if (!ydoc) return;
-    const health = getHealth(docName);
-    try {
-      // Quick size check before expensive serialization
-      const snapshot = Y.encodeStateAsUpdate(ydoc);
-      if (snapshot.byteLength > MAX_DOC_BYTES) {
-        log.warn('flush.refused', {
-          roomId: docName,
-          bytes: snapshot.byteLength,
-          cap: MAX_DOC_BYTES,
-          lastSuccess: health.lastPersistSuccess ? new Date(health.lastPersistSuccess).toISOString() : 'never',
-        });
-        return;
-      }
-
-      const serializeRoom = await getSerializeRoom();
-      const artifacts = await serializeRoom(ydoc);
-      const { tenant, roomId } = splitCompositeDocName(docName);
-      await storage.writeRoom(tenant, roomId, artifacts);
-
-      health.persistFailures = 0;
-      health.lastPersistSuccess = Date.now();
-    } catch (err) {
-      health.persistFailures = (health.persistFailures || 0) + 1;
-      const staleFor = health.lastPersistSuccess
-        ? `${Math.round((Date.now() - health.lastPersistSuccess) / 1000)}s`
-        : 'never succeeded';
-      log.warn('persist.failed', { roomId: docName, failures: health.persistFailures, stale: staleFor, err: err.message });
-      if (health.persistFailures >= 3) {
-        log.error('persist.alert', { roomId: docName, failures: health.persistFailures });
-      }
-    }
+    if (!hocuspocusInstance || !hocuspocusDatabase) return false;
+    const document = hocuspocusInstance.documents.get(docName);
+    if (!document) return false;
+    return hocuspocusDatabase.store({ documentName: docName, document });
   }
-
-  // setPersistence is global state in y-websocket — only one persistence
-  // adapter can be active at a time. Tests that spin up multiple
-  // createCollabServer instances must not run concurrently with this guard
-  // in place; the test harness serializes them. (We could namespace per
-  // server instance via a custom getYDoc, but that would mean copying more
-  // of y-websocket's internals than is healthy.)
-  setPersistence({
-    bindState: (docName, ydoc) => {
-      boundDocs.set(docName, ydoc);
-
-      // Race fix (issue #17): expose a per-doc promise that resolves once
-      // the persisted state is applied. The WS connection handler awaits
-      // this before calling setupWSConnection, so the initial sync step 1
-      // carries the loaded state vector — the client can't observe an
-      // empty doc and re-seed.
-      const loadPromise = (async () => {
-        try {
-          const { tenant: ldTenant, roomId: ldRoomId } = splitCompositeDocName(docName);
-          const roomData = await storage.readRoom(ldTenant, ldRoomId);
-          if (!roomData || !roomData.ydocBytes) {
-            log.info('room.new', { roomId: docName });
-            return;
-          }
-          const bytes = roomData.ydocBytes;
-          if (bytes.length > MAX_DOC_BYTES) {
-            await storage.quarantineRoom(ldTenant, ldRoomId, 'oversize');
-            log.warn('room.quarantined', { roomId: docName, bytes: bytes.length, reason: 'oversize' });
-            log.info('room.new', { roomId: docName });
-            return;
-          }
-          // N1 — Decode into a scratch Y.Doc first so a throw halfway
-          // through cannot leave the real `ydoc` in a partially-mutated
-          // state that the next joining client would see as garbage.
-          let restored = false;
-          const scratch = new Y.Doc();
-          try {
-            Y.applyUpdate(scratch, new Uint8Array(bytes));
-            restored = true;
-          } catch (err) {
-            await storage.quarantineRoom(ldTenant, ldRoomId, 'corrupt');
-            log.warn('room.quarantined', { roomId: docName, reason: 'corrupt', err: err.message });
-          }
-          if (restored) {
-            Y.applyUpdate(ydoc, Y.encodeStateAsUpdate(scratch));
-            log.info('room.restored', { roomId: docName, bytes: bytes.length });
-          } else {
-            log.info('room.new', { roomId: docName });
-          }
-          scratch.destroy();
-        } catch (err) {
-          log.warn('room.read-failed', { roomId: docName, err: err.message });
-        }
-      })();
-      docLoadPromises.set(docName, loadPromise);
-
-      ydoc.on('update', () => {
-        const prev = writeTimers.get(docName);
-        if (prev) clearTimeout(prev);
-        const t = setTimeout(() => flushRoom(docName).catch(err => {
-          log.error('flush.uncaught', { roomId: docName, err: err.message });
-        }), DEBOUNCE_MS);
-        // unref so a pending debounce doesn't block process exit (matters
-        // most for tests; production shutdown explicitly flushAllRooms()).
-        if (typeof t.unref === 'function') t.unref();
-        writeTimers.set(docName, t);
-      });
-    },
-    writeState: async () => {
-      // Updates flushed eagerly by the listener above; shutdown path flushes
-      // via flushAllRooms(). No per-doc writeState work needed.
-    },
-  });
 
   // ── HTTP + WebSocket on a single port ────────────────────────────────────
   // When deployed to Render (or any platform that exposes one port), WS and
@@ -286,7 +157,7 @@ function createCollabServer(config) {
   const httpServer = http.createServer(
     createHttpHandler({
       storage,
-      boundDocs,
+      boundDocs: boundDocsView,
       flushRoom,
       maxDocBytes: MAX_DOC_BYTES,
       authProvider,
@@ -298,199 +169,176 @@ function createCollabServer(config) {
     })
   );
 
-  // Issue #17: use noServer + manual upgrade so the WebSocket handshake
-  // itself is gated on bindState completion. Without this, y-websocket's
-  // bindState runs async-and-not-awaited; setupWSConnection sends sync
-  // step 1 with an empty state vector while persisted state is still
-  // loading, the client interprets the empty SV as "fresh room", runs
-  // its initial-blocks seed, and the persisted state then merges on top.
-  // CRDT union of yOrder doubles the document each reload (~+426 in
-  // production R2 conditions).
-  //
-  // Earlier attempts (`conn.pause()`, message-buffering with replay) were
-  // racy on fast runners — by the time the connection event fires,
-  // sync step 1 may already be parsed and dispatched. Blocking the
-  // upgrade is the only place we can guarantee the load completes
-  // *before* any WS frame can be received.
-  const wss = new WebSocketServer({ noServer: true });
+  // #128: the relay is a Hocuspocus instance. onAuthenticate gates every
+  // connection (cross-tenant/non-canonical names rejected before any load);
+  // onLoadDocument runs the v1→v2 migration broker; SecWriterDatabase persists.
+  // The upgrade handler installed here is the ONLY WS listener on httpServer.
+  function buildHocuspocus() {
+    const onAuthenticate = buildOnAuthenticate({ authProvider, storage });
+    const database = new SecWriterDatabase({ storage, roomHealth, maxDocBytes: MAX_DOC_BYTES, log });
 
-  httpServer.on('upgrade', async (req, socket, head) => {
-    const ip = socket.remoteAddress || 'unknown';
-    const wsCheck = rateLimiter.checkLimit(ip, 'ws', wsRatePerMin);
-    if (!wsCheck.allowed) {
-      log.warn('ws.rate-limited', { ip, retryAfter: wsCheck.retryAfter });
-      socket.write('HTTP/1.1 429 Too Many Requests\r\n\r\n');
-      socket.destroy();
-      return;
-    }
-
-    // Strip the `/ws` path prefix that VITE_COLLAB_WS_URL adds in
-    // production deploys, so the docName matches what the HTTP API uses
-    // for the same room. Without this strip, a `/ws/<room>` URL produces
-    // docName `"ws/<room>"` which sanitizes to a parallel storage key
-    // (`ws_<room>.ydoc`) — see issue #17.
-    const bareRoomId = extractDocName(req.url);
-
-    const tokenMatch = (req.url || '').match(/[?&]token=([^&]*)/);
-    let token = null;
-    if (tokenMatch) {
+    const onLoadDocument = async ({ documentName, document }) => {
+      // documentName is the validated canonical key — onAuthenticate already
+      // rejected any non-canonical/cross-tenant name BEFORE this runs (§3/§6).
+      if (!migrationCoordinator) return document;
       try {
-        token = decodeURIComponent(tokenMatch[1]);
-      } catch {
-        // Malformed percent-encoding (e.g. `?token=%`) throws URIError.
-        // This listener is async, so an uncaught throw here is an
-        // unhandledRejection — Node's default policy kills the process: a
-        // one-request unauthenticated DoS. Reject the handshake instead.
-        socket.write('HTTP/1.1 400 Bad Request\r\n\r\n');
+        const result = await migrationCoordinator.ensureMigrated(documentName, document);
+        // The broker mutates `document` here, INSIDE onLoadDocument — but Hocuspocus
+        // attaches the store-triggering document.onUpdate handler only AFTER this hook
+        // returns (verified in @hocuspocus/server@4.3.0 loadDocument: the onUpdate
+        // bind runs after the awaited onLoadDocument hook). So a freshly-migrated room
+        // would NOT auto-persist its v2 substrate; it would reload as v1 and re-run
+        // backupRoom every connect. Persist the migrated doc explicitly. Gate on a real
+        // migration (skipped:false) so we don't re-write an already-v2 room or one whose
+        // backup failed (skipped:true). A partial migration also returns skipped:false —
+        // persisting it is intentional: the migrationPartial flag the broker wrote into
+        // yMeta must reach disk so the next connect short-circuits via needsMigration
+        // instead of re-attempting on a half-migrated doc. backupRoom already completed
+        // inside ensureMigrated before any mutation, so the .ydoc we write here is always
+        // backed up first (§6 ordering).
+        if (result && result.skipped === false) {
+          const persisted = await database.store({ documentName, document });
+          if (!persisted) {
+            // The migrated v2 substrate did NOT reach storage (transient backend
+            // fault — store() counts it in roomHealth.persistFailures and returns
+            // false rather than throwing). Hocuspocus binds document.onUpdate only
+            // AFTER this hook, so nothing re-persists until the next edit or
+            // reconnect; until then every connect reloads the v1 bytes and re-runs
+            // the broker, and the migration-partial banner sticks. Log at error so
+            // the stuck state is visible instead of silently degrading. #249 review.
+            log.error('migrate.persist-failed', { documentName });
+          }
+        }
+      } catch (err) {
+        // §6: an onLoadDocument THROW has different Hocuspocus semantics (the load is
+        // aborted and the connection closed). The broker is designed to "log
+        // and continue, room stays editable + shows the migration-partial banner",
+        // so CATCH here and return the document. This is the backstop; ensureMigrated
+        // already catches its own per-step errors.
+        log.warn('migrate.coordinator-failed', { documentName, err: err && err.message });
+      }
+      return document;
+    };
+
+    const hocuspocus = new Hocuspocus({
+      name: 'secwriter',
+      quiet: true,
+      onLoadDocument,
+      async onAuthenticate(data) {
+        try {
+          return await onAuthenticate(data);
+        } catch (err) {
+          if (err instanceof AuthReject) {
+            log.warn('ws.auth-reject', { status: err.status, reason: err.reason });
+            // Throw a plain Error so Hocuspocus closes the connection with the
+            // SAME opaque close for every rejection (no tenant-mismatch vs
+            // can't-see-room signal).
+            throw new Error('Unauthorized');
+          }
+          // Storage I/O fault in readAcl: fail CLOSED.
+          log.error('ws.authorize-failed', { err: err && err.message });
+          throw new Error('Unauthorized');
+        }
+      },
+      extensions: [database],
+      // Flush cadence (§2): the debounce coalesces edits into one store;
+      // maxDebounce adds a starvation ceiling so a continuously-edited room
+      // still persists.
+      // CAUTION: the Hocuspocus DEFAULT debounce is 2000ms, NOT 500. We set 500;
+      // store() runs the FULL serializeRoom over every
+      // block + an S3/Azure write — at 500ms that can fire up to twice a second per
+      // active room. Measure serialize+write cost in Phase 5.2 and RAISE this if a
+      // realistic room saturates I/O; do not keep 500 by inertia. Sourced from the
+      // injectable hocuspocusDebounceMs (defaults to DEBOUNCE_MS) — it also widens
+      // the warm-doc window for the Task 7.2 reconnect test.
+      debounce: hocuspocusDebounceMs,
+      maxDebounce: MAX_DEBOUNCE_MS,
+      // gc pinned true to match the v2 substrate's production gc and the
+      // cross-stack rollback gate (Phase 9).
+      yDocOptions: { gc: true },
+      // SEED DURABILITY (Phase 7 / option A companion): keep a room's doc warm
+      // briefly after the last client disconnects instead of unloading immediately,
+      // so a provider remount re-syncs seeded content from MEMORY (never observes
+      // false-empty → never re-seeds) and the seed's debounced store completes
+      // before unload.
+      unloadImmediately: false,
+    });
+    const hwss = new WebSocketServer({ noServer: true });
+    // An unhandled 'error' on a ws WebSocketServer (or a per-connection socket,
+    // below) is an EventEmitter throw → uncaught exception → process crash. The
+    // bundled Hocuspocus `Server` wires these internally; this manual noServer
+    // pump does not get that for free, so wire them ourselves (matches the
+    // pre-#128 y-websocket `wss.on('error')` posture). #249 review.
+    hwss.on('error', (err) => {
+      log.error('server.ws-error', { err: err && err.message });
+    });
+    httpServer.on('upgrade', (req, socket, head) => {
+      // Pre-auth DoS seam (§1): per-IP WS rate-limit BEFORE handleConnection.
+      const ip = socket.remoteAddress || 'unknown';
+      const wsCheck = rateLimiter.checkLimit(ip, 'ws', wsRatePerMin);
+      if (!wsCheck.allowed) {
+        log.warn('ws.rate-limited', { ip, retryAfter: wsCheck.retryAfter });
+        socket.write('HTTP/1.1 429 Too Many Requests\r\n\r\n');
         socket.destroy();
         return;
       }
-    }
-
-    let user = null;
-    if (authProvider.requiresAuth) {
-      if (!token) { socket.write('HTTP/1.1 401 Unauthorized\r\n\r\n'); socket.destroy(); return; }
-      user = await authProvider.validateToken(token);
-      if (!user) { socket.write('HTTP/1.1 401 Unauthorized\r\n\r\n'); socket.destroy(); return; }
-    } else if (token) {
-      user = await authProvider.validateToken(token);
-    }
-
-    // Authorize from the cheap ACL sidecar BEFORE any doc load — an
-    // unauthorized caller never triggers getYDoc/preload, sidestepping the
-    // eviction-guard await windows (ADR-0014 pattern #2). Unconditional: never
-    // skipped because the doc is already resident (live-session revocation).
-    let dec;
-    try {
-      dec = await authorize({ authProvider, storage, user, roomId: bareRoomId, action: ACTION.READ });
-    } catch (err) {
-      // A storage I/O fault inside readAcl (S3/Azure network blip) throws out
-      // of authorize. Fail CLOSED + close the socket — without this catch the
-      // throw is an unhandledRejection AND the half-open socket hangs (no
-      // response was written) until the OS connection timeout. Mirrors the
-      // per-authorize try/catch the HTTP routes already use.
-      log.error('ws.authorize-failed', { roomId: bareRoomId, err: err && err.message });
-      socket.write('HTTP/1.1 500 Internal Server Error\r\n\r\n');
-      socket.destroy();
-      return;
-    }
-    if (!dec.ok) {
-      const line = { 401: '401 Unauthorized', 403: '403 Forbidden', 404: '404 Not Found' }[dec.status] || '403 Forbidden';
-      socket.write(`HTTP/1.1 ${line}\r\n\r\n`);
-      socket.destroy();
-      return;
-    }
-
-    // Composite docName keys ALL in-memory maps + the migration coordinator.
-    const tenant = authProvider.requiresAuth ? sanitize(user.tenant) : PUBLIC_TENANT;
-    const docName = buildCompositeDocName(tenant, bareRoomId);
-
-    // Trigger doc creation + bindState (idempotent on repeat calls), then
-    // await the load promise BEFORE completing the WS handshake. The
-    // handshake response isn't sent until wss.handleUpgrade runs below, so
-    // the client's WS doesn't open until then — its sync step 1 can't be
-    // sent until the doc is already loaded.
-    const doc = getYDoc(docName, true);
-    const loadPromise = docLoadPromises.get(docName);
-    if (loadPromise) {
-      try { await loadPromise; }
-      catch (err) { log.warn('preload-failed', { docName, err: err && err.message }); }
-    }
-
-    // Socket may have been destroyed during the await (client gave up,
-    // network blip). Bail out before handleUpgrade tries to write to it.
-    if (socket.destroyed) return;
-
-    // Stale-close eviction guard (issue #17 redux).
-    //
-    // y-websocket's closeConn (bin/utils.js:208) does `docs.delete(doc.name)`
-    // keyed by name, NOT by instance, when a connection's last conn drops.
-    // If a previous WS connection for this same room is still in TCP-close
-    // teardown when we register OUR new doc, that stale closeConn fires
-    // during our `await loadPromise`, removes the entry from the global map,
-    // and setupWSConnection's internal getYDoc below then creates a FRESH
-    // doc bypassing our preload — sync step 1 fires with empty state, the
-    // client seeds, persisted state CRDT-unions on top, yOrder doubles.
-    // Re-install our preloaded doc into the map so setupWSConnection finds
-    // it.
-    //
-    // No further await between this guard and setupWSConnection, so the
-    // event loop cannot interleave another stale closeConn before
-    // setupWSConnection adds a real conn that keeps doc.conns.size > 0.
-    if (ywsDocs.get(docName) !== doc) {
-      ywsDocs.set(docName, doc);
-    }
-
-    // Sub-PR 1d migration broker (#47, ADR-0006). After preload + eviction
-    // guard, run the v1 → v2 substrate migration before the WebSocket
-    // handshake completes. The coordinator awaits storage.backupRoom
-    // (Q23/B2, a non-destructive snapshot — the active ACL and `.ydoc`
-    // stay in place) before mutating the doc; per-room async lock (Q22/B1)
-    // collapses concurrent v2 clients on a fresh v1 room onto a single
-    // migration promise. needsMigration short-circuits on already-v2 rooms
-    // and on rooms that already failed migration once (migrationPartial).
-    if (migrationCoordinator) {
-      try {
-        await migrationCoordinator.ensureMigrated(docName, doc);
-      } catch (err) {
-        // ensureMigrated catches its own per-step errors and resolves
-        // either with skipped:true or with a per-block partial. A throw
-        // here is unexpected — log and continue, the room stays v1 / the
-        // client will surface the migration-partial banner via 1b.1.
-        log.warn('migrate.coordinator-failed', { docName, err: err && err.message });
-      }
-
-      if (socket.destroyed) return;
-
-      // Re-install the eviction guard a second time: the migration await
-      // is another window where a stale closeConn could evict our doc
-      // (CLAUDE.md "Two non-obvious patterns" #2). The migration ran
-      // against THIS doc instance, so any race-replacement would lose the
-      // migration's effects. As before, no further await between this
-      // re-install and setupWSConnection.
-      if (ywsDocs.get(docName) !== doc) {
-        ywsDocs.set(docName, doc);
-      }
-    }
-
-    wss.handleUpgrade(req, socket, head, (conn) => {
-      if (user) conn.user = user;
-      setupWSConnection(conn, req, { docName, gc: true });
+      hwss.handleUpgrade(req, socket, head, (conn) => {
+        // documentName + token travel in-band (provider `name`/`token`); auth
+        // runs in onAuthenticate. The 3rd arg is the defaultContext.
+        // v4 `handleConnection` only CONSTRUCTS the ClientConnection — it does
+        // NOT attach socket listeners. The integration must pump messages in
+        // (the bundled Server does exactly this; see hocuspocus-server.cjs
+        // open/message/close hooks). Without the pump the connection never
+        // syncs (onAuthenticate/onLoadDocument never fire).
+        const clientConnection = hocuspocus.handleConnection(conn, req, { remoteAddress: ip });
+        conn.on('message', (data) => {
+          const bytes = Array.isArray(data) ? Buffer.concat(data) : data;
+          clientConnection.handleMessage(new Uint8Array(bytes));
+        });
+        conn.on('close', (code, reason) => {
+          clientConnection.handleClose({ code, reason: reason ? reason.toString() : '' });
+        });
+        // A socket-level error (malformed frame, ECONNRESET, TLS fault) emits
+        // 'error' on the ws connection; with no listener Node rethrows it as an
+        // uncaught exception and the whole relay dies. ws fires 'close' after
+        // 'error', so handleClose still runs — just log and let it close. #249.
+        conn.on('error', (err) => {
+          log.warn('ws.socket-error', { ip, err: err && err.message });
+        });
+      });
     });
-  });
+    // `database` is returned for Phase 5: the shutdown path drains its per-key
+    // store chains (the bare Hocuspocus class has no awaitable destroy()). The
+    // current call site only pulls `hocuspocus`; Task 5.1 threads `database`
+    // onto the factory return.
+    return { hocuspocus, hwss, database };
+  }
 
-  wss.on('error', (err) => {
-    log.error('server.error', { err: err.message });
-  });
-
-  async function flushAllRooms() {
-    for (const docName of boundDocs.keys()) await flushRoom(docName);
+  let hocuspocusInstance = null;
+  let hocuspocusDatabase = null;
+  {
+    const built = buildHocuspocus();
+    hocuspocusInstance = built.hocuspocus;
+    hocuspocusDatabase = built.database;
   }
 
   /**
-   * Test-friendly cleanup: clear any pending debounced write timers, drop
-   * tracked Y.Docs, and close all open WebSocket connections so
-   * httpServer.close() can complete. Production shutdown should call
-   * flushAllRooms() first to persist any pending edits.
+   * Test-friendly cleanup: close every open WS connection so
+   * httpServer.close() can complete. Production shutdown drains the
+   * SecWriterDatabase store chains first (see startFromEnv's shutdown handler)
+   * to persist pending edits before tearing down.
    */
   function cleanup() {
-    for (const t of writeTimers.values()) clearTimeout(t);
-    writeTimers.clear();
-    for (const conn of wss.clients) {
-      try { conn.terminate(); } catch { /* ignore */ }
-    }
-    boundDocs.clear();
-    docLoadPromises.clear();
+    try { hocuspocusInstance.closeConnections(); } catch { /* ignore */ }
   }
 
   return {
     httpServer,
-    wss,
-    boundDocs,
-    docLoadPromises,
+    hocuspocus: hocuspocusInstance,
+    database: hocuspocusDatabase,
     roomHealth,
     flushRoom,
-    flushAllRooms,
+    getActiveUsers,
     cleanup,
     storage,
   };
@@ -498,8 +346,7 @@ function createCollabServer(config) {
 
 // ── CLI entry-point ──────────────────────────────────────────────────────
 // Auto-listens with env-driven config when invoked directly. Tests
-// require() this module to call createCollabServer / extractDocName
-// without binding any port.
+// require() this module to call createCollabServer without binding any port.
 function startFromEnv() {
   const PORT = Number(process.env.COLLAB_PORT || 1234);
   const HOST = process.env.COLLAB_HOST || '127.0.0.1';
@@ -592,7 +439,10 @@ function startFromEnv() {
       const rooms = await storage.listAllRooms(); // [{ tenant, roomId }]
       for (const { tenant, roomId } of rooms) {
         const composite = buildCompositeDocName(tenant, roomId);
-        if (server.boundDocs.has(composite)) continue;
+        // Skip currently-resident rooms — they're being actively edited, and
+        // their state lives in memory (not necessarily flushed). The live docs
+        // are Hocuspocus's in-memory documents Map, keyed by composite name.
+        if (server.hocuspocus.documents.has(composite)) continue;
         const stat = await storage.statRoom(tenant, roomId);
         if (!stat || !stat.lastModified) continue;
         const idleMs = now - new Date(stat.lastModified).getTime();
@@ -632,11 +482,35 @@ function startFromEnv() {
   async function shutdown(signal) {
     if (shuttingDown) return;
     shuttingDown = true;
-    log.info('server.shutdown', { signal, rooms: server.boundDocs.size });
-    await server.flushAllRooms();
-    try { server.wss.close(); } catch { /* ignore */ }
-    try { server.httpServer.close(); } catch { /* ignore */ }
-    setTimeout(() => process.exit(0), 50);
+    log.info('server.shutdown', {
+      signal,
+      rooms: server.hocuspocus.getDocumentsCount(),
+    });
+    // The whole drain is wrapped so shutdown is ALWAYS terminal: a drain that
+    // rejects must still close the listeners + exit, or the process hangs until
+    // Render force-kills it (SIGKILL) — defeating the graceful flush. (A drain
+    // that HANGS rather than rejects is still bounded by Render's SIGKILL grace;
+    // drain wall-time within that grace is the Task 5.2 gate.)
+    try {
+      // The bare Hocuspocus class has NO destroy() (Task 1.2). Drain in 3 steps:
+      //   1. closeConnections()   — stop accepting new edits.
+      //   2. flushPendingStores() — kick the debounced onStoreDocument for every
+      //      dirty room. Returns void; does NOT await.
+      //   3. await database.drain() — await our own per-key store-chain promises
+      //      (SecWriterDatabase._storeChains). This is how we KNOW every store
+      //      completed, and it inherits the per-key re-entrancy guard so no two
+      //      overlapping stores race the same .ydoc into storage (§2/§8).
+      server.hocuspocus.closeConnections();
+      server.hocuspocus.flushPendingStores();
+      // database is set in lockstep with hocuspocus; the guard is defensive
+      // against a future subclass passing a null database.
+      if (server.database) await server.database.drain();
+    } catch (err) {
+      log.error('server.shutdown-drain-failed', { signal, err: err && err.message });
+    } finally {
+      try { server.httpServer.close(); } catch { /* ignore */ }
+      setTimeout(() => process.exit(0), 50);
+    }
   }
   process.on('SIGINT', () => shutdown('SIGINT'));
   process.on('SIGTERM', () => shutdown('SIGTERM'));
@@ -644,7 +518,7 @@ function startFromEnv() {
   return server;
 }
 
-module.exports = { createCollabServer, extractDocName, startFromEnv, MAX_DOC_BYTES };
+module.exports = { createCollabServer, startFromEnv, MAX_DOC_BYTES };
 
 if (require.main === module) {
   startFromEnv();

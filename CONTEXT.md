@@ -134,7 +134,7 @@ For architecture vocabulary (module, interface, depth, seam, adapter, leverage, 
 
 **Room** — A collaborative editing session, identified by a room id. Backed by one Y.Doc on the server and persisted as three artifacts.
 
-**Identity** — The user's display name + color, stored in localStorage. The collab session is gated on `inRoom && identity` — without an identity, the WebSocketProvider is never instantiated.
+**Identity** — The user's display name + color, stored in localStorage. The collab session is gated on `inRoom && identity` — without an identity, the `HocuspocusProvider` is never instantiated.
 
 **Y.Doc / Y.XmlFragment / Y.Text** — Yjs CRDT primitives. SecWriter uses one Y.Doc per room with shared types `yOrder`, `yStore`, `yMeta`, `yTc`, `yComments`. Per-block html slots are Y.XmlFragment in schemaVersion=2 rooms (the default post-1d) and Y.Text in pre-1d / migrationPartial rooms.
 
@@ -158,7 +158,7 @@ For architecture vocabulary (module, interface, depth, seam, adapter, leverage, 
 
 **Awareness** — Yjs cursor/presence broadcast. Carries identity, color, and selection range.
 
-**Eviction guard** — The `server/collab-server.cjs` patch around `setupWSConnection` that re-installs the preloaded Y.Doc into y-websocket's `docs` Map after the preload `await`. Prevents y-websocket v1's `closeConn` from evicting our doc by name during a stale-close race. Re-installed a second time after the migration broker `await` for the same reason. See ADR-0002.
+**Eviction guard** — (Historical, superseded by #128 / ADR-0018.) The `server/collab-server.cjs` patch around `setupWSConnection` that re-installed the preloaded Y.Doc into y-websocket's `docs` Map after the preload `await`. Prevented y-websocket v1's `closeConn` from evicting our doc by name during a stale-close race. Replaced by Hocuspocus's single-authoritative `onLoadDocument` + `unloadImmediately: false` warm-doc + the client-side `seededRooms` guard. See ADR-0002 (superseded) and ADR-0018.
 
 ---
 

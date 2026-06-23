@@ -32,3 +32,7 @@ Server-side code remains CommonJS for as long as `yjs` is loaded into the server
 ## When to revisit
 
 When y-websocket v3 (or successor) is adopted (see ADR-0002), and the eviction-guard race is either fixed upstream or independently re-verified, the CJS constraint can be re-evaluated. Until then, this ADR stands.
+
+## #128 amendment — Hocuspocus .cjs build ([ADR-0018](0018-collab-relay-hocuspocus.md))
+
+[#128](https://github.com/mttvnst-HA/secwriter/issues/128) replaced the y-websocket relay with Hocuspocus v4 (see ADR-0018). Hocuspocus is required via its `.cjs` build (`@hocuspocus/server`, `@hocuspocus/extension-database` at exact `4.3.0`), with `yjs` and `y-protocols` declared as peer dependencies — so the package manager hoists a single copy of `yjs`, preserving the single-hoisted-yjs guarantee this ADR depends on. `instanceof` checks for `Y.Doc`, `Y.Text`, `Y.XmlFragment`, and `Y.Map` continue to work uniformly across the server process. A CI step (`unit-tests` job, "Assert single Yjs instance") fails if `npm ls yjs` shows more than one non-deduped copy of `yjs` in the tree. The `y-websocket` dependency is removed; `ws` is now a direct runtime dependency. The CJS constraint and the single-instance invariant are unchanged.

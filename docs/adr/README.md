@@ -35,7 +35,7 @@ Each ADR is one Markdown file: `NNNN-short-slug.md`. Use [`0000-template.md`](00
 | ID | Title | Status |
 |----|-------|--------|
 | [0001](0001-server-uses-commonjs.md) | Server uses CommonJS, not ESM | Accepted |
-| [0002](0002-pin-y-websocket-v1.md) | Pin y-websocket at v1 | Accepted |
+| [0002](0002-pin-y-websocket-v1.md) | Pin y-websocket at v1 | Superseded by ADR-0018 |
 | [0003](0003-compliance-rules-as-data.md) | Compliance rules live in JSON, not source code | Accepted |
 | [0004](0004-collab-publish-snapshot-diff.md) | Collab publish path uses snapshot diff, not live Y.Text binding | Accepted (deferred refactor tracked at issue #22) |
 | [0005](0005-storage-adapter-atomicity-per-backend.md) | Room storage: base class + adapters; multi-artifact atomicity stays per-backend | Accepted |
@@ -50,3 +50,5 @@ Each ADR is one Markdown file: `NNNN-short-slug.md`. Use [`0000-template.md`](00
 | [0014](0014-collab-server-yjs-relay.md) | Collab server — Yjs + y-websocket relay, CJS, four non-obvious patterns | Accepted |
 | [0015](0015-linting-stays-block-granular.md) | Linting state stays block-granular, not sentence-granular | Accepted |
 | [0016](0016-lint-cache-gc-live-fingerprint.md) | Persisted lint cache is GC'd against the live-block fingerprint set | Accepted |
+| [0017](0017-room-authorization-model.md) | Room authorization model — composite key + ACL sidecar | Accepted |
+| [0018](0018-collab-relay-hocuspocus.md) | Collab relay — Hocuspocus (full cutover from y-websocket v1) | Accepted |

@@ -383,8 +383,17 @@ export function useCollabSession({
         // 'incompatible'. We preserve that — sc.effectiveStatus would
         // happily collapse a 'connected' to 'incompatible', but App
         // does not need duplicate banner pings.
-        const coord = coordRef.current;
-        if (coord.schemaIncompatible && status !== 'incompatible') return;
+        let coord = coordRef.current;
+        if (status === 'incompatible') {
+          // Latch: an auth failure (or any incompatible signal) keeps the
+          // banner sticky so a trailing HocuspocusProvider reconnect cycle
+          // ('connecting'/'syncing') cannot clobber it. Coordinator-scoped
+          // so a fresh session/room starts clean (coordRef is reset to
+          // createInitial() in the lifecycle cleanup).
+          coordRef.current = sc.onStatusIncompatible(coord);
+          coord = coordRef.current;
+        }
+        if ((coord.schemaIncompatible || coord.statusIncompatible) && status !== 'incompatible') return;
         onStatusChangeRef.current?.(sc.effectiveStatus(coord, status), meta);
       },
     });

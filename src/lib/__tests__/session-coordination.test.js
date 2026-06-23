@@ -7,7 +7,7 @@ import * as sc from '../session-coordination.js';
 // behaviors the hook's publish gates + status filter depend on.
 
 describe('state shape', () => {
-  it('createInitial returns five false flags', () => {
+  it('createInitial returns six false flags (includes statusIncompatible)', () => {
     const s = sc.createInitial();
     expect(s).toEqual({
       sessionReady: false,
@@ -15,6 +15,7 @@ describe('state shape', () => {
       schemaIncompatible: false,
       migrationPartial: false,
       publishOvercap: false,
+      statusIncompatible: false,
     });
   });
 
@@ -57,6 +58,15 @@ describe('verbs', () => {
   it('onPublishSucceeded clears publishOvercap', () => {
     const s = sc.onPublishSucceeded(sc.onPublishOvercap(sc.createInitial()));
     expect(s.publishOvercap).toBe(false);
+  });
+
+  it('onStatusIncompatible trips statusIncompatible=true; idempotent on repeat', () => {
+    const s0 = sc.createInitial();
+    const s1 = sc.onStatusIncompatible(s0);
+    expect(s1.statusIncompatible).toBe(true);
+    expect(s1).not.toBe(s0);
+    // idempotent
+    expect(sc.onStatusIncompatible(s1)).toBe(s1);
   });
 });
 
@@ -158,22 +168,37 @@ describe('I3 — effectiveStatus collapses connected → migration-partial', () 
   });
 });
 
-describe('I4 — effectiveStatus returns "incompatible" for any input once schemaIncompatible', () => {
-  const incompatible = sc.onMetaSync(sc.createInitial(), { schemaVersion: 999 });
+describe('I4 — effectiveStatus returns "incompatible" for any input once schemaIncompatible or statusIncompatible', () => {
+  const schemaIncompat = sc.onMetaSync(sc.createInitial(), { schemaVersion: 999 });
+  const statusIncompat = sc.onStatusIncompatible(sc.createInitial());
 
   it.each([
     'connected', 'connecting', 'disconnected', 'syncing',
     'migration-partial', 'incompatible', 'unknown-future-status',
-  ])('input %s → "incompatible"', (raw) => {
-    expect(sc.effectiveStatus(incompatible, raw)).toBe('incompatible');
+  ])('schemaIncompatible: input %s → "incompatible"', (raw) => {
+    expect(sc.effectiveStatus(schemaIncompat, raw)).toBe('incompatible');
   });
 
-  it('terminal even when migrationPartial would otherwise replace connected', () => {
+  it.each([
+    'connected', 'connecting', 'disconnected', 'syncing',
+    'migration-partial', 'incompatible', 'unknown-future-status',
+  ])('statusIncompatible: input %s → "incompatible"', (raw) => {
+    // Auth failure path — statusIncompatible must be equally terminal so a
+    // trailing HocuspocusProvider reconnect cannot clobber the banner.
+    expect(sc.effectiveStatus(statusIncompat, raw)).toBe('incompatible');
+  });
+
+  it('schemaIncompatible terminal even when migrationPartial would otherwise replace connected', () => {
     // Schema-incompatible always wins over migration-partial. (In
     // practice the hook trips one branch or the other per onMetaSync,
     // never both — but the selector must still be safe if both somehow
     // sit true together.)
-    const s = { ...incompatible, migrationPartial: true };
+    const s = { ...schemaIncompat, migrationPartial: true };
+    expect(sc.effectiveStatus(s, 'connected')).toBe('incompatible');
+  });
+
+  it('statusIncompatible terminal even when migrationPartial would otherwise replace connected', () => {
+    const s = { ...statusIncompat, migrationPartial: true };
     expect(sc.effectiveStatus(s, 'connected')).toBe('incompatible');
   });
 });
