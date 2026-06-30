@@ -59,7 +59,7 @@ Also included: inline grammar and style linting (Harper.js + compromise.js), thr
 
 ### Prerequisites
 
-- Node.js 20 or newer
+- Node.js 22 or newer
 - Git
 - Windows users: Git Bash is recommended for parity with the development environment
 
@@ -186,7 +186,7 @@ That said: **pre-1.0 means no API stability guarantee yet**, and the hosted demo
 
 - [`CLAUDE.md`](CLAUDE.md) — project guide for agents and contributors: orientation, architecture invariants, known pitfalls, testing rules
 - [`CONTEXT.md`](CONTEXT.md) — domain glossary (block, transparent tag, publish path, etc.)
-- [`docs/adr/`](docs/adr/) — architectural decision records for load-bearing choices (CJS server, y-websocket pin, rules-as-data, snapshot-diff publish path, storage atomicity)
+- [`docs/adr/`](docs/adr/) — architectural decision records for load-bearing choices (CJS server, Hocuspocus collab relay, rules-as-data, snapshot-diff publish path, storage atomicity, room authorization)
 
 **Contributing:** Issues welcome. PRs by invitation only — please file an issue first and wait for a response before opening a pull request.
 
