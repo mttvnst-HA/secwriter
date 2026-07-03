@@ -23,6 +23,7 @@
 
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
+import { splitSentences } from './doc-lint-utils.mjs';
 
 const STALE_KEYWORDS = [
   'pending',
@@ -48,25 +49,11 @@ const STALE_KEYWORDS = [
 // ignore the tool.
 const RESOLUTION_OVERRIDE_KEYWORDS = ['fixed', 'resolved', 'landed', 'merged', 'no longer', ' live '];
 
-// Split into rough "sentences" so a keyword three bullet points away from a
-// ref doesn't count as co-occurrence (fixed-radius matching false-positived
-// on this in testing — e.g. "quarantine" in one Testing Rule bleeding into
-// an unrelated #NNN two sentences later). Lookbehind allows trailing "**"
-// (markdown bold close) so a bolded sentence-ending doesn't suppress the
-// split; lookahead requires an uppercase letter, digit, or markdown marker
-// after the break so "e.g." abbreviations don't get split mid-sentence.
-function splitSentences(text) {
-  const pieces = text.split(/(?<=[.!?]\*{0,2})\s+(?=[A-Z0-9`*[])/);
-  const sentences = [];
-  let cursor = 0;
-  for (const piece of pieces) {
-    const start = text.indexOf(piece, cursor);
-    sentences.push({ text: piece, start });
-    cursor = start + piece.length;
-  }
-  return sentences;
-}
-
+// splitSentences (tools/doc-lint-utils.mjs) breaks text into rough
+// "sentences" so a keyword three bullet points away from a ref doesn't count
+// as co-occurrence (fixed-radius matching false-positived on this in testing
+// — e.g. "quarantine" in one Testing Rule bleeding into an unrelated #NNN two
+// sentences later).
 function keywordRegex(keyword) {
   const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return new RegExp(`\\b${escaped}\\b`, 'i');

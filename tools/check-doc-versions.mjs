@@ -20,6 +20,7 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { sentenceAround } from './doc-lint-utils.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -37,24 +38,8 @@ function majorMinor(v) {
   return v.split('.').slice(0, 2).join('.');
 }
 
-// Naive last-period/next-period search breaks on periods inside things like
-// "harper.js" or "e.g." — only treat "." as a sentence end when followed by
-// whitespace + an uppercase/digit/markdown-marker char (same heuristic as
-// tools/check-doc-issue-refs.mjs's splitSentences).
-const SENTENCE_BOUNDARY = /[.!?]\*{0,2}\s+(?=[A-Z0-9`*[])/g;
-
-function sentenceAround(text, index) {
-  let start = 0;
-  let end = text.length;
-  SENTENCE_BOUNDARY.lastIndex = 0;
-  let m;
-  while ((m = SENTENCE_BOUNDARY.exec(text))) {
-    const boundary = m.index + m[0].length;
-    if (boundary <= index) start = boundary;
-    else { end = boundary; break; }
-  }
-  return text.slice(start, end).trim();
-}
+// sentenceAround (tools/doc-lint-utils.mjs) finds the sentence containing a
+// given index without breaking on periods inside things like "harper.js".
 
 // Each entry: find every citation of a version in CLAUDE.md via `docRegex`
 // (global, capture group 1 = cited version), compare against `actual()`,

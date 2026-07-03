@@ -97,7 +97,7 @@ const CHECKS = [
   {
     label: 'Adversarial corpus edge-case count',
     docRegex: /\*\*Adversarial\*\*[^—]*—\s*(\d+(?:,\d{3})*) edge cases/,
-    actual: () => readJson('corpus/adversarial/adversarial.json').entries.length,
+    actual: () => readJson('corpus/adversarial/adversarial.json').entries?.length,
   },
   {
     label: 'migrate-pm-substrate.test.mjs test count (AT the 30-test cap)',
@@ -117,7 +117,7 @@ function main() {
     const cited = parseCount(match[1]);
     const actualValue = check.actual();
     results.push({
-      ...check,
+      label: check.label,
       status: cited === actualValue ? 'OK' : 'DRIFT',
       cited,
       actualValue,
