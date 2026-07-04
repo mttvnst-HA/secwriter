@@ -237,6 +237,12 @@ del.mark-del[data-author-color] {
   display: none;
 }
 
+/* Per-block exemption — see PmEditableBlock's `forceVisible` prop. Higher
+   specificity than the rule above wins regardless of source order. */
+.notes-hidden .block-type-note.force-visible {
+  display: block;
+}
+
 /* ─── Tags visibility toggle ─── */
 
 /* Default: tags hidden — strip all mark styling */

@@ -191,6 +191,9 @@ export default function SpecEditor() {
   const [tailorShowAll, setTailorShowAll] = useState(false);
   const [showRevisions, setShowRevisions] = useState(true);
   const [showNotes, setShowNotes] = useState(true);
+  // Block ids exempted from `.notes-hidden .block-type-note { display: none }`
+  // — see revealConvertedNote below. Cleared on an explicit "hide notes" toggle.
+  const [revealedNoteIds, setRevealedNoteIds] = useState(() => new Set());
   const [unitDisplay, setUnitDisplay] = useState('both'); // 'both' | 'eng' | 'met'
   const [showTags, setShowTags] = useState(false); // default OFF — inline marks hidden
   const [darkMode, setDarkMode] = useState(() => {
@@ -1282,23 +1285,28 @@ export default function SpecEditor() {
     dispatchBlocks((b) => Blocks.convertToTitle(b, blockId));
   }, [dispatchBlocks]);
 
+  // If a block is converted to a Designer Note while notes are hidden, it
+  // would render under `.notes-hidden .block-type-note { display: none }`
+  // and look deleted. Rather than force-showing EVERY hidden note
+  // (surprising the user who deliberately hid them), track just this
+  // block's id and exempt it via PmEditableBlock's `forceVisible` prop
+  // (see the `.force-visible` override in editor.css). Cleared when the
+  // user explicitly re-hides notes — see onShowNotesChange below.
+  const revealConvertedNote = useCallback((blockId, newType) => {
+    if (newType !== 'note') return;
+    setRevealedNoteIds((prev) => (prev.has(blockId) ? prev : new Set(prev).add(blockId)));
+  }, []);
+
   const handleConvertBlock = useCallback((blockId, newType) => {
     const newId = `new-${Date.now()}`;
-    // If the user converts to a Designer Note while notes are hidden,
-    // the new block would render under `.notes-hidden .block-type-note
-    // { display: none }` and look deleted. Force-show notes so the
-    // freshly-converted block is visible immediately.
-    if (newType === 'note') setShowNotes(true);
+    revealConvertedNote(newId, newType);
     dispatchBlocks((b) => Blocks.convertBlock(b, blockId, newType, { newId }));
-  }, [dispatchBlocks]);
+  }, [dispatchBlocks, revealConvertedNote]);
 
   // Read tcState via ref to avoid recreating the handler on every TC toggle —
   // this prop is passed to every PmEditableBlock instance.
   const handleConvertBlockType = useCallback((blockId, newType) => {
-    // Same guard as handleConvertBlock above: converting to a Designer Note
-    // while notes are hidden would render the block under
-    // `.notes-hidden .block-type-note { display: none }` and look deleted.
-    if (newType === 'note') setShowNotes(true);
+    revealConvertedNote(blockId, newType);
     dispatchBlocks((b) => Blocks.convertBlockType(b, blockId, newType, { tcState: tcStateRef.current }));
     setLintingState((s) => linting.clearBlock(s, blockId));
     setOpenCommentId((id) => {
@@ -1306,7 +1314,7 @@ export default function SpecEditor() {
       const c = commentsStateRef.current?.byId.get(id);
       return c?.blockId === blockId ? null : id;
     });
-  }, [dispatchBlocks]);
+  }, [dispatchBlocks, revealConvertedNote]);
 
   const handlePromote = useCallback((blockId) => {
     dispatchBlocks((b) => Blocks.promoteTitle(b, blockId));
@@ -2773,7 +2781,13 @@ export default function SpecEditor() {
           showRevisions={showRevisions}
           onShowRevisionsChange={setShowRevisions}
           showNotes={showNotes}
-          onShowNotesChange={setShowNotes}
+          onShowNotesChange={(val) => {
+            // Explicit re-hide wins over any per-block reveal exemption —
+            // the user asked for ALL notes hidden, including recently
+            // converted ones.
+            if (!val) setRevealedNoteIds(new Set());
+            setShowNotes(val);
+          }}
           unitDisplay={unitDisplay}
           onUnitDisplayChange={setUnitDisplay}
           blocks={blocks}
@@ -3093,6 +3107,7 @@ export default function SpecEditor() {
                   trackChanges={trackChanges}
                   identity={identity}
                   readOnly={collabReadOnly}
+                  forceVisible={revealedNoteIds.has(block.id)}
                   onAcceptRevision={(id) => dispatchBlocks((b) => Blocks.acceptBlockRevision(b, id))}
                   onRejectRevision={(id) => dispatchBlocks((b) => Blocks.rejectBlockRevision(b, id))}
                   onRefreshTcSnapshot={handleBlockUpdatePmSync}
