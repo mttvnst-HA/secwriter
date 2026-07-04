@@ -1295,6 +1295,10 @@ export default function SpecEditor() {
   // Read tcState via ref to avoid recreating the handler on every TC toggle —
   // this prop is passed to every PmEditableBlock instance.
   const handleConvertBlockType = useCallback((blockId, newType) => {
+    // Same guard as handleConvertBlock above: converting to a Designer Note
+    // while notes are hidden would render the block under
+    // `.notes-hidden .block-type-note { display: none }` and look deleted.
+    if (newType === 'note') setShowNotes(true);
     dispatchBlocks((b) => Blocks.convertBlockType(b, blockId, newType, { tcState: tcStateRef.current }));
     setLintingState((s) => linting.clearBlock(s, blockId));
     setOpenCommentId((id) => {
