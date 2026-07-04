@@ -60,17 +60,24 @@ export default function InlineTooltip({
       if (left - tooltipWidth / 2 < 8) left = tooltipWidth / 2 + 8;
       if (left + tooltipWidth / 2 > window.innerWidth - 8) left = window.innerWidth - tooltipWidth / 2 - 8;
 
+      // Clear the whole block, not just the flagged line, so a tall tooltip
+      // doesn't land on top of the paragraph's wrapped continuation above/below
+      // the flagged word.
+      const blockRect = blockEl?.getBoundingClientRect ? blockEl.getBoundingClientRect() : null;
+      const belowFrom = blockRect ? Math.max(rect.bottom, blockRect.bottom) : rect.bottom;
+      const aboveFrom = blockRect ? Math.min(rect.top, blockRect.top) : rect.top;
+
       // Prefer positioning below the highlight so the flagged word stays visible.
       // Flip above only if there isn't enough room below.
       let top;
       let below = true;
-      if (rect.bottom + tooltipHeight + 8 < window.innerHeight - 8) {
-        top = rect.bottom + 8;
-      } else if (rect.top - tooltipHeight - 8 > 8) {
-        top = rect.top - 8;
+      if (belowFrom + tooltipHeight + 8 < window.innerHeight - 8) {
+        top = belowFrom + 8;
+      } else if (aboveFrom - tooltipHeight - 8 > 8) {
+        top = aboveFrom - 8;
         below = false;
       } else {
-        // Neither fits fully — fall back to below and let it clip
+        // Neither fits fully — fall back to right below the flagged line and let it clip
         top = rect.bottom + 8;
       }
 
@@ -78,7 +85,7 @@ export default function InlineTooltip({
     } catch {
       setPos(null);
     }
-  }, [finding]);
+  }, [finding, blockEl]);
 
   // Reset "Why?" expansion when finding changes
   useEffect(() => {
