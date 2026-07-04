@@ -60,25 +60,56 @@ export default function InlineTooltip({
       if (left - tooltipWidth / 2 < 8) left = tooltipWidth / 2 + 8;
       if (left + tooltipWidth / 2 > window.innerWidth - 8) left = window.innerWidth - tooltipWidth / 2 - 8;
 
-      // Prefer positioning below the highlight so the flagged word stays visible.
-      // Flip above only if there isn't enough room below.
+      // Clear the whole block, not just the flagged line, so a tall tooltip
+      // doesn't land on top of the paragraph's wrapped continuation above/below
+      // the flagged word. Anchor off blockEl's parent (the block's own
+      // container, which carries its padding/margin) rather than blockEl
+      // itself — blockEl is PM's inner contenteditable node and its rect
+      // excludes the block's padding/margin. The flagged range is always a
+      // sub-rect of the block, so the container's rect alone (no Math.max/min
+      // against `rect`) is the clearance boundary.
+      const containerEl = blockEl?.parentElement?.getBoundingClientRect ? blockEl.parentElement : blockEl;
+      const blockRect = containerEl?.getBoundingClientRect ? containerEl.getBoundingClientRect() : null;
+      const belowFrom = blockRect ? blockRect.bottom : rect.bottom;
+      const aboveFrom = blockRect ? blockRect.top : rect.top;
+
+      // Prefer positioning below the block so the flagged word stays visible.
+      // Flip above only if there isn't enough room below. If neither fits at
+      // full height (a very tall block in a short viewport), clip the tooltip
+      // to whichever side has more room and let it scroll internally instead
+      // of falling back to the flagged-line rect — that would re-cover the
+      // block's own wrapped text, the exact bug this calc exists to avoid.
+      // Same branching strategy as computePlacement() in lib/menu-placement.js;
+      // kept as a separate implementation because the "above" placement here
+      // relies on `translate(-50%, -100%)` to anchor off the tooltip's actual
+      // rendered height, not an upfront height estimate the way
+      // computePlacement's absolute-top formula would require.
       let top;
       let below = true;
-      if (rect.bottom + tooltipHeight + 8 < window.innerHeight - 8) {
-        top = rect.bottom + 8;
-      } else if (rect.top - tooltipHeight - 8 > 8) {
-        top = rect.top - 8;
+      let maxHeight = null;
+      if (belowFrom + tooltipHeight + 8 < window.innerHeight - 8) {
+        top = belowFrom + 8;
+      } else if (aboveFrom - tooltipHeight - 8 > 8) {
+        top = aboveFrom - 8;
         below = false;
       } else {
-        // Neither fits fully — fall back to below and let it clip
-        top = rect.bottom + 8;
+        const spaceBelow = window.innerHeight - belowFrom - 16;
+        const spaceAbove = aboveFrom - 16;
+        if (spaceBelow >= spaceAbove) {
+          top = belowFrom + 8;
+          maxHeight = Math.max(spaceBelow, 80);
+        } else {
+          top = aboveFrom - 8;
+          below = false;
+          maxHeight = Math.max(spaceAbove, 80);
+        }
       }
 
-      setPos({ top, left, below });
+      setPos({ top, left, below, maxHeight });
     } catch {
       setPos(null);
     }
-  }, [finding]);
+  }, [finding, blockEl]);
 
   // Reset "Why?" expansion when finding changes
   useEffect(() => {
@@ -197,6 +228,8 @@ export default function InlineTooltip({
         transform: pos.below ? 'translate(-50%, 0)' : 'translate(-50%, -100%)',
         maxWidth: 320,
         minWidth: 200,
+        maxHeight: pos.maxHeight ?? undefined,
+        overflowY: pos.maxHeight ? 'auto' : 'visible',
         padding: '8px 12px',
         backgroundColor: colors.bg,
         border: `1px solid ${colors.border}`,
