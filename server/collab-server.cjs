@@ -226,7 +226,14 @@ function createCollabServer(config) {
       onLoadDocument,
       async onAuthenticate(data) {
         try {
-          return await onAuthenticate(data);
+          const ctx = await onAuthenticate(data);
+          // #239 viewer read-only gate: mutating data.connection.readOnly here
+          // makes Hocuspocus reject (and NOT sync) this connection's document
+          // update messages for its whole lifetime — the WS-layer write denial
+          // a viewer role requires. Editors/owners leave it false. The returned
+          // ctx becomes the connection context (available to later hooks).
+          if (ctx && ctx.readOnly && data.connection) data.connection.readOnly = true;
+          return ctx;
         } catch (err) {
           if (err instanceof AuthReject) {
             log.warn('ws.auth-reject', { status: err.status, reason: err.reason });

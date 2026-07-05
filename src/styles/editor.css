@@ -798,6 +798,18 @@ body {
   border-bottom: 1px solid #fbbf24;
 }
 
+/* #239 — viewer (read-only) role banner. Blue to read as informational,
+   distinct from the amber lock-conflict banner. */
+.viewer-banner {
+  background-color: #dbeafe;
+  color: #1e40af;
+  text-align: center;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  border-bottom: 1px solid #93c5fd;
+}
+
 /* 1i-b.1 — read-only fallback for migrationPartial blocks (PmEditableBlock). */
 .migration-partial-banner {
   padding: 8px 12px;

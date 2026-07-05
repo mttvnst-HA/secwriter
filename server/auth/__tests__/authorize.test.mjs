@@ -2,7 +2,7 @@ import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
-const { authorize, checkPrincipal, ACTION } = require('../authorize.cjs');
+const { authorize, checkPrincipal, roleOf, ACTION } = require('../authorize.cjs');
 
 const authOn = { requiresAuth: true };
 const authOff = { requiresAuth: false };
@@ -46,14 +46,33 @@ describe('authorize', () => {
   it('auth off → allow', async () => {
     assert.deepEqual(await authorize({ authProvider: authOff, storage, user: null, roomId: 'r1', action: ACTION.DELETE }), { ok: true });
   });
-  it('owner can read + delete + share', async () => {
-    for (const a of [ACTION.READ, ACTION.DELETE, ACTION.SHARE, ACTION.LOCK_ADMIN]) {
-      assert.deepEqual(await authorize({ authProvider: authOn, storage, user: owner, roomId: 'r1', action: a }), { ok: true }, a);
+  it('owner can read + write + delete + share; result carries role', async () => {
+    for (const a of [ACTION.READ, ACTION.WRITE, ACTION.DELETE, ACTION.SHARE, ACTION.LOCK_ADMIN]) {
+      const dec = await authorize({ authProvider: authOn, storage, user: owner, roomId: 'r1', action: a });
+      assert.deepEqual(dec, { ok: true, role: 'owner' }, a);
     }
   });
-  it('shared user can read but NOT delete/share', async () => {
-    assert.deepEqual(await authorize({ authProvider: authOn, storage, user: friend, roomId: 'r1', action: ACTION.READ }), { ok: true });
+  it('legacy sharedWith sharee resolves to editor: read+write ok, delete/share NOT (404)', async () => {
+    // #239 floor-shape migration: a #211 { sharedWith: ['friend'] } sidecar
+    // grants EDITOR (read+write) with no code migration.
+    assert.equal(roleOf({ ownerId: 'owner', sharedWith: ['friend'] }, 'friend'), 'editor');
+    for (const a of [ACTION.READ, ACTION.WRITE]) {
+      assert.deepEqual(await authorize({ authProvider: authOn, storage, user: friend, roomId: 'r1', action: a }), { ok: true, role: 'editor' }, a);
+    }
     assert.equal((await authorize({ authProvider: authOn, storage, user: friend, roomId: 'r1', action: ACTION.DELETE })).status, 404);
+  });
+  it('#239 graded roles table: viewer READ ok but WRITE denied; editor READ+WRITE', async () => {
+    const graded = fakeStorage({
+      'acme/g': { ownerId: 'owner', roles: { vi: 'viewer', ed: 'editor' } },
+    });
+    const viewer = { id: 'vi', tenant: 'acme' };
+    const editor = { id: 'ed', tenant: 'acme' };
+    assert.deepEqual(await authorize({ authProvider: authOn, storage: graded, user: viewer, roomId: 'g', action: ACTION.READ }), { ok: true, role: 'viewer' });
+    assert.equal((await authorize({ authProvider: authOn, storage: graded, user: viewer, roomId: 'g', action: ACTION.WRITE })).status, 404);
+    assert.deepEqual(await authorize({ authProvider: authOn, storage: graded, user: editor, roomId: 'g', action: ACTION.READ }), { ok: true, role: 'editor' });
+    assert.deepEqual(await authorize({ authProvider: authOn, storage: graded, user: editor, roomId: 'g', action: ACTION.WRITE }), { ok: true, role: 'editor' });
+    // roles wins over a stale sharedWith when both present.
+    assert.equal(roleOf({ ownerId: 'o', roles: { u: 'viewer' }, sharedWith: ['u'] }, 'u'), 'viewer');
   });
   it('stranger same-tenant → 404 (no existence leak)', async () => {
     assert.equal((await authorize({ authProvider: authOn, storage, user: stranger, roomId: 'r1', action: ACTION.READ })).status, 404);
