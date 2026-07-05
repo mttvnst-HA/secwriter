@@ -16,7 +16,7 @@ const { seedRoomFromBlocks } = require('./room-serializer.cjs');
 const { migrateRoom } = require('./migrate-pm-substrate.cjs');
 const { log } = require('./logger.cjs');
 const { sanitize, PUBLIC_TENANT, buildCompositeDocName } = require('./storage-shared.cjs');
-const { authorize, checkPrincipal, aclAllowsRead, ACTION } = require('./auth/authorize.cjs');
+const { authorize, checkPrincipal, aclAllowsRead, roleOf, ACTION, GRANTABLE_ROLES } = require('./auth/authorize.cjs');
 
 /**
  * @param {Object} deps
@@ -211,7 +211,10 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
         if (aborted) return;
         try {
           const tenant = resolveTenant(req);
-          const dec = await authorize({ authProvider, storage, user: req.user, roomId, action: ACTION.READ });
+          // #239: upload overwrites room content → WRITE (editor + owner). A
+          // viewer is denied (was READ-gated under #211's binary model where
+          // every sharee could write).
+          const dec = await authorize({ authProvider, storage, user: req.user, roomId, action: ACTION.WRITE });
           if (denied(res, dec)) return;
           const composite = buildCompositeDocName(tenant, roomId);
 
@@ -339,6 +342,40 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
       return;
     }
 
+    // GET /rooms/:roomId/acl — owner-only; the collaborator+role list backing
+    // the client share dialog (#239). Normalizes both sidecar shapes to
+    // { ownerId, roles: { "<sub>": "viewer"|"editor" } } so the UI never sees
+    // the legacy `sharedWith` form.
+    const aclMatch = url.pathname.match(/^\/rooms\/([^/]+)\/acl$/);
+    if (aclMatch && req.method === 'GET') {
+      const roomId = aclMatch[1];
+      try {
+        const tenant = resolveTenant(req);
+        const dec = await authorize({ authProvider, storage, user: req.user, roomId, action: ACTION.SHARE });
+        if (denied(res, dec)) return;
+        const acl = await storage.readAcl(tenant, roomId);
+        if (!acl) {
+          res.writeHead(404, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: `Room "${roomId}" not found` }));
+          return;
+        }
+        const roles = {};
+        if (acl.roles && typeof acl.roles === 'object') {
+          for (const [uid, r] of Object.entries(acl.roles)) {
+            if (r === 'viewer' || r === 'editor') roles[uid] = r;
+          }
+        } else if (Array.isArray(acl.sharedWith)) {
+          for (const uid of acl.sharedWith) roles[uid] = 'editor';
+        }
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ ownerId: acl.ownerId, roles }));
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.end(`ACL read failed: ${err.message}`);
+      }
+      return;
+    }
+
     // POST /rooms — create a new room
     if (url.pathname === '/rooms' && req.method === 'POST') {
       const chunks = [];
@@ -397,7 +434,10 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           // (last writeRoom wins) is benign — both writers produce an
           // identical fresh empty doc in the shared _public namespace.
           if (authProvider?.requiresAuth) {
-            const claimed = await storage.writeAclIfAbsent(tenant, id, { ownerId: req.user.id, sharedWith: [] });
+            // #239: new rooms use the graded `roles` shape (empty = owner-only
+            // until shared). roleOf() still read-compat's #211's `sharedWith`
+            // shape for rooms created before this change.
+            const claimed = await storage.writeAclIfAbsent(tenant, id, { ownerId: req.user.id, roles: {} });
             if (!claimed) {
               res.writeHead(409, { 'Content-Type': 'application/json' });
               res.end(JSON.stringify({ error: `Room "${id}" already exists` }));
@@ -483,9 +523,19 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           const body = JSON.parse(Buffer.concat(chunks).toString('utf-8'));
           const userId = body && body.userId;
           const action = body && body.action;
+          // #239: `role` is optional and graded. `add` upserts the grant
+          // (defaults to 'editor' when role is omitted — the #211 sharee
+          // capability, so every existing caller keeps working); `remove`
+          // drops the grant and ignores role.
+          const role = body && body.role;
           if (typeof userId !== 'string' || !userId || (action !== 'add' && action !== 'remove')) {
             res.writeHead(400, { 'Content-Type': 'text/plain' });
-            res.end('Body must be { userId: string, action: "add" | "remove" }');
+            res.end('Body must be { userId: string, action: "add" | "remove", role?: "viewer" | "editor" }');
+            return;
+          }
+          if (action === 'add' && role !== undefined && !GRANTABLE_ROLES.includes(role)) {
+            res.writeHead(400, { 'Content-Type': 'text/plain' });
+            res.end(`role must be one of ${GRANTABLE_ROLES.join(', ')}`);
             return;
           }
 
@@ -497,15 +547,25 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
             res.end('Not found');
             return;
           }
-          const set = new Set(Array.isArray(acl.sharedWith) ? acl.sharedWith : []);
+          // Fold the current ACL into the graded `roles` shape, migrating a
+          // #211 `sharedWith` sidecar in place (each entry → 'editor'). `roles`
+          // wins if both keys are present (matches roleOf()).
+          const roles = {};
+          if (acl.roles && typeof acl.roles === 'object') {
+            for (const [uid, r] of Object.entries(acl.roles)) {
+              if (r === 'viewer' || r === 'editor') roles[uid] = r;
+            }
+          } else if (Array.isArray(acl.sharedWith)) {
+            for (const uid of acl.sharedWith) roles[uid] = 'editor';
+          }
           // Same-tenant is enforced STRUCTURALLY: the room lives under the
           // owner's tenant, so a cross-tenant userId is inert. Store opaque id as-is.
-          if (action === 'add') set.add(userId); else set.delete(userId);
-          set.delete(acl.ownerId); // never let a sharee entry equal the owner
-          await storage.writeAcl(tenant, roomId, { ownerId: acl.ownerId, sharedWith: [...set] });
+          if (action === 'add') roles[userId] = role || 'editor'; else delete roles[userId];
+          delete roles[acl.ownerId]; // never let a grant entry equal the owner
+          await storage.writeAcl(tenant, roomId, { ownerId: acl.ownerId, roles });
 
           res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ ok: true, sharedWith: [...set] }));
+          res.end(JSON.stringify({ ok: true, roles }));
         } catch (err) {
           res.writeHead(500, { 'Content-Type': 'text/plain' });
           res.end(`Share failed: ${err.message}`);
@@ -525,9 +585,12 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           const body = JSON.parse(Buffer.concat(chunks).toString('utf-8'));
           const tenant = resolveTenant(req);
           const touchesLock = body.locked !== undefined || body.lockedBy !== undefined || body.lockedByName !== undefined;
+          // #239: lock fields are owner-only (LOCK_ADMIN); other settings
+          // (displayName) are a content mutation → WRITE (editor + owner, not
+          // viewer). Under #211 the non-lock branch was READ-gated.
           const dec = await authorize({
             authProvider, storage, user: req.user, roomId,
-            action: touchesLock ? ACTION.LOCK_ADMIN : ACTION.READ,
+            action: touchesLock ? ACTION.LOCK_ADMIN : ACTION.WRITE,
           });
           if (denied(res, dec)) return;
           const composite = buildCompositeDocName(tenant, roomId);
@@ -612,13 +675,18 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           // non-members. Filter to ACL members (owner or sharee) off the
           // cheap sidecar; rooms with no ACL (legacy/orphan) are hidden —
           // the same semantics as the per-room routes' 404.
+          // #239: capture the caller's role so the client can badge viewers
+          // and gate the owner-only Share affordance without a second request.
+          // Under auth=none everyone is an editor in the _public namespace.
+          let callerRole = 'editor';
           if (authProvider?.requiresAuth) {
             const acl = await storage.readAcl(tenant, id);
             if (!aclAllowsRead(acl, req.user.id)) continue;
+            callerRole = roleOf(acl, req.user.id);
           }
 
           const composite = buildCompositeDocName(tenant, id);
-          const entry = { id, displayName: id, sectionNumber: null, sectionTitle: null, lastModified: null, activeUsers: [], locked: false, sizeBytes: 0 };
+          const entry = { id, displayName: id, sectionNumber: null, sectionTitle: null, lastModified: null, activeUsers: [], locked: false, sizeBytes: 0, role: callerRole };
 
           // Try live doc first (has awareness for active users)
           const liveDoc = boundDocs.get(composite);

@@ -175,6 +175,7 @@ export function useCollabSession({
   onLintMutedNlpUpdated,
   onPresenceChange,
   onStatusChange,
+  onAuthScope,
 
   pushToast,
 }) {
@@ -246,6 +247,12 @@ export function useCollabSession({
   onPresenceChangeRef.current = onPresenceChange;
   const onStatusChangeRef = useRef(onStatusChange);
   onStatusChangeRef.current = onStatusChange;
+  // #239: provider auth scope ('readonly' | 'read-write') — a viewer role
+  // resolves to readonly server-side (data.connectionConfig.readOnly), and the
+  // HocuspocusProvider surfaces it via its 'authenticated' event. App maps
+  // 'readonly' into collabReadOnly.
+  const onAuthScopeRef = useRef(onAuthScope);
+  onAuthScopeRef.current = onAuthScope;
   const pushToastRef = useRef(pushToast);
   pushToastRef.current = pushToast;
   const getInitialBlocksRef = useRef(getInitialBlocks);
@@ -395,6 +402,9 @@ export function useCollabSession({
         }
         if ((coord.schemaIncompatible || coord.statusIncompatible) && status !== 'incompatible') return;
         onStatusChangeRef.current?.(sc.effectiveStatus(coord, status), meta);
+      },
+      onAuthScope: (scope) => {
+        onAuthScopeRef.current?.(scope);
       },
     });
 

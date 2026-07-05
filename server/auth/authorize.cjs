@@ -2,20 +2,68 @@
  * Room authorization decision function. See ADR-0017 + the design spec
  * (docs/superpowers/specs/2026-06-11-room-authorization-design.md).
  *
- * Returns { ok: true } or { ok: false, status } where status is one of
- * 401 (no token) / 403 (bad principal) / 404 (cross-tenant, not-shared,
- * missing ACL — existence is hidden). Demo (auth=none) early-returns allow.
+ * Returns { ok: true, role } or { ok: false, status, role? } where status is
+ * one of 401 (no token) / 403 (bad principal) / 404 (cross-tenant, not-shared,
+ * missing ACL, or a capability denial — existence is hidden). `role` (#239) is
+ * the caller's resolved role on success, and on a capability-denial 404.
+ * Demo (auth=none) early-returns allow with no role.
  */
 'use strict';
 
 const { sanitize, PUBLIC_TENANT, ARCHIVE_NAMESPACE } = require('../storage-shared.cjs');
 
+// #239: graded roles (viewer/editor/owner). READ is the connect/view gate
+// (all three roles); WRITE is the content-mutation gate (editor + owner) —
+// #211's binary model collapsed these because every sharee could write.
 const ACTION = Object.freeze({
-  READ: 'read',         // open WS, GET /sec, GET /comments, POST /upload, content PATCH
+  READ: 'read',         // open WS (view), GET /sec, GET /comments
+  WRITE: 'write',       // POST /upload, content mutation
   DELETE: 'delete',
-  SHARE: 'share',       // share-grant (PATCH /rooms/:id/share)
+  SHARE: 'share',       // share-grant / role-grant (PATCH /rooms/:id/share)
   LOCK_ADMIN: 'lock',   // lock fields on PATCH /rooms/:id
 });
+
+// #239: valid role lattice. owner ⊃ editor ⊃ viewer. Owner is implicit from
+// acl.ownerId; viewer/editor live in acl.roles. The share route rejects
+// anything outside {viewer, editor} (owner is not grantable — ownership
+// transfer is a separate, out-of-scope concern).
+const ROLE = Object.freeze({ VIEWER: 'viewer', EDITOR: 'editor', OWNER: 'owner' });
+const GRANTABLE_ROLES = Object.freeze(['viewer', 'editor']);
+
+// role → allowed actions. The single source of truth for "who can do what".
+const ROLE_ACTIONS = Object.freeze({
+  viewer: Object.freeze([ACTION.READ]),
+  editor: Object.freeze([ACTION.READ, ACTION.WRITE]),
+  owner: Object.freeze([ACTION.READ, ACTION.WRITE, ACTION.DELETE, ACTION.SHARE, ACTION.LOCK_ADMIN]),
+});
+
+/**
+ * Resolve a user's effective role on a room from its ACL sidecar. Returns
+ * 'owner' | 'editor' | 'viewer' | null (null = no access).
+ *
+ * Lazy floor-shape migration (#239): a #211 sidecar has `sharedWith[]` and no
+ * `roles`; every entry in it is treated as an EDITOR (the binary sharee
+ * capability was read+write). New writes emit the `roles` map; both shapes
+ * read here so no data migration script is needed. If BOTH keys are present
+ * (a room shared post-migration), `roles` wins and `sharedWith` is ignored.
+ */
+function roleOf(acl, userId) {
+  if (!acl || !userId) return null;
+  if (acl.ownerId === userId) return ROLE.OWNER;
+  if (acl.roles && typeof acl.roles === 'object') {
+    const r = acl.roles[userId];
+    return (r === ROLE.VIEWER || r === ROLE.EDITOR) ? r : null;
+  }
+  if (Array.isArray(acl.sharedWith) && acl.sharedWith.includes(userId)) return ROLE.EDITOR;
+  return null;
+}
+
+/** True when `role` (may be null) is permitted to perform `action`. */
+function roleCan(role, action) {
+  if (!role) return false;
+  const allowed = ROLE_ACTIONS[role];
+  return !!allowed && allowed.includes(action);
+}
 
 /**
  * Principal-level checks that need no room: token presence, tenant claim,
@@ -41,12 +89,11 @@ function checkPrincipal(authProvider, user) {
  * Pure read-permission predicate over an ACL sidecar. Shared by authorize()
  * and GET /rooms member-filtering so the owner/sharee rule has one home.
  * A null ACL never permits (legacy/orphan rooms are hidden under auth —
- * same semantics as the per-room 404).
+ * same semantics as the per-room 404). Any non-null role (viewer included)
+ * permits READ — viewers must be able to open the room, just not write.
  */
 function aclAllowsRead(acl, userId) {
-  if (!acl) return false;
-  return acl.ownerId === userId ||
-    (Array.isArray(acl.sharedWith) && acl.sharedWith.includes(userId));
+  return roleCan(roleOf(acl, userId), ACTION.READ);
 }
 
 async function authorize({ authProvider, storage, user, roomId, action }) {
@@ -64,11 +111,19 @@ async function authorize({ authProvider, storage, user, roomId, action }) {
   const acl = await storage.readAcl(user.tenant, roomId);
   if (!acl) return { ok: false, status: 404 };
 
-  if (action === ACTION.READ) {
-    return aclAllowsRead(acl, user.id) ? { ok: true } : { ok: false, status: 404 };
-  }
-  // DELETE / SHARE / LOCK_ADMIN are owner-only.
-  return acl.ownerId === user.id ? { ok: true } : { ok: false, status: 404 };
+  const role = roleOf(acl, user.id);
+  // Uniform 404 for every denial (no role, or a role lacking the requested
+  // capability). This preserves #211's no-existence-leak posture — the same
+  // opaque failure for "can't see it" and "can't do that" — rather than
+  // splitting into 403 for capability failures. The viewer read-only boundary
+  // is enforced at the WS layer (data.connectionConfig.readOnly) and the HTTP WRITE
+  // gate, not by re-statusing authorize denials. Established tests
+  // (editor DELETE → 404, editor lock-PATCH → 404) pin this.
+  if (!role || !roleCan(role, action)) return { ok: false, status: 404, role };
+  return { ok: true, role };
 }
 
-module.exports = { authorize, checkPrincipal, aclAllowsRead, ACTION };
+module.exports = {
+  authorize, checkPrincipal, aclAllowsRead,
+  roleOf, roleCan, ACTION, ROLE, ROLE_ACTIONS, GRANTABLE_ROLES,
+};

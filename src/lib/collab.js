@@ -916,6 +916,7 @@ export function createCollabSession({
   onRemoteLintMutedNlp,
   onPresenceChange,
   onStatusChange,
+  onAuthScope,  // #239: (scope:'readonly'|'read-write') => void — provider auth scope
 }) {
   const ydoc = new Y.Doc();
   const yOrder = ydoc.getArray('order');
@@ -1077,6 +1078,20 @@ export function createCollabSession({
     ...(wsPolyfill ? { WebSocketPolyfill: wsPolyfill } : {}),
   });
   const awareness = provider.awareness;
+
+  // #239: HocuspocusProvider emits 'authenticated' with the server-assigned
+  // scope after onAuthenticate resolves. A viewer role sets
+  // data.connectionConfig.readOnly server-side → scope 'readonly'; editor/owner →
+  // 'read-write'. Surface it so App can reflect a read-only editor for viewers
+  // (the server already REJECTS a viewer's ops — this is the UX mirror, not
+  // the enforcement). Fires on every (re)connect, so a mid-session role change
+  // takes effect on reconnect. Guarded: only present on HocuspocusProvider.
+  if (typeof provider.on === 'function') {
+    provider.on('authenticated', (payload) => {
+      const scope = payload && payload.scope ? payload.scope : provider.authorizedScope;
+      onAuthScope?.(scope);
+    });
+  }
 
   // Publish our identity + empty cursor
   awareness.setLocalStateField('user', identity);

@@ -82,6 +82,32 @@ test('accepts a canonical owner connection and returns the user context', async 
   });
   const ctx = await onAuth({ documentName: 'tenantA/room1', token: 'tokA' });
   assert.equal(ctx.user.id, 'sub-a');
+  // #239: an owner is not read-only.
+  assert.equal(ctx.role, 'owner');
+  assert.equal(ctx.readOnly, false);
+});
+
+test('#239: viewer connection resolves readOnly:true; editor read-write', async () => {
+  const onAuth = buildOnAuthenticate({
+    authProvider: makeAuthProvider({ tokV: { id: 'vi', tenant: 'tenantA' }, tokE: { id: 'ed', tenant: 'tenantA' } }),
+    storage: makeStorage({ 'tenantA/room1': { ownerId: 'owner', roles: { vi: 'viewer', ed: 'editor' } } }),
+  });
+  const vctx = await onAuth({ documentName: 'tenantA/room1', token: 'tokV' });
+  assert.equal(vctx.role, 'viewer');
+  assert.equal(vctx.readOnly, true); // WS-layer write gate — collab-server sets data.connection.readOnly
+  const ectx = await onAuth({ documentName: 'tenantA/room1', token: 'tokE' });
+  assert.equal(ectx.role, 'editor');
+  assert.equal(ectx.readOnly, false);
+});
+
+test('#239: auth=none demo connection is a full editor (not read-only)', async () => {
+  const onAuth = buildOnAuthenticate({
+    authProvider: { requiresAuth: false, validateToken: async () => null },
+    storage: makeStorage({}),
+  });
+  const ctx = await onAuth({ documentName: '_public/anything', token: null });
+  assert.equal(ctx.role, 'editor');
+  assert.equal(ctx.readOnly, false);
 });
 
 test('rejects a canonical room the caller cannot read (not owner/sharee) with 404', async () => {

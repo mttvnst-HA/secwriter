@@ -474,7 +474,8 @@ for (const { name, factory } of BACKENDS) {
       assert.ok(r);
       assert.deepStrictEqual(Buffer.from(r.ydocBytes), Buffer.from([0xAA, 0xBB]));
       assert.deepStrictEqual(Buffer.from(r.secBytes), Buffer.from('SEC-CONTENT'));
-      assert.deepEqual(await backend.readAcl(T, 'legacy1'), { ownerId: 'admin', sharedWith: [] });
+      // #239: relocated rooms get the graded `roles` shape (empty = owner-only).
+      assert.deepEqual(await backend.readAcl(T, 'legacy1'), { ownerId: 'admin', roles: {} });
       assert.equal(await backend._statKey(legacyYdoc), null, 'flat .ydoc must be gone');
 
       // Legacy flat ARCHIVES relocate too. Pre-tenant sweeps archived under

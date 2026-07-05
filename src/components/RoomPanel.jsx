@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { X, Plus, Lock, Trash2, Users } from 'lucide-react';
+import { X, Plus, Lock, Trash2, Users, Share2 } from 'lucide-react';
 import { initialsFor } from '../lib/identity.js';
+import ShareDialog from './ShareDialog.jsx';
 
 export default function RoomPanel({
   rooms,
@@ -11,12 +12,16 @@ export default function RoomPanel({
   onDeleteRoom,
   onLockRoom,
   onRenameRoom,
+  onLoadAcl,
+  onShareRoom,
   currentUserId,
 }) {
   const [showCreate, setShowCreate] = useState(false);
   const [newName, setNewName] = useState('');
   const [editingRoomId, setEditingRoomId] = useState(null);
   const [editName, setEditName] = useState('');
+  // #239: room whose share dialog is open (owner-only affordance).
+  const [sharingRoomId, setSharingRoomId] = useState(null);
 
   const handleCreate = () => {
     const sanitized = newName.trim().replace(/[^a-zA-Z0-9_-]/g, '-');
@@ -229,6 +234,22 @@ export default function RoomPanel({
                   </span>
                 )}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginLeft: 4, flexShrink: 0 }}>
+                  {/* #239: share is owner-only. `role` comes from GET /rooms;
+                      under auth=none every room reports 'editor' so the button
+                      is hidden (there is nobody to share with in the demo). */}
+                  {room.role === 'owner' && onShareRoom && (
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setSharingRoomId(room.id); }}
+                      title="Share room"
+                      style={{
+                        border: 'none', background: 'none', cursor: 'pointer',
+                        padding: 2, display: 'flex', alignItems: 'center',
+                        color: '#94a3b8', opacity: 0.6,
+                      }}
+                    >
+                      <Share2 size={12} />
+                    </button>
+                  )}
                   <button
                     onClick={(e) => { e.stopPropagation(); onLockRoom(room.id, !room.locked); }}
                     title={room.locked ? `Locked by ${room.lockedByName || 'unknown'} — click to unlock` : 'Lock room'}
@@ -300,6 +321,16 @@ export default function RoomPanel({
           );
         })}
       </div>
+
+      {/* #239: share dialog (owner-only) */}
+      {sharingRoomId && (
+        <ShareDialog
+          roomId={sharingRoomId}
+          loadAcl={onLoadAcl}
+          submitShare={onShareRoom}
+          onClose={() => setSharingRoomId(null)}
+        />
+      )}
     </div>
   );
 }

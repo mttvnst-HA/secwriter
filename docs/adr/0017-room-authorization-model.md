@@ -3,7 +3,7 @@
 **Status:** Accepted
 **Date:** 2026-06-11
 
-Implements issue [#211](https://github.com/mttvnst-HA/secwriter/issues/211). Graded roles deferred to [#239](https://github.com/mttvnst-HA/secwriter/issues/239).
+Implements issue [#211](https://github.com/mttvnst-HA/secwriter/issues/211) (security floor). Graded roles (viewer/editor/owner) added by [#239](https://github.com/mttvnst-HA/secwriter/issues/239) — see the "Graded roles" section below, which supersedes the binary collaborator model of decision 7.
 
 ## Context
 
@@ -29,9 +29,12 @@ multi-MB Y.Doc decode just to read an owner id.
    namespaces, and a token landing there would create rooms inside the
    archive tree (joinable, but invisible to active listings and the sweep
    parsers: orphaned and unswept).
-3. **ACL sidecar artifact** `<tenant>/<roomId>.acl.json` = `{ ownerId, sharedWith[] }`,
-   NOT stored in yMeta (avoids the `yMeta.size === 0` seed-gate break and a
-   per-request multi-MB decode). Read cheaply before any doc load.
+3. **ACL sidecar artifact** `<tenant>/<roomId>.acl.json`. Floor shape (#211) was
+   `{ ownerId, sharedWith[] }`; #239 evolves it to `{ ownerId, roles: { "<sub>":
+   "viewer"|"editor" } }`. NOT stored in yMeta (avoids the `yMeta.size === 0`
+   seed-gate break and a per-request multi-MB decode). Read cheaply before any
+   doc load. `roleOf()` read-compat's BOTH shapes (a legacy `sharedWith` entry
+   → `editor`) so no data-migration script is needed — see Graded roles.
 4. **Crash-order: `.acl.json` BEFORE `.ydoc`** in `ARTIFACT_CATALOG` (write
    order); on delete, sidecars first, then `.ydoc`, then `.acl.json` LAST
    (sidecars-before-ydoc prevents a half-deleted room from being re-created
@@ -57,8 +60,59 @@ multi-MB Y.Doc decode just to read an owner id.
    with no ACL (legacy/orphan) are hidden, matching the per-room 404.
 6. **Required JWT claims:** a tenant claim (`tenant | org | tid`) and a stable
    subject (`sub | oid`). No email/`'unknown'` fallback for the owner id.
-7. **Binary collaborator model** (owner + share-set). Graded viewer/editor/owner
-   is [#239](https://github.com/mttvnst-HA/secwriter/issues/239).
+7. **Binary collaborator model** (owner + share-set) — **superseded by Graded
+   roles below** ([#239](https://github.com/mttvnst-HA/secwriter/issues/239)).
+
+## Graded roles (#239)
+
+Replaces the binary owner/shared model with a role lattice per room, within a
+tenant. `owner ⊃ editor ⊃ viewer`.
+
+- **Roles.** `viewer` = read-only (open room, `GET /sec`, `GET /comments`);
+  `editor` = read + write content (the old `sharedWith` capability);
+  `owner` = editor + delete + role-grant + lock-admin. Owner is implicit from
+  `acl.ownerId`; viewer/editor live in `acl.roles`.
+- **Permission table** (`ROLE_ACTIONS` in `authorize.cjs`, single source of
+  truth): the `READ` action gates viewer+editor+owner; a new `WRITE` action
+  gates editor+owner. #211 collapsed these because every sharee could write;
+  `POST /:id/upload` and the non-lock `PATCH /:id` are now `WRITE`-gated (a
+  viewer is denied), `GET /sec` + `/comments` stay `READ` (a viewer is allowed).
+- **Lazy migration (no script).** `roleOf(acl, userId)` reads both sidecar
+  shapes: `roles` wins when present, else each `sharedWith` entry resolves to
+  `editor`. New writes (create, share, legacy-relocation) emit the `roles`
+  shape; a #211 room is upgraded in place the next time it is shared. This is
+  the "sidecar-shape migration defined and tested" acceptance item.
+- **WS viewer read-only gate (the hard part).** On Hocuspocus (#128,
+  [ADR-0018](0018-collab-relay-hocuspocus.md)) `onAuthenticate` resolves the
+  role and returns `readOnly: role === 'viewer'`; the collab-server wrapper sets
+  `data.connectionConfig.readOnly = true`, after which Hocuspocus **rejects and
+  does not sync** that connection's document updates. `connectionConfig` (NOT
+  `connection`) is the onAuthenticate-payload key Hocuspocus's `Connection`
+  constructor and its Authenticated-scope message both read; the payload has no
+  `connection` key, so mutating `data.connection.readOnly` is a silent no-op
+  (the initial implementation had this bug — a viewer stayed read-write and the
+  client always saw `read-write` scope). Pinned by `hocuspocus-server.test.mjs`
+  Test 3b, which drives a real viewer/editor through the production wrapper.
+  This is the acceptance's "viewer cannot write, verified at the WS layer, not
+  just UI". y-websocket v1 had no per-connection write gate — this is why the
+  viewer role rode the #128 migration rather than shipping on the #211 floor.
+- **Share route** `PATCH /:id/share` gains an optional graded `role`; body stays
+  `{ userId, action: 'add' | 'remove', role? }`. `add` is an idempotent upsert
+  defaulting to `editor` when `role` is omitted (backward-compatible with #211
+  callers); `remove` drops the grant. `role` must be `viewer` or `editor` —
+  owner is not grantable here (ownership transfer is out of scope). New
+  owner-only `GET /:id/acl` returns the normalized `{ ownerId, roles }` for the
+  client share dialog. `GET /rooms` entries carry the caller's `role`.
+- **Client.** `HocuspocusProvider` surfaces the server scope via its
+  `authenticated` event (`{ scope: 'readonly' | 'read-write' }`);
+  `useCollabSession`'s `onAuthScope` feeds App's `collabScope`, and
+  `isViewerScope` folds into `collabReadOnly` (read-only editor + a viewer
+  banner). The server rejection is the enforcement; this is the UX mirror.
+  Owner-only `RoomPanel` share affordance opens `ShareDialog`.
+- **Uniform 404 denials preserved.** A viewer's HTTP `WRITE`/`DELETE`/`SHARE`
+  attempt returns 404 (not 403), matching #211's no-existence-leak posture and
+  its tests (editor DELETE → 404). The read-vs-write boundary is enforced by
+  the action gate + the WS `readOnly` flag, not by re-statusing denials.
 
 ## Consequences
 

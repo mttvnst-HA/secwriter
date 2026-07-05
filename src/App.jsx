@@ -278,6 +278,14 @@ export default function SpecEditor() {
   const [roomLockedBy, setRoomLockedBy] = useState(null);
   const [roomLockedByName, setRoomLockedByName] = useState(null);
   const isLockedByOther = roomLocked && roomLockedBy !== identity?.id;
+  // #239: server-assigned auth scope ('readonly' for a viewer role, else
+  // 'read-write'). The server already rejects a viewer's ops at the WS layer;
+  // this drives the read-only editor UX (disabled edits + banner). Null until
+  // the provider's 'authenticated' event fires (auth=none never fires it →
+  // stays null → read-write). roomId is fixed for the page lifetime, so this
+  // resets naturally on navigation; isViewerScope is gated on inRoom anyway.
+  const [collabScope, setCollabScope] = useState(null);
+  const isViewerScope = inRoom && collabScope === 'readonly';
   // 'migration-partial' is informational, NOT read-only: the broker
   // succeeded for some blocks but threw on others; the room remains fully
   // editable (1d, ADR-0006). Treat it as a non-blocking status alongside
@@ -289,7 +297,7 @@ export default function SpecEditor() {
     collabStatus !== null &&
     collabStatus !== 'connected' &&
     collabStatus !== 'migration-partial'
-  ) || isLockedByOther;
+  ) || isLockedByOther || isViewerScope;
   // Reactive auth token — refreshed by MSAL silent renewal or external host
   const [authToken, setAuthToken] = useState(null);
   const authHeaders = useMemo(
@@ -1753,6 +1761,8 @@ export default function SpecEditor() {
       setReconnectIn(meta?.reconnectIn ?? 0);
     }, []),
 
+    onAuthScope: useCallback((scope) => setCollabScope(scope || null), []),
+
     pushToast: useCallback((toast) => toastPushRef.current?.(toast), []),
   });
   collabRef.current = collab;
@@ -2381,6 +2391,12 @@ export default function SpecEditor() {
             {inRoom && isLockedByOther && (
               <div className="locked-banner">
                 Locked by {roomLockedByName || 'another user'} — editing disabled
+              </div>
+            )}
+            {/* #239: viewer role — server rejects writes; mirror it in the UI. */}
+            {isViewerScope && !isLockedByOther && (
+              <div className="viewer-banner">
+                View only — you have read access to this room
               </div>
             )}
             {inRoom && (
@@ -3338,6 +3354,25 @@ export default function SpecEditor() {
               } catch (err) {
                 console.warn('Rename room failed:', err.message);
               }
+            }}
+            onLoadAcl={async (roomId) => {
+              // #239: owner-only. Returns { ownerId, roles }.
+              const res = await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}/acl`, { headers: authHeaders });
+              if (!res.ok) throw new Error(res.status === 404 ? 'Room not found' : `Failed to load (${res.status})`);
+              return res.json();
+            }}
+            onShareRoom={async (roomId, { userId, action, role }) => {
+              // #239: PATCH /rooms/:id/share — owner-only; returns { roles }.
+              const res = await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}/share`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json', ...authHeaders },
+                body: JSON.stringify({ userId, action, role }),
+              });
+              if (!res.ok) {
+                const msg = await res.text().catch(() => '');
+                throw new Error(msg || `Share failed (${res.status})`);
+              }
+              return res.json();
             }}
             currentUserId={identity?.id}
           />

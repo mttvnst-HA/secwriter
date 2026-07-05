@@ -226,7 +226,18 @@ function createCollabServer(config) {
       onLoadDocument,
       async onAuthenticate(data) {
         try {
-          return await onAuthenticate(data);
+          const ctx = await onAuthenticate(data);
+          // #239 viewer read-only gate: Hocuspocus builds the Connection from
+          // `connectionConfig.readOnly` (hocuspocus-server.cjs — Connection ctor
+          // reads hookPayload.connectionConfig.readOnly) and drops that
+          // connection's Yjs sync/update frames when it is true; it also sends
+          // the client its Authenticated scope from the SAME field. The
+          // onAuthenticate hook payload exposes `connectionConfig`, NOT a
+          // `connection` key — mutating `data.connection.readOnly` was a silent
+          // no-op (viewers stayed read-write, client always saw 'read-write').
+          // Editors/owners leave it false. Pinned by hocuspocus-server.test.mjs.
+          if (ctx && ctx.readOnly && data.connectionConfig) data.connectionConfig.readOnly = true;
+          return ctx;
         } catch (err) {
           if (err instanceof AuthReject) {
             log.warn('ws.auth-reject', { status: err.status, reason: err.reason });

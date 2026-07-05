@@ -49,7 +49,7 @@ describe('tenant-namespace migration script (env wiring)', () => {
     assert.equal(fs.existsSync(path.join(dir, 'legacy1.ydoc')), false);
     const backend = new LocalStorageBackend(dir);
     assert.ok(await backend.readRoom('acme', 'legacy1'));
-    assert.deepEqual(await backend.readAcl('acme', 'legacy1'), { ownerId: 'admin', sharedWith: [] });
+    assert.deepEqual(await backend.readAcl('acme', 'legacy1'), { ownerId: 'admin', roles: {} }); // #239 graded shape
 
     // Missing env vars → refuse (no guessing tenants/owners)
     await assert.rejects(

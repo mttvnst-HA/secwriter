@@ -614,13 +614,14 @@ describe('room authorization (auth=jwt)', () => {
     try {
       let res = await httpJson(`${base}/rooms`, 'POST', { id: 'r1' }, bearer({ sub: 'owner', tenant: 'acme' }));
       assert.equal(res.status, 201);
-      assert.deepEqual(await h.storage.readAcl('acme', 'r1'), { ownerId: 'owner', sharedWith: [] });
+      // #239: new rooms use the graded `roles` shape (empty = owner-only).
+      assert.deepEqual(await h.storage.readAcl('acme', 'r1'), { ownerId: 'owner', roles: {} });
 
       res = await httpJson(`${base}/rooms/r1`, 'DELETE', null, bearer({ sub: 'stranger', tenant: 'acme' }));
       assert.equal(res.status, 404);
       res = await httpJson(`${base}/rooms/r1`, 'DELETE', null, bearer({ sub: 'owner', tenant: 'evil' }));
       assert.equal(res.status, 404);
-      // Upload route is READ-gated by the same authorize plumbing as /comments:
+      // Upload route is WRITE-gated (#239 — editor + owner, not viewer):
       // a stranger is denied at authorize (404 before the body matters); the
       // owner passes authorize and falls through to content processing, which
       // rejects the bogus SEC body with 400. The 404-vs-400 split proves the
@@ -634,7 +635,7 @@ describe('room authorization (auth=jwt)', () => {
       // Orphan-ACL recovery (crash between writeAcl and writeRoom):
       // seed an ACL with NO .ydoc, confirm a different user can't hijack,
       // the owner's DELETE clears the orphan, and the owner can then re-create.
-      await h.storage.writeAcl('acme', 'orphan', { ownerId: 'owner', sharedWith: [] });
+      await h.storage.writeAcl('acme', 'orphan', { ownerId: 'owner', roles: {} });
       assert.equal((await httpJson(`${base}/rooms`, 'POST', { id: 'orphan' }, bearer({ sub: 'attacker', tenant: 'acme' }))).status, 409); // hijack blocked
       assert.equal((await httpJson(`${base}/rooms/orphan`, 'DELETE', null, bearer({ sub: 'owner', tenant: 'acme' }))).status, 404); // 404 but clears orphan
       assert.equal(await h.storage.readAcl('acme', 'orphan'), null, 'orphan ACL cleared by owner DELETE');
@@ -662,7 +663,7 @@ describe('room authorization (auth=jwt)', () => {
     } finally { h.server.close(); h.cleanup(); }
   });
 
-  it('share route: owner adds sharee → sharee reads /comments; non-owner share → 404; shared user cannot DELETE', async () => {
+  it('share route: owner adds sharee → sharee reads /comments; non-owner share → 404; shared user cannot DELETE; #239 graded roles', async () => {
     const h = makeAuthServer();
     await new Promise(r => h.server.listen(0, r));
     const base = `http://127.0.0.1:${h.server.address().port}`;
@@ -671,16 +672,40 @@ describe('room authorization (auth=jwt)', () => {
       assert.equal((await httpJson(`${base}/rooms/r1/share`, 'PATCH', { userId: 'x', action: 'add' }, bearer({ sub: 'stranger', tenant: 'acme' }))).status, 404);
       const s = await httpJson(`${base}/rooms/r1/share`, 'PATCH', { userId: 'friend', action: 'add' }, bearer({ sub: 'owner', tenant: 'acme' }));
       assert.equal(s.status, 200);
-      assert.deepEqual((await h.storage.readAcl('acme', 'r1')).sharedWith, ['friend']);
+      // #239: `add` without an explicit role defaults to editor, written in the
+      // graded `roles` shape (backward-compatible with #211 callers).
+      assert.deepEqual((await h.storage.readAcl('acme', 'r1')).roles, { friend: 'editor' });
       assert.equal((await httpJson(`${base}/rooms/r1/comments`, 'GET', null, bearer({ sub: 'friend', tenant: 'acme' }))).status, 200);
       assert.equal((await httpJson(`${base}/rooms/r1`, 'DELETE', null, bearer({ sub: 'friend', tenant: 'acme' }))).status, 404);
 
-      // PATCH privilege split: a shared user may change content (READ-gated,
-      // touchesLock=false) but NOT lock settings (LOCK_ADMIN, owner-only → 404).
-      // The owner CAN lock — confirms the gate isn't blanket-denying.
+      // PATCH privilege split: an editor may change content (WRITE, #239) but
+      // NOT lock settings (LOCK_ADMIN, owner-only → 404). The owner CAN lock.
       assert.equal((await httpJson(`${base}/rooms/r1`, 'PATCH', { displayName: 'New' }, bearer({ sub: 'friend', tenant: 'acme' }))).status, 200);
       assert.equal((await httpJson(`${base}/rooms/r1`, 'PATCH', { locked: true }, bearer({ sub: 'friend', tenant: 'acme' }))).status, 404);
       assert.equal((await httpJson(`${base}/rooms/r1`, 'PATCH', { locked: true }, bearer({ sub: 'owner', tenant: 'acme' }))).status, 200);
+      await httpJson(`${base}/rooms/r1`, 'PATCH', { locked: false, lockedBy: 'owner' }, bearer({ sub: 'owner', tenant: 'acme' }));
+
+      // #239 graded roles: grant a VIEWER; viewer reads /comments but is
+      // WRITE-denied on upload (404), and the WS-layer readOnly gate (tested in
+      // hocuspocus-server.test.mjs) blocks live edits. Invalid role → 400.
+      assert.equal((await httpJson(`${base}/rooms/r1/share`, 'PATCH', { userId: 'looker', action: 'add', role: 'boss' }, bearer({ sub: 'owner', tenant: 'acme' }))).status, 400);
+      const v = await httpJson(`${base}/rooms/r1/share`, 'PATCH', { userId: 'looker', action: 'add', role: 'viewer' }, bearer({ sub: 'owner', tenant: 'acme' }));
+      assert.equal(v.status, 200);
+      assert.equal(JSON.parse(v.body.toString()).roles.looker, 'viewer');
+      assert.equal((await httpJson(`${base}/rooms/r1/comments`, 'GET', null, bearer({ sub: 'looker', tenant: 'acme' }))).status, 200);
+      assert.equal((await httpPost(`${base}/rooms/r1/upload`, Buffer.from('<x/>'), bearer({ sub: 'looker', tenant: 'acme' }))).status, 404);
+
+      // GET /rooms/:id/acl is owner-only and returns the normalized role map.
+      assert.equal((await httpJson(`${base}/rooms/r1/acl`, 'GET', null, bearer({ sub: 'friend', tenant: 'acme' }))).status, 404);
+      const acl = await httpJson(`${base}/rooms/r1/acl`, 'GET', null, bearer({ sub: 'owner', tenant: 'acme' }));
+      assert.equal(acl.status, 200);
+      assert.deepEqual(JSON.parse(acl.body.toString()), { ownerId: 'owner', roles: { friend: 'editor', looker: 'viewer' } });
+
+      // Downgrade friend editor → viewer via re-add with role, then remove.
+      await httpJson(`${base}/rooms/r1/share`, 'PATCH', { userId: 'friend', action: 'add', role: 'viewer' }, bearer({ sub: 'owner', tenant: 'acme' }));
+      assert.deepEqual((await h.storage.readAcl('acme', 'r1')).roles, { friend: 'viewer', looker: 'viewer' });
+      const rm = await httpJson(`${base}/rooms/r1/share`, 'PATCH', { userId: 'looker', action: 'remove' }, bearer({ sub: 'owner', tenant: 'acme' }));
+      assert.deepEqual(JSON.parse(rm.body.toString()).roles, { friend: 'viewer' });
     } finally { h.server.close(); h.cleanup(); }
   });
 

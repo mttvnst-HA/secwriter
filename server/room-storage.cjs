@@ -321,7 +321,10 @@ class RoomStorageBase {
     let moved = 0;
     for (const id of ids) {
       if (owner != null) {
-        await this.writeAcl(tenant, id, { ownerId: owner, sharedWith: [] });
+        // #239: graded `roles` shape (empty = owner-only). roleOf() still
+        // reads legacy `sharedWith` sidecars, so this only affects newly
+        // relocated rooms.
+        await this.writeAcl(tenant, id, { ownerId: owner, roles: {} });
       }
       for (const { kind } of ARTIFACT_CATALOG) {
         if (kind === ARTIFACT_KIND_ACL) continue; // no legacy ACLs existed
