@@ -120,9 +120,9 @@ describe('Hocuspocus relay — WS-level security', () => {
 describe('Hocuspocus readOnly lever (#239-readiness)', () => {
   it('drops write frames from a readOnly connection — observer never sees the update', async () => {
     // This boots its OWN minimal standalone Hocuspocus to exercise the readOnly
-    // lever in isolation. The production createCollabServer onAuthenticate never
-    // sets readOnly (all #128 connections are read-write), so this is a probe of
-    // the mechanism #239's viewer role will lean on, NOT a test of the builder.
+    // lever in isolation, pinning the exact key Hocuspocus reads
+    // (connectionConfig.readOnly). Test 3b drives the SAME gate through the
+    // production createCollabServer wrapper (which sets it for viewer roles).
     const { Hocuspocus } = require_('@hocuspocus/server');
     const hocuspocus = new Hocuspocus({
       name: 'ro-probe',
@@ -166,6 +166,69 @@ describe('Hocuspocus readOnly lever (#239-readiness)', () => {
     writerDoc.destroy(); observerDoc.destroy();
     hocuspocus.closeConnections?.();
     httpServer.close();
+  });
+});
+
+// ── Test 3b — #239 viewer WS gate through the PRODUCTION wrapper ─────────────
+
+describe('#239 viewer read-only gate (production createCollabServer wrapper)', () => {
+  // Test 3 exercises the readOnly lever on a STANDALONE Hocuspocus, bypassing
+  // createCollabServer's onAuthenticate wrapper — which is exactly how the
+  // original bug shipped green: the wrapper mutated `data.connection.readOnly`,
+  // but Hocuspocus reads `data.connectionConfig.readOnly` (its Connection ctor
+  // + the Authenticated scope both use connectionConfig). So the wrapper was a
+  // silent no-op. This test drives a REAL viewer/editor through the wrapper.
+  it('viewer connect is readonly (writes dropped) while editor is read-write (writes propagate)', async () => {
+    const storage = {
+      readRoom: async () => null,
+      writeRoom: async () => {},
+      readAcl: async (tenant, roomId) =>
+        `${tenant}/${roomId}` === 'tenantA/room1'
+          ? { ownerId: 'owner', roles: { viewerUser: 'viewer', editorUser: 'editor' } }
+          : null,
+    };
+    const users = {
+      tokV: { id: 'viewerUser', tenant: 'tenantA' },
+      tokE: { id: 'editorUser', tenant: 'tenantA' },
+      tokO: { id: 'owner', tenant: 'tenantA' },
+    };
+    const { srv, url } = await boot({
+      storage, useHocuspocus: true,
+      authProvider: { requiresAuth: true, validateToken: async (t) => users[t] || null },
+    });
+    const name = 'tenantA/room1';
+    const mk = (doc, token) => new HocuspocusProvider({ url, name, document: doc, token, WebSocketPolyfill: WS });
+
+    // Owner observer: the authoritative peer that only accepted writes reach.
+    const obsDoc = new Y.Doc();
+    const observer = mk(obsDoc, 'tokO');
+    await waitFor(() => observer.synced, 4000);
+
+    // Viewer: server sets connectionConfig.readOnly → client scope 'readonly'.
+    const viewerDoc = new Y.Doc();
+    const viewer = mk(viewerDoc, 'tokV');
+    await waitFor(() => viewer.synced, 4000);
+    assert.strictEqual(viewer.authorizedScope, 'readonly'); // client-facing UX mirror (banner/read-only editor)
+
+    // Viewer write is applied locally but DROPPED by the server → never reaches
+    // the observer. This is the acceptance's "viewer cannot write, WS layer".
+    viewerDoc.transact(() => viewerDoc.getArray('order').push(['viewer-edit']), 'local-publish');
+    await waitFor(() => false, 500).catch(() => {});
+    assert.strictEqual(obsDoc.getArray('order').length, 0, 'viewer write must not propagate');
+
+    // Editor: read-write; its write DOES propagate — proves the gate is
+    // role-scoped, not a blanket denial.
+    const editorDoc = new Y.Doc();
+    const editor = mk(editorDoc, 'tokE');
+    await waitFor(() => editor.synced, 4000);
+    assert.strictEqual(editor.authorizedScope, 'read-write');
+    editorDoc.transact(() => editorDoc.getArray('order').push(['editor-edit']), 'local-publish');
+    await waitFor(() => obsDoc.getArray('order').length === 1, 4000);
+    assert.strictEqual(obsDoc.getArray('order').get(0), 'editor-edit');
+
+    viewer.destroy(); editor.destroy(); observer.destroy();
+    viewerDoc.destroy(); editorDoc.destroy(); obsDoc.destroy();
+    srv.cleanup?.(); srv.httpServer.close();
   });
 });
 

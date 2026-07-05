@@ -85,11 +85,17 @@ tenant. `owner ⊃ editor ⊃ viewer`.
 - **WS viewer read-only gate (the hard part).** On Hocuspocus (#128,
   [ADR-0018](0018-collab-relay-hocuspocus.md)) `onAuthenticate` resolves the
   role and returns `readOnly: role === 'viewer'`; the collab-server wrapper sets
-  `data.connection.readOnly = true`, after which Hocuspocus **rejects and does
-  not sync** that connection's document updates. This is the acceptance's
-  "viewer cannot write, verified at the WS layer, not just UI". y-websocket v1
-  had no per-connection write gate — this is why the viewer role rode the #128
-  migration rather than shipping on the #211 floor.
+  `data.connectionConfig.readOnly = true`, after which Hocuspocus **rejects and
+  does not sync** that connection's document updates. `connectionConfig` (NOT
+  `connection`) is the onAuthenticate-payload key Hocuspocus's `Connection`
+  constructor and its Authenticated-scope message both read; the payload has no
+  `connection` key, so mutating `data.connection.readOnly` is a silent no-op
+  (the initial implementation had this bug — a viewer stayed read-write and the
+  client always saw `read-write` scope). Pinned by `hocuspocus-server.test.mjs`
+  Test 3b, which drives a real viewer/editor through the production wrapper.
+  This is the acceptance's "viewer cannot write, verified at the WS layer, not
+  just UI". y-websocket v1 had no per-connection write gate — this is why the
+  viewer role rode the #128 migration rather than shipping on the #211 floor.
 - **Share route** `PATCH /:id/share` gains an optional graded `role`; body stays
   `{ userId, action: 'add' | 'remove', role? }`. `add` is an idempotent upsert
   defaulting to `editor` when `role` is omitted (backward-compatible with #211
