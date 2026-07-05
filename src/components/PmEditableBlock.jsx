@@ -159,6 +159,7 @@ function PmEditableBlock({
   lintingDispatch,
   showTags = false,
   readOnly = false,
+  forceVisible = false,
   // 1h Q36 Commit A — `collab.forceFrame` (or App's local-substrate
   // equivalent once Commit B lands). The word-boundary plugin reads
   // this through a ref on every keydown so a session create/destroy
@@ -1076,7 +1077,11 @@ function PmEditableBlock({
     Object.assign(baseStyle, { backgroundColor: isFocused ? 'var(--sim-surface, #fafaf7)' : 'transparent' });
   }
 
-  const revisionClass = `${block.revision ? `block-revision-${block.revision}` : ''} ${isNote ? 'block-type-note' : ''}`.trim();
+  // `forceVisible` exempts THIS block from the document-wide `.notes-hidden
+  // .block-type-note { display: none }` rule (App tracks it for a block that
+  // was just converted to a note, so the conversion doesn't look like a
+  // deletion without having to reveal every other hidden note too).
+  const revisionClass = `${block.revision ? `block-revision-${block.revision}` : ''} ${isNote ? 'block-type-note' : ''} ${forceVisible ? 'force-visible' : ''}`.trim();
   const sgmlTag = { txt: 'TXT', note: 'NTE', oli: 'OLI', item: 'ITM', lst: 'LST' }[block.type] || 'TXT';
 
   const isFamilyA = FAMILY_A.has(block.type);
