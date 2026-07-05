@@ -67,7 +67,7 @@ function buildOnAuthenticate({ authProvider, storage }) {
     // #239: graded roles. READ passed above (viewer/editor/owner all connect).
     // A viewer's connection must be READ-ONLY: the caller (collab-server's
     // onAuthenticate wrapper) reads `readOnly` and sets
-    // data.connection.readOnly = true, after which Hocuspocus rejects and does
+    // data.connectionConfig.readOnly = true, after which Hocuspocus rejects and does
     // not sync that connection's document updates. This is the WS-layer write
     // gate the issue's acceptance requires ("viewer cannot write, verified at
     // the WS layer, not just UI").

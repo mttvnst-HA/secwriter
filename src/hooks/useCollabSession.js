@@ -248,7 +248,7 @@ export function useCollabSession({
   const onStatusChangeRef = useRef(onStatusChange);
   onStatusChangeRef.current = onStatusChange;
   // #239: provider auth scope ('readonly' | 'read-write') — a viewer role
-  // resolves to readonly server-side (data.connection.readOnly), and the
+  // resolves to readonly server-side (data.connectionConfig.readOnly), and the
   // HocuspocusProvider surfaces it via its 'authenticated' event. App maps
   // 'readonly' into collabReadOnly.
   const onAuthScopeRef = useRef(onAuthScope);

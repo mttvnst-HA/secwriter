@@ -1081,7 +1081,7 @@ export function createCollabSession({
 
   // #239: HocuspocusProvider emits 'authenticated' with the server-assigned
   // scope after onAuthenticate resolves. A viewer role sets
-  // data.connection.readOnly server-side → scope 'readonly'; editor/owner →
+  // data.connectionConfig.readOnly server-side → scope 'readonly'; editor/owner →
   // 'read-write'. Surface it so App can reflect a read-only editor for viewers
   // (the server already REJECTS a viewer's ops — this is the UX mirror, not
   // the enforcement). Fires on every (re)connect, so a mid-session role change

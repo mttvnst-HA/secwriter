@@ -116,7 +116,7 @@ async function authorize({ authProvider, storage, user, roomId, action }) {
   // capability). This preserves #211's no-existence-leak posture — the same
   // opaque failure for "can't see it" and "can't do that" — rather than
   // splitting into 403 for capability failures. The viewer read-only boundary
-  // is enforced at the WS layer (data.connection.readOnly) and the HTTP WRITE
+  // is enforced at the WS layer (data.connectionConfig.readOnly) and the HTTP WRITE
   // gate, not by re-statusing authorize denials. Established tests
   // (editor DELETE → 404, editor lock-PATCH → 404) pin this.
   if (!role || !roleCan(role, action)) return { ok: false, status: 404, role };
