@@ -23,9 +23,20 @@ const { authorize, checkPrincipal, aclAllowsRead, roleOf, ACTION, GRANTABLE_ROLE
  * @param {import('./storage-local.cjs').LocalStorageBackend} deps.storage
  * @param {Map<string, import('yjs').Doc>} deps.boundDocs
  * @param {(roomId: string) => Promise<void>} deps.flushRoom
+ * @param {(docName: string) => Promise<void>} [deps.beginRoomDeletion]
+ *   tombstone a room's pending stores BEFORE storage.deleteRoom, so a
+ *   lingering debounced/disconnect store can't resurrect it (ADR-0017
+ *   "Live-session revocation"). Must be paired with finishRoomDeletion (on
+ *   deleteRoom success) or cancelRoomDeletion (on deleteRoom failure).
+ * @param {(docName: string) => Promise<void>} [deps.finishRoomDeletion] evict
+ *   the room's live Y.Doc, kick live sessions, and forget the migration
+ *   coordinator's cache entry — call ONLY after storage.deleteRoom succeeds.
+ * @param {(docName: string) => void} [deps.cancelRoomDeletion] roll back the
+ *   tombstone set by beginRoomDeletion — call when storage.deleteRoom throws,
+ *   so the still-live room resumes storing normally.
  * @param {number} deps.maxDocBytes
  */
-function createHttpHandler({ storage, boundDocs, flushRoom, revokeLiveSessions, maxDocBytes, authProvider, allowedOrigin = '*', getActiveUsers, rateLimiter, roomHealth, migrationCoordinator }) {
+function createHttpHandler({ storage, boundDocs, flushRoom, beginRoomDeletion, finishRoomDeletion, cancelRoomDeletion, revokeLiveSessions, maxDocBytes, authProvider, allowedOrigin = '*', getActiveUsers, rateLimiter, roomHealth }) {
   // Parse rate limit config once at handler creation, not per-request
   const HTTP_READ_RATE = Number(process.env.SIM_RATE_LIMIT_HTTP_READ_PER_MIN || 60);
   const HTTP_WRITE_RATE = Number(process.env.SIM_RATE_LIMIT_HTTP_WRITE_PER_MIN || 20);
@@ -472,10 +483,14 @@ function createHttpHandler({ storage, boundDocs, flushRoom, revokeLiveSessions, 
           // the id reclaimable rather than permanently bricked. Still 404 — the
           // room proper never finished creating.
           if (authProvider?.requiresAuth && (await storage.readAcl(tenant, roomId))) {
-            await storage.deleteRoom(tenant, roomId);
-            if (migrationCoordinator && typeof migrationCoordinator.forget === 'function') {
-              migrationCoordinator.forget(composite);
+            if (typeof beginRoomDeletion === 'function') await beginRoomDeletion(composite);
+            try {
+              await storage.deleteRoom(tenant, roomId);
+            } catch (err) {
+              if (typeof cancelRoomDeletion === 'function') cancelRoomDeletion(composite);
+              throw err;
             }
+            if (typeof finishRoomDeletion === 'function') await finishRoomDeletion(composite);
           }
           res.writeHead(404, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ error: `Room "${roomId}" not found` }));
@@ -487,24 +502,35 @@ function createHttpHandler({ storage, boundDocs, flushRoom, revokeLiveSessions, 
           sendLocked(res, lock.lockedBy);
           return;
         }
-        await storage.deleteRoom(tenant, roomId);
-        // #268: kick every live session in the now-deleted room. No subjects =
-        // kick all. Kicked clients reconnect → onAuthenticate reads the
-        // now-missing ACL → authenticationFailed (no reconnect loop). Only the
-        // real delete gets this; the orphan-ACL recovery path above returns 404
-        // for a room with no resident doc, so there is nothing to kick there.
-        if (revokeLiveSessions) revokeLiveSessions(tenant, roomId);
-        // Sub-PR 1d (#47, ADR-0006). The migration coordinator caches one
-        // promise per docName; a successful migration leaves
-        // `{ alreadyV2: true }` in the cache so concurrent broker calls
-        // collapse. After a DELETE, that cache entry is stale — if an
-        // operator re-creates a room with the same id (or uploads a fresh
-        // v1 SEC), the next WS upgrade would short-circuit on the cached
-        // result and skip both archive + migration. Drop the entry here
-        // so the broker re-evaluates the new doc.
-        if (migrationCoordinator && typeof migrationCoordinator.forget === 'function') {
-          migrationCoordinator.forget(composite);
+        // beginRoomDeletion tombstones pending stores BEFORE clearing storage so
+        // a pending debounced flush (or a disconnect-triggered store) can't
+        // re-persist — resurrect — the room after deleteRoom. Under
+        // unloadImmediately:false the doc lingers with its debounce timer armed;
+        // beginRoomDeletion also awaits any in-flight store so deleteRoom is the
+        // last writer. It deliberately does NOT touch the live doc or kick
+        // sessions yet — if storage.deleteRoom subsequently throws,
+        // cancelRoomDeletion rolls the tombstone back so the still-live,
+        // still-undestroyed room resumes storing normally (review finding #1: a
+        // single evictRoom-before-deleteRoom used to destroy the doc
+        // unconditionally, permanently losing unflushed edits on a failed
+        // delete). Only on SUCCESS does finishRoomDeletion evict the doc, kick
+        // every live session (#268 revokeLiveSessions, run BEFORE the doc is
+        // dropped from the resident map — a call after that would find the room
+        // no longer resident and kick nobody), and forget the migration
+        // coordinator's cache entry (folded in here — review finding #4 — so
+        // there is exactly one call site guaranteeing both per-room
+        // invalidation mechanisms fire together). Kicked clients reconnect →
+        // onAuthenticate reads the now-missing ACL → authenticationFailed (no
+        // reconnect loop). See ADR-0017 "Live-session revocation" and its
+        // delete-resurrection follow-up.
+        if (typeof beginRoomDeletion === 'function') await beginRoomDeletion(composite);
+        try {
+          await storage.deleteRoom(tenant, roomId);
+        } catch (err) {
+          if (typeof cancelRoomDeletion === 'function') cancelRoomDeletion(composite);
+          throw err;
         }
+        if (typeof finishRoomDeletion === 'function') await finishRoomDeletion(composite);
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ ok: true }));
       } catch (err) {

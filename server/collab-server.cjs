@@ -187,6 +187,70 @@ function createCollabServer(config) {
     return n;
   }
 
+  // Room deletion is split into three steps so a FAILED storage.deleteRoom
+  // never destroys data it can't get back (review finding #1: the earlier
+  // single evictRoom() destroyed the live doc unconditionally before
+  // deleteRoom ran, so a transient storage fault on deleteRoom permanently
+  // lost whatever unflushed edits the doc held, with no way to recover them
+  // even though the room technically still existed on disk).
+  //
+  //   1. beginRoomDeletion(docName) — call BEFORE storage.deleteRoom. Tombstones
+  //      the name (so any pending/queued store() no-ops) and awaits any
+  //      IN-FLIGHT store so its write lands before deleteRoom runs (deleteRoom
+  //      then wins, last writer). Does NOT touch the live doc or connections —
+  //      if deleteRoom subsequently fails, the room is still fully live.
+  //   2a. On deleteRoom SUCCESS, call finishRoomDeletion(docName) — kicks live
+  //       sessions, drops the doc from the resident map, destroys it, and
+  //       forgets the migration coordinator's cache entry for the name (folded
+  //       in here — review finding #4 — so there is exactly one call site that
+  //       guarantees both per-room invalidation mechanisms fire together;
+  //       previously the DELETE route had to remember to call both separately).
+  //   2b. On deleteRoom FAILURE, call cancelRoomDeletion(docName) instead — lifts
+  //       the tombstone so the still-live, still-undestroyed doc resumes
+  //       storing normally (the delete didn't happen; nothing should look torn
+  //       down).
+  // Hocuspocus exposes no awaitable per-doc cancel (unloadDocument early-returns
+  // while a store is pending, and the debouncer only exposes executeNow, which
+  // FIRES the store), so the no-op is enforced in database.store(), not by
+  // cancelling the debounce timer. See ADR-0017 "Live-session revocation".
+  async function beginRoomDeletion(docName) {
+    if (!hocuspocusDatabase) return;
+    hocuspocusDatabase.markDeleted(docName);
+    await hocuspocusDatabase.awaitPendingStore(docName);
+  }
+
+  function cancelRoomDeletion(docName) {
+    if (hocuspocusDatabase) hocuspocusDatabase.unmarkDeleted(docName);
+  }
+
+  async function finishRoomDeletion(docName) {
+    if (migrationCoordinator && typeof migrationCoordinator.forget === 'function') {
+      migrationCoordinator.forget(docName);
+    }
+    if (!hocuspocusInstance) return;
+    const document = hocuspocusInstance.documents.get(docName);
+    // revokeLiveSessions (#268) HARD-kicks every live session (ResetConnection)
+    // BEFORE the doc leaves the resident map, since it looks the doc up via
+    // hocuspocusInstance.documents — this must run before the map delete below.
+    // Gives a deleted room's clients the correct forced-reconnect ->
+    // onAuthenticate-fails-on-missing-ACL UX, instead of the soft detach
+    // closeConnections() alone would leave them in (socket open, client
+    // dormant, never re-auths — see revokeLiveSessions' own doc comment).
+    try {
+      const { tenant, roomId } = splitCompositeDocName(docName);
+      revokeLiveSessions(tenant, roomId);
+    } catch (err) { log.warn('evict.revoke-failed', { docName, err: err && err.message }); }
+    // Soft backstop for any connection revokeLiveSessions didn't reach (e.g. a
+    // lookup with no conn.context.user.id, or its own try/catch swallowing a
+    // close failure). Does NOT itself trigger a store under unloadImmediately:
+    // false; any armed debounce was already handled by beginRoomDeletion.
+    try { hocuspocusInstance.closeConnections(docName); } catch { /* best-effort */ }
+    if (document) {
+      hocuspocusInstance.documents.delete(docName);
+      try { document.destroy(); } catch { /* already destroyed */ }
+    }
+  }
+
   // ── HTTP + WebSocket on a single port ────────────────────────────────────
   // When deployed to Render (or any platform that exposes one port), WS and
   // HTTP must share a single listener.
@@ -195,6 +259,9 @@ function createCollabServer(config) {
       storage,
       boundDocs: boundDocsView,
       flushRoom,
+      beginRoomDeletion,
+      finishRoomDeletion,
+      cancelRoomDeletion,
       revokeLiveSessions,
       maxDocBytes: MAX_DOC_BYTES,
       authProvider,
@@ -202,7 +269,6 @@ function createCollabServer(config) {
       getActiveUsers,
       rateLimiter,
       roomHealth,
-      migrationCoordinator,
     })
   );
 
@@ -234,6 +300,24 @@ function createCollabServer(config) {
         // inside ensureMigrated before any mutation, so the .ydoc we write here is always
         // backed up first (§6 ordering).
         if (result && result.skipped === false) {
+          // Deliberately do NOT thread `instance` here (unlike flushRoom's
+          // omission, which is safe for a different reason — see its own
+          // comment). Verified empirically against @hocuspocus/server@4.3.0:
+          // `instance.documents` does NOT yet contain this document while
+          // onLoadDocument is still running — Hocuspocus's createDocument only
+          // calls `this.documents.set(documentName, doc)` AFTER the whole
+          // loadDocument() (including this hook) resolves. Passing `instance`
+          // would make the identity guard compare against `undefined` and trip
+          // on EVERY migration persist, not just a raced one — silently
+          // breaking migration persistence entirely (verified regression, not
+          // theoretical). The plain `_deleted` tombstone check alone already
+          // fully covers a DELETE racing this call: Hocuspocus's own
+          // `loadingDocuments` de-dupes concurrent loads of the same name, so
+          // no second/"recreated" document can begin loading (and no fresh
+          // fetch() can lift the tombstone) until THIS load — including this
+          // store() call — has fully resolved. See
+          // server/__tests__/collab-server-migration-persist.test.mjs for the
+          // pinning regression (reviewed: 2026-07-06 finding).
           const persisted = await database.store({ documentName, document });
           if (!persisted) {
             // The migrated v2 substrate did NOT reach storage (transient backend
@@ -386,6 +470,9 @@ function createCollabServer(config) {
     database: hocuspocusDatabase,
     roomHealth,
     flushRoom,
+    beginRoomDeletion,
+    finishRoomDeletion,
+    cancelRoomDeletion,
     revokeLiveSessions,
     getActiveUsers,
     cleanup,
@@ -568,6 +655,28 @@ function startFromEnv() {
     REVOKE_SWEEP_MS,
   );
   if (revokeSweepTimer.unref) revokeSweepTimer.unref();
+
+  // ── Deleted-room tombstone sweep (ADR-0017 follow-up review finding #3) ──
+  // SecWriterDatabase._deleted only shrinks on a fresh load of the same name
+  // (fetch() lifts it) or a failed-delete rollback (unmarkDeleted()) — a room
+  // that's deleted and never recreated would otherwise tombstone forever on
+  // this long-running, single-instance process. TOMBSTONE_MAX_AGE_MS
+  // comfortably exceeds any legitimate resurrection race window (bounded by
+  // maxDebounce + a migration's backupRoom duration, both on the order of
+  // seconds), so routine deletions can't outlive it and get swept away too
+  // early.
+  const TOMBSTONE_SWEEP_MS = Number(process.env.SIM_TOMBSTONE_SWEEP_MS || 60 * 60 * 1000);
+  const TOMBSTONE_MAX_AGE_MS = Number(process.env.SIM_TOMBSTONE_MAX_AGE_MS || 24 * 60 * 60 * 1000);
+  const tombstoneSweepTimer = setInterval(() => {
+    try {
+      if (server.database && typeof server.database.sweepDeletedTombstones === 'function') {
+        server.database.sweepDeletedTombstones(TOMBSTONE_MAX_AGE_MS);
+      }
+    } catch (err) {
+      log.error('tombstone-sweep.uncaught', { err: err && err.message });
+    }
+  }, TOMBSTONE_SWEEP_MS);
+  if (tombstoneSweepTimer.unref) tombstoneSweepTimer.unref();
 
   // ── Graceful shutdown ──────────────────────────────────────────────
   let shuttingDown = false;

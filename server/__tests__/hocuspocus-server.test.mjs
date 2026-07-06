@@ -389,6 +389,76 @@ describe('#268 live-session revocation (revokeLiveSessions)', () => {
     editor.destroy(); edDoc.destroy();
     srv.cleanup?.(); srv.httpServer.close();
   });
+
+  // T5 — merge-regression guard: the real DELETE /rooms/:id HTTP route (which
+  // calls finishRoomDeletion on success, not revokeLiveSessions directly)
+  // still kicks a live session. finishRoomDeletion folds the #268 hard-kick in
+  // internally, BEFORE it drops the doc from hocuspocusInstance.documents
+  // (which revokeLiveSessions reads to find connections) — a standalone
+  // post-deleteRoom revoke call would find the room no longer resident and
+  // silently kick nobody. This pins the fold-in ordering, not just the
+  // revokeLiveSessions primitive itself (T1-T4 call it directly and would not
+  // catch a delete-route wiring regression).
+  it('T5 DELETE /rooms/:id kicks a live session via finishRoomDeletion (not a standalone post-delete call)', { timeout: 20000 }, async () => {
+    const aclMap = new Map([[ROOM, { ownerId: 'owner', roles: { editorUser: 'editor' } }]]);
+    const users = {
+      tokO: { id: 'owner', tenant: T },
+      tokE: { id: 'editorUser', tenant: T },
+    };
+    const emptyDoc = new Y.Doc();
+    const emptyBytes = Y.encodeStateAsUpdate(emptyDoc);
+    emptyDoc.destroy();
+    const storage = {
+      readRoom: async (t, r) => (t === T && r === R ? { ydocBytes: emptyBytes } : null),
+      writeRoom: async () => {},
+      // A real deleteRoom clears the ACL sidecar too — the mock must match, or
+      // the kicked editor's reconnect re-authenticates against the STALE ACL
+      // and never observes onAuthenticationFailed (this diagnosed the first
+      // draft of this test: without the aclMap.delete below, the timeout was
+      // the mock's fault, not finishRoomDeletion's).
+      deleteRoom: async (t, r) => { aclMap.delete(`${t}/${r}`); },
+      readAcl: async (t, r) => aclMap.get(`${t}/${r}`) || null,
+    };
+    const authProvider = {
+      requiresAuth: true,
+      validateToken: async (t) => users[t] || null,
+      extractToken(req) {
+        const auth = req.headers?.authorization;
+        if (!auth || !auth.startsWith('Bearer ')) return null;
+        return auth.slice(7);
+      },
+    };
+    const { srv, url } = await boot({ storage, useHocuspocus: true, wsRatePerMin: 100000, authProvider });
+    const base = `http://127.0.0.1:${srv.httpServer.address().port}`;
+
+    let authFailCount = 0;
+    const edDoc = new Y.Doc();
+    const editor = new HocuspocusProvider({
+      url, name: ROOM, document: edDoc, token: 'tokE', WebSocketPolyfill: WS,
+      onAuthenticationFailed: () => { authFailCount += 1; },
+    });
+    await waitFor(() => editor.synced, 8000);
+    assert.strictEqual(connCountFor(srv, ROOM), 1, 'editor must be resident before delete');
+
+    const del = await new Promise((resolve, reject) => {
+      const req = http.request(
+        { hostname: '127.0.0.1', port: srv.httpServer.address().port, path: `/rooms/${R}`, method: 'DELETE', headers: { Authorization: 'Bearer tokO' } },
+        (res) => { const chunks = []; res.on('data', (c) => chunks.push(c)); res.on('end', () => resolve({ status: res.statusCode, body: Buffer.concat(chunks).toString('utf-8') })); },
+      );
+      req.on('error', reject);
+      req.end();
+    });
+    assert.strictEqual(del.status, 200, `DELETE should succeed, got ${del.status}: ${del.body}`);
+
+    // The room is gone from hocuspocus.documents (finishRoomDeletion evicted it)...
+    assert.strictEqual(srv.hocuspocus.documents.has(ROOM), false, 'finishRoomDeletion must have removed the live doc');
+    // ...and the editor's session was force-reconnected BEFORE that eviction —
+    // its reconnect re-authenticates against the now-deleted ACL and fails.
+    await waitFor(() => authFailCount >= 1, 12000);
+
+    editor.destroy(); edDoc.destroy();
+    srv.cleanup?.(); srv.httpServer.close();
+  });
 });
 
 // ── Test 5 — GATE: shutdown drain flushes ALL dirty rooms (#128 Task 5.2) ────
