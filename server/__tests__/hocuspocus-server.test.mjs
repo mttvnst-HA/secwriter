@@ -232,6 +232,165 @@ describe('#239 viewer read-only gate (production createCollabServer wrapper)', (
   });
 });
 
+// ── #268 — live-session force-revocation on room role change ────────────────
+
+describe('#268 live-session revocation (revokeLiveSessions)', () => {
+  // A mutable ACL map + a room name shared by the tests below. Each test boots
+  // its own server (its own map instance) so they don't cross-contaminate.
+  const ROOM = 'tenantA/room1';
+  const T = 'tenantA';
+  const R = 'room1';
+
+  function connCountFor(srv, name) {
+    const doc = srv.hocuspocus.documents.get(name);
+    return doc ? doc.connections.size : 0;
+  }
+
+  // Every revoke test opens ≥2 WS connections and reconnects at least once, so
+  // the default 10/min WS rate limit would trip — lift it.
+  function bootRevoke(aclMap) {
+    const users = {
+      tokO: { id: 'owner', tenant: T },
+      tokE: { id: 'editorUser', tenant: T },
+      tokE2: { id: 'editorUser2', tenant: T },
+    };
+    const storage = {
+      readRoom: async () => null,
+      writeRoom: async () => {},
+      readAcl: async (tenant, roomId) => aclMap.get(`${tenant}/${roomId}`) || null,
+    };
+    return boot({
+      storage, useHocuspocus: true, wsRatePerMin: 100000,
+      authProvider: { requiresAuth: true, validateToken: async (t) => users[t] || null },
+    });
+  }
+
+  // T1 — downgrade editor→viewer: the live session is kicked, reconnects, and
+  // its re-auth scope becomes 'readonly' AND a subsequent write is dropped.
+  it('T1 downgrade editor→viewer: reconnects readonly and its writes are dropped', { timeout: 20000 }, async () => {
+    const aclMap = new Map([[ROOM, { ownerId: 'owner', roles: { editorUser: 'editor' } }]]);
+    const { srv, url } = await bootRevoke(aclMap);
+
+    const obsDoc = new Y.Doc();
+    const observer = new HocuspocusProvider({ url, name: ROOM, document: obsDoc, token: 'tokO', WebSocketPolyfill: WS });
+    await waitFor(() => observer.synced, 8000);
+
+    const edDoc = new Y.Doc();
+    const editor = new HocuspocusProvider({ url, name: ROOM, document: edDoc, token: 'tokE', WebSocketPolyfill: WS });
+    await waitFor(() => editor.synced, 8000);
+    assert.strictEqual(editor.authorizedScope, 'read-write');
+
+    // Editor is read-write: its write reaches the owner observer.
+    edDoc.transact(() => edDoc.getArray('order').push(['e1']), 'local-publish');
+    await waitFor(() => obsDoc.getArray('order').length === 1, 8000);
+
+    // Downgrade in the ACL, then kick the live session.
+    aclMap.set(ROOM, { ownerId: 'owner', roles: { editorUser: 'viewer' } });
+    const n = srv.revokeLiveSessions(T, R, { subjects: ['editorUser'] });
+    assert.strictEqual(n, 1, 'exactly the editor session is kicked');
+
+    // The kicked provider auto-reconnects and re-auths as a viewer.
+    await waitFor(() => editor.authorizedScope === 'readonly', 12000);
+
+    // Post-downgrade write is DROPPED server-side — observer still sees only e1.
+    edDoc.transact(() => edDoc.getArray('order').push(['e2']), 'local-publish');
+    await waitFor(() => false, 700).catch(() => {});
+    assert.strictEqual(obsDoc.getArray('order').length, 1, 'downgraded viewer write must not propagate');
+
+    editor.destroy(); observer.destroy(); edDoc.destroy(); obsDoc.destroy();
+    srv.cleanup?.(); srv.httpServer.close();
+  });
+
+  // T2 — removal: the kicked session's reconnect is auth-rejected exactly once,
+  // no retry storm, and the connection is gone.
+  it('T2 removal: reconnect is auth-rejected once, no storm', { timeout: 20000 }, async () => {
+    const aclMap = new Map([[ROOM, { ownerId: 'owner', roles: { editorUser: 'editor' } }]]);
+    const { srv, url } = await bootRevoke(aclMap);
+
+    let authFailCount = 0;
+    const edDoc = new Y.Doc();
+    const editor = new HocuspocusProvider({
+      url, name: ROOM, document: edDoc, token: 'tokE', WebSocketPolyfill: WS,
+      onAuthenticationFailed: () => { authFailCount += 1; },
+    });
+    await waitFor(() => editor.synced, 8000);
+    assert.strictEqual(authFailCount, 0);
+
+    // Remove the editor from the ACL, then kick.
+    aclMap.set(ROOM, { ownerId: 'owner', roles: {} });
+    const n = srv.revokeLiveSessions(T, R, { subjects: ['editorUser'] });
+    assert.strictEqual(n, 1);
+
+    // Reconnect re-auths → onAuthenticate throws (no role) → exactly one failure.
+    await waitFor(() => authFailCount >= 1, 12000);
+    await waitFor(() => connCountFor(srv, ROOM) === 0, 8000);
+
+    // Settle and confirm the failure did not storm.
+    await waitFor(() => false, 2000).catch(() => {});
+    assert.ok(authFailCount <= 2, `no retry storm (authFailCount=${authFailCount})`);
+
+    editor.destroy(); edDoc.destroy();
+    srv.cleanup?.(); srv.httpServer.close();
+  });
+
+  // T3 — a non-target session is untouched when a DIFFERENT subject is revoked.
+  it('T3 non-target session stays connected + read-write', { timeout: 20000 }, async () => {
+    const aclMap = new Map([[ROOM, { ownerId: 'owner', roles: { editorUser: 'editor', editorUser2: 'editor' } }]]);
+    const { srv, url } = await bootRevoke(aclMap);
+
+    const obsDoc = new Y.Doc();
+    const observer = new HocuspocusProvider({ url, name: ROOM, document: obsDoc, token: 'tokO', WebSocketPolyfill: WS });
+    await waitFor(() => observer.synced, 8000);
+
+    const aDoc = new Y.Doc();
+    const edA = new HocuspocusProvider({ url, name: ROOM, document: aDoc, token: 'tokE', WebSocketPolyfill: WS });
+    const bDoc = new Y.Doc();
+    const edB = new HocuspocusProvider({ url, name: ROOM, document: bDoc, token: 'tokE2', WebSocketPolyfill: WS });
+    await waitFor(() => edA.synced && edB.synced, 8000);
+
+    // Downgrade A only, kick A only.
+    aclMap.set(ROOM, { ownerId: 'owner', roles: { editorUser: 'viewer', editorUser2: 'editor' } });
+    const n = srv.revokeLiveSessions(T, R, { subjects: ['editorUser'] });
+    assert.strictEqual(n, 1);
+
+    // B was never kicked: still read-write, and its write reaches the observer.
+    assert.strictEqual(edB.authorizedScope, 'read-write');
+    bDoc.transact(() => bDoc.getArray('order').push(['b1']), 'local-publish');
+    await waitFor(() => obsDoc.getArray('order').length === 1 && obsDoc.getArray('order').get(0) === 'b1', 8000);
+
+    edA.destroy(); edB.destroy(); observer.destroy(); aDoc.destroy(); bDoc.destroy(); obsDoc.destroy();
+    srv.cleanup?.(); srv.httpServer.close();
+  });
+
+  // T4 — identity-match guard (Finding 2). A subject that is NOT any live
+  // conn's context.user.id kicks NOTHING (returns 0); the exact id kicks. This
+  // is the tripwire for a future user.id namespace change silently no-op'ing
+  // every real revoke.
+  it('T4 identity guard: wrong subject kicks nothing, exact subject kicks', { timeout: 20000 }, async () => {
+    const aclMap = new Map([[ROOM, { ownerId: 'owner', roles: { editorUser: 'editor' } }]]);
+    const { srv, url } = await bootRevoke(aclMap);
+
+    const edDoc = new Y.Doc();
+    const editor = new HocuspocusProvider({ url, name: ROOM, document: edDoc, token: 'tokE', WebSocketPolyfill: WS });
+    await waitFor(() => editor.synced, 8000);
+
+    // Wrong subject → no match → zero kicks, session untouched.
+    const miss = srv.revokeLiveSessions(T, R, { subjects: ['not-a-real-subject'] });
+    assert.strictEqual(miss, 0, 'a non-matching subject must kick nothing');
+    await waitFor(() => false, 300).catch(() => {});
+    assert.strictEqual(connCountFor(srv, ROOM), 1, 'session must remain connected after a no-match revoke');
+    assert.strictEqual(editor.synced, true, 'session stays synced after a no-match revoke');
+
+    // Exact subject → one kick. Proves the negative above is a real match test,
+    // not a broken harness.
+    const hit = srv.revokeLiveSessions(T, R, { subjects: ['editorUser'] });
+    assert.strictEqual(hit, 1, 'the exact context.user.id must be kicked');
+
+    editor.destroy(); edDoc.destroy();
+    srv.cleanup?.(); srv.httpServer.close();
+  });
+});
+
 // ── Test 5 — GATE: shutdown drain flushes ALL dirty rooms (#128 Task 5.2) ────
 
 describe('Shutdown drain — GATE (#128 Task 5.2)', () => {
