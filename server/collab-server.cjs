@@ -43,7 +43,9 @@ const { createHttpHandler } = require('./http-handler.cjs');
 const { createMigrationCoordinator } = require('./migrate-pm-substrate.cjs');
 const { PUBLIC_TENANT, splitCompositeDocName, buildCompositeDocName } = require('./storage-shared.cjs');
 const { Hocuspocus } = require('@hocuspocus/server');
+const { ResetConnection } = require('@hocuspocus/common');
 const { buildOnAuthenticate, AuthReject } = require('./hocuspocus-auth.cjs');
+const { roleOf } = require('./auth/authorize.cjs');
 const { SecWriterDatabase } = require('./secwriter-database.cjs');
 
 // Hard caps. A single spec section is O(100KB) of text; 8 MB gives plenty of
@@ -151,6 +153,40 @@ function createCollabServer(config) {
     return hocuspocusDatabase.store({ documentName: docName, document });
   }
 
+  // `revokeLiveSessions(tenant, roomId, { subjects })` (#268): force already-open
+  // WS sessions in a room to reconnect + re-authenticate NOW, so an ACL role
+  // change takes effect on live sessions instead of only at the next reconnect.
+  // Kicks by hard-closing the raw socket with ResetConnection (4205) — the ONLY
+  // primitive that makes HocuspocusProvider auto-reconnect and re-run
+  // onAuthenticate with the fresh role. `Connection.close()` /
+  // `hocuspocus.closeConnections()` are a SOFT in-band detach (socket stays open,
+  // client goes dormant, never re-auths) — do NOT use them for revocation.
+  // `subjects` undefined = kick every connection (room deletion). Returns the
+  // count of sockets closed.
+  //
+  // INTERNAL REACH — pinned to @hocuspocus/server 4.3.0: `doc.connections` keys
+  // are Connection instances; `conn.context` is the onAuthenticate return (so
+  // `.user.id` — the same namespace as the ACL key / share `body.userId`), and
+  // `conn.webSocket` is the raw ws socket. A Hocuspocus bump that reshapes any of
+  // these breaks this silently — the T1–T4 revoke tests in
+  // hocuspocus-server.test.mjs are the tripwire (T4 pins the identity match).
+  function revokeLiveSessions(tenant, roomId, { subjects } = {}) {
+    if (!hocuspocusInstance) return 0;
+    const doc = hocuspocusInstance.documents.get(buildCompositeDocName(tenant, roomId));
+    if (!doc) return 0; // room not resident — nothing live to revoke
+    const targets = subjects && new Set(subjects); // undefined = kick ALL
+    let n = 0;
+    doc.connections.forEach((_v, conn) => {
+      const uid = conn.context && conn.context.user && conn.context.user.id;
+      if (!uid) return;
+      if (targets && !targets.has(uid)) return;
+      try { conn.webSocket.close(ResetConnection.code, ResetConnection.reason); n += 1; }
+      catch (err) { log.warn('revoke.close-failed', { err: err && err.message }); }
+    });
+    if (n) log.info('revoke.sessions-closed', { tenant, roomId, n, all: !subjects });
+    return n;
+  }
+
   // `evictRoom(docName)`: tear down a room's live Y.Doc so a DELETE can't be
   // undone by a lingering store. Under `unloadImmediately: false` the doc stays
   // resident after the last disconnect with its debounce timer armed, so a
@@ -158,15 +194,24 @@ function createCollabServer(config) {
   // storage.deleteRoom and re-persist — silently RESURRECTING the deleted room.
   // The DELETE route calls this BEFORE storage.deleteRoom, in this order:
   //   1. markDeleted — tombstone so any pending/queued store() no-ops.
-  //   2. closeConnections(docName) — drop live WS clients (correct delete
-  //      semantics, and so no message pump keeps referencing the doc we destroy
-  //      below). A close does NOT itself trigger a store under
-  //      unloadImmediately:false; any armed debounce is handled by (1)/(3).
-  //   3. drop from the resident map — the SecWriterDatabase identity guard then
+  //   2. revokeLiveSessions(tenant, roomId) (#268) — HARD-kick every live
+  //      session (ResetConnection) BEFORE the doc leaves the resident map,
+  //      since revokeLiveSessions looks the doc up via
+  //      hocuspocusInstance.documents. This must run before step 4, and gives
+  //      a deleted room's clients the correct forced-reconnect ->
+  //      onAuthenticate-fails-on-missing-ACL UX, instead of the soft detach
+  //      closeConnections() alone would leave them in (socket open, client
+  //      dormant, never re-auths — see revokeLiveSessions' own doc comment).
+  //   3. closeConnections(docName) — soft backstop for any connection
+  //      revokeLiveSessions didn't reach (e.g. a lookup with no
+  //      conn.context.user.id, or its own try/catch swallowing a close
+  //      failure). Does NOT itself trigger a store under unloadImmediately:
+  //      false; any armed debounce is handled by (1)/(4).
+  //   4. drop from the resident map — the SecWriterDatabase identity guard then
   //      no-ops any store whose captured document is no longer resident.
-  //   4. await any IN-FLIGHT store — it already passed the guard, so let its
+  //   5. await any IN-FLIGHT store — it already passed the guard, so let its
   //      write land BEFORE deleteRoom runs (deleteRoom then wins, last writer).
-  //   5. destroy the doc to free memory (after connections are closed and the
+  //   6. destroy the doc to free memory (after connections are closed and the
   //      in-flight store settled, so nothing is mid-read of the doc).
   // Hocuspocus exposes no awaitable per-doc cancel (unloadDocument early-returns
   // while a store is pending, and the debouncer only exposes executeNow, which
@@ -176,6 +221,10 @@ function createCollabServer(config) {
     if (hocuspocusDatabase) hocuspocusDatabase.markDeleted(docName);
     if (!hocuspocusInstance) return;
     const document = hocuspocusInstance.documents.get(docName);
+    try {
+      const { tenant, roomId } = splitCompositeDocName(docName);
+      revokeLiveSessions(tenant, roomId);
+    } catch (err) { log.warn('evict.revoke-failed', { docName, err: err && err.message }); }
     try { hocuspocusInstance.closeConnections(docName); } catch { /* best-effort */ }
     if (document) hocuspocusInstance.documents.delete(docName);
     if (hocuspocusDatabase) await hocuspocusDatabase.awaitPendingStore(docName);
@@ -191,6 +240,7 @@ function createCollabServer(config) {
       boundDocs: boundDocsView,
       flushRoom,
       evictRoom,
+      revokeLiveSessions,
       maxDocBytes: MAX_DOC_BYTES,
       authProvider,
       allowedOrigin,
@@ -382,6 +432,7 @@ function createCollabServer(config) {
     roomHealth,
     flushRoom,
     evictRoom,
+    revokeLiveSessions,
     getActiveUsers,
     cleanup,
     storage,
@@ -520,6 +571,49 @@ function startFromEnv() {
   setTimeout(() => sweepRooms().catch(err => log.error('sweep.uncaught', { err: err.message })), 5000);
   const sweepTimer = setInterval(() => sweepRooms().catch(err => log.error('sweep.uncaught', { err: err.message })), SWEEP_INTERVAL_MS);
   if (sweepTimer.unref) sweepTimer.unref();
+
+  // ── Live-session revocation sweep (#268 backstop) ──────────────────
+  // The event-triggered kicks on the share/delete routes are the fast path;
+  // this periodic re-authorization pass is the safety net for ACL changes that
+  // bypass those routes (direct-storage edits, the tenant-migration script, or a
+  // future route someone forgets to wire). It bounds worst-case revocation
+  // latency for ANY resident room to one interval. Skipped entirely under
+  // auth=none — every room is _public / editor there, so there is nothing to
+  // revoke. The predicate kicks BOTH directions: a removed member (no role) and
+  // a grade mismatch (downgrade editor→viewer, or upgrade viewer→editor where
+  // the event path deliberately left the read-only session in place).
+  const REVOKE_SWEEP_MS = Number(process.env.SIM_REVOKE_SWEEP_MS || 60000);
+  async function revokeSweep() {
+    if (!authProvider.requiresAuth) return;
+    for (const [composite, doc] of server.hocuspocus.documents) {
+      let acl;
+      try {
+        const { tenant, roomId } = splitCompositeDocName(composite);
+        acl = await storage.readAcl(tenant, roomId);
+      } catch (err) {
+        log.warn('revoke-sweep.acl-read-failed', { composite, err: err && err.message });
+        continue;
+      }
+      doc.connections.forEach((_v, conn) => {
+        const uid = conn.context && conn.context.user && conn.context.user.id;
+        if (!uid) return;
+        const role = acl ? roleOf(acl, uid) : null;
+        const stale = !role || (role === 'viewer') !== !!conn.readOnly;
+        if (stale) {
+          try { conn.webSocket.close(ResetConnection.code, ResetConnection.reason); }
+          catch (err) { log.warn('revoke-sweep.close-failed', { err: err && err.message }); }
+        }
+      });
+      // Yield between rooms so a large docs map can't starve the event loop
+      // (mirrors the GET /rooms setImmediate guard, ADR-0014 pattern #4).
+      await new Promise((resolve) => setImmediate(resolve));
+    }
+  }
+  const revokeSweepTimer = setInterval(
+    () => revokeSweep().catch((err) => log.error('revoke-sweep.uncaught', { err: err && err.message })),
+    REVOKE_SWEEP_MS,
+  );
+  if (revokeSweepTimer.unref) revokeSweepTimer.unref();
 
   // ── Graceful shutdown ──────────────────────────────────────────────
   let shuttingDown = false;

@@ -28,7 +28,7 @@ const { authorize, checkPrincipal, aclAllowsRead, roleOf, ACTION, GRANTABLE_ROLE
  *   lingering debounced/disconnect store (ADR-0017 "Live-session revocation").
  * @param {number} deps.maxDocBytes
  */
-function createHttpHandler({ storage, boundDocs, flushRoom, evictRoom, maxDocBytes, authProvider, allowedOrigin = '*', getActiveUsers, rateLimiter, roomHealth, migrationCoordinator }) {
+function createHttpHandler({ storage, boundDocs, flushRoom, evictRoom, revokeLiveSessions, maxDocBytes, authProvider, allowedOrigin = '*', getActiveUsers, rateLimiter, roomHealth, migrationCoordinator }) {
   // Parse rate limit config once at handler creation, not per-request
   const HTTP_READ_RATE = Number(process.env.SIM_RATE_LIMIT_HTTP_READ_PER_MIN || 60);
   const HTTP_WRITE_RATE = Number(process.env.SIM_RATE_LIMIT_HTTP_WRITE_PER_MIN || 20);
@@ -496,7 +496,13 @@ function createHttpHandler({ storage, boundDocs, flushRoom, evictRoom, maxDocByt
         // re-persist — resurrect — the room after deleteRoom. Under
         // unloadImmediately:false the doc lingers with its debounce timer armed;
         // evictRoom also awaits any in-flight store so deleteRoom is the last
-        // writer. See ADR-0017 "Live-session revocation" follow-up.
+        // writer. evictRoom ALSO kicks every live session (#268
+        // revokeLiveSessions, folded in internally, run BEFORE the doc is
+        // dropped from the resident map — a standalone post-delete call here
+        // would find the room no longer resident and kick nobody). Kicked
+        // clients reconnect → onAuthenticate reads the now-missing ACL →
+        // authenticationFailed (no reconnect loop). See ADR-0017 "Live-session
+        // revocation" and its delete-resurrection follow-up.
         if (typeof evictRoom === 'function') await evictRoom(composite);
         await storage.deleteRoom(tenant, roomId);
         // Sub-PR 1d (#47, ADR-0006). The migration coordinator caches one
@@ -569,11 +575,33 @@ function createHttpHandler({ storage, boundDocs, flushRoom, evictRoom, maxDocByt
           } else if (Array.isArray(acl.sharedWith)) {
             for (const uid of acl.sharedWith) roles[uid] = 'editor';
           }
+          // #268: resolve the target's role BEFORE mutating so a real downgrade
+          // can be distinguished from a no-op/upgrade. `roleOf` reads the
+          // unmutated `acl` (roles below is a fresh copy), so order is not
+          // load-bearing, but capture it here for clarity.
+          const prevRole = roleOf(acl, userId);
           // Same-tenant is enforced STRUCTURALLY: the room lives under the
           // owner's tenant, so a cross-tenant userId is inert. Store opaque id as-is.
           if (action === 'add') roles[userId] = role || 'editor'; else delete roles[userId];
           delete roles[acl.ownerId]; // never let a grant entry equal the owner
           await storage.writeAcl(tenant, roomId, { ownerId: acl.ownerId, roles });
+
+          // #268 live-session revocation: kick affected open sessions so a
+          // removal or a downgrade (editor→viewer) takes effect immediately
+          // (forced reconnect → re-auth with the new role) instead of only at
+          // the target's next voluntary reconnect. An UPGRADE (viewer→editor or
+          // a brand-new grant) is intentionally NOT kicked here — a live viewer
+          // session keeps its read-only scope until it reconnects; the periodic
+          // revoke sweep applies the upgrade within one interval. The owner is
+          // never a target (roles never holds ownerId — deleted just above).
+          if (revokeLiveSessions) {
+            const newRole = action === 'add' ? (role || 'editor') : null;
+            const isRemoval = action === 'remove';
+            const isDowngrade = newRole === 'viewer' && prevRole === 'editor';
+            if (isRemoval || isDowngrade) {
+              revokeLiveSessions(tenant, roomId, { subjects: [userId] });
+            }
+          }
 
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ ok: true, roles }));

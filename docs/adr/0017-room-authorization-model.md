@@ -114,11 +114,68 @@ tenant. `owner ⊃ editor ⊃ viewer`.
   its tests (editor DELETE → 404). The read-vs-write boundary is enforced by
   the action gate + the WS `readOnly` flag, not by re-statusing denials.
 
+## Live-session revocation (#268)
+
+The original model gated authorization at connect time only (`onAuthenticate`
+runs per fresh WS upgrade), so an ACL role change took effect on a collaborator's
+NEXT connect — an already-open session kept its stale role until it happened to
+reconnect. #268 closes that window for live sessions.
+
+- **Primitive — raw-socket `ResetConnection` (4205) close.** `revokeLiveSessions(tenant, roomId, { subjects })`
+  (in `collab-server.cjs`, threaded into `http-handler.cjs` like `flushRoom`)
+  iterates the room's `document.connections`, matches each Connection instance
+  by `conn.context.user.id`, and hard-closes `conn.webSocket`. The forced socket
+  close makes `HocuspocusProvider` auto-reconnect and re-run `onAuthenticate`
+  with the current role.
+- **Why NOT `hocuspocus.closeConnections()` / `Connection.close()`.** Empirically
+  (spike, 2026-07-05) these are a SOFT in-band detach: they send the client an
+  in-band CLOSE message that puts its document dormant but leave the raw socket
+  OPEN — the provider never reconnects and never re-auths. Shipping them would
+  have been a silent no-op-feeling bug (the client looks disconnected but is
+  frozen with its old role). Rejected.
+- **Why NOT a soft `conn.readOnly` flip.** `conn.readOnly` is re-read per incoming
+  update, so flipping it mid-session DOES start dropping the client's writes —
+  but it is one-way: the client is not resynced and still believes it is
+  read-write (its `authorizedScope` is stale), so its edits silently vanish. A
+  forced reconnect yields the correct client-side scope. Rejected.
+- **Why 4205 for BOTH downgrade and removal.** Provider reconnect is not
+  close-code-gated (`hocuspocus-provider.cjs:441` retries on any close while
+  `shouldConnect`); only `onAuthenticationFailed` sets the terminal state. So a
+  removed user reconnects once, is auth-rejected exactly once, and stops — no
+  cleaner terminal code exists. Downgrade reconnects as a viewer (scope flips to
+  `readonly` → `collabReadOnly`, no reload).
+- **Trigger = event + sweep.** The share route kicks a removed/downgraded subject;
+  the delete route kicks all. A periodic **revoke sweep** (`SIM_REVOKE_SWEEP_MS`,
+  default 60s, `unref`, skipped under auth=none) re-reads each resident room's
+  ACL and kicks any connection whose role vanished or whose viewer-grade no
+  longer matches `conn.readOnly` — backstopping out-of-band ACL edits (the
+  migration script, direct-storage edits) and applying upgrades the event path
+  deliberately skips.
+- **Single-instance only.** Both paths read the local `documents` map;
+  cross-instance immediate revoke needs the signal fanned out (Redis pub/sub) —
+  see the single-instance precondition in CLAUDE.md. Sweep still works
+  per-instance; the event kick does not cross instances.
+- **Undocumented reach, pinned by tests.** `conn.context`/`conn.webSocket` are
+  internal to `@hocuspocus/server` 4.3.0. `hocuspocus-server.test.mjs` T1–T4
+  are the tripwire; T4 specifically pins that `conn.context.user.id` shares the
+  ACL-key namespace, so a future `user.id` reshape fails loudly instead of
+  silently no-op'ing every revoke.
+- **Delete-route resurrection race (FIXED, see "Consequences" below).**
+  `deleteRoom` clears storage, but a warm doc lingers (`unloadImmediately:
+  false`) and a debounced `onStoreDocument` pending from prior edits could
+  re-persist the room after deletion. Not introduced or worsened by #268 (the
+  kick adds no edits). `evictRoom` (collab-server) now closes this: it also
+  calls `revokeLiveSessions` internally, BEFORE dropping the doc from the
+  resident map, so a deleted room's live sessions still get the hard-kick
+  force-reconnect this section describes (a standalone post-`deleteRoom` call
+  would find the room no longer resident and kick nobody).
+
 ## Consequences
 
-- **Live-session revocation limitation:** authorize runs at every WS upgrade
-  (unconditional), so share-removal takes effect on the sharee's NEXT connect;
-  an already-open session is not force-disconnected. Accepted.
+- **Live-session revocation:** an already-open session is now force-reconnected
+  on a role change via `revokeLiveSessions` (see the section above), bounded by
+  the revoke sweep interval for out-of-band ACL edits. Cross-instance immediate
+  revoke remains a single-instance limitation.
 - **Delete-resurrection race (FIXED).** Under Hocuspocus `unloadImmediately:
   false` (warm-doc, [ADR-0018](0018-collab-relay-hocuspocus.md)) a room's live
   Y.Doc lingers in memory after `DELETE /rooms/:id`. A debounced
@@ -135,7 +192,10 @@ tenant. `owner ⊃ editor ⊃ viewer`.
   `hocuspocus.documents` so `store()`'s identity guard (resident-doc check via
   the threaded `instance`) no-ops a stale/recreate-replaced doc, and any
   in-flight store is awaited so `deleteRoom` is the last writer. `fetch()`
-  lifts the tombstone when the same id is loaded fresh (recreate). Pinned by
+  lifts the tombstone when the same id is loaded fresh (recreate). `evictRoom`
+  also calls `revokeLiveSessions` (#268, above) internally, before the doc
+  leaves the resident map, so the fix and the live-session hard-kick land in
+  the same step rather than racing each other. Pinned by
   `server/__tests__/room-delete-resurrection.test.mjs` (real debounce timer)
   and the `secwriter-database.test.mjs` resurrection-guard unit tests.
 - **Within-tenant room-id enumeration:** `POST /rooms` returns 409 on a taken
@@ -172,4 +232,5 @@ tenant. `owner ⊃ editor ⊃ viewer`.
 order amendment), [ADR-0013](0013-storage-backends.md) (artifact + composite
 key), [ADR-0014](0014-collab-server-yjs-relay.md) (composite docName + WS authz
 ordering), [#239](https://github.com/mttvnst-HA/secwriter/issues/239) (graded
-roles).
+roles), [#268](https://github.com/mttvnst-HA/secwriter/issues/268) (live-session
+force-revocation).
