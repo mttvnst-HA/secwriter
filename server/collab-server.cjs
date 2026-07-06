@@ -151,6 +151,37 @@ function createCollabServer(config) {
     return hocuspocusDatabase.store({ documentName: docName, document });
   }
 
+  // `evictRoom(docName)`: tear down a room's live Y.Doc so a DELETE can't be
+  // undone by a lingering store. Under `unloadImmediately: false` the doc stays
+  // resident after the last disconnect with its debounce timer armed, so a
+  // pending flush (or a disconnect-triggered store) can fire AFTER
+  // storage.deleteRoom and re-persist — silently RESURRECTING the deleted room.
+  // The DELETE route calls this BEFORE storage.deleteRoom, in this order:
+  //   1. markDeleted — tombstone so any pending/queued store() no-ops.
+  //   2. closeConnections(docName) — drop live WS clients (correct delete
+  //      semantics, and so no message pump keeps referencing the doc we destroy
+  //      below). A close does NOT itself trigger a store under
+  //      unloadImmediately:false; any armed debounce is handled by (1)/(3).
+  //   3. drop from the resident map — the SecWriterDatabase identity guard then
+  //      no-ops any store whose captured document is no longer resident.
+  //   4. await any IN-FLIGHT store — it already passed the guard, so let its
+  //      write land BEFORE deleteRoom runs (deleteRoom then wins, last writer).
+  //   5. destroy the doc to free memory (after connections are closed and the
+  //      in-flight store settled, so nothing is mid-read of the doc).
+  // Hocuspocus exposes no awaitable per-doc cancel (unloadDocument early-returns
+  // while a store is pending, and the debouncer only exposes executeNow, which
+  // FIRES the store), so the no-op is enforced in database.store(), not by
+  // cancelling the debounce timer. See ADR-0017 "Live-session revocation".
+  async function evictRoom(docName) {
+    if (hocuspocusDatabase) hocuspocusDatabase.markDeleted(docName);
+    if (!hocuspocusInstance) return;
+    const document = hocuspocusInstance.documents.get(docName);
+    try { hocuspocusInstance.closeConnections(docName); } catch { /* best-effort */ }
+    if (document) hocuspocusInstance.documents.delete(docName);
+    if (hocuspocusDatabase) await hocuspocusDatabase.awaitPendingStore(docName);
+    if (document) { try { document.destroy(); } catch { /* already destroyed */ } }
+  }
+
   // ── HTTP + WebSocket on a single port ────────────────────────────────────
   // When deployed to Render (or any platform that exposes one port), WS and
   // HTTP must share a single listener.
@@ -159,6 +190,7 @@ function createCollabServer(config) {
       storage,
       boundDocs: boundDocsView,
       flushRoom,
+      evictRoom,
       maxDocBytes: MAX_DOC_BYTES,
       authProvider,
       allowedOrigin,
@@ -349,6 +381,7 @@ function createCollabServer(config) {
     database: hocuspocusDatabase,
     roomHealth,
     flushRoom,
+    evictRoom,
     getActiveUsers,
     cleanup,
     storage,

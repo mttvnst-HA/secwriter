@@ -119,6 +119,25 @@ tenant. `owner ⊃ editor ⊃ viewer`.
 - **Live-session revocation limitation:** authorize runs at every WS upgrade
   (unconditional), so share-removal takes effect on the sharee's NEXT connect;
   an already-open session is not force-disconnected. Accepted.
+- **Delete-resurrection race (FIXED).** Under Hocuspocus `unloadImmediately:
+  false` (warm-doc, [ADR-0018](0018-collab-relay-hocuspocus.md)) a room's live
+  Y.Doc lingers in memory after `DELETE /rooms/:id`. A debounced
+  `onStoreDocument` armed by prior edits (SecWriterDatabase 500ms/10s) could
+  fire AFTER `storage.deleteRoom` and re-persist — silently resurrecting the
+  just-deleted room; a disconnect leaves any such pending store armed rather
+  than firing it (WS close under `unloadImmediately:false` does not itself
+  store). Hocuspocus exposes no awaitable per-doc cancel (`unloadDocument`
+  early-returns while a store is pending, and the debouncer only exposes
+  `executeNow`, which *fires* the store), so the DELETE route calls
+  `evictRoom(composite)` (collab-server) BEFORE `storage.deleteRoom`:
+  `SecWriterDatabase.markDeleted` tombstones the composite key so any
+  pending/queued `store()` no-ops, the doc is dropped from
+  `hocuspocus.documents` so `store()`'s identity guard (resident-doc check via
+  the threaded `instance`) no-ops a stale/recreate-replaced doc, and any
+  in-flight store is awaited so `deleteRoom` is the last writer. `fetch()`
+  lifts the tombstone when the same id is loaded fresh (recreate). Pinned by
+  `server/__tests__/room-delete-resurrection.test.mjs` (real debounce timer)
+  and the `secwriter-database.test.mjs` resurrection-guard unit tests.
 - **Within-tenant room-id enumeration:** `POST /rooms` returns 409 on a taken
   id, so a same-tenant caller can probe which ids exist. Out of threat model —
   the boundary this ADR defends is cross-tenant, and ids are not secrets within

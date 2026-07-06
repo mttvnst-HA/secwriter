@@ -160,3 +160,64 @@ test('store is re-entrancy-safe per key: overlapping stores serialize, last writ
   await Promise.all([p1, p2]);
   assert.deepEqual(order, ['start', 'end', 'start', 'end']);
 });
+
+test('resurrection guard: markDeleted tombstones a name so store() no-ops until fetch() lifts it', async () => {
+  // A room deleted out from under a pending/disconnect-triggered store must NOT
+  // be re-persisted (ADR-0017 "Live-session revocation" follow-up). markDeleted
+  // is what the DELETE route sets before storage.deleteRoom; fetch() (a fresh
+  // load — i.e. the same id recreated) lifts it.
+  const storage = makeStorage();
+  let writes = 0;
+  storage.writeRoom = async (t, r, a) => { writes++; storage.readRoom = (async () => ({ ydocBytes: a.ydocBytes })); };
+  const db = new SecWriterDatabase({ storage, roomHealth: new Map(), maxDocBytes: 8 * 1024 * 1024, log: { warn() {}, error() {} } });
+  const ydoc = new Y.Doc();
+  seedRoomFromBlocks(ydoc, [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: 'x' }]);
+
+  db.markDeleted('tenantA/room1');
+  const ok = await db.store({ documentName: 'tenantA/room1', document: ydoc });
+  assert.equal(ok, false, 'a tombstoned store must report failure');
+  assert.equal(writes, 0, 'a tombstoned store must NOT reach writeRoom (no resurrection)');
+
+  // A different name is unaffected.
+  const ok2 = await db.store({ documentName: 'tenantA/other', document: ydoc });
+  assert.equal(ok2, true);
+  assert.equal(writes, 1);
+
+  // fetch() (fresh load = recreate) lifts the tombstone; stores resume.
+  storage.readRoom = async () => null; // recreated-but-empty; fetch returns null, still clears tombstone
+  await db.fetch({ documentName: 'tenantA/room1' });
+  const ok3 = await db.store({ documentName: 'tenantA/room1', document: ydoc });
+  assert.equal(ok3, true, 'after fetch() lifts the tombstone the recreated room persists again');
+  assert.equal(writes, 2);
+});
+
+test('resurrection guard: identity check skips a store whose document is no longer resident', async () => {
+  // Hocuspocus threads `instance` on the onStoreDocument payload; the resident
+  // doc lives in instance.documents. A store carrying a doc that has been
+  // evicted (deleted) or replaced by a same-id recreate is stale — skip it even
+  // if the tombstone was already lifted by the recreate's fetch().
+  const storage = makeStorage();
+  let writes = 0;
+  storage.writeRoom = async () => { writes++; };
+  const db = new SecWriterDatabase({ storage, roomHealth: new Map(), maxDocBytes: 8 * 1024 * 1024, log: { warn() {}, error() {} } });
+  const evicted = new Y.Doc();
+  seedRoomFromBlocks(evicted, [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: 'stale' }]);
+  const resident = new Y.Doc();
+  seedRoomFromBlocks(resident, [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: 'fresh' }]);
+
+  // instance.documents holds the resident doc; the store carries the evicted one.
+  const instance = { documents: new Map([['tenantA/room1', resident]]) };
+  const stale = await db.store({ documentName: 'tenantA/room1', document: evicted, instance });
+  assert.equal(stale, false, 'a store for a non-resident (evicted) doc must skip');
+  assert.equal(writes, 0);
+
+  // The resident doc still stores normally.
+  const ok = await db.store({ documentName: 'tenantA/room1', document: resident, instance });
+  assert.equal(ok, true);
+  assert.equal(writes, 1);
+
+  // Fully evicted (name absent from the map) also skips.
+  const gone = await db.store({ documentName: 'tenantA/room1', document: resident, instance: { documents: new Map() } });
+  assert.equal(gone, false);
+  assert.equal(writes, 1);
+});

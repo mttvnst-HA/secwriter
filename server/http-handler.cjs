@@ -23,9 +23,12 @@ const { authorize, checkPrincipal, aclAllowsRead, roleOf, ACTION, GRANTABLE_ROLE
  * @param {import('./storage-local.cjs').LocalStorageBackend} deps.storage
  * @param {Map<string, import('yjs').Doc>} deps.boundDocs
  * @param {(roomId: string) => Promise<void>} deps.flushRoom
+ * @param {(docName: string) => Promise<void>} [deps.evictRoom] evict a room's
+ *   live Y.Doc + tombstone pending stores so a DELETE can't be resurrected by a
+ *   lingering debounced/disconnect store (ADR-0017 "Live-session revocation").
  * @param {number} deps.maxDocBytes
  */
-function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authProvider, allowedOrigin = '*', getActiveUsers, rateLimiter, roomHealth, migrationCoordinator }) {
+function createHttpHandler({ storage, boundDocs, flushRoom, evictRoom, maxDocBytes, authProvider, allowedOrigin = '*', getActiveUsers, rateLimiter, roomHealth, migrationCoordinator }) {
   // Parse rate limit config once at handler creation, not per-request
   const HTTP_READ_RATE = Number(process.env.SIM_RATE_LIMIT_HTTP_READ_PER_MIN || 60);
   const HTTP_WRITE_RATE = Number(process.env.SIM_RATE_LIMIT_HTTP_WRITE_PER_MIN || 20);
@@ -472,6 +475,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           // the id reclaimable rather than permanently bricked. Still 404 — the
           // room proper never finished creating.
           if (authProvider?.requiresAuth && (await storage.readAcl(tenant, roomId))) {
+            if (typeof evictRoom === 'function') await evictRoom(composite);
             await storage.deleteRoom(tenant, roomId);
             if (migrationCoordinator && typeof migrationCoordinator.forget === 'function') {
               migrationCoordinator.forget(composite);
@@ -487,6 +491,13 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           sendLocked(res, lock.lockedBy);
           return;
         }
+        // Evict the live doc + tombstone pending stores BEFORE clearing storage
+        // so a pending debounced flush (or a disconnect-triggered store) can't
+        // re-persist — resurrect — the room after deleteRoom. Under
+        // unloadImmediately:false the doc lingers with its debounce timer armed;
+        // evictRoom also awaits any in-flight store so deleteRoom is the last
+        // writer. See ADR-0017 "Live-session revocation" follow-up.
+        if (typeof evictRoom === 'function') await evictRoom(composite);
         await storage.deleteRoom(tenant, roomId);
         // Sub-PR 1d (#47, ADR-0006). The migration coordinator caches one
         // promise per docName; a successful migration leaves

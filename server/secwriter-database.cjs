@@ -31,6 +31,11 @@ class SecWriterDatabase extends Database {
     this.log = log;
     this._serializeRoom = null;
     this._storeChains = new Map();
+    // Resurrection tombstones (ADR-0017 "Live-session revocation" follow-up).
+    // Composite docNames the DELETE route has torn down. Any pending/in-flight
+    // debounced store for a tombstoned name no-ops in store() instead of
+    // re-persisting the just-deleted room. Cleared by fetch() on a fresh load.
+    this._deleted = new Set();
   }
 
   _getHealth(docName) {
@@ -50,6 +55,12 @@ class SecWriterDatabase extends Database {
   }
 
   async fetch({ documentName }) {
+    // A fresh load supersedes any prior deletion of this composite key (an
+    // operator recreated the room with the same id) — lift the resurrection
+    // tombstone so the new doc's stores are not suppressed. Hocuspocus calls
+    // fetch() during loadDocument, so this fires exactly when a new doc for the
+    // name comes alive. (Delete-resurrection follow-up, ADR-0017.)
+    this._deleted.delete(documentName);
     const { tenant, roomId } = splitCompositeDocName(documentName);
     const roomData = await this.storage.readRoom(tenant, roomId);
     if (!roomData || !roomData.ydocBytes) return null;
@@ -63,7 +74,23 @@ class SecWriterDatabase extends Database {
   // that gate a durability promise on the write (the upload route, the migration
   // explicit-persist) MUST check the result; the debounced auto-store path may
   // ignore it. #249 review.
-  async store({ documentName, document }) {
+  async store({ documentName, document, instance }) {
+    // Resurrection guard (ADR-0017 "Live-session revocation" follow-up). Under
+    // unloadImmediately:false a room's live Y.Doc lingers after DELETE, and a
+    // debounced onStoreDocument armed by prior edits (or a disconnect-triggered
+    // store) can fire AFTER storage.deleteRoom and re-persist — silently
+    // resurrecting the just-deleted room. Two independent checks skip the write:
+    //   1. `_deleted` tombstone — set by the DELETE route via markDeleted()
+    //      BEFORE it clears storage; covers a pending debounce timer that has
+    //      not yet called store(), and callers that don't thread `instance`
+    //      (flushRoom, the migration explicit-persist).
+    //   2. identity guard — a store whose `document` is no longer the resident
+    //      doc for this name (evicted on delete, or replaced by a same-id
+    //      recreate) is stale. Hocuspocus threads `instance` on the
+    //      onStoreDocument payload; the resident doc lives in instance.documents.
+    // The tombstone is cleared by fetch() when the name is loaded fresh again.
+    if (this._deleted.has(documentName)) return false;
+    if (instance && instance.documents && instance.documents.get(documentName) !== document) return false;
     const prev = this._storeChains.get(documentName) || Promise.resolve();
     // _doStore never throws (it counts its own failures and returns false), so
     // the .catch is a backstop against an unexpected throw ABOVE its try — it
@@ -96,6 +123,28 @@ class SecWriterDatabase extends Database {
       if (health.persistFailures >= 3) this.log.error('persist.alert', { roomId: documentName, failures: health.persistFailures });
       return false;
     }
+  }
+
+  /**
+   * Tombstone a composite docName so any pending/in-flight debounced store for
+   * it no-ops instead of resurrecting a just-deleted room (ADR-0017 follow-up).
+   * The DELETE route (via collab-server's evictRoom) calls this BEFORE
+   * storage.deleteRoom. Cleared by fetch() on the next fresh load of the same
+   * name (an operator recreated the room with the same id).
+   */
+  markDeleted(documentName) {
+    this._deleted.add(documentName);
+  }
+
+  /**
+   * Resolve when the currently-executing store for `documentName` (if any)
+   * settles. evictRoom awaits this so an in-flight store that already passed
+   * the resurrection guard finishes its write BEFORE storage.deleteRoom runs —
+   * making deleteRoom the last writer. A merely-pending (un-fired) debounced
+   * store has no chain entry yet and is handled by the tombstone instead.
+   */
+  awaitPendingStore(documentName) {
+    return Promise.resolve(this._storeChains.get(documentName)).then(() => {}, () => {});
   }
 
   /**
