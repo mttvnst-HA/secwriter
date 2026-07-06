@@ -32,10 +32,15 @@ class SecWriterDatabase extends Database {
     this._serializeRoom = null;
     this._storeChains = new Map();
     // Resurrection tombstones (ADR-0017 "Live-session revocation" follow-up).
-    // Composite docNames the DELETE route has torn down. Any pending/in-flight
-    // debounced store for a tombstoned name no-ops in store() instead of
-    // re-persisting the just-deleted room. Cleared by fetch() on a fresh load.
-    this._deleted = new Set();
+    // Composite docName -> the Date.now() it was tombstoned. Any pending/
+    // in-flight debounced store for a tombstoned name no-ops in store()
+    // instead of re-persisting the just-deleted room. Cleared by fetch() on a
+    // fresh load, by unmarkDeleted() on a failed delete (rollback), or by
+    // sweepDeletedTombstones() once it's old enough that no legitimate
+    // resurrection race could still be in flight — without the sweep, a
+    // permanently-deleted, never-recreated room's entry would live for the
+    // life of the (long-running, single-instance) process.
+    this._deleted = new Map();
   }
 
   _getHealth(docName) {
@@ -83,7 +88,8 @@ class SecWriterDatabase extends Database {
     //   1. `_deleted` tombstone — set by the DELETE route via markDeleted()
     //      BEFORE it clears storage; covers a pending debounce timer that has
     //      not yet called store(), and callers that don't thread `instance`
-    //      (flushRoom, the migration explicit-persist).
+    //      (flushRoom — checked and not vulnerable to the identity race since
+    //      its read-then-store is synchronous relative to markDeleted).
     //   2. identity guard — a store whose `document` is no longer the resident
     //      doc for this name (evicted on delete, or replaced by a same-id
     //      recreate) is stale. Hocuspocus threads `instance` on the
@@ -128,20 +134,50 @@ class SecWriterDatabase extends Database {
   /**
    * Tombstone a composite docName so any pending/in-flight debounced store for
    * it no-ops instead of resurrecting a just-deleted room (ADR-0017 follow-up).
-   * The DELETE route (via collab-server's evictRoom) calls this BEFORE
+   * The DELETE route (via collab-server's beginRoomDeletion) calls this BEFORE
    * storage.deleteRoom. Cleared by fetch() on the next fresh load of the same
-   * name (an operator recreated the room with the same id).
+   * name (an operator recreated the room with the same id), by unmarkDeleted()
+   * if storage.deleteRoom subsequently fails (the room was never actually
+   * deleted, so stores must resume), or by sweepDeletedTombstones() once stale.
    */
   markDeleted(documentName) {
-    this._deleted.add(documentName);
+    this._deleted.set(documentName, Date.now());
+  }
+
+  /**
+   * Roll back a tombstone set by markDeleted() when storage.deleteRoom()
+   * subsequently throws — the room was never actually deleted, so its live
+   * doc must resume storing normally instead of having every future store
+   * silently no-op forever (ADR-0017 follow-up review finding #1).
+   */
+  unmarkDeleted(documentName) {
+    this._deleted.delete(documentName);
+  }
+
+  /**
+   * Drop tombstones older than maxAgeMs. `_deleted` only shrinks on a fresh
+   * load of the same name (fetch()) or a rollback (unmarkDeleted()) — a room
+   * that's deleted and never recreated would otherwise tombstone forever on a
+   * long-running single-instance server. maxAgeMs should comfortably exceed
+   * any legitimate resurrection race window (bounded by maxDebounce + a
+   * migration's backupRoom duration, both on the order of seconds), so a
+   * multi-hour default has ample margin. Called periodically by the server
+   * (see collab-server.cjs), not on every store()/fetch() call.
+   */
+  sweepDeletedTombstones(maxAgeMs) {
+    const cutoff = Date.now() - maxAgeMs;
+    for (const [documentName, tombstonedAt] of this._deleted) {
+      if (tombstonedAt < cutoff) this._deleted.delete(documentName);
+    }
   }
 
   /**
    * Resolve when the currently-executing store for `documentName` (if any)
-   * settles. evictRoom awaits this so an in-flight store that already passed
-   * the resurrection guard finishes its write BEFORE storage.deleteRoom runs —
-   * making deleteRoom the last writer. A merely-pending (un-fired) debounced
-   * store has no chain entry yet and is handled by the tombstone instead.
+   * settles. beginRoomDeletion awaits this so an in-flight store that already
+   * passed the resurrection guard finishes its write BEFORE storage.deleteRoom
+   * runs — making deleteRoom the last writer. A merely-pending (un-fired)
+   * debounced store has no chain entry yet and is handled by the tombstone
+   * instead.
    */
   awaitPendingStore(documentName) {
     return Promise.resolve(this._storeChains.get(documentName)).then(() => {}, () => {});

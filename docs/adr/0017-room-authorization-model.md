@@ -164,9 +164,10 @@ reconnect. #268 closes that window for live sessions.
   `deleteRoom` clears storage, but a warm doc lingers (`unloadImmediately:
   false`) and a debounced `onStoreDocument` pending from prior edits could
   re-persist the room after deletion. Not introduced or worsened by #268 (the
-  kick adds no edits). `evictRoom` (collab-server) now closes this: it also
-  calls `revokeLiveSessions` internally, BEFORE dropping the doc from the
-  resident map, so a deleted room's live sessions still get the hard-kick
+  kick adds no edits). `finishRoomDeletion` (collab-server, run only after
+  `storage.deleteRoom` succeeds) now closes this: it also calls
+  `revokeLiveSessions` internally, BEFORE dropping the doc from the resident
+  map, so a deleted room's live sessions still get the hard-kick
   force-reconnect this section describes (a standalone post-`deleteRoom` call
   would find the room no longer resident and kick nobody).
 
@@ -186,18 +187,31 @@ reconnect. #268 closes that window for live sessions.
   store). Hocuspocus exposes no awaitable per-doc cancel (`unloadDocument`
   early-returns while a store is pending, and the debouncer only exposes
   `executeNow`, which *fires* the store), so the DELETE route calls
-  `evictRoom(composite)` (collab-server) BEFORE `storage.deleteRoom`:
+  `beginRoomDeletion(composite)` (collab-server) BEFORE `storage.deleteRoom`:
   `SecWriterDatabase.markDeleted` tombstones the composite key so any
-  pending/queued `store()` no-ops, the doc is dropped from
-  `hocuspocus.documents` so `store()`'s identity guard (resident-doc check via
-  the threaded `instance`) no-ops a stale/recreate-replaced doc, and any
-  in-flight store is awaited so `deleteRoom` is the last writer. `fetch()`
-  lifts the tombstone when the same id is loaded fresh (recreate). `evictRoom`
-  also calls `revokeLiveSessions` (#268, above) internally, before the doc
-  leaves the resident map, so the fix and the live-session hard-kick land in
-  the same step rather than racing each other. Pinned by
-  `server/__tests__/room-delete-resurrection.test.mjs` (real debounce timer)
-  and the `secwriter-database.test.mjs` resurrection-guard unit tests.
+  pending/queued `store()` no-ops, and any in-flight store is awaited so
+  `deleteRoom` is the last writer. Deletion is deliberately split into three
+  steps rather than one: `beginRoomDeletion` does NOT touch the live doc, so a
+  FAILED `storage.deleteRoom` (a review finding against the first version of
+  this fix — a single `evictRoom()` destroyed the doc unconditionally before
+  `deleteRoom` ran, permanently losing unflushed edits on a transient storage
+  fault) can be rolled back via `cancelRoomDeletion` (`unmarkDeleted`, leaving
+  the still-live doc to resume storing normally). Only on `storage.deleteRoom`
+  success does `finishRoomDeletion` drop the doc from `hocuspocus.documents`
+  (so `store()`'s identity guard — resident-doc check via the threaded
+  `instance` — no-ops a stale/recreate-replaced doc), destroy it, and forget
+  the migration coordinator's cache entry. `fetch()` lifts the tombstone when
+  the same id is loaded fresh (recreate); `sweepDeletedTombstones` lifts it by
+  age so a permanently-deleted room's tombstone doesn't live for the process
+  lifetime. `finishRoomDeletion` also calls `revokeLiveSessions` (#268, above)
+  internally, before the doc leaves the resident map, so the fix and the
+  live-session hard-kick land in the same step rather than racing each other.
+  Pinned by `server/__tests__/room-delete-resurrection.test.mjs` (deterministic
+  — forces the debounced store via `hocuspocus.debouncer.executeNow` rather
+  than a real timer, and separately covers the failed-delete rollback), the
+  `secwriter-database.test.mjs` resurrection-guard unit tests, and
+  `server/__tests__/collab-server-migration-persist.test.mjs` (a DELETE racing
+  a slow migration-broker persist).
 - **Within-tenant room-id enumeration:** `POST /rooms` returns 409 on a taken
   id, so a same-tenant caller can probe which ids exist. Out of threat model —
   the boundary this ADR defends is cross-tenant, and ids are not secrets within

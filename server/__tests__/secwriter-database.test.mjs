@@ -221,3 +221,42 @@ test('resurrection guard: identity check skips a store whose document is no long
   assert.equal(gone, false);
   assert.equal(writes, 1);
 });
+
+test('resurrection guard: unmarkDeleted rolls back a tombstone when deleteRoom fails', async () => {
+  // ADR-0017 follow-up review finding #1: a failed storage.deleteRoom must not
+  // leave the room's tombstone stuck forever — the delete didn't happen, so
+  // stores must resume normally.
+  const storage = makeStorage();
+  let writes = 0;
+  storage.writeRoom = async () => { writes++; };
+  const db = new SecWriterDatabase({ storage, roomHealth: new Map(), maxDocBytes: 8 * 1024 * 1024, log: { warn() {}, error() {} } });
+  const ydoc = new Y.Doc();
+  seedRoomFromBlocks(ydoc, [{ id: 'b1', type: 'txt', part: 1, depth: 0, html: 'x' }]);
+
+  db.markDeleted('tenantA/room1');
+  const blocked = await db.store({ documentName: 'tenantA/room1', document: ydoc });
+  assert.equal(blocked, false, 'tombstoned while the (failed) delete was attempted');
+  assert.equal(writes, 0);
+
+  db.unmarkDeleted('tenantA/room1');
+  const resumed = await db.store({ documentName: 'tenantA/room1', document: ydoc });
+  assert.equal(resumed, true, 'store must resume once the tombstone is rolled back');
+  assert.equal(writes, 1);
+});
+
+test('resurrection guard: sweepDeletedTombstones drops only stale entries', async () => {
+  // ADR-0017 follow-up review finding #3: `_deleted` only shrinks via fetch()
+  // or unmarkDeleted() — a room deleted and never recreated would otherwise
+  // tombstone forever on a long-running process. The periodic sweep
+  // (collab-server.cjs) bounds that growth by age.
+  const storage = makeStorage();
+  const db = new SecWriterDatabase({ storage, roomHealth: new Map(), maxDocBytes: 8 * 1024 * 1024, log: { warn() {}, error() {} } });
+
+  db.markDeleted('tenantA/old');
+  db._deleted.set('tenantA/old', Date.now() - 1000); // force an old timestamp
+  db.markDeleted('tenantA/fresh'); // tombstoned "now"
+
+  db.sweepDeletedTombstones(500); // maxAge shorter than the old entry's age
+  assert.equal(db._deleted.has('tenantA/old'), false, 'a tombstone older than maxAge must be swept');
+  assert.equal(db._deleted.has('tenantA/fresh'), true, 'a fresh tombstone must survive the sweep');
+});

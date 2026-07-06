@@ -781,64 +781,14 @@ describe('room authorization (auth=jwt)', () => {
 // PR #51 review (issue e) — regression. The migration coordinator caches
 // `{ alreadyV2: true }` per docName. After DELETE /rooms/:id, a fresh
 // room created with the same id (or a v1 SEC re-uploaded under it) would
-// see the cached short-circuit and skip both archive + migration. The
-// DELETE handler must call `migrationCoordinator.forget(roomId)` to drop
-// the stale cache entry.
-describe('HTTP endpoints — DELETE clears migration cache (issue e)', () => {
-  let tmpDir, server, baseUrl, storage, coordCalls;
-  before(async () => {
-    tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sim-http-cache-'));
-    const { LocalStorageBackend } = require('../storage-local.cjs');
-    storage = new LocalStorageBackend(tmpDir);
-    await storage.writeRoom('_public', 'to-delete', {
-      ydocBytes: Buffer.from([1, 2, 3]), secBytes: null, commentsJson: null,
-    });
-    coordCalls = [];
-    const fakeCoordinator = {
-      forget(docName) { coordCalls.push(['forget', docName]); },
-    };
-    const { createHttpHandler } = require('../http-handler.cjs');
-    const handler = createHttpHandler({
-      storage, boundDocs: new Map(),
-      flushRoom: async () => {}, maxDocBytes: 8 * 1024 * 1024,
-      migrationCoordinator: fakeCoordinator,
-    });
-    server = http.createServer(handler);
-    await new Promise(r => server.listen(0, '127.0.0.1', r));
-    baseUrl = `http://127.0.0.1:${server.address().port}`;
-  });
-  after(async () => {
-    await new Promise(r => server.close(r));
-    fs.rmSync(tmpDir, { recursive: true, force: true });
-  });
-
-  it('DELETE /rooms/:id forwards forget(roomId) to the migration coordinator', async () => {
-    const resp = await httpDelete(`${baseUrl}/rooms/to-delete`);
-    assert.strictEqual(resp.status, 200);
-    // Handler passes composite docName (_public/<roomId>) to the coordinator.
-    assert.deepStrictEqual(coordCalls, [['forget', '_public/to-delete']]);
-  });
-
-  it('omitted migrationCoordinator does not crash the DELETE path', async () => {
-    // Fresh handler without the coordinator dep — the guard in the handler
-    // (`typeof forget === 'function'`) must keep it from throwing.
-    await storage.writeRoom('_public', 'to-delete-2', {
-      ydocBytes: Buffer.from([7, 8]), secBytes: null, commentsJson: null,
-    });
-    const { createHttpHandler } = require('../http-handler.cjs');
-    const handler2 = createHttpHandler({
-      storage, boundDocs: new Map(),
-      flushRoom: async () => {}, maxDocBytes: 8 * 1024 * 1024,
-      // migrationCoordinator omitted on purpose
-    });
-    const srv2 = http.createServer(handler2);
-    await new Promise(r => srv2.listen(0, '127.0.0.1', r));
-    const url = `http://127.0.0.1:${srv2.address().port}`;
-    try {
-      const resp = await httpDelete(`${url}/rooms/to-delete-2`);
-      assert.strictEqual(resp.status, 200);
-    } finally {
-      await new Promise(r => srv2.close(r));
-    }
-  });
-});
+// see the cached short-circuit and skip both archive + migration.
+//
+// ADR-0017 follow-up review finding #4 moved the forget-forwarding
+// responsibility OUT of http-handler.cjs and into collab-server.cjs's
+// finishRoomDeletion (folded in alongside the doc-eviction/session-kick
+// teardown, so the two per-room invalidation mechanisms can't drift apart —
+// http-handler.cjs no longer accepts or touches `migrationCoordinator` at
+// all). Coverage for this now lives in
+// server/__tests__/collab-server-migration-persist.test.mjs, which exercises
+// it through createCollabServer (the layer that actually owns the wiring)
+// instead of createHttpHandler directly.

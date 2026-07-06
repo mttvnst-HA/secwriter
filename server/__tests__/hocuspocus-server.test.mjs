@@ -391,14 +391,15 @@ describe('#268 live-session revocation (revokeLiveSessions)', () => {
   });
 
   // T5 — merge-regression guard: the real DELETE /rooms/:id HTTP route (which
-  // calls evictRoom, not revokeLiveSessions directly) still kicks a live
-  // session. evictRoom folds the #268 hard-kick in internally, BEFORE it drops
-  // the doc from hocuspocusInstance.documents (which revokeLiveSessions reads
-  // to find connections) — a standalone post-deleteRoom revoke call would find
-  // the room no longer resident and silently kick nobody. This pins the fold-in
-  // ordering, not just the revokeLiveSessions primitive itself (T1-T4 call it
-  // directly and would not catch a delete-route wiring regression).
-  it('T5 DELETE /rooms/:id kicks a live session via evictRoom (not a standalone post-delete call)', { timeout: 20000 }, async () => {
+  // calls finishRoomDeletion on success, not revokeLiveSessions directly)
+  // still kicks a live session. finishRoomDeletion folds the #268 hard-kick in
+  // internally, BEFORE it drops the doc from hocuspocusInstance.documents
+  // (which revokeLiveSessions reads to find connections) — a standalone
+  // post-deleteRoom revoke call would find the room no longer resident and
+  // silently kick nobody. This pins the fold-in ordering, not just the
+  // revokeLiveSessions primitive itself (T1-T4 call it directly and would not
+  // catch a delete-route wiring regression).
+  it('T5 DELETE /rooms/:id kicks a live session via finishRoomDeletion (not a standalone post-delete call)', { timeout: 20000 }, async () => {
     const aclMap = new Map([[ROOM, { ownerId: 'owner', roles: { editorUser: 'editor' } }]]);
     const users = {
       tokO: { id: 'owner', tenant: T },
@@ -414,7 +415,7 @@ describe('#268 live-session revocation (revokeLiveSessions)', () => {
       // the kicked editor's reconnect re-authenticates against the STALE ACL
       // and never observes onAuthenticationFailed (this diagnosed the first
       // draft of this test: without the aclMap.delete below, the timeout was
-      // the mock's fault, not evictRoom's).
+      // the mock's fault, not finishRoomDeletion's).
       deleteRoom: async (t, r) => { aclMap.delete(`${t}/${r}`); },
       readAcl: async (t, r) => aclMap.get(`${t}/${r}`) || null,
     };
@@ -449,8 +450,8 @@ describe('#268 live-session revocation (revokeLiveSessions)', () => {
     });
     assert.strictEqual(del.status, 200, `DELETE should succeed, got ${del.status}: ${del.body}`);
 
-    // The room is gone from hocuspocus.documents (evictRoom evicted it)...
-    assert.strictEqual(srv.hocuspocus.documents.has(ROOM), false, 'evictRoom must have removed the live doc');
+    // The room is gone from hocuspocus.documents (finishRoomDeletion evicted it)...
+    assert.strictEqual(srv.hocuspocus.documents.has(ROOM), false, 'finishRoomDeletion must have removed the live doc');
     // ...and the editor's session was force-reconnected BEFORE that eviction —
     // its reconnect re-authenticates against the now-deleted ACL and fails.
     await waitFor(() => authFailCount >= 1, 12000);
