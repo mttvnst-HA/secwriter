@@ -389,12 +389,12 @@ del.mark-del[data-author-color] {
 .gutter-btn-accept {
   background: var(--sim-success-tint, #f0fdf4);
   color: var(--sim-success-text, #008000);
-  border: 1px solid var(--sim-success-text, #00800040);
+  border: 1px solid color-mix(in srgb, var(--sim-success-text, #008000) 25%, transparent);
 }
 .gutter-btn-reject {
   background: var(--sim-danger-tint, #fef2f2);
   color: var(--sim-danger-text, #ff4444);
-  border: 1px solid var(--sim-danger-text, #ff444440);
+  border: 1px solid color-mix(in srgb, var(--sim-danger-text, #ff4444) 25%, transparent);
 }
 .inline-action-accept {
   background: var(--sim-success-tint, #f0fdf4);
@@ -407,7 +407,7 @@ del.mark-del[data-author-color] {
 .cross-ref-remove-btn {
   background: var(--sim-danger-tint, #fef2f2);
   color: var(--sim-danger-text, #dc2626);
-  border: 1px solid var(--sim-danger-text, #dc262640);
+  border: 1px solid color-mix(in srgb, var(--sim-danger-text, #dc2626) 25%, transparent);
 }
 
 [contenteditable]:empty:before {
@@ -538,7 +538,7 @@ del.mark-del[data-author-color] {
   --sim-success-tint: rgba(34, 197, 94, 0.12);
   --sim-danger-text: #b45454;
   --sim-danger-tint: rgba(239, 68, 68, 0.10);
-  --sim-rid-text: #d8b4fe;
+  --sim-rid-text: #f0abfc;
   --sim-row-hover: #232a37;
   --sim-focus-halo: rgba(96, 165, 250, 0.18);
 }
@@ -551,7 +551,9 @@ del.mark-del[data-author-color] {
 /* Inline marks in dark mode — surface-tinted overlays, accent-color text.
    Saturated fills (#3b0764, #4a044e, etc.) read as neon pills against a
    dark canvas; transparent overlays keep the hue identity without vibration. */
-.dark-mode .mark-rid { background: rgba(168, 85, 247, 0.12); color: #c4b5fd; }
+/* RID=LIGHTMAGENTA per section.ini [COLORS] — fuchsia-300, a lighter magenta
+   than SRF's fuchsia-500 + underline (was purple-500/violet-300, off-hue). */
+.dark-mode .mark-rid { background: rgba(240, 171, 252, 0.12); color: #f0abfc; }
 .dark-mode .mark-srf { background: rgba(217, 70, 239, 0.12); color: #d8b4fe; }
 .dark-mode .mark-sub { background: rgba(59, 130, 246, 0.12); color: #93c5fd; }
 .dark-mode .mark-eng { background: rgba(59, 130, 246, 0.12); color: #93c5fd; }
