@@ -912,16 +912,25 @@ test.describe('Mark suggestions', () => {
     await waitForApp(page);
   });
 
+  // MarkSuggestions renders only while `focusedBlockId === block.id` and reads
+  // the committed `block.html`. The blur→refocus cycle (a) flushes PM's 400ms
+  // onUpdate debounce so block.html carries the typed text, then (b) remounts
+  // the panel for the block. We drive it with pmSetCaret rather than
+  // locator.click(): refocusing a churning PM block via click stalls on
+  // contentEditable actionability under parallel load (CLAUDE.md Rule #11), and
+  // pmSetCaret's view.focus() both fires onFocus (→ focusedBlockId) and, on the
+  // block losing focus, its blur handler flushes the debounce synchronously.
+  async function blurThenRefocus(page, blockId) {
+    await pmSetCaret(page, 'n24', 'end');
+    await pmSetCaret(page, blockId, 'end');
+  }
+
   test('typing an RID pattern shows auto-detect suggestions', async ({ page }) => {
     const focused = await createFreshBlock(page);
     const blockId = await focused.getAttribute('data-block-id');
     await page.keyboard.type('Use ASTM D1557 for testing');
 
-    // Click away to blur, then click back to refocus and trigger MarkSuggestions
-    await page.locator(blockSel('n24')).click();
-    await page.waitForTimeout(100);
-    await page.locator(blockSel(blockId)).click();
-    await page.waitForTimeout(300);
+    await blurThenRefocus(page, blockId);
 
     await expect(page.locator('text=Auto-detect:')).toBeVisible({ timeout: 5000 });
   });
@@ -931,10 +940,7 @@ test.describe('Mark suggestions', () => {
     const blockId = await focused.getAttribute('data-block-id');
     await page.keyboard.type('See Section 01 33 00 for details');
 
-    await page.locator(blockSel('n24')).click();
-    await page.waitForTimeout(100);
-    await page.locator(blockSel(blockId)).click();
-    await page.waitForTimeout(300);
+    await blurThenRefocus(page, blockId);
 
     await expect(page.locator('text=Auto-detect:')).toBeVisible({ timeout: 5000 });
   });
@@ -944,10 +950,7 @@ test.describe('Mark suggestions', () => {
     const blockId = await focused.getAttribute('data-block-id');
     await page.keyboard.type('ASTM D1557 and AASHTO T99 standards');
 
-    await page.locator(blockSel('n24')).click();
-    await page.waitForTimeout(100);
-    await page.locator(blockSel(blockId)).click();
-    await page.waitForTimeout(300);
+    await blurThenRefocus(page, blockId);
 
     await expect(page.locator('button:has-text("Mark all")')).toBeVisible({ timeout: 5000 });
   });
