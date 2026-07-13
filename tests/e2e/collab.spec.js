@@ -276,18 +276,24 @@ test.describe('Collab', () => {
 
       // Blur to trigger handleBlur → onUpdate → publish to Y.Doc
       await pageA.keyboard.press('Tab');
-      await pageA.waitForTimeout(3000);
 
-      // User B should see more blocks than before
-      const finalCountB = await pageB.locator('[contenteditable]').count();
-      expect(finalCountB).toBeGreaterThan(initialCountB);
+      // User B should eventually see the new block + marker via Yjs sync.
+      // Poll instead of reading once after a fixed wait: under full-suite
+      // parallel load the A→B sync routinely takes longer than any fixed
+      // timeout, so a single post-wait read races the sync (RAFT — see
+      // CLAUDE.md Rule #11).
+      await expect.poll(
+        () => pageB.locator('[contenteditable]').count(),
+        { timeout: 15000, intervals: [200, 500, 1000] },
+      ).toBeGreaterThan(initialCountB);
 
-      // The marker text should appear somewhere on B's page
-      const allTextB = await pageB.evaluate(() =>
-        [...document.querySelectorAll('[contenteditable]')]
-          .map(el => el.textContent).join('|||')
-      );
-      expect(allTextB).toContain(marker);
+      await expect.poll(
+        () => pageB.evaluate(() =>
+          [...document.querySelectorAll('[contenteditable]')]
+            .map(el => el.textContent).join('|||')
+        ),
+        { timeout: 15000, intervals: [200, 500, 1000] },
+      ).toContain(marker);
     } finally {
       await deleteRoom(room);
       await ctxA.close();
