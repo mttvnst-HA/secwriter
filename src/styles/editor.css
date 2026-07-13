@@ -389,12 +389,12 @@ del.mark-del[data-author-color] {
 .gutter-btn-accept {
   background: var(--sim-success-tint, #f0fdf4);
   color: var(--sim-success-text, #008000);
-  border: 1px solid color-mix(in srgb, var(--sim-success-text, #008000) 25%, transparent);
+  border: 1px solid var(--sim-success-border);
 }
 .gutter-btn-reject {
   background: var(--sim-danger-tint, #fef2f2);
   color: var(--sim-danger-text, #ff4444);
-  border: 1px solid color-mix(in srgb, var(--sim-danger-text, #ff4444) 25%, transparent);
+  border: 1px solid var(--sim-danger-border);
 }
 .inline-action-accept {
   background: var(--sim-success-tint, #f0fdf4);
@@ -407,7 +407,7 @@ del.mark-del[data-author-color] {
 .cross-ref-remove-btn {
   background: var(--sim-danger-tint, #fef2f2);
   color: var(--sim-danger-text, #dc2626);
-  border: 1px solid color-mix(in srgb, var(--sim-danger-text, #dc2626) 25%, transparent);
+  border: 1px solid var(--sim-danger-border);
 }
 
 [contenteditable]:empty:before {
@@ -465,6 +465,11 @@ del.mark-del[data-author-color] {
   --sim-success-tint: #f0fdf4;
   --sim-danger-text: #ff4444;
   --sim-danger-tint: #fef2f2;
+  /* 25% translucent tint of the semantic text color — single source for all
+     action-button borders (light + dark). Redeclared in the .dark-mode block
+     because a custom property's inner var() bakes in at its declaring scope. */
+  --sim-success-border: color-mix(in srgb, var(--sim-success-text) 25%, transparent);
+  --sim-danger-border: color-mix(in srgb, var(--sim-danger-text) 25%, transparent);
   --sim-rid-text: #86198f;
   --sim-row-hover: #f8fafc;
   --sim-focus-halo: rgba(99, 132, 168, 0.15);
@@ -538,6 +543,11 @@ del.mark-del[data-author-color] {
   --sim-success-tint: rgba(34, 197, 94, 0.12);
   --sim-danger-text: #b45454;
   --sim-danger-tint: rgba(239, 68, 68, 0.10);
+  /* Redeclared per theme: custom-property var() is substituted at the element
+     where the token is DECLARED, so :root's copy bakes in the light --sim-*-text.
+     This dark copy re-mixes against the dark text tokens above. */
+  --sim-success-border: color-mix(in srgb, var(--sim-success-text) 25%, transparent);
+  --sim-danger-border: color-mix(in srgb, var(--sim-danger-text) 25%, transparent);
   --sim-rid-text: #f0abfc;
   --sim-row-hover: #232a37;
   --sim-focus-halo: rgba(96, 165, 250, 0.18);
@@ -665,13 +675,13 @@ button[data-priority="primary"]:hover {
 .dark-mode .gutter-btn-accept {
   background-color: var(--sim-success-tint) !important;
   color: var(--sim-success-text) !important;
-  border-color: color-mix(in srgb, var(--sim-success-text) 25%, transparent) !important;
+  border-color: var(--sim-success-border) !important;
 }
 .dark-mode .gutter-btn-reject,
 .dark-mode .cross-ref-remove-btn {
   background-color: var(--sim-danger-tint) !important;
   color: var(--sim-danger-text) !important;
-  border-color: color-mix(in srgb, var(--sim-danger-text) 25%, transparent) !important;
+  border-color: var(--sim-danger-border) !important;
 }
 .dark-mode .gutter-btn-accept:hover {
   background-color: color-mix(in srgb, var(--sim-success-text) 20%, transparent) !important;
