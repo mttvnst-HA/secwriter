@@ -34,10 +34,9 @@
  */
 
 import { useEffect, useRef, useState } from 'react';
-import * as Y from 'yjs';
-import { ySyncPluginKey } from 'y-prosemirror';
 
 import { makeUndoHelpers } from '../lib/undo-helpers.js';
+import { createSubstrateUndoManager } from '../lib/substrate-protocol.js';
 
 /**
  * @typedef {Object} LocalSubstrateUndoApi
@@ -69,19 +68,12 @@ import { makeUndoHelpers } from '../lib/undo-helpers.js';
  * @param {{ ydoc: Y.Doc, yOrder: Y.Array<string>, yStore: Y.Map<string, Y.Map> }} substrate
  * @returns {LocalSubstrateUndoApi}
  */
-// captureTransaction rejects transactions whose `addToHistory` meta is
-// false. y-prosemirror's sync-plugin propagates the PM-side
-// `tr.setMeta('addToHistory', false)` to the resulting Yjs transaction meta
-// (sync-plugin.js:228), so PM transactions can opt out of undo capture.
-// The comment-reconcile path uses this — see pm-comments.js. Mirrors the
-// y-prosemirror UndoPlugin's own filter (undo-plugin.js:71). Must stay in
-// lockstep with the in-room counterpart in collab.js.
+// trackedOrigins ('local-publish' + ySyncPluginKey), captureTimeout, and the
+// addToHistory:false capture filter come from the shared substrate-protocol
+// factory — the SAME one collab.js uses for the in-room manager, so the two
+// cannot drift out of lockstep. See substrate-protocol.js for the rationale.
 function makeUndoManager(yOrder, yStore) {
-  return new Y.UndoManager([yOrder, yStore], {
-    trackedOrigins: new Set(['local-publish', ySyncPluginKey]),
-    captureTimeout: 500,
-    captureTransaction: tr => tr.meta.get('addToHistory') !== false,
-  });
+  return createSubstrateUndoManager([yOrder, yStore]);
 }
 
 // Tracks managers we've already destroyed so the StrictMode double-mount

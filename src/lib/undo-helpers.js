@@ -30,6 +30,8 @@
  * `framingForHandler = () => (inRoomRef.current ? collab : localUndo)`.
  */
 
+import { LOCAL_PUBLISH } from './substrate-protocol.js';
+
 /**
  * @param {Y.Doc} ydoc
  * @param {Y.UndoManager} undoManager
@@ -50,7 +52,7 @@
 export function makeUndoHelpers(ydoc, undoManager) {
   return {
     withUndoFrame(fn) {
-      ydoc.transact(fn, 'local-publish');
+      ydoc.transact(fn, LOCAL_PUBLISH);
     },
     forceFrame() {
       undoManager.stopCapturing();
