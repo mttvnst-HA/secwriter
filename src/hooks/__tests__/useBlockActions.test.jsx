@@ -98,13 +98,25 @@ describe('useBlockActions', () => {
 
   it('reads tcState from the ref for insertAfter / deleteBlock / convertBlockType', () => {
     const created = vi.spyOn(Blocks, 'createBlockAfter').mockReturnValue({ state: [], effects: null });
+    const deleted = vi.spyOn(Blocks, 'deleteBlock').mockReturnValue({ state: [], effects: null });
+    const converted = vi.spyOn(Blocks, 'convertBlockType').mockReturnValue({ state: [], effects: null });
     vi.spyOn(Blocks, 'dispatchBlocksVerb').mockImplementation((_d, compute) => { compute([]); return { dispatched: true }; });
     const deps = makeDeps({ tcStateRef: { current: { enabled: true } } });
     const { result } = renderHook(() => useBlockActions(deps));
 
+    // insertAfter → Blocks.createBlockAfter(b, afterId, { newId, tcState }) — options object (arg index 2)
     result.current.insertAfter('a');
-    const opts = created.mock.calls[0][2];
-    expect(opts.tcState).toEqual({ enabled: true });
-    expect(opts.newId).toMatch(/^new-/);
+    const insertOpts = created.mock.calls[0][2];
+    expect(insertOpts.tcState).toEqual({ enabled: true });
+    expect(insertOpts.newId).toMatch(/^new-/);
+
+    // deleteBlock → Blocks.deleteBlock(b, blockId, tcState) — tcState is the POSITIONAL 3rd arg (arg index 2)
+    result.current.deleteBlock('a');
+    expect(deleted.mock.calls[0][2]).toEqual({ enabled: true });
+
+    // convertBlockType → Blocks.convertBlockType(b, blockId, newType, { tcState }) — options object (arg index 3)
+    result.current.convertBlockType('a', 'note');
+    const convertOpts = converted.mock.calls[0][3];
+    expect(convertOpts.tcState).toEqual({ enabled: true });
   });
 });
