@@ -69,13 +69,14 @@
 
 import * as Y from 'yjs';
 import { HocuspocusProvider } from '@hocuspocus/provider';
-import { prosemirrorToYXmlFragment, ySyncPluginKey } from 'y-prosemirror';
+import { prosemirrorToYXmlFragment } from 'y-prosemirror';
 import { applyHtmlToYText, htmlToAttrList, seedYTextFromHtml } from './ytext-html.js';
 import { htmlToPmFragment } from './pmdoc-html.js';
 import { getCachedHtml } from './pm-fragment-cache.js';
 import { tableToYStructure, yStructureToTable, diffTableForPublish, applyTableCellEdits } from './ytable-crdt.js';
 import { refToYStructure, yStructureToRef, applyRefEdits } from './yref-crdt.js';
 import { makeUndoHelpers } from './undo-helpers.js';
+import { createSubstrateUndoManager } from './substrate-protocol.js';
 
 // Collab server URLs — App.jsx imports DEFAULT_HTTP_URL from here.
 // Port defaults must match server/collab-server.cjs (PORT / HTTP_PORT).
@@ -1172,52 +1173,13 @@ export function createCollabSession({
 
   // Undo manager scoped to our own edits. Track both yOrder and yStore so
   // structural changes (insert/delete/reorder) and field changes are both
-  // undoable. Two origins are captured:
-  //
-  //   'local-publish'   — `setBlockHtml` (binder writes from legacy
-  //                       contentEditable + PmEditableBlock's debounced
-  //                       onUpdate echo), `publishBlocks` (structural
-  //                       changes via App), and click-driven Yjs writes
-  //                       in `*ToDoc` helpers below. Scoped to local user
-  //                       so Ctrl+Z never reverts a remote peer's edit.
-  //
-  //   ySyncPluginKey    — y-prosemirror's `ySyncPlugin` writes Yjs ops
-  //                       with this Y origin for every PM-driven
-  //                       transaction (per-keystroke substrate updates
-  //                       on local typing). Tracking it makes PM mode's
-  //                       Ctrl+Z work at character granularity, gated
-  //                       by the word-boundary-undo plugin's forceFrame
-  //                       call (split frames at space/punctuation/Enter).
-  //                       Remote ops do NOT enter this stack because the
-  //                       HocuspocusProvider applies remote updates with
-  //                       the provider INSTANCE as the Yjs origin (not
-  //                       ySyncPluginKey nor 'local-publish') — proven by the
-  //                       Gate A1 pin test
-  //                       src/lib/__tests__/hocuspocus-undo-origin.test.js;
-  //                       the trackedOrigins filter
-  //                       rejects them. y-prosemirror's sync plugin also
-  //                       guards its remote→PM update path against
-  //                       re-emitting a ySyncPluginKey-tagged write,
-  //                       so a remote keystroke never round-trips into
-  //                       the local undo stack.
-  //
-  // captureTimeout is the Yjs default (500ms): adjacent same-origin ops
-  // within 500ms coalesce into one undo frame. The word-boundary plugin
-  // calls `forceFrame` (→ `undoManager.stopCapturing()`) on space /
-  // punctuation / Enter keydowns to split typing bursts into per-word
-  // frames, matching Word/Notion convention.
-  //
-  // captureTransaction rejects transactions whose `addToHistory` meta is
-  // false. y-prosemirror's sync-plugin propagates the PM-side
-  // `tr.setMeta('addToHistory', false)` to the Yjs transaction meta
-  // (sync-plugin.js:228), so PM transactions can opt out of undo capture.
-  // The comment-reconcile path uses this — see pm-comments.js. Mirrors the
-  // y-prosemirror UndoPlugin's own filter (undo-plugin.js:71).
-  const undoManager = new Y.UndoManager([yOrder, yStore], {
-    trackedOrigins: new Set(['local-publish', ySyncPluginKey]),
-    captureTimeout: 500,
-    captureTransaction: tr => tr.meta.get('addToHistory') !== false,
-  });
+  // undoable. The tracked origins ('local-publish' + ySyncPluginKey),
+  // captureTimeout, and captureTransaction filter all live in
+  // `substrate-protocol.js` — the SAME factory builds the out-of-room manager
+  // in `useLocalSubstrateUndoManager`, so the two can't drift into different
+  // Ctrl+Z semantics. See that module for the origin rationale (why remote
+  // ops enter neither stack, why addToHistory:false opts out).
+  const undoManager = createSubstrateUndoManager([yOrder, yStore]);
   const { withUndoFrame, forceFrame } = makeUndoHelpers(ydoc, undoManager);
 
   return {
