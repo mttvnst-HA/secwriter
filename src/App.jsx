@@ -43,14 +43,13 @@ import * as tc from "./lib/track-changes.js";
 import * as Blocks from "./lib/blocks.js";
 import * as linting from "./lib/linting.js";
 import { encodeSidecar, decodeSidecar, decodeSidecarV2, projectDecoded, fingerprintBlock } from "./lib/lint-sidecar.js";
-import * as comp from "./lib/compliance.js";
-import { findHighlightTargetsInBlock } from "./lib/compliance-ranges.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
 import { getRoomFromUrl, buildRoomUrl, stripRoomFromUrl, generateRoomId, DEFAULT_HTTP_URL, applyBlocksToYDoc, yBlocksToArray } from "./lib/collab.js";
 import { useCollabSession } from "./hooks/useCollabSession.js";
 import { useBlockActions } from "./hooks/useBlockActions.js";
 import { useFileSession } from "./hooks/useFileSession.js";
 import { useComments } from "./hooks/useComments.js";
+import { useCompliancePanel } from "./hooks/useCompliancePanel.js";
 import { useLocalSubstrateUndoManager } from "./hooks/useLocalSubstrateUndoManager.js";
 import * as cm from "./lib/comments.js";
 import { loadIdentity } from "./lib/identity.js";
@@ -222,8 +221,16 @@ export default function SpecEditor() {
   // `showComments` is a right-rail layout concern (mutually exclusive with the
   // compliance panel) and stays here.
   const [showComments, setShowComments] = useState(false);
-  const [complianceOpen, setComplianceOpen] = useState(false);
-  const [complianceState, setComplianceState] = useState(() => comp.createInitial());
+  // Compliance panel intent (architecture-review candidate #1, slice 4a).
+  // Owns complianceOpen + complianceState + the compliance-active highlight
+  // effect. Lint stays in App (collab-published custodian state — separate
+  // slice). See useCompliancePanel.js header.
+  const {
+    complianceOpen,
+    setComplianceOpen,
+    complianceState,
+    setComplianceState,
+  } = useCompliancePanel({ blocks });
   const [collabReachable, setCollabReachable] = useState(false);
   const [showRoomPanel, setShowRoomPanel] = useState(false);
   const [roomList, setRoomList] = useState([]);
@@ -1041,71 +1048,8 @@ export default function SpecEditor() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blocks]);
 
-  // Compliance highlight via CSS Custom Highlight API. Mirrors the linting
-  // tier-effect pattern above. Building Range objects (instead of injecting
-  // spans) keeps the highlights stable across PM EditorView re-renders —
-  // PM's view tear-down would have clobbered injected DOM. Computing the
-  // targets is pure (compliance-ranges.js); the side effect lives here.
-  //
-  // `blocks` is in the dep array so PM-driven DOM rewrites (which detach the
-  // text nodes our Range objects anchor to) trigger a fresh range build. But
-  // scroll must NOT re-fire on every typing pause — only on panel open,
-  // active group change, or fresh scan. The ref below gates the scroll
-  // against (open, group, result) so block-only re-runs skip the scrollTo.
-  const lastComplianceScrollRef = useRef({ open: false, group: null, result: null });
-  useEffect(() => {
-    if (typeof document === 'undefined') return;
-    if (typeof CSS === 'undefined' || !CSS.highlights) return;
-    const clear = () => CSS.highlights.delete('compliance-active');
-
-    const prev = lastComplianceScrollRef.current;
-    const triggerScroll = complianceOpen && (
-      prev.open !== complianceOpen
-      || prev.group !== complianceState.activeGroup
-      || prev.result !== complianceState.result
-    );
-    lastComplianceScrollRef.current = {
-      open: complianceOpen,
-      group: complianceState.activeGroup,
-      result: complianceState.result,
-    };
-
-    if (!complianceOpen) { clear(); return; }
-    const group = comp.getActiveGroupObject(complianceState);
-    if (!group || !Array.isArray(group.instances)) { clear(); return; }
-    const ranges = [];
-    let firstRange = null;
-    for (const v of group.instances) {
-      const blockEl = getBlockDom(v.blockId)
-        || document.querySelector(/* allowed: block-registry fallback */ `[data-block-id="${v.blockId}"]`);
-      if (!blockEl) continue;
-      const targets = findHighlightTargetsInBlock(blockEl, v.match);
-      for (const t of targets) {
-        try {
-          const range = document.createRange();
-          range.setStart(t.textNode, t.startOffset);
-          range.setEnd(t.textNode, t.startOffset + t.length);
-          ranges.push(range);
-          if (!firstRange) firstRange = range;
-        } catch { /* invalid range — skip */ }
-      }
-    }
-    if (ranges.length > 0) {
-      CSS.highlights.set('compliance-active', new Highlight(...ranges));
-      if (triggerScroll && firstRange && typeof firstRange.getBoundingClientRect === 'function') {
-        const rect = firstRange.getBoundingClientRect();
-        if (rect && (rect.top || rect.bottom)) {
-          window.scrollTo({
-            top: window.scrollY + rect.top - window.innerHeight / 2,
-            behavior: 'smooth',
-          });
-        }
-      }
-    } else {
-      clear();
-    }
-    return clear;
-  }, [complianceOpen, complianceState.activeGroup, complianceState.result, blocks]);
+  // Compliance-active highlight + scroll effect moved into useCompliancePanel
+  // (slice 4a) — co-located with the complianceOpen/complianceState it reads.
 
   // Collab server reachability detection — ping GET /rooms on mount and tab focus (30s cooldown)
   useEffect(() => {
