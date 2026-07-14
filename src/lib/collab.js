@@ -222,9 +222,9 @@ export function estimatePublishBytes(blocks) {
  * `tableToYStructure` calls `[...yMap.keys()]` to clear existing keys).
  * Under CI's slower runners that flood overwhelms the Chromium →
  * Playwright IPC channel and the test page stops responding to keyboard
- * input — the symptom that took down `collab.spec.js:169 two-tab text
- * sync` on PR #51 (issue #77, fixed by PR #81 for html only; the table/
- * ref slots were missed and fixed for #83).
+ * input — the symptom that took down the "two-tab text sync" test in
+ * `collab.spec.js` on PR #51 (issue #77, fixed by PR #81 for html only; the
+ * table/ref slots were missed and fixed for #83).
  */
 export function blockToYMapSkeleton(block) {
   const yMap = new Y.Map();

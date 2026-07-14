@@ -77,8 +77,10 @@ export function onBlocksSync(state) {
 // Once schemaIncompatible has tripped, this verb still updates
 // metaReady — but selectors gate every publish path on
 // !schemaIncompatible, so the gate-open does not unlock anything. The
-// flip is preserved for symmetry with the pre-reducer behavior (the
-// metaReadyRef was set unconditionally at line 313 of the hook).
+// flip is preserved for symmetry with the pre-reducer behavior (in the
+// pre-reducer `useCollabSession`, metaReadyRef was set unconditionally;
+// see git history for that hook's implementation before this reducer
+// extraction).
 export function onMetaSync(state, { schemaVersion, migrationPartial } = {}) {
   let next = state;
   const incompatible =

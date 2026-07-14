@@ -10,8 +10,9 @@
  *     Used by multi-write user gestures (paste, drag-drop, find-replace-all,
  *     accept-all) in the Commit C migration so the gesture is one Ctrl+Z.
  *
- *     The Yjs nested-transact rule (outer-origin-wins; verified by
- *     adversarial Q5 review at yjs Transaction.js:412-447) makes nested
+ *     The Yjs nested-transact rule (outer-origin-wins; verified by adversarial
+ *     Q5 review against yjs@13.6.31's `Transaction.js` — yjs is only
+ *     caret-pinned, so re-check that source on a version bump) makes nested
  *     `local-publish` transacts inside `fn` still collapse into the
  *     outer frame — see the "nested" test case.
  *

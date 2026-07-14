@@ -639,11 +639,13 @@ function PmEditableBlock({
   }, [block.id, yStore, editable, yMapBound, isMigrationPartial]);
 
   // ── Auto-focus on first mount when block.isNew ───────────────────────────
-  // 1f.7 (#47) — mirrors EditableBlock.jsx:172-210 (`needsFocus` path). Block
+  // 1f.7 (#47) — replaces the legacy contentEditable `needsFocus` path (that
+  // component, EditableBlock.jsx, was retired in 1i-b.2 / #109; recover its
+  // ref-callback + Range API approach via git history if needed). Block
   // creation flows (handleEnterKey, slash-convert, paragraph-from-list-exit)
   // set `isNew: true` on the new block and rely on the editor mount placing
-  // the caret. Legacy did this via the ref callback + Range API; PM owns its
-  // own selection, so we view.focus() and dispatch Selection.atEnd. Gated by
+  // the caret. PM owns its own selection, so we view.focus() and dispatch
+  // Selection.atEnd. Gated by
   // a ref so a later yMapBound flip (1d migration broker) doesn't re-steal
   // focus on a non-new block whose `isNew` was never explicitly cleared.
   const hasAutoFocusedRef = useRef(false);

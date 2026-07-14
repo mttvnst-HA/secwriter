@@ -64,9 +64,10 @@
 // invariant is uniform across all verbs.
 //
 // The dispatcher does NOT call `getBlockHandle(id).setHtml(html)` —
-// PmEditableBlock's setHtml handle is documented as a no-op (block-registry.js
-// line 30-33), and TitleBlock does not register a handle. The pre-1i-b.2
-// callsites that did this (handleBlockUpdateWithSync, handleSearchReplace)
+// PmEditableBlock's setHtml handle is documented as a no-op (see its
+// definition in block-registry.js), and TitleBlock does not register a
+// handle. The pre-1i-b.2 callsites that did this (handleBlockUpdateWithSync,
+// handleSearchReplace)
 // were updating the legacy contentEditable DOM; PM owns its DOM now. If a
 // future non-PM editor surface re-introduces imperative html push, add the
 // mirror to the dispatcher.

@@ -17,9 +17,11 @@
  * basis of that gate).
  *
  * The returned tr is ALSO tagged with `addToHistory: false`. y-prosemirror's
- * sync-plugin reads this meta (sync-plugin.js:147) and propagates it to the
- * resulting Yjs transaction (sync-plugin.js:228) before invoking
- * `ydoc.transact(..., ySyncPluginKey)`. Both Y.UndoManagers in this codebase
+ * sync-plugin reads this meta and propagates it to the resulting Yjs
+ * transaction before invoking `ydoc.transact(..., ySyncPluginKey)` (verified
+ * against y-prosemirror@1.3.7's `src/sync-plugin.js` — re-check that source
+ * on any version bump, since the package is only caret-pinned). Both
+ * Y.UndoManagers in this codebase
  * (the in-room manager in collab.js and the out-of-room manager in
  * useLocalSubstrateUndoManager.js) configure a `captureTransaction` filter
  * that rejects transactions whose `addToHistory` meta is false. Without this
