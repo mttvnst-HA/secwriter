@@ -23,23 +23,35 @@ const { authorize, checkPrincipal, aclAllowsRead, roleOf, ACTION, GRANTABLE_ROLE
  * @param {import('./storage-local.cjs').LocalStorageBackend} deps.storage
  * @param {Map<string, import('yjs').Doc>} deps.boundDocs
  * @param {(roomId: string) => Promise<void>} deps.flushRoom
- * @param {(docName: string) => Promise<void>} [deps.beginRoomDeletion]
- *   tombstone a room's pending stores BEFORE storage.deleteRoom, so a
- *   lingering debounced/disconnect store can't resurrect it (ADR-0017
- *   "Live-session revocation"). Must be paired with finishRoomDeletion (on
- *   deleteRoom success) or cancelRoomDeletion (on deleteRoom failure).
- * @param {(docName: string) => Promise<void>} [deps.finishRoomDeletion] evict
- *   the room's live Y.Doc, kick live sessions, and forget the migration
- *   coordinator's cache entry — call ONLY after storage.deleteRoom succeeds.
- * @param {(docName: string) => void} [deps.cancelRoomDeletion] roll back the
- *   tombstone set by beginRoomDeletion — call when storage.deleteRoom throws,
- *   so the still-live room resumes storing normally.
+ * @param {(tenant: string, roomId: string) => Promise<void>} [deps.deleteRoomTransactionally]
+ *   the single room-deletion seam (architecture-review candidate #4). Owns the
+ *   whole tombstone -> storage.deleteRoom -> (rollback-on-fail | evict-on-ok)
+ *   ordering so the route never re-assembles it: a store racing deleteRoom can't
+ *   resurrect the room and a FAILED deleteRoom can't destroy the still-live doc
+ *   (ADR-0017 "Live-session revocation"). Rethrows a deleteRoom failure so the
+ *   route still surfaces 500. When absent (bare createHttpHandler test harnesses
+ *   with no collab-server wiring), the route falls back to storage.deleteRoom
+ *   alone — same behavior those harnesses relied on before the seam existed.
  * @param {number} deps.maxDocBytes
  */
-function createHttpHandler({ storage, boundDocs, flushRoom, beginRoomDeletion, finishRoomDeletion, cancelRoomDeletion, revokeLiveSessions, maxDocBytes, authProvider, allowedOrigin = '*', getActiveUsers, rateLimiter, roomHealth }) {
+function createHttpHandler({ storage, boundDocs, flushRoom, deleteRoomTransactionally, revokeLiveSessions, maxDocBytes, authProvider, allowedOrigin = '*', getActiveUsers, rateLimiter, roomHealth }) {
   // Parse rate limit config once at handler creation, not per-request
   const HTTP_READ_RATE = Number(process.env.SIM_RATE_LIMIT_HTTP_READ_PER_MIN || 60);
   const HTTP_WRITE_RATE = Number(process.env.SIM_RATE_LIMIT_HTTP_WRITE_PER_MIN || 20);
+
+  // Route both DELETE branches through the one room-deletion seam. The seam
+  // (collab-server's deleteRoomTransactionally) owns the tombstone -> delete ->
+  // rollback|evict ordering; the route no longer knows the protocol. Bare test
+  // harnesses that construct createHttpHandler without collab-server wiring get
+  // the pre-seam behavior (storage.deleteRoom alone). A thrown deleteRoom
+  // failure propagates to the route's outer catch -> 500 either way.
+  async function performRoomDeletion(tenant, roomId) {
+    if (typeof deleteRoomTransactionally === 'function') {
+      await deleteRoomTransactionally(tenant, roomId);
+    } else {
+      await storage.deleteRoom(tenant, roomId);
+    }
+  }
 
   // #215 — room lock enforcement. The `locked` flag (yMeta.locked + lockedBy)
   // was write-only metadata: DELETE/upload/PATCH never consulted it, so a locked
@@ -483,14 +495,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, beginRoomDeletion, f
           // the id reclaimable rather than permanently bricked. Still 404 — the
           // room proper never finished creating.
           if (authProvider?.requiresAuth && (await storage.readAcl(tenant, roomId))) {
-            if (typeof beginRoomDeletion === 'function') await beginRoomDeletion(composite);
-            try {
-              await storage.deleteRoom(tenant, roomId);
-            } catch (err) {
-              if (typeof cancelRoomDeletion === 'function') cancelRoomDeletion(composite);
-              throw err;
-            }
-            if (typeof finishRoomDeletion === 'function') await finishRoomDeletion(composite);
+            await performRoomDeletion(tenant, roomId);
           }
           res.writeHead(404, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ error: `Room "${roomId}" not found` }));
@@ -502,35 +507,16 @@ function createHttpHandler({ storage, boundDocs, flushRoom, beginRoomDeletion, f
           sendLocked(res, lock.lockedBy);
           return;
         }
-        // beginRoomDeletion tombstones pending stores BEFORE clearing storage so
-        // a pending debounced flush (or a disconnect-triggered store) can't
-        // re-persist — resurrect — the room after deleteRoom. Under
-        // unloadImmediately:false the doc lingers with its debounce timer armed;
-        // beginRoomDeletion also awaits any in-flight store so deleteRoom is the
-        // last writer. It deliberately does NOT touch the live doc or kick
-        // sessions yet — if storage.deleteRoom subsequently throws,
-        // cancelRoomDeletion rolls the tombstone back so the still-live,
-        // still-undestroyed room resumes storing normally (review finding #1: a
-        // single evictRoom-before-deleteRoom used to destroy the doc
-        // unconditionally, permanently losing unflushed edits on a failed
-        // delete). Only on SUCCESS does finishRoomDeletion evict the doc, kick
-        // every live session (#268 revokeLiveSessions, run BEFORE the doc is
-        // dropped from the resident map — a call after that would find the room
-        // no longer resident and kick nobody), and forget the migration
-        // coordinator's cache entry (folded in here — review finding #4 — so
-        // there is exactly one call site guaranteeing both per-room
-        // invalidation mechanisms fire together). Kicked clients reconnect →
-        // onAuthenticate reads the now-missing ACL → authenticationFailed (no
-        // reconnect loop). See ADR-0017 "Live-session revocation" and its
-        // delete-resurrection follow-up.
-        if (typeof beginRoomDeletion === 'function') await beginRoomDeletion(composite);
-        try {
-          await storage.deleteRoom(tenant, roomId);
-        } catch (err) {
-          if (typeof cancelRoomDeletion === 'function') cancelRoomDeletion(composite);
-          throw err;
-        }
-        if (typeof finishRoomDeletion === 'function') await finishRoomDeletion(composite);
+        // Room deletion is a transaction, not a sequence the route assembles:
+        // performRoomDeletion -> deleteRoomTransactionally owns tombstone ->
+        // storage.deleteRoom -> (rollback-on-fail | evict+kick-on-ok). That
+        // ordering guards two correctness invariants — a store racing deleteRoom
+        // must not resurrect the room (#268/ADR-0017), and a FAILED deleteRoom
+        // must not destroy the still-live doc + its unflushed edits (review
+        // finding #1). A deleteRoom throw rolls the tombstone back and rethrows,
+        // surfacing 500 below with the room fully live. See the seam's doc block
+        // in collab-server.cjs for the per-step detail.
+        await performRoomDeletion(tenant, roomId);
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ ok: true }));
       } catch (err) {
