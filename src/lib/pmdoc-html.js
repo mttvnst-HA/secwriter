@@ -33,6 +33,9 @@
 
 import { DOMParser as PMDOMParser } from 'prosemirror-model';
 import { schema, INLINE_MARK_KINDS, VALID_MARKS } from './pm-schema.js';
+// slot-shape imports NOTHING (no yjs), so this stays safe to dynamic-import
+// into the CJS server bundle — see that module's header + the note below.
+import { isXmlFragmentSlot, isTextSlot, isYXmlElementNode } from './slot-shape.js';
 
 // ── HTML emission helpers (byte-identical to ytext-html.js for single-kind) ──
 //
@@ -250,19 +253,10 @@ function pmNodeToDeltas(pmNode) {
 
 // ── Y.XmlFragment → deltas ───────────────────────────────────────────────────
 
-// Duck-type detectors. We avoid `import * as Y from 'yjs'` so this module
-// doesn't add a second yjs import path to the CJS server bundle (issue #47
-// Q22 — the existing "Yjs was already imported" warning shouldn't grow).
-
-function isYXmlText(child) {
-  return child && typeof child.toDelta === 'function';
-}
-
-function isYXmlElement(child) {
-  return child
-    && typeof child.nodeName === 'string'
-    && typeof child.toArray === 'function';
-}
+// Child-node duck-typing comes from slot-shape.js (isTextSlot / isYXmlElementNode);
+// that module imports NOTHING, so it doesn't add a second yjs import path to the
+// CJS server bundle (issue #47 Q22 — the "Yjs was already imported" warning
+// shouldn't grow).
 
 function yDeltaAttrsToAttrs(rawAttrs) {
   if (!rawAttrs || typeof rawAttrs !== 'object') return {};
@@ -337,7 +331,7 @@ function yXmlToDeltas(yXml) {
   const deltas = [];
 
   function emit(child) {
-    if (isYXmlText(child)) {
+    if (isTextSlot(child)) {
       let childDeltas;
       try {
         childDeltas = child.toDelta();
@@ -350,7 +344,7 @@ function yXmlToDeltas(yXml) {
         if (!d || typeof d.insert !== 'string') continue; // non-string inserts (embeds) skipped
         deltas.push({ insert: d.insert, attributes: yDeltaAttrsToAttrs(d.attributes) });
       }
-    } else if (isYXmlElement(child)) {
+    } else if (isYXmlElementNode(child)) {
       if (child.nodeName === 'hard_break') {
         deltas.push({ insert: '\n', attributes: {} });
       } else {
@@ -387,7 +381,7 @@ export function pmFragmentToHtml(input) {
     return deltasToHtml(pmNodeToDeltas(input));
   }
   // Y.XmlFragment: has toArray() but no nodeName (a YXmlElement has both).
-  if (typeof input.toArray === 'function' && typeof input.nodeName !== 'string') {
+  if (isXmlFragmentSlot(input)) {
     return deltasToHtml(yXmlToDeltas(input));
   }
   return '';

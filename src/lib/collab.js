@@ -77,6 +77,7 @@ import { tableToYStructure, yStructureToTable, diffTableForPublish, applyTableCe
 import { refToYStructure, yStructureToRef, applyRefEdits } from './yref-crdt.js';
 import { makeUndoHelpers } from './undo-helpers.js';
 import { createSubstrateUndoManager } from './substrate-protocol.js';
+import { isReadableSlot } from './slot-shape.js';
 
 // Collab server URLs — App.jsx imports DEFAULT_HTTP_URL from here.
 // Port defaults must match server/collab-server.cjs (PORT / HTTP_PORT).
@@ -294,8 +295,7 @@ function yMapToBlock(yMap) {
   // keystroke by handleAfterTx for ySyncPluginKey-origin transactions; the
   // cache makes every UNCHANGED block a hit, so a single keystroke re-derives
   // only the one mutated slot instead of all N (was 18.8 ms at 1200 blocks).
-  if (yHtml && typeof yHtml === 'object'
-      && (typeof yHtml.toArray === 'function' || typeof yHtml.toDelta === 'function')) {
+  if (isReadableSlot(yHtml)) {
     block.html = getCachedHtml(yHtml);
   } else {
     block.html = (typeof yHtml === 'string') ? yHtml : '';
@@ -788,9 +788,7 @@ function updateYMapFromBlock(ymap, block) {
   // structural publish, destroying the migrated substrate for every block
   // (the issue flagged in the PR #51 review, comment 4380149320).
   const yHtml = ymap.get('html');
-  const isYXmlFragment = yHtml && typeof yHtml.toArray === 'function' && typeof yHtml.nodeName !== 'string';
-  const isYText = yHtml && typeof yHtml.toDelta === 'function';
-  if (!isYXmlFragment && !isYText) {
+  if (!isReadableSlot(yHtml)) {
     // Truly missing or malformed slot — defensive recovery. Use the v2
     // shape (Y.XmlFragment) so we don't drop the doc back to v1.
     //
