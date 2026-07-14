@@ -10,7 +10,23 @@ Vocabulary: architecture terms (*module, interface, depth, seam, leverage, local
 
 # Open backlog
 
-*Empty as of 2026-05-19.* The post-PM-migration backlog and the fresh post-#123 pass are both fully resolved (see Non-candidates and Landed log). Rerun `/improve-codebase-architecture` against the current tree to surface new candidates.
+## 2026-07-07 pass — App orchestrator decomposition (candidate #1)
+
+The 2026-07-07 review surfaced 6 candidates. Five are landed or in-flight (sibling status below); **candidate #1 is the one large open item** — tagged *largest and riskiest*, best attacked incrementally.
+
+**Friction.** `src/App.jsx` is a god-object: 3,418 LOC · 49 useState · 76 useCallback · 24 useEffect · 19 useRef. No action is testable without the whole closure.
+
+**Shallow seam.** Cohesive intents (file I/O, review-panel coordination, editor actions) live inline in one component scope and reach each other through state-mirror refs. Ref audit — corrects the review's headline "19 TDZ refs": **10** are state-mirrors (`blocksRef`, `sectionMetaRef`, `commentsStateRef`, `tcStateRef`, `lintingStateRef`, `focusedBlockIdRef`, `collabReadOnlyRef`, `inRoomRef`, `authHeadersRef`, `toastPushRef`), **8** genuine DOM/session/effect-memory, exactly **1** (`clearHistoryRef`) a literal forward-declaration bridge. The win is "a cluster's mirror refs follow their state into a hook," not "19 refs evaporate."
+
+**Direction.** Lift each intent behind its own hook (mirror `useCollabSession`); App keeps render + prop wiring. Candidates #5 (landed) and #2 (in-flight) were the first two slices. Remaining slices, cleanest-first:
+1. **`useFileSession`, output half** — the 7 save/export/download handlers (`App.jsx:545–800`) are pure readers of blocks/meta/comments/currentFile with zero write-back → mechanical ~250-LOC lift, disjoint from #2, parallelizable now.
+2. **`useFileSession`, input half** — import/drag-drop + `loadSECContent`/`applyLintSidecarPayload` write editor state (blocks/meta/comments/linting/history/substrate); higher coupling; dissolves the lone `clearHistoryRef` bridge.
+3. **`useReviewPanels`** — comments + compliance + lint glue (reducers already in `src/lib/`); absorbs `lastComplianceScrollRef` / `pendingLintSidecarRef` / `prevActiveViewRef`.
+4. **editor-actions** — deepest coupling; re-grill after #2 shrinks it (may not earn full extraction).
+
+Gate per slice: behavior-preserving; full unit + `editor.spec.js`/`collab.spec.js` under chromium (Rule #10); verify undo/effect-order against a **production build**, not E2E — StrictMode masks single-invoke bugs (Rule #12).
+
+**Sibling status (2026-07-07 pass):** #2 collapse block pass-throughs — in-flight (separate agent) · #3 one slot-shape discriminator — [PR #283](https://github.com/mttvnst-HA/secwriter/pull/283) · #4 room-deletion transaction seam — landed [#281](https://github.com/mttvnst-HA/secwriter/pull/281) · #5 shared substrate UndoManager factory — landed [#282](https://github.com/mttvnst-HA/secwriter/pull/282) · #6 concentrate revision resolution — speculative, grill the seam before extracting.
 
 ---
 
