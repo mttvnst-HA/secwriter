@@ -119,9 +119,9 @@ function TableBlock({ block, onUpdate, isFocused, onFocus, readOnly, commentsSta
 
   const cellStyle = {
     padding: "5px 10px",
-    border: "1px solid #cbd5e1",
+    border: "1px solid var(--sim-border, #cbd5e1)",
     verticalAlign: "top",
-    color: "#1e293b",
+    color: "var(--sim-text, #1e293b)",
     position: "relative",
     cursor: canEdit ? "pointer" : "default",
   };
@@ -129,9 +129,9 @@ function TableBlock({ block, onUpdate, isFocused, onFocus, readOnly, commentsSta
   const headerCellStyle = {
     ...cellStyle,
     padding: "6px 10px",
-    backgroundColor: "#f1f5f9",
+    backgroundColor: "var(--sim-hover, #f1f5f9)",
     fontWeight: 600,
-    color: "#334155",
+    color: "var(--sim-text, #334155)",
   };
 
   const [hoverCell, setHoverCell] = useState(null); // {row, col}
