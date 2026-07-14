@@ -148,6 +148,7 @@ See [ADR-0008](docs/adr/0008-blocks-reducer-architecture.md). Every `blocks` mut
 
 - **`blocksRef.current` is mutated synchronously** alongside `setBlocks` so sequential dispatches in the same event-loop tick (Replace All, Remove All Orphaned) see the latest state mid-loop.
 - **Substrate-write origin defaults to `'local-publish'`** (UndoManager-tracked). PM-click paths use `updateBlockHtmlPmSync` (setBlocks only — ySyncPlugin already wrote the substrate).
+- **`useBlockActions` is the App-side block-action surface** (`src/hooks/useBlockActions.js`). It absorbs every pure `dispatchBlocks(b => Blocks.verb(...))` wrapper into one memoized object of 22 named actions (`reorderSection`, `updateHtml`, `insertAfter`, `deleteBlock`, `acceptAllRevisions`, …). It reads `yStore` and undo-`framing` from refs (`activeYStoreRef`, `framingRef`) at action-call time, so a mid-session room/collab-mode swap can't strand a stale reference and App can declare it early without a TDZ on `framingForHandler`. The old `handleBlockUpdate` + `handleBlockUpdateWithSync` pair is merged into `updateHtml`. Cross-reducer handlers (`handleDelete`, `handleConvertBlock`, `handleConvertBlockType`, `handleAcceptAll`, `handleRejectAll`) stay in App and compose `blockActions.*` for the blocks piece plus their own linting/tc/comments setState. App no longer owns a `dispatchBlocks` closure. The wiring (correct verb + yStore + framing) is pinned by `src/hooks/__tests__/useBlockActions.test.jsx`.
 
 ## Slash Menu → Block Conversion
 
