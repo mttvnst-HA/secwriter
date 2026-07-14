@@ -250,9 +250,10 @@ export default function SpecEditor() {
   const [roomId] = useState(() => getRoomFromUrl());
   const inRoom = !!roomId;
   // Mirror inRoom into a ref so callbacks declared before `collab`
-  // (which is defined ~1300 lines below) can read the current value at
-  // invocation time. Including `inRoom` directly in those callbacks'
-  // deps arrays would trigger TDZ when `collab` is referenced.
+  // (search this file for `const collab =`, declared much further down)
+  // can read the current value at invocation time. Including `inRoom`
+  // directly in those callbacks' deps arrays would trigger TDZ when
+  // `collab` is referenced.
   // 1h Q36 Commit C — read by `framingForHandler()` (declared after
   // `const collab` below) to pick collab vs localUndo for forceFrame/
   // withUndoFrame at click-driven undo sites.
@@ -859,8 +860,8 @@ export default function SpecEditor() {
   // clearBlock is a no-op (the byBlock entry stays valid). Once the user
   // accepts the del-revision the block is removed for real and the orphan-
   // pruning effect (below the highlight effect) cleans up byBlock for it.
-  // clearBlock is idempotent (linting.js:166 returns the same state ref when
-  // the entry is absent), so dispatching it unconditionally is safe.
+  // clearBlock is idempotent (linting.clearBlock returns the same state ref
+  // when the entry is absent), so dispatching it unconditionally is safe.
   const handleDelete = useCallback((blockId) => {
     blockActions.deleteBlock(blockId);
     setLintingState(s => linting.clearBlock(s, blockId));

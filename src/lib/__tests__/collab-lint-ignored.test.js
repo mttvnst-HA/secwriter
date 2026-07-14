@@ -41,8 +41,9 @@ describe('readLintIgnored / publishLintIgnoredToDoc', () => {
   });
 
   it('write is NOT captured by an UndoManager tracking local-publish + ySyncPluginKey (spec §3.2)', () => {
-    // Mirrors collab.js:1040 — the in-room UndoManager's trackedOrigins.
-    // Ctrl+Z must NOT un-dismiss; ignored writes are not undoable.
+    // Mirrors substrate-protocol.js's TRACKED_ORIGINS (the shared factory both
+    // UndoManagers are built from). Ctrl+Z must NOT un-dismiss; ignored writes
+    // are not undoable.
     const { ydoc, yLintIgnored } = makeIgnoredDoc();
     const um = new Y.UndoManager(yLintIgnored, {
       trackedOrigins: new Set(['local-publish', ySyncPluginKey]),

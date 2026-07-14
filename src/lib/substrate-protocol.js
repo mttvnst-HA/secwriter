@@ -68,10 +68,13 @@ export const SUBSTRATE_CAPTURE_TIMEOUT = 500;
 /**
  * captureTransaction predicate: reject transactions whose `addToHistory` meta
  * is false. y-prosemirror's sync-plugin propagates the PM-side
- * `tr.setMeta('addToHistory', false)` to the resulting Yjs transaction meta
- * (sync-plugin.js:228), so a PM transaction can opt out of undo capture. The
- * comment-reconcile path uses this (see `pm-comments.js`). Mirrors
- * y-prosemirror's own UndoPlugin filter (undo-plugin.js:71).
+ * `tr.setMeta('addToHistory', false)` to the resulting Yjs transaction meta,
+ * so a PM transaction can opt out of undo capture. The comment-reconcile path
+ * uses this (see `pm-comments.js`). Mirrors y-prosemirror's own UndoPlugin
+ * filter. Verified against y-prosemirror@1.3.7 (caret-pinned in package.json)
+ * by reading `node_modules/y-prosemirror/src/{sync-plugin,undo-plugin}.js` —
+ * re-check that source on any y-prosemirror version bump before trusting this
+ * comment.
  * @param {Y.Transaction} tr
  * @returns {boolean}
  */

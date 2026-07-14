@@ -119,14 +119,18 @@ export const ENGINEERING_TERMS = [
   'prestressed', 'loadings', 'resubmittal', 'screwheads',
   'hydrological', 'hydrostatic', 'hydrostatically', 'centerlines',
   'locatable', 'bibbs',
-  // Additional FPs from clean corpus measurement (April 2026)
+  // Additional FPs surfaced by `npm run test:corpus -- --corpus clean` (added
+  // April 2026). Re-run that command after adding new dictionary entries to
+  // confirm they actually clear the FP, and periodically to catch new ones.
   'gph', 'gpd', 'mgd', 'cfh', 'mph', 'rpm', 'fps',
   'PTFE', 'CPVC', 'EPDM', 'HDPE', 'LLDPE', 'XLPE',
   'THWN', 'THHN', 'XHHW',
   'jobsite', 'jobsites', 'standoff', 'standoffs',
-  // Additional singular/plural variants surfaced by harper.js 2.0 (May 2026)
-  // — flagged under the new GRAMMAR-Typo lint_kind as "missing space between
-  // words". All are legitimate UFGS compound words.
+  // Additional singular/plural variants surfaced by harper.js 2.0 (added May
+  // 2026) — flagged under the GRAMMAR-Typo lint_kind as "missing space
+  // between words". All are legitimate UFGS compound words. If a future
+  // harper.js bump changes Typo detection, re-run the adversarial/clean
+  // corpora to check whether these are still needed or new ones appear.
   'waterstop', 'gages', 'broomed', 'precharged', 'prewired',
   'pretreat', 'hotstick', 'antislip', 'longsweep',
 ];
@@ -196,17 +200,21 @@ export async function addUserWord(word) {
 }
 
 // Harper rules to disable for construction specification text. Keys are
-// individual rule names from harper.js's lint config (709 entries in 2.0).
-// `Formatting` and `Readability` were 1.x rule names that were retired in
-// 2.0 (no longer present in getLintConfig()); category-level filtering for
-// 2.0 lint_kinds lives in DISABLED_LINT_KINDS below.
+// individual rule names from harper.js's lint config (harper.js is only
+// caret-pinned at ^2.4.0 — call `linter.getLintConfig()` to see the current
+// rule set rather than trusting a remembered count or name list here).
+// `Formatting` and `Readability` were 1.x rule names retired in 2.0;
+// category-level filtering for 2.0 lint_kinds lives in DISABLED_LINT_KINDS
+// below.
 export const DISABLED_RULES = {
   LongSentences: false,     // Specs routinely have 40+ word sentences
   Spaces: false,            // UFGS uses double spaces after periods
   SpelledNumbers: false,    // "24 inches", "600 mm" are standard
   BoringWords: false,       // "provide", "install" are correct spec verbs
   // NOTE: Repetition stays enabled — disabling it regressed GRAMMAR-Agreement
-  // recall from 56% → 38% on the dirty corpus.
+  // recall from 56% to 38% on the dirty corpus (measured via
+  // `npm run test:corpus -- --corpus dirty`). Re-run that command before
+  // changing this flag to confirm the regression still holds.
 };
 
 // Lint kinds (harper.js 2.0 categories — distinct from per-rule keys above)

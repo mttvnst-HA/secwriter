@@ -119,8 +119,8 @@ function serializeLintSidecar(yLint, yLintIgnored, yLintMutedNlp) {
       if (entry.kind === 'good') {
         goodParts.push(fingerprint);
       } else if (entry.kind === 'bad') {
-        // Project to { g, n, c } only — mirror src/lib/lint-sidecar.js encodeSidecar
-        // (line 175). The raw entry includes the internal `kind: 'bad'` discriminator
+        // Project to { g, n, c } only — mirror src/lib/lint-sidecar.js's
+        // encodeSidecar. The raw entry includes the internal `kind: 'bad'` discriminator
         // which leaks into the sidecar contract if passed through verbatim, and the
         // client decoder ignores it. Also strip any future per-entry metadata.
         bad[fingerprint] = {
