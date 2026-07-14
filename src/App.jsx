@@ -186,7 +186,6 @@ export default function SpecEditor() {
   const trackChanges = tc.isEnabled(tcState);
   const [selectedTreeId, setSelectedTreeId] = useState(null);
   const [focusedBlockId, setFocusedBlockId] = useState(null);
-  const [isDragOver, setIsDragOver] = useState(false);
   // Current-file record — bundles SEC handle/fallbackName + sidecar handle so
   // cross-file loads can swap the whole record atomically (see CONTEXT.md
   // "Local file"). `displayName` is derived via getDisplayName at use sites.
@@ -332,11 +331,8 @@ export default function SpecEditor() {
   const collabRef = useRef(null);
 
   const editorRef = useRef(null);
-  const fileInputRef = useRef(null);
-  // Lint sidecar payload (.lint.json text) staged for the next loadSECContent
-  // call — populated by the drag-drop handler when a companion file is part
-  // of the drop. Consumed (and cleared) by loadSECContent after parseSEC.
-  const pendingLintSidecarRef = useRef(null);
+  // fileInputRef, the drag-over state, and the lint-companion staging ref now
+  // live inside useFileSession's file-input I/O shell (candidate #1 slice 2).
   const blocksRef = useRef(blocks);
   blocksRef.current = blocks;
   const focusedBlockIdRef = useRef(focusedBlockId);
@@ -439,7 +435,7 @@ export default function SpecEditor() {
     return meta;
   }, []);
 
-  const loadSECContent = useCallback((content, name) => {
+  const loadSECContent = useCallback((content, name, pendingLint = null) => {
     try {
       const parsed = parseSEC(content);
       if (parsed.length === 0) {
@@ -474,11 +470,10 @@ export default function SpecEditor() {
       // mount-time restore cannot resurrect it over a freshly-loaded file.
       clearAutoSave();
       // Reset the in-memory lint cache for the new file. Then, if the
-      // drag-drop handler staged a `.lint.json` companion (#138), feed it
-      // into prefillFromSidecar against the freshly-parsed blocks.
+      // drag-drop handler staged a `.lint.json` companion (#138) — forwarded
+      // by useFileSession's import shell as the third arg — feed it into
+      // prefillFromSidecar against the freshly-parsed blocks.
       setLintingState(s => linting.clearAll(s));
-      const pendingLint = pendingLintSidecarRef.current;
-      pendingLintSidecarRef.current = null;
       if (pendingLint) {
         // Fire-and-forget — fingerprinting is async; the next render shows
         // findings as soon as projection resolves.
@@ -489,69 +484,30 @@ export default function SpecEditor() {
     }
   }, [extractMetadata, clearHistory, inRoom, localSubstrate, applyLintSidecarPayload]);
 
-  const handleFileImport = useCallback((file) => {
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      // SEC files use windows-1252 encoding, not UTF-8
-      const decoder = new TextDecoder('windows-1252');
-      const text = decoder.decode(e.target.result);
-      loadSECContent(text, file.name);
-    };
-    reader.onerror = () => {
-      alert(`Failed to read file: ${file.name}`);
-    };
-    reader.readAsArrayBuffer(file);
-  }, [loadSECContent]);
+  // The file-INPUT I/O shell (drag-drop parsing, FileReaders, windows-1252
+  // decode, lint-companion staging) lives in useFileSession — candidate #1
+  // slice 2. It reads files and calls back into loadSECContent (wired as
+  // onFileLoaded below); loadSECContent stays here because it resets document
+  // state. See the useFileSession destructure below for the returned handlers.
 
-  const handleDragOver = useCallback((e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragOver(true);
-  }, []);
-
-  const handleDragLeave = useCallback((e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragOver(false);
-  }, []);
-
-  const handleDrop = useCallback((e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragOver(false);
-    // The user may drop just a .SEC, or .SEC + .lint.json companion (#138).
-    // Pick the .SEC for import; collect a sibling .lint.json (if any) and
-    // hand its text to applyLintSidecarPayload after the SEC parse settles.
-    const files = Array.from(e.dataTransfer.files || []);
-    const secFile = files.find(f => f && (f.name.toLowerCase().endsWith('.sec') || f.name.toLowerCase().endsWith('.xml')));
-    if (!secFile) return;
-    const lintFile = files.find(f => f && f.name.toLowerCase().endsWith('.lint.json'));
-    if (lintFile) {
-      // Read lint json in parallel; applied inside loadSECContent after the parse.
-      const lintReader = new FileReader();
-      lintReader.onload = (ev) => {
-        pendingLintSidecarRef.current = typeof ev.target.result === 'string' ? ev.target.result : null;
-      };
-      lintReader.onerror = () => { pendingLintSidecarRef.current = null; };
-      lintReader.readAsText(lintFile);
-    } else {
-      pendingLintSidecarRef.current = null;
-    }
-    handleFileImport(secFile);
-  }, [handleFileImport]);
-
-  const handleFileInputChange = useCallback((e) => {
-    handleFileImport(e.target.files[0]);
-    e.target.value = ''; // Reset so same file can be re-imported
-  }, [handleFileImport]);
-
-  // File-output actions (Save / Save As / server downloads) live in
-  // useFileSession — architecture-review candidate #1, slice 1. App still
-  // owns currentFile / saveStatus / isDirty; the hook consumes them + the
-  // setters it drives. handleExport / doFileSave / the sidecar savers are
-  // internal to the hook (handleExport is only the no-FSA download fallback).
-  const { handleSave, handleSaveAs, handleDownloadSec, handleDownloadComments } = useFileSession({
+  // File-session I/O lives in useFileSession — architecture-review candidate
+  // #1, slices 1 (output) + 2 (input shell). App still owns currentFile /
+  // saveStatus / isDirty and the document-reset loadSECContent (passed as
+  // onFileLoaded); the hook consumes them + the setters it drives. The output
+  // helpers (handleExport / doFileSave / sidecar savers) and the input helper
+  // (handleFileImport) are internal to the hook.
+  const {
+    handleSave,
+    handleSaveAs,
+    handleDownloadSec,
+    handleDownloadComments,
+    fileInputRef,
+    isDragOver,
+    handleDragOver,
+    handleDragLeave,
+    handleDrop,
+    handleFileInputChange,
+  } = useFileSession({
     blocks,
     blocksRef,
     sectionMeta,
@@ -564,6 +520,7 @@ export default function SpecEditor() {
     authHeaders,
     setSaveStatus,
     setIsDirty,
+    onFileLoaded: loadSECContent,
   });
 
   // Programmatic focus for EXISTING elements (arrow nav, tree select, delete-focus-prev).

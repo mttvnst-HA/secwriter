@@ -1,32 +1,44 @@
 /**
- * useFileSession — the file-output half of App's file-session intent
- * (architecture-review candidate #1, slice 1).
+ * useFileSession — App's file-session I/O intent (architecture-review
+ * candidate #1, slices 1 + 2). Symmetric file I/O: neither half owns document
+ * state.
  *
- * Owns the "write the document out" actions that App used to declare inline:
- * local Save / Save As (File System Access API handle → picker → download
- * fallback), the .SEC + comments + lint sidecars, and the in-room server
- * downloads. Every action here is a READER of editor state — it consumes
- * `blocks`/`sectionMeta`/`comments`/`lintingState`/`currentFile` and emits
- * files or file-handles; none of it writes back into the block/comment/lint
- * reducers. That one-directional coupling is what makes this a mechanical,
- * behavior-preserving lift (the file-INPUT half — import / drag-drop /
- * loadSECContent, which DOES write editor state — stays in App and folds in
- * as slice 2, at which point `currentFile` ownership migrates here).
+ * OUTPUT half (slice 1) — "write the document out": local Save / Save As
+ * (File System Access API handle → picker → download fallback), the .SEC +
+ * comments + lint sidecars, and the in-room server downloads. Every action is
+ * a READER of editor state — it consumes `blocks`/`sectionMeta`/`comments`/
+ * `lintingState`/`currentFile` and emits files or file-handles.
+ *
+ * INPUT half (slice 2) — the file-INPUT *I/O shell*: drag-over UI state,
+ * multi-file drag-drop parsing (.sec/.xml vs .lint.json companion), the two
+ * concurrent FileReaders, windows-1252 decode, and lint-companion staging.
+ * The shell hides ~55 LOC of DOM/FileReader mechanism behind a single
+ * `onFileLoaded(text, name, lintText)` callback. It deliberately does NOT
+ * absorb `loadSECContent` — that is a whole-document reset (7 App-state
+ * setters) whose home is document-state management, not file I/O; threading
+ * those setters through here would be a shallow relocation (the hook would own
+ * nothing). So App keeps `loadSECContent` / `extractMetadata` /
+ * `applyLintSidecarPayload` and passes `loadSECContent` as `onFileLoaded`.
+ * The lint companion text is passed as `onFileLoaded`'s third arg (read from
+ * the internal staging ref at the same instant `loadSECContent` used to read
+ * it) so the racy parallel-read timing is preserved — behavior-preserving.
  *
  * App still owns `currentFile`, `saveStatus`, and `isDirty` state (render +
- * the input half read them); this hook receives them plus the two setters it
+ * `loadSECContent` read them); this hook receives them plus the two setters it
  * drives (`setSaveStatus`, `setIsDirty`) and `setCurrentFile` (to record a
- * freshly-picked FSA handle). The four returned handlers preserve the exact
+ * freshly-picked FSA handle). The four output handlers preserve the exact
  * useCallback dependency chains they had in App so their identities churn
  * identically — the keyboard effect that depends on `handleSave` re-binds on
  * the same inputs as before.
  *
- * handleExport / doFileSave / saveCommentsSidecar / saveLintSidecar are
- * internal helpers (handleExport is only the no-FSA download fallback inside
- * doFileSave), so they are not returned.
+ * handleExport / doFileSave / saveCommentsSidecar / saveLintSidecar (output)
+ * and handleFileImport (input) are internal helpers, so they are not returned.
+ * The `clearHistoryRef` bridge stays in App: it is a declaration-order
+ * artifact of `loadSECContent` living before `useCollabSession`, orthogonal to
+ * file I/O.
  */
 
-import { useCallback } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import { serializeSEC } from '../lib/sec-serializer.js';
 import { encodeWindows1252 } from '../lib/encoding.js';
@@ -51,6 +63,7 @@ export function useFileSession({
   authHeaders,
   setSaveStatus,
   setIsDirty,
+  onFileLoaded,
 }) {
   // --- SEC File Export ---
   const handleExport = useCallback(() => {
@@ -309,5 +322,88 @@ export function useFileSession({
     }
   }, [roomId, sectionMeta.sectionNumber, authHeaders]);
 
-  return { handleSave, handleSaveAs, handleDownloadSec, handleDownloadComments };
+  // --- File input (I/O shell) ---
+  const fileInputRef = useRef(null);
+  const [isDragOver, setIsDragOver] = useState(false);
+  // Lint sidecar payload (.lint.json text) staged for the next import call —
+  // populated by the drag-drop handler when a companion file is part of the
+  // drop, consumed (and cleared) inside handleFileImport's SEC-reader onload
+  // and forwarded to onFileLoaded so `loadSECContent` reads it at the same
+  // instant it used to read this ref (preserves the racy parallel-read).
+  const pendingLintSidecarRef = useRef(null);
+
+  // --- SEC File Import ---
+  const handleFileImport = useCallback((file) => {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      // SEC files use windows-1252 encoding, not UTF-8
+      const decoder = new TextDecoder('windows-1252');
+      const text = decoder.decode(e.target.result);
+      // Consume the staged lint companion at the same point loadSECContent
+      // used to read pendingLintSidecarRef.current, then clear it.
+      const pendingLint = pendingLintSidecarRef.current;
+      pendingLintSidecarRef.current = null;
+      onFileLoaded?.(text, file.name, pendingLint);
+    };
+    reader.onerror = () => {
+      alert(`Failed to read file: ${file.name}`);
+    };
+    reader.readAsArrayBuffer(file);
+  }, [onFileLoaded]);
+
+  const handleDragOver = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(true);
+  }, []);
+
+  const handleDragLeave = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(false);
+  }, []);
+
+  const handleDrop = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(false);
+    // The user may drop just a .SEC, or .SEC + .lint.json companion (#138).
+    // Pick the .SEC for import; collect a sibling .lint.json (if any) and
+    // hand its text to applyLintSidecarPayload after the SEC parse settles.
+    const files = Array.from(e.dataTransfer.files || []);
+    const secFile = files.find(f => f && (f.name.toLowerCase().endsWith('.sec') || f.name.toLowerCase().endsWith('.xml')));
+    if (!secFile) return;
+    const lintFile = files.find(f => f && f.name.toLowerCase().endsWith('.lint.json'));
+    if (lintFile) {
+      // Read lint json in parallel; applied inside loadSECContent after the parse.
+      const lintReader = new FileReader();
+      lintReader.onload = (ev) => {
+        pendingLintSidecarRef.current = typeof ev.target.result === 'string' ? ev.target.result : null;
+      };
+      lintReader.onerror = () => { pendingLintSidecarRef.current = null; };
+      lintReader.readAsText(lintFile);
+    } else {
+      pendingLintSidecarRef.current = null;
+    }
+    handleFileImport(secFile);
+  }, [handleFileImport]);
+
+  const handleFileInputChange = useCallback((e) => {
+    handleFileImport(e.target.files[0]);
+    e.target.value = ''; // Reset so same file can be re-imported
+  }, [handleFileImport]);
+
+  return {
+    handleSave,
+    handleSaveAs,
+    handleDownloadSec,
+    handleDownloadComments,
+    fileInputRef,
+    isDragOver,
+    handleDragOver,
+    handleDragLeave,
+    handleDrop,
+    handleFileInputChange,
+  };
 }
