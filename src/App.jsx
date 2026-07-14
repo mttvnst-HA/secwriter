@@ -2014,14 +2014,14 @@ export default function SpecEditor() {
         if (!id.startsWith('table-')) break;
         const { row, col, vcol, span = 1 } = menu.ctx;
         // Persist through the SAME path TableBlock's inline editor uses:
-        // onUpdate(id, { table }) → dispatchBlocks(mergeBlockData). The
+        // onUpdate(id, { table }) → blockActions.mergeBlockData. The
         // table-ops helpers are pure and return null when the op is impossible.
         const apply = (fn) => {
           const current = blocksRef.current.find((b) => b.id === blockId)?.table;
           if (!current) return;
           const nt = fn(current);
           if (!nt) return;
-          dispatchBlocks((b) => Blocks.mergeBlockData(b, blockId, { table: nt }));
+          blockActions.mergeBlockData(blockId, { table: nt });
         };
         if (id === 'table-insert-row-above') apply((t) => insertRowAt(t, row));
         else if (id === 'table-insert-row-below') apply((t) => insertRowAt(t, row + 1));
@@ -2034,7 +2034,7 @@ export default function SpecEditor() {
         break;
       }
     }
-  }, [inRoom, collab, localUndo, dispatchBlocks, blockActions, handleCommentCreate, handleCommentResolve]);
+  }, [inRoom, collab, localUndo, blockActions, handleCommentCreate, handleCommentResolve]);
 
   // Singleton contextmenu listener on the editor scroll container. Suppresses
   // the native menu only when at least one non-divider item is buildable.
@@ -3011,7 +3011,7 @@ export default function SpecEditor() {
                   block={block}
                   isFocused={focusedBlockId === block.id}
                   onFocus={handleClickFocus}
-                  onUpdate={(id, data) => dispatchBlocks((b) => Blocks.mergeBlockData(b, id, data))}
+                  onUpdate={blockActions.mergeBlockData}
                 />
               );
             }
@@ -3022,7 +3022,7 @@ export default function SpecEditor() {
                   block={block}
                   isFocused={focusedBlockId === block.id}
                   onFocus={handleClickFocus}
-                  onUpdate={(id, data) => dispatchBlocks((b) => Blocks.mergeBlockData(b, id, data))}
+                  onUpdate={blockActions.mergeBlockData}
                   readOnly={collabReadOnly}
                   commentsState={commentsState}
                   activeCommentId={openCommentId}
@@ -3035,12 +3035,12 @@ export default function SpecEditor() {
                 <RefBlock
                   key={block.id}
                   block={block}
-                  onUpdate={(id, data) => dispatchBlocks((b) => Blocks.updateRefScalar(b, id, data))}
+                  onUpdate={blockActions.updateRefScalar}
                   isFocused={focusedBlockId === block.id}
                   onFocus={handleClickFocus}
                   readOnly={collabReadOnly}
-                  onAcceptRevision={(id) => dispatchBlocks((b) => Blocks.acceptBlockRevision(b, id))}
-                  onRejectRevision={(id) => dispatchBlocks((b) => Blocks.rejectBlockRevision(b, id))}
+                  onAcceptRevision={blockActions.acceptRevision}
+                  onRejectRevision={blockActions.rejectRevision}
                   onCommentClick={handleCommentClick}
                   commentsState={commentsState}
                   activeCommentId={openCommentId}
@@ -3069,8 +3069,8 @@ export default function SpecEditor() {
                   identity={identity}
                   readOnly={collabReadOnly}
                   forceVisible={revealedNoteIds.has(block.id)}
-                  onAcceptRevision={(id) => dispatchBlocks((b) => Blocks.acceptBlockRevision(b, id))}
-                  onRejectRevision={(id) => dispatchBlocks((b) => Blocks.rejectBlockRevision(b, id))}
+                  onAcceptRevision={blockActions.acceptRevision}
+                  onRejectRevision={blockActions.rejectRevision}
                   onRefreshTcSnapshot={blockActions.updateHtmlPmSync}
                   commentsState={commentsState}
                   onCommentClick={handleCommentClick}
