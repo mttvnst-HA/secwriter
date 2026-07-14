@@ -251,6 +251,30 @@ function createCollabServer(config) {
     }
   }
 
+  // Architecture-review candidate #4 — one owning seam for the room-deletion
+  // transaction. The begin -> deleteRoom -> (rollback | finish) ordering is a
+  // correctness invariant (a store racing deleteRoom must not RESURRECT the
+  // room; a FAILED deleteRoom must not DESTROY the still-live doc + its
+  // unflushed edits). Previously the DELETE route re-assembled that order by
+  // hand at two call sites, glued only by prose — deleting any step still
+  // compiled and returned 200 while silently dropping the protection. Folding
+  // it here means a caller (existing or future) invokes ONE method and cannot
+  // get the sequence wrong. Steps are documented on beginRoomDeletion /
+  // finishRoomDeletion / cancelRoomDeletion above. Rethrows a deleteRoom
+  // failure AFTER rolling the tombstone back so the route still surfaces 500
+  // and the room stays fully live.
+  async function deleteRoomTransactionally(tenant, roomId) {
+    const docName = buildCompositeDocName(tenant, roomId);
+    await beginRoomDeletion(docName);
+    try {
+      await storage.deleteRoom(tenant, roomId);
+    } catch (err) {
+      cancelRoomDeletion(docName);
+      throw err;
+    }
+    await finishRoomDeletion(docName);
+  }
+
   // ── HTTP + WebSocket on a single port ────────────────────────────────────
   // When deployed to Render (or any platform that exposes one port), WS and
   // HTTP must share a single listener.
@@ -259,9 +283,7 @@ function createCollabServer(config) {
       storage,
       boundDocs: boundDocsView,
       flushRoom,
-      beginRoomDeletion,
-      finishRoomDeletion,
-      cancelRoomDeletion,
+      deleteRoomTransactionally,
       revokeLiveSessions,
       maxDocBytes: MAX_DOC_BYTES,
       authProvider,
@@ -470,9 +492,7 @@ function createCollabServer(config) {
     database: hocuspocusDatabase,
     roomHealth,
     flushRoom,
-    beginRoomDeletion,
-    finishRoomDeletion,
-    cancelRoomDeletion,
+    deleteRoomTransactionally,
     revokeLiveSessions,
     getActiveUsers,
     cleanup,
