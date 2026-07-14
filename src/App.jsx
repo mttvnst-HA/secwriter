@@ -31,13 +31,13 @@ import { parseSEC } from "./lib/sec-parser.js";
 import * as Y from "yjs";
 import { seedBlockArray, resetBlockArray, setBlockHtmlSilent, getBlockHtml } from "./lib/block-html-store.js";
 import { focusBlockById, getBlockEditable, getBlockDom, getBlockView, listBlocksInDocumentOrder, getContextAtCoordsById, cancelPendingUpdateById, flushPendingUpdateById, flushAllPendingUpdates } from "./lib/block-registry.js";
+import { setActiveComment } from "./lib/pm-plugins/active-comment.js";
 import ContextMenu from "./components/ContextMenu.jsx";
 import { buildContextMenuItems, tableCellCoordsFromTd } from "./lib/context-menu-items.js";
 import { applyInlineRevisionResolveTr, dispatchToolbarVerb, extractHtml, extractRangeText } from "./lib/pm-toolbar.js";
 import { sanitizePasteText } from "./lib/paste-sanitize.js";
 import { pmFragmentToHtml } from "./lib/pmdoc-html.js";
 import { insertRowAt, insertColumnAt, deleteRow, deleteColumn, mergeCellRight, splitCell } from "./lib/table-ops.js";
-import { setActiveComment } from "./lib/pm-plugins/active-comment.js";
 import { Selection, TextSelection } from "prosemirror-state";
 import * as tc from "./lib/track-changes.js";
 import * as Blocks from "./lib/blocks.js";
@@ -50,6 +50,7 @@ import { getRoomFromUrl, buildRoomUrl, stripRoomFromUrl, generateRoomId, DEFAULT
 import { useCollabSession } from "./hooks/useCollabSession.js";
 import { useBlockActions } from "./hooks/useBlockActions.js";
 import { useFileSession } from "./hooks/useFileSession.js";
+import { useComments } from "./hooks/useComments.js";
 import { useLocalSubstrateUndoManager } from "./hooks/useLocalSubstrateUndoManager.js";
 import * as cm from "./lib/comments.js";
 import { loadIdentity } from "./lib/identity.js";
@@ -213,23 +214,14 @@ export default function SpecEditor() {
   const [bracketOpen, setBracketOpen] = useState(false);
   const [validationOpen, setValidationOpen] = useState(false);
   const [refWizardOpen, setRefWizardOpen] = useState(false);
-  const [commentsState, setCommentsState] = useState(cm.createInitial());
-  // `commentsState.byId` is a Map<commentId, Comment> — alias kept for the
-  // many UI consumers that expect the old `comments` Map shape.
-  const comments = commentsState.byId;
-  const [openCommentId, setOpenCommentId] = useState(null);
-  const [commentRect, setCommentRect] = useState(null);
-  // Initial id→rect map for the all-popups layer (#195 follow-up). When the
-  // comment-highlight layer is ON, every comment shows its popup and they
-  // persist until the layer is toggled OFF. Each popup self-tracks its span on
-  // scroll/resize after mount; this map only seeds the open-time position.
-  const [commentRects, setCommentRects] = useState(() => new Map());
+  // Comment interaction state + handlers + effects live in useComments
+  // (architecture-review candidate #1, "review surfaces" slice). The hook owns
+  // commentsState / openCommentId / commentRect / commentRects /
+  // showCommentSpans; the call site is below (after dispatchComment +
+  // effectiveIdentity, which it consumes). The comments PANEL toggle
+  // `showComments` is a right-rail layout concern (mutually exclusive with the
+  // compliance panel) and stays here.
   const [showComments, setShowComments] = useState(false);
-  // Comment-span visibility layer — separate from the comments PANEL
-  // (`showComments`). Persisted, default ON. Mirrors the inline-linting toggle.
-  const [showCommentSpans, setShowCommentSpans] = useState(() => {
-    try { return localStorage.getItem('sim-comment-spans') !== 'false'; } catch { return true; }
-  });
   const [complianceOpen, setComplianceOpen] = useState(false);
   const [complianceState, setComplianceState] = useState(() => comp.createInitial());
   const [collabReachable, setCollabReachable] = useState(false);
@@ -341,8 +333,6 @@ export default function SpecEditor() {
   collabReadOnlyRef.current = collabReadOnly;
   const sectionMetaRef = useRef(sectionMeta);
   sectionMetaRef.current = sectionMeta;
-  const commentsStateRef = useRef(commentsState);
-  commentsStateRef.current = commentsState;
   const tcStateRef = useRef(tcState);
   tcStateRef.current = tcState;
   const lintingStateRef = useRef(lintingState);
@@ -419,6 +409,37 @@ export default function SpecEditor() {
       }
     }
   }, []);
+
+  // Comment dispatcher — thin wrapper that routes a PublishEnvelope to the
+  // collab session via the useCollabSession hook (set up further below).
+  // collabRef defers the call so this useCallback can be defined before the
+  // hook returns; collab.dispatchComment is itself idempotent when not in a room.
+  const dispatchComment = useCallback((envelope) => {
+    collabRef.current?.dispatchComment(envelope);
+  }, []);
+
+  const effectiveIdentity = useCallback(() => (
+    identity || { id: 'local', name: getAuthorName() || 'User', color: '#888' }
+  ), [identity]);
+
+  // Comment interaction — state + handlers + effects (active-highlight,
+  // reconcile, span-persist, rect-capture) — live in useComments
+  // (architecture-review candidate #1, "review surfaces" slice). Owns
+  // commentsState / openCommentId / commentRect / commentRects / showCommentSpans;
+  // consumes the App-owned dispatchComment + effectiveIdentity seams and the
+  // blocks setter. Declared here (before the SEC-import + useFileSession calls)
+  // because loadSECContent drives setCommentsState and useFileSession reads
+  // `comments`. setCommentsState / setOpenCommentId are also driven by a few
+  // non-comment sites (collab inbound, file load, block-type flip).
+  const {
+    commentsState, setCommentsState, commentsStateRef, comments,
+    openCommentId, setOpenCommentId, commentRect, setCommentRect,
+    commentRects, setCommentRects,
+    showCommentSpans, setShowCommentSpans,
+    handleCommentCreate, handleCommentUpdateCreate, handleCommentReply,
+    handleCommentResolve, handleCommentReopen, handleCommentDelete,
+    handleCommentClick,
+  } = useComments({ setBlocks, dispatchComment, effectiveIdentity });
 
   // --- SEC File Import ---
   const extractMetadata = useCallback((xmlString) => {
@@ -602,19 +623,6 @@ export default function SpecEditor() {
     tcStateRef,
   });
 
-  // Comment dispatcher — thin wrapper that routes a PublishEnvelope to the
-  // collab session via the useCollabSession hook (set up further below).
-  // collabRef defers the call so this useCallback can be defined before the
-  // hook returns; collab.dispatchComment is itself idempotent when not in
-  // a room.
-  const dispatchComment = useCallback((envelope) => {
-    collabRef.current?.dispatchComment(envelope);
-  }, []);
-
-  const effectiveIdentity = useCallback(() => (
-    identity || { id: 'local', name: getAuthorName() || 'User', color: '#888' }
-  ), [identity]);
-
   // Resolve a blockHash for dismiss-from-Compliance gestures. Prefers the
   // cache in `lintingState.byBlock` (populated by useBlockLinting on focus)
   // but falls back to computing it from the block's html. Used by
@@ -633,78 +641,12 @@ export default function SpecEditor() {
     }
   }, [lintingState]);
 
-  const handleCommentCreate = useCallback((blockId, html, commentId, highlightText) => {
-    // Creating a comment auto-reveals the comment-span layer if it was hidden —
-    // creation is never blocked (issue #195).
-    setShowCommentSpans(true);
-    // html is null for ref blocks (their data is in block.ref, not block.html)
-    if (html !== null) {
-      setBlocks(prev => prev.map(b => b.id === blockId ? { ...b, html } : b));
-    }
-    const ts = Date.now();
-    const { state } = cm.createDraft(commentsStateRef.current, {
-      commentId, blockId, highlightText: highlightText || '', identity: effectiveIdentity(), ts,
-    });
-    setCommentsState(state);
-    // Publish is deferred to handleCommentUpdateCreate so the Y.Doc never
-    // holds a pending empty-text comment entry.
-    setOpenCommentId(commentId);
-    setTimeout(() => {
-      const el = document.querySelector(`[data-comment-id="${commentId}"]`);
-      if (el) setCommentRect(el.getBoundingClientRect());
-    }, 50);
-  }, [effectiveIdentity]);
-
-  const handleCommentUpdateCreate = useCallback((commentId, text) => {
-    const ts = Date.now();
-    const { state, publish } = cm.updateCreate(commentsStateRef.current, {
-      commentId, text, identity: effectiveIdentity(), ts,
-    });
-    setCommentsState(state);
-    dispatchComment(publish);
-  }, [effectiveIdentity, dispatchComment]);
-
-  const handleCommentReply = useCallback((commentId, text) => {
-    const ts = Date.now();
-    const { state, publish } = cm.reply(commentsStateRef.current, {
-      commentId, text, identity: effectiveIdentity(), ts,
-    });
-    setCommentsState(state);
-    dispatchComment(publish);
-  }, [effectiveIdentity, dispatchComment]);
-
-  const handleCommentResolve = useCallback((commentId) => {
-    const ts = Date.now();
-    const { state, publish } = cm.resolve(commentsStateRef.current, {
-      commentId, identity: effectiveIdentity(), ts,
-    });
-    setCommentsState(state);
-    dispatchComment(publish);
-    // Collapse the just-resolved comment's popup (it stays collapsed unless
-    // its span is clicked again to reopen it).
-    setOpenCommentId((id) => (id === commentId ? null : id));
-  }, [effectiveIdentity, dispatchComment]);
-
-  const handleCommentReopen = useCallback((commentId) => {
-    const ts = Date.now();
-    const { state, publish } = cm.reopen(commentsStateRef.current, {
-      commentId, identity: effectiveIdentity(), ts,
-    });
-    setCommentsState(state);
-    dispatchComment(publish);
-  }, [effectiveIdentity, dispatchComment]);
-
-  const handleCommentDelete = useCallback((commentId) => {
-    const { state, publish } = cm.remove(commentsStateRef.current, { commentId });
-    setCommentsState(state);
-    dispatchComment(publish);
-    setOpenCommentId(null);
-  }, [dispatchComment]);
-
-  const handleCommentClick = useCallback((commentId, rect) => {
-    setOpenCommentId(commentId);
-    setCommentRect(rect);
-  }, []);
+  // Comment effects (candidate #1 "review surfaces" slice) — these stay in App
+  // at their ORIGINAL declaration positions, reading state from useComments.
+  // They are effect-order-sensitive (CLAUDE.md Rule #12): moving them into the
+  // hook, which is called early (before useFileSession), reordered them ahead of
+  // App's other effects and raced the #195 all-popups rect capture. See
+  // useComments' header for the full rationale.
 
   // 1g — wire setActiveComment against the right PM view via block-registry.
   // Tracks the previously-highlighted view in `prevActiveViewRef` so a comment
@@ -1023,7 +965,9 @@ export default function SpecEditor() {
   }, [inlineLintingEnabled]);
 
   // Persist comment-span visibility preference; closing the layer also closes
-  // any open comment popup so it can't float over hidden spans.
+  // any open comment popup so it can't float over hidden spans. (State lives in
+  // useComments; this effect stays here to preserve effect-declaration order —
+  // see the comment-effects note above.)
   useEffect(() => {
     try { localStorage.setItem('sim-comment-spans', String(showCommentSpans)); } catch {}
     if (!showCommentSpans) setOpenCommentId(null);
