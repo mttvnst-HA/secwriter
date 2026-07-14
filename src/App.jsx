@@ -870,22 +870,6 @@ export default function SpecEditor() {
     }
   }, [focusBlock]);
 
-  // 2026-05-19 — single dispatcher for every blocks mutation. Reads `yStore`
-  // and `framing` at call time (not closure-capture time) so a mid-session
-  // room transition / collab swap doesn't strand a stale reference. See
-  // src/lib/blocks.js for the verb + effects shape. Declared up here so
-  // every handler below can put it in its useCallback deps without a TDZ.
-  const dispatchBlocks = useCallback((compute, opts) => {
-    return Blocks.dispatchBlocksVerb({
-      blocksRef,
-      setBlocks,
-      yStore: activeYStoreRef.current,
-      framing: framingForHandler(),
-      setFocusedBlockId,
-      focusBlock,
-    }, compute, opts);
-  }, [focusBlock]);
-
   // The block-action surface (src/hooks/useBlockActions.js). Reads yStore +
   // framing from refs at call time, so it can be declared here — before every
   // handler / JSX callsite that references `blockActions` — without a TDZ on
@@ -1218,9 +1202,9 @@ export default function SpecEditor() {
   // clearBlock is idempotent (linting.js:166 returns the same state ref when
   // the entry is absent), so dispatching it unconditionally is safe.
   const handleDelete = useCallback((blockId) => {
-    dispatchBlocks((b) => Blocks.deleteBlock(b, blockId, tcState));
+    blockActions.deleteBlock(blockId);
     setLintingState(s => linting.clearBlock(s, blockId));
-  }, [dispatchBlocks, tcState]);
+  }, [blockActions]);
 
   // A block is focusable if it's a title or an editable text block
   const isFocusable = useCallback((block) => {
@@ -1272,21 +1256,21 @@ export default function SpecEditor() {
   const handleConvertBlock = useCallback((blockId, newType) => {
     const newId = `new-${Date.now()}`;
     revealConvertedNote(newId, newType);
-    dispatchBlocks((b) => Blocks.convertBlock(b, blockId, newType, { newId }));
-  }, [dispatchBlocks, revealConvertedNote]);
+    blockActions.convertBlock(blockId, newType, newId);
+  }, [blockActions, revealConvertedNote]);
 
   // Read tcState via ref to avoid recreating the handler on every TC toggle —
   // this prop is passed to every PmEditableBlock instance.
   const handleConvertBlockType = useCallback((blockId, newType) => {
     revealConvertedNote(blockId, newType);
-    dispatchBlocks((b) => Blocks.convertBlockType(b, blockId, newType, { tcState: tcStateRef.current }));
+    blockActions.convertBlockType(blockId, newType);
     setLintingState((s) => linting.clearBlock(s, blockId));
     setOpenCommentId((id) => {
       if (!id) return id;
       const c = commentsStateRef.current?.byId.get(id);
       return c?.blockId === blockId ? null : id;
     });
-  }, [dispatchBlocks, revealConvertedNote]);
+  }, [blockActions, revealConvertedNote]);
 
   // #109 M4 — preFlush='all' drains every PM block's pending 400ms onUpdate
   // debounce so the verb's compute reads post-debounce html (including any
@@ -1295,14 +1279,14 @@ export default function SpecEditor() {
   // frame regardless of captureTimeout. The tcState transition stays here
   // because it's a separate reducer (`tc.acceptAll` / `tc.rejectAll`).
   const handleAcceptAll = useCallback(() => {
-    dispatchBlocks(Blocks.acceptAllRevisionsVerb, { preFlush: 'all' });
+    blockActions.acceptAllRevisions();
     setTcState(s => tc.acceptAll(s));
-  }, [dispatchBlocks]);
+  }, [blockActions]);
 
   const handleRejectAll = useCallback(() => {
-    dispatchBlocks(Blocks.rejectAllRevisionsVerb, { preFlush: 'all' });
+    blockActions.rejectAllRevisions();
     setTcState(s => tc.rejectAll(s));
-  }, [dispatchBlocks]);
+  }, [blockActions]);
 
   // Persist dark mode
   useEffect(() => {
