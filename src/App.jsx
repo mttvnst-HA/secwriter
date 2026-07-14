@@ -50,6 +50,7 @@ import { findHighlightTargetsInBlock } from "./lib/compliance-ranges.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
 import { getRoomFromUrl, buildRoomUrl, stripRoomFromUrl, generateRoomId, DEFAULT_HTTP_URL, applyBlocksToYDoc, yBlocksToArray } from "./lib/collab.js";
 import { useCollabSession } from "./hooks/useCollabSession.js";
+import { useBlockActions } from "./hooks/useBlockActions.js";
 import { useLocalSubstrateUndoManager } from "./hooks/useLocalSubstrateUndoManager.js";
 import * as cm from "./lib/comments.js";
 import { loadIdentity } from "./lib/identity.js";
@@ -178,6 +179,11 @@ export default function SpecEditor() {
   // can still reach it without a temporal-dead-zone reference. Updated
   // below after `activeYStore` is computed.
   const activeYStoreRef = useRef(localSubstrate.yStore);
+  // Mirror of the active undo-framing target (in-room collab vs out-of-room
+  // localUndo), assigned each render at the same site as activeYStoreRef.current
+  // (below). useBlockActions reads framingRef.current at action-call time —
+  // same call-time discipline as activeYStoreRef.
+  const framingRef = useRef(null);
   const trackChanges = tc.isEnabled(tcState);
   const [selectedTreeId, setSelectedTreeId] = useState(null);
   const [focusedBlockId, setFocusedBlockId] = useState(null);
@@ -864,26 +870,19 @@ export default function SpecEditor() {
     }
   }, [focusBlock]);
 
-  // 2026-05-19 — single dispatcher for every blocks mutation. Reads `yStore`
-  // and `framing` at call time (not closure-capture time) so a mid-session
-  // room transition / collab swap doesn't strand a stale reference. See
-  // src/lib/blocks.js for the verb + effects shape. Declared up here so
-  // every handler below (starting with handleReorderSection) can put it
-  // in its useCallback deps without a TDZ.
-  const dispatchBlocks = useCallback((compute, opts) => {
-    return Blocks.dispatchBlocksVerb({
-      blocksRef,
-      setBlocks,
-      yStore: activeYStoreRef.current,
-      framing: framingForHandler(),
-      setFocusedBlockId,
-      focusBlock,
-    }, compute, opts);
-  }, [focusBlock]);
-
-  const handleReorderSection = useCallback((dragId, dropId, position) => {
-    dispatchBlocks((b) => Blocks.reorderSectionVerb(b, dragId, dropId, position));
-  }, [dispatchBlocks]);
+  // The block-action surface (src/hooks/useBlockActions.js). Reads yStore +
+  // framing from refs at call time, so it can be declared here — before every
+  // handler / JSX callsite that references `blockActions` — without a TDZ on
+  // framingForHandler (defined further below).
+  const blockActions = useBlockActions({
+    blocksRef,
+    setBlocks,
+    yStoreRef: activeYStoreRef,
+    framingRef,
+    setFocusedBlockId,
+    focusBlock,
+    tcStateRef,
+  });
 
   // Comment dispatcher — thin wrapper that routes a PublishEnvelope to the
   // collab session via the useCollabSession hook (set up further below).
@@ -1055,30 +1054,6 @@ export default function SpecEditor() {
     });
   }, [blocks, commentsState, setBlocksDirect]);
 
-  // Typing-debounce path. PM ySyncPlugin already wrote the substrate; the
-  // verb's substrateWrite is a byte-stable echo op that the UndoManager
-  // merges into the same captureTimeout frame.
-  const handleBlockUpdate = useCallback((id, html) => {
-    dispatchBlocks((b) => Blocks.updateBlockHtml(b, id, html));
-  }, [dispatchBlocks]);
-
-  // 1h Q35 — PM click path (FloatingToolbar inline-revision-resolve,
-  // PmEditableBlock del-popup). PM dispatch already wrote the substrate,
-  // so the verb emits NO substrateWrite. framing.forceFrame closes the
-  // active capture window so the next typing burst opens a fresh frame.
-  const handleBlockUpdatePmSync = useCallback((id, html) => {
-    dispatchBlocks((b) => Blocks.updateBlockHtmlPmSync(b, id, html));
-  }, [dispatchBlocks]);
-
-  // MarkSuggestions accept-suggestion path. PM-mounted; substrate write is
-  // the source of truth (EditorView re-renders via ySyncPlugin observe).
-  // The pre-1i-b.2 `getBlockHandle(id).setHtml(html)` mirror is dropped —
-  // PmEditableBlock's setHtml handle is a documented no-op, and TitleBlock
-  // never registered a handle.
-  const handleBlockUpdateWithSync = useCallback((id, html) => {
-    dispatchBlocks((b) => Blocks.updateBlockHtml(b, id, html));
-  }, [dispatchBlocks]);
-
   // 1f.7 (#47) — DEV-only Playwright test utilities. The legacy contentEditable
   // path let tests do `el.innerHTML = '...'; el.dispatchEvent('input')` because
   // the DOM was the source of truth. The PM path's source of truth is the Y
@@ -1087,7 +1062,6 @@ export default function SpecEditor() {
   // `<p>text</p>` instead of `text`). These helpers route through App's normal
   // block update path so E2E tests work identically in both modes. Tests use
   // them via `tests/e2e/pm-helpers.js`. Never exposed in production builds.
-  // Must come AFTER handleBlockUpdateWithSync so the dep array doesn't TDZ.
   useEffect(() => {
     if (!import.meta.env.DEV) return;
     if (typeof window === 'undefined') return;
@@ -1096,12 +1070,12 @@ export default function SpecEditor() {
         const b = blocksRef.current.find((x) => x.id === id);
         return b ? b.html : null;
       },
-      // Route through handleBlockUpdateWithSync (also called by
+      // Route through blockActions.updateHtml (also called by
       // MarkSuggestions). Writes substrate via setBlockHtml + setBlocks,
       // and ySyncPlugin observes the substrate write and re-renders the
       // PM view — so the test sees its html land on the EditorView,
       // not just in React state.
-      setBlockHtml: (id, html) => { handleBlockUpdateWithSync(id, html); },
+      setBlockHtml: (id, html) => { blockActions.updateHtml(id, html); },
       // 1f.9 — read PM selection range for E3 (selection-persistence test).
       getPmSelection: (id) => {
         const view = getBlockView(id);
@@ -1215,29 +1189,7 @@ export default function SpecEditor() {
       },
     };
     return () => { delete window.__simEditorTestUtils; };
-  }, [handleBlockUpdateWithSync]);
-
-  const handleSearchReplace = useCallback((blockId, offset, length, replacement) => {
-    dispatchBlocks((b) => Blocks.searchReplaceAt(b, blockId, offset, length, replacement));
-  }, [dispatchBlocks]);
-
-  const handleRemoveOrphaned = useCallback((blockId, rid) => {
-    dispatchBlocks((b) => Blocks.removeOrphanedRid(b, blockId, rid));
-  }, [dispatchBlocks]);
-
-  const handleAddReference = useCallback(({ org, rid, rtl }) => {
-    dispatchBlocks((b) => Blocks.addReference(b, { org, rid, rtl, newId: `ref-${Date.now()}` }));
-  }, [dispatchBlocks]);
-
-  const handleEnterKey = useCallback((afterId) => {
-    const newId = `new-${Date.now()}`;
-    dispatchBlocks((b) => Blocks.createBlockAfter(b, afterId, { newId, tcState }));
-  }, [dispatchBlocks, tcState]);
-
-  // Tab/Shift+Tab on an OLI item: demote/promote list level (1..4, UFS Figure A-1).
-  const handleChangeOliLevel = useCallback((blockId, delta) => {
-    dispatchBlocks((b) => Blocks.changeOliLevel(b, blockId, delta));
-  }, [dispatchBlocks]);
+  }, [blockActions]);
 
   // Delete a block and focus the previous one. The verb's focus effect
   // handles the setTimeout-queued focusBlock; nothing imperative here.
@@ -1250,9 +1202,9 @@ export default function SpecEditor() {
   // clearBlock is idempotent (linting.js:166 returns the same state ref when
   // the entry is absent), so dispatching it unconditionally is safe.
   const handleDelete = useCallback((blockId) => {
-    dispatchBlocks((b) => Blocks.deleteBlock(b, blockId, tcState));
+    blockActions.deleteBlock(blockId);
     setLintingState(s => linting.clearBlock(s, blockId));
-  }, [dispatchBlocks, tcState]);
+  }, [blockActions]);
 
   // A block is focusable if it's a title or an editable text block
   const isFocusable = useCallback((block) => {
@@ -1289,10 +1241,6 @@ export default function SpecEditor() {
     }
   }, [focusBlock, isFocusable]);
 
-  const handleConvertToTitle = useCallback((blockId) => {
-    dispatchBlocks((b) => Blocks.convertToTitle(b, blockId));
-  }, [dispatchBlocks]);
-
   // If a block is converted to a Designer Note while notes are hidden, it
   // would render under `.notes-hidden .block-type-note { display: none }`
   // and look deleted. Rather than force-showing EVERY hidden note
@@ -1308,29 +1256,21 @@ export default function SpecEditor() {
   const handleConvertBlock = useCallback((blockId, newType) => {
     const newId = `new-${Date.now()}`;
     revealConvertedNote(newId, newType);
-    dispatchBlocks((b) => Blocks.convertBlock(b, blockId, newType, { newId }));
-  }, [dispatchBlocks, revealConvertedNote]);
+    blockActions.convertBlock(blockId, newType, newId);
+  }, [blockActions, revealConvertedNote]);
 
   // Read tcState via ref to avoid recreating the handler on every TC toggle —
   // this prop is passed to every PmEditableBlock instance.
   const handleConvertBlockType = useCallback((blockId, newType) => {
     revealConvertedNote(blockId, newType);
-    dispatchBlocks((b) => Blocks.convertBlockType(b, blockId, newType, { tcState: tcStateRef.current }));
+    blockActions.convertBlockType(blockId, newType);
     setLintingState((s) => linting.clearBlock(s, blockId));
     setOpenCommentId((id) => {
       if (!id) return id;
       const c = commentsStateRef.current?.byId.get(id);
       return c?.blockId === blockId ? null : id;
     });
-  }, [dispatchBlocks, revealConvertedNote]);
-
-  const handlePromote = useCallback((blockId) => {
-    dispatchBlocks((b) => Blocks.promoteTitle(b, blockId));
-  }, [dispatchBlocks]);
-
-  const handleDemote = useCallback((blockId) => {
-    dispatchBlocks((b) => Blocks.demoteTitle(b, blockId));
-  }, [dispatchBlocks]);
+  }, [blockActions, revealConvertedNote]);
 
   // #109 M4 — preFlush='all' drains every PM block's pending 400ms onUpdate
   // debounce so the verb's compute reads post-debounce html (including any
@@ -1339,14 +1279,14 @@ export default function SpecEditor() {
   // frame regardless of captureTimeout. The tcState transition stays here
   // because it's a separate reducer (`tc.acceptAll` / `tc.rejectAll`).
   const handleAcceptAll = useCallback(() => {
-    dispatchBlocks(Blocks.acceptAllRevisionsVerb, { preFlush: 'all' });
+    blockActions.acceptAllRevisions();
     setTcState(s => tc.acceptAll(s));
-  }, [dispatchBlocks]);
+  }, [blockActions]);
 
   const handleRejectAll = useCallback(() => {
-    dispatchBlocks(Blocks.rejectAllRevisionsVerb, { preFlush: 'all' });
+    blockActions.rejectAllRevisions();
     setTcState(s => tc.rejectAll(s));
-  }, [dispatchBlocks]);
+  }, [blockActions]);
 
   // Persist dark mode
   useEffect(() => {
@@ -1534,18 +1474,6 @@ export default function SpecEditor() {
   const zoomIn = useCallback(() => setEditorZoom(z => Math.min(2, Math.round((z + 0.1) * 10) / 10)), []);
   const zoomOut = useCallback(() => setEditorZoom(z => Math.max(0.5, Math.round((z - 0.1) * 10) / 10)), []);
   const zoomReset = useCallback(() => setEditorZoom(1), []);
-
-  // ── Compliance Checker Handlers ──
-
-  const handleComplianceAcceptFix = useCallback((blockId, fixedText) => {
-    dispatchBlocks((b) => Blocks.applyInlineFix(b, blockId, fixedText));
-  }, [dispatchBlocks]);
-
-  // Caller passes a `label` 2nd arg (panel "group accepted" toast text); the
-  // verb itself ignores it, so the param is dropped at the dispatch boundary.
-  const handleComplianceAcceptGroup = useCallback((fixesByBlock) => {
-    dispatchBlocks((b) => Blocks.complianceAcceptGroup(b, fixesByBlock));
-  }, [dispatchBlocks]);
 
   // Auto-save to localStorage every 3 seconds (silent, no UI).
   // Suppressed in a collab room — the server-persisted Yjs doc is the source of truth.
@@ -1790,6 +1718,7 @@ export default function SpecEditor() {
   // (which can't reach the const due to JS hoisting / TDZ rules) read the
   // current substrate at call time, not the initial one.
   activeYStoreRef.current = activeYStore;
+  framingRef.current = framingForHandler();
 
   // 1i-b.2 — populate the clearHistoryRef hoisted near the top of the
   // component. Effect re-runs whenever collab or localUndo identity
@@ -1996,7 +1925,7 @@ export default function SpecEditor() {
           forceFrame();
           v.dispatch(v.state.tr.delete(from, to));
           cancelPendingUpdateById(blockId);
-          handleBlockUpdatePmSync(blockId, pmFragmentToHtml(v.state.doc));
+          blockActions.updateHtmlPmSync(blockId, pmFragmentToHtml(v.state.doc));
         }).catch((err) => {
           toastInfo(err?.name === 'NotAllowedError' ? 'Clipboard permission denied' : 'Cut failed');
         });
@@ -2040,7 +1969,7 @@ export default function SpecEditor() {
           compute: (state) => applyInlineRevisionResolveTr(state, action, coords.pos, kindHint),
         });
         if (!result.dispatched) { toastInfo('Change no longer available'); break; }
-        handleBlockUpdatePmSync(blockId, extractHtml(result.state));
+        blockActions.updateHtmlPmSync(blockId, extractHtml(result.state));
         break;
       }
       case 'add-comment': {
@@ -2069,14 +1998,14 @@ export default function SpecEditor() {
         if (!id.startsWith('table-')) break;
         const { row, col, vcol, span = 1 } = menu.ctx;
         // Persist through the SAME path TableBlock's inline editor uses:
-        // onUpdate(id, { table }) → dispatchBlocks(mergeBlockData). The
+        // onUpdate(id, { table }) → blockActions.mergeBlockData. The
         // table-ops helpers are pure and return null when the op is impossible.
         const apply = (fn) => {
           const current = blocksRef.current.find((b) => b.id === blockId)?.table;
           if (!current) return;
           const nt = fn(current);
           if (!nt) return;
-          dispatchBlocks((b) => Blocks.mergeBlockData(b, blockId, { table: nt }));
+          blockActions.mergeBlockData(blockId, { table: nt });
         };
         if (id === 'table-insert-row-above') apply((t) => insertRowAt(t, row));
         else if (id === 'table-insert-row-below') apply((t) => insertRowAt(t, row + 1));
@@ -2089,7 +2018,7 @@ export default function SpecEditor() {
         break;
       }
     }
-  }, [inRoom, collab, localUndo, dispatchBlocks, handleBlockUpdatePmSync, handleCommentCreate, handleCommentResolve]);
+  }, [inRoom, collab, localUndo, blockActions, handleCommentCreate, handleCommentResolve]);
 
   // Singleton contextmenu listener on the editor scroll container. Suppresses
   // the native menu only when at least one non-divider item is buildable.
@@ -2199,7 +2128,7 @@ export default function SpecEditor() {
               depth={0}
               numberMap={numberMap}
               forceExpand={!!sidebarSearch.trim()}
-              onReorder={handleReorderSection}
+              onReorder={blockActions.reorderSection}
             />
           ))}
         </div>
@@ -2812,14 +2741,14 @@ export default function SpecEditor() {
         />
 
         {/* Cross-Reference Validation */}
-        <CrossRefPanel blocks={blocks} sectionNumber={sectionNumber} onRemoveOrphaned={handleRemoveOrphaned} />
+        <CrossRefPanel blocks={blocks} sectionNumber={sectionNumber} onRemoveOrphaned={blockActions.removeOrphaned} />
 
         {/* In-Document Search */}
         {searchOpen && (
           <SearchBar
             blocks={blocks}
             editorRef={editorRef}
-            onReplace={handleSearchReplace}
+            onReplace={blockActions.searchReplace}
             initialShowReplace={searchOpen === 'replace'}
             onClose={() => {
               setSearchOpen(false);
@@ -2892,7 +2821,7 @@ export default function SpecEditor() {
         {bracketOpen && (
           <BracketReplace
             blocks={blocks}
-            onReplace={handleSearchReplace}
+            onReplace={blockActions.searchReplace}
             onClose={() => setBracketOpen(false)}
           />
         )}
@@ -2939,7 +2868,7 @@ export default function SpecEditor() {
         >
           <FloatingToolbar
             editorRef={editorRef}
-            onRefreshTcSnapshot={handleBlockUpdatePmSync}
+            onRefreshTcSnapshot={blockActions.updateHtmlPmSync}
             onForceFrame={inRoom ? collab.forceFrame : localUndo.forceFrame}
             trackChanges={trackChanges}
             onCommentCreate={handleCommentCreate}
@@ -3011,10 +2940,10 @@ export default function SpecEditor() {
                   onFocus={handleClickFocus}
                   isFocused={focusedBlockId === block.id}
                   sectionNum={numberMap[block.id]}
-                  onUpdate={handleBlockUpdate}
-                  onPromote={handlePromote}
-                  onDemote={handleDemote}
-                  onEnterKey={handleEnterKey}
+                  onUpdate={blockActions.updateHtml}
+                  onPromote={blockActions.promote}
+                  onDemote={blockActions.demote}
+                  onEnterKey={blockActions.insertAfter}
                   onDelete={handleDelete}
                   onFocusPrev={handleFocusPrev}
                   onFocusNext={handleFocusNext}
@@ -3066,7 +2995,7 @@ export default function SpecEditor() {
                   block={block}
                   isFocused={focusedBlockId === block.id}
                   onFocus={handleClickFocus}
-                  onUpdate={(id, data) => dispatchBlocks((b) => Blocks.mergeBlockData(b, id, data))}
+                  onUpdate={blockActions.mergeBlockData}
                 />
               );
             }
@@ -3077,7 +3006,7 @@ export default function SpecEditor() {
                   block={block}
                   isFocused={focusedBlockId === block.id}
                   onFocus={handleClickFocus}
-                  onUpdate={(id, data) => dispatchBlocks((b) => Blocks.mergeBlockData(b, id, data))}
+                  onUpdate={blockActions.mergeBlockData}
                   readOnly={collabReadOnly}
                   commentsState={commentsState}
                   activeCommentId={openCommentId}
@@ -3090,12 +3019,12 @@ export default function SpecEditor() {
                 <RefBlock
                   key={block.id}
                   block={block}
-                  onUpdate={(id, data) => dispatchBlocks((b) => Blocks.updateRefScalar(b, id, data))}
+                  onUpdate={blockActions.updateRefScalar}
                   isFocused={focusedBlockId === block.id}
                   onFocus={handleClickFocus}
                   readOnly={collabReadOnly}
-                  onAcceptRevision={(id) => dispatchBlocks((b) => Blocks.acceptBlockRevision(b, id))}
-                  onRejectRevision={(id) => dispatchBlocks((b) => Blocks.rejectBlockRevision(b, id))}
+                  onAcceptRevision={blockActions.acceptRevision}
+                  onRejectRevision={blockActions.rejectRevision}
                   onCommentClick={handleCommentClick}
                   commentsState={commentsState}
                   activeCommentId={openCommentId}
@@ -3107,8 +3036,8 @@ export default function SpecEditor() {
                 <PmEditableBlock
                   block={block}
                   yStore={activeYStore}
-                  onUpdate={handleBlockUpdate}
-                  onEnterKey={handleEnterKey}
+                  onUpdate={blockActions.updateHtml}
+                  onEnterKey={blockActions.insertAfter}
                   onFocus={handleClickFocus}
                   isFocused={focusedBlockId === block.id}
                   oliLabel={block.type === "oli" ? oliLabels[block.id] : null}
@@ -3117,19 +3046,19 @@ export default function SpecEditor() {
                   onFocusNext={handleFocusNext}
                   onConvertBlock={handleConvertBlock}
                   onConvertBlockType={handleConvertBlockType}
-                  onChangeOliLevel={handleChangeOliLevel}
+                  onChangeOliLevel={blockActions.changeOliLevel}
                   resolveHtml={resolveHtml}
                   tailorKey={tailorKey}
                   trackChanges={trackChanges}
                   identity={identity}
                   readOnly={collabReadOnly}
                   forceVisible={revealedNoteIds.has(block.id)}
-                  onAcceptRevision={(id) => dispatchBlocks((b) => Blocks.acceptBlockRevision(b, id))}
-                  onRejectRevision={(id) => dispatchBlocks((b) => Blocks.rejectBlockRevision(b, id))}
-                  onRefreshTcSnapshot={handleBlockUpdatePmSync}
+                  onAcceptRevision={blockActions.acceptRevision}
+                  onRejectRevision={blockActions.rejectRevision}
+                  onRefreshTcSnapshot={blockActions.updateHtmlPmSync}
                   commentsState={commentsState}
                   onCommentClick={handleCommentClick}
-                  onInlineFix={handleComplianceAcceptFix}
+                  onInlineFix={blockActions.applyInlineFix}
                   lintingState={lintingState}
                   lintingDispatch={setLintingState}
                   showTags={showTags}
@@ -3157,7 +3086,7 @@ export default function SpecEditor() {
                   <MarkSuggestions
                     blockId={block.id}
                     html={block.html}
-                    onApply={handleBlockUpdateWithSync}
+                    onApply={blockActions.updateHtml}
                   />
                 )}
               </div>
@@ -3241,8 +3170,8 @@ export default function SpecEditor() {
             complianceState={complianceState}
             dispatchCompliance={setComplianceState}
             lintingState={lintingState}
-            onAcceptFix={handleComplianceAcceptFix}
-            onAcceptGroupFix={handleComplianceAcceptGroup}
+            onAcceptFix={blockActions.applyInlineFix}
+            onAcceptGroupFix={blockActions.complianceAcceptGroup}
             unitDisplay={unitDisplay}
             onItemDismiss={async (ruleId, item) => {
               // Lazy blockHash: lintingState.byBlock is populated only on focus
@@ -3399,7 +3328,7 @@ export default function SpecEditor() {
       {/* Reference Wizard Modal */}
       {refWizardOpen && (
         <RefWizard
-          onAdd={handleAddReference}
+          onAdd={blockActions.addReference}
           onClose={() => setRefWizardOpen(false)}
           existingOrgs={blocks.filter(b => b.type === 'ref' && b.ref?.org).map(b => b.ref.org)}
         />
