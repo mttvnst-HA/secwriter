@@ -153,6 +153,15 @@ See [ADR-0008](docs/adr/0008-blocks-reducer-architecture.md). Every `blocks` mut
 
 `handleConvertBlock` creates a block with a **new ID**. This forces a React remount, which triggers the ref callback, which handles focus. Do not try to reuse the old block ID — the ref callback won't re-fire on an existing DOM node.
 
+## Dark Mode
+
+See [PR #280](https://github.com/mttvnst-HA/secwriter/pull/280). Theming is CSS custom properties: light defaults in `:root`, dark overrides in `.dark-mode` (`src/styles/editor.css` ~442/~510). Components consume `--sim-*` tokens; `.dark-mode` lives on BOTH `document.documentElement` (set pre-paint by `public/theme-init.js`, re-toggled by App's persist effect at `App.jsx:1354`) AND the React root div (`App.jsx:2116`). Load-bearing invariants:
+
+- **`public/theme-init.js` is a pre-paint FOUC guard, and its localStorage key is duplicated — not imported.** It's a blocking classic `<script src="/theme-init.js">` in `index.html` `<head>` (CSP-safe: `script-src 'self'` allows same-origin external scripts; an inline script would be BLOCKED). It reads `localStorage.getItem('sim-dark-mode') === 'true'` and adds `.dark-mode` to `<html>` BEFORE first paint. Without it the class is applied post-paint (App useEffect), which (a) flashes light content and (b) triggers a `transition: background` on token-driven surfaces (note blocks `PmEditableBlock.jsx` ~1058/1063, tailoring bar) that never advances past its light start-frame → notes render light-on-light (1.19 contrast). The `'sim-dark-mode'` KEY and `'true'` value are hardcoded in BOTH `theme-init.js` and `App.jsx` (`:200` read, `:1353` write) with no shared import — rename one and the FOUC silently returns. Pinned by `src/__tests__/theme-init.test.js` (key + class + pre-module ordering). Must run before the `<script type="module">`.
+- **`var(--sim-X, <fallback>)` fallbacks are effectively dead** — every `--sim-*` is defined in `:root`, so the fallback only applies if the stylesheet fails to load. When converting a hardcoded color to a token, expect the LIGHT render to shift to the token's `:root` value (e.g. EDITING badge text `#059669`→`--sim-success-text` `#008000`), NOT stay at the old inline value. That's the intended "adopt canonical token" direction; don't assume `var(--x, oldvalue)` preserves the old light color.
+- **`::highlight()` tiers need explicit dark rules.** The base `::highlight(compliance-error|grammar-error|passive-voice)` low-alpha fills (`editor.css` ~477) wash out on the dark canvas; `.dark-mode ::highlight(...)` overrides (added #280) raise alpha + lighten the wavy underline. lightningcss preserves them in the bundle. Same for the 3 banners (`.locked-banner`/`.viewer-banner`/`.migration-partial-banner`) which had no dark rule pre-#280 — `.dark-mode .X` (specificity 0,2,0) beats `.X` (0,1,0), no `!important` needed.
+- **Not yet implemented:** no `prefers-color-scheme`/OS-auto mode (manual localStorage toggle only); `index.html` `<meta name="theme-color">` is static light.
+
 ## Windows-1252 Encoding
 
 .SEC files declare windows-1252 in the XML header:
