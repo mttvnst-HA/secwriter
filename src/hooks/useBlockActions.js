@@ -89,6 +89,8 @@ export function useBlockActions(deps) {
         dispatch(Blocks.rejectAllRevisionsVerb, { preFlush: 'all' }),
       applyInlineFix: (blockId, fixedText) =>
         dispatch((b) => Blocks.applyInlineFix(b, blockId, fixedText)),
+      // The CompliancePanel callsite invokes this with a 2nd `label` arg; the
+      // verb ignores it, so it's dropped here at the dispatch boundary.
       complianceAcceptGroup: (fixesByBlock) =>
         dispatch((b) => Blocks.complianceAcceptGroup(b, fixesByBlock)),
     };
