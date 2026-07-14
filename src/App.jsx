@@ -50,6 +50,7 @@ import { findHighlightTargetsInBlock } from "./lib/compliance-ranges.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
 import { getRoomFromUrl, buildRoomUrl, stripRoomFromUrl, generateRoomId, DEFAULT_HTTP_URL, applyBlocksToYDoc, yBlocksToArray } from "./lib/collab.js";
 import { useCollabSession } from "./hooks/useCollabSession.js";
+import { useBlockActions } from "./hooks/useBlockActions.js";
 import { useLocalSubstrateUndoManager } from "./hooks/useLocalSubstrateUndoManager.js";
 import * as cm from "./lib/comments.js";
 import { loadIdentity } from "./lib/identity.js";
@@ -178,6 +179,11 @@ export default function SpecEditor() {
   // can still reach it without a temporal-dead-zone reference. Updated
   // below after `activeYStore` is computed.
   const activeYStoreRef = useRef(localSubstrate.yStore);
+  // Mirror of the active undo-framing target (in-room collab vs out-of-room
+  // localUndo), assigned each render at the same site as activeYStoreRef.current
+  // (below). useBlockActions reads framingRef.current at action-call time —
+  // same call-time discipline as activeYStoreRef.
+  const framingRef = useRef(null);
   const trackChanges = tc.isEnabled(tcState);
   const [selectedTreeId, setSelectedTreeId] = useState(null);
   const [focusedBlockId, setFocusedBlockId] = useState(null);
@@ -880,6 +886,20 @@ export default function SpecEditor() {
       focusBlock,
     }, compute, opts);
   }, [focusBlock]);
+
+  // The block-action surface (src/hooks/useBlockActions.js). Reads yStore +
+  // framing from refs at call time, so it can be declared here — before every
+  // handler / JSX callsite that references `blockActions` — without a TDZ on
+  // framingForHandler (defined further below).
+  const blockActions = useBlockActions({
+    blocksRef,
+    setBlocks,
+    yStoreRef: activeYStoreRef,
+    framingRef,
+    setFocusedBlockId,
+    focusBlock,
+    tcStateRef,
+  });
 
   const handleReorderSection = useCallback((dragId, dropId, position) => {
     dispatchBlocks((b) => Blocks.reorderSectionVerb(b, dragId, dropId, position));
@@ -1790,6 +1810,7 @@ export default function SpecEditor() {
   // (which can't reach the const due to JS hoisting / TDZ rules) read the
   // current substrate at call time, not the initial one.
   activeYStoreRef.current = activeYStore;
+  framingRef.current = framingForHandler();
 
   // 1i-b.2 — populate the clearHistoryRef hoisted near the top of the
   // component. Effect re-runs whenever collab or localUndo identity
