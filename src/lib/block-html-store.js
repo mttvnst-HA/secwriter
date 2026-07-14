@@ -51,6 +51,7 @@
 import { prosemirrorToYXmlFragment } from 'y-prosemirror';
 
 import { applyHtmlToYText, seedYTextFromHtml } from './ytext-html.js';
+import { isXmlFragmentSlot, isTextSlot, isReadableSlot } from './slot-shape.js';
 import { htmlToPmFragment } from './pmdoc-html.js';
 import { blockToYMapSkeleton, populateBlockHtml, populateBlockTableRef } from './collab.js';
 import { getCachedHtml, invalidateHtmlCache } from './pm-fragment-cache.js';
@@ -105,9 +106,7 @@ export function getBlockHtml(yStore, blockId) {
   // Legacy bare-string slots (extreme corruption fallback). Still gracefully
   // expose the string so the binder render path doesn't blank out.
   if (typeof yHtml === 'string') return yHtml;
-  if (typeof yHtml.toArray !== 'function' && typeof yHtml.toDelta !== 'function') {
-    return '';
-  }
+  if (!isReadableSlot(yHtml)) return '';
   return getCached(yHtml);
 }
 
@@ -136,7 +135,7 @@ function applyHtmlToSlot(yStore, blockId, html, origin) {
   if (!ydoc) return;
   const next = typeof html === 'string' ? html : '';
 
-  if (typeof yHtml.toArray === 'function' && typeof yHtml.nodeName !== 'string') {
+  if (isXmlFragmentSlot(yHtml)) {
     ydoc.transact(() => {
       const pmNode = htmlToPmFragment(next);
       prosemirrorToYXmlFragment(pmNode, yHtml);
@@ -144,7 +143,7 @@ function applyHtmlToSlot(yStore, blockId, html, origin) {
     return;
   }
 
-  if (typeof yHtml.toDelta === 'function') {
+  if (isTextSlot(yHtml)) {
     ydoc.transact(() => {
       applyHtmlToYText(yHtml, next);
     }, origin);
@@ -240,7 +239,7 @@ export function subscribeBlock(yStore, blockId, listener) {
     const next = yMap && typeof yMap.get === 'function' ? yMap.get('html') : null;
     if (next === yHtml) return;
     detachHtml();
-    if (next && (typeof next.toArray === 'function' || typeof next.toDelta === 'function')) {
+    if (isReadableSlot(next)) {
       yHtml = next;
       attachInner(yHtml);
     }

@@ -79,6 +79,7 @@ import SlashMenu, { SLASH_ITEMS } from './SlashMenu.jsx';
 import InlineTooltip from './InlineTooltip.jsx';
 import { schema } from '../lib/pm-schema.js';
 import { pmFragmentToHtml } from '../lib/pmdoc-html.js';
+import { isXmlFragmentSlot, isTextSlot } from '../lib/slot-shape.js';
 import { BLOCK_MARGINS } from '../lib/ini-config.js';
 import { slashMenuPlugin, slashMenuPluginKey } from '../lib/pm-plugins/slash-menu.js';
 import { closeSlashMenuPlugin, isBlockJustSlashTrigger } from '../lib/pm-slash-dismiss.js';
@@ -107,12 +108,9 @@ import { useBlockLinting } from './useBlockLinting.js';
  * does NOT expose a nodeName property. Y.Text has toDelta() and no toArray.
  */
 function isLegacyYTextSlot(yHtml) {
-  if (!yHtml) return false;
-  if (typeof yHtml.toArray === 'function' && typeof yHtml.nodeName !== 'string') {
-    return false;
-  }
-  if (typeof yHtml.toDelta === 'function') return true;
-  return false;
+  // A legacy slot is a Y.Text (has toDelta); isTextSlot already returns false
+  // for a Y.XmlFragment (toArray, no toDelta) and for null.
+  return isTextSlot(yHtml);
 }
 
 /**
@@ -317,7 +315,7 @@ function PmEditableBlock({
     // keep this guard for any other unexpected slot shape (e.g. yMap with
     // no html key, slot mid-replacement). Without isMigrationPartial we'd
     // still bail silently here, which 1i-b.2 turns into an invisible block.
-    if (!yXml || typeof yXml.toArray !== 'function' || typeof yXml.nodeName === 'string') {
+    if (!isXmlFragmentSlot(yXml)) {
       return;
     }
     yXmlFragmentRef.current = yXml;

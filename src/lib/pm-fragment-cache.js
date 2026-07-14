@@ -24,16 +24,15 @@
 
 import { pmFragmentToHtml } from './pmdoc-html.js';
 import { yTextToHtml } from './ytext-html.js';
+import { isXmlFragmentSlot, isTextSlot } from './slot-shape.js';
 
 const cache = new WeakMap();
 
 function deriveHtml(yHtml) {
-  if (typeof yHtml.toArray === 'function' && typeof yHtml.nodeName !== 'string') {
-    // Y.XmlFragment — duck-type matches pmdoc-html.js's serializer
-    // (toArray + no nodeName, since YXmlElement has both).
+  if (isXmlFragmentSlot(yHtml)) {
     return pmFragmentToHtml(yHtml);
   }
-  if (typeof yHtml.toDelta === 'function') {
+  if (isTextSlot(yHtml)) {
     // Y.Text fallback (migrationPartial blocks; pre-1d rooms during the
     // broker's pre-archive read window).
     return yTextToHtml(yHtml);
