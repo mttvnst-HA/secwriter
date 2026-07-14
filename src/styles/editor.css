@@ -825,3 +825,44 @@ body {
 .migration-partial-banner .banner-icon {
   font-size: 16px;
 }
+
+/* ─── Dark-mode banner variants ───
+   The light-mode banners hardcode amber-50 / blue-100 / amber-100 fills that
+   clash against the dark canvas. Mute each to the same low-chroma tinted-slate
+   family the note blocks + cross-ref banner already use; keep the amber/blue
+   hue identity, drop text to a *-400 tone for AA contrast on the dark fill. */
+.dark-mode .locked-banner {
+  background-color: #1f1b13;
+  color: #fbbf24;
+  border-bottom-color: #a16207;
+}
+.dark-mode .viewer-banner {
+  background-color: #152030;
+  color: #93c5fd;
+  border-bottom-color: #1e3a5f;
+}
+.dark-mode .migration-partial-banner {
+  background-color: #1f1b13;
+  color: #fbbf24;
+  border-left-color: #a16207;
+}
+
+/* ─── Dark-mode inline linting / compliance highlight tiers ───
+   The base ::highlight() tiers use low-alpha (0.15–0.25) fills tuned for the
+   light canvas; over #161a22 they nearly vanish. Raise alpha and lift the wavy
+   underline to a lighter tone so each tier stays scannable on dark. */
+.dark-mode ::highlight(compliance-error) {
+  background-color: rgba(234, 179, 8, 0.32);
+  text-decoration: underline wavy #fbbf24;
+  text-decoration-skip-ink: none;
+}
+.dark-mode ::highlight(grammar-error) {
+  background-color: rgba(96, 165, 250, 0.30);
+  text-decoration: underline wavy #93c5fd;
+  text-decoration-skip-ink: none;
+}
+.dark-mode ::highlight(passive-voice) {
+  background-color: rgba(249, 115, 22, 0.32);
+  text-decoration: underline wavy #fb923c;
+  text-decoration-skip-ink: none;
+}

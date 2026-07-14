@@ -2734,32 +2734,32 @@ export default function SpecEditor() {
             {/* Zoom control */}
             <div style={{
               display: "flex", alignItems: "center", gap: 2,
-              border: "1px solid #e2e8f0", borderRadius: 6,
-              padding: "0 2px", backgroundColor: "#f1f5f9",
+              border: "1px solid var(--sim-border, #e2e8f0)", borderRadius: 6,
+              padding: "0 2px", backgroundColor: "var(--sim-hover, #f1f5f9)",
             }}>
               <button onClick={zoomOut} title="Zoom out (Ctrl+-)" style={{
                 width: 26, height: 28, border: "none", background: "transparent",
-                cursor: "pointer", fontSize: 14, color: "#475569", display: "flex",
+                cursor: "pointer", fontSize: 14, color: "var(--sim-text-secondary, #475569)", display: "flex",
                 alignItems: "center", justifyContent: "center",
               }}>−</button>
               <button onClick={zoomReset}
                 title="Reset zoom (Ctrl+0)"
                 style={{
                   border: "none", background: "transparent", cursor: "pointer",
-                  fontSize: 11, color: "#475569", fontWeight: 600, minWidth: 36,
+                  fontSize: 11, color: "var(--sim-text-secondary, #475569)", fontWeight: 600, minWidth: 36,
                   textAlign: "center", height: 28,
                 }}
               >{Math.round(editorZoom * 100)}%</button>
               <button onClick={zoomIn} title="Zoom in (Ctrl+=)" style={{
                 width: 26, height: 28, border: "none", background: "transparent",
-                cursor: "pointer", fontSize: 14, color: "#475569", display: "flex",
+                cursor: "pointer", fontSize: 14, color: "var(--sim-text-secondary, #475569)", display: "flex",
                 alignItems: "center", justifyContent: "center",
               }}>+</button>
             </div>
             <span style={{
               padding: "2px 8px",
-              backgroundColor: "#ecfdf5",
-              color: "#059669",
+              backgroundColor: "var(--sim-success-tint, #ecfdf5)",
+              color: "var(--sim-success-text, #059669)",
               borderRadius: 10,
               fontWeight: 600,
               fontSize: 12,
