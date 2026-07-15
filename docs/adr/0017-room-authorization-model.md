@@ -60,6 +60,11 @@ multi-MB Y.Doc decode just to read an owner id.
    with no ACL (legacy/orphan) are hidden, matching the per-room 404.
 6. **Required JWT claims:** a tenant claim (`tenant | org | tid`) and a stable
    subject (`sub | oid`). No email/`'unknown'` fallback for the owner id.
+   **Reversed in part by [#267](https://github.com/mttvnst-HA/secwriter/issues/267)** —
+   see "Share-by-email (#267)" under Consequences: email is now a legitimate
+   authorization input for the *pending-invite* surface (not the owner id or
+   the bound `roles` key), and only under a verified-immutable-unique-per-
+   subject IdP precondition.
 7. **Binary collaborator model** (owner + share-set) — **superseded by Graded
    roles below** ([#239](https://github.com/mttvnst-HA/secwriter/issues/239)).
 
@@ -224,8 +229,74 @@ reconnect. #268 closes that window for live sessions.
   sanitize to the same value share a namespace. Only reachable via a hostile or
   misconfigured IdP issuing adversarial tenant claims; the tenant always comes
   from the authenticated principal, never the URL. Accepted.
-- **Share discovery limitation:** no user-directory endpoint; an owner must know
-  the sharee's subject id. Share-by-email is a follow-up.
+- **Share-by-email (#267).** `.acl.json` gains two additive, optional keys —
+  `pending` (`email → { role, invitedBy, invitedAt }`) and `display`
+  (`sub → { name, email }`, a self-asserted cosmetic cache, NEVER an
+  authorization input) — both read-compatible with the #211/#239 shapes
+  (`roleOf`/`aclAllowsRead` ignore keys they don't know about). An owner can
+  now invite by email (`PATCH /:id/share` with `{ email, action, role? }`)
+  without knowing the invitee's subject id.
+  - **One role decision, four call sites.** `resolveRole(acl, user, now, ttlMs)`
+    (`authorize.cjs`) folds a bound role (`roleOf`) with a live pending-by-email
+    invite (`pendingRoleFor`) into a single `{ role, viaPending }` verdict — an
+    invited-but-not-yet-connected user passes the capability check immediately,
+    before any bind is persisted. It is the ONE place this decision is made:
+    HTTP `authorize()`, WS `onAuthenticate`, the revoke sweep, and `GET /rooms`
+    listing all call it, so there is no listing/authorize asymmetry (a room a
+    caller can open is always a room `GET /rooms` shows them, badged
+    `viaPending`). Owner short-circuits before the pending check, so a stray
+    pending entry can never downgrade an owner.
+  - **`promotePending` binds the invite at WS connect.** Fire-and-forget from
+    `onAuthenticate` (the connect verdict already came from `resolveRole`; this
+    only persists the bind) — it upgrades the user's bound role to
+    `higherRole(bound, pending[email].role)`, caches `display`, prunes every
+    expired pending entry opportunistically, and drops the consumed entry. Two
+    delete-race guards: a null-ACL read guard (delete-then-read) and an
+    `isDeleted` tombstone check immediately before the write-back (delete-
+    then-write) — the ACL mutex alone doesn't close this because `deleteRoom`
+    does not run under it. A dropped/failed run just re-converges on the next
+    connect.
+  - **Shared per-composite-key ACL mutex (`server/acl-mutex.cjs`).**
+    `.acl.json` has no compare-and-set and `writeAcl` is a full-object
+    overwrite, so the share route (HTTP) and `promotePending` (WS connect) MUST
+    serialize their read-modify-writes through ONE `Map`-backed mutex — two
+    separate in-memory queues in two modules would not serialize anything.
+    Same chain-of-promises shape as `SecWriterDatabase._storeChains`, and the
+    same single-instance-bound caveat: a multi-instance move needs a
+    distributed lock here too.
+  - **Lazy expiry, `SIM_PENDING_INVITE_TTL_MS`.** `isPendingExpired` treats a
+    missing/unparseable `invitedAt`, a non-finite age, or a future `invitedAt`
+    as expired (fail-closed). Default TTL is 30 days
+    (`DEFAULT_PENDING_TTL_MS`); an invalid env value (non-finite or ≤ 0) is
+    boot-validated, logs once, and falls back to the default — it never
+    silently disables sharing.
+  - **Caps.** `MAX_PENDING_INVITES = 200` live invites per room (share-route
+    add returns 429 past the cap) and `MAX_ACL_BYTES = 256 KB` on the whole
+    serialized sidecar (share route and `promotePending` both skip an
+    over-cap write rather than corrupt the file; access already granted stays
+    correct via `resolveRole` either way). Removing a pending invite hard-kicks
+    any live session whose token email matches, via
+    `revokeLiveSessions(tenant, roomId, { emails })` — the bound subject is
+    unknown until connect, so email is the only handle available for a pending
+    removal.
+  - **New PII-at-rest surface.** `.acl.json` now persists email addresses
+    (both the `pending` invite list and the `display` cache), including
+    entries for invites that have expired but not yet been pruned (pruning is
+    opportunistic — on the next `promotePending` or share-route write, not
+    scheduled). Flag for CUI/retention review in any deployment where the
+    ACL sidecar is in scope.
+  - **Reversal of decision 6.** Decision 6 above required a stable subject
+    claim and rejected any email/`'unknown'` fallback for authorization
+    identity. #267 reverses that for the SHARE-INPUT surface only: email is
+    now a legitimate authorization input (as a pending-invite key), but safe
+    ONLY under the precondition that the IdP's email claim is verified,
+    immutable, and unique per subject — an IdP that allows an email to be
+    reassigned to a different subject (or left unverified) would let a new
+    owner of that address inherit a stale invite's role. Deployments whose IdP
+    cannot make that guarantee should disable share-by-email rather than rely
+    on it. The underlying room/tenant authorization identity (`sub`/`oid`) is
+    unchanged — only the *invitation* is keyed by email; a bound grant in
+    `acl.roles` is still keyed by subject.
 - **Legacy:** auth-on deploys with pre-existing rooms either start fresh or run
   `server/migrate-tenant-namespace.cjs` (`SIM_DEFAULT_TENANT` + `SIM_DEFAULT_OWNER`).
   The script supports all three backends via `storage-factory.cjs` +
@@ -247,4 +318,5 @@ order amendment), [ADR-0013](0013-storage-backends.md) (artifact + composite
 key), [ADR-0014](0014-collab-server-yjs-relay.md) (composite docName + WS authz
 ordering), [#239](https://github.com/mttvnst-HA/secwriter/issues/239) (graded
 roles), [#268](https://github.com/mttvnst-HA/secwriter/issues/268) (live-session
-force-revocation).
+force-revocation), [#267](https://github.com/mttvnst-HA/secwriter/issues/267)
+(share-by-email, pending invites).
