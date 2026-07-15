@@ -40,10 +40,26 @@ async function promotePending({ storage, tenant, roomId, user, withAclLock, isDe
     // .ydoc) because .acl.json is catalogued BEFORE .ydoc — acceptable under the
     // single-instance design (ADR-0017).
 
-    const roles = (acl.roles && typeof acl.roles === 'object') ? acl.roles : {};
+    // Fold current roles into the graded shape, migrating a legacy #211
+    // `sharedWith` array into `roles` (each entry → editor) the SAME way the
+    // share route does. Without this, a pre-#239 room ({ownerId, sharedWith})
+    // would get a manufactured empty `roles:{}` persisted alongside the intact
+    // sharedWith; roleOf prefers `roles` when present, so every sharedWith
+    // member would silently resolve to null (and then be swept-kicked). We drop
+    // the legacy key on write (see `delete next.sharedWith` below).
+    const roles = {};
+    let foldedSharedWith = false;
+    if (acl.roles && typeof acl.roles === 'object') {
+      for (const [uid, r] of Object.entries(acl.roles)) if (r === 'viewer' || r === 'editor') roles[uid] = r;
+    } else if (Array.isArray(acl.sharedWith)) {
+      for (const uid of acl.sharedWith) roles[uid] = 'editor';
+      foldedSharedWith = true;
+    }
     const pending = (acl.pending && typeof acl.pending === 'object') ? acl.pending : {};
     const display = (acl.display && typeof acl.display === 'object') ? acl.display : {};
-    let changed = false;
+    // Migrating sharedWith is itself a change worth persisting even if nothing
+    // else moved, so the corrupting empty-roles shape never lands on disk.
+    let changed = foldedSharedWith;
 
     // Prune every expired pending entry first (opportunistic GC). This also
     // drops the connecting user's OWN entry if it's expired, so the bind step
@@ -72,6 +88,7 @@ async function promotePending({ storage, tenant, roomId, user, withAclLock, isDe
 
     if (!changed) return;
     const next = { ...acl, roles, pending, display };
+    delete next.sharedWith; // #239 folded into `roles` above; never persist the legacy key
     if (exceedsAclByteCap(next)) {
       if (log && log.warn) log.warn('promote.acl-too-large', { tenant, roomId });
       return; // access still correct via resolveRole; skip the write (seam 7)

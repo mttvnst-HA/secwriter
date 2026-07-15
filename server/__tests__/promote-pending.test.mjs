@@ -4,6 +4,7 @@ import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 const { promotePending } = require('../promote-pending.cjs');
 const { createAclMutex } = require('../acl-mutex.cjs');
+const { roleOf } = require('../auth/authorize.cjs');
 
 const TTL = 30 * 24 * 60 * 60 * 1000;
 const NOW = Date.parse('2026-07-14T00:00:00Z');
@@ -95,5 +96,24 @@ describe('promotePending (#267 seam 3)', () => {
     assert.equal(s._acls['acme/r1'].roles.owner, undefined, 'owner never gets a roles entry');
     assert.equal(s._acls['acme/r1'].pending['owner@y.com'], undefined, 'stray pending dropped');
     assert.equal((s._acls['acme/r1'].display || {}).owner, undefined, 'owner not written to display cache');
+  });
+  it('legacy sharedWith room: promote migrates to roles, sharee still resolves editor (C1)', async () => {
+    // Pre-#239 shape: { ownerId, sharedWith:[alice] }, no roles map. A pending
+    // invitee (bob) connecting must NOT strand alice by persisting an empty roles:{}.
+    const s = fakeStorage({ 'acme/r1': { ownerId: 'owner', sharedWith: ['alice'], pending: { 'bob@y.com': { role: 'editor', invitedAt: iso(NOW) } } } });
+    await promotePending(deps(s));
+    const acl = s._acls['acme/r1'];
+    assert.equal(acl.roles.alice, 'editor', 'legacy sharee folded into roles');
+    assert.equal(acl.roles.bob, 'editor', 'pending invitee bound');
+    assert.equal(acl.sharedWith, undefined, 'legacy sharedWith key dropped');
+    assert.equal(roleOf(acl, 'alice'), 'editor', 'alice still resolves editor after promote');
+  });
+  it('legacy sharedWith room: a plain sharee connecting still migrates without stranding peers', async () => {
+    const s = fakeStorage({ 'acme/r1': { ownerId: 'owner', sharedWith: ['alice', 'carol'] } });
+    await promotePending(deps(s, { user: { id: 'alice', email: 'alice@y.com', name: 'Alice' } }));
+    const acl = s._acls['acme/r1'];
+    assert.equal(roleOf(acl, 'alice'), 'editor');
+    assert.equal(roleOf(acl, 'carol'), 'editor', 'peer sharee not stranded');
+    assert.equal(acl.sharedWith, undefined);
   });
 });
