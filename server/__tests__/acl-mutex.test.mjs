@@ -28,8 +28,11 @@ describe('createAclMutex (#267 seam 4)', () => {
   });
   it('different keys run independently', async () => {
     const { withAclLock } = createAclMutex();
-    const a = withAclLock('k1', async () => 1);
-    const b = withAclLock('k2', async () => 2);
+    const done = [];
+    // A slow k1 must NOT stall a fast k2 (independent chains). k2 finishes first.
+    const a = withAclLock('k1', async () => { await new Promise(r => setTimeout(r, 30)); done.push('k1'); return 1; });
+    const b = withAclLock('k2', async () => { done.push('k2'); return 2; });
     assert.deepEqual(await Promise.all([a, b]), [1, 2]);
+    assert.deepEqual(done, ['k2', 'k1'], 'k2 not blocked behind slow k1');
   });
 });
