@@ -156,6 +156,10 @@ describe('resolveRole (#267)', () => {
     const acl = aclWith({ roles: { bob: 'editor' }, pending: { 'bob@y.com': { role: 'viewer', invitedAt: iso(NOW) } } });
     assert.deepEqual(resolveRole(acl, { id: 'bob', email: 'bob@y.com' }, NOW, TTL), { role: 'editor', viaPending: false });
   });
+  it('both present, equal role → bound wins, viaPending false (tie)', () => {
+    const acl = aclWith({ roles: { bob: 'editor' }, pending: { 'bob@y.com': { role: 'editor', invitedAt: iso(NOW) } } });
+    assert.deepEqual(resolveRole(acl, { id: 'bob', email: 'bob@y.com' }, NOW, TTL), { role: 'editor', viaPending: false });
+  });
   it('both present, pending higher → upgrade, viaPending true (major #5)', () => {
     const acl = aclWith({ roles: { bob: 'viewer' }, pending: { 'bob@y.com': { role: 'editor', invitedAt: iso(NOW) } } });
     assert.deepEqual(resolveRole(acl, { id: 'bob', email: 'bob@y.com' }, NOW, TTL), { role: 'editor', viaPending: true });
