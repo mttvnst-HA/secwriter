@@ -76,6 +76,11 @@ describe('ShareDialog (#239)', () => {
     render(<ShareDialog roomId="r1" loadAcl={loadAcl} submitShare={submitShare} onClose={vi.fn()} />);
     await waitFor(() => expect(screen.getByText('bob@corp.com')).toBeTruthy());
     expect(screen.getByText(/invited/i)).toBeTruthy();
+    // Revoke control exists and routes to the email-remove branch.
+    const revoke = screen.getByTitle('Revoke invite');
+    expect(revoke).toBeTruthy();
+    fireEvent.click(revoke);
+    await waitFor(() => expect(submitShare).toHaveBeenCalledWith('r1', { email: 'bob@corp.com', action: 'remove' }));
   });
   it('#267: bound collaborator shows display name with raw-sub fallback', async () => {
     const loadAcl = vi.fn(async () => ({ ownerId: 'owner', roles: { s1: 'editor', s2: 'viewer' }, pending: {}, display: { s1: { name: 'Alice A', email: 'a@corp.com' } } }));
@@ -85,11 +90,16 @@ describe('ShareDialog (#239)', () => {
   });
   it('#267: Copy room link writes the room URL to the clipboard', async () => {
     const writeText = vi.fn(async () => {});
+    const prevClipboard = navigator.clipboard;
     Object.assign(navigator, { clipboard: { writeText } });
-    render(<ShareDialog roomId="r1" loadAcl={vi.fn(async () => ({ ownerId: 'owner', roles: {}, pending: {}, display: {} }))} submitShare={vi.fn()} onClose={vi.fn()} />);
-    await waitFor(() => expect(screen.getByText(/Copy room link/i)).toBeTruthy());
-    fireEvent.click(screen.getByText(/Copy room link/i).closest('button'));
-    await waitFor(() => expect(writeText).toHaveBeenCalledWith(expect.stringContaining('room=r1')));
+    try {
+      render(<ShareDialog roomId="r1" loadAcl={vi.fn(async () => ({ ownerId: 'owner', roles: {}, pending: {}, display: {} }))} submitShare={vi.fn()} onClose={vi.fn()} />);
+      await waitFor(() => expect(screen.getByText(/Copy room link/i)).toBeTruthy());
+      fireEvent.click(screen.getByText(/Copy room link/i).closest('button'));
+      await waitFor(() => expect(writeText).toHaveBeenCalledWith(expect.stringContaining('room=r1')));
+    } finally {
+      Object.assign(navigator, { clipboard: prevClipboard });
+    }
   });
   it('#239 raw-sub add path still works (acceptance criterion)', async () => {
     const submitShare = vi.fn(async () => ({ roles: { x: 'editor' } }));
