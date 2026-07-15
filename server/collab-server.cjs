@@ -47,6 +47,8 @@ const { ResetConnection } = require('@hocuspocus/common');
 const { buildOnAuthenticate, AuthReject } = require('./hocuspocus-auth.cjs');
 const { roleOf, resolveRole, pendingInviteTtlMs, normalizeEmail } = require('./auth/authorize.cjs');
 const { SecWriterDatabase } = require('./secwriter-database.cjs');
+const { createAclMutex } = require('./acl-mutex.cjs');
+const { promotePending } = require('./promote-pending.cjs');
 
 // Hard caps. A single spec section is O(100KB) of text; 8 MB gives plenty of
 // headroom for Y.Doc overhead + revision history without letting a runaway
@@ -107,6 +109,10 @@ function createCollabServer(config) {
   // M-2: per-room persist health tracking. Shared with SecWriterDatabase so the
   // persistFailures/lastPersistSuccess counters survive across stores.
   const roomHealth = new Map();
+
+  // #267 seam 4: ONE shared ACL RMW mutex for both the share route (HTTP) and
+  // promotePending (WS connect). Single-instance-bound (ADR-0017).
+  const { withAclLock } = createAclMutex();
 
   // The live in-memory docs live in `hocuspocusInstance.documents` (a
   // Map<docName, Document>; Document extends Y.Doc). `getActiveUsers` and the
@@ -296,6 +302,7 @@ function createCollabServer(config) {
       flushRoom,
       deleteRoomTransactionally,
       revokeLiveSessions,
+      withAclLock,
       maxDocBytes: MAX_DOC_BYTES,
       authProvider,
       allowedOrigin,
@@ -391,6 +398,18 @@ function createCollabServer(config) {
           // no-op (viewers stayed read-write, client always saw 'read-write').
           // Editors/owners leave it false. Pinned by hocuspocus-server.test.mjs.
           if (ctx && ctx.readOnly && data.connectionConfig) data.connectionConfig.readOnly = true;
+          // #267 seam 3: fire-and-forget pending-invite bind. Never blocks the
+          // connect verdict — resolveRole (in onAuthenticate) already granted the
+          // pending invitee. Runs under the shared ACL mutex; skips a tombstoned
+          // room via database.isDeleted. auth=none has no email → no-op.
+          if (authProvider && authProvider.requiresAuth && ctx && ctx.user && ctx.user.email) {
+            const compositeKey = buildCompositeDocName(ctx.tenant, ctx.roomId);
+            promotePending({
+              storage, tenant: ctx.tenant, roomId: ctx.roomId, user: ctx.user,
+              withAclLock, isDeleted: (k) => database.isDeleted(k), compositeKey,
+              now: Date.now(), ttlMs: pendingInviteTtlMs(), log,
+            }).catch((err) => log.warn('promote.failed', { err: err && err.message }));
+          }
           return ctx;
         } catch (err) {
           if (err instanceof AuthReject) {

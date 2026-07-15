@@ -521,6 +521,60 @@ describe('#268 live-session revocation (revokeLiveSessions)', () => {
   });
 });
 
+// ── T7 (#267) — pending-by-email invite binds to the sub on WS connect ──────
+
+describe('#267 promotePending on WS connect (fire-and-forget)', () => {
+  // A pending-by-email invitee (no bound ACL `roles` entry) connects. resolveRole
+  // in onAuthenticate already GRANTS the connect via the pending invite; the
+  // fire-and-forget promotePending call then PERSISTS the bind (roles[sub]) and
+  // caches the display name, all under the shared ACL mutex. Because the bind is
+  // detached from the connect verdict, we POLL the ACL rather than assert
+  // synchronously — an unwired promotePending leaves roles.bob undefined and the
+  // poll exhausts (a real failure, not a false pass).
+  it('binds a pending-by-email invite to the connecting sub + caches display name', { timeout: 20000 }, async () => {
+    const T = 'tenantA';
+    const R = 'room1';
+    const KEY = `${T}/${R}`;
+    // Mutable ACL sidecar: seed a LIVE pending invite for bob@y.com.
+    let aclState = {
+      ownerId: 'owner',
+      roles: {},
+      pending: { 'bob@y.com': { role: 'editor', invitedBy: 'owner', invitedAt: new Date().toISOString() } },
+    };
+    const storage = {
+      readRoom: async () => null,
+      writeRoom: async () => {},
+      readAcl: async (t, r) => (`${t}/${r}` === KEY ? JSON.parse(JSON.stringify(aclState)) : null),
+      writeAcl: async (t, r, next) => { if (`${t}/${r}` === KEY) aclState = JSON.parse(JSON.stringify(next)); },
+    };
+    const { srv, url } = await boot({
+      storage, useHocuspocus: true, wsRatePerMin: 100000,
+      // The token MUST carry email (promotePending gates on ctx.user.email) and
+      // name (the display cache reads user.name) — matching auth-jwt's claim map.
+      authProvider: {
+        requiresAuth: true,
+        validateToken: async (t) => (t === 'tokBob' ? { id: 'bob', tenant: T, email: 'bob@y.com', name: 'Bob' } : null),
+      },
+    });
+
+    const doc = new Y.Doc();
+    const prov = new HocuspocusProvider({ url, name: KEY, document: doc, token: 'tokBob', WebSocketPolyfill: WS });
+    await waitFor(() => prov.synced, 8000);
+
+    // Fire-and-forget: poll storage until the bind lands (or time out).
+    for (let i = 0; i < 50 && !((await storage.readAcl(T, R)).roles || {}).bob; i++) {
+      await new Promise((r) => setTimeout(r, 20));
+    }
+    const bound = await storage.readAcl(T, R);
+    assert.strictEqual(bound.roles.bob, 'editor', 'pending invite must bind to the sub as editor');
+    assert.strictEqual(bound.pending['bob@y.com'], undefined, 'the pending entry must be cleared after binding');
+    assert.ok(bound.display && bound.display.bob && bound.display.bob.name === 'Bob', 'display name must be cached from the token');
+
+    prov.destroy(); doc.destroy();
+    srv.cleanup?.(); srv.httpServer.close();
+  });
+});
+
 // ── Test 5 — GATE: shutdown drain flushes ALL dirty rooms (#128 Task 5.2) ────
 
 describe('Shutdown drain — GATE (#128 Task 5.2)', () => {
