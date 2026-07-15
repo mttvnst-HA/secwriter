@@ -16,7 +16,9 @@ const { seedRoomFromBlocks } = require('./room-serializer.cjs');
 const { migrateRoom } = require('./migrate-pm-substrate.cjs');
 const { log } = require('./logger.cjs');
 const { sanitize, PUBLIC_TENANT, buildCompositeDocName } = require('./storage-shared.cjs');
-const { authorize, checkPrincipal, aclAllowsRead, roleOf, ACTION, GRANTABLE_ROLES } = require('./auth/authorize.cjs');
+const { authorize, checkPrincipal, roleOf, ACTION, GRANTABLE_ROLES,
+  resolveRole, pendingInviteTtlMs, normalizeEmail, isValidEmailShape, isPendingExpired,
+  exceedsAclByteCap, MAX_PENDING_INVITES } = require('./auth/authorize.cjs');
 
 /**
  * @param {Object} deps
@@ -34,7 +36,7 @@ const { authorize, checkPrincipal, aclAllowsRead, roleOf, ACTION, GRANTABLE_ROLE
  *   alone — same behavior those harnesses relied on before the seam existed.
  * @param {number} deps.maxDocBytes
  */
-function createHttpHandler({ storage, boundDocs, flushRoom, deleteRoomTransactionally, revokeLiveSessions, maxDocBytes, authProvider, allowedOrigin = '*', getActiveUsers, rateLimiter, roomHealth }) {
+function createHttpHandler({ storage, boundDocs, flushRoom, deleteRoomTransactionally, revokeLiveSessions, withAclLock, maxDocBytes, authProvider, allowedOrigin = '*', getActiveUsers, rateLimiter, roomHealth }) {
   // Parse rate limit config once at handler creation, not per-request
   const HTTP_READ_RATE = Number(process.env.SIM_RATE_LIMIT_HTTP_READ_PER_MIN || 60);
   const HTTP_WRITE_RATE = Number(process.env.SIM_RATE_LIMIT_HTTP_WRITE_PER_MIN || 20);
@@ -52,6 +54,13 @@ function createHttpHandler({ storage, boundDocs, flushRoom, deleteRoomTransactio
       await storage.deleteRoom(tenant, roomId);
     }
   }
+
+  // #267: the share route serializes its ACL RMW through the shared mutex when
+  // wired (collab-server threads it in); bare test harnesses without it fall
+  // back to running fn directly (no concurrent promote to race there).
+  const withAclLockOrDirect = typeof withAclLock === 'function'
+    ? withAclLock
+    : (_key, fn) => fn();
 
   // #215 — room lock enforcement. The `locked` flag (yMeta.locked + lockedBy)
   // was write-only metadata: DELETE/upload/PATCH never consulted it, so a locked
@@ -390,8 +399,14 @@ function createHttpHandler({ storage, boundDocs, flushRoom, deleteRoomTransactio
         } else if (Array.isArray(acl.sharedWith)) {
           for (const uid of acl.sharedWith) roles[uid] = 'editor';
         }
+        // #267: surface pending invites + cached display names. STRICTLY
+        // read-only — normalize for the response, never persist from this path
+        // (a write here would be a 4th unserialized RMW site that could lose a
+        // share/promote update). See the full-object-RMW invariant in the spec.
+        const pending = (acl.pending && typeof acl.pending === 'object') ? acl.pending : {};
+        const display = (acl.display && typeof acl.display === 'object') ? acl.display : {};
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ ownerId: acl.ownerId, roles }));
+        res.end(JSON.stringify({ ownerId: acl.ownerId, roles, pending, display }));
       } catch (err) {
         res.writeHead(500, { 'Content-Type': 'text/plain' });
         res.end(`ACL read failed: ${err.message}`);
@@ -526,7 +541,11 @@ function createHttpHandler({ storage, boundDocs, flushRoom, deleteRoomTransactio
       return;
     }
 
-    // PATCH /rooms/:roomId/share — owner-only; add/remove a sharee subject id.
+    // PATCH /rooms/:roomId/share — owner-only. Two variants:
+    //   { userId, action:'add'|'remove', role? } — raw-sub grant (unchanged behavior)
+    //   { email,  action:'add'|'remove', role? } — #267 pending-by-email invite
+    // Every write is a FULL-OBJECT read-modify-write (writeAcl overwrites the
+    // whole blob) under the shared ACL mutex, preserving roles + pending + display.
     const shareMatch = url.pathname.match(/^\/rooms\/([^/]+)\/share$/);
     if (shareMatch && req.method === 'PATCH') {
       const roomId = shareMatch[1];
@@ -539,16 +558,20 @@ function createHttpHandler({ storage, boundDocs, flushRoom, deleteRoomTransactio
           if (denied(res, dec)) return;
 
           const body = JSON.parse(Buffer.concat(chunks).toString('utf-8'));
-          const userId = body && body.userId;
           const action = body && body.action;
-          // #239: `role` is optional and graded. `add` upserts the grant
-          // (defaults to 'editor' when role is omitted — the #211 sharee
-          // capability, so every existing caller keeps working); `remove`
-          // drops the grant and ignores role.
           const role = body && body.role;
-          if (typeof userId !== 'string' || !userId || (action !== 'add' && action !== 'remove')) {
+          const rawEmail = body && body.email;
+          const userId = body && body.userId;
+          const isEmail = typeof rawEmail === 'string' && rawEmail.length > 0;
+
+          if (action !== 'add' && action !== 'remove') {
             res.writeHead(400, { 'Content-Type': 'text/plain' });
-            res.end('Body must be { userId: string, action: "add" | "remove", role?: "viewer" | "editor" }');
+            res.end('action must be "add" or "remove"');
+            return;
+          }
+          if (!isEmail && (typeof userId !== 'string' || !userId)) {
+            res.writeHead(400, { 'Content-Type': 'text/plain' });
+            res.end('Body must include userId or email');
             return;
           }
           if (action === 'add' && role !== undefined && !GRANTABLE_ROLES.includes(role)) {
@@ -556,56 +579,85 @@ function createHttpHandler({ storage, boundDocs, flushRoom, deleteRoomTransactio
             res.end(`role must be one of ${GRANTABLE_ROLES.join(', ')}`);
             return;
           }
-
-          const acl = await storage.readAcl(tenant, roomId);
-          // authorize() confirmed acl existed; a concurrent DELETE could have
-          // removed it since (TOCTOU) — fail closed with 404, not a 500 NPE.
-          if (!acl) {
-            res.writeHead(404, { 'Content-Type': 'text/plain' });
-            res.end('Not found');
+          const email = isEmail ? normalizeEmail(rawEmail) : null;
+          if (isEmail && action === 'add' && !isValidEmailShape(email)) {
+            res.writeHead(400, { 'Content-Type': 'text/plain' });
+            res.end('Malformed email');
             return;
           }
-          // Fold the current ACL into the graded `roles` shape, migrating a
-          // #211 `sharedWith` sidecar in place (each entry → 'editor'). `roles`
-          // wins if both keys are present (matches roleOf()).
-          const roles = {};
-          if (acl.roles && typeof acl.roles === 'object') {
-            for (const [uid, r] of Object.entries(acl.roles)) {
-              if (r === 'viewer' || r === 'editor') roles[uid] = r;
-            }
-          } else if (Array.isArray(acl.sharedWith)) {
-            for (const uid of acl.sharedWith) roles[uid] = 'editor';
-          }
-          // #268: resolve the target's role BEFORE mutating so a real downgrade
-          // can be distinguished from a no-op/upgrade. `roleOf` reads the
-          // unmutated `acl` (roles below is a fresh copy), so order is not
-          // load-bearing, but capture it here for clarity.
-          const prevRole = roleOf(acl, userId);
-          // Same-tenant is enforced STRUCTURALLY: the room lives under the
-          // owner's tenant, so a cross-tenant userId is inert. Store opaque id as-is.
-          if (action === 'add') roles[userId] = role || 'editor'; else delete roles[userId];
-          delete roles[acl.ownerId]; // never let a grant entry equal the owner
-          await storage.writeAcl(tenant, roomId, { ownerId: acl.ownerId, roles });
 
-          // #268 live-session revocation: kick affected open sessions so a
-          // removal or a downgrade (editor→viewer) takes effect immediately
-          // (forced reconnect → re-auth with the new role) instead of only at
-          // the target's next voluntary reconnect. An UPGRADE (viewer→editor or
-          // a brand-new grant) is intentionally NOT kicked here — a live viewer
-          // session keeps its read-only scope until it reconnects; the periodic
-          // revoke sweep applies the upgrade within one interval. The owner is
-          // never a target (roles never holds ownerId — deleted just above).
+          const composite = buildCompositeDocName(tenant, roomId);
+          const now = Date.now();
+          const ttlMs = pendingInviteTtlMs();
+          const outcome = { status: 200 };
+
+          await withAclLockOrDirect(composite, async () => {
+            const acl = await storage.readAcl(tenant, roomId);
+            // authorize() confirmed acl existed; a concurrent DELETE could have
+            // removed it since (TOCTOU) — fail closed with 404, not a 500 NPE.
+            if (!acl) { outcome.status = 404; return; }
+
+            // Fold current roles into the graded shape (migrate #211 sharedWith).
+            const roles = {};
+            if (acl.roles && typeof acl.roles === 'object') {
+              for (const [uid, r] of Object.entries(acl.roles)) if (r === 'viewer' || r === 'editor') roles[uid] = r;
+            } else if (Array.isArray(acl.sharedWith)) {
+              for (const uid of acl.sharedWith) roles[uid] = 'editor';
+            }
+            const pending = { ...((acl.pending && typeof acl.pending === 'object') ? acl.pending : {}) };
+            const display = { ...((acl.display && typeof acl.display === 'object') ? acl.display : {}) };
+
+            // Prune expired pending first (reuse the exported predicate — no
+            // inline re-implementation to drift), so the cap counts only LIVE invites.
+            for (const [e, entry] of Object.entries(pending)) {
+              if (isPendingExpired(entry, now, ttlMs)) delete pending[e];
+            }
+
+            if (isEmail) {
+              if (action === 'add') {
+                if (!pending[email] && Object.keys(pending).length >= MAX_PENDING_INVITES) { outcome.status = 429; return; }
+                pending[email] = { role: role || 'editor', invitedBy: req.user.id, invitedAt: new Date(now).toISOString() };
+              } else {
+                outcome.pendingRemoved = Object.prototype.hasOwnProperty.call(pending, email);
+                delete pending[email];
+              }
+            } else {
+              outcome.prevRole = roleOf(acl, userId);
+              if (action === 'add') roles[userId] = role || 'editor'; else { delete roles[userId]; delete display[userId]; }
+              outcome.newRole = action === 'add' ? (role || 'editor') : null;
+            }
+            delete roles[acl.ownerId]; // a grant entry may never equal the owner
+
+            const next = { ...acl, roles, pending, display };
+            delete next.sharedWith; // #239 folded into `roles` above; drop the legacy key so it isn't persisted forever
+            // Cap only gates ADD (the only action that grows the blob). A REMOVE
+            // shrinks it, so it must never be blocked — otherwise an already
+            // over-cap ACL (reachable only via direct-storage/migration edits,
+            // never this route) would have no recovery path.
+            if (action === 'add' && exceedsAclByteCap(next)) { outcome.status = 400; return; }
+            await storage.writeAcl(tenant, roomId, next);
+            outcome.roles = roles;
+          });
+
+          if (outcome.status === 404) { res.writeHead(404, { 'Content-Type': 'text/plain' }); res.end('Not found'); return; }
+          if (outcome.status === 429) { res.writeHead(429, { 'Content-Type': 'text/plain' }); res.end(`Too many pending invites (max ${MAX_PENDING_INVITES})`); return; }
+          if (outcome.status === 400) { res.writeHead(400, { 'Content-Type': 'text/plain' }); res.end('ACL too large'); return; }
+
+          // #268/#267 live-session revocation. Email remove: kick any session
+          // whose token email matches (the bound sub is unknown until connect —
+          // major #4). Raw-sub remove/downgrade: kick the sub (unchanged #268).
           if (revokeLiveSessions) {
-            const newRole = action === 'add' ? (role || 'editor') : null;
-            const isRemoval = action === 'remove';
-            const isDowngrade = newRole === 'viewer' && prevRole === 'editor';
-            if (isRemoval || isDowngrade) {
-              revokeLiveSessions(tenant, roomId, { subjects: [userId] });
+            if (isEmail) {
+              if (action === 'remove' && outcome.pendingRemoved) revokeLiveSessions(tenant, roomId, { emails: [email] });
+            } else {
+              const isRemoval = action === 'remove';
+              const isDowngrade = outcome.newRole === 'viewer' && outcome.prevRole === 'editor';
+              if (isRemoval || isDowngrade) revokeLiveSessions(tenant, roomId, { subjects: [userId] });
             }
           }
 
           res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ ok: true, roles }));
+          res.end(JSON.stringify({ ok: true, roles: outcome.roles || {} }));
         } catch (err) {
           res.writeHead(500, { 'Content-Type': 'text/plain' });
           res.end(`Share failed: ${err.message}`);
@@ -719,14 +771,21 @@ function createHttpHandler({ storage, boundDocs, flushRoom, deleteRoomTransactio
           // and gate the owner-only Share affordance without a second request.
           // Under auth=none everyone is an editor in the _public namespace.
           let callerRole = 'editor';
+          let callerViaPending = false;
           if (authProvider?.requiresAuth) {
             const acl = await storage.readAcl(tenant, id);
-            if (!aclAllowsRead(acl, req.user.id)) continue;
-            callerRole = roleOf(acl, req.user.id);
+            // #267: resolveRole (not aclAllowsRead/roleOf) so a caller's OWN
+            // pending-by-email invites list too — badged viaPending. Zero extra
+            // I/O (the ACL is already loaded for the member filter). Genuine
+            // non-members resolve to null → still excluded (unchanged 404).
+            const resolved = resolveRole(acl, req.user, Date.now(), pendingInviteTtlMs());
+            if (!resolved.role) continue;
+            callerRole = resolved.role;
+            callerViaPending = resolved.viaPending;
           }
 
           const composite = buildCompositeDocName(tenant, id);
-          const entry = { id, displayName: id, sectionNumber: null, sectionTitle: null, lastModified: null, activeUsers: [], locked: false, sizeBytes: 0, role: callerRole };
+          const entry = { id, displayName: id, sectionNumber: null, sectionTitle: null, lastModified: null, activeUsers: [], locked: false, sizeBytes: 0, role: callerRole, viaPending: callerViaPending };
 
           // Try live doc first (has awareness for active users)
           const liveDoc = boundDocs.get(composite);

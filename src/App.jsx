@@ -2897,12 +2897,13 @@ export default function SpecEditor() {
               if (!res.ok) throw new Error(res.status === 404 ? 'Room not found' : `Failed to load (${res.status})`);
               return res.json();
             }}
-            onShareRoom={async (roomId, { userId, action, role }) => {
-              // #239: PATCH /rooms/:id/share — owner-only; returns { roles }.
+            onShareRoom={async (roomId, payload) => {
+              // #239 raw-sub grant + #267 email invite. Forward the payload
+              // ({ userId|email, action, role }) as-is; the server branches.
               const res = await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}/share`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json', ...authHeaders },
-                body: JSON.stringify({ userId, action, role }),
+                body: JSON.stringify(payload),
               });
               if (!res.ok) {
                 const msg = await res.text().catch(() => '');

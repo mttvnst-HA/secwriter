@@ -155,6 +155,15 @@ class SecWriterDatabase extends Database {
   }
 
   /**
+   * True iff `documentName` is currently tombstoned (mid-delete). Threaded to
+   * promotePending (#267) so its ACL write-back skips a room being deleted —
+   * the same guard store() applies via the `_deleted` check.
+   */
+  isDeleted(documentName) {
+    return this._deleted.has(documentName);
+  }
+
+  /**
    * Drop tombstones older than maxAgeMs. `_deleted` only shrinks on a fresh
    * load of the same name (fetch()) or a rollback (unmarkDeleted()) — a room
    * that's deleted and never recreated would otherwise tombstone forever on a

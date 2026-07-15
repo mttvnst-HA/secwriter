@@ -17,7 +17,7 @@
 'use strict';
 
 const { sanitize, PUBLIC_TENANT } = require('./storage-shared.cjs');
-const { checkPrincipal, aclAllowsRead, roleOf, ROLE } = require('./auth/authorize.cjs');
+const { checkPrincipal, resolveRole, pendingInviteTtlMs, ROLE } = require('./auth/authorize.cjs');
 
 class AuthReject extends Error {
   constructor(status, reason) {
@@ -62,16 +62,19 @@ function buildOnAuthenticate({ authProvider, storage }) {
 
     const acl = await storage.readAcl(tenant, roomId);
     if (!acl) throw new AuthReject(404, 'no-acl');
-    if (!aclAllowsRead(acl, user.id)) throw new AuthReject(404, 'not-shared');
 
-    // #239: graded roles. READ passed above (viewer/editor/owner all connect).
+    // #239/#267: graded roles + pending-by-email invites. resolveRole is the
+    // single decision covering both bound (acl.roles/sharedWith) and unbound
+    // pending-by-email access — a pending invitee has no `roles` entry, so the
+    // old aclAllowsRead(roleOf) gate rejected them before the role logic ran.
     // A viewer's connection must be READ-ONLY: the caller (collab-server's
     // onAuthenticate wrapper) reads `readOnly` and sets
     // data.connectionConfig.readOnly = true, after which Hocuspocus rejects and does
     // not sync that connection's document updates. This is the WS-layer write
     // gate the issue's acceptance requires ("viewer cannot write, verified at
     // the WS layer, not just UI").
-    const role = roleOf(acl, user.id);
+    const { role } = resolveRole(acl, user, Date.now(), pendingInviteTtlMs());
+    if (!role) throw new AuthReject(404, 'not-shared');
     return { user, tenant, roomId, acl, role, readOnly: role === ROLE.VIEWER };
   };
 }

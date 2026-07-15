@@ -459,6 +459,188 @@ describe('#268 live-session revocation (revokeLiveSessions)', () => {
     editor.destroy(); edDoc.destroy();
     srv.cleanup?.(); srv.httpServer.close();
   });
+
+  // T6 (#267) — the { emails } selector kicks only the email-matched conn, with
+  // case-insensitive normalization. Pending-by-email invitees have no ACL
+  // `roles` entry (thus no stable subject to target by `subjects`), so a
+  // downgrade/removal that touches them must be reachable by email. A is
+  // targeted by a MIXED-CASE email to prove normalizeEmail runs on both the
+  // selector and conn.context.user.email; B (a different email) must stay
+  // connected read-write. Numbered T6 because the T5 slot above is the
+  // DELETE-route merge guard.
+  it('T6 (#267): revokeLiveSessions({ emails }) kicks only the email-matched conn', { timeout: 20000 }, async () => {
+    const aclMap = new Map([[ROOM, { ownerId: 'owner', roles: { editorUser: 'editor', editorUser2: 'editor' } }]]);
+    const users = {
+      tokO: { id: 'owner', tenant: T, email: 'owner@y.com' },
+      tokEA: { id: 'editorUser', tenant: T, email: 'a@y.com' },
+      tokEB: { id: 'editorUser2', tenant: T, email: 'b@y.com' },
+    };
+    const storage = {
+      readRoom: async () => null,
+      writeRoom: async () => {},
+      readAcl: async (tenant, roomId) => aclMap.get(`${tenant}/${roomId}`) || null,
+    };
+    const { srv, url } = await boot({
+      storage, useHocuspocus: true, wsRatePerMin: 100000,
+      authProvider: { requiresAuth: true, validateToken: async (t) => users[t] || null },
+    });
+
+    const obsDoc = new Y.Doc();
+    const observer = new HocuspocusProvider({ url, name: ROOM, document: obsDoc, token: 'tokO', WebSocketPolyfill: WS });
+    await waitFor(() => observer.synced, 8000);
+
+    let aAuthFail = 0;
+    const aDoc = new Y.Doc();
+    const edA = new HocuspocusProvider({
+      url, name: ROOM, document: aDoc, token: 'tokEA', WebSocketPolyfill: WS,
+      onAuthenticationFailed: () => { aAuthFail += 1; },
+    });
+    const bDoc = new Y.Doc();
+    const edB = new HocuspocusProvider({ url, name: ROOM, document: bDoc, token: 'tokEB', WebSocketPolyfill: WS });
+    await waitFor(() => edA.synced && edB.synced, 8000);
+
+    // Remove A from the ACL so A's forced reconnect auth-FAILS (proving A was the
+    // kicked session); B stays an editor.
+    aclMap.set(ROOM, { ownerId: 'owner', roles: { editorUser2: 'editor' } });
+
+    // Target A by a MIXED-CASE email — normalization must match a@y.com.
+    const n = srv.revokeLiveSessions(T, R, { emails: ['A@Y.COM'] });
+    assert.strictEqual(n, 1, 'only the email-matched connection is kicked');
+
+    // A's reconnect re-auths against the now-removed ACL → exactly this session
+    // fails: proves A (not B / not the owner) was the one kicked.
+    await waitFor(() => aAuthFail >= 1, 12000);
+
+    // B was never targeted: still read-write, and its write reaches the observer.
+    assert.strictEqual(edB.authorizedScope, 'read-write');
+    bDoc.transact(() => bDoc.getArray('order').push(['b1']), 'local-publish');
+    await waitFor(() => obsDoc.getArray('order').length === 1 && obsDoc.getArray('order').get(0) === 'b1', 8000);
+
+    edA.destroy(); edB.destroy(); observer.destroy(); aDoc.destroy(); bDoc.destroy(); obsDoc.destroy();
+    srv.cleanup?.(); srv.httpServer.close();
+  });
+});
+
+// ── T7 (#267) — pending-by-email invite binds to the sub on WS connect ──────
+
+describe('#267 promotePending on WS connect (fire-and-forget)', () => {
+  // A pending-by-email invitee (no bound ACL `roles` entry) connects. resolveRole
+  // in onAuthenticate already GRANTS the connect via the pending invite; the
+  // fire-and-forget promotePending call then PERSISTS the bind (roles[sub]) and
+  // caches the display name, all under the shared ACL mutex. Because the bind is
+  // detached from the connect verdict, we POLL the ACL rather than assert
+  // synchronously — an unwired promotePending leaves roles.bob undefined and the
+  // poll exhausts (a real failure, not a false pass).
+  it('binds a pending-by-email invite to the connecting sub + caches display name', { timeout: 20000 }, async () => {
+    const T = 'tenantA';
+    const R = 'room1';
+    const KEY = `${T}/${R}`;
+    // Mutable ACL sidecar: seed a LIVE pending invite for bob@y.com.
+    let aclState = {
+      ownerId: 'owner',
+      roles: {},
+      pending: { 'bob@y.com': { role: 'editor', invitedBy: 'owner', invitedAt: new Date().toISOString() } },
+    };
+    const storage = {
+      readRoom: async () => null,
+      writeRoom: async () => {},
+      readAcl: async (t, r) => (`${t}/${r}` === KEY ? JSON.parse(JSON.stringify(aclState)) : null),
+      writeAcl: async (t, r, next) => { if (`${t}/${r}` === KEY) aclState = JSON.parse(JSON.stringify(next)); },
+    };
+    const { srv, url } = await boot({
+      storage, useHocuspocus: true, wsRatePerMin: 100000,
+      // The token MUST carry email (promotePending gates on ctx.user.email) and
+      // name (the display cache reads user.name) — matching auth-jwt's claim map.
+      authProvider: {
+        requiresAuth: true,
+        validateToken: async (t) => (t === 'tokBob' ? { id: 'bob', tenant: T, email: 'bob@y.com', name: 'Bob' } : null),
+      },
+    });
+
+    const doc = new Y.Doc();
+    const prov = new HocuspocusProvider({ url, name: KEY, document: doc, token: 'tokBob', WebSocketPolyfill: WS });
+    await waitFor(() => prov.synced, 8000);
+
+    // Fire-and-forget: poll storage until the bind lands (or time out).
+    for (let i = 0; i < 50 && !((await storage.readAcl(T, R)).roles || {}).bob; i++) {
+      await new Promise((r) => setTimeout(r, 20));
+    }
+    const bound = await storage.readAcl(T, R);
+    assert.strictEqual(bound.roles.bob, 'editor', 'pending invite must bind to the sub as editor');
+    assert.strictEqual(bound.pending['bob@y.com'], undefined, 'the pending entry must be cleared after binding');
+    assert.ok(bound.display && bound.display.bob && bound.display.bob.name === 'Bob', 'display name must be cached from the token');
+
+    prov.destroy(); doc.destroy();
+    srv.cleanup?.(); srv.httpServer.close();
+  });
+});
+
+// ── #267 — revoke sweep uses resolveRole (keeps a valid pending-only session) ─
+
+describe('#267 revoke sweep resolveRole (revokeSweep)', () => {
+  // The periodic revoke sweep re-checks each live connection's role and kicks
+  // stale ones. It MUST use resolveRole (not bare roleOf): a pending-by-email
+  // invitee who was admitted via the pending invite but whose fire-and-forget
+  // promotePending bind hasn't persisted yet would be seen by roleOf as
+  // role=null and wrongly evicted during the connect→persist window.
+  it('#267: revoke sweep does not evict a valid pending-only session', { timeout: 20000 }, async () => {
+    const T = 'tenantA';
+    const R = 'room1';
+    const KEY = `${T}/${R}`;
+    // writeAcl is a NO-OP: the fire-and-forget promotePending bind can NEVER
+    // move pending→roles, so roleOf(acl,'bob') stays null the whole test. If the
+    // sweep used roleOf it would evict bob on the FIRST sweep; resolveRole sees
+    // the live pending invite and keeps him. LIVE invitedAt so the invite is
+    // non-expired.
+    let aclState = {
+      ownerId: 'owner',
+      roles: {},
+      pending: { 'bob@y.com': { role: 'editor', invitedBy: 'owner', invitedAt: new Date().toISOString() } },
+    };
+    const storage = {
+      readRoom: async () => null,
+      writeRoom: async () => {},
+      readAcl: async (t, r) => (`${t}/${r}` === KEY ? JSON.parse(JSON.stringify(aclState)) : null),
+      writeAcl: async () => {}, // no-op — bind never persists (roleOf stays null)
+    };
+    const { srv, url } = await boot({
+      storage, useHocuspocus: true, wsRatePerMin: 100000,
+      authProvider: {
+        requiresAuth: true,
+        validateToken: async (t) => (t === 'tokBob' ? { id: 'bob', tenant: T, email: 'bob@y.com', name: 'Bob' } : null),
+      },
+    });
+
+    let closeCount = 0;
+    let authFailCount = 0;
+    const doc = new Y.Doc();
+    const prov = new HocuspocusProvider({
+      url, name: KEY, document: doc, token: 'tokBob', WebSocketPolyfill: WS,
+      onClose: () => { closeCount += 1; },
+      onAuthenticationFailed: () => { authFailCount += 1; },
+    });
+    await waitFor(() => prov.synced, 8000);
+    const baseClose = closeCount;
+
+    // First sweep: resolveRole → editor (via the live pending invite) → NOT
+    // stale → NOT kicked. A roleOf-based sweep would see role=null → kick bob →
+    // the client's socket closes → closeCount increments.
+    await srv.revokeSweep();
+    await waitFor(() => false, 700).catch(() => {}); // settle
+    assert.strictEqual(closeCount, baseClose, 'a validly-pending session must NOT be swept-closed (resolveRole, not roleOf)');
+    assert.strictEqual(prov.synced, true, 'bob stays synced through the first sweep');
+    assert.strictEqual(authFailCount, 0, 'no auth failure on the first sweep');
+
+    // Remove the pending invite: resolveRole → null → stale → kicked. The forced
+    // reconnect re-authenticates against the now-empty ACL and auth-fails.
+    aclState = { ownerId: 'owner', roles: {}, pending: {} };
+    await srv.revokeSweep();
+    await waitFor(() => authFailCount >= 1, 12000);
+    assert.ok(authFailCount >= 1, 'once the pending invite is gone the sweep must kick bob');
+
+    prov.destroy(); doc.destroy();
+    srv.cleanup?.(); srv.httpServer.close();
+  });
 });
 
 // ── Test 5 — GATE: shutdown drain flushes ALL dirty rooms (#128 Task 5.2) ────

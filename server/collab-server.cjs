@@ -45,8 +45,10 @@ const { PUBLIC_TENANT, splitCompositeDocName, buildCompositeDocName } = require(
 const { Hocuspocus } = require('@hocuspocus/server');
 const { ResetConnection } = require('@hocuspocus/common');
 const { buildOnAuthenticate, AuthReject } = require('./hocuspocus-auth.cjs');
-const { roleOf } = require('./auth/authorize.cjs');
+const { resolveRole, pendingInviteTtlMs, normalizeEmail } = require('./auth/authorize.cjs');
 const { SecWriterDatabase } = require('./secwriter-database.cjs');
+const { createAclMutex } = require('./acl-mutex.cjs');
+const { promotePending } = require('./promote-pending.cjs');
 
 // Hard caps. A single spec section is O(100KB) of text; 8 MB gives plenty of
 // headroom for Y.Doc overhead + revision history without letting a runaway
@@ -108,6 +110,10 @@ function createCollabServer(config) {
   // persistFailures/lastPersistSuccess counters survive across stores.
   const roomHealth = new Map();
 
+  // #267 seam 4: ONE shared ACL RMW mutex for both the share route (HTTP) and
+  // promotePending (WS connect). Single-instance-bound (ADR-0017).
+  const { withAclLock } = createAclMutex();
+
   // The live in-memory docs live in `hocuspocusInstance.documents` (a
   // Map<docName, Document>; Document extends Y.Doc). `getActiveUsers` and the
   // http-handler's `boundDocs` view both read it lazily — the instance is
@@ -153,7 +159,8 @@ function createCollabServer(config) {
     return hocuspocusDatabase.store({ documentName: docName, document });
   }
 
-  // `revokeLiveSessions(tenant, roomId, { subjects })` (#268): force already-open
+  // `revokeLiveSessions(tenant, roomId, { subjects, emails })` (#268/#267): force
+  // already-open
   // WS sessions in a room to reconnect + re-authenticate NOW, so an ACL role
   // change takes effect on live sessions instead of only at the next reconnect.
   // Kicks by hard-closing the raw socket with ResetConnection (4205) — the ONLY
@@ -161,8 +168,11 @@ function createCollabServer(config) {
   // onAuthenticate with the fresh role. `Connection.close()` /
   // `hocuspocus.closeConnections()` are a SOFT in-band detach (socket stays open,
   // client goes dormant, never re-auths) — do NOT use them for revocation.
-  // `subjects` undefined = kick every connection (room deletion). Returns the
-  // count of sockets closed.
+  // Selectors match by `conn.context.user.id` (`subjects`) and/or by
+  // normalized `conn.context.user.email` (`emails`, #267 — reaches
+  // pending-by-email invitees that have no bound ACL subject). Both selectors
+  // undefined = kick every connection (room deletion). Returns the count of
+  // sockets closed.
   //
   // INTERNAL REACH — pinned to @hocuspocus/server 4.3.0: `doc.connections` keys
   // are Connection instances; `conn.context` is the onAuthenticate return (so
@@ -170,21 +180,72 @@ function createCollabServer(config) {
   // `conn.webSocket` is the raw ws socket. A Hocuspocus bump that reshapes any of
   // these breaks this silently — the T1–T4 revoke tests in
   // hocuspocus-server.test.mjs are the tripwire (T4 pins the identity match).
-  function revokeLiveSessions(tenant, roomId, { subjects } = {}) {
+  function revokeLiveSessions(tenant, roomId, { subjects, emails } = {}) {
     if (!hocuspocusInstance) return 0;
     const doc = hocuspocusInstance.documents.get(buildCompositeDocName(tenant, roomId));
     if (!doc) return 0; // room not resident — nothing live to revoke
-    const targets = subjects && new Set(subjects); // undefined = kick ALL
+    const subjectSet = subjects && new Set(subjects);
+    const emailSet = emails && new Set(emails.map((e) => normalizeEmail(e)));
+    const filtering = !!(subjectSet || emailSet); // neither selector = kick ALL
     let n = 0;
     doc.connections.forEach((_v, conn) => {
-      const uid = conn.context && conn.context.user && conn.context.user.id;
+      const u = conn.context && conn.context.user;
+      const uid = u && u.id;
       if (!uid) return;
-      if (targets && !targets.has(uid)) return;
+      if (filtering) {
+        const bySubject = subjectSet && subjectSet.has(uid);
+        const byEmail = emailSet && u.email && emailSet.has(normalizeEmail(u.email));
+        if (!bySubject && !byEmail) return;
+      }
       try { conn.webSocket.close(ResetConnection.code, ResetConnection.reason); n += 1; }
       catch (err) { log.warn('revoke.close-failed', { err: err && err.message }); }
     });
-    if (n) log.info('revoke.sessions-closed', { tenant, roomId, n, all: !subjects });
+    if (n) log.info('revoke.sessions-closed', { tenant, roomId, n, all: !filtering });
     return n;
+  }
+
+  // ── Live-session revocation sweep (#268 backstop) ──────────────────
+  // The event-triggered kicks on the share/delete routes are the fast path;
+  // this periodic re-authorization pass is the safety net for ACL changes that
+  // bypass those routes (direct-storage edits, the tenant-migration script, or a
+  // future route someone forgets to wire). It bounds worst-case revocation
+  // latency for ANY resident room to one interval. Skipped entirely under
+  // auth=none — every room is _public / editor there, so there is nothing to
+  // revoke. The predicate kicks BOTH directions: a removed member (no role) and
+  // a grade mismatch (downgrade editor→viewer, or upgrade viewer→editor where
+  // the event path deliberately left the read-only session in place). Exposed on
+  // the createCollabServer return so it can be driven deterministically from a
+  // test (startFromEnv wraps it in the SIM_REVOKE_SWEEP_MS interval).
+  async function revokeSweep() {
+    if (!authProvider.requiresAuth) return;
+    for (const [composite, doc] of hocuspocusInstance.documents) {
+      let acl;
+      try {
+        const { tenant, roomId } = splitCompositeDocName(composite);
+        acl = await storage.readAcl(tenant, roomId);
+      } catch (err) {
+        log.warn('revoke-sweep.acl-read-failed', { composite, err: err && err.message });
+        continue;
+      }
+      doc.connections.forEach((_v, conn) => {
+        const user = conn.context && conn.context.user;
+        const uid = user && user.id;
+        if (!uid) return;
+        // #267: resolveRole so a validly-pending session (admitted via pending,
+        // not yet bound by the fire-and-forget promote) is NOT swept-closed
+        // during the connect->persist window. Reads the same conn.context.user
+        // (id + email) the kick path uses.
+        const { role } = resolveRole(acl, user, Date.now(), pendingInviteTtlMs());
+        const stale = !role || (role === 'viewer') !== !!conn.readOnly;
+        if (stale) {
+          try { conn.webSocket.close(ResetConnection.code, ResetConnection.reason); }
+          catch (err) { log.warn('revoke-sweep.close-failed', { err: err && err.message }); }
+        }
+      });
+      // Yield between rooms so a large docs map can't starve the event loop
+      // (mirrors the GET /rooms setImmediate guard, ADR-0014 pattern #4).
+      await new Promise((resolve) => setImmediate(resolve));
+    }
   }
 
   // Room deletion is split into three steps so a FAILED storage.deleteRoom
@@ -285,6 +346,7 @@ function createCollabServer(config) {
       flushRoom,
       deleteRoomTransactionally,
       revokeLiveSessions,
+      withAclLock,
       maxDocBytes: MAX_DOC_BYTES,
       authProvider,
       allowedOrigin,
@@ -380,6 +442,18 @@ function createCollabServer(config) {
           // no-op (viewers stayed read-write, client always saw 'read-write').
           // Editors/owners leave it false. Pinned by hocuspocus-server.test.mjs.
           if (ctx && ctx.readOnly && data.connectionConfig) data.connectionConfig.readOnly = true;
+          // #267 seam 3: fire-and-forget pending-invite bind. Never blocks the
+          // connect verdict — resolveRole (in onAuthenticate) already granted the
+          // pending invitee. Runs under the shared ACL mutex; skips a tombstoned
+          // room via database.isDeleted. auth=none has no email → no-op.
+          if (authProvider && authProvider.requiresAuth && ctx && ctx.user && ctx.user.email) {
+            const compositeKey = buildCompositeDocName(ctx.tenant, ctx.roomId);
+            promotePending({
+              storage, tenant: ctx.tenant, roomId: ctx.roomId, user: ctx.user,
+              withAclLock, isDeleted: (k) => database.isDeleted(k), compositeKey,
+              now: Date.now(), ttlMs: pendingInviteTtlMs(), log,
+            }).catch((err) => log.warn('promote.failed', { err: err && err.message }));
+          }
           return ctx;
         } catch (err) {
           if (err instanceof AuthReject) {
@@ -494,6 +568,7 @@ function createCollabServer(config) {
     flushRoom,
     deleteRoomTransactionally,
     revokeLiveSessions,
+    revokeSweep,
     getActiveUsers,
     cleanup,
     storage,
@@ -634,44 +709,13 @@ function startFromEnv() {
   if (sweepTimer.unref) sweepTimer.unref();
 
   // ── Live-session revocation sweep (#268 backstop) ──────────────────
-  // The event-triggered kicks on the share/delete routes are the fast path;
-  // this periodic re-authorization pass is the safety net for ACL changes that
-  // bypass those routes (direct-storage edits, the tenant-migration script, or a
-  // future route someone forgets to wire). It bounds worst-case revocation
-  // latency for ANY resident room to one interval. Skipped entirely under
-  // auth=none — every room is _public / editor there, so there is nothing to
-  // revoke. The predicate kicks BOTH directions: a removed member (no role) and
-  // a grade mismatch (downgrade editor→viewer, or upgrade viewer→editor where
-  // the event path deliberately left the read-only session in place).
+  // The sweep itself lives in createCollabServer (exposed as server.revokeSweep
+  // so tests can drive it deterministically); here we just arm the periodic
+  // interval. See the revokeSweep doc comment in createCollabServer for the
+  // safety-net rationale and the both-directions kick predicate.
   const REVOKE_SWEEP_MS = Number(process.env.SIM_REVOKE_SWEEP_MS || 60000);
-  async function revokeSweep() {
-    if (!authProvider.requiresAuth) return;
-    for (const [composite, doc] of server.hocuspocus.documents) {
-      let acl;
-      try {
-        const { tenant, roomId } = splitCompositeDocName(composite);
-        acl = await storage.readAcl(tenant, roomId);
-      } catch (err) {
-        log.warn('revoke-sweep.acl-read-failed', { composite, err: err && err.message });
-        continue;
-      }
-      doc.connections.forEach((_v, conn) => {
-        const uid = conn.context && conn.context.user && conn.context.user.id;
-        if (!uid) return;
-        const role = acl ? roleOf(acl, uid) : null;
-        const stale = !role || (role === 'viewer') !== !!conn.readOnly;
-        if (stale) {
-          try { conn.webSocket.close(ResetConnection.code, ResetConnection.reason); }
-          catch (err) { log.warn('revoke-sweep.close-failed', { err: err && err.message }); }
-        }
-      });
-      // Yield between rooms so a large docs map can't starve the event loop
-      // (mirrors the GET /rooms setImmediate guard, ADR-0014 pattern #4).
-      await new Promise((resolve) => setImmediate(resolve));
-    }
-  }
   const revokeSweepTimer = setInterval(
-    () => revokeSweep().catch((err) => log.error('revoke-sweep.uncaught', { err: err && err.message })),
+    () => server.revokeSweep().catch((err) => log.error('revoke-sweep.uncaught', { err: err && err.message })),
     REVOKE_SWEEP_MS,
   );
   if (revokeSweepTimer.unref) revokeSweepTimer.unref();
