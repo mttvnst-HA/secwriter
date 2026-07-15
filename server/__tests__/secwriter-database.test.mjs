@@ -260,3 +260,12 @@ test('resurrection guard: sweepDeletedTombstones drops only stale entries', asyn
   assert.equal(db._deleted.has('tenantA/old'), false, 'a tombstone older than maxAge must be swept');
   assert.equal(db._deleted.has('tenantA/fresh'), true, 'a fresh tombstone must survive the sweep');
 });
+
+test('#267: isDeleted reflects the tombstone state', () => {
+  const db = new SecWriterDatabase({ storage: {}, roomHealth: new Map(), maxDocBytes: 1e9, log: { warn() {}, error() {} } });
+  assert.equal(db.isDeleted('acme/r1'), false);
+  db.markDeleted('acme/r1');
+  assert.equal(db.isDeleted('acme/r1'), true);
+  db.unmarkDeleted('acme/r1');
+  assert.equal(db.isDeleted('acme/r1'), false);
+});
