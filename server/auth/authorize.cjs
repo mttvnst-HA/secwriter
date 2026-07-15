@@ -207,7 +207,11 @@ async function authorize({ authProvider, storage, user, roomId, action }) {
   const acl = await storage.readAcl(user.tenant, roomId);
   if (!acl) return { ok: false, status: 404 };
 
-  const role = roleOf(acl, user.id);
+  // #267: resolveRole (not bare roleOf) so a pending-by-email invitee passes
+  // the capability check immediately, before the connect-time bind persists.
+  // authorize() is the impure adapter — it reads the clock + TTL here and feeds
+  // them to the pure resolveRole; the purity boundary stays at resolveRole.
+  const { role } = resolveRole(acl, user, Date.now(), pendingInviteTtlMs());
   // Uniform 404 for every denial (no role, or a role lacking the requested
   // capability). This preserves #211's no-existence-leak posture — the same
   // opaque failure for "can't see it" and "can't do that" — rather than

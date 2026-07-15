@@ -181,3 +181,26 @@ describe('resolveRole (#267)', () => {
     assert.deepEqual(resolveRole(aclWith({}), { id: 'z', email: 'z@y.com' }, NOW, TTL), { role: null, viaPending: false });
   });
 });
+
+describe('authorize() honors pending invites (#267)', () => {
+  const storage = { async readAcl(t, r) {
+    return t === 'acme' && r === 'r1'
+      ? { ownerId: 'owner', roles: {}, pending: { 'bob@y.com': { role: 'editor', invitedAt: new Date().toISOString() } } }
+      : null;
+  } };
+  const authOn = { requiresAuth: true };
+  it('pending invitee passes READ + WRITE over HTTP before bind persists', async () => {
+    const bob = { id: 'bob', tenant: 'acme', email: 'bob@y.com' };
+    assert.deepEqual(await authorize({ authProvider: authOn, storage, user: bob, roomId: 'r1', action: ACTION.READ }), { ok: true, role: 'editor' });
+    assert.deepEqual(await authorize({ authProvider: authOn, storage, user: bob, roomId: 'r1', action: ACTION.WRITE }), { ok: true, role: 'editor' });
+  });
+  it('pending invitee is NOT owner: DELETE → 404', async () => {
+    const bob = { id: 'bob', tenant: 'acme', email: 'bob@y.com' };
+    const dec = await authorize({ authProvider: authOn, storage, user: bob, roomId: 'r1', action: ACTION.DELETE });
+    assert.equal(dec.status, 404);
+  });
+  it('non-invitee with no roles entry still 404', async () => {
+    const z = { id: 'z', tenant: 'acme', email: 'z@y.com' };
+    assert.equal((await authorize({ authProvider: authOn, storage, user: z, roomId: 'r1', action: ACTION.READ })).status, 404);
+  });
+});
