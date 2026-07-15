@@ -89,4 +89,11 @@ describe('promotePending (#267 seam 3)', () => {
     await promotePending(deps(s));
     assert.equal(s.writes.length, 0);
   });
+  it('owner connecting to own stray pending: entry dropped, never written to roles/display', async () => {
+    const s = fakeStorage({ 'acme/r1': { ownerId: 'owner', roles: {}, pending: { 'owner@y.com': { role: 'editor', invitedAt: iso(NOW) } } } });
+    await promotePending(deps(s, { user: { id: 'owner', email: 'owner@y.com', name: 'The Owner' } }));
+    assert.equal(s._acls['acme/r1'].roles.owner, undefined, 'owner never gets a roles entry');
+    assert.equal(s._acls['acme/r1'].pending['owner@y.com'], undefined, 'stray pending dropped');
+    assert.equal((s._acls['acme/r1'].display || {}).owner, undefined, 'owner not written to display cache');
+  });
 });

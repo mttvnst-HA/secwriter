@@ -31,6 +31,14 @@ async function promotePending({ storage, tenant, roomId, user, withAclLock, isDe
     const acl = await storage.readAcl(tenant, roomId);
     if (!acl) return;                                    // blocker #2a: delete-then-read
     if (isDeleted && isDeleted(compositeKey)) return;    // blocker #2b: write-time tombstone
+    // 2b is checked with NO await between here and writeAcl below (prune/bind/
+    // display/exceedsAclByteCap are all synchronous), so no delete code can slip
+    // into that gap on this thread. The residual is a filesystem-level interleave:
+    // deleteRoom is NOT under this ACL mutex and does not await this direct
+    // storage.writeAcl, so a writeAcl landing after deleteRoom's unlinks resurrects
+    // a lone .acl.json. Bounded to a reclaimable 404 orphan (never an ownerless
+    // .ydoc) because .acl.json is catalogued BEFORE .ydoc — acceptable under the
+    // single-instance design (ADR-0017).
 
     const roles = (acl.roles && typeof acl.roles === 'object') ? acl.roles : {};
     const pending = (acl.pending && typeof acl.pending === 'object') ? acl.pending : {};
