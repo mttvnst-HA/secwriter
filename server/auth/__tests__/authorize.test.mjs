@@ -131,3 +131,49 @@ describe('share-by-email helpers (#267)', () => {
     assert.equal(Number.isInteger(MAX_PENDING_INVITES) && MAX_PENDING_INVITES > 0, true);
   });
 });
+
+const { resolveRole } = require('../authorize.cjs');
+
+describe('resolveRole (#267)', () => {
+  const NOW = Date.parse('2026-07-14T00:00:00Z');
+  const TTL = 30 * 24 * 60 * 60 * 1000;
+  const iso = (ms) => new Date(ms).toISOString();
+  const aclWith = (over) => ({ ownerId: 'owner', roles: {}, pending: {}, ...over });
+
+  it('roles-hit → bound role, viaPending false', () => {
+    const acl = aclWith({ roles: { u1: 'editor' } });
+    assert.deepEqual(resolveRole(acl, { id: 'u1', email: 'x@y.com' }, NOW, TTL), { role: 'editor', viaPending: false });
+  });
+  it('owner short-circuits (never downgraded by a stray pending)', () => {
+    const acl = aclWith({ pending: { 'owner@y.com': { role: 'viewer', invitedAt: iso(NOW) } } });
+    assert.deepEqual(resolveRole(acl, { id: 'owner', email: 'owner@y.com' }, NOW, TTL), { role: 'owner', viaPending: false });
+  });
+  it('pending-hit unbound → pending role, viaPending true', () => {
+    const acl = aclWith({ pending: { 'bob@y.com': { role: 'editor', invitedAt: iso(NOW) } } });
+    assert.deepEqual(resolveRole(acl, { id: 'bob', email: 'BOB@y.com' }, NOW, TTL), { role: 'editor', viaPending: true });
+  });
+  it('both present, bound >= pending → bound wins, viaPending false', () => {
+    const acl = aclWith({ roles: { bob: 'editor' }, pending: { 'bob@y.com': { role: 'viewer', invitedAt: iso(NOW) } } });
+    assert.deepEqual(resolveRole(acl, { id: 'bob', email: 'bob@y.com' }, NOW, TTL), { role: 'editor', viaPending: false });
+  });
+  it('both present, pending higher → upgrade, viaPending true (major #5)', () => {
+    const acl = aclWith({ roles: { bob: 'viewer' }, pending: { 'bob@y.com': { role: 'editor', invitedAt: iso(NOW) } } });
+    assert.deepEqual(resolveRole(acl, { id: 'bob', email: 'bob@y.com' }, NOW, TTL), { role: 'editor', viaPending: true });
+  });
+  it('blank/missing email never matches pending (decision #5)', () => {
+    const acl = aclWith({ pending: { 'bob@y.com': { role: 'editor', invitedAt: iso(NOW) } } });
+    assert.deepEqual(resolveRole(acl, { id: 'bob', email: '' }, NOW, TTL), { role: null, viaPending: false });
+    assert.deepEqual(resolveRole(acl, { id: 'bob' }, NOW, TTL), { role: null, viaPending: false });
+  });
+  it('expired / unparseable / future invitedAt all fail-closed', () => {
+    const mk = (invitedAt) => aclWith({ pending: { 'bob@y.com': { role: 'editor', invitedAt } } });
+    const u = { id: 'bob', email: 'bob@y.com' };
+    assert.equal(resolveRole(mk(iso(NOW - TTL - 1)), u, NOW, TTL).role, null, 'expired');
+    assert.equal(resolveRole(mk('not-a-date'), u, NOW, TTL).role, null, 'unparseable');
+    assert.equal(resolveRole(mk(undefined), u, NOW, TTL).role, null, 'missing');
+    assert.equal(resolveRole(mk(iso(NOW + 60000)), u, NOW, TTL).role, null, 'future');
+  });
+  it('no pending, no roles → null', () => {
+    assert.deepEqual(resolveRole(aclWith({}), { id: 'z', email: 'z@y.com' }, NOW, TTL), { role: null, viaPending: false });
+  });
+});

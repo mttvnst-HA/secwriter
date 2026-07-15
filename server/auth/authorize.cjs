@@ -151,6 +151,47 @@ function aclAllowsRead(acl, userId) {
   return roleCan(roleOf(acl, userId), ACTION.READ);
 }
 
+/**
+ * Fail-closed expiry for a pending entry. Missing/unparseable invitedAt, a
+ * non-finite age, or a FUTURE invitedAt (backward clock step) all count as
+ * expired. Pure — caller supplies now/ttlMs.
+ */
+function isPendingExpired(entry, now, ttlMs) {
+  const t = Date.parse(entry && entry.invitedAt);
+  if (!Number.isFinite(t)) return true;
+  const age = now - t;
+  if (!Number.isFinite(age)) return true;
+  if (age < 0) return true;
+  return age >= ttlMs;
+}
+
+/** Non-expired pending role matching the user's token email, else null. */
+function pendingRoleFor(acl, user, now, ttlMs) {
+  if (!acl || !acl.pending || typeof acl.pending !== 'object') return null;
+  const email = normalizeEmail(user && user.email);
+  if (!email) return null; // blank-email guard (decision #5)
+  const entry = acl.pending[email];
+  if (!entry || (entry.role !== ROLE.VIEWER && entry.role !== ROLE.EDITOR)) return null;
+  if (isPendingExpired(entry, now, ttlMs)) return null;
+  return entry.role;
+}
+
+/**
+ * Effective role INCLUDING an unbound pending-by-email invite (#267). Pure —
+ * caller supplies now/ttlMs (table-testable, no clock/env read). Returns
+ * { role, viaPending }; viaPending is true only when the pending invite is what
+ * grants or upgrades the role. Owner short-circuits so a stray pending entry
+ * can never downgrade an owner.
+ */
+function resolveRole(acl, user, now, ttlMs) {
+  const bound = roleOf(acl, user && user.id);
+  if (bound === ROLE.OWNER) return { role: ROLE.OWNER, viaPending: false };
+  const pendRole = pendingRoleFor(acl, user, now, ttlMs);
+  if (!pendRole) return { role: bound, viaPending: false };
+  const winner = higherRole(bound, pendRole);
+  return { role: winner, viaPending: winner === pendRole && winner !== bound };
+}
+
 async function authorize({ authProvider, storage, user, roomId, action }) {
   const pre = checkPrincipal(authProvider, user);
   if (!pre.ok) return pre;
@@ -184,4 +225,5 @@ module.exports = {
   // #267 share-by-email
   normalizeEmail, isValidEmailShape, higherRole, pendingInviteTtlMs,
   exceedsAclByteCap, MAX_PENDING_INVITES, MAX_ACL_BYTES,
+  resolveRole, pendingRoleFor, isPendingExpired,
 };
