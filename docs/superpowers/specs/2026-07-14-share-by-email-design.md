@@ -22,12 +22,29 @@ issue.
    deliberately-built follow-up (append-only, deletion-aware, CAS-written, gated
    read endpoint) — explicitly **out of scope** for #267.
 2. **Share-by-email creates a pending invite** bound to the subject id at that
-   user's **first login after the invite**, not rejected. Binding resolves to
-   whoever actually authenticates under that email, which is self-correcting on
-   the email-reuse hazard (see below).
+   user's **first login after the invite**, not rejected. Binding resolves to the
+   **sub that actually authenticates** under that email — it self-corrects *which
+   sub* it writes, NOT *which human* gets in. Under the email-reuse hazard it binds
+   whoever currently holds the email at the IdP (see decision #5 + the rejected-
+   alternative section); it does not clean up a departed sub's stale `roles` entry.
+   "Self-correcting" is scoped to sub-resolution only; do not read it as reuse-safe.
 3. **Email is never an ACL grant key.** `roles` stays keyed by stable subject id;
    `roleOf` is unchanged. Email appears only transiently in `pending` and as
    display metadata.
+5. **Email is an authorization INPUT — this reverses ADR-0017 decision 6, and is
+   safe only under a hard precondition.** ADR-0017 kept email out of identity/authz
+   because email is not reliable identity. This feature puts email back into the
+   *grant* decision (`resolveRole` matches on `user.email` before any bind persists),
+   so it is safe **only** when the IdP issues `email` as a **verified, immutable,
+   unique-per-subject** claim in the signed token. That is the "typical enterprise
+   IdP / no email reassignment" assumption locked in brainstorming — stated here as
+   a HARD PRECONDITION, not an aside. Enforcement: `resolveRole` and `onAuthenticate`
+   treat a **missing/empty `user.email`** as "no pending match" (never bind on a
+   blank email); the token signature is already validated upstream (`auth-jwt.cjs`).
+   If a tenant's IdP does NOT guarantee verified-unique-immutable email, share-by-
+   email is a same-tenant privilege-escalation vector and MUST be disabled for that
+   deployment. The ADR amendment documents why this reversal is acceptable and under
+   what IdP guarantee.
 4. **Pending invites expire.** A pending entry older than a TTL is treated as
    absent (never binds) and pruned opportunistically. This is hygiene, not a
    reuse-guard (email reuse is out of the threat model per the IdP assumption) —
@@ -99,6 +116,12 @@ unchanged.
   pending entry → `resolveRole` returns null → 404 unchanged).
 - `pending` and `display` only ever contain principals relevant to THIS room —
   no tenant-wide index, no cross-room aggregation, no `seenAt` activity trail.
+- `display[sub]` is **cosmetic and self-asserted** — its `name`/`email` come from
+  the connecting user's own validated token and NEVER feed authorization (`roles`
+  is sub-keyed, `resolveRole` reads `pending`+`roles` only). A user can only write
+  their OWN `display[user.id]` (promote writes that key alone), so no cross-user
+  poisoning; worst case is a misleading name the owner sees in the dialog. Do not
+  let `display` influence any access decision.
 - Both keys are additive and optional; a #211/#239 sidecar with neither reads
   identically to today.
 
@@ -106,10 +129,15 @@ unchanged.
 
 `writeAcl` is a **full-object overwrite** (`room-storage.cjs`: `JSON.stringify(acl)`).
 There is no partial/merge write. Therefore EVERY site that writes `.acl.json` —
-the existing raw-sub share branch, the new email branch, `promotePending`, and
-`GET /:id/acl`'s normalization write-back if any — MUST read the current ACL and
-write back the COMPLETE object (`ownerId` + `roles` + `pending` + `display`),
-never a freshly-constructed `{ ownerId, roles }`. The current raw-sub branch in
+the existing raw-sub share branch, the new email branch, and `promotePending` —
+MUST read the current ACL and write back the COMPLETE object (`ownerId` + `roles` +
+`pending` + `display`), never a freshly-constructed `{ ownerId, roles }`.
+**`GET /:id/acl` stays strictly READ-ONLY (no normalization write-back)** — any
+write there would be a fourth, unserialized RMW site that could lose an update
+racing share/promote. Normalize in-memory for the response only; never persist from
+the read path. The two content writers (share, promote) are the only ACL RMW
+writers and both run under the shared mutex (seam 4); `writeAclIfAbsent` (create-
+claim) and the delete path (tombstone) are separate, as noted in seam 4. The current raw-sub branch in
 `PATCH /:id/share` rebuilds `{ ownerId: acl.ownerId, roles }` from scratch; left
 as-is it would silently delete all pending invites and cached display names on
 every add/remove/role-change. **This branch must be changed** to preserve
@@ -125,8 +153,21 @@ reading was wrong — additive to the *shape*, but every writer must be made
    - `{ email, action: 'add', role? }` → normalize `lower(trim(email))`, write
      `pending[email] = { role: role || 'editor', invitedBy: req.user.id, invitedAt }`.
      Reject a malformed email (basic shape check) with 400. `role` restricted to
-     `viewer`/`editor` (reuse `GRANTABLE_ROLES`).
-   - `{ email, action: 'remove' }` → delete `pending[email]`.
+     `viewer`/`editor` (reuse `GRANTABLE_ROLES`). **Cap (major #6):** reject with
+     429/400 when `Object.keys(acl.pending).length >= MAX_PENDING_INVITES`
+     (constant in `authorize.cjs`, default 200) — a per-room bound so an owner can't
+     grow `.acl.json` without limit. Prune expired entries first (so the cap counts
+     only live invites). See also the ACL-size guard below.
+   - `{ email, action: 'remove' }` → delete `pending[email]`, then **kick any live
+     session that email currently grants (major #4).** A pending invite is not a
+     `roles` subject, so the existing `#268` remove path does NOT revoke it. Because
+     the sub the email is bound to is unknown until connect, the removal calls
+     `revokeLiveSessions(tenant, roomId, { emails: [email] })` — a new selector
+     alongside the existing `{ subjects }`: it closes any live connection whose
+     `conn.context.user.email` (normalized) matches, forcing a reconnect →
+     re-`onAuthenticate` → `resolveRole` now finds no pending → 404. Without this,
+     an owner has no handle to revoke a `viaPending`-granted session (see the
+     unrevocable-session hazard the design review raised).
    - The existing `{ userId, ... }` (raw-sub) branch keeps its behavior but MUST
      be changed to preserve `acl.pending` + `acl.display` on write-back (see the
      full-object-RMW invariant above) — it currently rebuilds a partial
@@ -140,44 +181,79 @@ reading was wrong — additive to the *shape*, but every writer must be made
      is a real org member → no lookup oracle, no existence leak. Matches
      ADR-0017's 404/no-leak posture.
 
-2. **Pure decision — `resolveRole(acl, user)` in `server/auth/authorize.cjs`.**
-   Returns `{ role, viaPending }`:
-   - `role = roleOf(acl, user.id)`. If non-null → `{ role, viaPending: false }`.
-   - Else if `user.email && acl.pending?.[normalizeEmail(user.email)]` AND that
-     entry is **not expired** (`now - Date.parse(invitedAt) < ttlMs`) →
-     `{ role: <that entry>.role, viaPending: true }`. An expired entry resolves
-     as if absent (falls through to null).
-   - Else `{ role: null, viaPending: false }`.
+2. **Pure decision — `resolveRole(acl, user, now, ttlMs)` in `server/auth/authorize.cjs`.**
+   Returns `{ role, viaPending }`. Let `bound = roleOf(acl, user.id)` (may be null)
+   and `pend = <non-expired pending entry matching normalizeEmail(user.email)>`
+   (null if no email, no match, or expired):
+   - **Email-presence guard (blocker #1 enforcement):** if `user.email` is missing
+     or empty, `pend` is null unconditionally — never bind on a blank email.
+   - If both null → `{ role: null, viaPending: false }`.
+   - If `bound` non-null and `pend` null → `{ role: bound, viaPending: false }`.
+   - If `pend` non-null → take the **higher of `bound` and `pend.role`** on the
+     `editor > viewer` lattice (reuse the `ROLE_ACTIONS`/lattice ordering). If the
+     pending role wins (invitee unbound, OR bound lower than the invite) →
+     `{ role: <higher>, viaPending: true }`. If `bound` is ≥ the pending role →
+     `{ role: bound, viaPending: false }` (pending is redundant; `promotePending`
+     drops it). This closes major #5 (silent no-upgrade): an owner who invites an
+     already-bound viewer as editor actually upgrades them.
+   - Expiry: `pend` requires `now - Date.parse(invitedAt) < ttlMs`. A missing or
+     unparseable `invitedAt`, or a **non-finite `now - invitedAt`**, is treated as
+     expired (fail-closed); a **future `invitedAt`** (`age < 0`) is ALSO treated as
+     expired (defensive against a backward clock step).
    `resolveRole` takes `now` + `ttlMs` as params (kept pure/testable — no clock or
-   env read inside); callers pass `Date.now()` and the configured TTL. A missing
-   or unparseable `invitedAt` is treated as expired (fail-closed).
-   Pure (no storage writes). `authorize()` uses `resolveRole` in place of the bare
-   `roleOf` call for its capability check, so a pending invitee passes READ/WRITE
-   over HTTP immediately (before the connect-time bind persists). `hocuspocus-auth.cjs`
-   `onAuthenticate` calls the same `resolveRole` for its role/`readOnly` decision —
-   one code path for both transports, closing the WS gap the rejected design had.
+   env read inside). **`ttlMs` sourcing:** a single `pendingInviteTtlMs()` reader in
+   `authorize.cjs` parses `SIM_PENDING_INVITE_TTL_MS` once, **validates at boot**
+   (non-finite / ≤ 0 → log a loud error and fall back to the 30-day default, never
+   silently disable sharing — closes the TTL=0/NaN silent-failure minor), and is
+   called by both HTTP and WS callers. `authorize()` (HTTP) reads `Date.now()` +
+   `pendingInviteTtlMs()` internally and feeds them to `resolveRole` — routes do NOT
+   thread them (the purity boundary stays at `resolveRole`; `authorize()` is the
+   impure adapter). Pure (no storage writes). `authorize()` uses `resolveRole` in
+   place of the bare `roleOf` call for its capability check, so a pending invitee
+   passes READ/WRITE over HTTP immediately (before the connect-time bind persists).
+   **`hocuspocus-auth.cjs` `onAuthenticate` must switch BOTH the `aclAllowsRead`
+   admit-gate AND the `role`/`readOnly` computation to `resolveRole`** — a pending
+   invitee has no `roles` entry, so the current `aclAllowsRead(acl, user.id)` gate
+   (roleOf-based, throws 404 `not-shared`) rejects them *before* the role logic runs.
+   One code path for both transports, closing the WS gap the rejected design had.
 
 3. **Connect-time persist — `promotePending(storage, tenant, roomId, user, lock)`
    (new helper; called ONLY from `onAuthenticate` in `server/collab-server.cjs`).**
    Once per session per room — not per keystroke, not per HTTP request. Under the
    per-composite-key mutex (seam 4), read the ACL and, if anything changed, write
    the COMPLETE object back once (full-object-RMW invariant):
-   - **Null-guard first:** if `readAcl` returns null, write NOTHING and return.
-     The room may have been deleted concurrently (delete removes `.acl.json` LAST,
-     `room-storage.cjs`); a blind write-back would re-create an ownerless
-     `.acl.json` after the `.ydoc` is gone — the exact crash-order resurrection
-     ADR-0017 decision 4 defends against. (Same TOCTOU the share route already
-     null-checks.) Note the delete path uses its own tombstone (`markDeleted` /
-     `deleteRoomTransactionally`), NOT this ACL mutex, so the null-guard — not the
-     mutex — is what closes the promote-vs-delete race; state this explicitly.
+   - **Delete-race guard — tombstone check, NOT just a read-time null-guard
+     (blocker #2 fix).** The read-time null-guard ("if `readAcl` null, write nothing")
+     is necessary but **does NOT close the race** — the earlier spec claim that it
+     did was wrong. The dangerous interleave is write-time: promote reads a LIVE ACL
+     (non-null) → `deleteRoomTransactionally` runs `storage.deleteRoom` (removes
+     `.acl.json` LAST, `room-storage.cjs`) → promote writes the object back →
+     **orphan `.acl.json` resurrected after `.ydoc` is gone**, the exact crash-order
+     violation ADR-0017 decision 4 defends against, and it blocks room-id recreation
+     (`POST /rooms` 409s on the existing-ACL check). The `markDeleted` tombstone only
+     no-ops `SecWriterDatabase.store` (the ydoc path) — it does NOT guard `writeAcl`.
+     **Fix:** the promote write-back is gated on the delete tombstone the SAME way
+     `store()` is — `promotePending` (and any acl write it does) checks
+     `isDeleted(compositeKey)` (the `SecWriterDatabase` tombstone predicate, threaded
+     in) immediately before `writeAcl`, INSIDE the mutex, and skips the write if the
+     room is tombstoned. Because `beginRoomDeletion` sets the tombstone BEFORE
+     `storage.deleteRoom`, a promote that acquires the mutex after `beginRoomDeletion`
+     sees the tombstone and no-ops; a promote already past the check races only the
+     narrow window before `beginRoomDeletion`, and the read-time null-guard covers
+     the delete-then-read ordering. Keep the null-guard too (cheap, covers the other
+     ordering). State plainly: **tombstone check + null-guard together** close the
+     race; the mutex alone does not (delete is not under the ACL mutex).
    - **Prune expired pending entries** (`now - Date.parse(invitedAt) >= ttlMs`, or
      unparseable `invitedAt`) — delete them; count as a change that triggers the
      write-back. This is the opportunistic garbage collection for stale invites.
-   - If `pending[normalizeEmail(user.email)]` exists, is **not expired**, and
-     `user.id` is not already in `roles`: move it → `roles[user.id] = <that
-     entry>.role`; delete the pending entry. (Bind resolves to the authenticating
-     sub → self-correcting.) An expired entry for THIS user is dropped by the prune
-     step above, not bound.
+   - If `pending[normalizeEmail(user.email)]` exists and is **not expired**: bind
+     OR upgrade, then delete the pending entry. Bind: if `user.id` not in `roles`,
+     `roles[user.id] = <entry>.role`. Upgrade (major #5): if `user.id` IS in `roles`
+     but the pending role is HIGHER on the `editor > viewer` lattice,
+     `roles[user.id] = <entry>.role`. If the bound role already ≥ the pending role,
+     just drop the redundant pending entry (no role change). (Bind resolves to the
+     authenticating sub → self-correcting on the sub, per decision #2.) An expired
+     entry for THIS user is dropped by the prune step above, not bound.
    - Refresh `display[user.id] = { name: user.name, email: normalizeEmail(user.email) }`
      whenever it differs from what's stored — so every authed member (whether
      bound via pending or added by raw sub) gets a human name cached, gated on
@@ -223,6 +299,30 @@ reading was wrong — additive to the *shape*, but every writer must be made
      raw-subject-id add path stays available (additive, not a replacement —
      acceptance criterion).
 
+6. **Revoke sweep is a THIRD role reader and MUST switch to `resolveRole`
+   (major #3).** The periodic revoke sweep (`collab-server.cjs`, ~`revokeSweep`)
+   currently computes `role = roleOf(acl, uid)` and hard-closes any socket whose
+   role/`readOnly` disagrees with the current ACL. Under fire-and-forget promote a
+   pending invitee connects (admitted via `resolveRole` in `onAuthenticate`) but has
+   NO `roles` entry until the detached `promotePending` write lands — so `roleOf`
+   returns null → the sweep sees them as stale → **hard-closes their socket every
+   ~60s during the connect->persist window**, repeatedly if promote is slow/dropped.
+   The sweep MUST use `resolveRole(acl, connUser, Date.now(), pendingInviteTtlMs())`
+   (same signature as the other two readers) so a validly-pending session is not
+   evicted. This makes a sweep change **required for correctness**, correcting the
+   earlier out-of-scope framing. The sweep reads `conn.context.user` (id + email)
+   per the `#268` reach already pinned by `hocuspocus-server.test.mjs`.
+
+7. **Bound the ACL blob size (major #6, storage side).** `.ydoc` has an 8 MB
+   pre-serialize cap; `.acl.json` has none. Beyond the per-room `MAX_PENDING_INVITES`
+   count cap (seam 1), any `.acl.json` write (`writeAcl`) that would exceed a byte
+   ceiling (`MAX_ACL_BYTES`, default 256 KB) is rejected — a defense against `display`
+   accumulation + large pending sets degrading the hot connect path (every connect
+   `JSON.stringify`s and RMWs the whole blob). A rejected promote write logs and
+   no-ops (access still correct via `resolveRole`); a rejected share write returns
+   400. `display` entries for removed members are pruned in the raw-sub remove branch
+   to bound growth.
+
 ### Data flow (happy path)
 
 1. Owner opens `ShareDialog`, types `bob@corp.com`, picks Editor, Add.
@@ -244,8 +344,29 @@ reading was wrong — additive to the *shape*, but every writer must be made
 - **Invitee logs in AFTER expiry** → `resolveRole` returns null (expired), so they
   are NOT bound and see the room as a non-member (404). The owner must re-invite.
 - **Cross-tenant email** → the pending entry is inert; it only binds when a token
-  whose tenant matches the room authenticates with that email. No cross-tenant
-  leak, no signal to the owner that the email exists elsewhere.
+  whose tenant matches the room authenticates with that email. Both transports gate
+  tenant BEFORE `resolveRole` runs (`onAuthenticate` rejects a `documentName` whose
+  tenant-half ≠ token tenant; HTTP derives tenant from the token, never the URL), so
+  the same email in two tenants lives in two separately-keyed rooms and cannot
+  collide. No cross-tenant leak, no signal to the owner that the email exists
+  elsewhere. **Caveat:** the email key carries no tenant qualifier — it is safe only
+  because of that pre-existing gate. This inherits and slightly widens ADR-0017's
+  accepted `sanitize()` tenant-collision risk (two raw tenant strings collapsing to
+  one namespace): if two orgs collide to one sanitized tenant, an email invite in
+  org1's room could bind an org2 user sharing that email. Documented as an inherited,
+  already-accepted risk, not a new one.
+- **Already-bound user invited at a higher role by email** → `resolveRole` returns
+  the higher of bound/pending (major #5); `promotePending` upgrades `roles[sub]` and
+  drops the pending entry. An invite at an equal/lower role than the bound role is a
+  redundant no-op pending entry, cleaned on next connect.
+- **Perpetual `viaPending` (promote never persists)** → access role stays correct
+  (`resolveRole` re-grants every connect), but the user is never listed in `GET
+  /rooms` and `display` is never cached. The pending-remove kick (seam 1) is the
+  owner's revoke handle; the fire-and-forget bind is idempotent and re-converges on
+  any later connect, and the ACL-size/pending caps bound the un-pruned state.
+- **Blank / missing email token claim** → `resolveRole` never matches pending
+  (email-presence guard, decision #5); the principal gets only its `roles`-based
+  role (or 404). auth=none demo has no email → pending path no-ops.
 - **Email already bound** (sub already in `roles`) → `resolveRole` returns the
   real role first; `promotePending` skips the promotion (the `user.id not in
   roles` guard). A leftover pending entry for an already-bound user is cleaned on
@@ -253,8 +374,13 @@ reading was wrong — additive to the *shape*, but every writer must be made
 - **Owner shares by email then by raw sub for the same person** → two entries
   (one `pending[email]`, one `roles[sub]`); the `roles` entry wins in
   `resolveRole`, and `promotePending` drops the redundant pending on connect.
-- **Concurrent owner remove vs invitee connect-bind** → serialized by the mutex
-  (seam 4); last serialized write wins deterministically (no lost update).
+- **Concurrent owner remove vs invitee connect-bind** → the two WRITE-backs are
+  serialized by the mutex (seam 4); last serialized write wins deterministically (no
+  lost update). Separately, if the invitee is ALREADY connected (granted via the
+  lock-free `resolveRole` read) when the owner removes the pending entry, the
+  pending-remove kick (`revokeLiveSessions({ emails })`, seam 1) forces their
+  reconnect → re-`onAuthenticate` → no pending → 404. The lock-free read grant is
+  thus revocable, not permanent.
 - **HTTP-before-WS** → an invitee who only hits HTTP routes (e.g. `GET /sec`)
   passes `authorize` via the pending entry but is NOT promoted (promote runs only
   at WS connect), so `display` isn't cached and the pending entry lingers. Harmless
@@ -267,9 +393,14 @@ reading was wrong — additive to the *shape*, but every writer must be made
 ## Testing
 
 - **`authorize.cjs` unit** — `resolveRole`: roles-hit, pending-hit (`viaPending`),
-  pending-miss, both-present (roles wins), null-email, **expired pending resolves
-  as absent**, **unparseable/missing `invitedAt` treated as expired** (fail-closed).
-  Pure with injected `now`/`ttlMs` — table-testable, no real clock.
+  pending-miss, **both-present bound≥pending (bound wins, viaPending false)**,
+  **both-present pending-higher (upgrade, viaPending true — major #5)**,
+  **blank/missing email never matches pending (decision #5 guard)**, **expired
+  pending resolves as absent**, **unparseable/missing `invitedAt` treated as
+  expired**, **future `invitedAt` (age<0) treated as expired** (all fail-closed).
+  Pure with injected `now`/`ttlMs` — table-testable, no real clock. Plus
+  `pendingInviteTtlMs()`: valid env parses; **0 / negative / NaN env → default +
+  loud log, never disables sharing**.
 - **`promotePending` unit** — promote-on-hit, no-op when already bound, display
   refresh only when changed, no write when nothing changed, **expired-entry prune
   triggers a write and does NOT bind**, **expired entry for the connecting user is
@@ -288,9 +419,20 @@ reading was wrong — additive to the *shape*, but every writer must be made
 - **Listing/authorize asymmetry (blocker #2)** — a pending invitee's `GET /rooms`
   does NOT list the room, while `GET /sec` and the WS connect succeed for the
   same principal.
-- **Promote-vs-delete null-guard** — `promotePending` invoked when `readAcl`
-  returns null writes nothing (no ownerless `.acl.json` resurrection). Deterministic:
-  stub `readAcl` → null.
+- **Promote-vs-delete guard (blocker #2)** — two cases: (a) `readAcl` → null writes
+  nothing (delete-then-read); (b) `readAcl` returns a LIVE acl but the room is
+  tombstoned (`isDeleted` true) before the write-back → promote no-ops (write-time
+  race). Both assert no `.acl.json` resurrection. Deterministic: stub `readAcl` +
+  the tombstone predicate.
+- **Revoke sweep uses `resolveRole` (major #3)** — a connected pending invitee
+  (no `roles` entry) is NOT swept-closed; a genuinely-stale session still is. Force
+  the connect->persist window by withholding the promote write.
+- **Pending-remove kick (major #4)** — `PATCH /share { email, action:'remove' }`
+  calls `revokeLiveSessions({ emails:[email] })`; a live session matching that email
+  is closed. Stub the sessions map, assert the raw-WS close on the email-matched
+  connection only.
+- **Caps (major #6)** — email `add` at `MAX_PENDING_INVITES` → rejected; a write
+  exceeding `MAX_ACL_BYTES` → rejected (share) / no-op+log (promote).
 - **`hocuspocus-auth` / WS** — a pending invitee connects read-write (editor) or
   read-only (viewer) via `resolveRole`; verify the bind persists after connect.
 - **`ShareDialog.test.jsx`** — email input routes to the email branch; pending
@@ -304,13 +446,27 @@ reading was wrong — additive to the *shape*, but every writer must be made
 - Amend **ADR-0017**: replace the "Share discovery limitation" consequence with
   the pending-invite model; document `pending`/`display` in the sidecar shape,
   the `SIM_PENDING_INVITE_TTL_MS` lazy expiry (default 30 days), `resolveRole` as
-  the shared HTTP+WS decision, `promotePending` at connect, and the
-  per-composite-key mutex (single-instance-bound).
+  the shared HTTP+WS+**sweep** decision, `promotePending` at connect, and the
+  per-composite-key mutex (single-instance-bound). **Explicitly record the reversal
+  of decision 6:** email is now an authz INPUT, safe only under the verified-
+  immutable-unique-per-sub IdP precondition (decision #5); state the precondition
+  and the "disable share-by-email if the IdP can't guarantee it" fallback.
+  **New PII-at-rest surface:** `.acl.json` now persists email addresses (pending +
+  `display`) on the storage backend (local/S3/Azure), including lingering
+  expired-but-unpruned invites — ADR-0017 previously persisted only subs. Note it
+  for CUI/retention review (owner-only via `GET /:id/acl`; the at-rest storage is
+  the new part). Record the `MAX_PENDING_INVITES` / `MAX_ACL_BYTES` caps and the
+  pending-remove live-session kick (`revokeLiveSessions({ emails })`).
 - Update **CLAUDE.md** "Collaboration Server" / authorization section: share route
-  now accepts email; `resolveRole` as the shared HTTP+WS decision; `promotePending`
-  at connect (fire-and-forget, null-guarded, prunes expired); `.acl.json` gains
-  `pending`/`display`; lazy `SIM_PENDING_INVITE_TTL_MS` expiry (default 30 days);
-  the shared per-composite-key ACL mutex (single-instance-bound). Add the invariant:
+  now accepts email (with `MAX_PENDING_INVITES` cap + pending-remove live-session
+  kick via `revokeLiveSessions({ emails })`); `resolveRole` as the shared
+  HTTP+WS+**revoke-sweep** decision (takes the higher of bound/pending role);
+  `promotePending` at connect (fire-and-forget, null-guard + delete-**tombstone**
+  guarded, prunes expired, upgrades bound-lower); `.acl.json` gains `pending`/
+  `display` (+ `MAX_ACL_BYTES` guard, new email PII-at-rest surface); lazy
+  `SIM_PENDING_INVITE_TTL_MS` expiry (default 30 days, boot-validated); the shared
+  per-composite-key ACL mutex (single-instance-bound); and the decision-6 reversal
+  (email as authz input, verified-IdP precondition). Add the invariant:
   **`writeAcl` is a full-object overwrite, so every ACL writer must read-modify-write
   the COMPLETE object (`ownerId` + `roles` + `pending` + `display`) — never
   construct a partial `{ ownerId, roles }`.**
@@ -320,9 +476,12 @@ reading was wrong — additive to the *shape*, but every writer must be made
 
 - Tenant-wide directory / email autocomplete (locked decision #1).
 - A dedicated pending-invite expiry **sweep** — expiry is lazy (decision #4);
-  extending the existing revoke sweep to prune expired invites is an optional
-  backstop, not required for correctness. Email-reuse guards remain out of scope
-  (IdP does not reassign emails).
+  extending the existing revoke sweep to also PRUNE expired invites is an optional
+  backstop, not required for correctness. (Distinct from major #3: the revoke sweep
+  MUST switch its role READ to `resolveRole` so it stops evicting valid pending
+  sessions — that is required and in scope, seam 6. Adding pruning on top is the
+  optional part.) Email-reuse guards remain out of scope (IdP does not reassign
+  emails — decision #5 hard precondition).
 - Ownership transfer (already out of scope per ADR-0017).
 - Cross-instance immediate bind (single-instance precondition).
 - Email deliverability / notification ("you've been invited" email) — the invite
