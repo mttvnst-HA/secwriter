@@ -16,7 +16,7 @@ const { seedRoomFromBlocks } = require('./room-serializer.cjs');
 const { migrateRoom } = require('./migrate-pm-substrate.cjs');
 const { log } = require('./logger.cjs');
 const { sanitize, PUBLIC_TENANT, buildCompositeDocName } = require('./storage-shared.cjs');
-const { authorize, checkPrincipal, aclAllowsRead, roleOf, ACTION, GRANTABLE_ROLES,
+const { authorize, checkPrincipal, roleOf, ACTION, GRANTABLE_ROLES,
   resolveRole, pendingInviteTtlMs, normalizeEmail, isValidEmailShape, isPendingExpired,
   exceedsAclByteCap, MAX_PENDING_INVITES } = require('./auth/authorize.cjs');
 
