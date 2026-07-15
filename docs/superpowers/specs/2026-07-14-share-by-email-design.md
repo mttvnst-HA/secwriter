@@ -28,10 +28,15 @@ issue.
 3. **Email is never an ACL grant key.** `roles` stays keyed by stable subject id;
    `roleOf` is unchanged. Email appears only transiently in `pending` and as
    display metadata.
-4. **No pending-invite expiry.** The target IdP does not reassign an email to a
-   new subject (typical enterprise), so a stale pending invite claimed by the
-   wrong person is not in the threat model. (If that assumption ever changes,
-   add expiry + first-ever-login binding in `promotePending` — noted, not built.)
+4. **Pending invites expire.** A pending entry older than a TTL is treated as
+   absent (never binds) and pruned opportunistically. This is hygiene, not a
+   reuse-guard (email reuse is out of the threat model per the IdP assumption) —
+   a mistyped or forgotten invite must not linger forever. TTL is configurable via
+   `SIM_PENDING_INVITE_TTL_MS` (default 30 days). Enforcement is **lazy**:
+   `resolveRole` / `promotePending` compare `now - Date.parse(invitedAt)` against
+   the TTL; expired entries do not resolve and are dropped on the next ACL write
+   that touches the room. No dedicated sweep is required (the existing revoke sweep
+   MAY prune them as a backstop — see Testing/out-of-scope).
 
 ## Why the rejected alternative (per-tenant directory + immediate grant) is wrong
 
@@ -138,9 +143,14 @@ reading was wrong — additive to the *shape*, but every writer must be made
 2. **Pure decision — `resolveRole(acl, user)` in `server/auth/authorize.cjs`.**
    Returns `{ role, viaPending }`:
    - `role = roleOf(acl, user.id)`. If non-null → `{ role, viaPending: false }`.
-   - Else if `user.email && acl.pending?.[normalizeEmail(user.email)]` →
-     `{ role: <that entry>.role, viaPending: true }`.
+   - Else if `user.email && acl.pending?.[normalizeEmail(user.email)]` AND that
+     entry is **not expired** (`now - Date.parse(invitedAt) < ttlMs`) →
+     `{ role: <that entry>.role, viaPending: true }`. An expired entry resolves
+     as if absent (falls through to null).
    - Else `{ role: null, viaPending: false }`.
+   `resolveRole` takes `now` + `ttlMs` as params (kept pure/testable — no clock or
+   env read inside); callers pass `Date.now()` and the configured TTL. A missing
+   or unparseable `invitedAt` is treated as expired (fail-closed).
    Pure (no storage writes). `authorize()` uses `resolveRole` in place of the bare
    `roleOf` call for its capability check, so a pending invitee passes READ/WRITE
    over HTTP immediately (before the connect-time bind persists). `hocuspocus-auth.cjs`
@@ -160,9 +170,14 @@ reading was wrong — additive to the *shape*, but every writer must be made
      null-checks.) Note the delete path uses its own tombstone (`markDeleted` /
      `deleteRoomTransactionally`), NOT this ACL mutex, so the null-guard — not the
      mutex — is what closes the promote-vs-delete race; state this explicitly.
-   - If `pending[normalizeEmail(user.email)]` exists and `user.id` is not already
-     in `roles`: move it → `roles[user.id] = <that entry>.role`; delete the
-     pending entry. (Bind resolves to the authenticating sub → self-correcting.)
+   - **Prune expired pending entries** (`now - Date.parse(invitedAt) >= ttlMs`, or
+     unparseable `invitedAt`) — delete them; count as a change that triggers the
+     write-back. This is the opportunistic garbage collection for stale invites.
+   - If `pending[normalizeEmail(user.email)]` exists, is **not expired**, and
+     `user.id` is not already in `roles`: move it → `roles[user.id] = <that
+     entry>.role`; delete the pending entry. (Bind resolves to the authenticating
+     sub → self-correcting.) An expired entry for THIS user is dropped by the prune
+     step above, not bound.
    - Refresh `display[user.id] = { name: user.name, email: normalizeEmail(user.email) }`
      whenever it differs from what's stored — so every authed member (whether
      bound via pending or added by raw sub) gets a human name cached, gated on
@@ -223,8 +238,11 @@ reading was wrong — additive to the *shape*, but every writer must be made
 ## Error handling & edge cases
 
 - **Malformed email** on share → 400 (basic shape check only; no MX/deliverability).
-- **Unknown / never-logging-in email** → invite sits in `pending` indefinitely
-  (no expiry, decision #4). Owner can revoke it manually.
+- **Unknown / never-logging-in email** → invite sits in `pending` until it
+  expires (TTL, decision #4) or the owner revokes it manually. After expiry it
+  resolves as absent (invitee would get 404) and is pruned on the next ACL write.
+- **Invitee logs in AFTER expiry** → `resolveRole` returns null (expired), so they
+  are NOT bound and see the room as a non-member (404). The owner must re-invite.
 - **Cross-tenant email** → the pending entry is inert; it only binds when a token
   whose tenant matches the room authenticates with that email. No cross-tenant
   leak, no signal to the owner that the email exists elsewhere.
@@ -249,9 +267,13 @@ reading was wrong — additive to the *shape*, but every writer must be made
 ## Testing
 
 - **`authorize.cjs` unit** — `resolveRole`: roles-hit, pending-hit (`viaPending`),
-  pending-miss, both-present (roles wins), null-email. Pure, table-testable.
+  pending-miss, both-present (roles wins), null-email, **expired pending resolves
+  as absent**, **unparseable/missing `invitedAt` treated as expired** (fail-closed).
+  Pure with injected `now`/`ttlMs` — table-testable, no real clock.
 - **`promotePending` unit** — promote-on-hit, no-op when already bound, display
-  refresh only when changed, no write when nothing changed.
+  refresh only when changed, no write when nothing changed, **expired-entry prune
+  triggers a write and does NOT bind**, **expired entry for the connecting user is
+  dropped not promoted**.
 - **Mutex** — a deterministic promote-vs-share interleave that would lose an
   update without serialization (force the race by resolving the read mid-`await`,
   the pattern in `server/__tests__/hocuspocus-server.test.mjs`).
@@ -281,11 +303,13 @@ reading was wrong — additive to the *shape*, but every writer must be made
 
 - Amend **ADR-0017**: replace the "Share discovery limitation" consequence with
   the pending-invite model; document `pending`/`display` in the sidecar shape,
-  `resolveRole` as the shared HTTP+WS decision, `promotePending` at connect, and
-  the per-composite-key mutex (single-instance-bound).
+  the `SIM_PENDING_INVITE_TTL_MS` lazy expiry (default 30 days), `resolveRole` as
+  the shared HTTP+WS decision, `promotePending` at connect, and the
+  per-composite-key mutex (single-instance-bound).
 - Update **CLAUDE.md** "Collaboration Server" / authorization section: share route
   now accepts email; `resolveRole` as the shared HTTP+WS decision; `promotePending`
-  at connect (fire-and-forget, null-guarded); `.acl.json` gains `pending`/`display`;
+  at connect (fire-and-forget, null-guarded, prunes expired); `.acl.json` gains
+  `pending`/`display`; lazy `SIM_PENDING_INVITE_TTL_MS` expiry (default 30 days);
   the shared per-composite-key ACL mutex (single-instance-bound). Add the invariant:
   **`writeAcl` is a full-object overwrite, so every ACL writer must read-modify-write
   the COMPLETE object (`ownerId` + `roles` + `pending` + `display`) — never
@@ -295,7 +319,10 @@ reading was wrong — additive to the *shape*, but every writer must be made
 ## Out of scope
 
 - Tenant-wide directory / email autocomplete (locked decision #1).
-- Pending-invite expiry / email-reuse guards (locked decision #4).
+- A dedicated pending-invite expiry **sweep** — expiry is lazy (decision #4);
+  extending the existing revoke sweep to prune expired invites is an optional
+  backstop, not required for correctness. Email-reuse guards remain out of scope
+  (IdP does not reassign emails).
 - Ownership transfer (already out of scope per ADR-0017).
 - Cross-instance immediate bind (single-instance precondition).
 - Email deliverability / notification ("you've been invited" email) — the invite
