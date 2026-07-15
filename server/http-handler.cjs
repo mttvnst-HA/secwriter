@@ -767,14 +767,21 @@ function createHttpHandler({ storage, boundDocs, flushRoom, deleteRoomTransactio
           // and gate the owner-only Share affordance without a second request.
           // Under auth=none everyone is an editor in the _public namespace.
           let callerRole = 'editor';
+          let callerViaPending = false;
           if (authProvider?.requiresAuth) {
             const acl = await storage.readAcl(tenant, id);
-            if (!aclAllowsRead(acl, req.user.id)) continue;
-            callerRole = roleOf(acl, req.user.id);
+            // #267: resolveRole (not aclAllowsRead/roleOf) so a caller's OWN
+            // pending-by-email invites list too — badged viaPending. Zero extra
+            // I/O (the ACL is already loaded for the member filter). Genuine
+            // non-members resolve to null → still excluded (unchanged 404).
+            const resolved = resolveRole(acl, req.user, Date.now(), pendingInviteTtlMs());
+            if (!resolved.role) continue;
+            callerRole = resolved.role;
+            callerViaPending = resolved.viaPending;
           }
 
           const composite = buildCompositeDocName(tenant, id);
-          const entry = { id, displayName: id, sectionNumber: null, sectionTitle: null, lastModified: null, activeUsers: [], locked: false, sizeBytes: 0, role: callerRole };
+          const entry = { id, displayName: id, sectionNumber: null, sectionTitle: null, lastModified: null, activeUsers: [], locked: false, sizeBytes: 0, role: callerRole, viaPending: callerViaPending };
 
           // Try live doc first (has awareness for active users)
           const liveDoc = boundDocs.get(composite);

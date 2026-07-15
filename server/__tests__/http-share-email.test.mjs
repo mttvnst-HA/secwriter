@@ -240,4 +240,43 @@ describe('#267 share by email', () => {
       assert.equal(after, before, 'GET /acl must not persist any normalization');
     } finally { h.server.close(); h.cleanup(); }
   });
+
+  it('#267: a pending invitee sees the invited room in GET /rooms, badged viaPending', async () => {
+    const h = makeShareServer();
+    const base = await start(h);
+    try {
+      // POST creates the .ydoc so the room is listable; then overwrite the ACL
+      // with a live pending-by-email invite for bob.
+      await httpJson(`${base}/rooms`, 'POST', { id: 'r1' }, bearer({ sub: 'owner', tenant: 'acme' }));
+      const invitedAt = new Date().toISOString();
+      await h.storage.writeAcl('acme', 'r1', {
+        ownerId: 'owner',
+        roles: {},
+        pending: { 'bob@y.com': { role: 'editor', invitedAt, invitedBy: 'owner' } },
+      });
+
+      // Bob's token email matches the pending invite → the room lists for him,
+      // badged viaPending, with the invited role.
+      const bob = bearer({ sub: 'bob', tenant: 'acme', email: 'bob@y.com' });
+      const bobList = await httpJson(`${base}/rooms`, 'GET', null, bob);
+      assert.equal(bobList.status, 200);
+      const bobRoom = JSON.parse(bobList.body.toString()).rooms.find(r => r.id === 'r1');
+      assert.ok(bobRoom, 'pending invitee sees the invited room in GET /rooms');
+      assert.equal(bobRoom.role, 'editor', 'listed with the invited role');
+      assert.equal(bobRoom.viaPending, true, 'badged viaPending');
+
+      // A genuine non-member (no pending, no roles entry) does NOT see the room
+      // AND is still 404 on direct access.
+      const stranger = bearer({ sub: 'z', tenant: 'acme', email: 'z@y.com' });
+      const strangerList = await httpJson(`${base}/rooms`, 'GET', null, stranger);
+      assert.equal(strangerList.status, 200);
+      assert.equal(
+        JSON.parse(strangerList.body.toString()).rooms.find(r => r.id === 'r1'),
+        undefined,
+        'genuine non-member does not see the room',
+      );
+      const strangerSec = await httpJson(`${base}/rooms/r1/sec`, 'GET', null, stranger);
+      assert.equal(strangerSec.status, 404, 'non-member still 404 on direct access');
+    } finally { h.server.close(); h.cleanup(); }
+  });
 });
