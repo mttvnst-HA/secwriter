@@ -135,3 +135,25 @@ test('auth=none: canonical _public name accepted; non-canonical STILL rejected',
   await assert.rejects(() => onAuth({ documentName: '_public/room.1', token: null }),
     (e) => e instanceof AuthReject && e.status === 404);
 });
+
+test('#267: pending-by-email invitee is admitted read-write (editor)', async () => {
+  const storage = { async readAcl() {
+    return { ownerId: 'owner', roles: {}, pending: { 'bob@y.com': { role: 'editor', invitedAt: new Date().toISOString() } } };
+  } };
+  const authProvider = { requiresAuth: true, async validateToken() { return { id: 'bob', tenant: 'acme', email: 'bob@y.com' }; } };
+  const onAuth = buildOnAuthenticate({ authProvider, storage });
+  const ctx = await onAuth({ documentName: 'acme/r1', token: 't' });
+  assert.equal(ctx.role, 'editor');
+  assert.equal(ctx.readOnly, false);
+});
+
+test('#267: pending viewer invitee is admitted read-only', async () => {
+  const storage = { async readAcl() {
+    return { ownerId: 'owner', roles: {}, pending: { 'bob@y.com': { role: 'viewer', invitedAt: new Date().toISOString() } } };
+  } };
+  const authProvider = { requiresAuth: true, async validateToken() { return { id: 'bob', tenant: 'acme', email: 'bob@y.com' }; } };
+  const onAuth = buildOnAuthenticate({ authProvider, storage });
+  const ctx = await onAuth({ documentName: 'acme/r1', token: 't' });
+  assert.equal(ctx.role, 'viewer');
+  assert.equal(ctx.readOnly, true);
+});
