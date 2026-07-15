@@ -84,3 +84,50 @@ describe('authorize', () => {
     assert.equal((await authorize({ authProvider: authOn, storage, user: owner, roomId: 'ghost', action: ACTION.READ })).status, 404);
   });
 });
+
+const { normalizeEmail, isValidEmailShape, higherRole, pendingInviteTtlMs, exceedsAclByteCap, MAX_PENDING_INVITES } = require('../authorize.cjs');
+
+describe('share-by-email helpers (#267)', () => {
+  it('normalizeEmail lowercases + trims; non-strings → ""', () => {
+    assert.equal(normalizeEmail('  Bob@Corp.COM '), 'bob@corp.com');
+    assert.equal(normalizeEmail(''), '');
+    assert.equal(normalizeEmail(undefined), '');
+    assert.equal(normalizeEmail(null), '');
+    assert.equal(normalizeEmail(42), '');
+  });
+  it('isValidEmailShape basic check', () => {
+    assert.equal(isValidEmailShape('bob@corp.com'), true);
+    assert.equal(isValidEmailShape('bob@corp'), false);
+    assert.equal(isValidEmailShape('bobcorp.com'), false);
+    assert.equal(isValidEmailShape('a b@corp.com'), false);
+    assert.equal(isValidEmailShape(''), false);
+  });
+  it('higherRole picks the higher on editor>viewer, null-safe', () => {
+    assert.equal(higherRole(null, 'viewer'), 'viewer');
+    assert.equal(higherRole('viewer', 'editor'), 'editor');
+    assert.equal(higherRole('editor', 'viewer'), 'editor');
+    assert.equal(higherRole('editor', 'editor'), 'editor');
+    assert.equal(higherRole(null, null), null);
+  });
+  it('pendingInviteTtlMs: default when unset; invalid → default (no disable)', () => {
+    const D = 30 * 24 * 60 * 60 * 1000;
+    delete process.env.SIM_PENDING_INVITE_TTL_MS;
+    assert.equal(pendingInviteTtlMs(), D);
+    process.env.SIM_PENDING_INVITE_TTL_MS = '1000';
+    assert.equal(pendingInviteTtlMs(), 1000);
+    for (const bad of ['0', '-5', 'NaN', 'abc']) {
+      process.env.SIM_PENDING_INVITE_TTL_MS = bad;
+      assert.equal(pendingInviteTtlMs(), D, `${bad} → default`);
+    }
+    delete process.env.SIM_PENDING_INVITE_TTL_MS;
+  });
+  it('exceedsAclByteCap flags oversize blobs', () => {
+    assert.equal(exceedsAclByteCap({ ownerId: 'o', roles: {} }), false);
+    const big = { ownerId: 'o', roles: {}, pending: {} };
+    for (let i = 0; i < 20000; i++) big.pending[`user${i}@corp.com`] = { role: 'viewer', invitedBy: 'o', invitedAt: '2026-01-01T00:00:00Z' };
+    assert.equal(exceedsAclByteCap(big), true);
+  });
+  it('MAX_PENDING_INVITES is a positive integer', () => {
+    assert.equal(Number.isInteger(MAX_PENDING_INVITES) && MAX_PENDING_INVITES > 0, true);
+  });
+});

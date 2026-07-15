@@ -37,6 +37,61 @@ const ROLE_ACTIONS = Object.freeze({
   owner: Object.freeze([ACTION.READ, ACTION.WRITE, ACTION.DELETE, ACTION.SHARE, ACTION.LOCK_ADMIN]),
 });
 
+// ── Share-by-email (#267) ────────────────────────────────────────────────
+// Per-room bound on live pending invites, and a hard byte ceiling on the whole
+// .acl.json blob — the WS connect path JSON.stringify+RMWs it every session, so
+// unbounded pending/display growth degrades a hot path. See the design spec.
+const MAX_PENDING_INVITES = 200;
+const MAX_ACL_BYTES = 256 * 1024;
+const DEFAULT_PENDING_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
+
+// Grantable-role rank for "take the higher role" comparisons. owner is implicit
+// (never grantable/pending) and is handled by a short-circuit in resolveRole.
+const ROLE_RANK = Object.freeze({ viewer: 1, editor: 2 });
+
+/** lower(trim(s)); non-strings → "". Single normalizer for every email compare. */
+function normalizeEmail(s) {
+  return typeof s === 'string' ? s.trim().toLowerCase() : '';
+}
+
+/** Cheap shape check (no MX/deliverability): one @, a dot in the domain, no spaces. */
+function isValidEmailShape(s) {
+  return typeof s === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+}
+
+/** Higher of two grantable roles on editor>viewer. Null-safe (unknown ranks 0). */
+function higherRole(a, b) {
+  const ra = ROLE_RANK[a] || 0;
+  const rb = ROLE_RANK[b] || 0;
+  if (ra === 0 && rb === 0) return null;
+  return ra >= rb ? a : b;
+}
+
+let _ttlWarned = false;
+/**
+ * TTL for pending invites, from SIM_PENDING_INVITE_TTL_MS. A non-finite or
+ * <= 0 value logs ONCE and falls back to the 30-day default — it NEVER silently
+ * disables sharing (that would leave every invite permanently expired).
+ */
+function pendingInviteTtlMs() {
+  const raw = process.env.SIM_PENDING_INVITE_TTL_MS;
+  if (raw === undefined || raw === '') return DEFAULT_PENDING_TTL_MS;
+  const n = Number(raw);
+  if (!Number.isFinite(n) || n <= 0) {
+    if (!_ttlWarned) {
+      _ttlWarned = true;
+      console.error(`[authorize] SIM_PENDING_INVITE_TTL_MS="${raw}" invalid (non-finite or <=0); using ${DEFAULT_PENDING_TTL_MS}ms. Share-by-email stays ENABLED.`);
+    }
+    return DEFAULT_PENDING_TTL_MS;
+  }
+  return n;
+}
+
+/** True when the serialized ACL would exceed the byte ceiling (seam 7). */
+function exceedsAclByteCap(acl) {
+  return Buffer.byteLength(JSON.stringify(acl), 'utf-8') > MAX_ACL_BYTES;
+}
+
 /**
  * Resolve a user's effective role on a room from its ACL sidecar. Returns
  * 'owner' | 'editor' | 'viewer' | null (null = no access).
@@ -126,4 +181,7 @@ async function authorize({ authProvider, storage, user, roomId, action }) {
 module.exports = {
   authorize, checkPrincipal, aclAllowsRead,
   roleOf, roleCan, ACTION, ROLE, ROLE_ACTIONS, GRANTABLE_ROLES,
+  // #267 share-by-email
+  normalizeEmail, isValidEmailShape, higherRole, pendingInviteTtlMs,
+  exceedsAclByteCap, MAX_PENDING_INVITES, MAX_ACL_BYTES,
 };
