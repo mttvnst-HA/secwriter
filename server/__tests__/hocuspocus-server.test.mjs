@@ -575,6 +575,74 @@ describe('#267 promotePending on WS connect (fire-and-forget)', () => {
   });
 });
 
+// ── #267 — revoke sweep uses resolveRole (keeps a valid pending-only session) ─
+
+describe('#267 revoke sweep resolveRole (revokeSweep)', () => {
+  // The periodic revoke sweep re-checks each live connection's role and kicks
+  // stale ones. It MUST use resolveRole (not bare roleOf): a pending-by-email
+  // invitee who was admitted via the pending invite but whose fire-and-forget
+  // promotePending bind hasn't persisted yet would be seen by roleOf as
+  // role=null and wrongly evicted during the connect→persist window.
+  it('#267: revoke sweep does not evict a valid pending-only session', { timeout: 20000 }, async () => {
+    const T = 'tenantA';
+    const R = 'room1';
+    const KEY = `${T}/${R}`;
+    // writeAcl is a NO-OP: the fire-and-forget promotePending bind can NEVER
+    // move pending→roles, so roleOf(acl,'bob') stays null the whole test. If the
+    // sweep used roleOf it would evict bob on the FIRST sweep; resolveRole sees
+    // the live pending invite and keeps him. LIVE invitedAt so the invite is
+    // non-expired.
+    let aclState = {
+      ownerId: 'owner',
+      roles: {},
+      pending: { 'bob@y.com': { role: 'editor', invitedBy: 'owner', invitedAt: new Date().toISOString() } },
+    };
+    const storage = {
+      readRoom: async () => null,
+      writeRoom: async () => {},
+      readAcl: async (t, r) => (`${t}/${r}` === KEY ? JSON.parse(JSON.stringify(aclState)) : null),
+      writeAcl: async () => {}, // no-op — bind never persists (roleOf stays null)
+    };
+    const { srv, url } = await boot({
+      storage, useHocuspocus: true, wsRatePerMin: 100000,
+      authProvider: {
+        requiresAuth: true,
+        validateToken: async (t) => (t === 'tokBob' ? { id: 'bob', tenant: T, email: 'bob@y.com', name: 'Bob' } : null),
+      },
+    });
+
+    let closeCount = 0;
+    let authFailCount = 0;
+    const doc = new Y.Doc();
+    const prov = new HocuspocusProvider({
+      url, name: KEY, document: doc, token: 'tokBob', WebSocketPolyfill: WS,
+      onClose: () => { closeCount += 1; },
+      onAuthenticationFailed: () => { authFailCount += 1; },
+    });
+    await waitFor(() => prov.synced, 8000);
+    const baseClose = closeCount;
+
+    // First sweep: resolveRole → editor (via the live pending invite) → NOT
+    // stale → NOT kicked. A roleOf-based sweep would see role=null → kick bob →
+    // the client's socket closes → closeCount increments.
+    await srv.revokeSweep();
+    await waitFor(() => false, 700).catch(() => {}); // settle
+    assert.strictEqual(closeCount, baseClose, 'a validly-pending session must NOT be swept-closed (resolveRole, not roleOf)');
+    assert.strictEqual(prov.synced, true, 'bob stays synced through the first sweep');
+    assert.strictEqual(authFailCount, 0, 'no auth failure on the first sweep');
+
+    // Remove the pending invite: resolveRole → null → stale → kicked. The forced
+    // reconnect re-authenticates against the now-empty ACL and auth-fails.
+    aclState = { ownerId: 'owner', roles: {}, pending: {} };
+    await srv.revokeSweep();
+    await waitFor(() => authFailCount >= 1, 12000);
+    assert.ok(authFailCount >= 1, 'once the pending invite is gone the sweep must kick bob');
+
+    prov.destroy(); doc.destroy();
+    srv.cleanup?.(); srv.httpServer.close();
+  });
+});
+
 // ── Test 5 — GATE: shutdown drain flushes ALL dirty rooms (#128 Task 5.2) ────
 
 describe('Shutdown drain — GATE (#128 Task 5.2)', () => {
