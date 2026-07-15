@@ -104,16 +104,22 @@ unchanged.
 }
 ```
 
-- `roles` semantics and `roleOf()` are byte-for-byte unchanged. **`aclAllowsRead`
-  and `GET /rooms` member-filtering stay `roleOf`-based** — a pending (unbound)
-  invitee is deliberately NOT listed as a member and the room does NOT appear in
-  their `GET /rooms` listing until they bind. This is an intentional **asymmetry**
-  with seam 2: per-room `authorize()` and the WS connect become `resolveRole`-based
-  (pending included, so an invitee CAN open the room they were invited to), while
-  the tenant listing stays membership-based (pending excluded). A pending invitee
-  can therefore reach a room by its id but does not see it enumerated — which is
-  correct, and does NOT weaken the per-room 404 for genuine non-members (no
-  pending entry → `resolveRole` returns null → 404 unchanged).
+- `roles` semantics and `roleOf()` are byte-for-byte unchanged, BUT **the
+  `GET /rooms` listing filter moves from `roleOf`/`aclAllowsRead` to `resolveRole`
+  (seam 5)** — so a room a caller is PENDING-invited to (matching their token
+  email) DOES appear in their own listing, badged "invited". There is **no
+  listing/authorize asymmetry**: WS connect, per-room `authorize()`, AND the tenant
+  listing all use the one `resolveRole` decision (pending included). This is the
+  option-1 fix for the discoverability dead-end (an invitee had no in-app path to
+  the room they were invited to). It costs ZERO extra I/O — `GET /rooms` already
+  reads every room's `.acl.json` per call for the #239 member filter
+  (`http-handler.cjs`), so the caller's ACL is already deserialized in memory and
+  `req.user.email` is already present; the change is a one-predicate swap on data
+  in hand, NOT a per-tenant email index (the rejected directory stays rejected). It
+  does NOT weaken the per-room 404 for genuine non-members: no pending entry AND no
+  `roles` entry → `resolveRole` returns null → excluded from the listing and 404 on
+  direct access, exactly as before. The only rows added are the caller's OWN invites,
+  which `resolveRole` already grants that caller — no cross-principal leak.
 - `pending` and `display` only ever contain principals relevant to THIS room —
   no tenant-wide index, no cross-room aggregation, no `seenAt` activity trail.
 - `display[sub]` is **cosmetic and self-asserted** — its `name`/`email` come from
@@ -283,7 +289,18 @@ reading was wrong — additive to the *shape*, but every writer must be made
    for the `documents` map, the revoke sweep, and store re-entrancy. Document it
    with the same footnote; a multi-instance move needs a distributed lock here too.
 
-5. **Owner UI — `GET /rooms/:roomId/acl` + `ShareDialog.jsx`.**
+5. **Owner UI + room listing — `GET /rooms`, `GET /rooms/:roomId/acl`,
+   `ShareDialog.jsx`.**
+   - **`GET /rooms` listing filter → `resolveRole` (option-1 discoverability fix).**
+     The listing loop already does a per-room `readAcl` + `aclAllowsRead(acl,
+     user.id)` member filter (`http-handler.cjs`); swap that predicate to
+     `resolveRole(acl, req.user, Date.now(), pendingInviteTtlMs()).role !== null`
+     and derive each row's `role` + a `viaPending`/"invited" flag from the same
+     call (in place of the separate `roleOf` role read). A caller's PENDING-invited
+     rooms now appear in their own listing badged "invited"; genuine non-members
+     stay excluded (null role). No extra I/O (ACL already loaded in the loop), no
+     directory. This retires the listing/authorize asymmetry — one `resolveRole`
+     decision across WS connect, `authorize()`, and the listing.
    - `GET /:id/acl` (owner-only, already exists) returns `pending` and `display`
      alongside the normalized `roles`.
    - `ShareDialog`: widen the component's `acl` state + `loadAcl` contract from
@@ -298,6 +315,13 @@ reading was wrong — additive to the *shape*, but every writer must be made
      (falling back to the raw sub id when `display` is absent). The existing
      raw-subject-id add path stays available (additive, not a replacement —
      acceptance criterion).
+   - **"Copy room link" control (option-2 polish).** A button in `ShareDialog` that
+     copies the current room's URL to the clipboard, so the owner can deliver it via
+     whatever channel they already use (Teams/email/chat). Complementary to the
+     listing fix — it eases owner-side delivery but is NOT what closes the invitee's
+     in-app discovery (the listing swap does that). Near-zero cost; no token minting
+     (a pending invitee is already reachable by room id via `resolveRole`, so the
+     link is just the plain room URL).
 
 6. **Revoke sweep is a THIRD role reader and MUST switch to `resolveRole`
    (major #3).** The periodic revoke sweep (`collab-server.cjs`, ~`revokeSweep`)
@@ -328,7 +352,10 @@ reading was wrong — additive to the *shape*, but every writer must be made
 1. Owner opens `ShareDialog`, types `bob@corp.com`, picks Editor, Add.
 2. `PATCH /:id/share { email:'bob@corp.com', action:'add', role:'editor' }` →
    `pending['bob@corp.com'] = { role:'editor', invitedBy:<owner>, invitedAt }`.
-3. Bob logs in and opens the room. `onAuthenticate`: `resolveRole` returns
+3. Bob logs in. `GET /rooms` runs `resolveRole` over each room's ACL and finds
+   `pending['bob@corp.com']` matching his token email → the room appears in Bob's
+   listing badged "invited" (option-1 fix — no out-of-band link needed). Bob clicks
+   it. `onAuthenticate`: `resolveRole` returns
    `{ role:'editor', viaPending:true }` → Bob connects read-write immediately.
    `promotePending` moves `pending['bob@corp.com']` → `roles[<bob-sub>]='editor'`,
    writes `display[<bob-sub>]={name:'Bob …', email:'bob@corp.com'}`.
@@ -360,8 +387,10 @@ reading was wrong — additive to the *shape*, but every writer must be made
   drops the pending entry. An invite at an equal/lower role than the bound role is a
   redundant no-op pending entry, cleaned on next connect.
 - **Perpetual `viaPending` (promote never persists)** → access role stays correct
-  (`resolveRole` re-grants every connect), but the user is never listed in `GET
-  /rooms` and `display` is never cached. The pending-remove kick (seam 1) is the
+  (`resolveRole` re-grants every connect) AND the room still appears in the user's
+  `GET /rooms` listing (the listing filter is `resolveRole`-based too, seam 5), so
+  discovery is unaffected; only `display[sub]` stays uncached (the owner sees the
+  raw email/sub fallback instead of a name). The pending-remove kick (seam 1) is the
   owner's revoke handle; the fire-and-forget bind is idempotent and re-converges on
   any later connect, and the ACL-size/pending caps bound the un-pruned state.
 - **Blank / missing email token claim** → `resolveRole` never matches pending
@@ -416,9 +445,12 @@ reading was wrong — additive to the *shape*, but every writer must be made
   role-change on a room that has `pending` + `display`, both survive the write
   (the partial `{ ownerId, roles }` rebuild is fixed). This is the most likely
   silent breakage; pin it explicitly.
-- **Listing/authorize asymmetry (blocker #2)** — a pending invitee's `GET /rooms`
-  does NOT list the room, while `GET /sec` and the WS connect succeed for the
-  same principal.
+- **Listing includes own pending (option-1)** — a pending invitee's `GET /rooms`
+  DOES list the invited room, badged `viaPending`/"invited", AND `GET /sec` + the WS
+  connect succeed for the same principal (one `resolveRole` decision everywhere). A
+  genuine non-member (no pending, no roles) sees neither the listing row nor access
+  (null role → excluded + 404). This inverts the earlier asymmetry assertion — the
+  listing is no longer `roleOf`-only.
 - **Promote-vs-delete guard (blocker #2)** — two cases: (a) `readAcl` → null writes
   nothing (delete-then-read); (b) `readAcl` returns a LIVE acl but the room is
   tombstoned (`isDeleted` true) before the write-back → promote no-ops (write-time
@@ -437,7 +469,7 @@ reading was wrong — additive to the *shape*, but every writer must be made
   read-only (viewer) via `resolveRole`; verify the bind persists after connect.
 - **`ShareDialog.test.jsx`** — email input routes to the email branch; pending
   invites listed + revocable; bound collaborators show `display` name with raw-sub
-  fallback; raw-sub add still works.
+  fallback; raw-sub add still works; "Copy room link" copies the room URL (option-2).
 - **Contract** — no change (no new artifact); `.acl.json` shape additions are
   read-compatible, so `storage-contract.test.mjs` is untouched.
 
@@ -446,7 +478,9 @@ reading was wrong — additive to the *shape*, but every writer must be made
 - Amend **ADR-0017**: replace the "Share discovery limitation" consequence with
   the pending-invite model; document `pending`/`display` in the sidecar shape,
   the `SIM_PENDING_INVITE_TTL_MS` lazy expiry (default 30 days), `resolveRole` as
-  the shared HTTP+WS+**sweep** decision, `promotePending` at connect, and the
+  the shared decision across HTTP `authorize()` + WS connect + revoke **sweep** +
+  **`GET /rooms` listing** (so a caller's own pending-invited rooms appear in their
+  listing, no asymmetry), `promotePending` at connect, and the
   per-composite-key mutex (single-instance-bound). **Explicitly record the reversal
   of decision 6:** email is now an authz INPUT, safe only under the verified-
   immutable-unique-per-sub IdP precondition (decision #5); state the precondition
@@ -460,7 +494,9 @@ reading was wrong — additive to the *shape*, but every writer must be made
 - Update **CLAUDE.md** "Collaboration Server" / authorization section: share route
   now accepts email (with `MAX_PENDING_INVITES` cap + pending-remove live-session
   kick via `revokeLiveSessions({ emails })`); `resolveRole` as the shared
-  HTTP+WS+**revoke-sweep** decision (takes the higher of bound/pending role);
+  HTTP+WS+**revoke-sweep**+**`GET /rooms` listing** decision (takes the higher of
+  bound/pending role; caller's own pending-invited rooms show badged "invited");
+  a "Copy room link" control in `ShareDialog`;
   `promotePending` at connect (fire-and-forget, null-guard + delete-**tombstone**
   guarded, prunes expired, upgrades bound-lower); `.acl.json` gains `pending`/
   `display` (+ `MAX_ACL_BYTES` guard, new email PII-at-rest surface); lazy
