@@ -88,6 +88,15 @@ describe('ShareDialog (#239)', () => {
     await waitFor(() => expect(screen.getByText('Alice A')).toBeTruthy());
     expect(screen.getByText('s2')).toBeTruthy(); // no display → raw sub
   });
+  it('#267: bound collaborator row shows the cached email next to the display name', async () => {
+    // So an owner who invited by email can still identify the (now-promoted,
+    // sub-bound) collaborator and remove them via the X — the email cache is
+    // cosmetic only, never an authz/removal input.
+    const loadAcl = vi.fn(async () => ({ ownerId: 'owner', roles: { s1: 'editor' }, pending: {}, display: { s1: { name: 'Bob B', email: 'bob@corp.com' } } }));
+    render(<ShareDialog roomId="r1" loadAcl={loadAcl} submitShare={vi.fn(async () => ({ roles: {} }))} onClose={vi.fn()} />);
+    await waitFor(() => expect(screen.getByText('Bob B')).toBeTruthy());
+    expect(screen.getByText('bob@corp.com')).toBeTruthy();
+  });
   it('#267: Copy room link writes the room URL to the clipboard', async () => {
     const writeText = vi.fn(async () => {});
     const prevClipboard = navigator.clipboard;

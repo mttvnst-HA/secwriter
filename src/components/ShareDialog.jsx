@@ -138,7 +138,12 @@ export default function ShareDialog({ roomId, loadAcl, submitShare, onClose }) {
               )}
               {roleEntries.map(([uid, role]) => (
                 <div key={uid} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, padding: '4px 0', fontSize: 12 }}>
-                  <span style={{ color: '#1e293b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1 }}>{nameFor(uid)}</span>
+                  <span style={{ color: '#1e293b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1 }}>
+                    {nameFor(uid)}
+                    {acl?.display?.[uid]?.email && (
+                      <span style={{ color: '#94a3b8', marginLeft: 6, fontSize: 11 }}>{acl.display[uid].email}</span>
+                    )}
+                  </span>
                   <select value={role} disabled={busy} aria-label={`Role for ${uid}`}
                     onChange={(e) => mutate({ userId: uid, action: 'add', role: e.target.value })}
                     style={{ fontSize: 12, padding: '2px 4px', borderRadius: 4, border: '1px solid #cbd5e1' }}>

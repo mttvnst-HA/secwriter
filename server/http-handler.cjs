@@ -630,7 +630,11 @@ function createHttpHandler({ storage, boundDocs, flushRoom, deleteRoomTransactio
 
             const next = { ...acl, roles, pending, display };
             delete next.sharedWith; // #239 folded into `roles` above; drop the legacy key so it isn't persisted forever
-            if (exceedsAclByteCap(next)) { outcome.status = 400; return; }
+            // Cap only gates ADD (the only action that grows the blob). A REMOVE
+            // shrinks it, so it must never be blocked — otherwise an already
+            // over-cap ACL (reachable only via direct-storage/migration edits,
+            // never this route) would have no recovery path.
+            if (action === 'add' && exceedsAclByteCap(next)) { outcome.status = 400; return; }
             await storage.writeAcl(tenant, roomId, next);
             outcome.roles = roles;
           });

@@ -179,6 +179,32 @@ describe('#267 share by email', () => {
     } finally { h.server.close(); h.cleanup(); }
   });
 
+  it('a REMOVE is never blocked by the byte cap — lets an over-cap ACL recover', async () => {
+    const h = makeShareServer();
+    const base = await start(h);
+    try {
+      // Seed an ACL already OVER MAX_ACL_BYTES (reachable only via a direct
+      // storage/migration edit, never this route). A remove must shrink it, not
+      // 400 — the add-only cap gate is what makes recovery possible.
+      const invitedAt = new Date().toISOString();
+      const pad = 'y'.repeat(4000);
+      const pending = {};
+      let i = 0;
+      const acl = { ownerId: 'owner', roles: {}, pending };
+      while (Buffer.byteLength(JSON.stringify(acl), 'utf-8') <= MAX_ACL_BYTES) {
+        pending[`p${i}@${pad}.example.com`] = { role: 'editor', invitedAt, invitedBy: 'owner' };
+        i++;
+      }
+      assert.ok(Buffer.byteLength(JSON.stringify(acl), 'utf-8') > MAX_ACL_BYTES, 'seeded ACL must start OVER the cap');
+      await h.storage.writeAcl('acme', 'r1', acl);
+      const victim = `p0@${pad}.example.com`;
+
+      const rm = await httpJson(`${base}/rooms/r1/share`, 'PATCH', { email: victim, action: 'remove' }, bearer({ sub: 'owner', tenant: 'acme' }));
+      assert.equal(rm.status, 200, 'remove on an over-cap ACL is not blocked with 400');
+      assert.equal((await h.storage.readAcl('acme', 'r1')).pending[victim], undefined, 'entry removed');
+    } finally { h.server.close(); h.cleanup(); }
+  });
+
   it('email remove kicks the live session ONLY when a pending entry existed (major #4)', async () => {
     const h = makeShareServer();
     const base = await start(h);
