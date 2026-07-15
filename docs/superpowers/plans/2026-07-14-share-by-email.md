@@ -27,8 +27,9 @@
 - `server/acl-mutex.cjs` — `createAclMutex()` → `{ withAclLock }` (seam 4).
 - `server/promote-pending.cjs` — `promotePending(...)` (seam 3).
 - `server/__tests__/promote-pending.test.mjs`, `server/__tests__/acl-mutex.test.mjs`.
+- `server/__tests__/http-share-email.test.mjs` — the #267 HTTP endpoint tests (a NEW file, not appended to `http-endpoints.test.mjs`, which is already at the ≤30-test cap).
 
-**Test files touched:** `server/auth/__tests__/authorize.test.mjs`, `server/__tests__/hocuspocus-auth.test.mjs`, `server/__tests__/secwriter-database.test.mjs`, `server/__tests__/http-endpoints.test.mjs`, `server/__tests__/hocuspocus-server.test.mjs`, `src/components/__tests__/ShareDialog.test.jsx`.
+**Test files touched (appended to):** `server/auth/__tests__/authorize.test.mjs`, `server/__tests__/hocuspocus-auth.test.mjs`, `server/__tests__/secwriter-database.test.mjs`, `server/__tests__/hocuspocus-server.test.mjs`, `src/components/__tests__/ShareDialog.test.jsx`. (`http-endpoints.test.mjs` is RUN for regression but NOT appended to — it is at the cap.)
 
 ---
 
@@ -402,10 +403,10 @@ EOF
 - Modify: `server/hocuspocus-auth.cjs:20` (imports), `:63-75` (admit-gate + role)
 - Test: `server/__tests__/hocuspocus-auth.test.mjs`
 
-- [ ] **Step 1: Write the failing test** — append a case to `hocuspocus-auth.test.mjs` (match its existing harness; it builds `buildOnAuthenticate({ authProvider, storage })`, calls `onAuthenticate({ documentName, token })`, and stubs `authProvider.validateToken`). Add:
+- [ ] **Step 1: Write the failing test** — append a case to `hocuspocus-auth.test.mjs` (match its existing harness; it builds `buildOnAuthenticate({ authProvider, storage })`, calls `onAuthenticate({ documentName, token })`, and stubs `authProvider.validateToken`). **This file imports only `test` from `node:test` and uses `test(...)` — NOT `it(...)`. Bare `it()` throws `ReferenceError` at module load and takes down the whole file, so write the new cases as `test(...)`.** Add:
 
 ```js
-it('#267: pending-by-email invitee is admitted read-write (editor)', async () => {
+test('#267: pending-by-email invitee is admitted read-write (editor)', async () => {
   const storage = { async readAcl() {
     return { ownerId: 'owner', roles: {}, pending: { 'bob@y.com': { role: 'editor', invitedAt: new Date().toISOString() } } };
   } };
@@ -415,7 +416,7 @@ it('#267: pending-by-email invitee is admitted read-write (editor)', async () =>
   assert.equal(ctx.role, 'editor');
   assert.equal(ctx.readOnly, false);
 });
-it('#267: pending viewer invitee is admitted read-only', async () => {
+test('#267: pending viewer invitee is admitted read-only', async () => {
   const storage = { async readAcl() {
     return { ownerId: 'owner', roles: {}, pending: { 'bob@y.com': { role: 'viewer', invitedAt: new Date().toISOString() } } };
   } };
@@ -484,10 +485,10 @@ EOF
 - Modify: `server/secwriter-database.cjs` (add method after `unmarkDeleted`)
 - Test: `server/__tests__/secwriter-database.test.mjs`
 
-- [ ] **Step 1: Write the failing test** — append (match the file's harness for constructing a `SecWriterDatabase`):
+- [ ] **Step 1: Write the failing test** — append (match the file's harness for constructing a `SecWriterDatabase`). **This file uses `test(...)` (via `const { test } = require('node:test')`), NOT `it(...)` — bare `it()` throws `ReferenceError` and kills the whole file.** Write:
 
 ```js
-it('#267: isDeleted reflects the tombstone state', () => {
+test('#267: isDeleted reflects the tombstone state', () => {
   const db = new SecWriterDatabase({ storage: {}, roomHealth: new Map(), maxDocBytes: 1e9, log: { warn() {}, error() {} } });
   assert.equal(db.isDeleted('acme/r1'), false);
   db.markDeleted('acme/r1');
@@ -710,6 +711,12 @@ describe('promotePending (#267 seam 3)', () => {
     await promotePending(deps(s));
     assert.equal(s.writes.length, 0);
   });
+  it('refreshes a STALE display name for an already-bound user (display-only write)', async () => {
+    const s = fakeStorage({ 'acme/r1': { ownerId: 'owner', roles: { bob: 'editor' }, pending: {}, display: { bob: { name: 'Old Name', email: 'bob@y.com' } } } });
+    await promotePending(deps(s)); // user.name is 'Bob B'
+    assert.equal(s._acls['acme/r1'].display.bob.name, 'Bob B');
+    assert.equal(s.writes.length, 1);
+  });
   it('delete-then-read: null ACL writes nothing (blocker #2a)', async () => {
     const s = fakeStorage({});
     await promotePending(deps(s));
@@ -861,13 +868,11 @@ Implement the body following the file's established T1–T4 pattern (same `waitF
 Run: `npm run test:server -- --test-name-pattern="T5"`
 Expected: FAIL (`emails` selector ignored — both stay open, or both close).
 
-- [ ] **Step 3: Add the import** — in `collab-server.cjs` line 48, extend the authorize require:
+- [ ] **Step 3: Add the import** — in `collab-server.cjs` line 48, extend the authorize require. **KEEP `roleOf`** — the revoke sweep (`:661`) still uses it until Task 13 swaps it; removing it here leaves the sweep referencing an undefined `roleOf` (a `ReferenceError` when the timer fires). `roleOf` is dropped from this import in Task 13, not here:
 
 ```js
-const { resolveRole, pendingInviteTtlMs, normalizeEmail } = require('./auth/authorize.cjs');
+const { roleOf, resolveRole, pendingInviteTtlMs, normalizeEmail } = require('./auth/authorize.cjs');
 ```
-
-(This replaces `const { roleOf } = require('./auth/authorize.cjs');` — `roleOf` is no longer used in this file after Task 12 swaps the sweep. If Task 12 hasn't landed yet in your branch order, keep `roleOf` in the list too; it is removed in Task 12.)
 
 - [ ] **Step 4: Extend `revokeLiveSessions`** — replace the function body (lines 173-188) with:
 
@@ -933,7 +938,7 @@ it('#267: connecting a pending invitee persists the bind (fire-and-forget)', asy
 });
 ```
 
-Implement using the harness's JWT/token helper and an `await waitFor(async () => (await storage.readAcl(t, r)).roles.bob === 'editor')`-style poll.
+Implement using the harness's JWT/token helper. **The token MUST carry an `email` claim** (`bearer({ sub:'bob', tenant:'acme', email:'bob@y.com' })`) — `promotePending` is gated on `ctx.user.email`, so a token without it silently no-ops and the poll below would time out (a false failure, not a red). `node --test` has no built-in `waitFor`; poll with a bounded loop, e.g. `for (let i=0;i<50 && !(await storage.readAcl('acme','r1')).roles.bob;i++) await new Promise(r=>setTimeout(r,20));` then assert `roles.bob==='editor'`, `pending['bob@y.com']` cleared, `display.bob.name` set.
 
 - [ ] **Step 2: Run test to verify it fails**
 
@@ -1009,46 +1014,56 @@ EOF
 
 **Files:**
 - Modify: `server/http-handler.cjs:19` (imports), `:37` (deps), `:529-615` (the `PATCH /:id/share` route)
-- Test: `server/__tests__/http-endpoints.test.mjs`
+- Create: `server/__tests__/http-share-email.test.mjs`
 
-- [ ] **Step 1: Write the failing tests** — append to `http-endpoints.test.mjs` (match its harness: it spins a handler with a fake storage + JWT and drives `fetch`/`http.request`):
+**Why a new test file, not `http-endpoints.test.mjs`:** that file already holds 29 `it()`; Tasks 10+11+12 add 8+ cases, which would push it to 37, over CLAUDE.md Testing Rule #3's ≤30-per-file cap. Put all #267 endpoint tests in a dedicated file (Tasks 11 and 12 append to this same file). **Copy the real harness from `http-endpoints.test.mjs`** — it uses a REAL `LocalStorageBackend` in a temp dir (real `readAcl`/`writeAcl`), a `bearer({ sub, tenant, email })` JWT-mint helper (`jwt.sign` + `createAuthJwt({ secret })`), and `httpJson`/`httpGet` request helpers over a real listening server. It is NOT a fake storage and does NOT use `fetch`. To assert the pending-remove kick, construct `createHttpHandler` with a **stub** `revokeLiveSessions: (t, r, opts) => kicks.push(opts)` and inspect `kicks`.
+
+- [ ] **Step 1: Write the failing tests** — create `server/__tests__/http-share-email.test.mjs`. Copy the harness preamble (imports, temp-dir storage, `bearer`, `httpJson`/`httpGet`, server start/stop in `before`/`after`) verbatim from `http-endpoints.test.mjs`, then add:
 
 ```js
-// #267 — share by email
-it('email add stores a pending invite (not a roles entry)', async () => {
-  // owner PATCH /rooms/r1/share { email:'bob@corp.com', action:'add', role:'editor' } → 200
-  // then GET /rooms/r1/acl shows pending['bob@corp.com'].role === 'editor',
-  // roles unchanged.
-});
-it('email add succeeds for a never-registered address (no lookup oracle)', async () => {
-  // PATCH { email:'nobody@corp.com', action:'add' } → 200 (defaults editor).
-});
-it('malformed email → 400', async () => {
+// #267 — share by email. (Uses the same describe/it style as http-endpoints.)
+it('email add stores a pending invite (not a roles entry); never-registered ok; malformed → 400', async () => {
+  // owner bearer({sub:'owner',tenant:'acme'}).
+  // PATCH /rooms/r1/share { email:'Bob@Corp.com', action:'add', role:'editor' } → 200.
+  // GET /rooms/r1/acl → pending['bob@corp.com'].role === 'editor' (lowercased), roles unchanged.
+  // PATCH { email:'nobody@corp.com', action:'add' } → 200 (no lookup oracle; defaults editor).
   // PATCH { email:'bad', action:'add' } → 400.
 });
 it('raw-sub add/remove preserves pending + display (full-object RMW, blocker #1)', async () => {
-  // Seed acl with pending + display. PATCH { userId:'x', action:'add' } → 200.
-  // GET /acl still shows the original pending + display intact.
+  // Seed r1 acl via storage.writeAcl with roles{}, pending{'bob@corp.com':{role:'editor',invitedAt:now}},
+  // display{s1:{name:'S',email:'s@corp.com'}}. PATCH { userId:'x', action:'add' } → 200.
+  // GET /acl still shows pending['bob@corp.com'] AND display.s1 intact (not wiped by a partial rebuild).
 });
-it('email add at MAX_PENDING_INVITES → 400/429', async () => {
-  // Seed acl.pending with MAX_PENDING_INVITES live entries; a NEW email add rejects.
+it('email add at MAX_PENDING_INVITES → 429', async () => {
+  // Seed acl.pending with MAX_PENDING_INVITES live entries (invitedAt:now). A NEW email add → 429.
+  // (Re-adding an EXISTING pending email at the cap is allowed — it replaces, not grows.)
+});
+it('a write exceeding MAX_ACL_BYTES → 400 (share side, seam 7)', async () => {
+  // Seed acl.pending with entries whose serialized size is just under MAX_ACL_BYTES; a NEW email
+  // add that tips it over → 400 'ACL too large'. (Prune-expired runs first, so use live invitedAt.)
+});
+it('email remove kicks the live session ONLY when a pending entry existed (major #4)', async () => {
+  // createHttpHandler with stub revokeLiveSessions capturing opts.
+  // Seed pending['bob@corp.com']. PATCH { email:'bob@corp.com', action:'remove' } → 200 AND
+  // the stub was called with { emails:['bob@corp.com'] }. Then PATCH remove of a NON-existent
+  // email → 200 AND the stub was NOT called again (gated on pendingRemoved).
 });
 it('a non-owner PATCH /share → 404 (owner-only preserved)', async () => {
-  // editor token PATCH → 404.
+  // A room owned by 'owner'; bearer({sub:'editor',tenant:'acme'}) PATCH → 404.
 });
 ```
 
-Fill each body using the file's existing request helper and JWT-mint helper (copy the pattern from the current `PATCH /share` tests in this file).
+Fill each body using the copied `httpJson`/`httpGet` + `bearer` helpers. Keep the file well under 30 tests.
 
 - [ ] **Step 2: Run tests to verify they fail**
 
-Run: `npm run test:server -- --test-name-pattern="email add|full-object RMW|MAX_PENDING"`
-Expected: FAIL (email path unrecognized; pending wiped by partial rebuild).
+Run: `npm run test:server -- server/__tests__/http-share-email.test.mjs`
+Expected: FAIL (email path unrecognized; pending wiped by the partial rebuild; caps/kick absent).
 
 - [ ] **Step 3: Extend the imports** — `http-handler.cjs` line 19:
 
 ```js
-const { authorize, checkPrincipal, aclAllowsRead, roleOf, resolveRole, pendingInviteTtlMs, normalizeEmail, isValidEmailShape, exceedsAclByteCap, MAX_PENDING_INVITES, ACTION, GRANTABLE_ROLES } = require('./auth/authorize.cjs');
+const { authorize, checkPrincipal, aclAllowsRead, roleOf, resolveRole, pendingInviteTtlMs, normalizeEmail, isValidEmailShape, isPendingExpired, exceedsAclByteCap, MAX_PENDING_INVITES, ACTION, GRANTABLE_ROLES } = require('./auth/authorize.cjs');
 ```
 
 - [ ] **Step 4: Accept `withAclLock` in the factory** — line 37, add `withAclLock` to the destructured deps:
@@ -1135,11 +1150,10 @@ Add a fallback near the top of the factory body (after `performRoomDeletion`) so
             const pending = { ...((acl.pending && typeof acl.pending === 'object') ? acl.pending : {}) };
             const display = { ...((acl.display && typeof acl.display === 'object') ? acl.display : {}) };
 
-            // Prune expired pending first, so the cap counts only LIVE invites.
+            // Prune expired pending first (reuse the exported predicate — no
+            // inline re-implementation to drift), so the cap counts only LIVE invites.
             for (const [e, entry] of Object.entries(pending)) {
-              const t = Date.parse(entry && entry.invitedAt);
-              const expired = !Number.isFinite(t) || (now - t) < 0 || (now - t) >= ttlMs;
-              if (expired) delete pending[e];
+              if (isPendingExpired(entry, now, ttlMs)) delete pending[e];
             }
 
             if (isEmail) {
@@ -1147,6 +1161,7 @@ Add a fallback near the top of the factory body (after `performRoomDeletion`) so
                 if (!pending[email] && Object.keys(pending).length >= MAX_PENDING_INVITES) { outcome.status = 429; return; }
                 pending[email] = { role: role || 'editor', invitedBy: req.user.id, invitedAt: new Date(now).toISOString() };
               } else {
+                outcome.pendingRemoved = Object.prototype.hasOwnProperty.call(pending, email);
                 delete pending[email];
               }
             } else {
@@ -1157,6 +1172,7 @@ Add a fallback near the top of the factory body (after `performRoomDeletion`) so
             delete roles[acl.ownerId]; // a grant entry may never equal the owner
 
             const next = { ...acl, roles, pending, display };
+            delete next.sharedWith; // #239 folded into `roles` above; drop the legacy key so it isn't persisted forever
             if (exceedsAclByteCap(next)) { outcome.status = 400; return; }
             await storage.writeAcl(tenant, roomId, next);
             outcome.roles = roles;
@@ -1171,7 +1187,10 @@ Add a fallback near the top of the factory body (after `performRoomDeletion`) so
           // major #4). Raw-sub remove/downgrade: kick the sub (unchanged #268).
           if (revokeLiveSessions) {
             if (isEmail) {
-              if (action === 'remove') revokeLiveSessions(tenant, roomId, { emails: [email] });
+              // Kick ONLY if a live pending entry was actually removed. Avoids a
+              // spurious reconnect and avoids kicking a roles-bound collaborator
+              // who happens to share this email (major #4 refinement).
+              if (action === 'remove' && outcome.pendingRemoved) revokeLiveSessions(tenant, roomId, { emails: [email] });
             } else {
               const isRemoval = action === 'remove';
               const isDowngrade = outcome.newRole === 'viewer' && outcome.prevRole === 'editor';
@@ -1190,15 +1209,15 @@ Add a fallback near the top of the factory body (after `performRoomDeletion`) so
     }
 ```
 
-- [ ] **Step 6: Run the endpoint suite**
+- [ ] **Step 6: Run the new suite + the existing endpoint suite (no regression)**
 
-Run: `npm run test:server -- server/__tests__/http-endpoints.test.mjs`
-Expected: PASS (existing raw-sub share tests green; new #267 tests green).
+Run: `npm run test:server -- server/__tests__/http-share-email.test.mjs server/__tests__/http-endpoints.test.mjs`
+Expected: PASS (new #267 tests green; existing raw-sub share tests in `http-endpoints.test.mjs` still green — the route change is behavior-preserving for the raw-sub path).
 
 - [ ] **Step 7: Commit**
 
 ```bash
-git add server/http-handler.cjs server/__tests__/http-endpoints.test.mjs
+git add server/http-handler.cjs server/__tests__/http-share-email.test.mjs
 git commit -F- <<'EOF'
 feat(server): share route email branch + full-object RMW + caps + kick (#267)
 
@@ -1212,9 +1231,9 @@ EOF
 
 **Files:**
 - Modify: `server/http-handler.cjs:372-400` (the `GET /:id/acl` route)
-- Test: `server/__tests__/http-endpoints.test.mjs`
+- Test: `server/__tests__/http-share-email.test.mjs` (append; created in Task 10)
 
-- [ ] **Step 1: Write the failing test** — append:
+- [ ] **Step 1: Write the failing test** — append to `server/__tests__/http-share-email.test.mjs`:
 
 ```js
 it('#267: GET /acl returns pending + display alongside roles (read-only)', async () => {
@@ -1245,15 +1264,15 @@ Expected: FAIL (`pending`/`display` absent from the response).
 
 (Delete the pre-existing `res.writeHead(200, ...)` + `res.end(...)` pair that this replaces so there's exactly one write.)
 
-- [ ] **Step 4: Run test to verify it passes**
+- [ ] **Step 4: Run the new suite + the existing endpoint suite**
 
-Run: `npm run test:server -- server/__tests__/http-endpoints.test.mjs`
-Expected: PASS.
+Run: `npm run test:server -- server/__tests__/http-share-email.test.mjs server/__tests__/http-endpoints.test.mjs`
+Expected: PASS (new read-only ACL test green; existing GET /acl tests in `http-endpoints.test.mjs` still green).
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add server/http-handler.cjs server/__tests__/http-endpoints.test.mjs
+git add server/http-handler.cjs server/__tests__/http-share-email.test.mjs
 git commit -F- <<'EOF'
 feat(server): GET /acl returns pending + display, read-only (#267)
 
@@ -1267,9 +1286,9 @@ EOF
 
 **Files:**
 - Modify: `server/http-handler.cjs:721-729` (the listing member-filter + entry)
-- Test: `server/__tests__/http-endpoints.test.mjs`
+- Test: `server/__tests__/http-share-email.test.mjs` (append; created in Task 10)
 
-- [ ] **Step 1: Write the failing test** — append:
+- [ ] **Step 1: Write the failing test** — append to `server/__tests__/http-share-email.test.mjs`:
 
 ```js
 it('#267: a pending invitee sees the invited room in GET /rooms, badged viaPending', async () => {
@@ -1308,15 +1327,15 @@ Then in the `entry` object literal (line 729), add `viaPending: callerViaPending
           const entry = { id, displayName: id, sectionNumber: null, sectionTitle: null, lastModified: null, activeUsers: [], locked: false, sizeBytes: 0, role: callerRole, viaPending: callerViaPending };
 ```
 
-- [ ] **Step 4: Run the endpoint suite (full)**
+- [ ] **Step 4: Run the new suite + the existing endpoint suite (full)**
 
-Run: `npm run test:server -- server/__tests__/http-endpoints.test.mjs`
-Expected: PASS (existing listing/member-filter tests green; new #267 test green).
+Run: `npm run test:server -- server/__tests__/http-share-email.test.mjs server/__tests__/http-endpoints.test.mjs`
+Expected: PASS (existing listing/member-filter tests in `http-endpoints.test.mjs` green; new #267 listing test green).
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add server/http-handler.cjs server/__tests__/http-endpoints.test.mjs
+git add server/http-handler.cjs server/__tests__/http-share-email.test.mjs
 git commit -F- <<'EOF'
 feat(server): GET /rooms lists own pending invites via resolveRole (#267)
 
@@ -1329,34 +1348,50 @@ EOF
 ## Task 13: Revoke sweep uses resolveRole (major #3)
 
 **Files:**
-- Modify: `server/collab-server.cjs:48` (drop unused `roleOf`), `:661` (the sweep role read)
+- Modify: `server/collab-server.cjs` — relocate `revokeSweep` from `startFromEnv` into `createCollabServer` and expose it on the return; swap its role read to `resolveRole`; drop `roleOf` from the `:48` import (the sweep was its last user).
 - Test: `server/__tests__/hocuspocus-server.test.mjs`
 
-- [ ] **Step 1: Write the failing test** — append: a connected pending invitee (admitted via resolveRole, but with the fire-and-forget bind withheld so they have NO `roles` entry) is NOT swept-closed; a genuinely stale session (removed from ACL) still is. If the T-series harness exposes `revokeSweep`, call it directly; otherwise assert via the periodic timer with a short `SIM_REVOKE_SWEEP_MS`. Skeleton:
+**Why the relocation:** `revokeSweep` currently lives inside `startFromEnv` (the CLI path) and is NOT on `createCollabServer`'s return, so a test cannot invoke it directly — only via the racy `SIM_REVOKE_SWEEP_MS` timer. Move the function into `createCollabServer` (which already has `hocuspocusInstance`, `authProvider`, `storage`, `log` in scope) and return it, so the test drives one deterministic `server.revokeSweep()` call. `startFromEnv`'s interval then calls `server.revokeSweep`.
+
+- [ ] **Step 1: Write the failing test** — append to `hocuspocus-server.test.mjs` (`test(...)` if the file uses `test`; it imports `{ describe, it }`, so `it(...)` is fine here). Determinism: inject a storage whose `writeAcl` is a **no-op**, so the fire-and-forget `promotePending` can NEVER move `pending → roles` — `roleOf(acl, bob)` stays null for the whole test (kills the promote-vs-sweep race), while `resolveRole` still grants via the live pending entry.
 
 ```js
-it('#267: revoke sweep does not evict a valid pending invitee', async () => {
-  // Connect bob (pending editor). Withhold/await-block the promote persist so
-  // roles.bob is still absent. Invoke the sweep. Assert bob's socket stays open
-  // (resolveRole sees the pending invite). Then remove the pending entry and
-  // re-sweep → bob is closed.
+it('#267: revoke sweep does not evict a valid pending-only session', async () => {
+  // Build a server whose storage.writeAcl is a no-op and whose readAcl returns
+  // { ownerId:'owner', roles:{}, pending:{ 'bob@y.com': {role:'editor', invitedAt: <now> } } }.
+  // Connect a JWT provider for bob (sub=bob, email=bob@y.com). Await the
+  // Authenticated scope. Call `server.revokeSweep()` once and assert bob's
+  // socket is STILL OPEN (resolveRole → editor, not stale).
+  //
+  // Then flip readAcl to return pending:{} (invite gone), call
+  // `server.revokeSweep()` again, and assert bob's socket CLOSED (resolveRole →
+  // null → stale). Copy the two-provider connect + close-detection pattern from
+  // the existing T1–T4 revoke tests.
 });
 ```
 
 - [ ] **Step 2: Run test to verify it fails**
 
 Run: `npm run test:server -- --test-name-pattern="revoke sweep does not evict"`
-Expected: FAIL (sweep uses `roleOf` → null → evicts the invitee).
+Expected: FAIL — first because `server.revokeSweep` is undefined (not yet exposed), then (after Step 3's relocation but before Step 4's swap) because the sweep uses `roleOf` → null → evicts the valid invitee.
 
-- [ ] **Step 3: Confirm the import** — `collab-server.cjs` line 48 should already be (from Task 8):
+- [ ] **Step 3: Relocate + expose `revokeSweep`, drop `roleOf`** — cut the entire `revokeSweep` function definition out of `startFromEnv` and paste it into `createCollabServer` (place it near `revokeLiveSessions`, which shares its `hocuspocusInstance`/`storage` scope). It references `server.hocuspocus.documents` in `startFromEnv`; inside `createCollabServer` change that to `hocuspocusInstance.documents`. Add `revokeSweep` to the `createCollabServer` return object (alongside `revokeLiveSessions`). In `startFromEnv`, replace the deleted definition's timer body with a call to the exposed method:
+
+```js
+  const revokeSweepTimer = setInterval(
+    () => server.revokeSweep().catch((err) => log.error('revoke-sweep.uncaught', { err: err && err.message })),
+    REVOKE_SWEEP_MS,
+  );
+  if (revokeSweepTimer.unref) revokeSweepTimer.unref();
+```
+
+Then drop `roleOf` from the `:48` import (the relocated sweep is switched off it in Step 4, and it has no other user in this file):
 
 ```js
 const { resolveRole, pendingInviteTtlMs, normalizeEmail } = require('./auth/authorize.cjs');
 ```
 
-If `roleOf` is still present in that require from a mid-plan state, remove it now (the sweep is its last user).
-
-- [ ] **Step 4: Swap the sweep role read** — in `revokeSweep`, replace line 661:
+- [ ] **Step 4: Swap the sweep role read** — in the relocated `revokeSweep`, replace:
 
 ```js
         const role = acl ? roleOf(acl, uid) : null;
@@ -1642,7 +1677,7 @@ export default function ShareDialog({ roomId, loadAcl, submitShare, onClose }) {
           <input type="text" value={newUserId}
             onChange={(e) => setNewUserId(e.target.value)}
             onKeyDown={(e) => { if (e.key === 'Enter') handleAdd(); }}
-            placeholder="…or add by subject id" aria-label="Collaborator subject id"
+            placeholder="Collaborator subject id…" aria-label="Collaborator subject id"
             style={{ flex: 1, minWidth: 0, border: '1px solid #e2e8f0', borderRadius: 4, padding: '4px 8px', fontSize: 11, outline: 'none', color: '#64748b' }} />
           <button onClick={handleAdd} disabled={busy || !newUserId.trim()}
             style={{ border: '1px solid #cbd5e1', background: '#f8fafc', color: '#334155', borderRadius: 4, padding: '4px 10px', fontSize: 11, cursor: busy || !newUserId.trim() ? 'default' : 'pointer', opacity: busy || !newUserId.trim() ? 0.6 : 1, display: 'flex', alignItems: 'center', gap: 4 }}>
@@ -1675,6 +1710,8 @@ export default function ShareDialog({ roomId, loadAcl, submitShare, onClose }) {
 ```
 
 - [ ] **Step 5: Run the ShareDialog suite**
+
+Before running, re-read the existing `ShareDialog.test.jsx` and confirm every current selector still resolves against the rewritten layout: `getByPlaceholderText(/Collaborator subject id/)` (line 43) matches the raw-sub input's retained `"Collaborator subject id…"` placeholder; `getByText('owner'|'ed'|'vi')`, `getByLabelText('Role for …')`, `getByText('Add')`, and the load-error text all still resolve. If any moved, fix the component (prefer keeping the old text) rather than the test.
 
 Run: `npm test -- src/components/__tests__/ShareDialog.test.jsx`
 Expected: PASS (existing #239 tests still green — the raw-sub add path and role change/remove still work; new #267 tests green).
@@ -1732,7 +1769,7 @@ EOF
 - [ ] **Step 1: Run the full server suite**
 
 Run: `npm run test:server`
-Expected: PASS (authorize, hocuspocus-auth, hocuspocus-server, http-endpoints, secwriter-database, acl-mutex, promote-pending). No regressions.
+Expected: PASS (authorize, hocuspocus-auth, hocuspocus-server, http-endpoints, http-share-email, secwriter-database, acl-mutex, promote-pending). No regressions. Confirm no file exceeds the ≤30-test cap (`http-endpoints` stays at 29; #267 endpoint tests live in the new `http-share-email` file).
 
 - [ ] **Step 2: Run the client unit suite**
 
