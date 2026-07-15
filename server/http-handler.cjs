@@ -399,8 +399,14 @@ function createHttpHandler({ storage, boundDocs, flushRoom, deleteRoomTransactio
         } else if (Array.isArray(acl.sharedWith)) {
           for (const uid of acl.sharedWith) roles[uid] = 'editor';
         }
+        // #267: surface pending invites + cached display names. STRICTLY
+        // read-only — normalize for the response, never persist from this path
+        // (a write here would be a 4th unserialized RMW site that could lose a
+        // share/promote update). See the full-object-RMW invariant in the spec.
+        const pending = (acl.pending && typeof acl.pending === 'object') ? acl.pending : {};
+        const display = (acl.display && typeof acl.display === 'object') ? acl.display : {};
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ ownerId: acl.ownerId, roles }));
+        res.end(JSON.stringify({ ownerId: acl.ownerId, roles, pending, display }));
       } catch (err) {
         res.writeHead(500, { 'Content-Type': 'text/plain' });
         res.end(`ACL read failed: ${err.message}`);

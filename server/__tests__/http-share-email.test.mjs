@@ -211,4 +211,33 @@ describe('#267 share by email', () => {
       assert.equal(res.status, 404);
     } finally { h.server.close(); h.cleanup(); }
   });
+
+  it('#267: GET /acl returns pending + display alongside roles (read-only)', async () => {
+    const h = makeShareServer();
+    const base = await start(h);
+    try {
+      const invitedAt = new Date().toISOString();
+      const seeded = {
+        ownerId: 'owner',
+        roles: { ed: 'editor' },
+        pending: { 'bob@y.com': { role: 'editor', invitedAt, invitedBy: 'owner' } },
+        display: { ed: { name: 'Ed', email: 'ed@y.com' } },
+      };
+      await h.storage.writeAcl('acme', 'r1', seeded);
+      const before = JSON.stringify(await h.storage.readAcl('acme', 'r1'));
+
+      const res = await httpJson(`${base}/rooms/r1/acl`, 'GET', null, bearer({ sub: 'owner', tenant: 'acme' }));
+      assert.equal(res.status, 200);
+      const body = JSON.parse(res.body.toString());
+      assert.equal(body.ownerId, 'owner');
+      assert.equal(body.roles.ed, 'editor');
+      assert.equal(body.pending['bob@y.com'].role, 'editor');
+      assert.equal(body.display.ed.name, 'Ed');
+
+      // Strictly read-only: the GET must not have normalized/written anything
+      // back to the sidecar.
+      const after = JSON.stringify(await h.storage.readAcl('acme', 'r1'));
+      assert.equal(after, before, 'GET /acl must not persist any normalization');
+    } finally { h.server.close(); h.cleanup(); }
+  });
 });

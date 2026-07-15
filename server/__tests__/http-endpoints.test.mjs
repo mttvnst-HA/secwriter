@@ -699,7 +699,7 @@ describe('room authorization (auth=jwt)', () => {
       assert.equal((await httpJson(`${base}/rooms/r1/acl`, 'GET', null, bearer({ sub: 'friend', tenant: 'acme' }))).status, 404);
       const acl = await httpJson(`${base}/rooms/r1/acl`, 'GET', null, bearer({ sub: 'owner', tenant: 'acme' }));
       assert.equal(acl.status, 200);
-      assert.deepEqual(JSON.parse(acl.body.toString()), { ownerId: 'owner', roles: { friend: 'editor', looker: 'viewer' } });
+      assert.deepEqual(JSON.parse(acl.body.toString()), { ownerId: 'owner', roles: { friend: 'editor', looker: 'viewer' }, pending: {}, display: {} });
 
       // Downgrade friend editor → viewer via re-add with role, then remove.
       await httpJson(`${base}/rooms/r1/share`, 'PATCH', { userId: 'friend', action: 'add', role: 'viewer' }, bearer({ sub: 'owner', tenant: 'acme' }));
