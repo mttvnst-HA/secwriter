@@ -459,6 +459,66 @@ describe('#268 live-session revocation (revokeLiveSessions)', () => {
     editor.destroy(); edDoc.destroy();
     srv.cleanup?.(); srv.httpServer.close();
   });
+
+  // T6 (#267) — the { emails } selector kicks only the email-matched conn, with
+  // case-insensitive normalization. Pending-by-email invitees have no ACL
+  // `roles` entry (thus no stable subject to target by `subjects`), so a
+  // downgrade/removal that touches them must be reachable by email. A is
+  // targeted by a MIXED-CASE email to prove normalizeEmail runs on both the
+  // selector and conn.context.user.email; B (a different email) must stay
+  // connected read-write. Numbered T6 because the T5 slot above is the
+  // DELETE-route merge guard.
+  it('T6 (#267): revokeLiveSessions({ emails }) kicks only the email-matched conn', { timeout: 20000 }, async () => {
+    const aclMap = new Map([[ROOM, { ownerId: 'owner', roles: { editorUser: 'editor', editorUser2: 'editor' } }]]);
+    const users = {
+      tokO: { id: 'owner', tenant: T, email: 'owner@y.com' },
+      tokEA: { id: 'editorUser', tenant: T, email: 'a@y.com' },
+      tokEB: { id: 'editorUser2', tenant: T, email: 'b@y.com' },
+    };
+    const storage = {
+      readRoom: async () => null,
+      writeRoom: async () => {},
+      readAcl: async (tenant, roomId) => aclMap.get(`${tenant}/${roomId}`) || null,
+    };
+    const { srv, url } = await boot({
+      storage, useHocuspocus: true, wsRatePerMin: 100000,
+      authProvider: { requiresAuth: true, validateToken: async (t) => users[t] || null },
+    });
+
+    const obsDoc = new Y.Doc();
+    const observer = new HocuspocusProvider({ url, name: ROOM, document: obsDoc, token: 'tokO', WebSocketPolyfill: WS });
+    await waitFor(() => observer.synced, 8000);
+
+    let aAuthFail = 0;
+    const aDoc = new Y.Doc();
+    const edA = new HocuspocusProvider({
+      url, name: ROOM, document: aDoc, token: 'tokEA', WebSocketPolyfill: WS,
+      onAuthenticationFailed: () => { aAuthFail += 1; },
+    });
+    const bDoc = new Y.Doc();
+    const edB = new HocuspocusProvider({ url, name: ROOM, document: bDoc, token: 'tokEB', WebSocketPolyfill: WS });
+    await waitFor(() => edA.synced && edB.synced, 8000);
+
+    // Remove A from the ACL so A's forced reconnect auth-FAILS (proving A was the
+    // kicked session); B stays an editor.
+    aclMap.set(ROOM, { ownerId: 'owner', roles: { editorUser2: 'editor' } });
+
+    // Target A by a MIXED-CASE email — normalization must match a@y.com.
+    const n = srv.revokeLiveSessions(T, R, { emails: ['A@Y.COM'] });
+    assert.strictEqual(n, 1, 'only the email-matched connection is kicked');
+
+    // A's reconnect re-auths against the now-removed ACL → exactly this session
+    // fails: proves A (not B / not the owner) was the one kicked.
+    await waitFor(() => aAuthFail >= 1, 12000);
+
+    // B was never targeted: still read-write, and its write reaches the observer.
+    assert.strictEqual(edB.authorizedScope, 'read-write');
+    bDoc.transact(() => bDoc.getArray('order').push(['b1']), 'local-publish');
+    await waitFor(() => obsDoc.getArray('order').length === 1 && obsDoc.getArray('order').get(0) === 'b1', 8000);
+
+    edA.destroy(); edB.destroy(); observer.destroy(); aDoc.destroy(); bDoc.destroy(); obsDoc.destroy();
+    srv.cleanup?.(); srv.httpServer.close();
+  });
 });
 
 // ── Test 5 — GATE: shutdown drain flushes ALL dirty rooms (#128 Task 5.2) ────

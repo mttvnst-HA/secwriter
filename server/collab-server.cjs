@@ -45,7 +45,7 @@ const { PUBLIC_TENANT, splitCompositeDocName, buildCompositeDocName } = require(
 const { Hocuspocus } = require('@hocuspocus/server');
 const { ResetConnection } = require('@hocuspocus/common');
 const { buildOnAuthenticate, AuthReject } = require('./hocuspocus-auth.cjs');
-const { roleOf } = require('./auth/authorize.cjs');
+const { roleOf, resolveRole, pendingInviteTtlMs, normalizeEmail } = require('./auth/authorize.cjs');
 const { SecWriterDatabase } = require('./secwriter-database.cjs');
 
 // Hard caps. A single spec section is O(100KB) of text; 8 MB gives plenty of
@@ -153,7 +153,8 @@ function createCollabServer(config) {
     return hocuspocusDatabase.store({ documentName: docName, document });
   }
 
-  // `revokeLiveSessions(tenant, roomId, { subjects })` (#268): force already-open
+  // `revokeLiveSessions(tenant, roomId, { subjects, emails })` (#268/#267): force
+  // already-open
   // WS sessions in a room to reconnect + re-authenticate NOW, so an ACL role
   // change takes effect on live sessions instead of only at the next reconnect.
   // Kicks by hard-closing the raw socket with ResetConnection (4205) — the ONLY
@@ -161,8 +162,11 @@ function createCollabServer(config) {
   // onAuthenticate with the fresh role. `Connection.close()` /
   // `hocuspocus.closeConnections()` are a SOFT in-band detach (socket stays open,
   // client goes dormant, never re-auths) — do NOT use them for revocation.
-  // `subjects` undefined = kick every connection (room deletion). Returns the
-  // count of sockets closed.
+  // Selectors match by `conn.context.user.id` (`subjects`) and/or by
+  // normalized `conn.context.user.email` (`emails`, #267 — reaches
+  // pending-by-email invitees that have no bound ACL subject). Both selectors
+  // undefined = kick every connection (room deletion). Returns the count of
+  // sockets closed.
   //
   // INTERNAL REACH — pinned to @hocuspocus/server 4.3.0: `doc.connections` keys
   // are Connection instances; `conn.context` is the onAuthenticate return (so
@@ -170,20 +174,27 @@ function createCollabServer(config) {
   // `conn.webSocket` is the raw ws socket. A Hocuspocus bump that reshapes any of
   // these breaks this silently — the T1–T4 revoke tests in
   // hocuspocus-server.test.mjs are the tripwire (T4 pins the identity match).
-  function revokeLiveSessions(tenant, roomId, { subjects } = {}) {
+  function revokeLiveSessions(tenant, roomId, { subjects, emails } = {}) {
     if (!hocuspocusInstance) return 0;
     const doc = hocuspocusInstance.documents.get(buildCompositeDocName(tenant, roomId));
     if (!doc) return 0; // room not resident — nothing live to revoke
-    const targets = subjects && new Set(subjects); // undefined = kick ALL
+    const subjectSet = subjects && new Set(subjects);
+    const emailSet = emails && new Set(emails.map((e) => normalizeEmail(e)));
+    const filtering = !!(subjectSet || emailSet); // neither selector = kick ALL
     let n = 0;
     doc.connections.forEach((_v, conn) => {
-      const uid = conn.context && conn.context.user && conn.context.user.id;
+      const u = conn.context && conn.context.user;
+      const uid = u && u.id;
       if (!uid) return;
-      if (targets && !targets.has(uid)) return;
+      if (filtering) {
+        const bySubject = subjectSet && subjectSet.has(uid);
+        const byEmail = emailSet && u.email && emailSet.has(normalizeEmail(u.email));
+        if (!bySubject && !byEmail) return;
+      }
       try { conn.webSocket.close(ResetConnection.code, ResetConnection.reason); n += 1; }
       catch (err) { log.warn('revoke.close-failed', { err: err && err.message }); }
     });
-    if (n) log.info('revoke.sessions-closed', { tenant, roomId, n, all: !subjects });
+    if (n) log.info('revoke.sessions-closed', { tenant, roomId, n, all: !filtering });
     return n;
   }
 
