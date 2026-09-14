@@ -11,6 +11,7 @@ globalThis.DOMParser = DOMParser;
 
 import { parseSEC } from '../src/lib/sec-parser.js';
 import { serializeSEC } from '../src/lib/sec-serializer.js';
+import { stripTags } from '../src/lib/html-text.js';
 import fs from 'fs';
 
 const filePath = process.argv[2] || 'reference/UFGS_M/01 30 00.SEC';
@@ -115,7 +116,7 @@ if (diffCount > 0) {
       // Search for matching line
       const lines = serialized.split('\n');
       for (let j = 0; j < lines.length; j++) {
-        if (lines[j].includes(htmlSnip.substring(0, 20).replace(/<[^>]+>/g, ''))) {
+        if (lines[j].includes(stripTags(htmlSnip.substring(0, 20)))) {
           const start = Math.max(0, j - 2);
           const end = Math.min(lines.length, j + 3);
           for (let k = start; k < end; k++) {

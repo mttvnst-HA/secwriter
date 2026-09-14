@@ -5,6 +5,8 @@
  * Uses a simple LCS (Longest Common Subsequence) approach on word tokens.
  */
 
+import { htmlToPlainText } from './html-text.js';
+
 /**
  * Split text into word tokens (preserving whitespace boundaries).
  * Returns an array of non-empty word tokens.
@@ -151,8 +153,7 @@ export function refineWordDiff(ops) {
  * Strip HTML tags from a string to get plain text.
  */
 export function stripHtml(html) {
-  if (!html) return '';
-  return html.replace(/<[^>]+>/g, '').replace(/\u200B/g, '');
+  return htmlToPlainText(html);
 }
 
 /**
@@ -168,7 +169,7 @@ export function getVisibleTextFromHtml(html) {
   // Remove <del ...>...</del> blocks (including nested content)
   const withoutDel = html.replace(/<del\b[^>]*>[\s\S]*?<\/del>/gi, '');
   // Strip remaining HTML tags and zero-width spaces
-  return withoutDel.replace(/<[^>]+>/g, '').replace(/\u200B/g, '');
+  return htmlToPlainText(withoutDel);
 }
 
 /**

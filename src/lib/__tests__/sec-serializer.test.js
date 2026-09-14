@@ -239,6 +239,33 @@ describe('serializeSEC', () => {
 
   // ─── Edge cases ────────────────────────────────────────────────
 
+  it('re-escapes entities on the parse-error fallback path without double-escaping', () => {
+    // htmlToSgml's parse-error fallback (malformed/non-XML html) is only
+    // reachable with a strict XML parser — linkedom (this test env's
+    // DOMParser polyfill) is too lenient to ever set parsererror, so force
+    // the branch with a fake parser to pin the fallback's own behavior:
+    // it must decode entities from the source html then re-escape them,
+    // never pass raw `&`/`<`/`>` through and never double-escape an
+    // already-escaped one into e.g. "&amp;amp;".
+    const realDOMParser = globalThis.DOMParser;
+    globalThis.DOMParser = class {
+      parseFromString() {
+        return { querySelector: (sel) => (sel === 'parsererror' ? {} : null) };
+      }
+    };
+    try {
+      const blocks = [
+        { id: '1', type: 'txt', part: 1, depth: 0, html: 'Ampersand &amp; less-than &lt; text' },
+      ];
+      const xml = serializeSEC(blocks, META);
+      expect(xml).toContain('<TXT>Ampersand &amp; less-than &lt; text</TXT>');
+      expect(xml).not.toContain('&amp;amp;');
+      expect(xml).not.toContain('&amp;lt;');
+    } finally {
+      globalThis.DOMParser = realDOMParser;
+    }
+  });
+
   it('handles empty blocks array', () => {
     const xml = serializeSEC([], META);
     expect(xml).toContain('<SEC');

@@ -15,6 +15,7 @@ import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
 import { join, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseHTML } from 'linkedom';
+import { htmlToPlainText } from '../src/lib/html-text.js';
 
 // Polyfill DOMParser for Node.js (sec-parser.js uses browser DOMParser)
 const { DOMParser } = parseHTML('');
@@ -61,14 +62,7 @@ function resolveEngMet(html) {
  * Preserves bracket content [like this].
  */
 function stripTags(html) {
-  return html
-    .replace(/<[^>]+>/g, '')       // Remove all HTML tags
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&nbsp;/g, ' ')
+  return htmlToPlainText(html)
     .replace(/\s+/g, ' ')          // Collapse whitespace
     .trim();
 }

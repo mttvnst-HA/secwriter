@@ -10,6 +10,7 @@
  */
 
 import { computeOliItems } from './numbering.js';
+import { htmlToPlainText } from './html-text.js';
 
 /**
  * Escape XML-significant characters in text content. Required so that
@@ -98,12 +99,16 @@ function htmlToSgml(html) {
   const parser = new DOMParser();
   const doc = parser.parseFromString(`<root>${safeHtml}</root>`, 'text/xml');
 
-  // Check for parse errors - fall back to simple regex strip
+  // Check for parse errors - fall back to a tag-stripped, re-escaped text
+  // run. htmlToPlainText decodes entities down to raw characters (so we
+  // don't end up re-escaping a mix of decoded/undecoded ones), then
+  // escapeXmlText re-escapes them \u2014 the same escaping the normal
+  // walkNodeToSgml path applies to text nodes \u2014 so the exported .SEC stays
+  // valid XML even when the source html was too malformed to parse (e.g. a
+  // stray bare `&` or `<`).
   const parseError = doc.querySelector('parsererror');
   if (parseError) {
-    return html
-      .replace(/<[^>]+>/g, '')
-      .replace(/\u200B/g, '');
+    return escapeXmlText(htmlToPlainText(html));
   }
 
   return walkNodeToSgml(doc.documentElement);

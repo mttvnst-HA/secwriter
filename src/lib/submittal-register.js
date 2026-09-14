@@ -10,6 +10,7 @@
 
 import { getVisibleTextFromHtml } from "./text-diff.js";
 import { computeNumbering } from "./numbering.js";
+import { stripTags } from "./html-text.js";
 
 const SUB_SPAN_RE = /<span\s+class="mark-sub"[^>]*>((?:[^<]|<(?!\/span>))*)<\/span>/g;
 const SD_RE = /^SD-(\d+)\s+(.+)/;
@@ -45,7 +46,7 @@ export function extractSubmittals(blocks) {
     let m;
     while ((m = SUB_SPAN_RE.exec(block.html)) !== null) {
       // Strip nested tags to get plain text
-      const plainText = m[1].replace(/<[^>]+>/g, '').trim();
+      const plainText = stripTags(m[1]).trim();
       if (!plainText) continue;
       spans.push(plainText);
     }
