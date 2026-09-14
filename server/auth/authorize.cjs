@@ -59,6 +59,24 @@ function isValidEmailShape(s) {
   return typeof s === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
 }
 
+const PROTOTYPE_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
+
+/**
+ * True when `k` may be used as a key in the ACL `roles` / `pending` / `display`
+ * maps. The share route takes `userId` / `email` straight from the request
+ * body and writes `roles[userId] = role`, so a caller could otherwise pick a
+ * prototype-mutating name (`__proto__`, `constructor`, `prototype`) as the
+ * "user id" (CodeQL js/remote-property-injection). Real ids are OIDC `sub` /
+ * `oid` claims or normalized emails — never one of those names and never
+ * control characters. Size is bounded separately by MAX_ACL_BYTES.
+ */
+function isSafeAclKey(k) {
+  return typeof k === 'string'
+    && k.length > 0
+    && !PROTOTYPE_KEYS.has(k)
+    && !/[\x00-\x1f\x7f]/.test(k);
+}
+
 /** Higher of two grantable roles on editor>viewer. Null-safe (unknown ranks 0). */
 function higherRole(a, b) {
   const ra = ROLE_RANK[a] || 0;
@@ -227,7 +245,7 @@ module.exports = {
   authorize, checkPrincipal, aclAllowsRead,
   roleOf, roleCan, ACTION, ROLE, ROLE_ACTIONS, GRANTABLE_ROLES,
   // #267 share-by-email
-  normalizeEmail, isValidEmailShape, higherRole, pendingInviteTtlMs,
+  normalizeEmail, isValidEmailShape, isSafeAclKey, higherRole, pendingInviteTtlMs,
   exceedsAclByteCap, MAX_PENDING_INVITES, MAX_ACL_BYTES,
   resolveRole, pendingRoleFor, isPendingExpired,
 };

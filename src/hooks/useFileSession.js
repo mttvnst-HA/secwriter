@@ -46,7 +46,7 @@ import { getDisplayName, getSidecarName, getLintSidecarName } from '../lib/curre
 import { supportsFileSystemAccess, saveToFileHandle } from '../lib/auto-save.js';
 import { encodeSidecarV2 } from '../lib/lint-sidecar.js';
 import { flushAllPendingUpdates } from '../lib/block-registry.js';
-import { DEFAULT_HTTP_URL } from '../lib/collab.js';
+import { DEFAULT_HTTP_URL, isValidRoomId } from '../lib/collab.js';
 
 const COLLAB_HTTP_URL = DEFAULT_HTTP_URL;
 
@@ -286,9 +286,9 @@ export function useFileSession({
 
   // Download .SEC from collab server (in-room only)
   const handleDownloadSec = useCallback(async () => {
-    if (!roomId) return;
+    if (!roomId || !isValidRoomId(roomId)) return;
     try {
-      const resp = await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}/sec`, { headers: authHeaders });
+      const resp = await fetch(`${COLLAB_HTTP_URL}/rooms/${encodeURIComponent(roomId)}/sec`, { headers: authHeaders });
       if (!resp.ok) throw new Error(`Server returned ${resp.status}`);
       const blob = await resp.blob();
       const url = URL.createObjectURL(blob);
@@ -306,9 +306,9 @@ export function useFileSession({
 
   // Download comments JSON from collab server (in-room only)
   const handleDownloadComments = useCallback(async () => {
-    if (!roomId) return;
+    if (!roomId || !isValidRoomId(roomId)) return;
     try {
-      const resp = await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}/comments`, { headers: authHeaders });
+      const resp = await fetch(`${COLLAB_HTTP_URL}/rooms/${encodeURIComponent(roomId)}/comments`, { headers: authHeaders });
       if (!resp.ok) throw new Error(`Server returned ${resp.status}`);
       const blob = await resp.blob();
       const url = URL.createObjectURL(blob);

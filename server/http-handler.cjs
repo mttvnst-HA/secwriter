@@ -17,7 +17,7 @@ const { migrateRoom } = require('./migrate-pm-substrate.cjs');
 const { log } = require('./logger.cjs');
 const { sanitize, PUBLIC_TENANT, buildCompositeDocName } = require('./storage-shared.cjs');
 const { authorize, checkPrincipal, roleOf, ACTION, GRANTABLE_ROLES,
-  resolveRole, pendingInviteTtlMs, normalizeEmail, isValidEmailShape, isPendingExpired,
+  resolveRole, pendingInviteTtlMs, normalizeEmail, isValidEmailShape, isSafeAclKey, isPendingExpired,
   exceedsAclByteCap, MAX_PENDING_INVITES } = require('./auth/authorize.cjs');
 
 /**
@@ -583,6 +583,14 @@ function createHttpHandler({ storage, boundDocs, flushRoom, deleteRoomTransactio
           if (isEmail && action === 'add' && !isValidEmailShape(email)) {
             res.writeHead(400, { 'Content-Type': 'text/plain' });
             res.end('Malformed email');
+            return;
+          }
+          // The subject becomes a KEY in the persisted roles/pending/display maps
+          // (`roles[userId] = role`), so refuse prototype-mutating names,
+          // control characters, and oversized values before any write.
+          if (!isSafeAclKey(isEmail ? email : userId)) {
+            res.writeHead(400, { 'Content-Type': 'text/plain' });
+            res.end('Invalid userId or email');
             return;
           }
 

@@ -89,6 +89,16 @@ export const DEFAULT_HTTP_URL = import.meta.env?.VITE_COLLAB_HTTP_URL || 'http:/
 /**
  * Read `?room=...` from the current URL. Returns null if not in a room.
  */
+/**
+ * Room ids are `[a-zA-Z0-9_-]{1,64}` (the server's sanitize rule). Callers
+ * that splice a room id into a request PATH must gate on this first so a
+ * value like `../admin` or `x/share` can never redirect the request to a
+ * different endpoint (CodeQL js/client-side-request-forgery).
+ */
+export function isValidRoomId(id) {
+  return typeof id === 'string' && /^[a-zA-Z0-9_-]{1,64}$/.test(id);
+}
+
 export function getRoomFromUrl() {
   if (typeof window === 'undefined') return null;
   try {
