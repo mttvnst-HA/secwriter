@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { NO_EXFIL_PROPS } from '../no-exfil.js';
@@ -58,8 +58,17 @@ describe('NO_EXFIL_PROPS is spread on every typing surface', () => {
 // React names into lowercase HTML attribute names and pass them via
 // EditorProps.attributes. This block locks that translation in place.
 describe('NO_EXFIL_PM_ATTRS (PM EditorProps) — lowercase HTML names', () => {
-  it('PmEditableBlock exports NO_EXFIL_PM_ATTRS with every lowercase attribute', async () => {
-    const mod = await import('../../components/PmEditableBlock.jsx');
+  // Importing PmEditableBlock.jsx pulls in the whole ProseMirror/y-prosemirror
+  // graph — ~3.7 s cold on a dev box even with no other workers running, and
+  // past Vitest's 5 s per-test timeout under a full parallel run. Load it
+  // once in a hook with its own generous timeout so the tests below only
+  // time their (instant) assertions.
+  let mod;
+  beforeAll(async () => {
+    mod = await import('../../components/PmEditableBlock.jsx');
+  }, 60_000);
+
+  it('PmEditableBlock exports NO_EXFIL_PM_ATTRS with every lowercase attribute', () => {
     expect(mod.NO_EXFIL_PM_ATTRS).toEqual({
       spellcheck: 'false',
       autocorrect: 'off',
@@ -72,8 +81,7 @@ describe('NO_EXFIL_PM_ATTRS (PM EditorProps) — lowercase HTML names', () => {
     });
   });
 
-  it('NO_EXFIL_PM_ATTRS is frozen', async () => {
-    const mod = await import('../../components/PmEditableBlock.jsx');
+  it('NO_EXFIL_PM_ATTRS is frozen', () => {
     expect(Object.isFrozen(mod.NO_EXFIL_PM_ATTRS)).toBe(true);
   });
 
@@ -83,8 +91,7 @@ describe('NO_EXFIL_PM_ATTRS (PM EditorProps) — lowercase HTML names', () => {
     expect(src).toMatch(/attributes:\s*\{\s*\.\.\.NO_EXFIL_PM_ATTRS/);
   });
 
-  it('every NO_EXFIL_PROPS camelCase key has a matching NO_EXFIL_PM_ATTRS lowercase key', async () => {
-    const mod = await import('../../components/PmEditableBlock.jsx');
+  it('every NO_EXFIL_PROPS camelCase key has a matching NO_EXFIL_PM_ATTRS lowercase key', () => {
     const camelToLower = {
       spellCheck: 'spellcheck',
       autoCorrect: 'autocorrect',
