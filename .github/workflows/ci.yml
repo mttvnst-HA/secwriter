@@ -6,6 +6,13 @@ on:
   pull_request:
     branches: [main]
 
+# One in-flight run per ref. On pull requests a newer push supersedes the
+# previous run (cancel-in-progress); on main every push keeps its own run so
+# the branch history stays fully covered.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 # Least-privilege default for the GITHUB_TOKEN; jobs that need more
 # (unit-tests' docs-currency check reads issue/PR state via `gh`) declare
 # it explicitly below instead of relying on the implicit repo-wide default.
@@ -16,6 +23,7 @@ jobs:
   unit-tests:
     name: Unit & Compliance Tests
     runs-on: windows-latest
+    timeout-minutes: 20
     permissions:
       contents: read
       issues: read
@@ -40,17 +48,33 @@ jobs:
         run: |
           node -e "const {execSync}=require('child_process'); const out=execSync('npm ls yjs --all',{encoding:'utf8'}); const n=(out.match(/yjs@/g)||[]).length; const deduped=(out.match(/deduped/g)||[]).length; if (n - deduped > 1) { console.error(out); console.error('FAIL: '+n+' yjs refs, '+deduped+' deduped -> '+(n-deduped)+' real copies'); process.exit(1);} console.log('single yjs OK ('+n+' refs, '+deduped+' deduped)');"
 
-      - name: Vitest unit tests (630 tests)
+      # Production build. The dev server (Vite + React.StrictMode) is what
+      # every other job exercises; a build-only breakage (bad import, chunk
+      # error) is invisible without this step. See .claude/rules/testing.md
+      # rule #12 for the dev-vs-production-build caveat.
+      - name: Production build (vite build)
+        run: npm run build
+
+      # Step names deliberately carry no test counts — the counts drift
+      # (the Vitest suite tripled without this file noticing) and
+      # tools/check-doc-counts.mjs only scans CLAUDE.md.
+      - name: Vitest unit tests
         run: npm test
 
-      - name: Compliance rule tests (42 tests, Node runner)
+      - name: Compliance rule tests (Node runner)
         run: npm run test:compliance
 
-      - name: Corpus tests (17 tests, Node runner)
+      - name: Corpus tests (Node runner)
         run: npm run test:corpus
 
-      - name: Server tests (55 tests, Node runner)
+      - name: Server tests (Node runner)
         run: npm run test:server
+
+      - name: UFGS tag coverage + structural tests (Node runner)
+        run: npm run test:ufgs
+
+      - name: Structural interop tests (Node runner)
+        run: npm run test:interop
 
       - name: Docs currency check (issue refs, counts, versions)
         run: npm run docs:check-currency
@@ -60,6 +84,7 @@ jobs:
   azure-integration:
     name: Azure Integration (Azurite)
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -142,6 +167,7 @@ jobs:
   e2e-tests:
     name: Playwright E2E Tests
     runs-on: windows-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -165,3 +191,17 @@ jobs:
           SIM_RATE_LIMIT_HTTP_WRITE_PER_MIN: '10000'
           SIM_RATE_LIMIT_HTTP_READ_PER_MIN: '10000'
           SIM_RATE_LIMIT_WS_PER_MIN: '10000'
+
+      # Traces (on first retry), screenshots (on failure) and the HTML
+      # report — see playwright.config.js `use`/`reporter`. Without this a
+      # CI-only failure leaves nothing but the assertion line in the job log.
+      - name: Upload Playwright traces + report (on failure)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-results-${{ github.run_id }}
+          path: |
+            test-results/
+            playwright-report/
+          if-no-files-found: ignore
+          retention-days: 7

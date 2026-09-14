@@ -11,7 +11,19 @@ export default defineConfig({
     baseURL: 'http://localhost:5173',
     headless: true,
     viewport: { width: 1280, height: 800 },
+    // Diagnostics for CI-only failures. `on-first-retry` keeps the happy
+    // path free of trace overhead (retries is 1 on CI, 0 locally, so the
+    // trace only ever records on a CI retry). ci.yml uploads test-results/
+    // and playwright-report/ as a job artifact when the job fails.
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
   },
+  // `list` keeps the console output CI already relies on; `html` writes
+  // playwright-report/ (gitignored) for the failure artifact. `open: never`
+  // stops a local run from launching a browser tab on failure.
+  reporter: process.env.CI
+    ? [['list'], ['html', { open: 'never' }]]
+    : 'list',
   webServer: [
     {
       command: 'npm run dev',
