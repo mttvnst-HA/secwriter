@@ -13,6 +13,13 @@ concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
+# Every third-party action is pinned to a full commit SHA (tag in the
+# trailing comment). A mutable tag can be re-pointed by a compromised
+# upstream; a SHA cannot. The repo's Actions settings require SHA pinning,
+# so an unpinned `uses:` fails at workflow load. Dependabot's
+# github-actions ecosystem (.github/dependabot.yml) bumps the SHA + comment
+# together.
+
 # Least-privilege default for the GITHUB_TOKEN; jobs that need more
 # (unit-tests' docs-currency check reads issue/PR state via `gh`) declare
 # it explicitly below instead of relying on the implicit repo-wide default.
@@ -29,8 +36,8 @@ jobs:
       issues: read
       pull-requests: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 22
           cache: npm
@@ -86,8 +93,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 22
           cache: npm
@@ -169,14 +176,31 @@ jobs:
     runs-on: windows-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 22
           cache: npm
       - run: npm ci
 
+      # Chromium download is ~3.5 min on windows-latest; cache it keyed on the
+      # exact @playwright/test version (each Playwright release pins its own
+      # browser build, so a version bump is exactly when the cache must miss).
+      # --with-deps only matters on Linux, so a cache hit skips install fully.
+      - name: Playwright version
+        id: pw
+        shell: bash
+        run: echo "version=$(node -e "console.log(require('@playwright/test/package.json').version)")" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        id: pw-cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ~/AppData/Local/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ steps.pw.outputs.version }}
+
       - name: Install Playwright browsers
+        if: steps.pw-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium
 
       # 1i-b.2 (#47) — single-project gate. The chromium-legacy project
@@ -197,7 +221,7 @@ jobs:
       # CI-only failure leaves nothing but the assertion line in the job log.
       - name: Upload Playwright traces + report (on failure)
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: playwright-results-${{ github.run_id }}
           path: |
