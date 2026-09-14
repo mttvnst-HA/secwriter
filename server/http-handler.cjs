@@ -607,38 +607,49 @@ function createHttpHandler({ storage, boundDocs, flushRoom, deleteRoomTransactio
             // removed it since (TOCTOU) — fail closed with 404, not a 500 NPE.
             if (!acl) { outcome.status = 404; return; }
 
+            // The working copies are Maps, not plain objects: the subject key is
+            // request-controlled, and a Map cannot be prototype-polluted by a
+            // key like `__proto__` the way `obj[key] = v` can (belt-and-braces
+            // with the isSafeAclKey 400 above; also what CodeQL's
+            // js/remote-property-injection recognizes). Persisted shape is
+            // unchanged — Object.fromEntries at the end.
             // Fold current roles into the graded shape (migrate #211 sharedWith).
-            const roles = {};
+            const roles = new Map();
             if (acl.roles && typeof acl.roles === 'object') {
-              for (const [uid, r] of Object.entries(acl.roles)) if (r === 'viewer' || r === 'editor') roles[uid] = r;
+              for (const [uid, r] of Object.entries(acl.roles)) if (r === 'viewer' || r === 'editor') roles.set(uid, r);
             } else if (Array.isArray(acl.sharedWith)) {
-              for (const uid of acl.sharedWith) roles[uid] = 'editor';
+              for (const uid of acl.sharedWith) roles.set(uid, 'editor');
             }
-            const pending = { ...((acl.pending && typeof acl.pending === 'object') ? acl.pending : {}) };
-            const display = { ...((acl.display && typeof acl.display === 'object') ? acl.display : {}) };
+            const pending = new Map(Object.entries((acl.pending && typeof acl.pending === 'object') ? acl.pending : {}));
+            const display = new Map(Object.entries((acl.display && typeof acl.display === 'object') ? acl.display : {}));
 
             // Prune expired pending first (reuse the exported predicate — no
             // inline re-implementation to drift), so the cap counts only LIVE invites.
-            for (const [e, entry] of Object.entries(pending)) {
-              if (isPendingExpired(entry, now, ttlMs)) delete pending[e];
+            for (const [e, entry] of pending) {
+              if (isPendingExpired(entry, now, ttlMs)) pending.delete(e);
             }
 
             if (isEmail) {
               if (action === 'add') {
-                if (!pending[subjectKey] && Object.keys(pending).length >= MAX_PENDING_INVITES) { outcome.status = 429; return; }
-                pending[subjectKey] = { role: role || 'editor', invitedBy: req.user.id, invitedAt: new Date(now).toISOString() };
+                if (!pending.has(subjectKey) && pending.size >= MAX_PENDING_INVITES) { outcome.status = 429; return; }
+                pending.set(subjectKey, { role: role || 'editor', invitedBy: req.user.id, invitedAt: new Date(now).toISOString() });
               } else {
-                outcome.pendingRemoved = Object.prototype.hasOwnProperty.call(pending, subjectKey);
-                delete pending[subjectKey];
+                outcome.pendingRemoved = pending.has(subjectKey);
+                pending.delete(subjectKey);
               }
             } else {
               outcome.prevRole = roleOf(acl, subjectKey);
-              if (action === 'add') roles[subjectKey] = role || 'editor'; else { delete roles[subjectKey]; delete display[subjectKey]; }
+              if (action === 'add') roles.set(subjectKey, role || 'editor'); else { roles.delete(subjectKey); display.delete(subjectKey); }
               outcome.newRole = action === 'add' ? (role || 'editor') : null;
             }
-            delete roles[acl.ownerId]; // a grant entry may never equal the owner
+            roles.delete(acl.ownerId); // a grant entry may never equal the owner
 
-            const next = { ...acl, roles, pending, display };
+            const next = {
+              ...acl,
+              roles: Object.fromEntries(roles),
+              pending: Object.fromEntries(pending),
+              display: Object.fromEntries(display),
+            };
             delete next.sharedWith; // #239 folded into `roles` above; drop the legacy key so it isn't persisted forever
             // Cap only gates ADD (the only action that grows the blob). A REMOVE
             // shrinks it, so it must never be blocked — otherwise an already
@@ -646,7 +657,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, deleteRoomTransactio
             // never this route) would have no recovery path.
             if (action === 'add' && exceedsAclByteCap(next)) { outcome.status = 400; return; }
             await storage.writeAcl(tenant, roomId, next);
-            outcome.roles = roles;
+            outcome.roles = next.roles;
           });
 
           if (outcome.status === 404) { res.writeHead(404, { 'Content-Type': 'text/plain' }); res.end('Not found'); return; }
