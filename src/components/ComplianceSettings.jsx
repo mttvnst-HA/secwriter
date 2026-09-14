@@ -1,17 +1,23 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { getApiKey, setApiKey, clearApiKey, testConnection } from "../lib/compliance-ai.js";
 
 export default function ComplianceSettings({ onClose, ignoredCount = 0, mutedCount = 0, onResetIgnored, onResetMuted }) {
-  const [key, setKey] = useState(getApiKey() || "");
+  const [key, setKey] = useState("");
   const [model, setModel] = useState(
     localStorage.getItem("sim-compliance-model") || "claude-sonnet-4-6"
   );
   const [testResult, setTestResult] = useState(null); // null | 'testing' | { success, error }
   const [saved, setSaved] = useState(false);
 
-  const handleSave = useCallback(() => {
+  useEffect(() => {
+    let cancelled = false;
+    getApiKey().then((k) => { if (!cancelled) setKey(k || ""); });
+    return () => { cancelled = true; };
+  }, []);
+
+  const handleSave = useCallback(async () => {
     if (key.trim()) {
-      setApiKey(key.trim());
+      await setApiKey(key.trim());
     } else {
       clearApiKey();
     }
@@ -101,7 +107,7 @@ export default function ComplianceSettings({ onClose, ignoredCount = 0, mutedCou
           fontSize: 11, color: "#ef4444", marginBottom: 12, lineHeight: 1.4,
           padding: "6px 8px", backgroundColor: "#fef2f2", borderRadius: 4,
         }}>
-          Your API key is stored in your browser's local storage. Do not use this on a shared or public computer.
+          Your API key is stored encrypted in your browser. Do not use this on a shared or public computer.
         </div>
 
         {/* Model selection */}

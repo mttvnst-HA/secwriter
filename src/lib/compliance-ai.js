@@ -511,15 +511,90 @@ export async function testConnection(apiKey) {
 }
 
 // ── API Key Storage ──────────────────────────────────────────────────────────
+//
+// The key is encrypted at rest (AES-GCM) before it touches localStorage — only
+// ciphertext is ever written there. The symmetric key lives in IndexedDB,
+// separate from the ciphertext store. This does not defend against an active
+// XSS on this origin (the app itself must decrypt the key to call the API, so
+// any script running as this page can call getApiKey() too); it defends
+// against passive disclosure — a browser extension or tool that scrapes
+// localStorage directly, or offline forensics against a disk/backup copy.
 
 const STORAGE_KEY = 'sim-anthropic-api-key';
+const DB_NAME = 'sim-secure-storage';
+const DB_STORE = 'keys';
+const CRYPTO_KEY_ID = 'api-key-wrapper';
 
-export function getApiKey() {
-  return localStorage.getItem(STORAGE_KEY);
+function openKeyDb() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(DB_NAME, 1);
+    req.onupgradeneeded = () => {
+      req.result.createObjectStore(DB_STORE);
+    };
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
 }
 
-export function setApiKey(key) {
-  localStorage.setItem(STORAGE_KEY, key);
+async function getOrCreateCryptoKey() {
+  const db = await openKeyDb();
+  const existingRaw = await new Promise((resolve, reject) => {
+    const tx = db.transaction(DB_STORE, 'readonly');
+    const req = tx.objectStore(DB_STORE).get(CRYPTO_KEY_ID);
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+  if (existingRaw) {
+    return crypto.subtle.importKey('raw', existingRaw, 'AES-GCM', false, ['encrypt', 'decrypt']);
+  }
+
+  const key = await crypto.subtle.generateKey({ name: 'AES-GCM', length: 256 }, true, ['encrypt', 'decrypt']);
+  const raw = await crypto.subtle.exportKey('raw', key);
+  await new Promise((resolve, reject) => {
+    const tx = db.transaction(DB_STORE, 'readwrite');
+    tx.objectStore(DB_STORE).put(raw, CRYPTO_KEY_ID);
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+  });
+  return crypto.subtle.importKey('raw', raw, 'AES-GCM', false, ['encrypt', 'decrypt']);
+}
+
+function bufToBase64(buf) {
+  return btoa(String.fromCharCode(...new Uint8Array(buf)));
+}
+
+function base64ToBuf(b64) {
+  return Uint8Array.from(atob(b64), c => c.charCodeAt(0)).buffer;
+}
+
+export async function getApiKey() {
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (!stored) return null;
+  try {
+    const { iv, data } = JSON.parse(stored);
+    const cryptoKey = await getOrCreateCryptoKey();
+    const plainBuf = await crypto.subtle.decrypt(
+      { name: 'AES-GCM', iv: base64ToBuf(iv) },
+      cryptoKey,
+      base64ToBuf(data),
+    );
+    return new TextDecoder().decode(plainBuf);
+  } catch {
+    // Ciphertext from a wiped/incognito-cleared IndexedDB (key gone) or
+    // corrupted storage — treat as "no key saved" rather than throwing.
+    return null;
+  }
+}
+
+export async function setApiKey(key) {
+  const cryptoKey = await getOrCreateCryptoKey();
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const encrypted = await crypto.subtle.encrypt(
+    { name: 'AES-GCM', iv },
+    cryptoKey,
+    new TextEncoder().encode(key),
+  );
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ iv: bufToBase64(iv), data: bufToBase64(encrypted) }));
 }
 
 export function clearApiKey() {

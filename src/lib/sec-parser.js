@@ -27,6 +27,21 @@ const SKIP_TAGS = new Set([
 ]);
 
 /**
+ * Escape a raw XML attribute value for safe interpolation into a
+ * double-quoted HTML attribute. Source .SEC files are untrusted input
+ * (uploaded to the collab server by any client) — an unescaped `"` in an
+ * OPT attribute would let a crafted file break out of `data-opt="..."`
+ * and inject arbitrary attributes/markup into the block's stored HTML.
+ */
+function escapeHtmlAttr(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+/**
  * Convert an XML element to HTML string with semantic mark spans.
  */
 function elemToHtml(elem) {
@@ -43,7 +58,7 @@ function elemToHtml(elem) {
         const cls = `mark-${tag.toLowerCase()}`;
         const inner = elemToHtml(node);
         const opt = (tag === 'TAI') ? node.getAttribute('OPT') : null;
-        const optAttr = opt ? ` data-opt="${opt}"` : '';
+        const optAttr = opt ? ` data-opt="${escapeHtmlAttr(opt)}"` : '';
         parts.push(`<span class="${cls}"${optAttr}>${inner}</span>`);
       } else if (tag === 'ADD') {
         parts.push(`<ins class="mark-add">${elemToHtml(node)}</ins>`);
@@ -90,7 +105,7 @@ function elemToHtmlNoTab(elem) {
       } else if (INLINE_MARK_TAGS.has(tag)) {
         const cls = `mark-${tag.toLowerCase()}`;
         const opt = (tag === 'TAI') ? node.getAttribute('OPT') : null;
-        const optAttr = opt ? ` data-opt="${opt}"` : '';
+        const optAttr = opt ? ` data-opt="${escapeHtmlAttr(opt)}"` : '';
         parts.push(`<span class="${cls}"${optAttr}>${elemToHtml(node)}</span>`);
       } else if (tag === 'ADD') {
         parts.push(`<ins class="mark-add">${elemToHtml(node)}</ins>`);
@@ -139,7 +154,7 @@ function elemToTblHtml(elem) {
       } else if (INLINE_MARK_TAGS.has(tag)) {
         const cls = `mark-${tag.toLowerCase()}`;
         const opt = (tag === 'TAI') ? node.getAttribute('OPT') : null;
-        const optAttr = opt ? ` data-opt="${opt}"` : '';
+        const optAttr = opt ? ` data-opt="${escapeHtmlAttr(opt)}"` : '';
         parts.push(`<span class="${cls}"${optAttr}>${elemToTblHtml(node)}</span>`);
       } else if (INLINE_FORMAT_TAGS.has(tag)) {
         if (tag === 'BLD' || tag === 'HL3') {
@@ -229,6 +244,15 @@ function extractTable(tabElem) {
  * @returns {Array} Array of block objects
  */
 export function parseSEC(xmlString) {
+  // Reject inline DTDs before parsing. No legitimate .SEC file declares one
+  // (verified against all 689 reference/UFGS_M files), and an internal DTD
+  // subset is the only way to define custom XML entities — the mechanism a
+  // "billion laughs"-style entity-expansion DoS depends on. Refusing the file
+  // up front avoids relying on the parser's own (unconfigurable, engine-
+  // dependent) entity-expansion limits.
+  if (/<!DOCTYPE|<!ENTITY/i.test(xmlString)) {
+    throw new Error('XML parse error — file may be malformed: inline DOCTYPE/ENTITY declarations are not supported');
+  }
   // Legacy USACE .SEC files (and older SecWriter saves) can contain bare `&`
   // characters in text content — e.g. "Concrete & Commentary" in an RTL.
   // The browser's strict XML DOMParser treats any `&` not followed by a

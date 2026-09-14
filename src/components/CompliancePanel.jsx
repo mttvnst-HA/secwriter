@@ -56,7 +56,16 @@ export default function CompliancePanel({
   const [expandedWhy, setExpandedWhy] = useState(new Set());
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [hasApiKey, setHasApiKey] = useState(false);
   const abortRef = useRef(null);
+
+  // Re-check whenever the settings modal opens/closes, since that's the only
+  // place the key can be saved or cleared.
+  useEffect(() => {
+    let cancelled = false;
+    getApiKey().then((k) => { if (!cancelled) setHasApiKey(!!k); });
+    return () => { cancelled = true; };
+  }, [showSettings]);
 
   // First-run onboarding
   useEffect(() => {
@@ -140,7 +149,7 @@ export default function CompliancePanel({
   // ── AI batch rewrite ──────────────────────────────────────────────────────
 
   const handleAIFixAll = useCallback(async () => {
-    const apiKey = getApiKey();
+    const apiKey = await getApiKey();
     if (!apiKey) {
       setShowSettings(true);
       return;
@@ -764,7 +773,7 @@ export default function CompliancePanel({
                     Cancel
                   </button>
                 </div>
-              ) : getApiKey() ? (
+              ) : hasApiKey ? (
                 <button
                   onClick={handleAIFixAll}
                   style={{
