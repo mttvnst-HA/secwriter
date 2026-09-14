@@ -290,6 +290,46 @@ describe('parseSEC', () => {
     expect(txtBlock.html).toContain('data-opt="NAVY"');
   });
 
+  // ─── Text-node HTML escaping (stored XSS defense) ───────────────
+
+  it('escapes HTML metacharacters decoded out of text content, attribute values, and table cells', () => {
+    // A .SEC file is untrusted input (server upload, or a local "Open" in the
+    // browser). Its XML entities are legitimate, innocuous XML escaping of
+    // ordinary text (e.g. someone genuinely wrote "<script>" as visible spec
+    // text) — but the DOMParser decodes them back to literal characters in
+    // textContent. Those literal `<`/`>`/`&` must be re-escaped before being
+    // concatenated into the block's HTML string, or they'd be interpreted as
+    // real markup once that string is parsed by the editor (stored XSS).
+    const xml = secPart(
+      '<TXT>Value &lt;script&gt;alert(1)&lt;/script&gt; and Q &amp; A</TXT>' +
+      '<TXT><TAI OPT="say &quot;hi&quot;">tailored</TAI></TXT>' +
+      '<REF><ORG>&lt;b&gt;ASTM&lt;/b&gt;</ORG></REF>' +
+      '<TAB><WBK><STS><STY SID="s50"><ALN VERTICAL="BOTTOM"/></STY></STS>' +
+      '<TDA COLUMNCOUNT="1" ROWCOUNT="1"><COL STYLEID="s50" WIDTH="100"/>' +
+      '<ROW><CEL STYLEID="s50"><DTA TYPE="STRING">&lt;img src=x&gt;</DTA></CEL></ROW>' +
+      '</TDA></WBK></TAB>'
+    );
+    const blocks = parseSEC(xml);
+
+    const txt = blocks.find(b => b.type === 'txt' && b.html.includes('Value'));
+    expect(txt.html).toBe('Value &lt;script&gt;alert(1)&lt;/script&gt; and Q &amp; A');
+    expect(txt.html).not.toContain('<script>');
+
+    const tai = blocks.find(b => b.html.includes('mark-tai'));
+    // The embedded `"` must not break out of data-opt="..." — the attribute
+    // still ends with a real closing quote, not a quote from the payload.
+    expect(tai.html).toContain('data-opt="say &quot;hi&quot;"');
+    expect(tai.html).not.toMatch(/data-opt="[^"]*"[^ >]/); // no stray content after the real closing quote
+
+    const ref = blocks.find(b => b.type === 'ref');
+    expect(ref.ref.org).toBe('&lt;b&gt;ASTM&lt;/b&gt;');
+    expect(ref.ref.org).not.toContain('<b>');
+
+    const table = blocks.find(b => b.type === 'table');
+    expect(table.table.rows[0][0].text).toBe('&lt;img src=x&gt;');
+    expect(table.table.rows[0][0].text).not.toContain('<img');
+  });
+
   it('parses pre-part notes (part 0)', () => {
     const xml = secWrap('<NTE><NPR>Pre-part note</NPR></NTE><PRT><TXT>text</TXT></PRT>');
     const blocks = parseSEC(xml);

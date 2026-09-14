@@ -27,13 +27,19 @@ const SKIP_TAGS = new Set([
 ]);
 
 /**
- * Escape a raw XML attribute value for safe interpolation into a
- * double-quoted HTML attribute. Source .SEC files are untrusted input
- * (uploaded to the collab server by any client) — an unescaped `"` in an
- * OPT attribute would let a crafted file break out of `data-opt="..."`
- * and inject arbitrary attributes/markup into the block's stored HTML.
+ * Escape a raw XML text/attribute value for safe interpolation into HTML.
+ * Source .SEC files are untrusted input (uploaded to the collab server by
+ * any client, or opened locally in the browser) — an unescaped `"` in an
+ * OPT attribute would let a crafted file break out of `data-opt="..."`,
+ * and unescaped `<`/`>` in ordinary text content (e.g. an RTL/TXT/TAB cell
+ * whose original XML had `&lt;script&gt;` — valid, innocuous XML text) would
+ * decode back into literal markup once XML-unescaped by the parser and get
+ * woven raw into the block's stored HTML string, which is later parsed as
+ * real markup by the editor (stored XSS). Every text node AND attribute
+ * value pulled out of the parsed XML must go through this before being
+ * concatenated into an HTML string.
  */
-function escapeHtmlAttr(value) {
+function escapeHtml(value) {
   return String(value)
     .replace(/&/g, '&amp;')
     .replace(/"/g, '&quot;')
@@ -50,7 +56,7 @@ function elemToHtml(elem) {
   // Traverse childNodes to build HTML
   for (const node of elem.childNodes) {
     if (node.nodeType === 3) { // Text node
-      parts.push(node.textContent.replace(/\n/g, ' '));
+      parts.push(escapeHtml(node.textContent.replace(/\n/g, ' ')));
     } else if (node.nodeType === 1) { // Element node
       const tag = node.tagName;
 
@@ -58,7 +64,7 @@ function elemToHtml(elem) {
         const cls = `mark-${tag.toLowerCase()}`;
         const inner = elemToHtml(node);
         const opt = (tag === 'TAI') ? node.getAttribute('OPT') : null;
-        const optAttr = opt ? ` data-opt="${escapeHtmlAttr(opt)}"` : '';
+        const optAttr = opt ? ` data-opt="${escapeHtml(opt)}"` : '';
         parts.push(`<span class="${cls}"${optAttr}>${inner}</span>`);
       } else if (tag === 'ADD') {
         parts.push(`<ins class="mark-add">${elemToHtml(node)}</ins>`);
@@ -95,7 +101,7 @@ function elemToHtmlNoTab(elem) {
   const parts = [];
   for (const node of elem.childNodes) {
     if (node.nodeType === 3) {
-      parts.push(node.textContent.replace(/\n/g, ' '));
+      parts.push(escapeHtml(node.textContent.replace(/\n/g, ' ')));
     } else if (node.nodeType === 1) {
       const tag = node.tagName;
       if (tag === 'TAB' || tag === 'WBK' || tag === 'TDA' || tag === 'ROW' ||
@@ -105,7 +111,7 @@ function elemToHtmlNoTab(elem) {
       } else if (INLINE_MARK_TAGS.has(tag)) {
         const cls = `mark-${tag.toLowerCase()}`;
         const opt = (tag === 'TAI') ? node.getAttribute('OPT') : null;
-        const optAttr = opt ? ` data-opt="${escapeHtmlAttr(opt)}"` : '';
+        const optAttr = opt ? ` data-opt="${escapeHtml(opt)}"` : '';
         parts.push(`<span class="${cls}"${optAttr}>${elemToHtml(node)}</span>`);
       } else if (tag === 'ADD') {
         parts.push(`<ins class="mark-add">${elemToHtml(node)}</ins>`);
@@ -141,7 +147,7 @@ function elemToTblHtml(elem) {
   const parts = [];
   for (const node of elem.childNodes) {
     if (node.nodeType === 3) { // Text node — preserve whitespace (only strip leading/trailing newlines)
-      parts.push(node.textContent.replace(/^\n|\n$/g, ''));
+      parts.push(escapeHtml(node.textContent.replace(/^\n|\n$/g, '')));
     } else if (node.nodeType === 1) {
       const tag = node.tagName;
       if (tag === 'BRK' || tag === 'BRL') {
@@ -154,7 +160,7 @@ function elemToTblHtml(elem) {
       } else if (INLINE_MARK_TAGS.has(tag)) {
         const cls = `mark-${tag.toLowerCase()}`;
         const opt = (tag === 'TAI') ? node.getAttribute('OPT') : null;
-        const optAttr = opt ? ` data-opt="${escapeHtmlAttr(opt)}"` : '';
+        const optAttr = opt ? ` data-opt="${escapeHtml(opt)}"` : '';
         parts.push(`<span class="${cls}"${optAttr}>${elemToTblHtml(node)}</span>`);
       } else if (INLINE_FORMAT_TAGS.has(tag)) {
         if (tag === 'BLD' || tag === 'HL3') {
