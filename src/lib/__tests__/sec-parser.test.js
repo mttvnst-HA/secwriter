@@ -411,4 +411,45 @@ describe('parseSEC', () => {
     expect(blocks[0].table.styles.s51).toEqual({ backgroundColor: '#f2f2f2' });
     expect(blocks[0].table.rows[0][1].styleId).toBe('s51');
   });
+
+  // ─── Text-node escaping (stored XSS, CodeQL js/xss alert #4) ──────
+
+  describe('escapes decoded XML text into inert HTML', () => {
+    it('keeps XML-escaped markup in TXT as text, not live tags', () => {
+      const xml = secPart('<TXT>Body &lt;img src=x onerror=alert(1)&gt;</TXT>');
+      const blocks = parseSEC(xml);
+      expect(blocks[0].html).toBe('Body &lt;img src=x onerror=alert(1)&gt;');
+      expect(blocks[0].html).not.toContain('<img');
+    });
+
+    it('escapes text in TBL (preformatted) blocks', () => {
+      const xml = secPart('<TBL>a &lt;b&gt; &amp; c</TBL>');
+      const blocks = parseSEC(xml);
+      expect(blocks[0].html).toBe('a &lt;b&gt; &amp; c');
+    });
+
+    it('escapes text inside TAB cells', () => {
+      const xml = secPart('<TAB><TDA COLUMNCOUNT="1" ROWCOUNT="1"><ROW><CEL><DTA TYPE="STRING">&lt;script&gt;x&lt;/script&gt;</DTA></CEL></ROW></TDA></TAB>');
+      const blocks = parseSEC(xml);
+      expect(blocks[0].table.rows[0][0].text).toBe('&lt;script&gt;x&lt;/script&gt;');
+    });
+
+    it('escapes text nested inside inline marks', () => {
+      const xml = secPart('<TXT><RID>ASTM &lt;C150&gt;</RID> P&amp;ID</TXT>');
+      const blocks = parseSEC(xml);
+      expect(blocks[0].html).toBe('<span class="mark-rid">ASTM &lt;C150&gt;</span> P&amp;ID');
+    });
+
+    it('round-trips escaped text through the serializer unchanged', async () => {
+      const { serializeSEC } = await import('../sec-serializer.js');
+      const inner = '<PRT><TXT>Body &lt;img src=x onerror=alert(1)&gt; &amp; more</TXT></PRT>';
+      const blocks = parseSEC(secWrap(inner));
+      const out = serializeSEC(blocks, { sectionNumber: '00 00 00', sectionTitle: 'T', date: '01/26' });
+      expect(out).toContain('<TXT>Body &lt;img src=x onerror=alert(1)&gt; &amp; more</TXT>');
+      expect(out).not.toContain('<img');
+      // Re-parsing the export yields the same inert html.
+      expect(parseSEC(out).find(b => b.type === 'txt').html)
+        .toBe('Body &lt;img src=x onerror=alert(1)&gt; &amp; more');
+    });
+  });
 });

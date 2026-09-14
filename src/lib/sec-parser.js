@@ -42,6 +42,24 @@ function escapeHtmlAttr(value) {
 }
 
 /**
+ * Escape a decoded XML text node for inclusion in block HTML. The XML
+ * parser has already turned `&lt;img onerror=…&gt;` in the source file back
+ * into the literal text `<img onerror=…>`; pushing that raw into block.html
+ * makes it live markup at every innerHTML / dangerouslySetInnerHTML sink
+ * (TableBlock cells, TitleBlock, PreformattedBlock, the comment/lint
+ * scratch divs, print windows) — a stored XSS reachable by any client that
+ * uploads a crafted .SEC into a collab room. sec-serializer's
+ * walkNodeToSgml decodes these entities back to text and re-escapes for
+ * XML, so the round trip is lossless.
+ */
+function escapeHtmlText(value) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+/**
  * Convert an XML element to HTML string with semantic mark spans.
  */
 function elemToHtml(elem) {
@@ -50,7 +68,7 @@ function elemToHtml(elem) {
   // Traverse childNodes to build HTML
   for (const node of elem.childNodes) {
     if (node.nodeType === 3) { // Text node
-      parts.push(node.textContent.replace(/\n/g, ' '));
+      parts.push(escapeHtmlText(node.textContent.replace(/\n/g, ' ')));
     } else if (node.nodeType === 1) { // Element node
       const tag = node.tagName;
 
@@ -95,7 +113,7 @@ function elemToHtmlNoTab(elem) {
   const parts = [];
   for (const node of elem.childNodes) {
     if (node.nodeType === 3) {
-      parts.push(node.textContent.replace(/\n/g, ' '));
+      parts.push(escapeHtmlText(node.textContent.replace(/\n/g, ' ')));
     } else if (node.nodeType === 1) {
       const tag = node.tagName;
       if (tag === 'TAB' || tag === 'WBK' || tag === 'TDA' || tag === 'ROW' ||
@@ -141,7 +159,7 @@ function elemToTblHtml(elem) {
   const parts = [];
   for (const node of elem.childNodes) {
     if (node.nodeType === 3) { // Text node — preserve whitespace (only strip leading/trailing newlines)
-      parts.push(node.textContent.replace(/^\n|\n$/g, ''));
+      parts.push(escapeHtmlText(node.textContent.replace(/^\n|\n$/g, '')));
     } else if (node.nodeType === 1) {
       const tag = node.tagName;
       if (tag === 'BRK' || tag === 'BRL') {
