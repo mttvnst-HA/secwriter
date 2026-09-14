@@ -586,9 +586,11 @@ function createHttpHandler({ storage, boundDocs, flushRoom, deleteRoomTransactio
             return;
           }
           // The subject becomes a KEY in the persisted roles/pending/display maps
-          // (`roles[userId] = role`), so refuse prototype-mutating names,
-          // control characters, and oversized values before any write.
-          if (!isSafeAclKey(isEmail ? email : userId)) {
+          // (`roles[subjectKey] = role`), so refuse prototype-mutating names and
+          // control characters before any write. Every map write below goes
+          // through this ONE validated binding — not `email` / `userId` directly.
+          const subjectKey = isEmail ? email : userId;
+          if (!isSafeAclKey(subjectKey)) {
             res.writeHead(400, { 'Content-Type': 'text/plain' });
             res.end('Invalid userId or email');
             return;
@@ -623,15 +625,15 @@ function createHttpHandler({ storage, boundDocs, flushRoom, deleteRoomTransactio
 
             if (isEmail) {
               if (action === 'add') {
-                if (!pending[email] && Object.keys(pending).length >= MAX_PENDING_INVITES) { outcome.status = 429; return; }
-                pending[email] = { role: role || 'editor', invitedBy: req.user.id, invitedAt: new Date(now).toISOString() };
+                if (!pending[subjectKey] && Object.keys(pending).length >= MAX_PENDING_INVITES) { outcome.status = 429; return; }
+                pending[subjectKey] = { role: role || 'editor', invitedBy: req.user.id, invitedAt: new Date(now).toISOString() };
               } else {
-                outcome.pendingRemoved = Object.prototype.hasOwnProperty.call(pending, email);
-                delete pending[email];
+                outcome.pendingRemoved = Object.prototype.hasOwnProperty.call(pending, subjectKey);
+                delete pending[subjectKey];
               }
             } else {
-              outcome.prevRole = roleOf(acl, userId);
-              if (action === 'add') roles[userId] = role || 'editor'; else { delete roles[userId]; delete display[userId]; }
+              outcome.prevRole = roleOf(acl, subjectKey);
+              if (action === 'add') roles[subjectKey] = role || 'editor'; else { delete roles[subjectKey]; delete display[subjectKey]; }
               outcome.newRole = action === 'add' ? (role || 'editor') : null;
             }
             delete roles[acl.ownerId]; // a grant entry may never equal the owner
