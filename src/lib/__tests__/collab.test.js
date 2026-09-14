@@ -30,6 +30,7 @@ import {
   readComments,
 } from '../collab.js';
 import { setBlockHtml, getBlockHtml } from '../block-html-store.js';
+import { stripTags } from '../html-text.js';
 
 function makeDoc() {
   const ydoc = new Y.Doc();
@@ -934,7 +935,7 @@ describe('character-level CRDT merge (attribute-aware)', () => {
     const result1 = yBlocksToArray(o1, s1);
     const result2 = yBlocksToArray(o2, s2);
     expect(result1[0].html).toBe(result2[0].html);
-    const plainText = result1[0].html.replace(/<[^>]+>/g, '');
+    const plainText = stripTags(result1[0].html);
     expect(result1[0].html).toContain('<b>');
     expect(plainText).toContain('world');
     expect(plainText).toContain('today');

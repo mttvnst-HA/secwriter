@@ -6,6 +6,7 @@
  */
 
 import { getRules, runStaticRules } from './compliance-rules.js';
+import { stripTags, decodeEntities } from './html-text.js';
 
 // ── Scope Selection ──────────────────────────────────────────────────────────
 
@@ -67,16 +68,8 @@ function stripHtml(html, unitDisplay) {
   }
 
   // Strip all remaining tags — replace with space to avoid merging words
-  // at tag boundaries (e.g., "</span> <span>" → "  " → collapsed to " ")
-  return result
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&nbsp;/g, ' ')
-    .replace(/\u200B/g, '')
+  // at tag boundaries (e.g., "</span> <span>" -> "  " -> collapsed to " ")
+  return decodeEntities(stripTags(result, ' '))
     .replace(/ {2,}/g, ' ')
     .trim();
 }

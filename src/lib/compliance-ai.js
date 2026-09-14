@@ -10,6 +10,7 @@ import { jsonrepair } from 'jsonrepair';
 import rulesData from '../data/ufs-1-300-02-rules.json';
 import { computeIgnoreKey, isFindingIgnored, isNlpRuleMuted } from './linting.js';
 import { fingerprintBlock } from './lint-sidecar.js';
+import { htmlToPlainText } from './html-text.js';
 
 const MAX_BLOCKS_PER_CHUNK = 20;
 
@@ -82,17 +83,8 @@ ${dismissals}`;
  */
 function stripHtml(html) {
   if (!html) return '';
-  return html
-    .replace(/<del\b[^>]*>.*?<\/del>/gi, '')
-    .replace(/<[^>]+>/g, '')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&nbsp;/g, ' ')
-    .replace(/\u200B/g, '')
-    .trim();
+  const withoutDel = html.replace(/<del\b[^>]*>.*?<\/del>/gi, '');
+  return htmlToPlainText(withoutDel).trim();
 }
 
 /**

@@ -11,6 +11,7 @@ globalThis.DOMParser = DOMParser;
 
 import { parseSEC } from '../src/lib/sec-parser.js';
 import { serializeSEC } from '../src/lib/sec-serializer.js';
+import { stripTags } from '../src/lib/html-text.js';
 import fs from 'fs';
 
 const filePath = process.argv[2] || 'reference/UFGS_M/01 14 00.SEC';
@@ -64,7 +65,7 @@ for (let i = 0; i < len; i++) {
   // Show all title blocks, and any non-title blocks with depth mismatches
   if (a.type === 'title' || !depthMatch) {
     const marker = depthMatch ? '  OK' : ' <<<';
-    const htmlSnip = (a.html || '').substring(0, 70).replace(/<[^>]+>/g, '');
+    const htmlSnip = stripTags((a.html || '').substring(0, 70));
     console.log(`${String(i).padStart(4)} ${a.type.padEnd(6)} ${String(a.part).padStart(2)} ${String(a.depth).padStart(3)} ${String(b.depth).padStart(3)} ${marker}  ${htmlSnip}`);
   }
 }
@@ -120,7 +121,7 @@ for (const block of blocks1.filter(b => b.part > 0)) {
       simDepth = targetDepth;
     }
 
-    const htmlSnip = (block.html || '').substring(0, 50).replace(/<[^>]+>/g, '');
+    const htmlSnip = stripTags((block.html || '').substring(0, 50));
     console.log(`  title depth=${block.depth} openSpt=${openSptDepth} -> ${simDepth} | ${actions.join(', ') || 'no SPT action'} | "${htmlSnip}"`);
     openSptDepth = simDepth;
   }

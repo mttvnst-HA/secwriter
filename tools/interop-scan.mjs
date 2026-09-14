@@ -23,6 +23,7 @@ globalThis.DOMParser = DOMParser;
 
 import { parseSEC, extractMetadata } from '../src/lib/sec-parser.js';
 import { serializeSEC } from '../src/lib/sec-serializer.js';
+import { stripTags as stripHtmlTags } from '../src/lib/html-text.js';
 import fs from 'fs';
 import path from 'path';
 
@@ -66,7 +67,7 @@ function countTag(xml, tagName) {
  * Extract plain text content (strip all tags) from XML string.
  */
 function stripTags(xml) {
-  return xml.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+  return stripHtmlTags(xml).replace(/\s+/g, ' ').trim();
 }
 
 /**
@@ -242,8 +243,11 @@ function categoriseDiffs(orig, serialized) {
 
     const origLen = origText.length;
     const serLen  = serText.length;
+    // Use JSON.stringify (not a bare "..." wrap) so a quote character inside
+    // the snippet itself can't break out of the quoted value in the printed
+    // diagnostic line.
     const snippet = firstDiff >= 0
-      ? `first diff at char ${firstDiff}: orig="${origText.substring(firstDiff, firstDiff + 40)}" ser="${serText.substring(firstDiff, firstDiff + 40)}"`
+      ? `first diff at char ${firstDiff}: orig=${JSON.stringify(origText.substring(firstDiff, firstDiff + 40))} ser=${JSON.stringify(serText.substring(firstDiff, firstDiff + 40))}`
       : '';
 
     result.content.push(`Plain-text differs: ${origLen} → ${serLen} chars${snippet ? '; ' + snippet : ''}`);

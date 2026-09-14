@@ -128,6 +128,9 @@ const EXISTING_LOWER = new Set([...EXISTING_TERMS].map(t => t.toLowerCase()));
  * Strip XML/SGML tags and decode basic entities from .SEC content.
  * Returns plain text suitable for linting.
  */
+const NAMED_ENTITY_RE = /&(amp|lt|gt|quot|apos);/g;
+const NAMED_ENTITY_CHARS = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'" };
+
 function extractPlainText(raw) {
   return raw
     // Remove XML processing instructions and DOCTYPE
@@ -137,12 +140,12 @@ function extractPlainText(raw) {
     .replace(/<!\[CDATA\[[\s\S]*?\]\]>/g, ' ')
     // Remove all tags
     .replace(/<[^>]+>/g, ' ')
-    // Decode common XML/HTML entities
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&apos;/g, "'")
+    // Decode common XML/HTML entities in a single pass — chaining separate
+    // .replace() calls is order-sensitive (decoding &amp; before &lt; turns
+    // an already-escaped "&amp;lt;" into "<" instead of the correct "&lt;").
+    .replace(NAMED_ENTITY_RE, (_, name) => NAMED_ENTITY_CHARS[name])
+    // Numeric refs and any other named entity aren't decoded to a
+    // character — blanked, since dictionary mining only wants plain words.
     .replace(/&#\d+;/g, ' ')
     .replace(/&[a-zA-Z]+;/g, ' ')
     // Collapse whitespace
