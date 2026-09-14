@@ -5,7 +5,17 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    # One PR per week for all minor/patch bumps instead of one per package —
+    # each PR costs a full ~11-minute CI run. Majors stay individual PRs so
+    # a breaking bump (Hocuspocus, yjs, React) gets its own review.
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
+    groups:
+      actions:
+        patterns: ['*']
