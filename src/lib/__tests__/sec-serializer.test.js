@@ -239,6 +239,27 @@ describe('serializeSEC', () => {
 
   // ─── Edge cases ────────────────────────────────────────────────
 
+  it('decodes &lt; &gt; &amp; from block html and re-escapes for XML on the normal path', () => {
+    // Block html is HTML-encoded (the parser and pmdoc-html/ytext-html all
+    // emit `&lt;` for a literal `<`). htmlToSgml parses it with DOMParser so
+    // textContent yields the raw character, then escapeXmlText re-escapes —
+    // exactly one level of escaping in the output, and literal angle-bracket
+    // text never becomes an SGML tag.
+    const blocks = [
+      { id: '1', type: 'txt', part: 1, depth: 0, html: 'Body &lt;img src=x onerror=alert(1)&gt; and O&amp;M' },
+      { id: '2', type: 'txt', part: 1, depth: 0, html: '<span class="mark-met">&lt;25</span> and <b>x &gt; y</b>' },
+      { id: '3', type: 'tbl', part: 1, depth: 0, html: '&lt;b&gt;not bold&lt;/b&gt;\nx &lt; y' },
+    ];
+    const xml = serializeSEC(blocks, META);
+    expect(xml).toContain('<TXT>Body &lt;img src=x onerror=alert(1)&gt; and O&amp;M</TXT>');
+    expect(xml).toContain('<TXT><MET>&lt;25</MET> and <BLD>x &gt; y</BLD></TXT>');
+    expect(xml).toContain('<TBL>\r\n&lt;b&gt;not bold&lt;/b&gt;\r\n<BRK/>\r\nx &lt; y\r\n</TBL>');
+    expect(xml).not.toContain('<img');
+    expect(xml).not.toContain('&amp;lt;');
+    expect(xml).not.toContain('&amp;gt;');
+    expect(xml).not.toContain('&amp;amp;');
+  });
+
   it('re-escapes entities on the parse-error fallback path without double-escaping', () => {
     // htmlToSgml's parse-error fallback (malformed/non-XML html) is only
     // reachable with a strict XML parser — linkedom (this test env's

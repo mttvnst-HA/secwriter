@@ -127,6 +127,48 @@ describe('SEC roundtrip (parse → serialize → re-parse)', () => {
     expect(blocks2[1].html).not.toContain('data-opt');
   });
 
+  it('escaped angle brackets survive parse → serialize → re-parse as text, never as markup', () => {
+    // CodeQL js/xss alert #4: the parser escapes text-node content into
+    // block.html; the serializer must decode it back to text and re-escape
+    // for XML — one level of escaping in the file, never `&amp;lt;`.
+    const xml = `<?xml version="1.0" encoding="windows-1252"?><SEC>
+      <PRT>
+        <TXT>Body &lt;img src=x onerror=alert(1)&gt; and O&amp;M</TXT>
+        <TXT>[Wedge] &lt;Insert shape&gt;. <MET>&lt;25</MET><ENG>&lt;1</ENG></TXT>
+        <TBL>&lt;b&gt;not bold&lt;/b&gt;<BRK/>x &lt; y</TBL>
+        <TAB><WBK><TDA COLUMNCOUNT="1" ROWCOUNT="1"><COL WIDTH="100"/>
+        <ROW><CEL><DTA TYPE="STRING">&lt;7.6 L</DTA></CEL></ROW></TDA></WBK></TAB>
+      </PRT>
+    </SEC>`;
+    const blocks1 = parseSEC(xml);
+    const serialized = serializeSEC(blocks1, { sectionNumber: '00 00 00', sectionTitle: 'ESCAPE TEST' });
+
+    expect(serialized).toContain('<TXT>Body &lt;img src=x onerror=alert(1)&gt; and O&amp;M</TXT>');
+    expect(serialized).toContain('<TXT>[Wedge] &lt;Insert shape&gt;. <MET>&lt;25</MET><ENG>&lt;1</ENG></TXT>');
+    expect(serialized).toContain('<TBL>\r\n&lt;b&gt;not bold&lt;/b&gt;\r\n<BRK/>\r\nx &lt; y\r\n</TBL>');
+    expect(serialized).toContain('<DTA TYPE="STRING">&lt;7.6 L</DTA>');
+    expect(serialized).not.toContain('<img');
+    expect(serialized).not.toContain('&amp;lt;');
+    expect(serialized).not.toContain('&amp;gt;');
+    expect(serialized).not.toContain('&amp;amp;');
+
+    // Re-parse yields the same HTML-encoded text (whitespace normalized —
+    // the CRLF layout the serializer gives preformatted TBL content is a
+    // pre-existing round-trip artifact, orthogonal to escaping).
+    const norm = (s) => (s || '').replace(/\s+/g, ' ').trim();
+    const blocks2 = parseSEC(serialized);
+    expect(blocks2.length).toBe(blocks1.length);
+    for (let i = 0; i < blocks1.length; i++) {
+      expect(norm(blocks2[i].html)).toBe(norm(blocks1[i].html));
+      if (blocks1[i].table) {
+        const cellText = (t) => t.rows.map(r => r.map(c => c.text));
+        expect(cellText(blocks2[i].table)).toEqual(cellText(blocks1[i].table));
+      }
+    }
+    expect(blocks2[0].html).toBe('Body &lt;img src=x onerror=alert(1)&gt; and O&amp;M');
+    expect(blocks2[3].table.rows[0][0].text).toBe('&lt;7.6 L');
+  });
+
   it('ADD/DEL/CHG survive parse → serialize → re-parse (inline + block-level)', () => {
     const xml = `<?xml version="1.0" encoding="windows-1252"?><SEC>
       <PRT>

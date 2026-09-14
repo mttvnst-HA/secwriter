@@ -42,6 +42,25 @@ function escapeHtmlAttr(value) {
 }
 
 /**
+ * Escape raw XML text-node content for safe interpolation into block HTML.
+ * The XML parser has already decoded entities, so a .SEC containing
+ * `&lt;img src=x onerror=...&gt;` yields a text node whose textContent is a
+ * literal `<img ...>`. Pushing that raw into block.html would let it reach
+ * innerHTML / dangerouslySetInnerHTML / document.write sinks as markup — in a
+ * collab room, one client's crafted upload would execute in every peer's
+ * browser. Escaping here also matches what the editor's own HTML producers
+ * (pmdoc-html, ytext-html) emit for text, so block.html is uniformly
+ * HTML-encoded whether it came from a file or a keystroke. The serializer's
+ * htmlToSgml decodes these entities via DOMParser and re-escapes for XML.
+ */
+function escapeHtmlText(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+/**
  * Convert an XML element to HTML string with semantic mark spans.
  */
 function elemToHtml(elem) {
@@ -50,7 +69,7 @@ function elemToHtml(elem) {
   // Traverse childNodes to build HTML
   for (const node of elem.childNodes) {
     if (node.nodeType === 3) { // Text node
-      parts.push(node.textContent.replace(/\n/g, ' '));
+      parts.push(escapeHtmlText(node.textContent.replace(/\n/g, ' ')));
     } else if (node.nodeType === 1) { // Element node
       const tag = node.tagName;
 
@@ -95,7 +114,7 @@ function elemToHtmlNoTab(elem) {
   const parts = [];
   for (const node of elem.childNodes) {
     if (node.nodeType === 3) {
-      parts.push(node.textContent.replace(/\n/g, ' '));
+      parts.push(escapeHtmlText(node.textContent.replace(/\n/g, ' ')));
     } else if (node.nodeType === 1) {
       const tag = node.tagName;
       if (tag === 'TAB' || tag === 'WBK' || tag === 'TDA' || tag === 'ROW' ||
@@ -141,7 +160,7 @@ function elemToTblHtml(elem) {
   const parts = [];
   for (const node of elem.childNodes) {
     if (node.nodeType === 3) { // Text node — preserve whitespace (only strip leading/trailing newlines)
-      parts.push(node.textContent.replace(/^\n|\n$/g, ''));
+      parts.push(escapeHtmlText(node.textContent.replace(/^\n|\n$/g, '')));
     } else if (node.nodeType === 1) {
       const tag = node.tagName;
       if (tag === 'BRK' || tag === 'BRL') {

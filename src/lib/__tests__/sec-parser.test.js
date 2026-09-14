@@ -290,6 +290,63 @@ describe('parseSEC', () => {
     expect(txtBlock.html).toContain('data-opt="NAVY"');
   });
 
+  // ─── Text-node HTML escaping (CodeQL js/xss, alert #4) ──────────
+  //
+  // The XML parser decodes entities, so `&lt;img ...&gt;` in a .SEC becomes a
+  // text node whose textContent is a literal `<img ...>`. Each HTML builder
+  // must re-escape text before it lands in block.html, or the markup reaches
+  // innerHTML / dangerouslySetInnerHTML / document.write sinks as live HTML
+  // (and, in a collab room, executes in every peer's browser).
+
+  it('escapes < and > in text nodes on every HTML builder path', () => {
+    const PROBE = 'Body &lt;img src=x onerror=alert(1)&gt;';
+    const ESC = 'Body &lt;img src=x onerror=alert(1)&gt;';
+
+    // elemToHtml: TXT, and text nested inside an inline mark
+    expect(parseSEC(secPart(`<TXT>${PROBE}</TXT>`))[0].html).toBe(ESC);
+    expect(parseSEC(secPart(`<TXT><SUB>${PROBE}</SUB></TXT>`))[0].html)
+      .toBe(`<span class="mark-sub">${ESC}</span>`);
+
+    // elemToHtmlNoTab (TXT with TAB child) + table cell text via extractTable
+    // (the cell text feeds TableBlock's dangerouslySetInnerHTML directly)
+    const mixed = parseSEC(secPart(`<TXT>${PROBE}
+      <TAB><WBK><TDA COLUMNCOUNT="1" ROWCOUNT="1"><COL WIDTH="100"/>
+      <ROW><CEL><DTA TYPE="STRING">${PROBE}</DTA></CEL></ROW>
+      </TDA></WBK></TAB></TXT>`));
+    expect(mixed.find(b => b.type === 'txt').html).toBe(ESC);
+    expect(mixed.find(b => b.type === 'table').table.rows[0][0].text).toBe(ESC);
+
+    // elemToTblHtml (preformatted TBL)
+    const tbl = parseSEC(secPart(`<TBL>${PROBE}<BRK/>&lt;b&gt;not bold&lt;/b&gt;</TBL>`));
+    expect(tbl[0].type).toBe('tbl');
+    expect(tbl[0].html).toBe(`${ESC}\n&lt;b&gt;not bold&lt;/b&gt;`);
+
+    // REF org / rid / rtl (elemToHtmlNoTab)
+    const ref = parseSEC(secPart(`<REF><ORG>${PROBE}</ORG><RID>${PROBE}</RID><RTL>${PROBE}</RTL></REF>`))[0];
+    expect(ref.ref.org).toBe(ESC);
+    expect(ref.ref.entries[0]).toEqual({ rid: ESC, rtl: ESC });
+
+    // No path leaks a live tag
+    for (const b of [...mixed, ...tbl, ref]) {
+      expect(JSON.stringify(b)).not.toContain('<img');
+      expect(JSON.stringify(b)).not.toContain('<b>');
+    }
+  });
+
+  it('keeps & entity-encoded and preserves literal angle-bracket content as text', () => {
+    // "O&amp;M" decodes to "O&M"; block.html must carry it as "O&amp;M" —
+    // the same encoding pmdoc-html/ytext-html emit for text.
+    expect(parseSEC(secPart('<TXT>O&amp;M data &amp;amp; more</TXT>'))[0].html)
+      .toBe('O&amp;M data &amp;amp; more');
+
+    // Real UFGS content: 08 44 00 uses "<Insert shape>" as a fill-in cue and
+    // 23 07 00 has "<25" in MET/ENG table cells. Pre-fix these were emitted
+    // raw and then swallowed as tags by every downstream HTML consumer.
+    const blocks = parseSEC(secPart('<TXT>[Wedge] &lt;Insert shape&gt;.</TXT><TXT><MET>&lt;25</MET><ENG>&lt;1</ENG></TXT>'));
+    expect(blocks[0].html).toBe('[Wedge] &lt;Insert shape&gt;.');
+    expect(blocks[1].html).toBe('<span class="mark-met">&lt;25</span><span class="mark-eng">&lt;1</span>');
+  });
+
   it('parses pre-part notes (part 0)', () => {
     const xml = secWrap('<NTE><NPR>Pre-part note</NPR></NTE><PRT><TXT>text</TXT></PRT>');
     const blocks = parseSEC(xml);
