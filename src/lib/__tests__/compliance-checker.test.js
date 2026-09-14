@@ -209,7 +209,16 @@ describe('computeStats', () => {
 // ── Performance regression test ───────────────────────────────────────────────
 
 describe('performance', () => {
-  it('completes a 400-block document scan in under 5 seconds', async () => {
+  // Regression guard against an algorithmic blowup in the scan (e.g. an
+  // O(n²) cross-block pass), NOT a wall-clock SLA. Wall time here measures
+  // Vitest worker contention more than the engine — under a full parallel
+  // run this scan has been observed at >10 s wall while its own CPU time
+  // stayed ~1.3 s (cold: regex compile + lazy init; ~0.4 s warm). So:
+  //   - budget is process CPU time, which excludes time spent waiting for
+  //     a core (it still inflates a little under contention, hence 5 s);
+  //   - runner timeout is 60 s so a slow machine reports the budget
+  //     assertion instead of a bare "Test timed out in 5000ms".
+  it('completes a 400-block document scan within the CPU budget', async () => {
     // Generate a realistic 400-block document with mixed content
     const blocks = [];
     const sampleTexts = [
@@ -228,16 +237,16 @@ describe('performance', () => {
       blocks.push(makeBlock(`perf-${i}`, 'txt', sampleTexts[i % sampleTexts.length], { part: Math.ceil((i + 1) / 130) }));
     }
 
-    const start = performance.now();
+    const cpuStart = process.cpuUsage();
     const { violations, stats } = await checkCompliance(blocks, 'document', null);
-    const elapsed = performance.now() - start;
+    const cpu = process.cpuUsage(cpuStart);
+    const cpuMs = (cpu.user + cpu.system) / 1000;
 
-    // Must complete in under 5 seconds (generous budget — typically ~200-500ms)
-    expect(elapsed).toBeLessThan(5000);
+    expect(cpuMs).toBeLessThan(5000);
     // Should find violations (sanity check — "shall", "per", etc. are in the sample text)
     expect(stats.total).toBeGreaterThan(0);
     expect(violations.length).toBeGreaterThan(0);
-  });
+  }, 60_000);
 
   it('caps violations at MAX_VIOLATIONS and sets truncated flag', async () => {
     // Generate a large document that will exceed MAX_VIOLATIONS
