@@ -6,10 +6,20 @@ on:
   pull_request:
     branches: [main]
 
+# Least-privilege default for the GITHUB_TOKEN; jobs that need more
+# (unit-tests' docs-currency check reads issue/PR state via `gh`) declare
+# it explicitly below instead of relying on the implicit repo-wide default.
+permissions:
+  contents: read
+
 jobs:
   unit-tests:
     name: Unit & Compliance Tests
     runs-on: windows-latest
+    permissions:
+      contents: read
+      issues: read
+      pull-requests: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
