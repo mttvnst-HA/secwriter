@@ -72,6 +72,28 @@ When fixing bugs, verify the fix doesn't introduce regressions by running the fu
 
 **Testing Rules:** see [.claude/rules/testing.md](.claude/rules/testing.md) (loads automatically when working with test files — `**/*.test.*`, `**/*.spec.*`, `**/__tests__/**`). Covers the `\u200B` regex-literal gotcha, CI-flake handling, PM-aware E2E injection helpers (`pm-helpers.js`), the full-suite-not-spot-check gate, and the React.StrictMode production-build caveat (rule #12, referenced from Orientation above).
 
+## Security Scanning & Branch Protection
+
+**CodeQL runs as GitHub default setup — there is no `codeql.yml` workflow.** Configuration lives in repo settings (read/write via `gh api repos/mttvnst-HA/secwriter/code-scanning/default-setup`), not in the tree. Current settings (2026-09-14): languages `javascript-typescript` + `actions`, query suite **`extended`**, threat model **`remote`**, weekly schedule plus every push/PR. Keep those — `extended` found the real share-route property-injection bug ([#332](https://github.com/mttvnst-HA/secwriter/pull/332)); `local` would only add env/file-read noise in `server/` config loading. Default setup cannot exclude paths; `tools/` is scanned deliberately and its findings are dismissed, not fixed (see below). Move to advanced setup with `paths-ignore` only if `tools/` keeps producing waves.
+
+**Alert handling policy.** Fix findings in `src/`, `server/`, and the root `server.js`. Dismiss via the API with a comment (**280-char cap** on `dismissed_comment`):
+- `tools/*.mjs` (maintainer-run local CLI scripts, e.g. `opus-*.mjs`, `run-ai-corpus.mjs`) → `won't fix`. Sending corpus files to the Claude API and writing responses to disk is their purpose.
+- `tests/`, `**/__tests__/`, E2E helpers → `used in tests`.
+- Mitigated-but-unrecognized (below) → `false positive`, comment naming the guard + test.
+
+**CodeQL does NOT model these mitigations — a correct fix will still leave the alert open, so dismiss it after fixing:**
+- `js/xml-bomb` has no sanitizer model at all. The `<!DOCTYPE|<!ENTITY` pre-parse reject in `sec-parser.js` is complete ([#318](https://github.com/mttvnst-HA/secwriter/pull/318)); alert #22 is dismissed.
+- `js/xss` at `DOMParser.parseFromString` does not recognize a hand-written escaper. `escapeHtmlText` / `escapeHtmlAttr` in `sec-parser.js` are the real fix ([#321](https://github.com/mttvnst-HA/secwriter/pull/321)); alert #4 is dismissed. **Text nodes from the XML parser are decoded — always escape before they enter `block.html`**, which reaches `innerHTML` / `dangerouslySetInnerHTML` in TitleBlock, TableBlock, PreformattedBlock, and the comment/lint scratch divs.
+- `js/remote-property-injection` recognizes ONLY a constant-string prefix on the key (`RemotePropertyInjectionQuery.qll`) — no validation guard, however named, clears it. The share route (merged in [#332](https://github.com/mttvnst-HA/secwriter/pull/332)) therefore builds its three ACL working copies (roles, invites-by-email, display cache) as **`Map`s** and converts back with `Object.fromEntries` at persist; `isSafeAclKey` in `auth/authorize.cjs` is the 400 gate for prototype-mutating subject keys. Keep both when touching that route.
+- `js/client-side-request-forgery` clears with a validation guard on the same binding that reaches the fetch: gate on `isValidRoomId` from `collab.js` and `encodeURIComponent` the segment (pattern in `useFileSession.js`).
+- `js/file-system-race`: don't probe with `access()`/`existsSync` before a read/write — read first and handle the error (`server.js`, [#341](https://github.com/mttvnst-HA/secwriter/pull/341)).
+
+**Verifying a fix before merge:** PR-ref analyses report only NEW alerts, so `alerts?ref=refs/pull/N/head` is empty and uninformative. Query the branch ref instead — default setup also scans branch pushes: `gh api "repos/mttvnst-HA/secwriter/code-scanning/alerts?ref=refs/heads/<branch>&state=open"`. An alert whose line moved shows as `fixed` and a NEW number opens at the new line; compare by rule, not by number.
+
+**Branch ruleset on `main`** (single ruleset, `main: PR + green CI + code scanning`, scoped to `~DEFAULT_BRANCH`; feature branches have zero rules): PR required (0 approvals), the three CI jobs (`Unit & Compliance Tests`, `Playwright E2E Tests`, `Azure Integration (Azurite)`) must pass, GitHub's built-in code-scanning rule blocks merges on new CodeQL findings at `errors` (quality) / `high_or_higher` (security), no force-push, no deletion. Repository admin has an `always` bypass — GitHub still demands an explicit confirmation per bypass, so nothing slips by accident. Adding a required check means adding it to the ruleset too (`gh api -X PUT repos/mttvnst-HA/secwriter/rulesets/<id>`), or the new job is advisory only.
+
+**Also enabled:** secret scanning + push protection; Dependabot covers `npm` and `github-actions` (weekly, [.github/dependabot.yml](.github/dependabot.yml)).
+
 ## Always Check the .ini Files for Formatting
 
 `reference/section.ini` is the authoritative source for:
