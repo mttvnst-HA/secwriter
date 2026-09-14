@@ -26,7 +26,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 
-const { MAX_PENDING_INVITES, MAX_ACL_BYTES } = require('../auth/authorize.cjs');
+const { MAX_PENDING_INVITES, MAX_ACL_BYTES, isSafeAclKey } = require('../auth/authorize.cjs');
 
 function httpJson(url, method, jsonBody, extraHeaders = {}) {
   return new Promise((resolve, reject) => {
@@ -82,6 +82,37 @@ async function start(h) {
   return `http://127.0.0.1:${h.server.address().port}`;
 }
 
+describe('share route refuses prototype-mutating subject keys (CodeQL js/remote-property-injection)', () => {
+  it('isSafeAclKey: rejects __proto__/constructor/prototype, control chars, empty', () => {
+    for (const bad of ['__proto__', 'constructor', 'prototype', '', 'a\u0000b', 'x\u007f', null, 42]) {
+      assert.equal(isSafeAclKey(bad), false, `expected unsafe: ${JSON.stringify(bad)}`);
+    }
+    for (const ok of ['alice', 'oid-1234-abcd', 'bob@corp.com', 'toString', 'y'.repeat(5000)]) {
+      assert.equal(isSafeAclKey(ok), true, `expected safe: ${ok}`);
+    }
+  });
+
+  it('PATCH /share with userId __proto__ → 400 and the ACL is untouched', async () => {
+    const h = makeShareServer();
+    const base = await start(h);
+    try {
+      await httpJson(`${base}/rooms`, 'POST', { id: 'r1' }, bearer({ sub: 'owner', tenant: 'acme' }));
+      const owner = bearer({ sub: 'owner', tenant: 'acme' });
+      const before = JSON.stringify(await h.storage.readAcl('acme', 'r1'));
+      for (const userId of ['__proto__', 'constructor', 'prototype']) {
+        const r = await httpJson(`${base}/rooms/r1/share`, 'PATCH', { userId, action: 'add', role: 'editor' }, owner);
+        assert.equal(r.status, 400, `${userId} add`);
+        const rm = await httpJson(`${base}/rooms/r1/share`, 'PATCH', { userId, action: 'remove' }, owner);
+        assert.equal(rm.status, 400, `${userId} remove`);
+      }
+      // Email path on remove skips the shape check, so it must hit the key guard too.
+      const em = await httpJson(`${base}/rooms/r1/share`, 'PATCH', { email: '__proto__', action: 'remove' }, owner);
+      assert.equal(em.status, 400);
+      assert.equal(JSON.stringify(await h.storage.readAcl('acme', 'r1')), before, 'ACL unchanged');
+      assert.equal(({}).polluted, undefined);
+    } finally { h.server.close(); h.cleanup(); }
+  });
+});
 describe('#267 share by email', () => {
   it('email add stores a pending invite (not a roles entry); never-registered ok; malformed → 400', async () => {
     const h = makeShareServer();
