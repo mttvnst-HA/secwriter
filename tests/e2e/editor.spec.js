@@ -3527,29 +3527,26 @@ test.describe('block-type conversion (Family A)', () => {
     // focusable and blur propagation is inconsistent across browsers.
     await page.locator('[data-block-id="n20"]').click();
 
-    // Poll until byBlock has an entry for this block (linting is async).
+    // Poll until byBlock holds a COMPLIANCE finding for this block. Waiting
+    // only for a non-null entry races: the debounced per-keystroke lint can
+    // write an entry for a partial string (e.g. "The contractor ") with empty
+    // compliance before the full-text lint lands, so a one-shot read after a
+    // `!== null` wait intermittently sees compliance.length === 0.
     await page.waitForFunction(
       (id) => {
         const utils = window.__simEditorTestUtils;
         if (!utils) return false;
         const findings = utils.getLintingFindings(id);
-        return findings !== null;
+        return findings !== null && findings.compliance.length > 0;
       },
       blockId,
       { timeout: 8000, polling: 200 },
     );
 
-    // Confirm a compliance finding was recorded.
-    const before = await page.evaluate(
-      (id) => window.__simEditorTestUtils.getLintingFindings(id),
-      blockId,
-    );
-    expect(before).not.toBeNull();
-    expect(before.compliance.length).toBeGreaterThan(0);
-
     // Re-focus the block so Ctrl+Shift+M fires with a focused block ID.
-    // The inner PM contenteditable has data-block-id; clicking it refocuses the view.
-    await page.locator(`[data-block-id="${blockId}"]`).click();
+    // pmSetCaret calls view.focus() with no click-actionability wait, which
+    // stalls under load (testing.md Rule #11).
+    await pmSetCaret(page, blockId, 'end');
 
     // Convert via palette. The "Designer Note" label starts with 'd', not 'n' —
     // the filter is `label.toLowerCase().startsWith(q)`.
@@ -3564,13 +3561,17 @@ test.describe('block-type conversion (Family A)', () => {
     // byBlock entry is cleared by handleConvertBlockType's clearBlock call.
     // The block may re-lint immediately (note blocks skip compliance per CLAUDE.md),
     // so check that no compliance findings remain rather than expecting null.
-    const after = await page.evaluate(
-      (id) => window.__simEditorTestUtils.getLintingFindings(id),
-      blockId,
-    );
     // Either null (entry fully cleared) or empty compliance (note exemption).
-    const complianceCount = after ? after.compliance.length : 0;
-    expect(complianceCount).toBe(0);
+    // Poll: the clear is a React state update mirrored into lintingStateRef on
+    // a later render, so a one-shot read right after the type flip can still
+    // see the pre-conversion entry.
+    await expect.poll(
+      () => page.evaluate((id) => {
+        const after = window.__simEditorTestUtils.getLintingFindings(id);
+        return after ? after.compliance.length : 0;
+      }, blockId),
+      { timeout: 5000 },
+    ).toBe(0);
   });
 
   // ── Scenario 4: TC mode — convert + accept preserves the new type ──────────
@@ -3645,8 +3646,8 @@ test.describe('block-type conversion (Family A)', () => {
     await page.keyboard.press('Tab');
 
     // Level 3 label is (a) per UFS Figure A-1.
-    const labelBefore = await page.locator(`#block-${blockId} [data-test="oli-label"]`).textContent();
-    expect(labelBefore).toMatch(/^\(a\)/);
+    // toHaveText retries — the label re-renders after the Tab level flip.
+    await expect(page.locator(`#block-${blockId} [data-test="oli-label"]`)).toHaveText(/^\(a\)/);
 
     // Convert oli → txt via palette. Focus is still in the PM editor.
     await page.keyboard.press('Control+Shift+M');
@@ -3666,8 +3667,7 @@ test.describe('block-type conversion (Family A)', () => {
     await expect(page.locator(`#block-${blockId}`)).toHaveAttribute('data-block-type', 'oli');
 
     // Level restored from stash: still level 3 → label should be (a).
-    const labelAfter = await page.locator(`#block-${blockId} [data-test="oli-label"]`).textContent();
-    expect(labelAfter).toMatch(/^\(a\)/);
+    await expect(page.locator(`#block-${blockId} [data-test="oli-label"]`)).toHaveText(/^\(a\)/);
   });
 });
 
