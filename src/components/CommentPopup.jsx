@@ -174,7 +174,7 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
   });
   useEffect(() => {
     let raf = 0;
-    const esc = (typeof CSS !== 'undefined' && CSS.escape) ? CSS.escape : (s) => s;
+    const esc = (typeof CSS !== 'undefined' && CSS.escape) ? (s) => CSS.escape(s) : (s) => s;
     const recompute = () => {
       raf = 0;
       const el = document.querySelector(`[data-comment-id="${esc(comment.id)}"]`);

@@ -991,7 +991,7 @@ export default function SpecEditor() {
   const commentIdsKey = [...comments.keys()].sort().join('|');
   useEffect(() => {
     if (!showCommentSpans) { setCommentRects(new Map()); return; }
-    const esc = (typeof CSS !== 'undefined' && CSS.escape) ? CSS.escape : (s) => s;
+    const esc = (typeof CSS !== 'undefined' && CSS.escape) ? (s) => CSS.escape(s) : (s) => s;
     const capture = () => {
       const ids = [...commentsStateRef.current.byId.keys()];
       setCommentRects(captureCommentRects(ids, (id) => {
