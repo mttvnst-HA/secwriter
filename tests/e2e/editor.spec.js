@@ -3792,6 +3792,9 @@ test.describe('right-click context menu', () => {
   });
 
   test('add-comment via context menu applies mark-comment span', async ({ page }) => {
+    // ~6.5s idle but up to ~23s under parallel load at --workers=2 — too close
+    // to the 30s default (same shape as the resolve-comment test below).
+    test.slow();
     await page.goto('/');
     await waitForApp(page);
     // Set the sim-comment-author to avoid an identity prompt.
@@ -3833,15 +3836,24 @@ test.describe('right-click context menu', () => {
   });
 
   test('resolve-comment via context menu changes mark to mark-comment-resolved', async ({ page }) => {
+    // Two full context-menu round-trips plus a comment submit: ~8s idle, but
+    // 27-29s under parallel load at --workers=2, right at the 30s default, so
+    // it intermittently hit the test timeout mid-poll. Every step keeps its
+    // own short timeout, so a real regression still fails fast.
+    test.slow();
     await page.goto('/');
     await waitForApp(page);
     // Set identity so no name prompt blocks the comment creation flow.
     await page.evaluate(() => { localStorage.setItem('sim-comment-author', 'Test User'); });
     await injectBlockHtml(page, 'n24', '<p>resolve me here</p>');
-    await page.waitForTimeout(150);
+    // Wait for PM to render the injected text instead of a fixed sleep.
+    const pmEditor = page.locator('[data-pm-editor="true"][data-block-id="n24"]');
+    await expect(pmEditor).toHaveText('resolve me here', { timeout: 5000 });
 
     // ── Step 1: add a comment via the context menu so commentsState has a real entry ──
-    const pmEditor = page.locator('[data-pm-editor="true"][data-block-id="n24"]');
+    // This click is load-bearing: without it the context menu never offers
+    // "Add comment" (programmatic view.focus() alone does not activate the
+    // block). The step-2 re-focus below does not need it.
     await pmEditor.click();
     await pmSetSelection(page, 'n24', 1, 14); // "resolve me he" (covers most of the text)
     const paraRect = await page.evaluate(() => {
@@ -3882,12 +3894,14 @@ test.describe('right-click context menu', () => {
     const commentSpan = page.locator(`${blockSel('n24')} span.mark-comment`).first();
     await commentSpan.scrollIntoViewIfNeeded();
     await expect(commentSpan).toBeVisible({ timeout: 3000 });
+    // Focus the PM editor and set the caret inside the comment span before
+    // right-clicking. pmSetCaret focuses the view (no click stall) and throws
+    // if the view is missing, unlike a bare optional-chained evaluate.
+    await pmSetCaret(page, 'n24', 5);
+    // Measure the span AFTER focusing so the right-click coords are current.
     const spanBox = await commentSpan.boundingBox();
     const resolveCx = spanBox.x + spanBox.width / 2;
     const resolveCy = spanBox.y + spanBox.height / 2;
-    // Focus the PM editor and set the caret inside the comment span before right-clicking.
-    await pmEditor.click();
-    await page.evaluate(() => { window.__simEditorTestUtils?.setPmCaret('n24', 5); });
     await page.mouse.click(resolveCx, resolveCy, { button: 'right' });
     await expect(menu).toBeVisible({ timeout: 3000 });
     await expect(menu.getByRole('menuitem', { name: 'Resolve comment' })).toBeVisible({ timeout: 3000 });
@@ -3899,10 +3913,13 @@ test.describe('right-click context menu', () => {
     // dispatching a tr that sets resolved:true → toDOM renders class="mark-comment-resolved".
     // The 400ms onUpdate debounce then flushes the serialized html back to blocks state.
     // Real observable: mark-comment-resolved class in block html (not mark-comment without suffix).
-    await expect.poll(() => readBlockHtml(page, 'n24'), { timeout: 5000 }).toContain('mark-comment-resolved');
-    // The unresolved class should no longer appear as a standalone span.
-    const html = await readBlockHtml(page, 'n24');
-    expect(html).not.toMatch(/class="mark-comment"(?!-resolved)/);
+    // One poll for both conditions: resolved class present AND no standalone
+    // unresolved span left (a one-shot read after the first poll could catch
+    // the html mid-flush).
+    await expect.poll(async () => {
+      const html = await readBlockHtml(page, 'n24');
+      return html.includes('mark-comment-resolved') && !/class="mark-comment"(?!-resolved)/.test(html);
+    }, { timeout: 5000 }).toBe(true);
   });
 
   test('table cell right-click -> insert row below adds a row', async ({ page }) => {
