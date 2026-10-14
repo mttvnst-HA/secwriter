@@ -1,6 +1,7 @@
 import { test, expect } from './fixtures.js';
 import http from 'node:http';
 import { createRoom, deleteRoom, joinRoom, getBlockText, waitForConnected, waitForEditable, seedRoom, MINIMAL_SEC } from './collab-helpers.js';
+import { pmSetCaret } from './pm-helpers.js';
 
 const COLLAB_HTTP = 'http://127.0.0.1:1234';
 
@@ -173,7 +174,10 @@ test.describe('Collab', () => {
   // route now calls migrateRoom() inline to promote those slots to the
   // Y.XmlFragment that PmEditableBlock's ySyncPlugin binds — without it,
   // per-keystroke edits produced no syncing ops and never reached peer B.
-  test('two-tab text sync: text typed by user A is visible to user B', { timeout: 60000 }, async ({ browser }) => {
+  test('two-tab text sync: text typed by user A is visible to user B', async ({ browser }) => {
+    // test.setTimeout, not a { timeout } details arg: Playwright's details
+    // object only honours tag/annotation, so that form silently kept 30s.
+    test.setTimeout(60000);
     const room = uniqueRoom();
     const ctxA = await browser.newContext();
     const ctxB = await browser.newContext();
@@ -234,7 +238,10 @@ test.describe('Collab', () => {
 
   // ── 7. Two-tab block operations ───────────────────────────────────────────────
   // Server-seeded room content prevents the initial-sync race.
-  test('two-tab block ops: new blocks created by A sync to B', { timeout: 60000 }, async ({ browser }) => {
+  test('two-tab block ops: new blocks created by A sync to B', async ({ browser }) => {
+    // test.setTimeout, not a { timeout } details arg: Playwright's details
+    // object only honours tag/annotation, so that form silently kept 30s.
+    test.setTimeout(60000);
     const room = uniqueRoom();
     const ctxA = await browser.newContext();
     const ctxB = await browser.newContext();
@@ -268,9 +275,22 @@ test.describe('Collab', () => {
       // User A clicks the last editable block and presses Enter to create a new block
       const lastBlock = pageA.locator('[contenteditable="true"]').last();
       await lastBlock.scrollIntoViewIfNeeded();
+      const lastId = await lastBlock.getAttribute('data-block-id');
       await lastBlock.click();
-      await pageA.keyboard.press('End');
+      // pmSetCaret instead of keyboard 'End': End updates the DOM selection and
+      // PM syncs it back asynchronously, so Enter could split mid-text (#116).
+      await pmSetCaret(pageA, lastId, 'end');
       await pageA.keyboard.press('Enter');
+      // Wait for the new block to mount AND take focus before typing (same
+      // wait as createFreshBlock, #114). Without it the first keystroke can
+      // land in the old block: B once received
+      // "...seeded test content.N|||EWBLOCK-…", which never matches the marker.
+      await pageA.waitForFunction((prevId) => {
+        const id = document.activeElement?.closest('[data-block-id]')?.getAttribute('data-block-id');
+        if (!id || id === prevId) return false;
+        const sel = window.__simEditorTestUtils?.getPmSelection?.(id);
+        return !!sel && typeof sel.from === 'number';
+      }, lastId, { timeout: 5000, polling: 20 });
       const marker = `NEWBLOCK-${Date.now()}`;
       await pageA.keyboard.type(marker, { delay: 50 });
 
@@ -303,6 +323,9 @@ test.describe('Collab', () => {
 
   // ── 8. Presence bar ───────────────────────────────────────────────────────────
   test('presence: two users in a room see each other in PresenceBar', async ({ browser }) => {
+    // Two browser contexts each cold-load the dev app and join the room
+    // (~13-16s per join under load), so 30s is too tight.
+    test.setTimeout(60000);
     const room = uniqueRoom();
     const ctxA = await browser.newContext();
     const ctxB = await browser.newContext();
@@ -335,6 +358,9 @@ test.describe('Collab', () => {
 
   // ── 9. Lock/unlock ────────────────────────────────────────────────────────────
   test('lock: locking room via PATCH API makes editor read-only for a second user', async ({ browser }) => {
+    // Two browser contexts each cold-load the dev app and join the room
+    // (~13-16s per join under load), so 30s is too tight.
+    test.setTimeout(60000);
     const room = uniqueRoom();
     const ctxA = await browser.newContext();
     const ctxB = await browser.newContext();
@@ -444,7 +470,10 @@ test.describe('Collab', () => {
   //   5. Peer A's per-block reconcile effect fires; orphan span in block.html
   //      is unwrapped via cm.reconcileBlocks.
   //   6. Peer A's block.html (React state) no longer contains 'mark-comment'.
-  test('peer deletes a comment while local popup is open — substrate mark unwraps', { timeout: 60000 }, async ({ browser }) => {
+  test('peer deletes a comment while local popup is open — substrate mark unwraps', async ({ browser }) => {
+    // test.setTimeout, not a { timeout } details arg: Playwright's details
+    // object only honours tag/annotation, so that form silently kept 30s.
+    test.setTimeout(60000);
     const room = uniqueRoom();
     const ctxA = await browser.newContext();
     const ctxB = await browser.newContext();
@@ -601,7 +630,10 @@ test.describe('Collab', () => {
   // `src/lib/__tests__/collab-lint.test.js` already cover encode/decode/publish.
   // The thing only an E2E can verify is "does the y-websocket sync actually
   // carry yLint between peers."
-  test('lint sidecar: Peer A publishes → Peer B receives via Yjs sync (#150)', { timeout: 60000 }, async ({ browser }) => {
+  test('lint sidecar: Peer A publishes → Peer B receives via Yjs sync (#150)', async ({ browser }) => {
+    // test.setTimeout, not a { timeout } details arg: Playwright's details
+    // object only honours tag/annotation, so that form silently kept 30s.
+    test.setTimeout(60000);
     const room = uniqueRoom();
     const ctxA = await browser.newContext();
     const ctxB = await browser.newContext();
@@ -681,7 +713,10 @@ test.describe('Collab', () => {
   //      tombstones for every entry — yLintIgnored.size stays the same (never-
   //      delete discipline) but getIgnoredKeys() on peer B drops to 0 once the
   //      tombstoned entries propagate.
-  test('collab: peer A dismisses, peer B sees dismissal sync (#140)', { timeout: 60000 }, async ({ browser }) => {
+  test('collab: peer A dismisses, peer B sees dismissal sync (#140)', async ({ browser }) => {
+    // test.setTimeout, not a { timeout } details arg: Playwright's details
+    // object only honours tag/annotation, so that form silently kept 30s.
+    test.setTimeout(60000);
     const room = uniqueRoom();
     const ctxA = await browser.newContext();
     const ctxB = await browser.newContext();
